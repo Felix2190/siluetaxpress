@@ -2113,7 +2113,7 @@
 
 		a:hover {
 			border-bottom-color: #f56a6a;
-			color: #f56a6a !important;
+			color: #b048cc!important;
 		}
 
 			a:hover strong {
@@ -3978,6 +3978,7 @@
 		font-weight: bold;
 	}
 
+			
 		#menu ul a, #menu ul span {
 			border-bottom: 0;
 			color: inherit;
@@ -3986,9 +3987,8 @@
 			font-size: 0.9em;
 			padding: 0.625em 0;
 		}
-
 			#menu ul a:hover, #menu ul span:hover {
-				color: #7F09BA;
+				color: #b048cc /*cambio  color menu desp*/ 
 			}
 
 			#menu ul a.opener, #menu ul span.opener {
@@ -4002,6 +4002,7 @@
 					font-style: normal;
 					font-weight: normal;
 					text-transform: none !important;
+					color: #b048cc /*cambio  color menu desp*/
 				}
 
 				#menu ul a.opener:before, #menu ul span.opener:before {
@@ -4009,14 +4010,14 @@
 					-webkit-transition: color 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
 					-ms-transition: color 0.2s ease-in-out, -ms-transform 0.2s ease-in-out;
 					transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
-					color: #7F09BA;
+					color: #338e05;
 					content: '\f078';
 					position: absolute;
 					right: 0;
 				}
 
 				#menu ul a.opener:hover:before, #menu ul span.opener:hover:before {
-					color: #7F09BA;
+					color: #338e05;
 				}
 
 				#menu ul a.opener.active + ul, #menu ul span.opener.active + ul {
@@ -4028,6 +4029,7 @@
 					-webkit-transform: rotate(-180deg);
 					-ms-transform: rotate(-180deg);
 					transform: rotate(-180deg);
+						color: #9662d6; /*flecha*/
 				}
 
 	#menu > ul > li {
@@ -4051,7 +4053,13 @@
 
 			#menu > ul > li > ul a, #menu > ul > li > ul span {
 				font-size: 0.8em;
+				color: #495668; /*letras*/
 			}
+			
+						#menu > ul > li > ul a:hover {
+				color: #b048cc /*cambio  color menu desp*/ 
+			}
+			
 
 			#menu > ul > li > ul > li {
 				margin: 0.125em 0 0 0;
@@ -4063,3 +4071,4 @@
 			margin-top: 0;
 			padding-top: 0;
 		}
+		
