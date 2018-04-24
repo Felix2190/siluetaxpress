@@ -27,19 +27,29 @@
 		<div id="main">
 			<div class="container">
 				<div class="row main-row">
-					<div class="12u">
+					<div class="8u 12u(mobile)">
 
 						<section>
-							<h2>¿Qu&eacute; hacemos?</h2>
-							<p>Baja de peso con una dieta personalizada, elaborada por nuestros nutri&oacute;logas.</p> 
-							<p>Disminuye la ansiedad con productos 100% naturales.</p> 
-							<p>Controla el estr&eacute;s y colitis con acupuntura, a su vez disminuye grasa abdominal, flacidez y celulitis con aparatolog&iacute;a (cavitaci&oacute;n, radiofrecuencia, gimnasia pasiva y vacumterapia).</p>
-							<p>
-							<b>¿Te ves m&aacute;s grande de la edad que tienes?</b></p>
-							<p>Tenemos faciales que incluyen microdermoabrasi&oacute;n, radiofrecuencia, ultrasonido y m&aacute;s, que te ayudaran a limpiar tu cutis y disminuir l&iacute;neas de expresi&oacute;n y arrugas.</p> 
-
+						<div class="demo-social-icons">
+							<h2>&iquest;Qui&eacute;nes somos?</h2>
+							 <h3>&emsp;<img alt="" src="images/icons/social/24/button-orange.png"> Silueta Express es una joven y s&eacute;lida empresa franquiciante, que adem&aacute;s es innovadora y din&aacute;mica pero altamente responsable. </h3>
+							 <h3>&emsp;<img alt="" src="images/icons/social/24/button-orange.png"> Silueta Express ofrece un tratamiento seguro y efectivo para la reducci&eacute;n de peso.</h3>
+							 <h3>&emsp;<img alt="" src="images/icons/social/24/button-orange.png"> El crecimiento de nuestra empresa Silueta Express se basa en un trabajo responsable as&iacute; como en altos conceptos de calidad en el servicio al p&uacute;blico y adem&aacute;s un alto grado de competitividad en el mercado.</h3>
+							 <h3>&emsp;<img alt="" src="images/icons/social/24/button-orange.png"> Nuestra mejor publicidad es nuestro trabajo de alta calidad.</h3>
+							 <h3>&emsp;<img alt="" src="images/icons/social/24/button-orange.png"> Silueta Express ofrece un servicio de primera calidad con gran repercusi&eacute;n y de gran &eacute;xito en el grupo de nuestros clientes.</h3>
+						</div>
 						</section>
 
+					</div>
+					
+					<div class="4u 12u(mobile)">
+					<section>
+					<br />
+					<br />
+					<br />
+					
+					<img src="images/IMG4.jpg" alt=""  style="width: 95%">
+					</section>
 					</div>
 
 				</div>
