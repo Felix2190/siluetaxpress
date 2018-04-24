@@ -14,8 +14,8 @@
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
-			<link rel="stylesheet" type="text/css" href="engine1/style.css" />
-	<script type="text/javascript" src="engine1/jquery.js"></script>
+			<link rel="stylesheet" type="text/css" href="assets/css/banner_style.css" />
+	<script type="text/javascript" src="js/lib/banner/jquery.js"></script>
 	<!-- End WOWSlider.com HEAD section -->
 
 		
@@ -34,18 +34,51 @@
 
 						<section>
 							<h2>Promociones</h2>
-							<p></p>
-							<ul class="small-image-list">
-									<li>
-										<a href="#"><img src="images/promo.jpg" alt="" class="left"></a>
-										<h4>&iexcl;&iexcl;&iexcl;En la compra de 2 paquetes, te regalamos 3 faciales completos!!!</h4>
-										
-										<p></p>
-									</li>
-								</ul>							
+							<p></p>						
+						</section>
+						
+						<section>
+						<div class="row">
+						
+        					<div class="4u 12u(mobile)">
+        						<section>
+        						<img src="images/facial.jpg" alt=""  style="width: 90%">
+        						</section>
+        					</div>
+        					
+        					<div class="4u 12u(mobile)">
+        						<section>
+        						<img src="images/reduce.jpg" alt=""  style="width: 90%">
+        						</section>
+        					</div>
+        					
+        					<div class="4u 12u(mobile)">
+        						<section>
+        						<img src="images/reduce2.jpg" alt=""  style="width: 90%">
+        						</section>
+        					</div>
+        					
+						
+						</div>
+						
+						
+						
+						<div class="row">
+						
+        					<div class="12u">
+        						<section>
+        						<img src="images/depilacion.jpg" alt=""  style="width: 70%; margin-left: 10%;">
+        						</section>
+        					</div>
+        					
+						
+						</div>
+						
 						</section>
 
 					</div>
+					
+					
 
 				</div>
 
@@ -64,8 +97,8 @@
 			<script src="assets/js/util.js"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="assets/js/main.js"></script>
-<script type="text/javascript" src="engine1/wowslider.js"></script>
-<script type="text/javascript" src="engine1/script.js"></script>
+<script type="text/javascript" src="js/lib/banner/wowslider.js"></script>
+<script type="text/javascript" src="js/lib/banner/script.js"></script>
 
 	</body>
 </html>

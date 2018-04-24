@@ -495,8 +495,7 @@ _:-ms-input-placeholder, :root #wowslider-container1 .ws_playpause:after {line-h
 }
 #wowslider-container1 .ws-title div,#wowslider-container1 .ws-title span{
 	display:inline-block;
-	padding: 0.5em;
-	text-transform: uppercase;	
+	padding: 0.5em;	
 }
 #wowslider-container1 .ws-title div{
 	display:block;
