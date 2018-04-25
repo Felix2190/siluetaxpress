@@ -27,12 +27,12 @@
 		<div id="main">
 			<div class="container">
 				<div class="row main-row">
-					<div class="8u 12u(mobile)">
+					<div class="7u 12u(mobile)">
 
 						<section>
 						<div class="demo-social-icons">
 							<h2>&iquest;Qui&eacute;nes somos?</h2>
-							 <h3>&emsp;<img alt="" src="images/icons/social/24/button-orange.png"> Silueta Express es una joven y s&eacute;lida empresa franquiciante, que adem&aacute;s es innovadora y din&aacute;mica pero altamente responsable. </h3>
+							 <h3>&emsp;<img alt="" src="images/icons/social/24/button-orange.png"> Silueta Express es una joven y s&oacute;lida empresa franquiciante, que adem&aacute;s es innovadora y din&aacute;mica pero altamente responsable. </h3>
 							 <h3>&emsp;<img alt="" src="images/icons/social/24/button-orange.png"> Silueta Express ofrece un tratamiento seguro y efectivo para la reducci&eacute;n de peso.</h3>
 							 <h3>&emsp;<img alt="" src="images/icons/social/24/button-orange.png"> El crecimiento de nuestra empresa Silueta Express se basa en un trabajo responsable as&iacute; como en altos conceptos de calidad en el servicio al p&uacute;blico y adem&aacute;s un alto grado de competitividad en el mercado.</h3>
 							 <h3>&emsp;<img alt="" src="images/icons/social/24/button-orange.png"> Nuestra mejor publicidad es nuestro trabajo de alta calidad.</h3>
@@ -42,13 +42,19 @@
 
 					</div>
 					
-					<div class="4u 12u(mobile)">
+					<div class="5u 12u(mobile)">
 					<section>
 					<br />
 					<br />
 					<br />
 					
-					<img src="images/IMG4.jpg" alt=""  style="width: 95%">
+					<div class="row">
+								<video width=540 height=380 controls autoplay">
+									<source src="videos/sport.mp4" type="video/mp4">
+								</video>
+
+							</div>
+						
 					</section>
 					</div>
 

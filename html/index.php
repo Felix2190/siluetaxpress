@@ -37,39 +37,55 @@
 							<p></p>						
 						</section>
 						
-						<section>
-						<div class="row">
-						
-        					<div class="4u 12u(mobile)">
+				</div>
+				
+				
+						<div class="7u 12u(mobile)">
+							
+							<h3>Pr&oacute;ximas (mayo)</h3>
+							<div class="row" style="margin-left: 5%;">
         						<section>
-        						<img src="images/facial.jpg" alt=""  style="width: 90%">
+        						<img src="images/mayo1.jpeg" alt=""  style="width: 80%">
+        						</section>
+        					</div>
+        					<div class="row" style="margin-left: 1%;">
+        						<section>
+        						<img src="images/mayo3.jpeg" alt=""  style="width: 95%">
+        						</section>
+        						
+        					</div>
+        					<div class="row" style="margin-left: 5%;">
+        						<section>
+        						<img src="images/mayo2.jpeg" alt=""  style="width: 80%">
         						</section>
         					</div>
         					
-        					<div class="4u 12u(mobile)">
-        						<section>
-        						<img src="images/reduce.jpg" alt=""  style="width: 90%">
-        						</section>
-        					</div>
-        					
-        					<div class="4u 12u(mobile)">
-        						<section>
-        						<img src="images/reduce2.jpg" alt=""  style="width: 90%">
-        						</section>
-        					</div>
-        					
-						
 						</div>
 						
 						
+						<div class="5u 12u(mobile)">
+						<h3>Otras</h3>
+						<section>
 						
-						<div class="row">
-						
-        					<div class="12u">
-        						<section>
-        						<img src="images/depilacion.jpg" alt=""  style="width: 70%; margin-left: 10%;">
+						<div class="row" style="margin-left: 1%;">
+								<section>
+        						<img src="images/depilacion.jpg" alt=""  style="width: 110%;">
         						</section>
-        					</div>
+        				</div>
+						
+						<div class="row" style="margin-left: 5%;">
+						
+        						<section>
+        						<img src="images/facial.jpg" alt=""  style="width: 90%">
+        						</section>
+        					
+        						<section>
+        						<img src="images/reduce.jpg" alt=""  style="width: 90%">
+        						</section>
+        					
+        						<section>
+        						<img src="images/reduce2.jpg" alt=""  style="width: 90%">
+        						</section>
         					
 						
 						</div>
@@ -80,7 +96,7 @@
 					
 					
 
-				</div>
+				
 
 			</div>
 

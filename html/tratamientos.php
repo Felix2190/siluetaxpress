@@ -76,7 +76,7 @@
 
 						<section>
 							<h2>PESTA&Ntilde;AS MINK </h2>
-							<p>Extensiones de pestañas, no pesan, dan apariencia natural, lucen como si fueran tuyas. 
+							<p>Extensiones de pesta&ntilde;as, no pesan, dan apariencia natural, lucen como si fueran tuyas. 
 							</p>
 							 							
 						</section>

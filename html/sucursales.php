@@ -66,6 +66,7 @@
 									
 										<p> &emsp;<img alt="" src="images/icons/social/16/star.png">  Felipe Villanueva #825, Col. Morelos
 										<br /> &emsp;<img alt="" src="images/icons/social/16/tumblr.png"> (722) 4 89 22 40
+										<br /> &emsp;<img alt="" src="images/icons/social/16/whatsapp.png"> 722 4 73 18 22
 										 <br />&emsp;<img alt="" src="images/icons/social/16/facebook.png"> <a target="_blank" href="https://www.facebook.com/siluetaexpresstoluca/">Silueta Express Toluca</a></p>
 									
 										<iframe src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3766.0845832133714!2d-99.66772608500816!3d19.27868758697198!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x85cd89baf096cf41%3A0xafdd39cb3636441c!2sFelipe+Villanueva+825%2C+Morelos+Segunda+Secc%2C+50120+Toluca+de+Lerdo%2C+M%C3%A9x.!5e0!3m2!1ses!2smx!4v1524539941573" width="400" height="300" frameborder="0" style="border:0" allowfullscreen></iframe>
@@ -93,7 +94,7 @@
 					<div class="2u 12u(mobile)">
 						<section>
 						<a href="visitaVirtual.php"><h4>Ir a visita virtual</h4></a>
-						<img src="images/visita_virtual.png" alt=""  style="width: 120%">
+						<img src="images/visita_virtual.PNG" alt=""  style="width: 120%">
 						</section>
 					</div>
 					

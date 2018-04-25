@@ -31,23 +31,38 @@
 			<div class="container">
 				<div class="row main-row">
 					<div class="12u">
-
+					
+					<div class="row">
+					<div class="3u 12u(mobile)">
+						<section>
+						<img src="images/local.jpg" alt=""  style="width: 90%; margin-left:10%">
+						</section>
+					</div>
+					
+					
+					<div class="9u 12u(mobile)">
 						<section>
 							<h3>Silueta Express le ofrece una excelente oportunidad para realizar un negocio rentable y de larga duraci&oacute;n.</h3>
-							<p></p>
-							<p>El rubro de la belleza es uno de los de mayor crecimiento en los &uacute;ltimos diez a&ntilde;os en todo el mundo. Silueta Express se encuentra con su concepto de negocio en el pulso del tiempo y te brinda un negocio seguro para que tu mismo puedas ser parte de nuestro &eacute;xito.</p>
+							<p><br /></p>
+							<p>El rubro de la belleza es uno de los de mayor crecimiento en los &uacute;ltimos diez a&ntilde;os en todo el mundo.</p> 
+							<p>Silueta Express se encuentra con su concepto de negocio en el pulso del tiempo y te brinda un negocio seguro para que tu mismo puedas ser parte de nuestro &eacute;xito.</p>
 							
 							
 						</section>
 						
 						<section>
 						<p></p>
-						<a id="btnFranquicia" >Adquiere tu franquicia aqu&iacute;.</a>
+						<a class="button2" id="btnFranquicia" >Adquiere tu franquicia aqu&iacute;</a>
 						</section>
+					</div>
+					
+					</div>
 						
-						
+				</div>
+				
+				<div class="12u">		
 						<section>
-						<div>
+				
 					<div class="row" style="display: none;"  id="formulario">
 								
 						<div class="1u 12u(mobile)">
@@ -129,7 +144,7 @@
 						</div>
 						
 						</div>
-						</div>						
+			
 						</section>
 
 					</div>
