@@ -17,7 +17,6 @@ class ConexionBD{
         }
         
         $this->dbLink->set_charset(BD_CHARSET);
-        echo 'conexión exitosa';
         
     }
 }

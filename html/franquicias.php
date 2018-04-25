@@ -1,4 +1,5 @@
 <?php 
+require_once 'masterInclude.inc.php';
 ?>
 <!DOCTYPE HTML>
 <!--
@@ -13,13 +14,14 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="assets/css/main.css" />
+		<link rel="stylesheet" href="assets/css/alertify.min.css" />
+		<link rel="stylesheet" href="assets/css/themes/default.min.css" />
+		<script src="js/lib/alertifyjs/alertify.min.js"></script>
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 	<!-- End WOWSlider.com HEAD section -->
 	 
-	 <script src="js/lib/jquery-1.11.0.min.js"></script>
-	 <script type="text/javascript" src="js/lib/common.js"></script>
 	
-		<script src="js/system/franquicias.js"></script>
+	<?php require_once 'importar_scripts.php'; ?>
 	</head>
 	<body>
 		<div id="page-wrapper">
@@ -80,26 +82,24 @@
 						</div>
 						<div class="row">
 							<div class="3u 12u$(xsmall)">
-								<label>Correo electr&oacute;nico:</label>
-							</div> 
-							<div class="9u 12u$(xsmall)">
-								<input type="text" id="txt"/>
-							</div>
-						</div>
-						<div class="row">
-							<div class="3u 12u$(xsmall)">
 								<label>Estado:</label>
 							</div> 
-							<div class="9u 12u$(xsmall)">
-								<input type="text" id="txt"/>
-							</div>
-						</div>
-						<div class="row">
 							<div class="3u 12u$(xsmall)">
+							<div class="select-wrapper">
+								<select id="slcEstado">
+									<?php echo $slcEstados;?>
+								</select>
+							</div>
+							</div>
+							<div class="2u 12u$(xsmall)">
 								<label>Municipio:</label>
 							</div> 
-							<div class="9u 12u$(xsmall)">
-								<input type="text" id="txt"/>
+							<div class="4u 12u$(xsmall)">
+							<div class="select-wrapper">
+								<select id="slcMunicipio">
+									<?php echo $slcMunicipios;?>
+								</select>
+							</div>
 							</div>
 						</div>
 						<div class="row">
@@ -107,7 +107,7 @@
 								<label>Ciudad:</label>
 							</div> 
 							<div class="9u 12u$(xsmall)">
-								<input type="text" id="txt"/>
+								<input type="text" id="txtCiudad"/>
 							</div>
 						</div>
 						<div class="row">
@@ -115,15 +115,21 @@
 								<label>Direcci&oacute;n:</label>
 							</div> 
 							<div class="9u 12u$(xsmall)">
-								<input type="text" id="txt"/>
+								<input type="text" id="txtDireccion"/>
 							</div>
 						</div>
 						<div class="row">
 							<div class="3u 12u$(xsmall)">
 								<label>Tel&eacute;fono:</label>
 							</div> 
-							<div class="9u 12u$(xsmall)">
-								<input type="text" id="txt"/>
+							<div class="3u 12u$(xsmall)">
+								<input type="text" id="txtTel"/>
+							</div>
+							<div class="3u 12u$(xsmall)">
+								<label>Correo electr&oacute;nico:</label>
+							</div> 
+							<div class="3u 12u$(xsmall)">
+								<input type="text" id="txtEmail"/>
 							</div>
 						</div>
 						<div class="row">
@@ -131,7 +137,7 @@
 								<label>Comentarios:</label>
 							</div> 
 							<div class="9u 12u$(xsmall)">
-								<textarea rows="6" cols=""></textarea>
+								<textarea rows="6" cols="" id="txtComentarios"></textarea>
 							</div>
 							
 						</div>
@@ -139,7 +145,7 @@
 						
 						<div class="row">
 						<div class="12u"></div>
-						<a id="" class="button">Enviar</a>
+						<a id="btnEnviar" class="button">Enviar</a>
 						</div>
 						</div>
 						
