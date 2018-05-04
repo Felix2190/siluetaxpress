@@ -9,11 +9,7 @@ class clsSession
 
 	private $user_name;
 	private $email;
-	
-	private $_soporteIniciado=false;
 
-	private $tieneDetallesPlan=false;
-	public $detallesPlan;
 	public $_lastTime;
 	public $_lastTimeSoporte;
 
@@ -29,8 +25,7 @@ class clsSession
 	#--------------------------------------------Control--------------------------------------------#
 	#-----------------------------------------------------------------------------------------------#
 
-	var $__s=array(	"user_name",
-		"email");
+	var $__s=array(	"userName",	"idUsuario","nombre","apellidos","tipoUsuario","sucursal","lugar","correo","idRol");
 
 	public function __construct()
 	{
@@ -57,12 +52,47 @@ class clsSession
 
 	public function getUserName()
 	{
-		return $this->user_name;
+		return $this->userName;
 	}
 
-	public function getEmail()
+	public function getCorreo()
 	{
-		return $this->email;
+		return $this->correo;
+	}
+	
+	public function getNombre()
+	{
+	    return $this->nombre;
+	}
+	
+	public function getApellidos()
+	{
+	    return $this->apellidos;
+	}
+	
+	public function getidUsuario()
+	{
+	    return $this->idUsuario;
+	}
+	
+	public function getSucursal()
+	{
+	    return $this->sucursal;
+	}
+	
+	public function getLugar()
+	{
+	    return $this->lugar;
+	}
+		
+	public function getTipoUsuario()
+	{
+	    return $this->tipoUsuario;
+	}
+	
+	public function getidRol()
+	{
+	    return $this->idRol;
 	}
 
 	public function isSessionActive()

@@ -14,9 +14,9 @@ require_once 'masterInclude.inc.php';
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="assets/css/main.css" />
-		<link rel="stylesheet" href="assets/css/alertify.min.css" />
+		
 		<link rel="stylesheet" href="assets/css/themes/default.min.css" />
-		<script src="js/lib/alertifyjs/alertify.min.js"></script>
+		
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 	<!-- End WOWSlider.com HEAD section -->
 	 
@@ -72,7 +72,7 @@ require_once 'masterInclude.inc.php';
 						</div>
 						
 						<div class="8u 12u(mobile)">
-						<div class="row" id="divFormulario">
+						<div class="row" >
 							<div class="3u 12u$(xsmall)">
 								<label>Nombre completo:</label>
 							</div> 

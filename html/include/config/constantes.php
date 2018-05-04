@@ -83,10 +83,10 @@ require_once(CLASS_COMUN);
 require_once CLASS_SESSION;
 
 $objSession=new clsSession();
-
+$sesion=false;
 if(isset($_SESSION['objSession'])){
     $objSession=unserialize($_SESSION['objSession']);
-    
+    $sesion=true;
     if($objSession->isSessionActive()){
     $objSession->updateTime();
     $_SESSION['objSession']=serialize($objSession);
@@ -112,8 +112,26 @@ if(is_file(FOLDER_INCLUDE . "controler/" . $__FILE_NAME__ . ".inc.php"))
     
 }
 
+$_JAVASCRIPT_ALERTAS = "<script type='text/javascript' >
+        function mostrarMsjError(texto, tiempo){
+            alertify.set('notifier','position', 'top-right'); //top-left, top-right, bootom-left, bottom-right
+            alertify.notify(texto,'error', tiempo, null); //mensaje, tipo, tiempo en segundo (0 siempre visible, quitar al hacer click
+      }
+         function mostrarMsjExito(texto, tiempo){
+            alertify.set('notifier','position', 'top-right'); //top-left, top-right, bootom-left, bottom-right
+            alertify.notify(texto,'success', tiempo, null); //mensaje, tipo, tiempo en segundo (0 siempre visible, quitar al hacer click
+      } 
+         function mostrarMsjEspera(texto, tiempo){
+            alertify.set('notifier','position', 'top-right'); //top-left, top-right, bootom-left, bottom-right
+            alertify.notify(texto,'warning', tiempo, null); //mensaje, tipo, tiempo en segundo (0 siempre visible, quitar al hacer click
+      } 
+         function mostrarMensaje(texto, tiempo){
+            alertify.set('notifier','position', 'top-right'); //top-left, top-right, bootom-left, bottom-right
+            alertify.notify(texto, tiempo, null); //mensaje, tipo, tiempo en segundo (0 siempre visible, quitar al hacer click
+      } </script>";
+
 if (! isset($_JAVASCRIPT_CSS))
-    $_JAVASCRIPT_CSS = "";
+    $_JAVASCRIPT_CSS = $_JAVASCRIPT_ALERTAS;
 
 if (isset($xajax))
     $_JAVASCRIPT_CSS .= $xajax->getJavascript("js/lib/");
@@ -132,7 +150,7 @@ if (is_file(FOLDER_INCLUDE_AGENDA . "controler/" . $__FILE_NAME__ . ".inc.php"))
 }
 
 if (! isset($_JAVASCRIPT_CSS_AGENDA))
-    $_JAVASCRIPT_CSS_AGENDA = "";
+    $_JAVASCRIPT_CSS_AGENDA = $_JAVASCRIPT_ALERTAS;
 
 if (isset($xajax))
     $_JAVASCRIPT_CSS_AGENDA .= $xajax->getJavascript("js/lib/");
@@ -142,6 +160,5 @@ if (isset($xajax))
     if (is_file(FOLDER_JS_AGENDA . $__FILE_NAME__ . ".js"))
         $_JAVASCRIPT_CSS_AGENDA .= '<script type="text/javascript" src="' . URL_JAVASCRIPT . $__FILE_NAME__ . '.js"></script>';
                 
-                
-                        
+        
 ?>
