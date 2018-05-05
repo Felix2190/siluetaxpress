@@ -1,9 +1,9 @@
-<?php 
+<?php
 require_once 'masterInclude.inc.php';
 ?>
-<!DOCTYPE HTML>
-<html>
-	<head>
+<!doctype html>
+<html >
+<head>
 		<title> Cita nueva </title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -12,20 +12,8 @@ require_once 'masterInclude.inc.php';
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->		
 		
-		  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
-  <link rel="stylesheet" href="/resources/demos/style.css">
-  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
-  <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
-  
-		<script >
-		  $( function() {
-			    $( ".datepicker" ).datepicker({
-			      changeMonth: true,
-			      changeYear: true
-			    });
-			  } );
-		  		</script>	
-	</head>
+		<?php require_once 'importar_scripts.php'; ?>
+</head>
 	<body>     
 		<!-- Wrapper -->
 			<div id="wrapper">
@@ -46,18 +34,27 @@ require_once 'masterInclude.inc.php';
 					<div class="12u 12u$(small)">
 						<div class="box">
 							<div class="row">
-								<div class="3u 12u$(xsmall)">
-									<h3>Datos personales</h3>
-								</div>
-							</div>
-							<div class="row">
 								<div class="2u 12u$(xsmall)">
 									<label>Paciente:</label>
 								</div>
-								<div class="5u 12u$(xsmall)">
-									<input type="text" id="txtNombre" />
+								<div class="4u 12u$(xsmall)">
+									<input id="tags" />
 								</div>
 								
+								<div class="2u 12u$(xsmall)">
+									<label>Consulta:</label>
+								</div>
+								<div class="4u 12u$(xsmall)">
+									<select id="slcConsultas"></select>
+								</div>
+							
+							</div>
+							<br />
+							<div class="row">
+							</div>
+							<br />
+							<div class="row">
+							
 								<div class="2u 12u$(xsmall)">
 									<label>Fecha:</label>
 								</div>
@@ -65,20 +62,7 @@ require_once 'masterInclude.inc.php';
 									<input type="text" id="txtFecha" placeholder="AAAA-MM-DD" readonly="readonly"
 																class="datepicker" />
 								</div>
-							
-							
-							</div>
-							<br />
-							<div class="row">
-								<div class="3u 12u$(xsmall)">
-									<label>Apellidos:</label>
-								</div>
-								<div class="9u 12u$(xsmall)">
-									<input type="text" id="txtApellidos" />
-								</div>
-							</div>
-							<br />
-							<div class="row">
+								
 								<div class="3u 12u$(xsmall)">
 									<label>Tel&eacute;fono (casa):</label>
 								</div>
@@ -132,13 +116,12 @@ require_once 'masterInclude.inc.php';
 				<!-- Sidebar -->
 					<?php include_once 'sidebar.php';?>
 			</div>
-
-		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
+ 
 			<script src="assets/js/skel.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="assets/js/main.js"></script>
 
-	</body>
+	
+</body>
 </html>

@@ -100,7 +100,7 @@ require_once(LIB_XAJAX);
 
 
 
-$_JAVASCRIPT_ALERTAS = "<script type='text/javascript' >
+$_JAVASCRIPT_ALERTAS = "<script type='text/javascript'>
         function mostrarMsjError(texto, tiempo){
             alertify.set('notifier','position', 'top-right'); //top-left, top-right, bootom-left, bottom-right
             alertify.notify(texto,'error', tiempo, null); //mensaje, tipo, tiempo en segundo (0 siempre visible, quitar al hacer click
