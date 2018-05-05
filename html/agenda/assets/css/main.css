@@ -3030,6 +3030,7 @@
 			background-color: #2f890b;
 			box-shadow: none;
 			color: #ffffff !important;
+			float: right;
 		}
 
 			input[type="submit"].special:hover,
@@ -3037,7 +3038,7 @@
 			input[type="button"].special:hover,
 			button.special:hover,
 			.button.special:hover {
-				background-color: #f67878;
+				background-color: #00bb00;
 			}
 
 			input[type="submit"].special:active,

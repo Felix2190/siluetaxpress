@@ -3,16 +3,17 @@ $(document).ready(function(){
 });
 	 
 function iniciar(){
-	$("#btnFranquicia").click(function (){
-		$("#formulario").show();
-		$('html,body').animate({
-		    scrollTop: $("#divFormulario").offset().top
-		}, 2000);
+	$('.datepicker').datepicker({
+		dateFormat : 'yy-mm-dd',
+		changeMonth : true,
+		changeYear : true,
+		minDate : '0D'
 	});
-	$("#btnEnviar").click(altaFranquicia);
+
+	$("#btnGuardar").click(altaPaciente);
 }
 
-function altaFranquicia(){
+function altaPaciente(){
 	var existeError = false;
 	
 	var txtNombre= $("#txtNombre").val().trim();
@@ -20,51 +21,55 @@ function altaFranquicia(){
 		existeError = true;
 		console.log("Error: txtNombre");
 	}
-	
-	var slcEstado= $("#slcEstado").val().trim();
-	if (slcEstado == "") {
+
+	var txtApellidos= $("#txtApellidos").val().trim();
+	if (txtApellidos == "") {
 		existeError = true;
-		console.log("Error: txtEstado");
-	}
-	var slcMunicipio= $("#slcMunicipio").val().trim();
-	if (slcMunicipio == "") {
-		existeError = true;
-		console.log("Error: txtMunicipio");
-	}
-	var txtCiudad= $("#txtCiudad").val().trim();
-	if (txtCiudad == "") {
-		existeError = true;
-		console.log("Error: txtCiudad");
+		console.log("Error: txtApellido");
 	}
 	
-	var txtDireccion= $("#txtDireccion").val().trim();
-	if (txtDireccion == "") {
+	var txtTelCasa= $("#txtTelCasa").val().trim();
+	if (txtTelCasa == "") {
 		existeError = true;
-		console.log("Error: txtDireccion");
+		console.log("Error: txTelCasa");
 	}
-	var txtTel= $("#txtTel").val().trim();
-	if (txtTel == "") {
+	var txtTelMovil= $("#txtTelMovil").val().trim();
+	if (txtTelMovil == "") {
 		existeError = true;
-		console.log("Error: txTelt");
+		console.log("Error: txTelMovil");
 	}
-	var txtEmail= $("#txtEmail").val().trim();
+	
+	var txtEmail= $("#txtCorreo").val().trim();
 	if (txtEmail == "") {
 		existeError = true;
 		console.log("Error: txtEmail");
 	}
-	var txtComentarios = $("#txtComentarios").val().trim();
-	if (txtComentarios == "") {
+	
+	var txtEdad= $("#txtEdad").val().trim();
+	if (txtEdad == "") {
 		existeError = true;
-		console.log("Error: txtComentarios");
+		console.log("Error: txtEdad");
 	}
 	
 	if(existeError){
 		mostrarMsjError('Datos incompletos!! <br />Por favor, llene la informaaci&oacute;n que se solicita',5);
-		return false;
 	}
+
+	mostrarMsjEspera('Espere un momento... guardando informaaci&oacute;n.', 3);
+	xajax_guardar(txtNombre, txtApellidos, txtTelCasa, txtTelMovil, txtEmail,txtEdad);
+}
+
+function limpiarDatos(){
+	$("#txtNombre").val('');
+	$("#txtApellidos").val('');
+	
+	$("#txtTelCasa").val('');
+	$("#txtTelMovil").val('');
+	$("#txtCorreo").val('');
+	
+	$("#txtEdad").val('');
 	
 }
-	//$("#").();
 //var alert = alertify.alert('Titulo','TextoAlerta').set('label', 'Aceptar');     	 
 //alert.set({transition:'zoom'}); //slide, zoom, flipx, flipy, fade, pulse (default)
 //alert.set('modal', false);  //al pulsar fuera del dialog se cierra o no	

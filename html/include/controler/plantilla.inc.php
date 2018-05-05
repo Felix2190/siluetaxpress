@@ -24,7 +24,12 @@
 
 $xajax = new xajax();
 
-
+function x(){
+    $r=new xajaxResponse();
+    
+    return $r;
+    
+}
 $xajax->registerFunction("");
 
 $xajax->processRequest();

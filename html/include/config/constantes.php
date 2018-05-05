@@ -26,7 +26,7 @@ if (! DEVELOPER) {
     define("FOLDER_INCLUDE_AGENDA", $_SERVER['DOCUMENT_ROOT'] . "siluetaxpress/html/agenda/include/"); //agenda
     
     define("FOLDER_HTDOCS", $_SERVER['DOCUMENT_ROOT'] . "siluetaxpress/html/");
-    define("FOLDER_HTDOCS_AGENDA", $_SERVER['DOCUMENT_ROOT'] . "siluetexpress/html/agenda/");//AGENDA
+    define("FOLDER_HTDOCS_AGENDA", $_SERVER['DOCUMENT_ROOT'] . "siluetaxpress/html/agenda/");//AGENDA
 //    define("DOMINIO", "http://planet/" . SUBDIR . "/");
     define("ERR_DEBUG", true);
     
@@ -81,7 +81,7 @@ define("URL_TMP", "datos/tmp/");
 
 require_once(CLASS_COMUN);
 require_once CLASS_SESSION;
-
+///var_dump(CLASS_SESSION);
 $objSession=new clsSession();
 $sesion=false;
 if(isset($_SESSION['objSession'])){
@@ -100,18 +100,6 @@ require_once(LIB_XAJAX);
 
 
 
-
-
-$pedazos=explode("/", $_SERVER['PHP_SELF']);
-$__FILE_NAME__=str_replace(array("/",".php"),"",$pedazos[count($pedazos)-1]);
-
-/**************** SITIO ************************************/
-if(is_file(FOLDER_INCLUDE . "controler/" . $__FILE_NAME__ . ".inc.php"))
-{
-    require_once(FOLDER_INCLUDE . "controler/" . $__FILE_NAME__ . ".inc.php");
-    
-}
-
 $_JAVASCRIPT_ALERTAS = "<script type='text/javascript' >
         function mostrarMsjError(texto, tiempo){
             alertify.set('notifier','position', 'top-right'); //top-left, top-right, bootom-left, bottom-right
@@ -120,15 +108,26 @@ $_JAVASCRIPT_ALERTAS = "<script type='text/javascript' >
          function mostrarMsjExito(texto, tiempo){
             alertify.set('notifier','position', 'top-right'); //top-left, top-right, bootom-left, bottom-right
             alertify.notify(texto,'success', tiempo, null); //mensaje, tipo, tiempo en segundo (0 siempre visible, quitar al hacer click
-      } 
+      }
          function mostrarMsjEspera(texto, tiempo){
             alertify.set('notifier','position', 'top-right'); //top-left, top-right, bootom-left, bottom-right
             alertify.notify(texto,'warning', tiempo, null); //mensaje, tipo, tiempo en segundo (0 siempre visible, quitar al hacer click
-      } 
+      }
          function mostrarMensaje(texto, tiempo){
             alertify.set('notifier','position', 'top-right'); //top-left, top-right, bootom-left, bottom-right
             alertify.notify(texto, tiempo, null); //mensaje, tipo, tiempo en segundo (0 siempre visible, quitar al hacer click
       } </script>";
+
+
+
+$pedazos=explode("/", $_SERVER['PHP_SELF']);
+$__FILE_NAME__=str_replace(array("/",".php"),"",$pedazos[count($pedazos)-1]);
+switch (count($pedazos)){
+case 4:
+/**************** SITIO ************************************/
+if(is_file(FOLDER_INCLUDE . "controler/" . $__FILE_NAME__ . ".inc.php")){
+    require_once(FOLDER_INCLUDE . "controler/" . $__FILE_NAME__ . ".inc.php");
+ }
 
 if (! isset($_JAVASCRIPT_CSS))
     $_JAVASCRIPT_CSS = $_JAVASCRIPT_ALERTAS;
@@ -141,7 +140,8 @@ $_JAVASCRIPT_CSS .= '<script type="text/javascript" src="' . URL_JAVASCRIPT . '.
 
 if (is_file(FOLDER_JS . $__FILE_NAME__ . ".js"))
     $_JAVASCRIPT_CSS .= '<script type="text/javascript" src="' . URL_JAVASCRIPT . $__FILE_NAME__ . '.js"></script>';
-
+break;
+case 5:
 /**
  * ***************** AGENDA **********************************
  */
@@ -153,12 +153,12 @@ if (! isset($_JAVASCRIPT_CSS_AGENDA))
     $_JAVASCRIPT_CSS_AGENDA = $_JAVASCRIPT_ALERTAS;
 
 if (isset($xajax))
-    $_JAVASCRIPT_CSS_AGENDA .= $xajax->getJavascript("js/lib/");
+    $_JAVASCRIPT_CSS_AGENDA .= $xajax->getJavascript("../js/lib/");
 
-    $_JAVASCRIPT_CSS_AGENDA .= '<script type="text/javascript" src="' . URL_JAVASCRIPT . '../lib/common.js"></script>';
+    $_JAVASCRIPT_CSS_AGENDA .= '<script type="text/javascript" src="../' . URL_JAVASCRIPT . '../lib/common.js"></script>';
 
     if (is_file(FOLDER_JS_AGENDA . $__FILE_NAME__ . ".js"))
         $_JAVASCRIPT_CSS_AGENDA .= '<script type="text/javascript" src="' . URL_JAVASCRIPT . $__FILE_NAME__ . '.js"></script>';
-                
-        
+break;
+}
 ?>

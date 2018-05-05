@@ -31,7 +31,7 @@ function ingresar($user,$pass){
     $r=new xajaxResponse();
     
     if (!$arrSesion[0]){
-        $r->call('mostrarMsjError',$arrSesion[1],50);
+        $r->call('mostrarMsjError',$arrSesion[1],5);
         return $r;
     }
     

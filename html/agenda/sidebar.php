@@ -31,14 +31,14 @@
 				<li><span class="opener">Pacientes</span>
 					<ul>
 						<li><a href="">Listado</a></li>
-						<li><a href="">Agregar nuevo</a></li>
+						<li><a href="altaPaciente.php">Agregar nuevo</a></li>
 						<li><a href="">B&uacute;squedad</a></li>
 					</ul></li>
 
 				<li><span class="opener">Citas</span>
 					<ul>
 						<li><a href="">Listado</a></li>
-						<li><a href="">Agregar nueva</a></li>
+						<li><a href="nuevaCita.php">Agregar nueva</a></li>
 						<li><a href="">B&uacute;squedad</a></li>
 					</ul></li>
 
