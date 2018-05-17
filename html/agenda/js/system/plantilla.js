@@ -18,3 +18,20 @@ function iniciar(){
 //alertify.notify('error','error',100, null); 
 
 //alertify.notify('warning','warning',100, null);
+/*
+     $.ajax(
+      {
+      	method:"post",
+					url: "adminFunciones.php",  					
+					data: 
+					{  						
+					},
+					
+					success: function(data) 
+					{
+  					respuesta=JSON.parse(data);
+					}
+	    });
+
+ 
+ */*/

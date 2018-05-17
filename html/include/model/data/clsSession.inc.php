@@ -23,7 +23,7 @@ class clsSession
 	#--------------------------------------------Control--------------------------------------------#
 	#-----------------------------------------------------------------------------------------------#
 
-	var $__s=array(	"userName",	"idUsuario","nombre","apellidos","tipoUsuario","sucursal","lugar","correo","idRol");
+	var $__s=array(	"userName",	"idUsuario","nombre","apellidos","tipoUsuario","sucursal","lugar","correo","idRol", "idSucursal");
 
 	public function __construct()
 	{
@@ -76,6 +76,11 @@ class clsSession
 	public function getSucursal()
 	{
 	    return $this->sucursal;
+	}
+	
+	public function getIdSucursal()
+	{
+	    return $this->idSucursal;
 	}
 	
 	public function getLugar()

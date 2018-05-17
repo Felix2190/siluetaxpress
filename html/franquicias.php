@@ -72,7 +72,8 @@ require_once 'masterInclude.inc.php';
 						</div>
 						
 						<div class="8u 12u(mobile)">
-						<div class="row" >
+						<div class="row" id="divFormulario">
+
 							<div class="3u 12u$(xsmall)">
 								<label>Nombre completo:</label>
 							</div> 

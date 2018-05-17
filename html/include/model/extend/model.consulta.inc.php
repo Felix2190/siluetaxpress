@@ -51,11 +51,19 @@
 		#------------------------------------------------Otras-------------------------------------------------#
 		#------------------------------------------------------------------------------------------------------#
 		
-		public function validarDatos()
+		public function obtenerConsulta()
 		{
-			return true;
+		    $query = "Select idConsulta, tipoConsulta from consulta";
+		    $arreglo = array();
+		    $resultado = mysqli_query($this->dbLink, $query);
+		    if ($resultado && mysqli_num_rows($resultado) > 0) {
+		        while ($row_inf = mysqli_fetch_assoc($resultado)){
+		            $arreglo[$row_inf['idConsulta']] = $row_inf['tipoConsulta'];
+		        }
+		    }
+		    return $arreglo;
 		}
-
+		
 
 	}
 

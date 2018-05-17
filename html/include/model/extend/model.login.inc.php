@@ -77,7 +77,7 @@ class ModeloLogin extends ModeloBaseLogin
 
     public function obtenerDatosUsuario($idUsuario)
     {
-        $query = "Select idUsuario, u.nombre, apellidos, t.nombre as tipoUsuario, sucursal, m.NOM_MUN as lugar, correo from usuario as u
+        $query = "Select idUsuario, u.nombre, apellidos, t.nombre as tipoUsuario, sucursal, m.NOM_MUN as lugar, correo, u.idSucursal from usuario as u
     		inner join tipoUsuario as t on u.idTipoUsuario=t.idTipoUsuario inner join sucursal as s on u.idSucursal=s.idSucursal
 	       	inner join inegidomgeo_cat_municipio as m on CVE_ENT=cveEstado and CVE_MUN=cveMunicipio
             where idUsuario=" . $idUsuario;

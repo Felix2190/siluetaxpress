@@ -14,8 +14,12 @@
 		var $cveMunicipio='';
 		var $direccion='';
 		var $estatus='activa';
+		var $entreSemanaEntrada=0;
+		var $entreSemanaSalida=0;
+		var $sabadoEntrada=0;
+		var $sabadoSalida=0;
 
-		var $__s=array("idSucursal","sucursal","cveEstado","cveMunicipio","direccion","estatus");
+		var $__s=array("idSucursal","sucursal","cveEstado","cveMunicipio","direccion","estatus","entreSemanaEntrada","entreSemanaSalida","sabadoEntrada","sabadoSalida");
 		var $__ss=array();
 
 		#------------------------------------------------------------------------------------------------------#
@@ -76,6 +80,26 @@
 		{
 			$this->estatus='inactiva';
 		}
+		public function setEntreSemanaEntrada($entreSemanaEntrada)
+		{
+			
+			$this->entreSemanaEntrada=$entreSemanaEntrada;
+		}
+		public function setEntreSemanaSalida($entreSemanaSalida)
+		{
+			
+			$this->entreSemanaSalida=$entreSemanaSalida;
+		}
+		public function setSabadoEntrada($sabadoEntrada)
+		{
+			
+			$this->sabadoEntrada=$sabadoEntrada;
+		}
+		public function setSabadoSalida($sabadoSalida)
+		{
+			
+			$this->sabadoSalida=$sabadoSalida;
+		}
 
 		#------------------------------------------------------------------------------------------------------#
 		#-----------------------------------------------Unsetter-----------------------------------------------#
@@ -112,6 +136,22 @@
 		{
 			return $this->estatus;
 		}
+		public function getEntreSemanaEntrada()
+		{
+			return $this->entreSemanaEntrada;
+		}
+		public function getEntreSemanaSalida()
+		{
+			return $this->entreSemanaSalida;
+		}
+		public function getSabadoEntrada()
+		{
+			return $this->sabadoEntrada;
+		}
+		public function getSabadoSalida()
+		{
+			return $this->sabadoSalida;
+		}
 
 		#------------------------------------------------------------------------------------------------------#
 		#------------------------------------------------Querys------------------------------------------------#
@@ -132,6 +172,10 @@
 			$this->cveMunicipio='';
 			$this->direccion='';
 			$this->estatus='activa';
+			$this->entreSemanaEntrada=0;
+			$this->entreSemanaSalida=0;
+			$this->sabadoEntrada=0;
+			$this->sabadoSalida=0;
 		}
 
 		
@@ -141,8 +185,8 @@
 		{
 			try
 			{
-				$SQL="INSERT INTO sucursal(sucursal,cveEstado,cveMunicipio,direccion,estatus)
-						VALUES('" . mysqli_real_escape_string($this->dbLink,$this->sucursal) . "','" . mysqli_real_escape_string($this->dbLink,$this->cveEstado) . "','" . mysqli_real_escape_string($this->dbLink,$this->cveMunicipio) . "','" . mysqli_real_escape_string($this->dbLink,$this->direccion) . "','" . mysqli_real_escape_string($this->dbLink,$this->estatus) . "')";
+				$SQL="INSERT INTO sucursal(sucursal,cveEstado,cveMunicipio,direccion,estatus,entreSemanaEntrada,entreSemanaSalida,sabadoEntrada,sabadoSalida)
+						VALUES('" . mysqli_real_escape_string($this->dbLink,$this->sucursal) . "','" . mysqli_real_escape_string($this->dbLink,$this->cveEstado) . "','" . mysqli_real_escape_string($this->dbLink,$this->cveMunicipio) . "','" . mysqli_real_escape_string($this->dbLink,$this->direccion) . "','" . mysqli_real_escape_string($this->dbLink,$this->estatus) . "','" . mysqli_real_escape_string($this->dbLink,$this->entreSemanaEntrada) . "','" . mysqli_real_escape_string($this->dbLink,$this->entreSemanaSalida) . "','" . mysqli_real_escape_string($this->dbLink,$this->sabadoEntrada) . "','" . mysqli_real_escape_string($this->dbLink,$this->sabadoSalida) . "')";
 				$result=mysqli_query($this->dbLink,$SQL);
 				if(!$result)
 					return $this->setSystemError("Error en la insercion de registro.","[" . $SQL . "][" . mysqli_error($this->dbLink) . "][ModeloBaseSucursal::Insertar]");
@@ -162,7 +206,7 @@
 		{
 			try
 			{
-				$SQL="UPDATE sucursal SET sucursal='" . mysqli_real_escape_string($this->dbLink,$this->sucursal) . "',cveEstado='" . mysqli_real_escape_string($this->dbLink,$this->cveEstado) . "',cveMunicipio='" . mysqli_real_escape_string($this->dbLink,$this->cveMunicipio) . "',direccion='" . mysqli_real_escape_string($this->dbLink,$this->direccion) . "',estatus='" . mysqli_real_escape_string($this->dbLink,$this->estatus) . "'
+				$SQL="UPDATE sucursal SET sucursal='" . mysqli_real_escape_string($this->dbLink,$this->sucursal) . "',cveEstado='" . mysqli_real_escape_string($this->dbLink,$this->cveEstado) . "',cveMunicipio='" . mysqli_real_escape_string($this->dbLink,$this->cveMunicipio) . "',direccion='" . mysqli_real_escape_string($this->dbLink,$this->direccion) . "',estatus='" . mysqli_real_escape_string($this->dbLink,$this->estatus) . "',entreSemanaEntrada='" . mysqli_real_escape_string($this->dbLink,$this->entreSemanaEntrada) . "',entreSemanaSalida='" . mysqli_real_escape_string($this->dbLink,$this->entreSemanaSalida) . "',sabadoEntrada='" . mysqli_real_escape_string($this->dbLink,$this->sabadoEntrada) . "',sabadoSalida='" . mysqli_real_escape_string($this->dbLink,$this->sabadoSalida) . "'
 					WHERE idSucursal=" . $this->idSucursal;
 				
 				$result=mysqli_query($this->dbLink,$SQL);
@@ -204,7 +248,7 @@
 			try
 			{
 				$SQL="SELECT
-						idSucursal,sucursal,cveEstado,cveMunicipio,direccion,estatus
+						idSucursal,sucursal,cveEstado,cveMunicipio,direccion,estatus,entreSemanaEntrada,entreSemanaSalida,sabadoEntrada,sabadoSalida
 					FROM sucursal
 					WHERE idSucursal=" . mysqli_real_escape_string($this->dbLink,$this->idSucursal);
 					
