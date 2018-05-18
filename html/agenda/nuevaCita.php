@@ -57,6 +57,7 @@ require_once 'masterInclude.inc.php';
 								<div class="1u 12u$(xsmall)">
 									<label>Paciente:</label>
 								</div>
+								
 								<div class="3u 12u$(xsmall)">
 									  <select id="slcPaciente">
 									 	</select>
@@ -66,22 +67,27 @@ require_once 'masterInclude.inc.php';
 									<label>Consulta:</label>
 								</div>
 								<div class="3u 12u$(xsmall)">
+								<div class="select-wrapper">
 									<select name="demo-category" id="slcConsulta">
 									</select>
 								</div>
-								
+								</div>
+
 								<div class="1u 12u$(xsmall)">
 									<label>Sucursal:</label>
 								</div>
 								<div class="3u 12u$(xsmall)">
 								<?php if ($objSession->getidRol()==1){?>
+									<div class="select-wrapper">
 									<select name="demo-category" id="slcSucursal">
 									</select>
+									</div>
 									<?php } else {?>
 									<p> <?php echo $objSession->getSucursal();?></p>
+									<input type="hidden" id="slcSucursal" value="<?php echo $objSession->getIdSucursal();?>"/>
 									<?php } ?>
 								</div>
-							
+								
 							</div>
 							<br />
 							<div class="row">
@@ -105,51 +111,62 @@ require_once 'masterInclude.inc.php';
 								<div class="1u 12u$(xsmall)">
 									<label>Duraci&oacute;n:</label>
 								</div>
-								<div class="2u 12u$(xsmall)">
-										<select name="demo-category" id="">
+								<div class="3u 12u$(xsmall)">
+									<div class="select-wrapper">
+										<select name="demo-category" id="slcDuracion">
+										<?php echo $operadores;?>
 									</select>
+									</div>
 								</div>
 								
 								<div class="1u 12u$(xsmall)">
 									<label>Hora:</label>
 								</div>
-								<div class="1u 12u$(xsmall)">
-										<select name="demo-category" id="">
-									</select>
-								</div>
-								<div class="1u 12u$(xsmall)">
-										<select name="demo-category" id="">
-									</select>
-								</div>
 								
+								<div class="1u 12u$(xsmall)">
+									<div class="select-wrapper">
+										<select name="demo-category" id="slcHr">
+									</select>
+									</div>
+								</div>
+								<div class="1u 12u$(xsmall)">
+									<div class="select-wrapper">
+										<select name="demo-category" id="slcMin">
+										</select>
+									</div>
+								</div>
+
 								<div class="2u 12u$(small)">
-									<input id="demo-copy" name="demo-copy" type="checkbox"> <label
-										for="demo-copy">Repetir cita</label>
+									<input id="checkRepetir" name="checkRepetir" type="checkbox" > <label for="checkRepetir">Repetir cita</label>
+									
 								</div>
 								
 						</div>
-								<br />
+						
 								<div class="row" >
 								
 								</div>
-								<br />
-								<div class="row" id="divRepiteCita">
+								<div class="row" id="divRepiteCita" style="display: none;">
 									<div class="2u 12u$(xsmall)">
 										<label>Se repite:</label>
 									</div>
 									<div class="2u 12u$(xsmall)">
+										<div class="select-wrapper">
 										<select name="demo-category" id="">
 											<option value="S">Semanal</option>
 											<option value="M">Mensual</option>
 										</select>
+										</div>
 									</div>
 									<div class="2u 12u$(xsmall)">
 										<label>Repitir cada:</label>
 									</div>
 									<div class="1u 12u$(xsmall)">
+										<div class="select-wrapper">
 										<select name="demo-category" id="">
 											<option value="1">1</option>
 										</select>
+										</div>
 									</div>
 									<div class="2u 12u$(xsmall)">
 										Semana
@@ -157,20 +174,34 @@ require_once 'masterInclude.inc.php';
 
 								</div>
 								<br />
-								<div class="row" id="divRepiteCita">
+								<div class="row" id="divRepiteCitaDias" style="display: none;">
 									<div class="2u 12u$(xsmall)">
 										<label>Repitir el:</label>
 									</div>
 									
 								<div class="1u 12u$(small)">
-									<input id="" name="demo-copy" type="checkbox"> <label
-										for="demo-copy"></label>
+									<input class="checkDias" value="lunes" id="chklunes" name="chklunes"  type="checkbox"> <label for="chklunes">Lunes</label>
 								</div>
-																
+									
 								
 								<div class="1u 12u$(small)">
-									<input id="" name="demo-copy" type="checkbox"> <label
-										for="demo-copy">Martes</label>
+									<input class="checkDias" value="martes" id="chkmartes" name="chkmartes" type="checkbox"> <label for="chkmartes">Martes</label>
+								</div>
+								
+								<div class="1u 12u$(small)">
+									<input class="checkDias" value="miercoles" id="chkmiercoles" name="chkmiercoles" type="checkbox"> <label for="chkmiercoles">Mi&eacute;rcoles</label>
+								</div>
+								
+								<div class="1u 12u$(small)">
+									<input class="checkDias" value="jueves" id="chkjueves" name="chkjueves" type="checkbox"> <label for="chkjueves">Jueves</label>
+								</div>
+								
+								<div class="1u 12u$(small)">
+									<input class="checkDias" value="viernes" id="chkviernes" name="chkviernes" type="checkbox"> <label for="chkviernes">Viernes</label>
+								</div>
+								
+								<div class="1u 12u$(small)">
+									<input class="checkDias" value="sabado" id="chksabado" name="chksabado" type="checkbox"> <label for="chksabado">S&aacute;bado</label>
 								</div>
 								
 								</div>
@@ -191,10 +222,19 @@ require_once 'masterInclude.inc.php';
 								<div class="1u 12u$(xsmall)">
 									<label>Servicio:</label>
 								</div>
-								<div class="11u 12u$(xsmall)">
-									<input id="tags" />
+								<div class="8u 12u$(xsmall)">
+									<input id="tags" style="width: 100%;"/>
+								</div>
+							</div>
+							<div class="row">
+								<div class="1u 12u$(xsmall)">
+									<label>Comentarios:</label>
 								</div>
 								
+								<div class="8u 12u$(xsmall)">
+								<textarea rows="6" cols="" id="txtComentarios"></textarea>
+							</div>
+							
 							</div>
 								
 								
@@ -217,7 +257,7 @@ require_once 'masterInclude.inc.php';
 				<!-- Sidebar -->
 					<?php include_once 'sidebar.php';?>
 			</div>
- 
+
 			<script src="assets/js/skel.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->

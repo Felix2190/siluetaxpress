@@ -15,12 +15,13 @@
 		var $idSucursal=0;
 		var $fechaInicio='';
 		var $fechaFin='';
+		var $duracion=0;
 		var $idConsulta=0;
 		var $estatus='';
 		var $recordatorio1='0';
 		var $recordatorio2='0';
 
-		var $__s=array("idCita","idPaciente","telefonoPaciente","idUsuario","idSucursal","fechaInicio","fechaFin","idConsulta","estatus","recordatorio1","recordatorio2");
+		var $__s=array("idCita","idPaciente","telefonoPaciente","idUsuario","idSucursal","fechaInicio","fechaFin","duracion","idConsulta","estatus","recordatorio1","recordatorio2");
 		var $__ss=array();
 
 		#------------------------------------------------------------------------------------------------------#
@@ -75,6 +76,11 @@
 		public function setFechaFin($fechaFin)
 		{
 			$this->fechaFin=$fechaFin;
+		}
+		public function setDuracion($duracion)
+		{
+			
+			$this->duracion=$duracion;
 		}
 		public function setIdConsulta($idConsulta)
 		{
@@ -150,6 +156,10 @@
 		{
 			return $this->fechaFin;
 		}
+		public function getDuracion()
+		{
+			return $this->duracion;
+		}
 		public function getIdConsulta()
 		{
 			return $this->idConsulta;
@@ -187,6 +197,7 @@
 			$this->idSucursal=0;
 			$this->fechaInicio='';
 			$this->fechaFin='';
+			$this->duracion=0;
 			$this->idConsulta=0;
 			$this->estatus='';
 			$this->recordatorio1='0';
@@ -200,8 +211,8 @@
 		{
 			try
 			{
-				$SQL="INSERT INTO cita(idPaciente,telefonoPaciente,idUsuario,idSucursal,fechaInicio,fechaFin,idConsulta,estatus,recordatorio1,recordatorio2)
-						VALUES('" . mysqli_real_escape_string($this->dbLink,$this->idPaciente) . "','" . mysqli_real_escape_string($this->dbLink,$this->telefonoPaciente) . "','" . mysqli_real_escape_string($this->dbLink,$this->idUsuario) . "','" . mysqli_real_escape_string($this->dbLink,$this->idSucursal) . "','" . mysqli_real_escape_string($this->dbLink,$this->fechaInicio) . "','" . mysqli_real_escape_string($this->dbLink,$this->fechaFin) . "','" . mysqli_real_escape_string($this->dbLink,$this->idConsulta) . "','" . mysqli_real_escape_string($this->dbLink,$this->estatus) . "','" . mysqli_real_escape_string($this->dbLink,$this->recordatorio1) . "','" . mysqli_real_escape_string($this->dbLink,$this->recordatorio2) . "')";
+				$SQL="INSERT INTO cita(idPaciente,telefonoPaciente,idUsuario,idSucursal,fechaInicio,fechaFin,duracion,idConsulta,estatus,recordatorio1,recordatorio2)
+						VALUES('" . mysqli_real_escape_string($this->dbLink,$this->idPaciente) . "','" . mysqli_real_escape_string($this->dbLink,$this->telefonoPaciente) . "','" . mysqli_real_escape_string($this->dbLink,$this->idUsuario) . "','" . mysqli_real_escape_string($this->dbLink,$this->idSucursal) . "','" . mysqli_real_escape_string($this->dbLink,$this->fechaInicio) . "','" . mysqli_real_escape_string($this->dbLink,$this->fechaFin) . "','" . mysqli_real_escape_string($this->dbLink,$this->duracion) . "','" . mysqli_real_escape_string($this->dbLink,$this->idConsulta) . "','" . mysqli_real_escape_string($this->dbLink,$this->estatus) . "','" . mysqli_real_escape_string($this->dbLink,$this->recordatorio1) . "','" . mysqli_real_escape_string($this->dbLink,$this->recordatorio2) . "')";
 				$result=mysqli_query($this->dbLink,$SQL);
 				if(!$result)
 					return $this->setSystemError("Error en la insercion de registro.","[" . $SQL . "][" . mysqli_error($this->dbLink) . "][ModeloBaseCita::Insertar]");
@@ -221,7 +232,7 @@
 		{
 			try
 			{
-				$SQL="UPDATE cita SET idPaciente='" . mysqli_real_escape_string($this->dbLink,$this->idPaciente) . "',telefonoPaciente='" . mysqli_real_escape_string($this->dbLink,$this->telefonoPaciente) . "',idUsuario='" . mysqli_real_escape_string($this->dbLink,$this->idUsuario) . "',idSucursal='" . mysqli_real_escape_string($this->dbLink,$this->idSucursal) . "',fechaInicio='" . mysqli_real_escape_string($this->dbLink,$this->fechaInicio) . "',fechaFin='" . mysqli_real_escape_string($this->dbLink,$this->fechaFin) . "',idConsulta='" . mysqli_real_escape_string($this->dbLink,$this->idConsulta) . "',estatus='" . mysqli_real_escape_string($this->dbLink,$this->estatus) . "',recordatorio1='" . mysqli_real_escape_string($this->dbLink,$this->recordatorio1) . "',recordatorio2='" . mysqli_real_escape_string($this->dbLink,$this->recordatorio2) . "'
+				$SQL="UPDATE cita SET idPaciente='" . mysqli_real_escape_string($this->dbLink,$this->idPaciente) . "',telefonoPaciente='" . mysqli_real_escape_string($this->dbLink,$this->telefonoPaciente) . "',idUsuario='" . mysqli_real_escape_string($this->dbLink,$this->idUsuario) . "',idSucursal='" . mysqli_real_escape_string($this->dbLink,$this->idSucursal) . "',fechaInicio='" . mysqli_real_escape_string($this->dbLink,$this->fechaInicio) . "',fechaFin='" . mysqli_real_escape_string($this->dbLink,$this->fechaFin) . "',duracion='" . mysqli_real_escape_string($this->dbLink,$this->duracion) . "',idConsulta='" . mysqli_real_escape_string($this->dbLink,$this->idConsulta) . "',estatus='" . mysqli_real_escape_string($this->dbLink,$this->estatus) . "',recordatorio1='" . mysqli_real_escape_string($this->dbLink,$this->recordatorio1) . "',recordatorio2='" . mysqli_real_escape_string($this->dbLink,$this->recordatorio2) . "'
 					WHERE idCita=" . $this->idCita;
 				
 				$result=mysqli_query($this->dbLink,$SQL);
@@ -263,7 +274,7 @@
 			try
 			{
 				$SQL="SELECT
-						idCita,idPaciente,telefonoPaciente,idUsuario,idSucursal,fechaInicio,fechaFin,idConsulta,estatus,recordatorio1,recordatorio2
+						idCita,idPaciente,telefonoPaciente,idUsuario,idSucursal,fechaInicio,fechaFin,duracion,idConsulta,estatus,recordatorio1,recordatorio2
 					FROM cita
 					WHERE idCita=" . mysqli_real_escape_string($this->dbLink,$this->idCita);
 					

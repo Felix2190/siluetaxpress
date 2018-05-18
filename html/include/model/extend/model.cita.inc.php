@@ -51,11 +51,21 @@
 		#------------------------------------------------Otras-------------------------------------------------#
 		#------------------------------------------------------------------------------------------------------#
 		
-		public function validarDatos()
+		public function obtenerCitasFechaDuracion()
 		{
-			return true;
+		    $fechaF = strtotime ( '+1 day' , strtotime ( $this->fechaFin ) ) ;
+		    $fechaF = date ( 'Y-m-d' , $fechaF );
+		    $query = "Select idCita, fechaInicio, fechaFin, duracion from cita 
+                    where idSucursal=$this->idSucursal and idConsulta=$this->idConsulta and fechaInicio between DATE('$this->fechaInicio') and DATE('$fechaF')";
+		    $respuesta = array();
+		    $resultado = mysqli_query($this->dbLink, $query);
+		    if ($resultado && mysqli_num_rows($resultado) > 0) {
+		        while ($row_inf = mysqli_fetch_assoc($resultado)){
+		            $respuesta[] = $row_inf;
+		        }
+		    }
+		    return $respuesta;
 		}
-
 
 	}
 

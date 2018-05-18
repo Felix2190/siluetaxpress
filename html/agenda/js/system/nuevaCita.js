@@ -139,7 +139,7 @@ function iniciar(){
 	iniciarAutoacomplete();
 	
 	$( "#slcPaciente" ).combobox();
-		    
+	
 		 
 	$('.datepicker').datepicker({
 		dateFormat : 'yy-mm-dd',
@@ -198,11 +198,82 @@ function iniciar(){
 			}
 		});
 		 
+	 $( "#slcDuracion" ).change(verHorarios);
+	 $( "#slcConsulta" ).change(verHorarios);
+	 $( "#slcSucursal" ).change(verHorarios);
+	 $( "#txtFecha" ).change(verHorarios);
+	 $( "#slcHr" ).change(function(){
+		 var opcion2='';
+		 $.each(arrFechas[$("#slcHr").val()], function( index2, min ) {
+				opcion2+='<option value="'+min+'">'+min+'</option>';
+			});
+		 $("#slcMin").html(opcion2);
+	 });
+	 
+	 $( "#checkRepetir" ).click(function(){
+		 if( $('#checkRepetir').is(':checked') ) {
+			 $('#divRepiteCita').show();
+			 $('#divRepiteCitaDias').show();
+		 }else{
+			 alert('no');
+			 $('#divRepiteCita').hide();
+			 $('#divRepiteCitaDias').hide();
+		 }
+	 });
+		
+	
+	$("#btnGuardar").click(function(){
+		console.log('h');
+		 $('.checkDias:checked').each(
+				    function() {
+				        alert("El checkbox con valor " + $(this).val() + " está seleccionado");
+				    }
+				);
+	});
+}
+var arrFechas=[];
+function verHorarios(){
 
-	$("#btnGuardar").click(altaPaciente);
+	var sucursal= $("#slcSucursal").val().trim();
+	var consulta = $("#slcConsulta").val().trim();
+	var duracion = $("#slcDuracion").val().trim();
+	var fecha = $("#txtFecha").val().trim();
+	$("#slcHr").html('');
+	$("#slcMin").html('');
+	
+	if (fecha != "" && duracion != "" && sucursal != "" && consulta!= "") {
+		$.ajax({
+			method : "post",
+			url : "adminFunciones.php",
+			data : {
+				idSucursal:sucursal,
+				fecha:fecha,
+				idConsulta:consulta,
+				duracion:duracion
+			},
+			success : function(data) {
+				arrFechas=JSON.parse(data);
+				var opcion='',opcion2='', b=true;
+				$.each(arrFechas, function( index, arr ) {
+					opcion+='<option value="'+index+'">'+index+'</option>';
+					alert(opcion);
+					if(b){
+						b=false;
+						$.each(arr, function( index2, min ) {
+							opcion2+='<option value="'+min+'">'+min+'</option>';
+						});
+					}
+					});
+				$("#slcHr").html(opcion);
+				$("#slcMin").html(opcion2);
+			}
+		});
+	
+	}
+	
 }
 
-function altaPaciente(){
+function altaCita(){
 	var existeError = false;
 	
 	var txtNombre= $("#txtNombre").val().trim();
