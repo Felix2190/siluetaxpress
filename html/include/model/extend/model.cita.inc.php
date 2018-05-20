@@ -66,6 +66,25 @@
 		    }
 		    return $respuesta;
 		}
-
+		
+		public function validarDatos(){
+		    return true;
+		}
+		
+		public function disponibliadDia()
+		{
+		    $query = "Select * from cita
+                    where idSucursal=$this->idSucursal and idConsulta=$this->idConsulta 
+            and (('$this->fechaInicio'>=fechaInicio and '$this->fechaInicio'<=fechaFin) or ('$this->fechaFin'>=fechaInicio and '$this->fechaFin'<=fechaFin)
+            or ('$this->fechaInicio'<=fechaInicio and '$this->fechaFin'>=fechaFin))";
+		    $respuesta = true;
+		    $resultado = mysqli_query($this->dbLink, $query);
+		    if ($resultado && mysqli_num_rows($resultado) > 0) {
+		        return false;
+		    }
+		    return $respuesta;
+		}
+		
+		
 	}
 

@@ -1,6 +1,283 @@
 $(document).ready(function(){
 	iniciar();
 });
+var bandera=true;
+
+function consultaDatos(){
+	$.ajax({
+		method : "post",
+		url : "adminFunciones.php",
+		data : {
+			pacientes:''
+		},
+		success : function(data) {
+			respuesta=JSON.parse(data);
+			$( "#slcPaciente" ).html(respuesta);
+		}
+	});
+	 
+	 $.ajax({
+			method : "post",
+			url : "adminFunciones.php",
+			data : {
+				tiposConsulta:''
+			},
+			success : function(data) {
+				respuesta=JSON.parse(data);
+				$( "#slcConsulta" ).html(respuesta);
+			}
+		});
+		 
+	 if($("#hdnRol").val()==1)
+	 $.ajax({
+			method : "post",
+			url : "adminFunciones.php",
+			data : {
+				sucursales:''
+			},
+			success : function(data) {
+				respuesta=JSON.parse(data);
+				$( "#slcSucursal" ).html(respuesta);
+			}
+		});
+		 
+	 $( "#slcDuracion" ).change(verHorarios);
+	 $( "#slcConsulta" ).change(function(){
+		 verHorarios();
+		 $.ajax({
+				method : "post",
+				url : "adminFunciones.php",
+				data : {
+					idConsulta_:$("#slcConsulta").val().trim()
+				},
+				success : function(data) {
+					respuesta=JSON.parse(data);
+					 $( "#txtServicio" ).autocomplete({
+					        source: respuesta
+					      });
+					      
+				}
+			});
+		 });
+}
+function iniciar(){
+	iniciarAutoacomplete();
+	
+	$( "#slcPaciente" ).combobox();
+	consultaDatos();
+		 
+	$('.datepicker').datepicker({
+		dateFormat : 'yy-mm-dd',
+		changeMonth : true,
+		changeYear : true,
+		minDate : '0D'
+	});
+	
+     $( "#slcSucursal" ).change(verHorarios);
+	 $( "#txtFecha" ).change(verHorarios);
+	 $( "#slcHr" ).change(function(){
+		 var opcion2='';
+		 $.each(arrFechas[$("#slcHr").val()], function( index2, min ) {
+				opcion2+='<option value="'+min+'">'+min+'</option>';
+			});
+		 $("#slcMin").html(opcion2);
+	 });
+	 
+	 $( "#checkRepetir" ).click(function(){
+		 if( $('#checkRepetir').is(':checked') ) {
+			 $('#divRepiteCita').show();
+			 $('#divRepiteCitaDias').show();
+			 $.ajax({
+					method : "post",
+					url : "adminFunciones.php",
+					data : {
+						fechaConvertir:$("#txtFecha").val()
+					},
+					success : function(data) {
+						$( "#chk"+data ).attr('checked',true);
+					}
+				});
+		 }else{
+			 $('#divRepiteCita').hide();
+			 $('#divRepiteCitaDias').hide();
+		 }
+	 });
+	 
+	 $( "#slcPeriodo" ).change(function(){
+		 if($( "#slcPeriodo" ).val()=='0')
+			 $( "#txtRepite" ).html('Semana');
+		 else
+			 $( "#txtRepite" ).html('Mes');
+	 });
+		
+	$("#btnGuardar").click(function(){
+		$("#btnGuardar").hide();
+		bandera=true;
+		 altaCita(obtenerDias());
+	});
+	
+	$("#btnAceptar").click(function(){
+		$('html,body').animate({
+		    scrollTop: $("#divInicio").offset().top
+		}, 2000);
+		bandera=false;
+		$('#divFechasNoDisponibles').hide();
+		 altaCita(obtenerDias());
+	});
+	
+	$("#btnCancelar").click(function(){
+		$('html,body').animate({
+		    scrollTop: $("#divInicio").offset().top
+		}, 2000);
+		$("#btnGuardar").show();
+		$('#divFechasNoDisponibles').hide();
+	});
+}
+var arrFechas=[];
+
+function obtenerDias() {
+	var arrDias = [];
+	var i = 0;
+	$('.checkDias:checked').each(function() {
+		arrDias[i] = $(this).val();
+		i++;
+	});
+	return arrDias;
+}
+
+function verHorarios(){
+
+	var sucursal= $("#slcSucursal").val().trim();
+	var consulta = $("#slcConsulta").val().trim();
+	var duracion = $("#slcDuracion").val().trim();
+	var fecha = $("#txtFecha").val().trim();
+	$("#slcHr").html('<option value=""></option>');
+	$("#slcMin").html('<option value=""></option>');
+	
+	if (fecha != "" && duracion != "" && sucursal != "" && consulta!= "") {
+		$( "#checkRepetir" ).removeAttr('disabled');
+		$.ajax({
+			method : "post",
+			url : "adminFunciones.php",
+			data : {
+				idSucursal:sucursal,
+				fecha:fecha,
+				idConsulta:consulta,
+				duracion:duracion
+			},
+			success : function(data) {
+				arrFechas=JSON.parse(data);
+				var opcion='',opcion2='', b=true;
+				$.each(arrFechas, function( index, arr ) {
+					opcion+='<option value="'+index+'">'+index+'</option>';
+					if(b){
+						b=false;
+						$.each(arr, function( index2, min ) {
+							opcion2+='<option value="'+min+'">'+min+'</option>';
+						});
+					}
+					});
+				$("#slcHr").html(opcion);
+				$("#slcMin").html(opcion2);
+			}
+		});
+	
+	}else{
+		$( "#checkRepetir" ).attr('disabled');
+	}
+	
+}
+
+function altaCita(arrDias){
+	var existeError = false;
+		
+	var sucursal= $("#slcSucursal").val().trim();
+	var consulta = $("#slcConsulta").val().trim();
+	var duracion = $("#slcDuracion").val().trim();
+	var fecha = $("#txtFecha").val().trim();
+	var hora= $("#slcHr").val().trim();
+	var minutos= $("#slcMin").val().trim();
+	var paciente = $("#slcPaciente").val().trim();
+	var servicio = $("#txtServicio").val().trim();
+	var comen = $("#txtComentarios").val().trim();
+
+	if ( sucursal == "") {
+		existeError = true;
+		console.log("Error: sucursal");
+	}
+	if (consulta == "") {
+		existeError = true;
+		console.log("Error: consulta");
+	}
+
+	if (duracion == "") {
+		existeError = true;
+		console.log("Error: duracion");
+	}
+	if (fecha == "") {
+		existeError = true;
+		console.log("Error: fecha");
+	}
+	if (hora == "") {
+		existeError = true;
+		console.log("Error: hora");
+	}
+	if (minutos == "") {
+		existeError = true;
+		console.log("Error: minutos");
+	}
+	if (paciente == "") {
+		existeError = true;
+		console.log("Error: paciente");
+	}
+	if (servicio == "") {
+		existeError = true;
+		console.log("Error: servicio");
+	}
+	if (comen == "") {
+		existeError = true;
+		console.log("Error: comen");
+	}
+	var repetir=$('#checkRepetir').is(':checked');
+	var periodo=$("#slcPeriodo").val().trim();
+	var veces = $("#slcVeces").val().trim();
+	
+	if(existeError){
+		mostrarMsjError('Datos incompletos!! <br />Por favor, llene la informaaci&oacute;n que se solicita',5);
+	}else{
+		mostrarMsjEspera('Espere un momento... guardando informaci&oacute;n.', 3);
+		xajax_guardarCita(paciente,sucursal,consulta,duracion,fecha,hora,minutos,servicio,comen,repetir,arrDias,periodo,veces,bandera);
+	}
+}
+
+
+function mostrarConfirmacion(){
+	$('#divFechasNoDisponibles').show();
+	$('html,body').animate({
+	    scrollTop: $("#divFechasNoDisponibles").offset().top
+	}, 2000);
+}
+
+function limpiarDatos(){
+	var dias = new Array('lunes','martes','miercoles','jueves','viernes','sabado','domingo');
+	$.each(dias, function( index, ch ) {
+		$( "#chk"+ch).removeAttr('checked');
+	});
+
+	consultaDatos();
+	$("#txtFecha").val('');
+	$("#txtServicio").val('');
+	$("#txtComentarios").val('');
+	$("#slcPaciente").val('');
+	$("#slcDuracion").val('');
+	$( "#checkRepetir").removeAttr('checked');
+	$( "#checkRepetir" ).attr('disabled');
+
+	 $('#divRepiteCita').hide();
+	 $('#divRepiteCitaDias').hide();
+
+	$("#btnGuardar").show();
+}
 
 function iniciarAutoacomplete(){
 	$.widget( "custom.combobox", {
@@ -135,201 +412,7 @@ function iniciarAutoacomplete(){
 	 
 }
 	 
-function iniciar(){
-	iniciarAutoacomplete();
-	
-	$( "#slcPaciente" ).combobox();
-	
-		 
-	$('.datepicker').datepicker({
-		dateFormat : 'yy-mm-dd',
-		changeMonth : true,
-		changeYear : true,
-		minDate : '0D'
-	});
-	
-    var availableTags = [
-        "ActionScript",
-        "AppleScript",
-        "Asp",
-        "BASIC",
-        "C",
-        "C++",
-      ];
-      $( "#tags" ).autocomplete({
-        source: availableTags
-      });
-      
 
-	 $.ajax({
-		method : "post",
-		url : "adminFunciones.php",
-		data : {
-			pacientes:''
-		},
-		success : function(data) {
-			respuesta=JSON.parse(data);
-			$( "#slcPaciente" ).html(respuesta);
-		}
-	});
-	 
-	 $.ajax({
-			method : "post",
-			url : "adminFunciones.php",
-			data : {
-				tiposConsulta:''
-			},
-			success : function(data) {
-				respuesta=JSON.parse(data);
-				$( "#slcConsulta" ).html(respuesta);
-			}
-		});
-		 
-	 if($("#hdnRol").val()==1)
-	 $.ajax({
-			method : "post",
-			url : "adminFunciones.php",
-			data : {
-				sucursales:''
-			},
-			success : function(data) {
-				respuesta=JSON.parse(data);
-				$( "#slcSucursal" ).html(respuesta);
-			}
-		});
-		 
-	 $( "#slcDuracion" ).change(verHorarios);
-	 $( "#slcConsulta" ).change(verHorarios);
-	 $( "#slcSucursal" ).change(verHorarios);
-	 $( "#txtFecha" ).change(verHorarios);
-	 $( "#slcHr" ).change(function(){
-		 var opcion2='';
-		 $.each(arrFechas[$("#slcHr").val()], function( index2, min ) {
-				opcion2+='<option value="'+min+'">'+min+'</option>';
-			});
-		 $("#slcMin").html(opcion2);
-	 });
-	 
-	 $( "#checkRepetir" ).click(function(){
-		 if( $('#checkRepetir').is(':checked') ) {
-			 $('#divRepiteCita').show();
-			 $('#divRepiteCitaDias').show();
-		 }else{
-			 alert('no');
-			 $('#divRepiteCita').hide();
-			 $('#divRepiteCitaDias').hide();
-		 }
-	 });
-		
-	
-	$("#btnGuardar").click(function(){
-		console.log('h');
-		 $('.checkDias:checked').each(
-				    function() {
-				        alert("El checkbox con valor " + $(this).val() + " está seleccionado");
-				    }
-				);
-	});
-}
-var arrFechas=[];
-function verHorarios(){
-
-	var sucursal= $("#slcSucursal").val().trim();
-	var consulta = $("#slcConsulta").val().trim();
-	var duracion = $("#slcDuracion").val().trim();
-	var fecha = $("#txtFecha").val().trim();
-	$("#slcHr").html('');
-	$("#slcMin").html('');
-	
-	if (fecha != "" && duracion != "" && sucursal != "" && consulta!= "") {
-		$.ajax({
-			method : "post",
-			url : "adminFunciones.php",
-			data : {
-				idSucursal:sucursal,
-				fecha:fecha,
-				idConsulta:consulta,
-				duracion:duracion
-			},
-			success : function(data) {
-				arrFechas=JSON.parse(data);
-				var opcion='',opcion2='', b=true;
-				$.each(arrFechas, function( index, arr ) {
-					opcion+='<option value="'+index+'">'+index+'</option>';
-					alert(opcion);
-					if(b){
-						b=false;
-						$.each(arr, function( index2, min ) {
-							opcion2+='<option value="'+min+'">'+min+'</option>';
-						});
-					}
-					});
-				$("#slcHr").html(opcion);
-				$("#slcMin").html(opcion2);
-			}
-		});
-	
-	}
-	
-}
-
-function altaCita(){
-	var existeError = false;
-	
-	var txtNombre= $("#txtNombre").val().trim();
-	if (txtNombre == "") {
-		existeError = true;
-		console.log("Error: txtNombre");
-	}
-
-	var txtApellidos= $("#txtApellidos").val().trim();
-	if (txtApellidos == "") {
-		existeError = true;
-		console.log("Error: txtApellido");
-	}
-	
-	var txtTelCasa= $("#txtTelCasa").val().trim();
-	if (txtTelCasa == "") {
-		existeError = true;
-		console.log("Error: txTelCasa");
-	}
-	var txtTelMovil= $("#txtTelMovil").val().trim();
-	if (txtTelMovil == "") {
-		existeError = true;
-		console.log("Error: txTelMovil");
-	}
-	
-	var txtEmail= $("#txtCorreo").val().trim();
-	if (txtEmail == "") {
-		existeError = true;
-		console.log("Error: txtEmail");
-	}
-	
-	var txtEdad= $("#txtEdad").val().trim();
-	if (txtEdad == "") {
-		existeError = true;
-		console.log("Error: txtEdad");
-	}
-	
-	if(existeError){
-		mostrarMsjError('Datos incompletos!! <br />Por favor, llene la informaaci&oacute;n que se solicita',5);
-	}
-
-	mostrarMsjEspera('Espere un momento... guardando informaaci&oacute;n.', 3);
-	xajax_guardar(txtNombre, txtApellidos, txtTelCasa, txtTelMovil, txtEmail,txtEdad);
-}
-
-function limpiarDatos(){
-	$("#txtNombre").val('');
-	$("#txtApellidos").val('');
-	
-	$("#txtTelCasa").val('');
-	$("#txtTelMovil").val('');
-	$("#txtCorreo").val('');
-	
-	$("#txtEdad").val('');
-	
-}
 //var alert = alertify.alert('Titulo','TextoAlerta').set('label', 'Aceptar');     	 
 //alert.set({transition:'zoom'}); //slide, zoom, flipx, flipy, fade, pulse (default)
 //alert.set('modal', false);  //al pulsar fuera del dialog se cierra o no	

@@ -1,13 +1,13 @@
 <?php
 
-	require FOLDER_MODEL_BASE . "model.base.paciente.inc.php";
+	require FOLDER_MODEL_BASE . "model.base.servicio.inc.php";
 
-	class ModeloPaciente extends ModeloBasePaciente
+	class ModeloServicio extends ModeloBaseServicio
 	{
 		#------------------------------------------------------------------------------------------------------#
 		#----------------------------------------------Propiedades---------------------------------------------#
 		#------------------------------------------------------------------------------------------------------#
-		var $_nombreClase="ModeloBasePaciente";
+		var $_nombreClase="ModeloBaseServicio";
 
 		var $__ss=array();
 
@@ -51,33 +51,34 @@
 		#------------------------------------------------Otras-------------------------------------------------#
 		#------------------------------------------------------------------------------------------------------#
 		
-		public function obtenerPacientes()
+		public function obtenerConsulta()
 		{
-		    global $objSession;
-		    $where = " p.idSucursal=".$objSession->getIdSucursal();
-		    $concat=" ";
-		    $inner=" ";
-		    if ($objSession->getidRol()==1){
-		        $where=" true ";
-		        $concat=", '(', s.sucursal, ')'";
-		        $inner=" inner join sucursal as s on p.idSucursal=s.idSucursal ";
-		        
-		    }
-		    $query = "Select p.idPaciente, concat_ws(' ', p.nombre, p.apellidos$concat) as nombreP from paciente as p $inner where $where";
+		    $query = "Select nombre from servicio where idConsulta=".$this->getIdConsulta();
 		    $arreglo = array();
 		    $resultado = mysqli_query($this->dbLink, $query);
 		    if ($resultado && mysqli_num_rows($resultado) > 0) {
 		        while ($row_inf = mysqli_fetch_assoc($resultado)){
-		            $arreglo[$row_inf['idPaciente']] = $row_inf['nombreP'];
+		            $arreglo[] = $row_inf['nombre'];
 		        }
 		    }
 		    return $arreglo;
 		}
 		
-		
+		public function guardarServicioNuevo()
+		{
+		    $query = "Select * from servicio where nombre='".$this->getNombre()."' and idConsulta=".$this->getIdConsulta();
+		    $resultado = mysqli_query($this->dbLink, $query);
+		    if ($resultado && mysqli_num_rows($resultado) > 0) {
+		        $row_inf = mysqli_fetch_assoc($resultado);
+		        $this->setIdServicio($row_inf['idServicio']);
+		    }else {
+		        $this->Guardar();
+		        $this->setIdServicio(mysqli_insert_id($this->dbLink));
+		    }
+		}
 		public function validarDatos(){
 		    return true;
 		}
-
+		
 	}
 

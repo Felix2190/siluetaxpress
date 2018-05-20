@@ -53,7 +53,7 @@ require_once 'masterInclude.inc.php';
 						<div class="box">
 						<input type="hidden" id="hdnRol" value="<?php echo $objSession->getidRol();?>"/>
 						<?php ?>
-							<div class="row uniform">
+							<div class="row uniform" id="divInicio">
 								<div class="1u 12u$(xsmall)">
 									<label>Paciente:</label>
 								</div>
@@ -126,23 +126,25 @@ require_once 'masterInclude.inc.php';
 								<div class="1u 12u$(xsmall)">
 									<div class="select-wrapper">
 										<select name="demo-category" id="slcHr">
+										<option value=""></option>
 									</select>
 									</div>
 								</div>
 								<div class="1u 12u$(xsmall)">
 									<div class="select-wrapper">
 										<select name="demo-category" id="slcMin">
+										<option value=""></option>
 										</select>
 									</div>
 								</div>
 
 								<div class="2u 12u$(small)">
-									<input id="checkRepetir" name="checkRepetir" type="checkbox" > <label for="checkRepetir">Repetir cita</label>
+									<input id="checkRepetir" disabled name="checkRepetir" type="checkbox" > <label for="checkRepetir">Repetir cita</label>
 									
 								</div>
 								
 						</div>
-						
+						<br />
 								<div class="row" >
 								
 								</div>
@@ -152,9 +154,9 @@ require_once 'masterInclude.inc.php';
 									</div>
 									<div class="2u 12u$(xsmall)">
 										<div class="select-wrapper">
-										<select name="demo-category" id="">
-											<option value="S">Semanal</option>
-											<option value="M">Mensual</option>
+										<select name="demo-category" id="slcPeriodo">
+											<option value="0">Semanal</option>
+											<option value="21">Mensual</option>
 										</select>
 										</div>
 									</div>
@@ -163,12 +165,12 @@ require_once 'masterInclude.inc.php';
 									</div>
 									<div class="1u 12u$(xsmall)">
 										<div class="select-wrapper">
-										<select name="demo-category" id="">
-											<option value="1">1</option>
+										<select name="demo-category" id="slcVeces">
+											<?php for ($i=1;$i<=10;$i++) echo '<option value="'.$i.'">'.$i.'</option>'; ?>
 										</select>
 										</div>
 									</div>
-									<div class="2u 12u$(xsmall)">
+									<div class="2u 12u$(xsmall)" id="txtRepite">
 										Semana
 									</div>
 
@@ -178,32 +180,32 @@ require_once 'masterInclude.inc.php';
 									<div class="2u 12u$(xsmall)">
 										<label>Repitir el:</label>
 									</div>
-									
-								<div class="1u 12u$(small)">
+							<div class="row" >
+								<div class="2u 12u$(small)">
 									<input class="checkDias" value="lunes" id="chklunes" name="chklunes"  type="checkbox"> <label for="chklunes">Lunes</label>
 								</div>
 									
 								
-								<div class="1u 12u$(small)">
+								<div class="2u 12u$(small)">
 									<input class="checkDias" value="martes" id="chkmartes" name="chkmartes" type="checkbox"> <label for="chkmartes">Martes</label>
 								</div>
 								
-								<div class="1u 12u$(small)">
+								<div class="2u 12u$(small)">
 									<input class="checkDias" value="miercoles" id="chkmiercoles" name="chkmiercoles" type="checkbox"> <label for="chkmiercoles">Mi&eacute;rcoles</label>
 								</div>
 								
-								<div class="1u 12u$(small)">
+								<div class="2u 12u$(small)">
 									<input class="checkDias" value="jueves" id="chkjueves" name="chkjueves" type="checkbox"> <label for="chkjueves">Jueves</label>
 								</div>
 								
-								<div class="1u 12u$(small)">
+								<div class="2u 12u$(small)">
 									<input class="checkDias" value="viernes" id="chkviernes" name="chkviernes" type="checkbox"> <label for="chkviernes">Viernes</label>
 								</div>
 								
-								<div class="1u 12u$(small)">
+								<div class="2u 12u$(small)">
 									<input class="checkDias" value="sabado" id="chksabado" name="chksabado" type="checkbox"> <label for="chksabado">S&aacute;bado</label>
 								</div>
-								
+							</div>
 								</div>
 								
 								<br />
@@ -223,7 +225,7 @@ require_once 'masterInclude.inc.php';
 									<label>Servicio:</label>
 								</div>
 								<div class="8u 12u$(xsmall)">
-									<input id="tags" style="width: 100%;"/>
+									<input id="txtServicio" style="width: 100%;"/>
 								</div>
 							</div>
 							<div class="row">
@@ -236,15 +238,25 @@ require_once 'masterInclude.inc.php';
 							</div>
 							
 							</div>
+							<br />
+							<br />
 								
+								<div class="row" id="divFechasNoDisponibles" style="display: none;">
 								
+								<div class="3u 12u$(small)">&emsp;</div>
+								<div class="6u 12u$(small)">
+									<div id="divFechasNoDisponibles2"></div>
+								<ul class="actions" style="float: right;"><li><a id="btnAceptar" class="button special">Aceptar</a></li><li><a id="btnCancelar" class="button">Cancelar</a></li></ul>
+								
+								</div>
+								</div>
 								
 							</div>
 							<br />
 							
 							<div class="row">
 								<div class="12u"></div>
-								<a id="btnGuardar" class="button special">Guardar</a>
+								<a id="btnGuardar" class="button special" >Guardar</a>
 							</div>
 							
 
