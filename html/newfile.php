@@ -21,7 +21,7 @@ if ($result) {
 	}
 }
 */
-$ar=array(array('Lezlie ','Lezlie2018')
+$ar=array(array('LezlieGR ','LezlieGR2018',6),array('Lizet','Lizet2018',7),array('Rosailian','Rosailian2018',8)
 //,array('Nelly ','Salas','atenciontelefonica02@planetucc.com')
 //,array('Ulises ','Trinidad','ulises@planetucc.com')
 /*,array('Mario Antonio ','Lanz L&oacute;pez','mario@planetucc.com')
@@ -31,12 +31,12 @@ $ar=array(array('Lezlie ','Lezlie2018')
 );
 $int=1;
 //$ar=array('ricardo@planetucc.com_2017');
-foreach ($ar as $v=>$vendedor){
+foreach ($ar as $v=>$u){
 	srand($int);
 $random_salt = hash('sha512', uniqid(mt_rand(1, mt_getrandmax()), true));
-$passwordSalt = hash('sha512', $vendedor[1]. $random_salt);
+$passwordSalt = hash('sha512', $u[1]. $random_salt);
 	$sql2="INSERT INTO `login`  
-			VALUES (NULL, '$int', '".$vendedor[0]."', '".$passwordSalt."', '".$random_salt."', 1, 'activo'";
+			VALUES (NULL, '$u[2]', '".$u[0]."', '".$passwordSalt."', '".$random_salt."', 2, 'activo'";
 $int++;
 	echo '<br /> <br />'.$sql2.'<br /> <br /> <br />';
 }

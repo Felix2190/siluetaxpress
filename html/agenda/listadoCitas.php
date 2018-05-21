@@ -4,7 +4,7 @@ require_once 'masterInclude.inc.php';
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title> </title>
+		<title>Citas</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -28,9 +28,27 @@ require_once 'masterInclude.inc.php';
 
 							<!-- Section -->
 								<section>
-									<h2 id="content"></h2>
+									<h2 id="content">Listado Citas </h2>
+									
+									<input type="hidden" id="hdnRol" value="<?php echo $objSession->getidRol();?>"/>
+									<input type="hidden" id="hdnPaciente" value="<?php echo $paciente;?>"/>
+									<input type="hidden" id="hdnSucursal" value="<?php echo $sucursal;?>"/>
+									<input type="hidden" id="hdnUsuario" value="<?php echo $usuario;?>"/>
+									<?php if (isset($_SESSION['altaCita'])):
+									echo "<p><strong>Paciente:</strong> $Nombre $Apellidos</p>";
+									endif;
+									
+									if ($objSession->getidRol()!=1):
+									echo "<p><strong>Sucursal:</strong> $objSession->getSucursal()</p>";
+									endif;
+									
+									?>
+									
+									
 								</section>
-
+								
+									<div class="table-wrapper" id="divTabla">
+													</div>
 						</div>
 					</div>
 

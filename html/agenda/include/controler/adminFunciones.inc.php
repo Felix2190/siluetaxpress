@@ -31,7 +31,20 @@ if (isset($_POST['idConsulta_'])){
 if (isset($_POST['fechaConvertir'])){
     $dias = array('','lunes','martes','miercoles','jueves','viernes','sabado','domingo');
     echo strtolower($dias[date('N', strtotime($_POST['fechaConvertir']))]);
-    
+}
+
+if (isset($_POST['sucursal'])&&isset($_POST['paciente'])&&isset($_POST['usuario'])){
+    require_once FOLDER_MODEL_EXTEND. "model.cita.inc.php";
+    $cita = new ModeloCita();
+    if ($_POST['sucursal']!='')
+        $cita->setIdSucursal($_POST['sucursal']);
+        if ($_POST['paciente']!='')
+            $cita->setIdPaciente($_POST['paciente']);
+            if ($_POST['usuario']!='')
+                $cita->setIdUsuario($_POST['usuario']);
+                
+            
+    echo json_encode($cita->obtenerCitas());
 }
 
 

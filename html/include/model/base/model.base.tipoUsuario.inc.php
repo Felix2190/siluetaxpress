@@ -99,7 +99,7 @@
 		{
 			try
 			{
-				$SQL="INSERT INTO tipoUsuario(nombre,descripcion)
+				$SQL="INSERT INTO tipousuario(nombre,descripcion)
 						VALUES('" . mysqli_real_escape_string($this->dbLink,$this->nombre) . "','" . mysqli_real_escape_string($this->dbLink,$this->descripcion) . "')";
 				$result=mysqli_query($this->dbLink,$SQL);
 				if(!$result)
@@ -120,7 +120,7 @@
 		{
 			try
 			{
-				$SQL="UPDATE tipoUsuario SET nombre='" . mysqli_real_escape_string($this->dbLink,$this->nombre) . "',descripcion='" . mysqli_real_escape_string($this->dbLink,$this->descripcion) . "'
+				$SQL="UPDATE tipousuario SET nombre='" . mysqli_real_escape_string($this->dbLink,$this->nombre) . "',descripcion='" . mysqli_real_escape_string($this->dbLink,$this->descripcion) . "'
 					WHERE idTipoUsuario=" . $this->idTipoUsuario;
 				
 				$result=mysqli_query($this->dbLink,$SQL);
@@ -143,7 +143,7 @@
 				return false;
 			try
 			{
-				$SQL="DELETE FROM tipoUsuario
+				$SQL="DELETE FROM tipousuario
 				WHERE idTipoUsuario=" . mysqli_real_escape_string($this->dbLink,$this->idTipoUsuario);
 				$result=mysqli_query($this->dbLink,$SQL);
 				if(!$result)
@@ -163,7 +163,7 @@
 			{
 				$SQL="SELECT
 						idTipoUsuario,nombre,descripcion
-					FROM tipoUsuario
+					FROM tipousuario
 					WHERE idTipoUsuario=" . mysqli_real_escape_string($this->dbLink,$this->idTipoUsuario);
 					
 				$result=mysqli_query($this->dbLink,$SQL);

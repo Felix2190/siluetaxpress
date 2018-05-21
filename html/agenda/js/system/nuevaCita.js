@@ -244,6 +244,7 @@ function altaCita(arrDias){
 	
 	if(existeError){
 		mostrarMsjError('Datos incompletos!! <br />Por favor, llene la informaaci&oacute;n que se solicita',5);
+		$("#btnGuardar").show();
 	}else{
 		mostrarMsjEspera('Espere un momento... guardando informaci&oacute;n.', 3);
 		xajax_guardarCita(paciente,sucursal,consulta,duracion,fecha,hora,minutos,servicio,comen,repetir,arrDias,periodo,veces,bandera);

@@ -37,7 +37,7 @@
 
 				<li><span class="opener">Citas</span>
 					<ul>
-						<li><a href="">Listado</a></li>
+						<li><a href="listadoCitas.php">Listado</a></li>
 						<li><a href="nuevaCita.php">Agregar nueva</a></li>
 						<li><a href="">B&uacute;squedad</a></li>
 					</ul></li>

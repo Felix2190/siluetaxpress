@@ -135,6 +135,11 @@ function guardarCita($paciente,$sucursal,$consulta,$duracion,$fecha,$hora,$minut
     }
     $r->call('mostrarMsjExito','Se agreg&oacute; correctamente las citas!',3);
     $r->call('limpiarDatos');
+    
+    
+    $_SESSION['altaCita']=$paciente;
+    
+    $r->redirect("listadoCitas.php",4);
     return $r;
     
 }

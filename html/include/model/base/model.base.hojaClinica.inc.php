@@ -99,11 +99,11 @@
 		{
 			try
 			{
-				$SQL="INSERT INTO hojaClinica(fechaRegistro,edad)
+				$SQL="INSERT INTO hojaclinica(fechaRegistro,edad)
 						VALUES('" . mysqli_real_escape_string($this->dbLink,$this->fechaRegistro) . "','" . mysqli_real_escape_string($this->dbLink,$this->edad) . "')";
 				$result=mysqli_query($this->dbLink,$SQL);
 				if(!$result)
-					return $this->setSystemError("Error en la insercion de registro.","[" . $SQL . "][" . mysqli_error($this->dbLink) . "][ModeloBaseHojaClinica::Insertar]");
+					return $this->setSystemError("Error en la insercion de registro, mysqli_error($this->dbLink).","[" . $SQL . "][" . mysqli_error($this->dbLink) . "][ModeloBaseHojaClinica::Insertar]");
 				
 				$this->idHojaClinica=mysqli_insert_id($this->dbLink);
 				return true;
@@ -120,7 +120,7 @@
 		{
 			try
 			{
-				$SQL="UPDATE hojaClinica SET fechaRegistro='" . mysqli_real_escape_string($this->dbLink,$this->fechaRegistro) . "',edad='" . mysqli_real_escape_string($this->dbLink,$this->edad) . "'
+				$SQL="UPDATE hojaclinica SET fechaRegistro='" . mysqli_real_escape_string($this->dbLink,$this->fechaRegistro) . "',edad='" . mysqli_real_escape_string($this->dbLink,$this->edad) . "'
 					WHERE idHojaClinica=" . $this->idHojaClinica;
 				
 				$result=mysqli_query($this->dbLink,$SQL);
@@ -143,7 +143,7 @@
 				return false;
 			try
 			{
-				$SQL="DELETE FROM hojaClinica
+				$SQL="DELETE FROM hojaclinica
 				WHERE idHojaClinica=" . mysqli_real_escape_string($this->dbLink,$this->idHojaClinica);
 				$result=mysqli_query($this->dbLink,$SQL);
 				if(!$result)
@@ -163,7 +163,7 @@
 			{
 				$SQL="SELECT
 						idHojaClinica,fechaRegistro,edad
-					FROM hojaClinica
+					FROM hojaclinica
 					WHERE idHojaClinica=" . mysqli_real_escape_string($this->dbLink,$this->idHojaClinica);
 					
 				$result=mysqli_query($this->dbLink,$SQL);

@@ -17,6 +17,7 @@ if (! DEVELOPER) {
     define("ERR_DEBUG", false);
     define("SESSION_TIME", 1800);
     define("SOPORTE_TIME", 600);
+    $case1=2;$case2=3;
     
 } else {
     /**
@@ -29,7 +30,7 @@ if (! DEVELOPER) {
     define("FOLDER_HTDOCS_AGENDA", $_SERVER['DOCUMENT_ROOT'] . "siluetaxpress/html/agenda/");//AGENDA
 //    define("DOMINIO", "http://planet/" . SUBDIR . "/");
     define("ERR_DEBUG", true);
-    
+    $case1=4;$case2=5;
 }
 
 /*
@@ -122,8 +123,9 @@ $_JAVASCRIPT_ALERTAS = "<script type='text/javascript'>
 
 $pedazos=explode("/", $_SERVER['PHP_SELF']);
 $__FILE_NAME__=str_replace(array("/",".php"),"",$pedazos[count($pedazos)-1]);
+
 switch (count($pedazos)){
-case 4:
+case $case1:
 /**************** SITIO ************************************/
 if(is_file(FOLDER_INCLUDE . "controler/" . $__FILE_NAME__ . ".inc.php")){
     require_once(FOLDER_INCLUDE . "controler/" . $__FILE_NAME__ . ".inc.php");
@@ -140,11 +142,14 @@ $_JAVASCRIPT_CSS .= '<script type="text/javascript" src="' . URL_JAVASCRIPT . '.
 
 if (is_file(FOLDER_JS . $__FILE_NAME__ . ".js"))
     $_JAVASCRIPT_CSS .= '<script type="text/javascript" src="' . URL_JAVASCRIPT . $__FILE_NAME__ . '.js"></script>';
+    
 break;
-case 5:
+case $case2:
 /**
  * ***************** AGENDA **********************************
  */
+    include_once 'variables.php';
+    
 if (is_file(FOLDER_INCLUDE_AGENDA . "controler/" . $__FILE_NAME__ . ".inc.php")) {
     require_once (FOLDER_INCLUDE_AGENDA . "controler/" . $__FILE_NAME__ . ".inc.php");
 }
