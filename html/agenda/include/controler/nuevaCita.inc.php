@@ -45,7 +45,7 @@ function obtenMes($numMes){
 
 $xajax = new xajax();
 
-function guardarCita($paciente,$sucursal,$consulta,$duracion,$fecha,$hora,$minutos,$servicio,$comen,$repetir,$arrDias,$periodo,$veces,$bandera){
+function guardarCita($paciente,$sucursal,$idCabina,$consulta,$duracion,$fecha,$hora,$minutos,$servicio,$comen,$repetir,$arrDias,$periodo,$veces,$bandera){
     global $objSession;
     
     $r=new xajaxResponse();
@@ -56,7 +56,7 @@ function guardarCita($paciente,$sucursal,$consulta,$duracion,$fecha,$hora,$minut
         $cita->setIdConsulta($consulta);
         $cita->setIdSucursal($sucursal);
         $cita->setFechaInicio($fecha.' '.$hora.':'.$minutos.':00');
-        
+        $cita->setIdCabina($idCabina);
         for ($inicio=1;$inicio<=$veces;$inicio++){
             do {
                 $cita->setFechaInicio($fecha.' '.$hora.':'.$minutos.':00');
@@ -120,7 +120,7 @@ function guardarCita($paciente,$sucursal,$consulta,$duracion,$fecha,$hora,$minut
     $cita->setIdServicio($servicio_->getIdServicio());
     $cita->setIdSucursal($sucursal);
     $cita->setFechaInicio($fecha.' '.$hora.':'.$minutos.':00');
-    
+    $cita->setIdCabina($idCabina);
     $auxFecha = strtotime ( '+'.$duracion.' minute' , strtotime ( $fecha.' '.$hora.':'.$minutos.':00') ) ;
     $cita->setFechaFin(date( 'Y-m-d H:i:s' , $auxFecha));
     $cita->setDuracion($duracion);

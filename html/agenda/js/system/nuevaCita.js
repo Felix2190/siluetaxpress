@@ -73,8 +73,11 @@ function iniciar(){
 		minDate : '0D'
 	});
 	
-     $( "#slcSucursal" ).change(verHorarios);
+     $( "#slcSucursal" ).change(mostrarCabinas);
 	 $( "#txtFecha" ).change(verHorarios);
+	 $( "#slcConsulta" ).change(mostrarCabinas);
+	 $( "#slcConsultorio" ).change(verHorarios);
+	 
 	 $( "#slcHr" ).change(function(){
 		 var opcion2='';
 		 $.each(arrFechas[$("#slcHr").val()], function( index2, min ) {
@@ -149,12 +152,15 @@ function verHorarios(){
 
 	var sucursal= $("#slcSucursal").val().trim();
 	var consulta = $("#slcConsulta").val().trim();
+	var consultorio = $("#slcConsultorio").val().trim();
 	var duracion = $("#slcDuracion").val().trim();
 	var fecha = $("#txtFecha").val().trim();
 	$("#slcHr").html('<option value=""></option>');
 	$("#slcMin").html('<option value=""></option>');
 	
-	if (fecha != "" && duracion != "" && sucursal != "" && consulta!= "") {
+	
+	
+	if (fecha != "" && duracion != "" && sucursal != "" && consulta!= "" && consultorio!= "") {
 		$( "#checkRepetir" ).removeAttr('disabled');
 		$.ajax({
 			method : "post",
@@ -163,7 +169,8 @@ function verHorarios(){
 				idSucursal:sucursal,
 				fecha:fecha,
 				idConsulta:consulta,
-				duracion:duracion
+				duracion:duracion,
+				idConsultorio:consultorio
 			},
 			success : function(data) {
 				arrFechas=JSON.parse(data);
@@ -200,6 +207,7 @@ function altaCita(arrDias){
 	var paciente = $("#slcPaciente").val().trim();
 	var servicio = $("#txtServicio").val().trim();
 	var comen = $("#txtComentarios").val().trim();
+	var consultorio = $("#slcConsultorio").val().trim();
 
 	if ( sucursal == "") {
 		existeError = true;
@@ -209,7 +217,10 @@ function altaCita(arrDias){
 		existeError = true;
 		console.log("Error: consulta");
 	}
-
+	if (consultorio == "") {
+		existeError = true;
+		console.log("Error: consultorio");
+	}
 	if (duracion == "") {
 		existeError = true;
 		console.log("Error: duracion");
@@ -235,7 +246,7 @@ function altaCita(arrDias){
 		console.log("Error: servicio");
 	}
 	if (comen == "") {
-		existeError = true;
+	//	existeError = true;
 		console.log("Error: comen");
 	}
 	var repetir=$('#checkRepetir').is(':checked');
@@ -247,11 +258,32 @@ function altaCita(arrDias){
 		$("#btnGuardar").show();
 	}else{
 		mostrarMsjEspera('Espere un momento... guardando informaci&oacute;n.', 3);
-		xajax_guardarCita(paciente,sucursal,consulta,duracion,fecha,hora,minutos,servicio,comen,repetir,arrDias,periodo,veces,bandera);
+		xajax_guardarCita(paciente,sucursal,consultorio,consulta,duracion,fecha,hora,minutos,servicio,comen,repetir,arrDias,periodo,veces,bandera);
 	}
 }
 
-
+function mostrarCabinas(){
+	var sucursal= $("#slcSucursal").val().trim();
+	var consulta = $("#slcConsulta").val().trim();
+	
+	if ( sucursal != "" && consulta!= "") {
+		$.ajax({
+			method : "post",
+			url : "adminFunciones.php",
+			data : {
+				Sucursal:sucursal,
+				Consulta:consulta,
+			},
+			success : function(data) {
+				$("#slcConsultorio").html(data);
+				verHorarios();
+			}
+		});
+	
+	}else{
+		$("#slcConsultorio").html('<option value=""></option>');
+	}
+}
 function mostrarConfirmacion(){
 	$('#divFechasNoDisponibles').show();
 	$('html,body').animate({
@@ -299,7 +331,7 @@ function iniciarAutoacomplete(){
 	        this.input = $( "<input>" )
 	          .appendTo( this.wrapper )
 	          .val( value )
-	          .attr( "title", "" )
+	          .attr( "style", "width: 400px;" )
 	          .addClass( "custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left" )
 	          .autocomplete({
 	            delay: 0,

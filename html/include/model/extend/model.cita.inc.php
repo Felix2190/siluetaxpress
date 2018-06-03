@@ -60,6 +60,8 @@
 		        $condicion.=" and c.idSucursal=".$this->idSucursal;
 		    if ($this->idUsuario)
 		        $condicion.=" and c.idUsuario=".$this->idUsuario;
+		    if ($this->idCabina>0)
+		        $condicion.=" and c.idCabina=$this->idCabina";
 		    $fecha=date("Y-m-d");
 		    $query = "Select idCita, DATE_FORMAT(fechaInicio,'%Y-%m-%d') as fecha, DATE_FORMAT(fechaInicio,'%H:%i') as hora, duracion, 
                     concat_ws(' ', p.nombre, p.apellidos) as nombre_paciente, 
@@ -84,7 +86,7 @@
 		    $fechaF = strtotime ( '+1 day' , strtotime ( $this->fechaFin ) ) ;
 		    $fechaF = date ( 'Y-m-d' , $fechaF );
 		    $query = "Select idCita, fechaInicio, fechaFin, duracion from cita 
-                    where idSucursal=$this->idSucursal and idConsulta=$this->idConsulta and fechaInicio between DATE('$this->fechaInicio') and DATE('$fechaF')";
+                    where idSucursal=$this->idSucursal and idConsulta=$this->idConsulta and idCabina=$this->idCabina and fechaInicio between DATE('$this->fechaInicio') and DATE('$fechaF')";
 		    $respuesta = array();
 		    $resultado = mysqli_query($this->dbLink, $query);
 		    if ($resultado && mysqli_num_rows($resultado) > 0) {
@@ -102,7 +104,7 @@
 		public function disponibliadDia()
 		{
 		    $query = "Select * from cita
-                    where idSucursal=$this->idSucursal and idConsulta=$this->idConsulta 
+                    where idSucursal=$this->idSucursal and idConsulta=$this->idConsulta and idCabina=$this->idCabina 
             and (('$this->fechaInicio'>=fechaInicio and '$this->fechaInicio'<=fechaFin) or ('$this->fechaFin'>=fechaInicio and '$this->fechaFin'<=fechaFin)
             or ('$this->fechaInicio'<=fechaInicio and '$this->fechaFin'>=fechaFin))";
 		    $respuesta = true;

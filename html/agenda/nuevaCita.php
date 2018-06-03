@@ -58,21 +58,12 @@ require_once 'masterInclude.inc.php';
 									<label>Paciente:</label>
 								</div>
 								
-								<div class="3u 12u$(xsmall)">
-									  <select id="slcPaciente">
+								<div class="6u 12u$(xsmall)">
+									  <select id="slcPaciente" style="width: 500px;">
 									 	</select>
 								</div>
-								
-								<div class="1u 12u$(xsmall)">
-									<label>Consulta:</label>
-								</div>
-								<div class="3u 12u$(xsmall)">
-								<div class="select-wrapper">
-									<select name="demo-category" id="slcConsulta">
-									</select>
-								</div>
-								</div>
-
+							</div>
+							<div class="row uniform" id="divInicio">
 								<div class="1u 12u$(xsmall)">
 									<label>Sucursal:</label>
 								</div>
@@ -87,6 +78,29 @@ require_once 'masterInclude.inc.php';
 									<input type="hidden" id="slcSucursal" value="<?php echo $objSession->getIdSucursal();?>"/>
 									<?php } ?>
 								</div>
+								
+								
+								<div class="1u 12u$(xsmall)">
+									<label>Consulta:</label>
+								</div>
+								<div class="3u 12u$(xsmall)">
+								<div class="select-wrapper">
+									<select name="demo-category" id="slcConsulta">
+									</select>
+								</div>
+								</div>
+								
+								<div class="1u 12u$(xsmall)">
+									<label>Consultorio:</label>
+								</div>
+								<div class="3u 12u$(xsmall)">
+								<div class="select-wrapper">
+									<select name="demo-category" id="slcConsultorio">
+									<option value=""></option>
+									</select>
+								</div>
+								</div>
+
 								
 							</div>
 							<br />

@@ -1,13 +1,13 @@
 <?php
 
-	require FOLDER_MODEL_BASE . "model.base.paciente.inc.php";
+	require FOLDER_MODEL_BASE . "model.base.cabina.inc.php";
 
-	class ModeloPaciente extends ModeloBasePaciente
+	class ModeloCabina extends ModeloBaseCabina
 	{
 		#------------------------------------------------------------------------------------------------------#
 		#----------------------------------------------Propiedades---------------------------------------------#
 		#------------------------------------------------------------------------------------------------------#
-		var $_nombreClase="ModeloBasePaciente";
+		var $_nombreClase="ModeloBaseCabina";
 
 		var $__ss=array();
 
@@ -55,7 +55,19 @@
 		{
 			return true;
 		}
-
-
+		
+		public function obtenerConsultorios()
+		{
+		    $query = "Select idCabina, nombre from cabina where tipo='".$this->tipo."' and idSucursal=".$this->idSucursal;
+		    $arreglo = array();
+		    $resultado = mysqli_query($this->dbLink, $query);
+		    if ($resultado && mysqli_num_rows($resultado) > 0) {
+		        while ($row_inf = mysqli_fetch_assoc($resultado)){
+		            $arreglo[$row_inf['idCabina']] = $row_inf['nombre'];
+		        }
+		    }
+		    return $arreglo;
+		}
+		
 	}
 

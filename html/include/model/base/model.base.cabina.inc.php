@@ -1,19 +1,19 @@
 <?php
 
-	class ModeloBaseConsulta extends clsBasicCommon
+	class ModeloBaseCabina extends clsBasicCommon
 	{
 		#------------------------------------------------------------------------------------------------------#
 		#----------------------------------------------Propiedades---------------------------------------------#
 		#------------------------------------------------------------------------------------------------------#
-		var $_nombreClase="base.ModeloBaseConsulta";
+		var $_nombreClase="base.ModeloBaseCabina";
 
 		
-		var $idConsulta=0;
-		var $tipoConsulta='';
-		var $consultorio='cabina';
-		var $descripcion='';
+		var $idCabina=0;
+		var $nombre='';
+		var $tipo='consultorio';
+		var $idSucursal=0;
 
-		var $__s=array("idConsulta","tipoConsulta","consultorio","descripcion");
+		var $__s=array("idCabina","nombre","tipo","idSucursal");
 		var $__ss=array();
 
 		#------------------------------------------------------------------------------------------------------#
@@ -35,33 +35,34 @@
 		#------------------------------------------------------------------------------------------------------#
 
 		
-		public function setIdConsulta($idConsulta)
+		public function setIdCabina($idCabina)
 		{
-			if($idConsulta==0||$idConsulta==""||!is_numeric($idConsulta)|| (is_string($idConsulta)&&!ctype_digit($idConsulta)))return $this->setError("Tipo de dato incorrecto para idConsulta.");
-			$this->idConsulta=$idConsulta;
+			if($idCabina==0||$idCabina==""||!is_numeric($idCabina)|| (is_string($idCabina)&&!ctype_digit($idCabina)))return $this->setError("Tipo de dato incorrecto para idCabina.");
+			$this->idCabina=$idCabina;
 			$this->getDatos();
 		}
-		public function setTipoConsulta($tipoConsulta)
+		public function setNombre($nombre)
 		{
 			
-			$this->tipoConsulta=$tipoConsulta;
+			$this->nombre=$nombre;
 		}
-		public function setConsultorio($consultorio)
+		public function setTipo($tipo)
 		{
 			
-			$this->consultorio=$consultorio;
+			$this->tipo=$tipo;
 		}
-		public function setConsultorioConsultorio()
+		public function setTipoConsultorio()
 		{
-			$this->consultorio='consultorio';
+			$this->tipo='consultorio';
 		}
-		public function setConsultorioCabina()
+		public function setTipoCabina()
 		{
-			$this->consultorio='cabina';
+			$this->tipo='cabina';
 		}
-		public function setDescripcion($descripcion)
+		public function setIdSucursal($idSucursal)
 		{
-			$this->descripcion=$descripcion;
+			
+			$this->idSucursal=$idSucursal;
 		}
 
 		#------------------------------------------------------------------------------------------------------#
@@ -75,21 +76,21 @@
 		#------------------------------------------------------------------------------------------------------#
 
 		
-		public function getIdConsulta()
+		public function getIdCabina()
 		{
-			return $this->idConsulta;
+			return $this->idCabina;
 		}
-		public function getTipoConsulta()
+		public function getNombre()
 		{
-			return $this->tipoConsulta;
+			return $this->nombre;
 		}
-		public function getConsultorio()
+		public function getTipo()
 		{
-			return $this->consultorio;
+			return $this->tipo;
 		}
-		public function getDescripcion()
+		public function getIdSucursal()
 		{
-			return $this->descripcion;
+			return $this->idSucursal;
 		}
 
 		#------------------------------------------------------------------------------------------------------#
@@ -105,10 +106,10 @@
 		protected function limpiarPropiedades()
 		{
 			
-			$this->idConsulta=0;
-			$this->tipoConsulta='';
-			$this->consultorio='cabina';
-			$this->descripcion='';
+			$this->idCabina=0;
+			$this->nombre='';
+			$this->tipo='consultorio';
+			$this->idSucursal=0;
 		}
 
 		
@@ -118,13 +119,13 @@
 		{
 			try
 			{
-				$SQL="INSERT INTO consulta(tipoConsulta,consultorio,descripcion)
-						VALUES('" . mysqli_real_escape_string($this->dbLink,$this->tipoConsulta) . "','" . mysqli_real_escape_string($this->dbLink,$this->consultorio) . "','" . mysqli_real_escape_string($this->dbLink,$this->descripcion) . "')";
+				$SQL="INSERT INTO cabina(nombre,tipo,idSucursal)
+						VALUES('" . mysqli_real_escape_string($this->dbLink,$this->nombre) . "','" . mysqli_real_escape_string($this->dbLink,$this->tipo) . "','" . mysqli_real_escape_string($this->dbLink,$this->idSucursal) . "')";
 				$result=mysqli_query($this->dbLink,$SQL);
 				if(!$result)
-					return $this->setSystemError("Error en la insercion de registro.","[" . $SQL . "][" . mysqli_error($this->dbLink) . "][ModeloBaseConsulta::Insertar]");
+					return $this->setSystemError("Error en la insercion de registro.","[" . $SQL . "][" . mysqli_error($this->dbLink) . "][ModeloBaseCabina::Insertar]");
 				
-				$this->idConsulta=mysqli_insert_id($this->dbLink);
+				$this->idCabina=mysqli_insert_id($this->dbLink);
 				return true;
 			}
 			catch (Exception $e)
@@ -139,12 +140,12 @@
 		{
 			try
 			{
-				$SQL="UPDATE consulta SET tipoConsulta='" . mysqli_real_escape_string($this->dbLink,$this->tipoConsulta) . "',consultorio='" . mysqli_real_escape_string($this->dbLink,$this->consultorio) . "',descripcion='" . mysqli_real_escape_string($this->dbLink,$this->descripcion) . "'
-					WHERE idConsulta=" . $this->idConsulta;
+				$SQL="UPDATE cabina SET nombre='" . mysqli_real_escape_string($this->dbLink,$this->nombre) . "',tipo='" . mysqli_real_escape_string($this->dbLink,$this->tipo) . "',idSucursal='" . mysqli_real_escape_string($this->dbLink,$this->idSucursal) . "'
+					WHERE idCabina=" . $this->idCabina;
 				
 				$result=mysqli_query($this->dbLink,$SQL);
 				if(!$result)
-					return $this->setSystemError("Error en la actualizacion de registro.","[" . $SQL . "][" . mysqli_error() . "][ModeloBaseConsulta::Update]");
+					return $this->setSystemError("Error en la actualizacion de registro.","[" . $SQL . "][" . mysqli_error() . "][ModeloBaseCabina::Update]");
 				
 				return true;
 			}
@@ -162,11 +163,11 @@
 				return false;
 			try
 			{
-				$SQL="DELETE FROM consulta
-				WHERE idConsulta=" . mysqli_real_escape_string($this->dbLink,$this->idConsulta);
+				$SQL="DELETE FROM cabina
+				WHERE idCabina=" . mysqli_real_escape_string($this->dbLink,$this->idCabina);
 				$result=mysqli_query($this->dbLink,$SQL);
 				if(!$result)
-					return $this->setSystemError("Error en el borrado de registro.","[" . $SQL . "][" . mysqli_error() . "][ModeloBaseConsulta::Borrar]");
+					return $this->setSystemError("Error en el borrado de registro.","[" . $SQL . "][" . mysqli_error() . "][ModeloBaseCabina::Borrar]");
 			}
 			catch (Exception $e)
 			{
@@ -181,13 +182,13 @@
 			try
 			{
 				$SQL="SELECT
-						idConsulta,tipoConsulta,consultorio,descripcion
-					FROM consulta
-					WHERE idConsulta=" . mysqli_real_escape_string($this->dbLink,$this->idConsulta);
+						idCabina,nombre,tipo,idSucursal
+					FROM cabina
+					WHERE idCabina=" . mysqli_real_escape_string($this->dbLink,$this->idCabina);
 					
 				$result=mysqli_query($this->dbLink,$SQL);
 				if(!$result)
-					return $this->setSystemError("Error en la obtencion de detalles de registro.","[ModeloBaseConsulta::getDatos][" . $SQL . "][" . mysqli_error($this->dbLink) . "]");
+					return $this->setSystemError("Error en la obtencion de detalles de registro.","[ModeloBaseCabina::getDatos][" . $SQL . "][" . mysqli_error($this->dbLink) . "]");
 				
 
 				if(mysqli_num_rows($result)==0)
@@ -219,7 +220,7 @@
 				return false;
 			if($this->getError())
 				return false;
-			if($this->idConsulta==0)
+			if($this->idCabina==0)
 				$this->Insertar();
 			else
 				$this->Actualizar();

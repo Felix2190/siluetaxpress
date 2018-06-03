@@ -63,6 +63,11 @@
 		    }
 		    return $arreglo;
 		}
+		public function validarDatos()
+		{
+		    return true;
+		}
+		
 		
 
 	}

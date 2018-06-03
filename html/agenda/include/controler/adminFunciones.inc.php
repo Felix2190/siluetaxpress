@@ -17,8 +17,8 @@ if (isset($_POST['tiposConsulta'])){
     echo json_encode(obtenCombo($consultas->obtenerConsulta(),'Seleccione una opci&oacute;n'));
 }
 
-if (isset($_POST['idConsulta'])&&isset($_POST['idSucursal'])&&isset($_POST['fecha'])&&isset($_POST['duracion'])){
-    echo obtenerHorarioDisponibles($_POST['idConsulta'],$_POST['idSucursal'],$_POST['fecha'],$_POST['duracion']);
+if (isset($_POST['idConsulta'])&&isset($_POST['idSucursal'])&&isset($_POST['fecha'])&&isset($_POST['duracion'])&&isset($_POST['idConsultorio'])){
+    echo obtenerHorarioDisponibles($_POST['idConsulta'],$_POST['idSucursal'],$_POST['fecha'],$_POST['duracion'],$_POST['idConsultorio']);
 }
 
 if (isset($_POST['idConsulta_'])){
@@ -47,6 +47,9 @@ if (isset($_POST['sucursal'])&&isset($_POST['paciente'])&&isset($_POST['usuario'
     echo json_encode($cita->obtenerCitas());
 }
 
+if (isset($_POST['Consulta'])&&isset($_POST['Sucursal'])){
+    echo obtenCombo(obtenerConsultorios($_POST['Consulta'],$_POST['Sucursal']),'Selecciona una opci&oacute;n');
+}
 
 function obtenCombo($array,$default){
     $combo='<option value="">'.$default.'</option>';
@@ -55,7 +58,7 @@ function obtenCombo($array,$default){
     return $combo;
 }
 
-function obtenerHorarioDisponibles($idConsulta,$idSucursal,$fecha,$duracion){
+function obtenerHorarioDisponibles($idConsulta,$idSucursal,$fecha,$duracion,$idConsultorio){
     require_once FOLDER_MODEL_EXTEND. "model.cita.inc.php";
     require_once FOLDER_MODEL_EXTEND. "model.sucursal.inc.php";
     
@@ -64,6 +67,7 @@ function obtenerHorarioDisponibles($idConsulta,$idSucursal,$fecha,$duracion){
     $cita->setIdConsulta($idConsulta);
     $cita->setFechaInicio($fecha);
     $cita->setFechaFin($fecha);
+    $cita->setIdCabina($idConsultorio);
     $arrCitas=$cita->obtenerCitasFechaDuracion();
     
     $horarioAgendado=array();
@@ -127,5 +131,21 @@ function obtenerHorarioDisponibles($idConsulta,$idSucursal,$fecha,$duracion){
     }
     
    return json_encode($horarioDisponible);
+}
+
+
+function obtenerConsultorios($idConsulta,$idSucursal){
+    require_once FOLDER_MODEL_EXTEND. "model.consulta.inc.php";
+    require_once FOLDER_MODEL_EXTEND. "model.cabina.inc.php";
+    
+    $consulta =  new ModeloConsulta();
+    $consulta->setIdConsulta($idConsulta);
+    
+    $cabina = new ModeloCabina();
+    $cabina->setTipo($consulta->getConsultorio());
+    $cabina->setIdSucursal($idSucursal);
+    
+    return $cabina->obtenerConsultorios();
+    
 }
 ?>
