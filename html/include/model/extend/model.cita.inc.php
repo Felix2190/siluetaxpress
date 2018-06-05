@@ -65,11 +65,13 @@
 		    $fecha=date("Y-m-d");
 		    $query = "Select idCita, DATE_FORMAT(fechaInicio,'%Y-%m-%d') as fecha, DATE_FORMAT(fechaInicio,'%H:%i') as hora, duracion, 
                     concat_ws(' ', p.nombre, p.apellidos) as nombre_paciente, 
-                    tipoConsulta, sucursal from cita as c
+                    tipoConsulta, sucursal, ser.nombre as servicio, ca.nombre as cabina from cita as c
                     inner join usuario as u on c.idUsuario=u.idUsuario
                     inner join paciente as p on c.idPaciente=p.idPaciente
                     inner join sucursal as s on c.idSucursal=s.idSucursal
                     inner join consulta as co on c.idConsulta=co.idConsulta
+                    inner join servicio as ser on c.idServicio=ser.idServicio
+                    inner join cabina as ca on c.idCabina=ca.idCabina
                     where  fechaInicio>='$fecha' $condicion order by fecha,hora";
 		    $respuesta = array();
 		    $resultado = mysqli_query($this->dbLink, $query);

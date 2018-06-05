@@ -39,11 +39,37 @@ require_once 'masterInclude.inc.php';
 									endif;
 									
 									if ($objSession->getidRol()!=1):
-									echo "<p><strong>Sucursal:</strong> $objSession->getSucursal()</p>";
+									echo "<p><strong>Sucursal:</strong> ".$objSession->getSucursal()."</p>";
 									endif;
 									
+									if (!isset($_SESSION['altaCita'])){
 									?>
+									<div class="row uniform" id="divInicio">
 									
+								<?php if ($objSession->getidRol()==1){?>
+									<div class="1u 12u$(xsmall)">
+									<label>Sucursal:</label>
+								</div>
+								<div class="4u 12u$(xsmall)">
+									<div class="select-wrapper">
+									<select name="demo-category" id="slcSucursal">
+									</select>
+									</div>
+									</div>
+									<?php } ?>
+								
+								<div class="2u 12u$(xsmall)">
+									<label>Consultorio:</label>
+								</div>
+								<div class="3u 12u$(xsmall)">
+								<div class="select-wrapper">
+									<select name="demo-category" id="slcConsultorio">
+									<option value=""></option>
+									</select>
+								</div>
+								</div>
+									</div>
+									<?php }?>
 									
 								</section>
 								

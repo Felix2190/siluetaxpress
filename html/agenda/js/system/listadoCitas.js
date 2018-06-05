@@ -3,21 +3,79 @@ $(document).ready(function(){
 });
 	 
 function iniciar(){
-
-		 $.ajax({
-				method : "post",
-				url : "adminFunciones.php",
-				data : {
-					sucursal:$( "#hdnSucursal" ).val(),
-					paciente:$( "#hdnPaciente" ).val(),
-					usuario:$( "#hdnUsuario" ).val()
-				},
-				success : function(data) {
-					respuesta=JSON.parse(data);
-					xajax_consultarCitas(respuesta);
-				}
-			});
+	listarCitas();
 		
+		 $( "#slcSucursal" ).change(mostrarCabinas);
+		 
+		 if($("#hdnRol").val()==1){
+			 $.ajax({
+					method : "post",
+					url : "adminFunciones.php",
+					data : {
+						sucursales:''
+					},
+					success : function(data) {
+						respuesta=JSON.parse(data);
+						$( "#slcSucursal" ).html(respuesta);
+					}
+				});
+		 }else{
+			 mostrarCabinas();
+		 }
+		 
+		 $( "#slcConsultorio" ).change(listarCitas);
+}
+
+function listarCitas(){
+	var nsucursal=$( "#hdnSucursal" ).val();
+	if (nsucursal=='')
+		nsucursal=$( "#slcSucursal" ).val();
+
+	var idCabina=$( "#slcConsultorio" ).val();
+	 $.ajax({
+			method : "post",
+			url : "adminFunciones.php",
+			data : {
+				sucursal:nsucursal,
+				paciente:$( "#hdnPaciente" ).val(),
+				usuario:$( "#hdnUsuario" ).val(),
+				cabina:idCabina
+			},
+			success : function(data) {
+				respuesta=JSON.parse(data);
+				xajax_consultarCitas(respuesta);
+			}
+		});
+	 
+}
+
+function mostrarCabinas(){
+	
+	var nsucursal=$( "#hdnSucursal" ).val();
+	if (nsucursal=='')
+		nsucursal=$( "#slcSucursal" ).val();
+	$.ajax({
+			method : "post",
+			url : "adminFunciones.php",
+			data : {
+				Sucursal:nsucursal,
+				Consulta:0,
+			},
+			success : function(data) {
+				$("#slcConsultorio").html(data);
+			}
+		});
+	 listarCitas();
+}
+
+function ocultarDetalles(id){
+	$( "#l"+id ).show();
+	$( "#c"+id ).hide();
+}
+
+function verDetalles(id){
+	$( "#c"+id ).show();
+	$( "#l"+id ).hide();
 }
 	//$("#").();
 //var alert = alertify.alert('Titulo','TextoAlerta').set('label', 'Aceptar');     	 

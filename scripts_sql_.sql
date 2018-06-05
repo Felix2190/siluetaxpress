@@ -31,3 +31,5 @@ ALTER TABLE `cita` ADD FOREIGN KEY (`idCabina`) REFERENCES `cabina`(`idCabina`) 
 ALTER TABLE `consulta` ADD `consultorio` ENUM('consultorio','cabina') NOT NULL DEFAULT 'cabina' AFTER `tipoConsulta`; 
 
 UPDATE `consulta` SET `consultorio` = 'consultorio' WHERE `consulta`.`idConsulta` = 1; 
+
+ALTER TABLE `cita` CHANGE `telefonoPaciente` `telefonoPaciente` VARCHAR(12) CHARACTER SET latin1 COLLATE latin1_swedish_ci NOT NULL; 

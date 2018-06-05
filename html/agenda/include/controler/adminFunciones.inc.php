@@ -33,7 +33,7 @@ if (isset($_POST['fechaConvertir'])){
     echo strtolower($dias[date('N', strtotime($_POST['fechaConvertir']))]);
 }
 
-if (isset($_POST['sucursal'])&&isset($_POST['paciente'])&&isset($_POST['usuario'])){
+if (isset($_POST['sucursal'])&&isset($_POST['paciente'])&&isset($_POST['usuario'])&&isset($_POST['cabina'])){
     require_once FOLDER_MODEL_EXTEND. "model.cita.inc.php";
     $cita = new ModeloCita();
     if ($_POST['sucursal']!='')
@@ -42,7 +42,9 @@ if (isset($_POST['sucursal'])&&isset($_POST['paciente'])&&isset($_POST['usuario'
             $cita->setIdPaciente($_POST['paciente']);
             if ($_POST['usuario']!='')
                 $cita->setIdUsuario($_POST['usuario']);
-                
+                if ($_POST['cabina']!='')
+                    $cita->setIdCabina($_POST['cabina']);
+                    
             
     echo json_encode($cita->obtenerCitas());
 }
@@ -140,12 +142,105 @@ function obtenerConsultorios($idConsulta,$idSucursal){
     
     $consulta =  new ModeloConsulta();
     $consulta->setIdConsulta($idConsulta);
-    
     $cabina = new ModeloCabina();
     $cabina->setTipo($consulta->getConsultorio());
     $cabina->setIdSucursal($idSucursal);
-    
+    if ($consulta->getIdConsulta()==0)
+        $cabina->setTipo('');
+        
     return $cabina->obtenerConsultorios();
     
 }
+
+function enviaSMS_CitaNueva($numPaciente, $consulta, $dia, $hora, $sucursal, $idConsulta){
+    $sMessage="Haz agendado una cita en Silueta Express el dia $dia a la(s) $hora hr(s) en la sucursal $sucursal.
+            \nPara cancelar tu cita, responde: CANCELAR C$idConsulta";
+    return enviaSMS($numPaciente, $sMessage);
+}
+
+function enviaSMS($numPaciente, $sMessage){
+    $sData ='cmd=sendsms&';
+    $sData .='domainId=siluetaexpress&';
+    $sData .='login=lic.lezliedelariva@gmail.com&';
+    $sData .='passwd=L7fr9P3sPMw6&';
+    
+    $sData .='dest='.str_replace(',','&dest=',$numPaciente).'&';
+    $sData .='msg='.urlencode(utf8_encode(substr($sMessage,0,160)));
+    
+    $timeOut =5;
+    
+    $fp = fsockopen('www.altiria.net', 80, $errno, $errstr, $timeOut);
+    if (!$fp) {
+        //Error de conexion o tiempo maximo de conexion rebasado
+        $output = "ERROR de conexion: $errno - $errstr\n";
+        $output .= "Compruebe que ha configurado correctamente la direccion/url ";
+        $output .= "suministrada por altiria";
+        return $output;
+    } else {
+         $buf = "POST http://www.altiria.net/api/http HTTP/1.0\r\n";
+        $buf .= "Host: www.altiria.net\r\n";
+        $buf .= "Content-type: application/x-www-form-urlencoded; charset=UTF-8\r\n";
+        $buf .= "Content-length: ".strlen($sData)."\r\n";
+        $buf .= "\r\n";
+        $buf .= $sData;
+        fputs($fp, $buf);
+        $buf = "";
+        
+        //Tiempo máximo de espera de respuesta del servidor = 60 seg
+        $responseTimeOut = 60;
+        stream_set_timeout($fp,$responseTimeOut);
+        stream_set_blocking ($fp, true);
+        if (!feof($fp)){
+            if (($buf=fgets($fp,128))===false){
+                // TimeOut?
+                $info = stream_get_meta_data($fp);
+                if ($info['timed_out']){
+                    $output = 'ERROR Tiempo de respuesta agotado';
+                    return false;
+                    return $output;
+                } else {
+                    $output = 'ERROR de respuesta';
+                    return false;
+                    return $output;
+                }
+            } else{
+                while(!feof($fp)){
+                    $buf.=fgets($fp,128);
+                }
+            }
+        } else {
+            $output = 'ERROR de respuesta';
+            return false;
+            return $output;
+        }
+        
+        fclose($fp);
+        
+        
+        //Se comprueba que se ha conectado realmente con el servidor
+        //y que se obtenga un codigo HTTP OK 200
+        if (strpos($buf,"HTTP/1.1 200 OK") === false){
+            $output = "ERROR. Codigo error HTTP: ".substr($buf,9,3)."\n";
+            $output .= "Compruebe que ha configurado correctamente la direccion/url ";
+            $output .= "suministrada por Altiria";
+            return false;
+            return $output;
+        }
+        //Se comprueba la respuesta de Altiria
+        if (strstr($buf,"ERROR")){
+            $output = $buf."<br />\n";
+            $output .= " Ha ocurrido algun error. Compruebe la especificacion";
+            return false;
+            return $output;
+        } else {
+            $output = $buf."\n";
+            $output .= " Exito";
+            return true;
+            return $output;
+        }
+    }
+    
+    return true;
+}
+
 ?>

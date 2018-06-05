@@ -46,15 +46,18 @@ $xajax = new xajax();
 function consultarCitas($informacion){
     $r=new xajaxResponse();
     global $objSession;
-    $arrEncabezado=array('ID Consulta', 'Fecha','Hora','Paciente','Consulta','Duraci&oacute;n','Opciones');
-    if ($objSession->getidRol()==1) 
-        $arrEncabezado=array('ID Consulta', 'Fecha','Hora','Paciente','Consulta','Duraci&oacute;n','Sucursal','Opciones');
+    $arrEncabezado=array('ID Consulta', 'Fecha','Hora','Paciente','Detalles','Opciones');
+    if ($objSession->getidRol()==1)
+        $arrEncabezado=array('ID Consulta', 'Fecha','Hora','Paciente','Detalles','Sucursal','Opciones');
+//        $arrEncabezado=array('ID Consulta', 'Fecha','Hora','Paciente','Consulta','Duraci&oacute;n','Sucursal','Opciones');
     
     $tabla="<table><thead><tr>";
     foreach ($arrEncabezado as $idem){
         $colspan="";
         if ($idem=='Paciente')
            $colspan=" colspan='2'";
+        if ($idem=='Detalles')
+            $colspan=" colspan='3'";
         $tabla.="<th $colspan>$idem</th>";
     }
     
@@ -69,8 +72,16 @@ function consultarCitas($informacion){
         $min=$cita['duracion']%60;
         $duracion=($hr>0?($hr. ' hora'.($hr>1?'s':'')).($min>0?(', '.$min.' minutos'):''):('').$min.' minutos');
         
+        $detalles="<div id='l".$cita['idCita']."'> <a onClick='verDetalles(".$cita['idCita'].")'>Ver detalles </a> </div>
+                    <div id='c".$cita['idCita']."' style='display: none'; > <blockqoute> <p> <strong>Consulta: </strong> ".$cita['tipoConsulta']."</p>
+                        <p> <strong>Servicio: </strong> ".$cita['servicio']."</p>
+                        <p> <strong>Consultorio: </strong> ".$cita['cabina']."</p>
+                        <p> <strong>Duraci&oacute;n: </strong> ".$duracion."</p> 
+                        <p> <a onClick='ocultarDetalles(".$cita['idCita'].")'>Ocultar </a> </p>  </blockqoute></div>";
+        
+        
         $tabla.="<tr><td>".$cita['idCita']."</td><td>$fecha[2] de ".obtenMes(''.intval($fecha[1]))." del $fecha[0]</td><td>".$cita['hora']."</td><td colspan='2'>".$cita['nombre_paciente']."</td>
-                <td>".$cita['tipoConsulta']."</td><td>".$duracion."</td>$sucursal<td></td></tr>";
+                <td colspan='3'>".$detalles."</td>$sucursal<td></td></tr>";
     }
     $tabla.="</tbody></table>";
     

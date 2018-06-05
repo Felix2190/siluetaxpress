@@ -5,6 +5,8 @@
 require_once FOLDER_MODEL_EXTEND. "model.cita.inc.php";
 require_once FOLDER_MODEL_EXTEND. "model.servicio.inc.php";
 require_once FOLDER_MODEL_EXTEND. "model.paciente.inc.php";
+require_once FOLDER_MODEL_EXTEND. "model.sucursal.inc.php";
+require_once FOLDER_MODEL_EXTEND. "model.consulta.inc.php";
 require_once FOLDER_INCLUDE_AGENDA.'controler/adminFunciones.inc.php';
 
 // -----------------------------------------------------------------------------------------------------------------#
@@ -100,8 +102,7 @@ function guardarCita($paciente,$sucursal,$idCabina,$consulta,$duracion,$fecha,$h
         
         return $r;
     }
-    
-    
+    $primero=true;
     foreach ($arrFechas as $fecha){
         $servicio_ = new ModeloServicio();
         $paciente_ = new ModeloPaciente();
@@ -125,14 +126,33 @@ function guardarCita($paciente,$sucursal,$idCabina,$consulta,$duracion,$fecha,$h
     $cita->setFechaFin(date( 'Y-m-d H:i:s' , $auxFecha));
     $cita->setDuracion($duracion);
     $cita->setEstatusNueva();
-    $cita->setTelefonoPaciente($paciente_->getTelefonoCel());
+    $cita->setTelefonoPaciente("52".$paciente_->getTelefonoCel());
     
     $cita->Guardar();
     if ($cita->getError()){
         $r->call('mostrarMsjError',$cita->getStrError(),5);
         return $r;
     }
+    
+    if ($primero){
+        $idConsulta=$cita->getIdCita();
+        $primero=false;
     }
+    }
+    
+    $nSucursal= new ModeloSucursal();
+    $nSucursal->setIdSucursal($sucursal);
+    $nConsulta= new ModeloConsulta();
+    $nConsulta->setIdConsulta($consulta);
+    $paciente_ = new ModeloPaciente();
+    $paciente_->setIdPaciente($paciente);
+    
+    $resSMS = enviaSMS_CitaNueva("52".$paciente_->getTelefonoCel(), $nConsulta->getTipoConsulta(), $fecha, $hora, $nSucursal->getSucursal(), $idConsulta);
+    
+    if ($resSMS){
+        $r->call('mostrarMsjExito',"Se envi&oacute; el SMS al ",3);
+    }
+    
     $r->call('mostrarMsjExito','Se agreg&oacute; correctamente las citas!',3);
     $r->call('limpiarDatos');
     
