@@ -3,7 +3,18 @@ $(document).ready(function(){
 });
 	 
 function iniciar(){
-	
+	$.ajax({
+		method : "post",
+		url : "adminFunciones.php",
+		data : {
+			Sucursal:'',
+			Consultorio:''
+		},
+		success : function(data) {
+			alert(data);
+		}
+	});
+
 }
 	//$("#").();
 //var alert = alertify.alert('Titulo','TextoAlerta').set('label', 'Aceptar');     	 
@@ -34,4 +45,4 @@ function iniciar(){
 	    });
 
  
- */*/
+ */

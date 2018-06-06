@@ -117,6 +117,27 @@
 		    return $respuesta;
 		}
 		
+		public function obtenerCitasSucursalConsultorioFechaDuracion()
+		{
+		    $condicion=" ";
+		    if ($this->idSucursal>0)
+		        $condicion.=" and idSucursal=".$this->idSucursal;
+		            if ($this->idCabina>0)
+		                $condicion.=" and idCabina=$this->idCabina";
+		                
+		    $query = "Select idSucursal, idCabina, fechaInicio, fechaFin, duracion from cita
+                    where true $condicion and 
+                    fechaInicio >='$this->fechaInicio' and fechaFin<='$this->fechaFin' order by idSucursal, idCabina, fechaInicio";
+		    $respuesta = array();
+		    $resultado = mysqli_query($this->dbLink, $query);
+		    if ($resultado && mysqli_num_rows($resultado) > 0) {
+		        while ($row_inf = mysqli_fetch_assoc($resultado)){
+		            $respuesta[] = $row_inf;
+		        }
+		    }
+		    return $respuesta;
+		}
+		
 		
 	}
 

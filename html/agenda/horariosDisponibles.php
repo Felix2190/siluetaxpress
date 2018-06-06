@@ -4,7 +4,7 @@ require_once 'masterInclude.inc.php';
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title> </title>
+		<title> Horarios disponibles </title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -28,7 +28,7 @@ require_once 'masterInclude.inc.php';
 
 							<!-- Section -->
 								<section>
-									<h2 id="content"></h2>
+									<h2 id="content">Horarios disponibles</h2>
 								</section>
 
 						</div>
