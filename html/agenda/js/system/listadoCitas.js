@@ -27,11 +27,14 @@ function iniciar(){
 }
 
 function listarCitas(){
+	var idCabina="";
+	var alta=$( "#hdnAlta" ).val();
 	var nsucursal=$( "#hdnSucursal" ).val();
-	if (nsucursal=='')
+	if (nsucursal==''&&alta=="")
 		nsucursal=$( "#slcSucursal" ).val();
-
-	var idCabina=$( "#slcConsultorio" ).val();
+	if(alta==""){
+	idCabina=$( "#slcConsultorio" ).val();
+	}
 	 $.ajax({
 			method : "post",
 			url : "adminFunciones.php",

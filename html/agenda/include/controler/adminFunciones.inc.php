@@ -73,6 +73,7 @@ function obtenerIntervalosDisponibles($idSucursal,$idConsultorio){
     $sucursal=new ModeloSucursal();
     $arrSucursales=array();
     $horarioDisponible=array();
+    $arrFechas = array();
     
     if ($idSucursal==''){
     
@@ -87,26 +88,26 @@ function obtenerIntervalosDisponibles($idSucursal,$idConsultorio){
     
     foreach ($arrSucursales as $idSucursal) {
         $segundo=false;
-        $fecha=date("Y-m-d H:i:s");
-        $dia=date('N',strtotime ($fecha));
+        $fechaInicial=date("Y-m-d H:i:s");
+        $dia=date('N',strtotime ($fechaInicial));
         $hrInicio = date("H");
         if ($dia==6){ //es domingo
             $segundo=true;
-            $auxFecha = strtotime ( '+1 day' , strtotime ( $fecha ) ) ;
-            $fecha = date ( 'Y-m-d' , $auxFecha);
-            $dia=date('N',strtotime ($fecha));
+            $auxFecha = strtotime ( '+1 day' , strtotime ( $fechaInicial ) ) ;
+            $fechaInicial = date ( 'Y-m-d' , $auxFecha);
+            $dia=date('N',strtotime ($fechaInicial));
         }
         
         $sucursal->setIdSucursal($idSucursal);
         
         $hrFin = $sucursal->getEntreSemanaSalida();
-        $fechaFin = date(date("Y-m-d", strtotime($fecha)). " $hrFin:00:00");
+        $fechaFin = date(date("Y-m-d", strtotime($fechaInicial)). " $hrFin:00:00");
         if ($segundo) {
             $hrInicio = $sucursal->getEntreSemanaEntrada();
-            $fecha = date($fecha . " $hrInicio:00:00");
+            $fechaInicial = date($fechaInicial . " $hrInicio:00:00");
         }
         
-        $cita->setFechaInicio($fecha);
+        $cita->setFechaInicio($fechaInicial);
         $cita->setFechaFin($fechaFin);
         $cita->setIdSucursal($idSucursal);
         
@@ -114,16 +115,18 @@ function obtenerIntervalosDisponibles($idSucursal,$idConsultorio){
         $cabina->setIdSucursal($idSucursal);
         $cabina->setTipo('');
         $arrCabinas = $cabina->obtenerConsultorios();
-        
+
         foreach ($arrCabinas as $idConsultorio=>$nomConsultorio) {
+            $fecha=$fechaInicial;
             $cita->setIdCabina($idConsultorio);
-            $fechaFin = date(date("Y-m-d", strtotime($fecha)). " $hrFin:00:00");
-            $cita->setFechaInicio($fecha);
-            $cita->setFechaFin($fechaFin);
             
             
             do{
-            $arrCitas = $cita->obtenerCitasSucursalConsultorioFechaDuracion();
+                $fechaFin = date(date("Y-m-d", strtotime($fecha)). " $hrFin:00:00");
+                $cita->setFechaInicio($fecha);
+                $cita->setFechaFin($fechaFin);
+                
+                $arrCitas = $cita->obtenerCitasSucursalConsultorioFechaDuracion();
             
             $horasDisponibles=array();
             $horarioAgendado=array();
@@ -152,11 +155,10 @@ function obtenerIntervalosDisponibles($idSucursal,$idConsultorio){
                     $segundo=true;
                     
                     if (key_exists($auxFecha2,$horarioAgendado)){ // EXISTE CITA
-                        
                         $auxFecha=$horarioAgendado[$auxFecha2];
                         $auxFecha=explode(' ', $auxFecha);
-                      
-                        array_push($horasDisponibles, $horaInicio.' - '.$hr.':'.$min); // intervalo disponible
+                        if ($horaInicio!=$hr.':'.($min<10?'0':'').$min) //hora igual
+                            array_push($horasDisponibles, $horaInicio.' - '.$hr.':'.$min); // intervalo disponible
                         
                         $auxFecha=explode(':', $auxFecha[1]);
                         $hr=intval($auxFecha[0]);;
@@ -165,21 +167,31 @@ function obtenerIntervalosDisponibles($idSucursal,$idConsultorio){
                     }
                 }
             }
-            array_push($horasDisponibles, $horaInicio.' - '.$hr.':00'); // intervalo disponible
+            if ($horaInicio!=$hr.':00') //hora igual
+                array_push($horasDisponibles, $horaInicio.' - '.$hr.':00'); // intervalo disponible
             //array_push($horasDisponibles, "<<<".date ( 'Y-m-d',strtotime ( '+1 day' , strtotime ( $fecha) ) ).">>> ");
             $auxFecha=date("Y-m-d", strtotime($fecha));
             $horarioDisponible[$idSucursal][$idConsultorio][$auxFecha]=$horasDisponibles;
+            if (!in_array($auxFecha, $arrFechas)) /// fechas de los días a mostrar
+                array_push($arrFechas, $auxFecha);
+            
             $hrInicio = $sucursal->getEntreSemanaEntrada();
             $fecha = date ("Y-m-d $hrInicio:00:00",strtotime ( '+1 day' , strtotime ( $fecha) ) );
             $segundo=true;
             $auxDia=date('N',strtotime ($fecha));
+            if (intval($auxDia)==7){
+                $fecha = date ("Y-m-d $hrInicio:00:00",strtotime ( '+1 day' , strtotime ( $fecha) ) );
+                $auxDia=date('N',strtotime ($fecha));
+            }else {
+            }
 //            $hrInicio = $sucursal->getEntreSemanaEntrada();
             //$fecha = date($fecha . " $hrInicio:00:00");
             
             }while ($dia!=$auxDia);
         }
     }
-    return json_encode($horarioDisponible);
+ //   return json_encode($auxx);
+    return json_encode(array($horarioDisponible,$arrFechas));
 }
 
 function obtenerHorarioDisponibles($idConsulta,$idSucursal,$fecha,$duracion,$idConsultorio){

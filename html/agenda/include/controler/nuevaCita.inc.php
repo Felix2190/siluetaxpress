@@ -147,12 +147,12 @@ function guardarCita($paciente,$sucursal,$idCabina,$consulta,$duracion,$fecha,$h
     $paciente_ = new ModeloPaciente();
     $paciente_->setIdPaciente($paciente);
     
-    $resSMS = enviaSMS_CitaNueva("52".$paciente_->getTelefonoCel(), $nConsulta->getTipoConsulta(), $fecha, $hora, $nSucursal->getSucursal(), $idConsulta);
+ /*   $resSMS = enviaSMS_CitaNueva("52".$paciente_->getTelefonoCel(), $nConsulta->getTipoConsulta(), $fecha, $hora, $nSucursal->getSucursal(), $idConsulta);
     
     if ($resSMS){
         $r->call('mostrarMsjExito',"Se envi&oacute; el SMS al ",3);
     }
-    
+  */  
     $r->call('mostrarMsjExito','Se agreg&oacute; correctamente las citas!',3);
     $r->call('limpiarDatos');
     

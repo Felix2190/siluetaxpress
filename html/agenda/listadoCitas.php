@@ -34,6 +34,8 @@ require_once 'masterInclude.inc.php';
 									<input type="hidden" id="hdnPaciente" value="<?php echo $paciente;?>"/>
 									<input type="hidden" id="hdnSucursal" value="<?php echo $sucursal;?>"/>
 									<input type="hidden" id="hdnUsuario" value="<?php echo $usuario;?>"/>
+									<input type="hidden" id="hdnCabina" value="<?php echo $cabina;?>"/>
+									<input type="hidden" id="hdnAlta" value="<?php echo $altaCita;?>"/>
 									<?php if (isset($_SESSION['altaCita'])):
 									echo "<p><strong>Paciente:</strong> $Nombre $Apellidos</p>";
 									endif;

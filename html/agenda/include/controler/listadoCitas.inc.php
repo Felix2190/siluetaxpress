@@ -98,10 +98,11 @@ $xajax->processRequest();
 // -------------------------------------------Inicializacion de variables-------------------------------------------#
 // -----------------------------------------------------------------------------------------------------------------#
 //$citas = new ModeloCita();
-$paciente=$usuario=$consulta=$sucursal='';
+$cabina=$paciente=$usuario=$consulta=$sucursal='';
+$altaCita="";
 if (isset($_SESSION['altaCita'])){
     $paciente=$_SESSION['altaCita'];
-    
+    $altaCita="si";
     $pacient= new ModeloPaciente();
     $pacient->setIdPaciente($paciente);
     $Nombre=$pacient->getNombre();

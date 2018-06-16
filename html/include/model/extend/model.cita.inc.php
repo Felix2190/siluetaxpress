@@ -117,7 +117,7 @@
 		    return $respuesta;
 		}
 		
-		public function obtenerCitasSucursalConsultorioFechaDuracion()
+		public function obtenerCitasSucursalConsultorioFechaDuracion( )
 		{
 		    $condicion=" ";
 		    if ($this->idSucursal>0)

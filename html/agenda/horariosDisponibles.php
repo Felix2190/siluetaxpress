@@ -28,8 +28,18 @@ require_once 'masterInclude.inc.php';
 
 							<!-- Section -->
 								<section>
-									<h2 id="content">Horarios disponibles</h2>
+									<h2 id="content">Horarios disponibles </h2>
 								</section>
+								
+								<input type="hidden" id="hdnRol" value="<?php echo $objSession->getidRol();?>"/>
+									<input type="hidden" id="hdnSucursal" value="<?php echo $sucursal;?>"/>
+									<input type="hidden" id="hdnUsuario" value="<?php echo $usuario;?>"/>
+									
+								
+								<div class="row" id="divHorarios">
+									
+									
+								</div>
 
 						</div>
 					</div>

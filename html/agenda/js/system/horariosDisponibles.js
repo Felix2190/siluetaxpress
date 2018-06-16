@@ -3,15 +3,19 @@ $(document).ready(function(){
 });
 	 
 function iniciar(){
+	var nsucursal='';
+	if($("#hdnRol").val()!=1)
+		nsucursal=$( "#hdnSucursal" ).val();
 	$.ajax({
 		method : "post",
 		url : "adminFunciones.php",
 		data : {
-			Sucursal:'',
+			Sucursal:nsucursal,
 			Consultorio:''
 		},
 		success : function(data) {
-			alert(data);
+			respuesta=JSON.parse(data);
+			xajax_mostrarHorarios(respuesta[0],respuesta[1]);
 		}
 	});
 
