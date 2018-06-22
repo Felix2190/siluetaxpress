@@ -4,15 +4,17 @@ require_once 'masterInclude.inc.php';
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title> Horarios disponibles </title>
+		<title> </title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		  <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
 		
-		<?php require_once 'importar_scripts.php'; ?>
+		<script src="../js/lib/jquery.numeric.js"></script> 
+		
 	</head>
 	<body>
 
@@ -28,48 +30,24 @@ require_once 'masterInclude.inc.php';
 
 							<!-- Section -->
 								<section>
-									<h2 id="content">Horarios disponibles </h2>
-									<div class="10u 12u$(xsmall)">
-									<p style="float: right;" id="divAct"></p>
-									</div>
+									<h2 id="content"></h2>
 								</section>
 								
-								<input type="hidden" id="hdnRol" value="<?php echo $objSession->getidRol();?>"/>
-									<input type="hidden" id="hdnSucursal" value="<?php echo $sucursal;?>"/>
-									<input type="hidden" id="hdnUsuario" value="<?php echo $usuario;?>"/>
-									
 								<div class="row">
-								<?php if ($objSession->getidRol()==1){?>
-									<div class="1u 12u$(xsmall)">
-									<label>Sucursal:</label>
-								</div>
-								<div class="4u 12u$(xsmall)">
-									<div class="select-wrapper">
-									<select name="demo-category" id="slcSucursal">
-									</select>
-									</div>
-									</div>
-									<?php } ?>
-								
-								<div class="2u 12u$(xsmall)">
-									<label>Consultorio:</label>
+								<div class="3u 12u$(xsmall)">
+									<label>Tel&eacute;fono (casa):</label>
 								</div>
 								<div class="3u 12u$(xsmall)">
-								<div class="select-wrapper">
-									<select name="demo-category" id="slcConsultorio">
-									<option value=""></option>
-									</select>
+									<input type="text" id="txtTelCasa" class="demo1" maxlength="10" />
 								</div>
+								<div class="3u 12u$(xsmall)">
+									<label>Tel&eacute;fono (m&oacute;vil):</label>
 								</div>
-								
-								
+								<div class="3u 12u$(xsmall)">
+									<input type="text" id="txtTelMovil" class="numeric" maxlength="10" />
 								</div>
-								<br />
-								<div class="row" id="divHorarios">
-									
-									
-								</div>
-
+							</div>
+							
 						</div>
 					</div>
 
@@ -78,11 +56,16 @@ require_once 'masterInclude.inc.php';
 			</div>
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/skel.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="assets/js/main.js"></script>
+		<script>
+
+	$('#txtTelCasa').numeric({negative : false});
+
+
+</script>
 
 	</body>
 </html>

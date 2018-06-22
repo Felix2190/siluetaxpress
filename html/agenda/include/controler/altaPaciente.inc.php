@@ -69,4 +69,22 @@ $xajax->processRequest();
 // -----------------------------------------------------------------------------------------------------------------#
 // -------------------------------------------Inicializacion de variables-------------------------------------------#
 // -----------------------------------------------------------------------------------------------------------------#
+$comboHr="";
+for ($hr=0;$hr<=23;$hr++)
+    for ($min=0;$min<=45;$min+=15){
+        $aux=" AM";
+        $auxMin=$min==0?"0".$min:$min;
+        if ($hr<13){
+            if ($hr==12)
+                $aux=" PM";
+            $auxHr=$hr==0?"0".$hr:$hr;
+            $comboHr.="<option value='$auxHr:$auxMin$aux'>$auxHr:$auxMin$aux</option>";
+        }else {
+            $aux=" PM";
+            $auxHr=$hr-12;
+            $comboHr.="<option value='$auxHr:$auxMin$aux'>$auxHr:$auxMin$aux</option>";
+        }
+    }
+
+
 ?>

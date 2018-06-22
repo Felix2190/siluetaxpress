@@ -1,24 +1,108 @@
 $(document).ready(function(){
 	iniciar();
 });
+var Digital=new Date();
+var hours, minutes,seconds,dn;
 	 
 function iniciar(){
 	var nsucursal='';
 	if($("#hdnRol").val()!=1)
 		nsucursal=$( "#hdnSucursal" ).val();
+	
+	if($("#hdnRol").val()==1){
+		 $.ajax({
+				method : "post",
+				url : "adminFunciones.php",
+				data : {
+					sucursales:''
+				},
+				success : function(data) {
+					respuesta=JSON.parse(data);
+					$( "#slcSucursal" ).html(respuesta);
+				}
+			});
+	 }else{
+		 mostrarCabinas();
+	 }
+	
+	$( "#slcSucursal" ).change(mostrarCabinas);
+	$( "#slcConsultorio" ).change(mostrarHorarios);
+	mostrarHorarios();
+	actualizaHorarios();
+	
+}
+
+function mostrarCabinas(){
+	var nsucursal=$( "#hdnSucursal" ).val();
+	if (nsucursal=='')
+		nsucursal=$( "#slcSucursal" ).val();
+	$("#slcConsultorio").html("<option value=''> Selecciona una opción</option>");
+	
+	if (nsucursal!=''){
+	$.ajax({
+			method : "post",
+			url : "adminFunciones.php",
+			data : {
+				Sucursal:nsucursal,
+				Consulta:0,
+			},
+			success : function(data) {
+				$("#slcConsultorio").html(data);
+			}
+		});
+	}
+	mostrarHorarios();
+}
+
+function mostrarHorarios(){
+	var nsucursal=$( "#hdnSucursal" ).val();
+	if (nsucursal=='')
+		nsucursal=$( "#slcSucursal" ).val();
+	
+	var nConsultorio=$( "#slcConsultorio" ).val();
 	$.ajax({
 		method : "post",
 		url : "adminFunciones.php",
 		data : {
 			Sucursal:nsucursal,
-			Consultorio:''
+			Consultorio:nConsultorio
 		},
 		success : function(data) {
 			respuesta=JSON.parse(data);
 			xajax_mostrarHorarios(respuesta[0],respuesta[1]);
 		}
 	});
+}
 
+function actualizaHorarios(){
+	
+	setTimeout(function() { 
+		setInterval(function() 
+				{ 
+			mostrarHorarios();
+			$( "#divAct" ).html(obtenHora());
+			},15000)
+		},2000);
+}
+
+function obtenHora(){
+	Digital=new Date();
+	 hours=Digital.getHours();
+	 minutes=Digital.getMinutes();
+	 seconds=Digital.getSeconds();
+	 dn="AM";
+	 if (hours>12){
+	 dn="PM";
+	 hours=hours-12;
+	 }
+	 if (hours==0)
+	 hours=12;
+	 if (minutes<=9)
+	 minutes="0"+minutes;
+	 if (seconds<=9)
+	 seconds="0"+seconds;
+	 
+	 return "<strong>&Uacute;ltima actualizaci&oacute;n... "+hours+":"+minutes+":"+seconds+" "+dn+"</strong>";
 }
 	//$("#").();
 //var alert = alertify.alert('Titulo','TextoAlerta').set('label', 'Aceptar');     	 

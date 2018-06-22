@@ -64,7 +64,7 @@ function obtenCombo($array,$default){
     return $combo;
 }
 
-function obtenerIntervalosDisponibles($idSucursal,$idConsultorio){
+function obtenerIntervalosDisponibles($idSucursal,$idCabina){
     require_once FOLDER_MODEL_EXTEND. "model.cita.inc.php";
     require_once FOLDER_MODEL_EXTEND. "model.sucursal.inc.php";
     require_once FOLDER_MODEL_EXTEND. "model.cabina.inc.php";
@@ -76,7 +76,6 @@ function obtenerIntervalosDisponibles($idSucursal,$idConsultorio){
     $arrFechas = array();
     
     if ($idSucursal==''){
-    
     $arr=$sucursal->obtenerSucurales();
     foreach ($arr as $idS=>$nombre)
         array_push($arrSucursales, $idS);
@@ -91,7 +90,7 @@ function obtenerIntervalosDisponibles($idSucursal,$idConsultorio){
         $fechaInicial=date("Y-m-d H:i:s");
         $dia=date('N',strtotime ($fechaInicial));
         $hrInicio = date("H");
-        if ($dia==6){ //es domingo
+        if ($dia==7){ //es domingo
             $segundo=true;
             $auxFecha = strtotime ( '+1 day' , strtotime ( $fechaInicial ) ) ;
             $fechaInicial = date ( 'Y-m-d' , $auxFecha);
@@ -114,8 +113,13 @@ function obtenerIntervalosDisponibles($idSucursal,$idConsultorio){
         $cabina = new ModeloCabina();
         $cabina->setIdSucursal($idSucursal);
         $cabina->setTipo('');
-        $arrCabinas = $cabina->obtenerConsultorios();
-
+        if ($idCabina=='')
+            $arrCabinas = $cabina->obtenerConsultorios();
+ /**/       else {
+            $cabina->setIdCabina($idCabina);
+            $arrCabinas=array($idCabina=>$cabina->getNombre());
+            }
+/**/    //return json_encode($arrCabinas);
         foreach ($arrCabinas as $idConsultorio=>$nomConsultorio) {
             $fecha=$fechaInicial;
             $cita->setIdCabina($idConsultorio);
@@ -296,10 +300,10 @@ function enviaSMS($numPaciente, $sMessage){
     $sData ='cmd=sendsms&';
     $sData .='domainId=siluetaexpress&';
     $sData .='login=lic.lezliedelariva@gmail.com&';
-    $sData .='passwd=L7fr9P3sPMw6&';
+    $sData .='passwd=L7fr9P3sPMw6&concat=true&';
     
     $sData .='dest='.str_replace(',','&dest=',$numPaciente).'&';
-    $sData .='msg='.urlencode(utf8_encode(substr($sMessage,0,160)));
+    $sData .='msg='.urlencode(utf8_encode($sMessage));
     
     $timeOut =5;
     

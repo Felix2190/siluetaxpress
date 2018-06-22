@@ -4,7 +4,7 @@ echo '  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jqu
   <script src="https://code.jquery.com/jquery-1.12.4.js"></script>
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
  <link rel="stylesheet" href="../assets/css/alertify.min.css" />
-   <script src="../js/lib/alertifyjs/alertify.min.js"></script>  
-  '.$_JAVASCRIPT_CSS_AGENDA;
+   <script src="../js/lib/alertifyjs/alertify.min.js"></script>
+<script src="../js/lib/jquery.numeric.js"></script>'.$_JAVASCRIPT_CSS_AGENDA;
 
 ?>
