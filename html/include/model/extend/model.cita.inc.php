@@ -53,16 +53,22 @@
 		
 		public function obtenerCitas()
 		{
+		    $fecha=date("Y-m-d");
 		    $condicion=" ";
+		    
 		    if ($this->idPaciente>0)
 		        $condicion.=" and c.idPaciente=$this->idPaciente";
+		        else{
+		            $fechaFin = date ("Y-m-d",strtotime ( '+7 day' , strtotime ( $this->fechaInicio) ) );
+		            $condicion.="and fechaInicio<='$fechaFin' ";
+		        }
 		    if ($this->idSucursal>0)
 		        $condicion.=" and c.idSucursal=".$this->idSucursal;
 		    if ($this->idUsuario)
 		        $condicion.=" and c.idUsuario=".$this->idUsuario;
 		    if ($this->idCabina>0)
 		        $condicion.=" and c.idCabina=$this->idCabina";
-		    $fecha=date("Y-m-d");
+		    
 		    $query = "Select idCita, DATE_FORMAT(fechaInicio,'%Y-%m-%d') as fecha, DATE_FORMAT(fechaInicio,'%H:%i') as hora, duracion, 
                     concat_ws(' ', p.nombre, p.apellidos) as nombre_paciente, 
                     tipoConsulta, sucursal, ser.nombre as servicio, ca.nombre as cabina from cita as c
@@ -72,12 +78,13 @@
                     inner join consulta as co on c.idConsulta=co.idConsulta
                     inner join servicio as ser on c.idServicio=ser.idServicio
                     inner join cabina as ca on c.idCabina=ca.idCabina
-                    where  fechaInicio>='$fecha' $condicion order by fecha,hora";
+                    where  fechaInicio>='$this->fechaInicio'  $condicion order by fecha,hora";
+
 		    $respuesta = array();
 		    $resultado = mysqli_query($this->dbLink, $query);
 		    if ($resultado && mysqli_num_rows($resultado) > 0) {
 		        while ($row_inf = mysqli_fetch_assoc($resultado)){
-		            $respuesta[] = $row_inf;
+		            $respuesta[$row_inf['fecha']][$row_inf['idCita']] = $row_inf;
 		        }
 		    }
 		    return $respuesta;

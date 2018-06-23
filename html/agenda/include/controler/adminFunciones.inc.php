@@ -33,7 +33,7 @@ if (isset($_POST['fechaConvertir'])){
     echo strtolower($dias[date('N', strtotime($_POST['fechaConvertir']))]);
 }
 
-if (isset($_POST['sucursal'])&&isset($_POST['paciente'])&&isset($_POST['usuario'])&&isset($_POST['cabina'])){
+if (isset($_POST['sucursal'])&&isset($_POST['paciente'])&&isset($_POST['usuario'])&&isset($_POST['cabina'])&&isset($_POST['fechaInicio'])){
     require_once FOLDER_MODEL_EXTEND. "model.cita.inc.php";
     $cita = new ModeloCita();
     if ($_POST['sucursal']!='')
@@ -45,7 +45,7 @@ if (isset($_POST['sucursal'])&&isset($_POST['paciente'])&&isset($_POST['usuario'
                 if ($_POST['cabina']!='')
                     $cita->setIdCabina($_POST['cabina']);
                     
-            
+   $cita->setFechaInicio($_POST['fechaInicio']);
     echo json_encode($cita->obtenerCitas());
 }
 

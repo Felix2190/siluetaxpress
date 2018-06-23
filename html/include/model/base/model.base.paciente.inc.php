@@ -13,13 +13,17 @@
 		var $apellidos='';
 		var $telefonoCasa='';
 		var $telefonoCel='';
+		var $edad=0;
+		var $sexo='';
+		var $fechaNacimiento='';
+		var $ocupacion='';
 		var $correo='';
 		var $idHojaClinica=0;
 		var $fechaRegistro='';
 		var $idUsuarioRegistro=0;
 		var $idSucursal=0;
 
-		var $__s=array("idPaciente","nombre","apellidos","telefonoCasa","telefonoCel","correo","idHojaClinica","fechaRegistro","idUsuarioRegistro","idSucursal");
+		var $__s=array("idPaciente","nombre","apellidos","telefonoCasa","telefonoCel","edad","sexo","fechaNacimiento","ocupacion","correo","idHojaClinica","fechaRegistro","idUsuarioRegistro","idSucursal");
 		var $__ss=array();
 
 		#------------------------------------------------------------------------------------------------------#
@@ -66,6 +70,33 @@
 		{
 			
 			$this->telefonoCel=$telefonoCel;
+		}
+		public function setEdad($edad)
+		{
+			
+			$this->edad=$edad;
+		}
+		public function setSexo($sexo)
+		{
+			
+			$this->sexo=$sexo;
+		}
+		public function setSexoMasculino()
+		{
+			$this->sexo='Masculino';
+		}
+		public function setSexoFemenino()
+		{
+			$this->sexo='Femenino';
+		}
+		public function setFechaNacimiento($fechaNacimiento)
+		{
+			$this->fechaNacimiento=$fechaNacimiento;
+		}
+		public function setOcupacion($ocupacion)
+		{
+			
+			$this->ocupacion=$ocupacion;
 		}
 		public function setCorreo($correo)
 		{
@@ -123,6 +154,22 @@
 		{
 			return $this->telefonoCel;
 		}
+		public function getEdad()
+		{
+			return $this->edad;
+		}
+		public function getSexo()
+		{
+			return $this->sexo;
+		}
+		public function getFechaNacimiento()
+		{
+			return $this->fechaNacimiento;
+		}
+		public function getOcupacion()
+		{
+			return $this->ocupacion;
+		}
 		public function getCorreo()
 		{
 			return $this->correo;
@@ -162,6 +209,10 @@
 			$this->apellidos='';
 			$this->telefonoCasa='';
 			$this->telefonoCel='';
+			$this->edad=0;
+			$this->sexo='';
+			$this->fechaNacimiento='';
+			$this->ocupacion='';
 			$this->correo='';
 			$this->idHojaClinica=0;
 			$this->fechaRegistro='';
@@ -176,8 +227,8 @@
 		{
 			try
 			{
-				$SQL="INSERT INTO paciente(nombre,apellidos,telefonoCasa,telefonoCel,correo,idHojaClinica,fechaRegistro,idUsuarioRegistro,idSucursal)
-						VALUES('" . mysqli_real_escape_string($this->dbLink,$this->nombre) . "','" . mysqli_real_escape_string($this->dbLink,$this->apellidos) . "','" . mysqli_real_escape_string($this->dbLink,$this->telefonoCasa) . "','" . mysqli_real_escape_string($this->dbLink,$this->telefonoCel) . "','" . mysqli_real_escape_string($this->dbLink,$this->correo) . "','" . mysqli_real_escape_string($this->dbLink,$this->idHojaClinica) . "','" . mysqli_real_escape_string($this->dbLink,$this->fechaRegistro) . "','" . mysqli_real_escape_string($this->dbLink,$this->idUsuarioRegistro) . "','" . mysqli_real_escape_string($this->dbLink,$this->idSucursal) . "')";
+				$SQL="INSERT INTO paciente(nombre,apellidos,telefonoCasa,telefonoCel,edad,sexo,fechaNacimiento,ocupacion,correo,idHojaClinica,fechaRegistro,idUsuarioRegistro,idSucursal)
+						VALUES('" . mysqli_real_escape_string($this->dbLink,$this->nombre) . "','" . mysqli_real_escape_string($this->dbLink,$this->apellidos) . "','" . mysqli_real_escape_string($this->dbLink,$this->telefonoCasa) . "','" . mysqli_real_escape_string($this->dbLink,$this->telefonoCel) . "','" . mysqli_real_escape_string($this->dbLink,$this->edad) . "','" . mysqli_real_escape_string($this->dbLink,$this->sexo) . "','" . mysqli_real_escape_string($this->dbLink,$this->fechaNacimiento) . "','" . mysqli_real_escape_string($this->dbLink,$this->ocupacion) . "','" . mysqli_real_escape_string($this->dbLink,$this->correo) . "','" . mysqli_real_escape_string($this->dbLink,$this->idHojaClinica) . "','" . mysqli_real_escape_string($this->dbLink,$this->fechaRegistro) . "','" . mysqli_real_escape_string($this->dbLink,$this->idUsuarioRegistro) . "','" . mysqli_real_escape_string($this->dbLink,$this->idSucursal) . "')";
 				$result=mysqli_query($this->dbLink,$SQL);
 				if(!$result)
 					return $this->setSystemError("Error en la insercion de registro.","[" . $SQL . "][" . mysqli_error($this->dbLink) . "][ModeloBasePaciente::Insertar]");
@@ -197,7 +248,7 @@
 		{
 			try
 			{
-				$SQL="UPDATE paciente SET nombre='" . mysqli_real_escape_string($this->dbLink,$this->nombre) . "',apellidos='" . mysqli_real_escape_string($this->dbLink,$this->apellidos) . "',telefonoCasa='" . mysqli_real_escape_string($this->dbLink,$this->telefonoCasa) . "',telefonoCel='" . mysqli_real_escape_string($this->dbLink,$this->telefonoCel) . "',correo='" . mysqli_real_escape_string($this->dbLink,$this->correo) . "',idHojaClinica='" . mysqli_real_escape_string($this->dbLink,$this->idHojaClinica) . "',fechaRegistro='" . mysqli_real_escape_string($this->dbLink,$this->fechaRegistro) . "',idUsuarioRegistro='" . mysqli_real_escape_string($this->dbLink,$this->idUsuarioRegistro) . "',idSucursal='" . mysqli_real_escape_string($this->dbLink,$this->idSucursal) . "'
+				$SQL="UPDATE paciente SET nombre='" . mysqli_real_escape_string($this->dbLink,$this->nombre) . "',apellidos='" . mysqli_real_escape_string($this->dbLink,$this->apellidos) . "',telefonoCasa='" . mysqli_real_escape_string($this->dbLink,$this->telefonoCasa) . "',telefonoCel='" . mysqli_real_escape_string($this->dbLink,$this->telefonoCel) . "',edad='" . mysqli_real_escape_string($this->dbLink,$this->edad) . "',sexo='" . mysqli_real_escape_string($this->dbLink,$this->sexo) . "',fechaNacimiento='" . mysqli_real_escape_string($this->dbLink,$this->fechaNacimiento) . "',ocupacion='" . mysqli_real_escape_string($this->dbLink,$this->ocupacion) . "',correo='" . mysqli_real_escape_string($this->dbLink,$this->correo) . "',idHojaClinica='" . mysqli_real_escape_string($this->dbLink,$this->idHojaClinica) . "',fechaRegistro='" . mysqli_real_escape_string($this->dbLink,$this->fechaRegistro) . "',idUsuarioRegistro='" . mysqli_real_escape_string($this->dbLink,$this->idUsuarioRegistro) . "',idSucursal='" . mysqli_real_escape_string($this->dbLink,$this->idSucursal) . "'
 					WHERE idPaciente=" . $this->idPaciente;
 				
 				$result=mysqli_query($this->dbLink,$SQL);
@@ -239,7 +290,7 @@
 			try
 			{
 				$SQL="SELECT
-						idPaciente,nombre,apellidos,telefonoCasa,telefonoCel,correo,idHojaClinica,fechaRegistro,idUsuarioRegistro,idSucursal
+						idPaciente,nombre,apellidos,telefonoCasa,telefonoCel,edad,sexo,fechaNacimiento,ocupacion,correo,idHojaClinica,fechaRegistro,idUsuarioRegistro,idSucursal
 					FROM paciente
 					WHERE idPaciente=" . mysqli_real_escape_string($this->dbLink,$this->idPaciente);
 					

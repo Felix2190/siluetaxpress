@@ -24,6 +24,7 @@ function iniciar(){
 		 }
 		 
 		 $( "#slcConsultorio" ).change(listarCitas);
+		 $( "#btnSig" ).click(listarCitas);
 }
 
 function listarCitas(){
@@ -42,11 +43,12 @@ function listarCitas(){
 				sucursal:nsucursal,
 				paciente:$( "#hdnPaciente" ).val(),
 				usuario:$( "#hdnUsuario" ).val(),
-				cabina:idCabina
+				cabina:idCabina,
+				fechaInicio:$( "#hdnFechaInicio" ).val(),
 			},
 			success : function(data) {
 				respuesta=JSON.parse(data);
-				xajax_consultarCitas(respuesta);
+				xajax_consultarCitas(respuesta,$( "#hdnFechaInicio" ).val());
 			}
 		});
 	 
@@ -79,6 +81,9 @@ function ocultarDetalles(id){
 function verDetalles(id){
 	$( "#c"+id ).show();
 	$( "#l"+id ).hide();
+}
+function colocaFecha(fecha){
+	$( "#hdnFechaInicio" ).val(fecha);
 }
 	//$("#").();
 //var alert = alertify.alert('Titulo','TextoAlerta').set('label', 'Aceptar');     	 

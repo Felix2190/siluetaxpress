@@ -30,6 +30,9 @@ require_once 'masterInclude.inc.php';
 								<section>
 									<h2 id="content">Listado Citas </h2>
 									
+								<div class="4u 12u$(xsmall)" style="float: right;">
+								<p id="fechasEntre"></p>
+									</div>
 									<input type="hidden" id="hdnRol" value="<?php echo $objSession->getidRol();?>"/>
 									<input type="hidden" id="hdnPaciente" value="<?php echo $paciente;?>"/>
 									<input type="hidden" id="hdnSucursal" value="<?php echo $sucursal;?>"/>
@@ -73,8 +76,14 @@ require_once 'masterInclude.inc.php';
 									</div>
 									<?php }?>
 									
-								</section>
 								
+								</section>
+									<div class="row uniform">
+								<div class="4u 12u$(xsmall)" style="float: right;">
+									<a id="btnSig" class="button small">Siguiente semana</a>
+								</div>
+								</div>
+								<input type="hidden" id="hdnFechaInicio" value="<?php echo date("Y-m-d");?>"/>
 									<div class="table-wrapper" id="divTabla">
 													</div>
 						</div>

@@ -1,13 +1,13 @@
 <?php
 
-	require FOLDER_MODEL_BASE . "model.base.hojaclinica.inc.php";
+	require FOLDER_MODEL_BASE . "model.base.paciente.inc.php";
 
-	class ModeloHojaclinica extends ModeloBaseHojaclinica
+	class ModeloPaciente extends ModeloBasePaciente
 	{
 		#------------------------------------------------------------------------------------------------------#
 		#----------------------------------------------Propiedades---------------------------------------------#
 		#------------------------------------------------------------------------------------------------------#
-		var $_nombreClase="ModeloBaseHojaclinica";
+		var $_nombreClase="ModeloBasePaciente";
 
 		var $__ss=array();
 

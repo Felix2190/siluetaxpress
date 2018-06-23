@@ -40,6 +40,8 @@
 						<li><a href="listadoCitas.php">Listado</a></li>
 						<li><a href="nuevaCita.php">Agregar nueva</a></li>
 						<li><a href="">B&uacute;squedad</a></li>
+						<li><a href="horariosDisponibles.php">Disponibilidad</a></li>
+						
 					</ul></li>
 
 

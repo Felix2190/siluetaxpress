@@ -86,9 +86,9 @@ require_once 'masterInclude.inc.php';
 									<label>Sexo:</label>
 								</div>
 								<div class="3u 12u$(xsmall)"> <form>
-																<input id="demo-priority-Masculino" name="demo-priority"  type="radio">
+																<input id="demo-priority-Masculino" name="sexo" value="Masculino" type="radio">
 																<label for="demo-priority-Masculino">Masculino</label>
-																<input id="demo-priority-Femenino" name="demo-priority"  type="radio">
+																<input id="demo-priority-Femenino" name="sexo" value="Femenino" type="radio">
 																<label for="demo-priority-Femenino">Femenino</label> </form>
 								</div>
 								<div class="3u 12u$(xsmall)">
@@ -171,9 +171,9 @@ require_once 'masterInclude.inc.php';
 								<div class="3u 12u$(xsmall)  divEstren" style="display: none;"><form >
 																<input id="demo-priority-1E" name="estrenimientoF" value="1" type="radio">
 																<label style="float: left;" for="demo-priority-1E">Diario</label>
-																<input id="demo-priority-2E" name="estrenimiento" value="2" type="radio">
+																<input id="demo-priority-2E" name="estrenimientoF" value="2" type="radio">
 																<label style="float: left;" for="demo-priority-2E">Casi diario</label>
-																<input id="demo-priority-3E" name="estrenimiento" value="3" type="radio">
+																<input id="demo-priority-3E" name="estrenimientoF" value="3" type="radio">
 																<label style="float: left;" for="demo-priority-3E">Eventualmente</label> </form>
 								</div>
 							</div>
@@ -224,14 +224,14 @@ require_once 'masterInclude.inc.php';
 									<label>&ntilde;Cu&aacute;ntas horas duerme?</label>
 								</div>
 								<div class="2u 12u$(xsmall)">
-									<input type="text" id="txt" class="numeric" maxlength="2" />
+									<input type="text" id="txtDormir" class="numeric" maxlength="2" />
 								</div>
 								
 								<div class="4u 12u$(xsmall)">
 									<label>&ntilde;Cu&aacute;ntas comidas realiza al d&iacute;a?</label>
 								</div>
 								<div class="2u 12u$(xsmall)">
-									<input type="text" id="txt" class="numeric" maxlength="2" />
+									<input type="text" id="txtComidas" class="numeric" maxlength="2" />
 								</div>
 							</div>
 							
@@ -461,16 +461,22 @@ require_once 'masterInclude.inc.php';
 								</div>
 							</div>
 							<div class="row">
-								<div class="4u 12u$(xsmall)">&emsp;</div>
-								<div class="5u 12u$(xsmall)">
+								<div class="3u 12u$(xsmall)">&emsp;</div>
+								<div class="2u 12u$(xsmall)">
 									<h4 style="float: left;">Desayuno</h4>
+								</div>
+								<div class="3u 12u$(xsmall)"> <form >
+																<input id="demo-priority-sidesayunoF" name="desayunoF"  value="Si" type="radio">
+																<label style="float: left;" for="demo-priority-sidesayunoF">Si</label>
+																<input id="demo-priority-nodesayunoF" name="desayunoF" value="No" type="radio">
+																<label style="float: left;" for="demo-priority-nodesayunoF">No</label> </form>
 								</div>
 							
 							</div>
 							
 							<br />
 							
-							<div class="row">
+							<div class="row divDesayuno" style="display: none;">
 								<div class="2u 12u$(xsmall)">
 									<label>Horario: </label>
 								</div>
@@ -493,16 +499,22 @@ require_once 'masterInclude.inc.php';
 							<br />
 							
 							<div class="row">
-								<div class="4u 12u$(xsmall)">&emsp;</div>
-								<div class="5u 12u$(xsmall)">
+								<div class="3u 12u$(xsmall)">&emsp;</div>
+								<div class="2u 12u$(xsmall)">
 									<h4 style="float: left;">Colaci&oacute;n 1</h4>
+								</div>
+								<div class="3u 12u$(xsmall)"> <form >
+																<input id="demo-priority-sicolacionF" name="colacionF"  value="Si" type="radio">
+																<label style="float: left;" for="demo-priority-sicolacionF">Si</label>
+																<input id="demo-priority-nocolacionF" name="colacionF" value="No" type="radio">
+																<label style="float: left;" for="demo-priority-nocolacionF">No</label> </form>
 								</div>
 							
 							</div>
 							
 							<br />
 							
-							<div class="row">
+							<div class="row  divColacion1" style="display: none;">
 								<div class="2u 12u$(xsmall)">
 									<label>Horario: </label>
 								</div>
@@ -526,16 +538,22 @@ require_once 'masterInclude.inc.php';
 							<br />
 							
 							<div class="row">
-								<div class="4u 12u$(xsmall)">&emsp;</div>
-								<div class="5u 12u$(xsmall)">
+								<div class="3u 12u$(xsmall)">&emsp;</div>
+								<div class="2u 12u$(xsmall)">
 									<h4 style="float: left;">Comida</h4>
+								</div>
+								<div class="3u 12u$(xsmall)"> <form >
+																<input id="demo-priority-sicomidaF" name="comidaF"  value="Si" type="radio">
+																<label style="float: left;" for="demo-priority-sicomidaF">Si</label>
+																<input id="demo-priority-nocomidaF" name="comidaF" value="No" type="radio">
+																<label style="float: left;" for="demo-priority-nocomidaF">No</label> </form>
 								</div>
 							
 							</div>
 							
 							<br />
 							
-							<div class="row">
+							<div class="row divComida" style="display: none;">
 								<div class="2u 12u$(xsmall)">
 									<label>Horario: </label>
 								</div>
@@ -559,16 +577,22 @@ require_once 'masterInclude.inc.php';
 							<br />
 							
 							<div class="row">
-								<div class="4u 12u$(xsmall)">&emsp;</div>
-								<div class="5u 12u$(xsmall)">
+								<div class="3u 12u$(xsmall)">&emsp;</div>
+								<div class="2u 12u$(xsmall)">
 									<h4 style="float: left;">Colaci&oacute;n 2</h4>
+								</div>
+								<div class="3u 12u$(xsmall)"> <form >
+																<input id="demo-priority-sicolacion2F" name="colacion2F"  value="Si" type="radio">
+																<label style="float: left;" for="demo-priority-sicolacion2F">Si</label>
+																<input id="demo-priority-nocolacion2F" name="colacion2F" value="No" type="radio">
+																<label style="float: left;" for="demo-priority-nocolacion2F">No</label> </form>
 								</div>
 							
 							</div>
 							
 							<br />
 							
-							<div class="row">
+							<div class="row divColacion2" style="display: none;">
 								<div class="2u 12u$(xsmall)">
 									<label>Horario: </label>
 								</div>
@@ -593,16 +617,22 @@ require_once 'masterInclude.inc.php';
 							
 							
 							<div class="row">
-								<div class="4u 12u$(xsmall)">&emsp;</div>
-								<div class="5u 12u$(xsmall)">
+								<div class="3u 12u$(xsmall)">&emsp;</div>
+								<div class=2u 12u$(xsmall)">
 									<h4 style="float: left;">Cena</h4>
+								</div>
+								<div class="3u 12u$(xsmall)"> <form >
+																<input id="demo-priority-sicenaF" name="cenaF"  value="Si" type="radio">
+																<label style="float: left;" for="demo-priority-sicenaF">Si</label>
+																<input id="demo-priority-nocenaF" name="cenaF" value="No" type="radio">
+																<label style="float: left;" for="demo-priority-nocenaF">No</label> </form>
 								</div>
 							
 							</div>
 							
 							<br />
 							
-							<div class="row">
+							<div class="row divCena" style="display: none;">
 								<div class="2u 12u$(xsmall)">
 									<label>Horario: </label>
 								</div>
@@ -623,6 +653,29 @@ require_once 'masterInclude.inc.php';
 							</div>
 							
 							<br />
+							<input type="hidden" id="hdnRol" value="<?php echo $objSession->getidRol();?>"/>
+							<?php if ($objSession->getidRol()==1){?>
+							<div class="row">
+								<div class="5u 12u$(xsmall)">
+									<h3>Lugar</h3>
+								</div>
+							</div>
+							<div class="row">
+								<div class="2u 12u$(xsmall)">
+									<label>Sucursal: </label>
+								</div>
+								<div class="2u 12u$(xsmall)">
+									<div class="select-wrapper">
+										<select name="demo-category" id="slcSucursal">
+										
+									</select>
+									</div>
+								</div>
+								
+							</div>
+							<?php } else {?>
+									<input type="hidden" id="slcSucursal" value="<?php echo $objSession->getIdSucursal();?>"/>
+									<?php } ?>
 							
 							<br />
 							
