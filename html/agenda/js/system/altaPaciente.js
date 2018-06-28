@@ -138,9 +138,9 @@ function iniciar(){
 }
 
 function altaPaciente(){
-	var existeError = false;
+	var existeError2 = false,existeError = false;
 	var datos={},paciente={},hoja={};
-	
+	var faltan=0;
     
 	 paciente['Nombre']= $("#txtNombre").val().trim();
 	if (paciente['Nombre'] == "") {
@@ -157,7 +157,7 @@ function altaPaciente(){
 	
 	paciente['TelCasa']= $("#txtTelCasa").val().trim();
 	if (paciente['TelCasa'] == "") {
-		existeError = true;
+		//existeError2 = true;
 		console.log("Error: txTelCasa");
 	}
 	paciente['TelMovil']= $("#txtTelMovil").val().trim();
@@ -168,7 +168,7 @@ function altaPaciente(){
 	
 	paciente['Email']= $("#txtCorreo").val().trim();
 	if (paciente['Email'] == "") {
-		existeError = true;
+		//existeError2 = true;
 		console.log("Error: txtEmail");
 	}
 	
@@ -216,19 +216,22 @@ function altaPaciente(){
        }
     });
     if (hoja['cirugias'] == "") {
-		existeError = true;
+		existeError2 = true;
+		faltan+=2;
 		console.log("Error: txt");
 	}
     if (hoja['cirugias'] == "Si") {
 	    hoja['cirugia']= $("#txtCirugias").val().trim();
 		if (hoja['cirugia'] == "") {
 			existeError = true;
+			faltan++;
 			console.log("Error: cirugia");
 		}
     }	
     hoja['enfermedades']= $("#txtEnfermedades").val().trim();
 	if (hoja['enfermedades'] == "") {
-		existeError = true;
+		existeError2 = true;
+		faltan++;
 		console.log("Error: enfermedades");
 	}
 	
@@ -239,7 +242,8 @@ function altaPaciente(){
        }
     });
     if (hoja['estrenimiento'] == "") {
-		existeError = true;
+		existeError2 = true;
+		faltan+=2;
 		console.log("Error: estrenimiento");
 	}
 	
@@ -252,6 +256,7 @@ function altaPaciente(){
 	    });
 	    if (hoja['estrenimientoF'] == "") {
 			existeError = true;
+			faltan++;
 			console.log("Error: estrenimientoF");
 		}
     }
@@ -263,7 +268,8 @@ function altaPaciente(){
        }
     });
     if (hoja['menstrual'] == "") {
-		existeError = true;
+		existeError2 = true;
+		faltan++;
 		console.log("Error: menstrual");
 	}
     
@@ -274,7 +280,8 @@ function altaPaciente(){
        }
     });
     if (hoja['alergia'] == "") {
-		existeError = true;
+		existeError2 = true;
+		faltan+=2;
 		console.log("Error: alergia");
 	}
     
@@ -282,19 +289,22 @@ function altaPaciente(){
     	hoja['alergias']= $("#txtAlergias").val().trim();
     	if (hoja['alergias'] == "") {
     		existeError = true;
+    		faltan++;
     		console.log("Error: alergias");
     	}
     }
     
     hoja['hrsDormir']= $("#txtDormir").val().trim();
 	if (hoja['hrsDormir'] == "") {
-		existeError = true;
+		existeError2 = true;
+		faltan++;
 		console.log("Error: hrsDormir");
 	}
 	
 	hoja['hrsComida']= $("#txtComida").val().trim();
 	if (hoja['hrsComida'] == "") {
-		existeError = true;
+		faltan++;
+		existeError2 = true;
 		console.log("Error: hrsComida");
 	}
 	
@@ -305,7 +315,8 @@ function altaPaciente(){
        }
     });
     if (hoja['cafe'] == "") {
-		existeError = true;
+		existeError2 = true;
+		faltan+=2;
 		console.log("Error: cafe");
 	}
     if (hoja['cafe'] == "Si") {
@@ -316,6 +327,7 @@ function altaPaciente(){
     	    });
     	    if (hoja['cafeF'] == "") {
     			existeError = true;
+    			faltan++;
     			console.log("Error: cafeF");
     		}
     }
@@ -328,7 +340,8 @@ function altaPaciente(){
        }
     });
     if (hoja['bebidas'] == "") {
-		existeError = true;
+		existeError2 = true;
+		faltan+=2;
 		console.log("Error: bebidas");
 	}
     if (hoja['bebidas'] == "Si") {
@@ -339,6 +352,7 @@ function altaPaciente(){
     	    });
     	    if (hoja['bebidasF'] == "") {
     			existeError = true;
+    			faltan++;
     			console.log("Error: bebidasF");
     		}
     }
@@ -351,7 +365,8 @@ function altaPaciente(){
        }
     });
     if (hoja['fuma'] == "") {
-		existeError = true;
+		existeError2 = true;
+		faltan+=2;
 		console.log("Error: fuma");
 	}
     if (hoja['fuma'] == "Si") {
@@ -362,13 +377,15 @@ function altaPaciente(){
     	    });
     	    if (hoja['fumaF'] == "") {
     			existeError = true;
+    			faltan++;
     			console.log("Error: fumaF");
     		}
     }
     
     hoja['desagradable']= $("#txtDesagradable").val().trim();
 	if (hoja['desagradable'] == "") {
-		existeError = true;
+		existeError2 = true;
+		faltan++;
 		console.log("Error: Desagradable");
 	}
 	
@@ -379,7 +396,8 @@ function altaPaciente(){
        }
     });
     if (hoja['ansiedad'] == "") {
-		existeError = true;
+		existeError2 = true;
+		faltan++;
 		console.log("Error: ansiedad");
 	}
     
@@ -390,7 +408,8 @@ function altaPaciente(){
        }
     });
     if (hoja['actividadFisica'] == "") {
-		existeError = true;
+		existeError2 = true;
+		faltan+=4;
 		console.log("Error: actividadFisica");
 	}
     
@@ -398,12 +417,14 @@ function altaPaciente(){
     	hoja['actividad']= $("#txtActividad").val().trim();
     	if (hoja['actividad'] == "") {
     		existeError = true;
+    		faltan++;
     		console.log("Error: actividad");
     	}
     	
     	hoja['tiempo']= $("#txtTiempo").val().trim();
     	if (hoja['tiempo'] == "") {
     		existeError = true;
+    		faltan++;
     		console.log("Error: tiempo");
     	}
     	
@@ -415,31 +436,36 @@ function altaPaciente(){
         });
         if (hoja['tiempoActividad'] == "") {
     		existeError = true;
+    		faltan++;
     		console.log("Error: tiempoActividad");
     	}
     }
     
     hoja['motivacion']= $("#slcMotivacion").val().trim();
 	if (hoja['motivacion'] == "") {
-		existeError = true;
+		existeError2 = true;
+		faltan++;
 		console.log("Error: motivacion");
 	}
 	
 	hoja['hrLevantar']= $("#slcHrLevantar").val().trim();
 	if (hoja['hrLevantar'] == "") {
-		existeError = true;
+		existeError2 = true;
+		faltan++;
 		console.log("Error: hrLevantar");
 	}
 	
 	hoja['hrAcostar']= $("#slcHrAcostar").val().trim();
 	if (hoja['hrAcostar'] == "") {
-		existeError = true;
+		existeError2 = true;
+		faltan++;
 		console.log("Error: hrAcostar");
 	}
 	
 	hoja['hrEjercicio']= $("#slcHrEjercicio").val().trim();
 	if (hoja['hrEjercicio'] == "") {
-		existeError = true;
+		existeError2 = true;
+		faltan++;
 		console.log("Error: hrEjercicio");
 	}
 	
@@ -450,7 +476,8 @@ function altaPaciente(){
        }
     });
     if (hoja['desayunoF'] == "") {
-		existeError = true;
+		existeError2 = true;
+		faltan+=3;
 		console.log("Error: desayunoF");
 	}
     
@@ -458,12 +485,14 @@ function altaPaciente(){
 	    hoja['hrDesayuno']= $("#slcHrDesayuno").val().trim();
 		if (hoja['hrDesayuno'] == "") {
 			existeError = true;
+			faltan++;
 			console.log("Error: hrDesayuno");
 		}
 		
 		hoja['desayuno']= $("#txtDesayuno").val().trim();
 		if (hoja['desayuno'] == "") {
-			existeError = true;
+			existeError2 = true;
+			faltan++;
 			console.log("Error: desayuno");
 		}
     }
@@ -475,7 +504,8 @@ function altaPaciente(){
        }
     });
     if (hoja['colacionF'] == "") {
-		existeError = true;
+		existeError2 = true;
+		faltan+=3;
 		console.log("Error: colacionF");
 	}
     
@@ -483,12 +513,13 @@ function altaPaciente(){
 	    hoja['hrColacion1']= $("#slcHrColacion1").val().trim();
 		if (hoja['hrColacion1'] == "") {
 			existeError = true;
+			faltan++;
 			console.log("Error: hrColacion1");
 		}
 		
 		hoja['colacion1']= $("#txtColacion1").val().trim();
 		if (hoja['colacion1'] == "") {
-			existeError = true;
+			existeError2 = true;
 			console.log("Error: colacion1");
 		}
     }
@@ -501,7 +532,8 @@ function altaPaciente(){
        }
     });
     if (hoja['comidaF'] == "") {
-		existeError = true;
+		existeError2 = true;
+		faltan+=3;
 		console.log("Error: comidaF");
 	}
     
@@ -509,12 +541,14 @@ function altaPaciente(){
 	  hoja['hrComida']= $("#slcHrComida").val().trim();
 		if (hoja['hrComida'] == "") {
 			existeError = true;
+			faltan++;
 			console.log("Error: hrComida");
 		}
 		
 		hoja['comida']= $("#txtComida").val().trim();
 		if (hoja['comida'] == "") {
-			existeError = true;
+			existeError2 = true;
+			faltan++;
 			console.log("Error: comida");
 		}
     }
@@ -526,7 +560,8 @@ function altaPaciente(){
        }
     });
     if (hoja['colacion2F'] == "") {
-		existeError = true;
+		existeError2 = true;
+		faltan+=3;
 		console.log("Error: colacion2F");
 	}
     
@@ -534,12 +569,13 @@ function altaPaciente(){
 	  hoja['hrColacion2']= $("#slcHrColacion2").val().trim();
 		if (hoja['hrColacion2'] == "") {
 			existeError = true;
+			faltan++;
 			console.log("Error: hrColacion2");
 		}
 		
 		hoja['colacion2']= $("#txtColacion2").val().trim();
 		if (hoja['colacion2'] == "") {
-			existeError = true;
+			existeError2 = true;
 			console.log("Error: colacion2");
 		}
     }
@@ -551,7 +587,8 @@ function altaPaciente(){
        }
     });
     if (hoja['cenaF'] == "") {
-		existeError = true;
+		existeError2 = true;
+		faltan+=3;
 		console.log("Error: cenaF");
 	}
     
@@ -559,19 +596,21 @@ function altaPaciente(){
 	     hoja['hrCena']= $("#slcHrCena").val().trim();
 		if (hoja['hrCena'] == "") {
 			existeError = true;
+			faltan++;
 			console.log("Error: hrCena");
 		}
 		
 		hoja['cena']= $("#txtCena").val().trim();
 		if (hoja['cena'] == "") {
-			existeError = true;
+			existeError2 = true;
+			faltan++;
 			console.log("Error: cena");
 		}
     }
 	/*
 	hoja['']= $("#txt").val().trim();
 	if (hoja[''] == "") {
-		existeError = true;
+		existeError2 = true;
 		console.log("Error: ");
 	}
 	
@@ -582,13 +621,13 @@ function altaPaciente(){
        }
     });
     if (hoja[''] == "") {
-		existeError = true;
+		existeError2 = true;
 		console.log("Error: ");
 	}
 	*/
     
-	
-	
+	var completitud=100-((100/41)*faltan);
+	hoja['completitud']=Number(completitud.toFixed(2));
 	datos['hojaclinica']=hoja;
 	datos['paciente']=paciente;
 	

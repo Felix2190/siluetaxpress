@@ -10,25 +10,25 @@
 		
 		var $idHojaClinica=0;
 		var $fechaRegistro='';
-		var $cirugia='No';
+		var $cirugia='sinrespuesta';
 		var $cirugias='';
 		var $enfermedades='';
-		var $estrenimiento='No';
+		var $estrenimiento='sinrespuesta';
 		var $estrenimientoFrecuencia='0';
-		var $menstruacion='No';
-		var $alergia='No';
+		var $menstruacion='sinrespuesta';
+		var $alergia='sinrespuesta';
 		var $alimento='';
 		var $hrsDormir=0;
 		var $hrsComer=0;
-		var $cafe='No';
+		var $cafe='sinrespuesta';
 		var $cafeFrecuencia='0';
-		var $fuma='No';
+		var $fuma='sinrespuesta';
 		var $fumaFrecuencia='0';
-		var $beber='No';
+		var $beber='sinrespuesta';
 		var $beberFrecuencia='0';
 		var $desagradables='';
-		var $ansiedad='No';
-		var $actividadFisica='No';
+		var $ansiedad='sinrespuesta';
+		var $actividadFisica='sinrespuesta';
 		var $actividad='';
 		var $tiempo=0;
 		var $actividadFisicaFrecuencia='0';
@@ -51,8 +51,9 @@
 		var $cena='No';
 		var $horarioCena='';
 		var $actividadCena='';
+		var $completitud='';
 
-		var $__s=array("idHojaClinica","fechaRegistro","cirugia","cirugias","enfermedades","estrenimiento","estrenimientoFrecuencia","menstruacion","alergia","alimento","hrsDormir","hrsComer","cafe","cafeFrecuencia","fuma","fumaFrecuencia","beber","beberFrecuencia","desagradables","ansiedad","actividadFisica","actividad","tiempo","actividadFisicaFrecuencia","motivacion","horarioLevantarse","horarioAcostarse","horarioActividad","desayuno","horarioDesayuno","actividadDesayuno","colacion","horarioColacion","actividadColacion","comida","horarioComida","actividadComida","colacion2","horarioColacion2","actividadColacion2","cena","horarioCena","actividadCena");
+		var $__s=array("idHojaClinica","fechaRegistro","cirugia","cirugias","enfermedades","estrenimiento","estrenimientoFrecuencia","menstruacion","alergia","alimento","hrsDormir","hrsComer","cafe","cafeFrecuencia","fuma","fumaFrecuencia","beber","beberFrecuencia","desagradables","ansiedad","actividadFisica","actividad","tiempo","actividadFisicaFrecuencia","motivacion","horarioLevantarse","horarioAcostarse","horarioActividad","desayuno","horarioDesayuno","actividadDesayuno","colacion","horarioColacion","actividadColacion","comida","horarioComida","actividadComida","colacion2","horarioColacion2","actividadColacion2","cena","horarioCena","actividadCena","completitud");
 		var $__ss=array();
 
 		#------------------------------------------------------------------------------------------------------#
@@ -97,6 +98,10 @@
 		{
 			$this->cirugia='No';
 		}
+		public function setCirugiaSinrespuesta()
+		{
+			$this->cirugia='sinrespuesta';
+		}
 		public function setCirugias($cirugias)
 		{
 			$this->cirugias=$cirugias;
@@ -117,6 +122,10 @@
 		public function setEstrenimientoNo()
 		{
 			$this->estrenimiento='No';
+		}
+		public function setEstrenimientoSinrespuesta()
+		{
+			$this->estrenimiento='sinrespuesta';
 		}
 		public function setEstrenimientoFrecuencia($estrenimientoFrecuencia)
 		{
@@ -160,6 +169,10 @@
 		{
 			$this->menstruacion='No';
 		}
+		public function setMenstruacionSinrespuesta()
+		{
+			$this->menstruacion='sinrespuesta';
+		}
 		public function setAlergia($alergia)
 		{
 			
@@ -172,6 +185,10 @@
 		public function setAlergiaNo()
 		{
 			$this->alergia='No';
+		}
+		public function setAlergiaSinrespuesta()
+		{
+			$this->alergia='sinrespuesta';
 		}
 		public function setAlimento($alimento)
 		{
@@ -200,6 +217,10 @@
 		public function setCafeNo()
 		{
 			$this->cafe='No';
+		}
+		public function setCafeSinrespuesta()
+		{
+			$this->cafe='sinrespuesta';
 		}
 		public function setCafeFrecuencia($cafeFrecuencia)
 		{
@@ -235,6 +256,10 @@
 		{
 			$this->fuma='No';
 		}
+		public function setFumaSinrespuesta()
+		{
+			$this->fuma='sinrespuesta';
+		}
 		public function setFumaFrecuencia($fumaFrecuencia)
 		{
 			
@@ -268,6 +293,10 @@
 		public function setBeberNo()
 		{
 			$this->beber='No';
+		}
+		public function setBeberSinrespuesta()
+		{
+			$this->beber='sinrespuesta';
 		}
 		public function setBeberFrecuencia($beberFrecuencia)
 		{
@@ -307,6 +336,10 @@
 		{
 			$this->ansiedad='No';
 		}
+		public function setAnsiedadSinrespuesta()
+		{
+			$this->ansiedad='sinrespuesta';
+		}
 		public function setActividadFisica($actividadFisica)
 		{
 			
@@ -319,6 +352,10 @@
 		public function setActividadFisicaNo()
 		{
 			$this->actividadFisica='No';
+		}
+		public function setActividadFisicaSinrespuesta()
+		{
+			$this->actividadFisica='sinrespuesta';
 		}
 		public function setActividad($actividad)
 		{
@@ -480,6 +517,10 @@
 		public function setActividadCena($actividadCena)
 		{
 			$this->actividadCena=$actividadCena;
+		}
+		public function setCompletitud($completitud)
+		{
+			$this->completitud=$completitud;
 		}
 
 		#------------------------------------------------------------------------------------------------------#
@@ -665,6 +706,10 @@
 		{
 			return $this->actividadCena;
 		}
+		public function getCompletitud()
+		{
+			return $this->completitud;
+		}
 
 		#------------------------------------------------------------------------------------------------------#
 		#------------------------------------------------Querys------------------------------------------------#
@@ -681,25 +726,25 @@
 			
 			$this->idHojaClinica=0;
 			$this->fechaRegistro='';
-			$this->cirugia='No';
+			$this->cirugia='sinrespuesta';
 			$this->cirugias='';
 			$this->enfermedades='';
-			$this->estrenimiento='No';
+			$this->estrenimiento='sinrespuesta';
 			$this->estrenimientoFrecuencia='0';
-			$this->menstruacion='No';
-			$this->alergia='No';
+			$this->menstruacion='sinrespuesta';
+			$this->alergia='sinrespuesta';
 			$this->alimento='';
 			$this->hrsDormir=0;
 			$this->hrsComer=0;
-			$this->cafe='No';
+			$this->cafe='sinrespuesta';
 			$this->cafeFrecuencia='0';
-			$this->fuma='No';
+			$this->fuma='sinrespuesta';
 			$this->fumaFrecuencia='0';
-			$this->beber='No';
+			$this->beber='sinrespuesta';
 			$this->beberFrecuencia='0';
 			$this->desagradables='';
-			$this->ansiedad='No';
-			$this->actividadFisica='No';
+			$this->ansiedad='sinrespuesta';
+			$this->actividadFisica='sinrespuesta';
 			$this->actividad='';
 			$this->tiempo=0;
 			$this->actividadFisicaFrecuencia='0';
@@ -722,6 +767,7 @@
 			$this->cena='No';
 			$this->horarioCena='';
 			$this->actividadCena='';
+			$this->completitud='';
 		}
 
 		
@@ -731,8 +777,8 @@
 		{
 			try
 			{
-				$SQL="INSERT INTO hojaclinica(fechaRegistro,cirugia,cirugias,enfermedades,estrenimiento,estrenimientoFrecuencia,menstruacion,alergia,alimento,hrsDormir,hrsComer,cafe,cafeFrecuencia,fuma,fumaFrecuencia,beber,beberFrecuencia,desagradables,ansiedad,actividadFisica,actividad,tiempo,actividadFisicaFrecuencia,motivacion,horarioLevantarse,horarioAcostarse,horarioActividad,desayuno,horarioDesayuno,actividadDesayuno,colacion,horarioColacion,actividadColacion,comida,horarioComida,actividadComida,colacion2,horarioColacion2,actividadColacion2,cena,horarioCena,actividadCena)
-						VALUES('" . mysqli_real_escape_string($this->dbLink,$this->fechaRegistro) . "','" . mysqli_real_escape_string($this->dbLink,$this->cirugia) . "','" . mysqli_real_escape_string($this->dbLink,$this->cirugias) . "','" . mysqli_real_escape_string($this->dbLink,$this->enfermedades) . "','" . mysqli_real_escape_string($this->dbLink,$this->estrenimiento) . "','" . mysqli_real_escape_string($this->dbLink,$this->estrenimientoFrecuencia) . "','" . mysqli_real_escape_string($this->dbLink,$this->menstruacion) . "','" . mysqli_real_escape_string($this->dbLink,$this->alergia) . "','" . mysqli_real_escape_string($this->dbLink,$this->alimento) . "','" . mysqli_real_escape_string($this->dbLink,$this->hrsDormir) . "','" . mysqli_real_escape_string($this->dbLink,$this->hrsComer) . "','" . mysqli_real_escape_string($this->dbLink,$this->cafe) . "','" . mysqli_real_escape_string($this->dbLink,$this->cafeFrecuencia) . "','" . mysqli_real_escape_string($this->dbLink,$this->fuma) . "','" . mysqli_real_escape_string($this->dbLink,$this->fumaFrecuencia) . "','" . mysqli_real_escape_string($this->dbLink,$this->beber) . "','" . mysqli_real_escape_string($this->dbLink,$this->beberFrecuencia) . "','" . mysqli_real_escape_string($this->dbLink,$this->desagradables) . "','" . mysqli_real_escape_string($this->dbLink,$this->ansiedad) . "','" . mysqli_real_escape_string($this->dbLink,$this->actividadFisica) . "','" . mysqli_real_escape_string($this->dbLink,$this->actividad) . "','" . mysqli_real_escape_string($this->dbLink,$this->tiempo) . "','" . mysqli_real_escape_string($this->dbLink,$this->actividadFisicaFrecuencia) . "','" . mysqli_real_escape_string($this->dbLink,$this->motivacion) . "','" . mysqli_real_escape_string($this->dbLink,$this->horarioLevantarse) . "','" . mysqli_real_escape_string($this->dbLink,$this->horarioAcostarse) . "','" . mysqli_real_escape_string($this->dbLink,$this->horarioActividad) . "','" . mysqli_real_escape_string($this->dbLink,$this->desayuno) . "','" . mysqli_real_escape_string($this->dbLink,$this->horarioDesayuno) . "','" . mysqli_real_escape_string($this->dbLink,$this->actividadDesayuno) . "','" . mysqli_real_escape_string($this->dbLink,$this->colacion) . "','" . mysqli_real_escape_string($this->dbLink,$this->horarioColacion) . "','" . mysqli_real_escape_string($this->dbLink,$this->actividadColacion) . "','" . mysqli_real_escape_string($this->dbLink,$this->comida) . "','" . mysqli_real_escape_string($this->dbLink,$this->horarioComida) . "','" . mysqli_real_escape_string($this->dbLink,$this->actividadComida) . "','" . mysqli_real_escape_string($this->dbLink,$this->colacion2) . "','" . mysqli_real_escape_string($this->dbLink,$this->horarioColacion2) . "','" . mysqli_real_escape_string($this->dbLink,$this->actividadColacion2) . "','" . mysqli_real_escape_string($this->dbLink,$this->cena) . "','" . mysqli_real_escape_string($this->dbLink,$this->horarioCena) . "','" . mysqli_real_escape_string($this->dbLink,$this->actividadCena) . "')";
+				$SQL="INSERT INTO hojaclinica(fechaRegistro,cirugia,cirugias,enfermedades,estrenimiento,estrenimientoFrecuencia,menstruacion,alergia,alimento,hrsDormir,hrsComer,cafe,cafeFrecuencia,fuma,fumaFrecuencia,beber,beberFrecuencia,desagradables,ansiedad,actividadFisica,actividad,tiempo,actividadFisicaFrecuencia,motivacion,horarioLevantarse,horarioAcostarse,horarioActividad,desayuno,horarioDesayuno,actividadDesayuno,colacion,horarioColacion,actividadColacion,comida,horarioComida,actividadComida,colacion2,horarioColacion2,actividadColacion2,cena,horarioCena,actividadCena,completitud)
+						VALUES('" . mysqli_real_escape_string($this->dbLink,$this->fechaRegistro) . "','" . mysqli_real_escape_string($this->dbLink,$this->cirugia) . "','" . mysqli_real_escape_string($this->dbLink,$this->cirugias) . "','" . mysqli_real_escape_string($this->dbLink,$this->enfermedades) . "','" . mysqli_real_escape_string($this->dbLink,$this->estrenimiento) . "','" . mysqli_real_escape_string($this->dbLink,$this->estrenimientoFrecuencia) . "','" . mysqli_real_escape_string($this->dbLink,$this->menstruacion) . "','" . mysqli_real_escape_string($this->dbLink,$this->alergia) . "','" . mysqli_real_escape_string($this->dbLink,$this->alimento) . "','" . mysqli_real_escape_string($this->dbLink,$this->hrsDormir) . "','" . mysqli_real_escape_string($this->dbLink,$this->hrsComer) . "','" . mysqli_real_escape_string($this->dbLink,$this->cafe) . "','" . mysqli_real_escape_string($this->dbLink,$this->cafeFrecuencia) . "','" . mysqli_real_escape_string($this->dbLink,$this->fuma) . "','" . mysqli_real_escape_string($this->dbLink,$this->fumaFrecuencia) . "','" . mysqli_real_escape_string($this->dbLink,$this->beber) . "','" . mysqli_real_escape_string($this->dbLink,$this->beberFrecuencia) . "','" . mysqli_real_escape_string($this->dbLink,$this->desagradables) . "','" . mysqli_real_escape_string($this->dbLink,$this->ansiedad) . "','" . mysqli_real_escape_string($this->dbLink,$this->actividadFisica) . "','" . mysqli_real_escape_string($this->dbLink,$this->actividad) . "','" . mysqli_real_escape_string($this->dbLink,$this->tiempo) . "','" . mysqli_real_escape_string($this->dbLink,$this->actividadFisicaFrecuencia) . "','" . mysqli_real_escape_string($this->dbLink,$this->motivacion) . "','" . mysqli_real_escape_string($this->dbLink,$this->horarioLevantarse) . "','" . mysqli_real_escape_string($this->dbLink,$this->horarioAcostarse) . "','" . mysqli_real_escape_string($this->dbLink,$this->horarioActividad) . "','" . mysqli_real_escape_string($this->dbLink,$this->desayuno) . "','" . mysqli_real_escape_string($this->dbLink,$this->horarioDesayuno) . "','" . mysqli_real_escape_string($this->dbLink,$this->actividadDesayuno) . "','" . mysqli_real_escape_string($this->dbLink,$this->colacion) . "','" . mysqli_real_escape_string($this->dbLink,$this->horarioColacion) . "','" . mysqli_real_escape_string($this->dbLink,$this->actividadColacion) . "','" . mysqli_real_escape_string($this->dbLink,$this->comida) . "','" . mysqli_real_escape_string($this->dbLink,$this->horarioComida) . "','" . mysqli_real_escape_string($this->dbLink,$this->actividadComida) . "','" . mysqli_real_escape_string($this->dbLink,$this->colacion2) . "','" . mysqli_real_escape_string($this->dbLink,$this->horarioColacion2) . "','" . mysqli_real_escape_string($this->dbLink,$this->actividadColacion2) . "','" . mysqli_real_escape_string($this->dbLink,$this->cena) . "','" . mysqli_real_escape_string($this->dbLink,$this->horarioCena) . "','" . mysqli_real_escape_string($this->dbLink,$this->actividadCena) . "','" . mysqli_real_escape_string($this->dbLink,$this->completitud) . "')";
 				$result=mysqli_query($this->dbLink,$SQL);
 				if(!$result)
 					return $this->setSystemError("Error en la insercion de registro.","[" . $SQL . "][" . mysqli_error($this->dbLink) . "][ModeloBaseHojaclinica::Insertar]");
@@ -752,7 +798,7 @@
 		{
 			try
 			{
-				$SQL="UPDATE hojaclinica SET fechaRegistro='" . mysqli_real_escape_string($this->dbLink,$this->fechaRegistro) . "',cirugia='" . mysqli_real_escape_string($this->dbLink,$this->cirugia) . "',cirugias='" . mysqli_real_escape_string($this->dbLink,$this->cirugias) . "',enfermedades='" . mysqli_real_escape_string($this->dbLink,$this->enfermedades) . "',estrenimiento='" . mysqli_real_escape_string($this->dbLink,$this->estrenimiento) . "',estrenimientoFrecuencia='" . mysqli_real_escape_string($this->dbLink,$this->estrenimientoFrecuencia) . "',menstruacion='" . mysqli_real_escape_string($this->dbLink,$this->menstruacion) . "',alergia='" . mysqli_real_escape_string($this->dbLink,$this->alergia) . "',alimento='" . mysqli_real_escape_string($this->dbLink,$this->alimento) . "',hrsDormir='" . mysqli_real_escape_string($this->dbLink,$this->hrsDormir) . "',hrsComer='" . mysqli_real_escape_string($this->dbLink,$this->hrsComer) . "',cafe='" . mysqli_real_escape_string($this->dbLink,$this->cafe) . "',cafeFrecuencia='" . mysqli_real_escape_string($this->dbLink,$this->cafeFrecuencia) . "',fuma='" . mysqli_real_escape_string($this->dbLink,$this->fuma) . "',fumaFrecuencia='" . mysqli_real_escape_string($this->dbLink,$this->fumaFrecuencia) . "',beber='" . mysqli_real_escape_string($this->dbLink,$this->beber) . "',beberFrecuencia='" . mysqli_real_escape_string($this->dbLink,$this->beberFrecuencia) . "',desagradables='" . mysqli_real_escape_string($this->dbLink,$this->desagradables) . "',ansiedad='" . mysqli_real_escape_string($this->dbLink,$this->ansiedad) . "',actividadFisica='" . mysqli_real_escape_string($this->dbLink,$this->actividadFisica) . "',actividad='" . mysqli_real_escape_string($this->dbLink,$this->actividad) . "',tiempo='" . mysqli_real_escape_string($this->dbLink,$this->tiempo) . "',actividadFisicaFrecuencia='" . mysqli_real_escape_string($this->dbLink,$this->actividadFisicaFrecuencia) . "',motivacion='" . mysqli_real_escape_string($this->dbLink,$this->motivacion) . "',horarioLevantarse='" . mysqli_real_escape_string($this->dbLink,$this->horarioLevantarse) . "',horarioAcostarse='" . mysqli_real_escape_string($this->dbLink,$this->horarioAcostarse) . "',horarioActividad='" . mysqli_real_escape_string($this->dbLink,$this->horarioActividad) . "',desayuno='" . mysqli_real_escape_string($this->dbLink,$this->desayuno) . "',horarioDesayuno='" . mysqli_real_escape_string($this->dbLink,$this->horarioDesayuno) . "',actividadDesayuno='" . mysqli_real_escape_string($this->dbLink,$this->actividadDesayuno) . "',colacion='" . mysqli_real_escape_string($this->dbLink,$this->colacion) . "',horarioColacion='" . mysqli_real_escape_string($this->dbLink,$this->horarioColacion) . "',actividadColacion='" . mysqli_real_escape_string($this->dbLink,$this->actividadColacion) . "',comida='" . mysqli_real_escape_string($this->dbLink,$this->comida) . "',horarioComida='" . mysqli_real_escape_string($this->dbLink,$this->horarioComida) . "',actividadComida='" . mysqli_real_escape_string($this->dbLink,$this->actividadComida) . "',colacion2='" . mysqli_real_escape_string($this->dbLink,$this->colacion2) . "',horarioColacion2='" . mysqli_real_escape_string($this->dbLink,$this->horarioColacion2) . "',actividadColacion2='" . mysqli_real_escape_string($this->dbLink,$this->actividadColacion2) . "',cena='" . mysqli_real_escape_string($this->dbLink,$this->cena) . "',horarioCena='" . mysqli_real_escape_string($this->dbLink,$this->horarioCena) . "',actividadCena='" . mysqli_real_escape_string($this->dbLink,$this->actividadCena) . "'
+				$SQL="UPDATE hojaclinica SET fechaRegistro='" . mysqli_real_escape_string($this->dbLink,$this->fechaRegistro) . "',cirugia='" . mysqli_real_escape_string($this->dbLink,$this->cirugia) . "',cirugias='" . mysqli_real_escape_string($this->dbLink,$this->cirugias) . "',enfermedades='" . mysqli_real_escape_string($this->dbLink,$this->enfermedades) . "',estrenimiento='" . mysqli_real_escape_string($this->dbLink,$this->estrenimiento) . "',estrenimientoFrecuencia='" . mysqli_real_escape_string($this->dbLink,$this->estrenimientoFrecuencia) . "',menstruacion='" . mysqli_real_escape_string($this->dbLink,$this->menstruacion) . "',alergia='" . mysqli_real_escape_string($this->dbLink,$this->alergia) . "',alimento='" . mysqli_real_escape_string($this->dbLink,$this->alimento) . "',hrsDormir='" . mysqli_real_escape_string($this->dbLink,$this->hrsDormir) . "',hrsComer='" . mysqli_real_escape_string($this->dbLink,$this->hrsComer) . "',cafe='" . mysqli_real_escape_string($this->dbLink,$this->cafe) . "',cafeFrecuencia='" . mysqli_real_escape_string($this->dbLink,$this->cafeFrecuencia) . "',fuma='" . mysqli_real_escape_string($this->dbLink,$this->fuma) . "',fumaFrecuencia='" . mysqli_real_escape_string($this->dbLink,$this->fumaFrecuencia) . "',beber='" . mysqli_real_escape_string($this->dbLink,$this->beber) . "',beberFrecuencia='" . mysqli_real_escape_string($this->dbLink,$this->beberFrecuencia) . "',desagradables='" . mysqli_real_escape_string($this->dbLink,$this->desagradables) . "',ansiedad='" . mysqli_real_escape_string($this->dbLink,$this->ansiedad) . "',actividadFisica='" . mysqli_real_escape_string($this->dbLink,$this->actividadFisica) . "',actividad='" . mysqli_real_escape_string($this->dbLink,$this->actividad) . "',tiempo='" . mysqli_real_escape_string($this->dbLink,$this->tiempo) . "',actividadFisicaFrecuencia='" . mysqli_real_escape_string($this->dbLink,$this->actividadFisicaFrecuencia) . "',motivacion='" . mysqli_real_escape_string($this->dbLink,$this->motivacion) . "',horarioLevantarse='" . mysqli_real_escape_string($this->dbLink,$this->horarioLevantarse) . "',horarioAcostarse='" . mysqli_real_escape_string($this->dbLink,$this->horarioAcostarse) . "',horarioActividad='" . mysqli_real_escape_string($this->dbLink,$this->horarioActividad) . "',desayuno='" . mysqli_real_escape_string($this->dbLink,$this->desayuno) . "',horarioDesayuno='" . mysqli_real_escape_string($this->dbLink,$this->horarioDesayuno) . "',actividadDesayuno='" . mysqli_real_escape_string($this->dbLink,$this->actividadDesayuno) . "',colacion='" . mysqli_real_escape_string($this->dbLink,$this->colacion) . "',horarioColacion='" . mysqli_real_escape_string($this->dbLink,$this->horarioColacion) . "',actividadColacion='" . mysqli_real_escape_string($this->dbLink,$this->actividadColacion) . "',comida='" . mysqli_real_escape_string($this->dbLink,$this->comida) . "',horarioComida='" . mysqli_real_escape_string($this->dbLink,$this->horarioComida) . "',actividadComida='" . mysqli_real_escape_string($this->dbLink,$this->actividadComida) . "',colacion2='" . mysqli_real_escape_string($this->dbLink,$this->colacion2) . "',horarioColacion2='" . mysqli_real_escape_string($this->dbLink,$this->horarioColacion2) . "',actividadColacion2='" . mysqli_real_escape_string($this->dbLink,$this->actividadColacion2) . "',cena='" . mysqli_real_escape_string($this->dbLink,$this->cena) . "',horarioCena='" . mysqli_real_escape_string($this->dbLink,$this->horarioCena) . "',actividadCena='" . mysqli_real_escape_string($this->dbLink,$this->actividadCena) . "',completitud='" . mysqli_real_escape_string($this->dbLink,$this->completitud) . "'
 					WHERE idHojaClinica=" . $this->idHojaClinica;
 				
 				$result=mysqli_query($this->dbLink,$SQL);
@@ -794,7 +840,7 @@
 			try
 			{
 				$SQL="SELECT
-						idHojaClinica,fechaRegistro,cirugia,cirugias,enfermedades,estrenimiento,estrenimientoFrecuencia,menstruacion,alergia,alimento,hrsDormir,hrsComer,cafe,cafeFrecuencia,fuma,fumaFrecuencia,beber,beberFrecuencia,desagradables,ansiedad,actividadFisica,actividad,tiempo,actividadFisicaFrecuencia,motivacion,horarioLevantarse,horarioAcostarse,horarioActividad,desayuno,horarioDesayuno,actividadDesayuno,colacion,horarioColacion,actividadColacion,comida,horarioComida,actividadComida,colacion2,horarioColacion2,actividadColacion2,cena,horarioCena,actividadCena
+						idHojaClinica,fechaRegistro,cirugia,cirugias,enfermedades,estrenimiento,estrenimientoFrecuencia,menstruacion,alergia,alimento,hrsDormir,hrsComer,cafe,cafeFrecuencia,fuma,fumaFrecuencia,beber,beberFrecuencia,desagradables,ansiedad,actividadFisica,actividad,tiempo,actividadFisicaFrecuencia,motivacion,horarioLevantarse,horarioAcostarse,horarioActividad,desayuno,horarioDesayuno,actividadDesayuno,colacion,horarioColacion,actividadColacion,comida,horarioComida,actividadComida,colacion2,horarioColacion2,actividadColacion2,cena,horarioCena,actividadCena,completitud
 					FROM hojaclinica
 					WHERE idHojaClinica=" . mysqli_real_escape_string($this->dbLink,$this->idHojaClinica);
 					

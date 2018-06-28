@@ -102,12 +102,13 @@ function guardar($datos){
         $hojaClinica->setHorarioCena($infoHoja['hrCena']);
         $hojaClinica->setActividadCena($infoHoja['cena']);
     }
-    
+    $hojaClinica->setCompletitud($infoHoja['completitud']);
     $hojaClinica->Guardar();
     if ($hojaClinica->getError()){
         $r->call('mostrarMsjError',$hojaClinica->getStrError(),5);
         return $r;
     }
+    $r->call('mostrarMsjExito','Se ha acompletado la hoja cl&iacute;nica en un '.$infoHoja['completitud'].'%!',3);
     
     $paciente = new ModeloPaciente();
     $paciente->setNombre($infoPaciente['Nombre']);
@@ -129,10 +130,10 @@ function guardar($datos){
         return $r;
     }
     
-    $r->call('mostrarMsjExito','Se agreg&oacute; correctamente al paciente!',3);
-    
+    $r->call('mostrarMsjExito','Se agreg&oacute; correctamente al paciente!',4);
+    $_SESSION['editaPaciente']=array("titulo"=>"Ver paciente","idPaciente"=>$paciente->getIdPaciente());
     ///$r->call('limpiarDatos');
-    $r->redirect('altaPaciente',4);
+    $r->redirect('editaPaciente.php',5);
     return $r;
     
 }

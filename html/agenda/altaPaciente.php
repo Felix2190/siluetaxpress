@@ -133,7 +133,7 @@ require_once 'masterInclude.inc.php';
 																<label style="float: left;" for="demo-priority-no">No</label> </form>
 								</div>
 								<div class="1u 12u$(xsmall) divCirugia" style="display: none;">
-									<label>&ntilde;Cu&aacute;l?</label>
+									<label>&iquest;Cu&aacute;l?</label>
 								</div>
 								<div class="5u 12u$(xsmall) divCirugia" style="display: none;">
 									<input type="text" id="txtCirugias"  />
@@ -166,7 +166,7 @@ require_once 'masterInclude.inc.php';
 																<label style="float: left;" for="demo-priority-noE">No</label> </form>
 								</div>
 								<div class="3u 12u$(xsmall) divEstren" style="display: none;">
-									<label>&ntilde;Qu&eacute; tan frecuente?</label>
+									<label>&iquest;Qu&eacute; tan frecuente?</label>
 								</div>
 								<div class="3u 12u$(xsmall)  divEstren" style="display: none;"><form >
 																<input id="demo-priority-1E" name="estrenimientoF" value="1" type="radio">
@@ -210,7 +210,7 @@ require_once 'masterInclude.inc.php';
 																<label style="float: left;" for="demo-priority-noA">No</label> </form>
 								</div>
 								<div class="2u 12u$(xsmall)  divAlergia" style="display: none;">
-									<label>&ntilde;Qu&aacute;l?</label>
+									<label>&iquest;Qu&aacute;l?</label>
 								</div>
 								<div class="4u 12u$(xsmall)  divAlergia" style="display: none;">
 									<input type="text" id="txtAlergias" class="" />
@@ -221,14 +221,14 @@ require_once 'masterInclude.inc.php';
 							
 							<div class="row">
 								<div class="4u 12u$(xsmall)">
-									<label>&ntilde;Cu&aacute;ntas horas duerme?</label>
+									<label>&iquest;Cu&aacute;ntas horas duerme?</label>
 								</div>
 								<div class="2u 12u$(xsmall)">
 									<input type="text" id="txtDormir" class="numeric" maxlength="2" />
 								</div>
 								
 								<div class="4u 12u$(xsmall)">
-									<label>&ntilde;Cu&aacute;ntas comidas realiza al d&iacute;a?</label>
+									<label>&iquest;Cu&aacute;ntas comidas realiza al d&iacute;a?</label>
 								</div>
 								<div class="2u 12u$(xsmall)">
 									<input type="text" id="txtComidas" class="numeric" maxlength="2" />
@@ -248,7 +248,7 @@ require_once 'masterInclude.inc.php';
 																<label style="float: left;" for="demo-priority-noCafe">No</label> </form>
 								</div>
 								<div class="3u 12u$(xsmall)  divCafe" style="display: none;">
-									<label>&ntilde;Qu&eacute; tan frecuente?</label>
+									<label>&iquest;Qu&eacute; tan frecuente?</label>
 								</div>
 								<div class="3u 12u$(xsmall) divCafe" style="display: none;"><form >
 																<input id="demo-priority-1Cafe" name="cafeF" value="1" type="radio">
@@ -264,7 +264,7 @@ require_once 'masterInclude.inc.php';
 							
 							<div class="row" >
 								<div class="4u 12u$(xsmall)" >
-									<label style="float: right;">&ntilde;Fuma?</label>
+									<label style="float: right;">&iquest;Fuma?</label>
 								</div>
 								<div class="2u 12u$(xsmall)" > <form>
 																<input id="demo-priority-siFuma" name="fuma" value="Si" type="radio">
@@ -273,7 +273,7 @@ require_once 'masterInclude.inc.php';
 																<label style="float: left;" for="demo-priority-noFuma">No</label> </form>
 								</div>
 								<div class="3u 12u$(xsmall) divFuma" style="display: none;">
-									<label>&ntilde;Qu&eacute; tan frecuente?</label>
+									<label>&iquest;Qu&eacute; tan frecuente?</label>
 								</div>
 								<div class="3u 12u$(xsmall) divFuma" style="display: none;"> <form >
 																<input id="demo-priority-1Fuma" name="fumaF" value="1" type="radio">
@@ -298,7 +298,7 @@ require_once 'masterInclude.inc.php';
 																<label style="float: left;" for="demo-priority-noBebe">No</label> </form>
 								</div>
 								<div class="3u 12u$(xsmall)  divBebidas" style="display: none;">
-									<label>&ntilde;Qu&eacute; tan frecuente?</label>
+									<label>&iquest;Qu&eacute; tan frecuente?</label>
 								</div>
 								<div class="3u 12u$(xsmall) divBebidas" style="display: none;"> <form >
 																<input id="demo-priority-1Bebe" name="bebidasF" value="1" type="radio">
@@ -348,7 +348,7 @@ require_once 'masterInclude.inc.php';
 																<label style="float: left;" for="demo-priority-noActividad">No</label> </form>
 								</div>
 								<div class="1u 12u$(xsmall)  divActividad" style="display: none;">
-									<label>&ntilde;Cu&aacute;l?</label>
+									<label>&iquest;Cu&aacute;l?</label>
 								</div>
 								<div class="5u 12u$(xsmall  divActividad" style="display: none;">
 									<input type="text" id="txtActividad" />
@@ -362,7 +362,7 @@ require_once 'masterInclude.inc.php';
 							<div class="row  divActividad" style="display: none;">
 							
 								<div class="3u 12u$(xsmall)">
-									<label>&ntilde;Cu&aacute;nto tiempo?</label>
+									<label>&iquest;Cu&aacute;nto tiempo?</label>
 								</div>
 								<div class="2u 12u$(xsmall)">
 									<input type="text" id="txtTiempo" class="numeric" maxlength="2" />
@@ -393,7 +393,7 @@ require_once 'masterInclude.inc.php';
 							
 							<div class="row">
 								<div class="7u 12u$(xsmall)">
-									<label>&ntilde;Qu&eacute; tan motivado(a) est&aacute; para iniciar el plan nutricional? </label>
+									<label>&iquest;Qu&eacute; tan motivado(a) est&aacute; para iniciar el plan nutricional? </label>
 								</div>
 								<div class="2u 12u$(xsmall)">
 								<div class="select-wrapper">
@@ -488,7 +488,7 @@ require_once 'masterInclude.inc.php';
 									</div>
 								</div>
 								<div class="2u 12u$(xsmall)">
-									<label>Actividades: </label>
+									<label>Alimentos: </label>
 								</div>
 								<div class="6u 12u$(xsmall)">
 								<textarea rows="2" cols="" id="txtDesayuno"></textarea>
@@ -526,7 +526,7 @@ require_once 'masterInclude.inc.php';
 									</div>
 								</div>
 								<div class="2u 12u$(xsmall)">
-									<label>Actividades: </label>
+									<label>Alimentos: </label>
 								</div>
 								<div class="6u 12u$(xsmall)">
 								<textarea rows="2" cols="" id="txtColacion1"></textarea>
@@ -565,7 +565,7 @@ require_once 'masterInclude.inc.php';
 									</div>
 								</div>
 								<div class="2u 12u$(xsmall)">
-									<label>Actividades: </label>
+									<label>Alimentos: </label>
 								</div>
 								<div class="6u 12u$(xsmall)">
 								<textarea rows="2" cols="" id="txtComida"></textarea>
@@ -604,7 +604,7 @@ require_once 'masterInclude.inc.php';
 									</div>
 								</div>
 								<div class="2u 12u$(xsmall)">
-									<label>Actividades: </label>
+									<label>Alimentos: </label>
 								</div>
 								<div class="6u 12u$(xsmall)">
 								<textarea rows="2" cols="" id="txtColacion2"></textarea>
@@ -644,7 +644,7 @@ require_once 'masterInclude.inc.php';
 									</div>
 								</div>
 								<div class="2u 12u$(xsmall)">
-									<label>Actividades: </label>
+									<label>Alimentos: </label>
 								</div>
 								<div class="6u 12u$(xsmall)">
 								<textarea rows="2" cols="" id="txtCena"></textarea>

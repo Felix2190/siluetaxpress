@@ -11,3 +11,7 @@ ALTER TABLE `hojaclinica` CHANGE `alergia` `alergia` ENUM('Si','No') CHARACTER S
 ALTER TABLE `hojaclinica`  ADD `actividadFisica` ENUM('Si','No') NOT NULL DEFAULT 'No' ,  ADD `actividad` VARCHAR(100) NOT NULL ,  ADD `tiempo` INT(2) NOT NULL DEFAULT '0' ,  ADD `actividadFisicaFrecuencia` ENUM('0','1','2','3') NOT NULL DEFAULT '0' ,  ADD `motivacion` INT(2) NOT NULL ,  ADD `horarioLevantarse` VARCHAR(10) NOT NULL ,  ADD `horarioAcostarse` VARCHAR(10) NOT NULL ,  ADD `horarioActividad` VARCHAR(10) NOT NULL ,  ADD `desayuno` ENUM('Si','No') NOT NULL DEFAULT 'No' ,  ADD `horarioDesayuno` VARCHAR(10) NOT NULL ,  ADD `actividadDesayuno` TEXT NOT NULL ,  ADD `colacion` ENUM('Si','No') NOT NULL DEFAULT 'No' ,  ADD `horarioColacion` VARCHAR(10) NOT NULL ,  ADD `actividadColacion` TEXT NOT NULL ,  ADD `comida` ENUM('Si','No') NOT NULL DEFAULT 'No'  ,  ADD `horarioComida` VARCHAR(10) NOT NULL ,  ADD `actividadComida` TEXT NOT NULL ,  ADD `colacion2` ENUM('Si','No') NOT NULL DEFAULT 'No' ,  ADD `horarioColacion2` VARCHAR(10) NOT NULL ,  ADD `actividadColacion2` TEXT NOT NULL;
 
 ALTER TABLE `hojaclinica` ADD `cena` ENUM('Si','No') NOT NULL DEFAULT 'No' , ADD `horarioCena` VARCHAR(10) NOT NULL , ADD `actividadCena` TEXT NOT NULL ; 
+
+ALTER TABLE `hojaclinica` ADD `completitud` DOUBLE NOT NULL DEFAULT '0' ; 
+
+ALTER TABLE `paciente` CHANGE `telefonoCasa` `telefonoCasa` VARCHAR(10) CHARACTER SET latin1 COLLATE latin1_swedish_ci NULL DEFAULT NULL; 

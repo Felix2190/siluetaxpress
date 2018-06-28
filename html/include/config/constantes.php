@@ -69,7 +69,7 @@ define("FOLDER_CONTROLLER", FOLDER_INCLUDE . "controler/");
 
 define("FOLDER_JS", FOLDER_HTDOCS . "js/system/");
 
-
+define("LIB_FPDF", FOLDER_INCLUDE . "lib/pdf/fpdf.php");
 // AGENDA
 
 define("FOLDER_CONTROLLER_AGENDA", FOLDER_INCLUDE_AGENDA . "controler/");
