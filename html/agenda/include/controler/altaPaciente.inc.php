@@ -3,7 +3,7 @@
 // -----------------------------------------------------------------------------------------------------------------#
 // ---------------------------------------Archivos necesarios Require Include---------------------------------------#
 // -----------------------------------------------------------------------------------------------------------------#
-require_once FOLDER_MODEL_EXTEND. "model.hojaClinica.inc.php";
+require_once FOLDER_MODEL_EXTEND. "model.hojaclinica.inc.php";
 require_once FOLDER_MODEL_EXTEND. "model.paciente.inc.php";
 // -----------------------------------------------------------------------------------------------------------------#
 // --------------------------------------------Inicializacion de control--------------------------------------------#
@@ -33,7 +33,6 @@ function guardar($datos){
     
     $infoPaciente=$info['paciente'];
     $infoHoja=$info['hojaclinica'];
-    
     
     $hojaClinica = new ModeloHojaClinica();
     $hojaClinica->setFechaRegistro(date('Y-m-d H:i:s'));
@@ -71,6 +70,7 @@ function guardar($datos){
     if ($hojaClinica->getActividadFisica()=="Si"){
         $hojaClinica->setActividad($infoHoja['actividad']);
         $hojaClinica->setTiempo($infoHoja['tiempo']);
+        $hojaClinica->setTiempoSimbolo($infoHoja['tiempoSimbolo']);
         $hojaClinica->setActividadFisicaFrecuencia($infoHoja['tiempoActividad']);
     }
     $hojaClinica->setMotivacion($infoHoja['motivacion']);

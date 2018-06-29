@@ -4,7 +4,7 @@ require_once 'masterInclude.inc.php';
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title>Detalles del paciente</title>
+		<title>Detalles de cita <?php echo $idCita;?> </title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -27,7 +27,7 @@ require_once 'masterInclude.inc.php';
 
 							<!-- Section -->
 								<section>
-									<h3 id="content"><?php echo $titulo;?></h3>
+									<h3 id="content">Cita: <strong><?php echo $idCita;?></strong></h3>
 								</section>
 								
 								
@@ -35,6 +35,8 @@ require_once 'masterInclude.inc.php';
 					<div class="12u 12u$(small)">
 						<div class="box">
 							<div class="row">
+							
+							<!-- 
 								<div class="1u 12u$(small)">
 									Nombre:
 								</div>
@@ -54,7 +56,7 @@ require_once 'masterInclude.inc.php';
 								<?php $fecha=explode("-",$paciente->fechaNacimiento);?>
 									<p style="border-bottom: 2px solid;"><?php echo "$fecha[2] de ".obtenMes(''.intval($fecha[1]))." del $fecha[0]";?></p>
 								</div>
-								
+								-->
 							</div>	
 						</div>
 					</div>
@@ -67,9 +69,6 @@ require_once 'masterInclude.inc.php';
 					</ul>
 					</div>
 					
-					<div class="12u 12u$(small)">
-						<a href="getHojaClinicaPDF.php?idPaciente=<?php echo $paciente->idPaciente;?>" class="button special">Descargar PDF</a>
-					</div>
 				</div>
 						
 												</div>

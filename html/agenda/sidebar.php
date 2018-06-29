@@ -30,9 +30,9 @@
 
 				<li><span class="opener">Pacientes</span>
 					<ul>
-						<li><a href="">Listado</a></li>
+						<li><a href="listadoPacientes.php">Listado</a></li>
 						<li><a href="altaPaciente.php">Agregar nuevo</a></li>
-						<li><a href="">B&uacute;squedad</a></li>
+						<li><a href="">B&uacute;squeda</a></li>
 					</ul></li>
 
 				<li><span class="opener">Citas</span>

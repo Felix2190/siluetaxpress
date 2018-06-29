@@ -3,7 +3,33 @@ $(document).ready(function(){
 });
 	 
 function iniciar(){
-	
+	listarPacientes();
+}
+
+function listarPacientes(){
+	var nsucursal=$( "#hdnSucursal" ).val();
+	if (nsucursal=='')
+		nsucursal=$( "#slcSucursal" ).val();
+
+	$.ajax({
+		method : "post",
+		url : "adminFunciones.php",
+		data : {
+			listadoPacientes:nsucursal
+		},
+		success : function(data) {
+			respuesta=JSON.parse(data);
+			xajax_verTabla(respuesta);
+		}
+	});
+
+}
+
+function verPaciente(id){
+	xajax_verPaciente(id);
+}
+function verCita(id){
+	xajax_verCita(id);
 }
 	//$("#").();
 //var alert = alertify.alert('Titulo','TextoAlerta').set('label', 'Aceptar');     	 

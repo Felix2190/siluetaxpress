@@ -5,7 +5,7 @@
 // -----------------------------------------------------------------------------------------------------------------#
 require_once LIB_FPDF;
 require_once FOLDER_MODEL_EXTEND. "model.sucursal.inc.php";
-require_once FOLDER_MODEL_EXTEND. "model.hojaClinica.inc.php";
+require_once FOLDER_MODEL_EXTEND. "model.hojaclinica.inc.php";
 require_once FOLDER_MODEL_EXTEND. "model.paciente.inc.php";
 
 // -----------------------------------------------------------------------------------------------------------------#
@@ -23,9 +23,9 @@ Function pdfErrorMensaje($texto){
     $pdf->Output();
 }
 if (isset($_GET['idPaciente']) ) {
-    $idPaciente=$_GET['idPaciente'];
+    $idCita=$_GET['idPaciente'];
     $paciente = new ModeloPaciente();
-    $paciente->setIdPaciente($idPaciente);
+    $paciente->setIdPaciente($idCita);
     $hojaClinica = new ModeloHojaclinica();
     $hojaClinica->setIdHojaClinica($paciente->getIdHojaClinica());
     
@@ -222,7 +222,160 @@ if (isset($_GET['idPaciente']) ) {
         }
         $pdf->Ln(10);
     }
+    
+    if ($hojaClinica->getActividadFisica()!="sinrespuesta"){
+        $pdf->SetFont('Arial','U',12);
+        $pdf->Cell(32,5,' Actividad física: ',0,0,'L');
+        
+        $pdf->SetFont('Arial','',12);
+        $pdf->Cell(4,5,$hojaClinica->getActividadFisica(),0,0,'L',0);
+        
+        if ($hojaClinica->getActividadFisica()=="Si"){
+            if ($hojaClinica->getActividad()!=""){
+                $pdf->Cell(70,5,', '.$hojaClinica->getActividad(),0,0,'L');
+            }
+            
+            if ($hojaClinica->getTiempo()!="0"){
+                $pdf->SetFont('Arial','U',12);
+                $pdf->Cell(23,5,' Tiempo: ',0,0,'L');
+                $pdf->SetFont('Arial','',12);
+                $pdf->Cell(15,5,$hojaClinica->getTiempo().' '.$hojaClinica->getTiempoSimbolo(),0,0,'L');
+            }
+            
+            if ($hojaClinica->getActividadFisicaFrecuencia()!="sinrespuesta"){
+                $pdf->SetFont('Arial','U',12);
+                $pdf->Cell(25,5,'Frecuencia: ',0,0,'L');
+                $pdf->SetFont('Arial','',12);
+                $pdf->Cell(30,5,$arrOpciones[$hojaClinica->getActividadFisicaFrecuencia()],0,0,'L');
+            }
+        }
+            $pdf->Ln(10);
+    }
+    
+    
+    if ($hojaClinica->getMotivacion()!=""){
+        $pdf->SetFont('Arial','U',12);
+        $pdf->Cell(90,5,' Motivación para iniciar el plan nutricional: ',0,0,'L');
+        $pdf->SetFont('Arial','',12);
+        $pdf->Cell(10,5,$hojaClinica->getMotivacion(),0,0,'L');
+       $pdf->Ln(10);
+    }
+    
+    if ($hojaClinica->getHorarioLevantarse()!="00:00 AM"){
+        $pdf->SetFont('Arial','U',12);
+        $pdf->Cell(45,5,' Horario de levantarse: ',0,0,'L');
+        $pdf->SetFont('Arial','',12);
+        $pdf->Cell(20,5,$hojaClinica->getHorarioLevantarse(),0,0,'L');
+    }
+    
+    if ($hojaClinica->getHorarioAcostarse()!="00:00 AM"){
+        $pdf->SetFont('Arial','U',12);
+        $pdf->Cell(42,5,' Horario de acostarse: ',0,0,'L');
+        $pdf->SetFont('Arial','',12);
+        $pdf->Cell(20,5,$hojaClinica->getHorarioAcostarse(),0,0,'L');
+    }
+    
+    if ($hojaClinica->getHorarioActividad()!="00:00 AM"){
+        $pdf->SetFont('Arial','U',12);
+        $pdf->Cell(41,5,'Horario de act. física: ',0,0,'L');
+        $pdf->SetFont('Arial','',12);
+        $pdf->Cell(20,5,$hojaClinica->getHorarioActividad(),0,0,'L');
+    }
+    
+    if ($hojaClinica->getHorarioLevantarse()!="00:00 AM"||$hojaClinica->getHorarioAcostarse()!="00:00 AM"||$hojaClinica->getHorarioActividad()!="00:00 AM"){
+        $pdf->Ln(10);
+    }
+    $pdf->Ln(10);
+    $pdf->SetFont('Arial','B',16);
+    $pdf->Cell(185,10,' Recordatorio 24 hrs ',1,0,'C');
+    $pdf->Ln(15);
+    
+    $pdf->SetFillColor(194,246,199);///verde
+    
+    $pdf->SetFont('Arial','',14);
+    $pdf->Cell(30,8,' ',1,0,'C',1);
+    $pdf->Cell(25,8,'Horario',1,0,'C',1);
+    $pdf->Cell(130,8,'Alimentos',1,0,'C',1);
+    
+    $pdf->Ln();
+    $pdf->SetFillColor(255,255,255);/// color blanco celda
+    $pdf->SetFont('Arial','',12);
+    
+    $pdf->Cell(30,8,'Desayuno',1,0,'C');
+    $horario=$hojaClinica->getHorarioDesayuno();
+    if ($horario=="00:00 AM"){
+        $horario="-";
+    }
+    $pdf->Cell(25,8,$horario,1,0,'C');
+    $alimento=$hojaClinica->getActividadDesayuno();
+    if ($alimento==""){
+        $alimento="-";
+    }
+    $pdf->MultiCell(130,8,$alimento,1,'J',1);
+    
+    $pdf->Cell(30,8,'Colación 1',1,0,'C');
+    $horario=$hojaClinica->getHorarioColacion();
+    if ($horario=="00:00 AM"){
+        $horario="-";
+    }
+    $pdf->Cell(25,8,$horario,1,0,'C');
+    $alimento=$hojaClinica->getActividadColacion();
+    if ($alimento==""){
+        $alimento="-";
+    }
+    $pdf->MultiCell(130,8,$alimento,1,'J',1);
+    
+    $pdf->Cell(30,8,'Comida',1,0,'C');
+    $horario=$hojaClinica->getHorarioComida();
+    if ($horario=="00:00 AM"){
+        $horario="-";
+    }
+    $pdf->Cell(25,8,$horario,1,0,'C');
+    $alimento=$hojaClinica->getActividadComida();
+    if ($alimento==""){
+        $alimento="-";
+    }
+    $pdf->MultiCell(130,8,$alimento,1,'J',1);
+    
+    $pdf->Cell(30,8,'Colación 1',1,0,'C');
+    $horario=$hojaClinica->getHorarioColacion2();
+    if ($horario=="00:00 AM"){
+        $horario="-";
+    }
+    $pdf->Cell(25,8,$horario,1,0,'C');
+    $alimento=$hojaClinica->getActividadColacion2();
+    if ($alimento==""){
+        $alimento="-";
+    }
+    $pdf->MultiCell(130,8,$alimento,1,'J',1);
+    
+    $pdf->Cell(30,8,'Cena',1,0,'C');
+    $horario=$hojaClinica->getHorarioCena();
+    if ($horario=="00:00 AM"){
+        $horario="-";
+    }
+    $pdf->Cell(25,8,$horario,1,0,'C');
+    $alimento=$hojaClinica->getActividadCena();
+    if ($alimento==""){
+        $alimento="-";
+    }
+    $pdf->MultiCell(130,8,$alimento,1,'J',1);
+    
+    
     /*
+     $pdf->Cell(30,8,'',1,0,'C');
+    $horario=$hojaClinica->getHorario;
+    if ($horario==""){
+        $horario="-";
+    }
+    $pdf->Cell(25,8,$horario,1,0,'C');
+    $alimento=$hojaClinica->getActividad;
+    if ($alimento==""){
+        $alimento="-";
+    }
+    $pdf->Cell(130,8,$alimento,1,'J',1);
+    $pdf->Ln();
+     * 
     if ($hojaClinica->get!="sinrespuesta"){
         $pdf->SetFont('Arial','U',12);
         $pdf->Cell(20,5,' : ',0,0,'L');

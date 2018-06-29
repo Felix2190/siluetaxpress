@@ -428,6 +428,8 @@ function altaPaciente(){
     		console.log("Error: tiempo");
     	}
     	
+    	hoja['tiempoSimbolo']= $("#slcTiempo").val().trim();
+    	
     	hoja['tiempoActividad'] = '';
         $("input[name=actividadTiempo]").each(function (index) { 
            if($(this).is(':checked')){

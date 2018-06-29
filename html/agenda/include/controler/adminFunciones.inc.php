@@ -57,6 +57,10 @@ if (isset($_POST['Sucursal'])&&isset($_POST['Consultorio'])){
     echo obtenerIntervalosDisponibles($_POST['Sucursal'], $_POST['Consultorio']);
 }
 
+if (isset($_POST['listadoPacientes'])){
+    echo obtenerListadoPacientes($_POST['listadoPacientes']);
+}
+
 function obtenCombo($array,$default){
     $combo='<option value="">'.$default.'</option>';
     foreach ($array as $key => $opcion)
@@ -381,4 +385,11 @@ function enviaSMS($numPaciente, $sMessage){
     return true;
 }
 
+
+function obtenerListadoPacientes($idSucursal){
+    require_once FOLDER_MODEL_EXTEND. "model.paciente.inc.php";
+    $paciente = new ModeloPaciente();
+    return json_encode($paciente->listadoPacientes($idSucursal));
+    
+}
 ?>
