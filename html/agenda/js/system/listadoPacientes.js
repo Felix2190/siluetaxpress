@@ -4,6 +4,20 @@ $(document).ready(function(){
 	 
 function iniciar(){
 	listarPacientes();
+	if($("#hdnRol").val()==1){
+		 $.ajax({
+				method : "post",
+				url : "adminFunciones.php",
+				data : {
+					sucursales:''
+				},
+				success : function(data) {
+					respuesta=JSON.parse(data);
+					$( "#slcSucursal" ).html(respuesta);
+				}
+			});
+	 }
+	$( "#slcSucursal" ).change(listarPacientes);
 }
 
 function listarPacientes(){
@@ -19,7 +33,7 @@ function listarPacientes(){
 		},
 		success : function(data) {
 			respuesta=JSON.parse(data);
-			xajax_verTabla(respuesta);
+			xajax_verTabla(respuesta,nsucursal);
 		}
 	});
 

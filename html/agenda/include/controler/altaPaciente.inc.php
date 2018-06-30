@@ -36,37 +36,45 @@ function guardar($datos){
     
     $hojaClinica = new ModeloHojaClinica();
     $hojaClinica->setFechaRegistro(date('Y-m-d H:i:s'));
-    $hojaClinica->setCirugia($infoHoja['cirugias']);
+    if ($infoHoja['cirugias']!="")
+        $hojaClinica->setCirugia($infoHoja['cirugias']);
     if ($hojaClinica->getCirugia()=="Si"){
         $hojaClinica->setCirugias($infoHoja['cirugia']);
     }
     $hojaClinica->setEnfermedades($infoHoja['enfermedades']);
-    $hojaClinica->setEstrenimiento($infoHoja['estrenimiento']);
+    if ($infoHoja['estrenimiento']!="")
+        $hojaClinica->setEstrenimiento($infoHoja['estrenimiento']);
     if ($hojaClinica->getEstrenimiento()=="Si"){
         $hojaClinica->setEstrenimientoFrecuencia($infoHoja['estrenimientoF']);
     }
-    $hojaClinica->setMenstruacion($infoHoja['menstrual']);
-    $hojaClinica->setAlergia($infoHoja['alergia']);
+    if ($infoHoja['menstrual']!="")
+        $hojaClinica->setMenstruacion($infoHoja['menstrual']);
+        if ($infoHoja['alergia']!="")
+            $hojaClinica->setAlergia($infoHoja['alergia']);
     if ($hojaClinica->getAlergia()=="Si"){
         $hojaClinica->setAlimento($infoHoja['alergias']);
     }
     $hojaClinica->setHrsDormir($infoHoja['hrsDormir']);
     $hojaClinica->setHrsComer($infoHoja['hrsComida']);
-    $hojaClinica->setCafe($infoHoja['cafe']);
+    if ($infoHoja['cafe']!="")
+        $hojaClinica->setCafe($infoHoja['cafe']);
     if ($hojaClinica->getCafe()=="Si"){
         $hojaClinica->setCafeFrecuencia($infoHoja['cafeF']);
     }
-    $hojaClinica->setBeber($infoHoja['bebidas']);
+    if ($infoHoja['bebidas']!="")
+        $hojaClinica->setBeber($infoHoja['bebidas']);
     if ($hojaClinica->getBeber()=="Si"){
         $hojaClinica->setBeberFrecuencia($infoHoja['bebidasF']);
     }
-    $hojaClinica->setFuma($infoHoja['fuma']);
+    if ($infoHoja['fuma']!="")
+        $hojaClinica->setFuma($infoHoja['fuma']);
     if ($hojaClinica->getFuma()=="Si"){
         $hojaClinica->setFumaFrecuencia($infoHoja['fumaF']);
     }
     $hojaClinica->setDesagradables($infoHoja['desagradable']);
     $hojaClinica->setAnsiedad($infoHoja['ansiedad']);
-    $hojaClinica->setActividadFisica($infoHoja['actividadFisica']);
+    if ($infoHoja['actividadFisica']!="")
+        $hojaClinica->setActividadFisica($infoHoja['actividadFisica']);
     if ($hojaClinica->getActividadFisica()=="Si"){
         $hojaClinica->setActividad($infoHoja['actividad']);
         $hojaClinica->setTiempo($infoHoja['tiempo']);
@@ -77,27 +85,32 @@ function guardar($datos){
     $hojaClinica->setHorarioLevantarse($infoHoja['hrLevantar']);
     $hojaClinica->setHorarioAcostarse($infoHoja['hrAcostar']);
     $hojaClinica->setHorarioActividad($infoHoja['hrEjercicio']);
-    $hojaClinica->setDesayuno($infoHoja['desayunoF']);
+    if ($infoHoja['desayunoF']!="")
+        $hojaClinica->setDesayuno($infoHoja['desayunoF']);
     if ($hojaClinica->getDesayuno()=="Si"){
         $hojaClinica->setHorarioDesayuno($infoHoja['hrDesayuno']);
         $hojaClinica->setActividadDesayuno($infoHoja['desayuno']);
     }
-    $hojaClinica->setColacion($infoHoja['colacionF']);
+    if ($infoHoja['colacionF']!="")
+        $hojaClinica->setColacion($infoHoja['colacionF']);
     if ($hojaClinica->getColacion()=="Si"){
         $hojaClinica->setHorarioColacion($infoHoja['hrColacion1']);
         $hojaClinica->setActividadColacion($infoHoja['colacion1']);
     }
-    $hojaClinica->setComida($infoHoja['comidaF']);
+    if ($infoHoja['comidaF']!="")
+        $hojaClinica->setComida($infoHoja['comidaF']);
     if ($hojaClinica->getComida()=="Si"){
         $hojaClinica->setHorarioComida($infoHoja['hrComida']);
         $hojaClinica->setActividadComida($infoHoja['comida']);
     }
-    $hojaClinica->setColacion2($infoHoja['colacion2F']);
+    if ($infoHoja['colacion2F']!="")
+        $hojaClinica->setColacion2($infoHoja['colacion2F']);
     if ($hojaClinica->getColacion2()=="Si"){
         $hojaClinica->setHorarioColacion2($infoHoja['hrColacion2']);
         $hojaClinica->setActividadColacion2($infoHoja['colacion2']);
     }
-    $hojaClinica->setCena($infoHoja['cenaF']);
+    if ($infoHoja['cenaF']!="")
+        $hojaClinica->setCena($infoHoja['cenaF']);
     if ($hojaClinica->getCena()=="Si"){
         $hojaClinica->setHorarioCena($infoHoja['hrCena']);
         $hojaClinica->setActividadCena($infoHoja['cena']);

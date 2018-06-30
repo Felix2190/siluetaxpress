@@ -38,7 +38,7 @@ if (isset($_GET['idPaciente']) ) {
             $this->Ln(5);
             $this->SetFont('Arial','B',42);
             $this->Cell(190,35,'',1,0,'C',0);
-            $this->Image('images/logo_siluetaexpress.png',15,20,55,null);//
+            $this->Image('images/logo_siluetaExpress.png',15,20,55,null);//
             $this->SetFont('Arial','',16);
             $this->Ln(1);
             $this->direccion=$dir;
@@ -126,15 +126,13 @@ if (isset($_GET['idPaciente']) ) {
         }
         $pdf->Ln(10);
     }
-    
-    $pdf->SetFont('Arial','U',12);
-    $pdf->Cell(40,5,' Periodo menstrual: ',0,0,'L');
-    
-    $pdf->SetFont('Arial','',12);
-    $pdf->Cell(15,5,$hojaClinica->getMenstruacion(),0,0,'L',0);
-    
-    $pdf->Ln(10);
-    
+    if ($hojaClinica->getMenstruacion()!="sinrespuesta"){
+        $pdf->SetFont('Arial','U',12);
+        $pdf->Cell(40,5,' Periodo menstrual: ',0,0,'L');
+        $pdf->SetFont('Arial','',12);
+        $pdf->Cell(15,5,$hojaClinica->getMenstruacion(),0,0,'L',0);
+        $pdf->Ln(10);
+    }
     if ($hojaClinica->getAlergia()!="sinrespuesta"){
         $pdf->SetFont('Arial','U',12);
         $pdf->Cell(50,5,' Alergia a algún alimento: ',0,0,'L');

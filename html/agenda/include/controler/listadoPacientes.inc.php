@@ -14,7 +14,25 @@
 // -----------------------------------------------------------------------------------------------------------------#
 // ----------------------------------------------------Funciones----------------------------------------------------#
 // -----------------------------------------------------------------------------------------------------------------#
-
+function obtenMes($numMes){
+    $MESES=  array (
+        "1"=>"Enero",
+        "2"=>"Febrero",
+        "3"=>"Marzo",
+        "4"=>"Abril",
+        "5"=>"Mayo",
+        "6"=>"Junio",
+        "7"=>"Julio",
+        "8"=>"Agosto",
+        "9"=>"Septiembre",
+        "10"=>"Octubre",
+        "11"=>"Noviembre",
+        "12"=>"Diciembre"
+    );
+    if ($numMes=='')
+        return $MESES;
+        return $MESES[''.$numMes];
+}
 // -----------------------------------------------------------------------------------------------------------------#
 // -----------------------------------------------------------------------------------------------------------------#
 
@@ -25,12 +43,12 @@
 $xajax = new xajax();
 
 
-function verTabla($informacion){
+function verTabla($informacion,$sucursal){
     $r=new xajaxResponse();
     global $objSession;
     
     $arrEncabezado=array("Nombre","Tel&eacute;fono","Completitud [hoja cl&iacute;nica]","Registro","Consultas realizadas","Consultas pr&oacute;ximas","Cita pr&oacute;xima","Opciones");
-    if ($objSession->getidRol()==1)
+    if ($objSession->getidRol()==1&&$sucursal=='')
         $arrEncabezado=array("Nombre","Tel&eacute;fono","Sucursal","Completitud [hoja cl&iacute;nica]","Registro","Consultas realizadas","Consultas pr&oacute;ximas","Cita pr&oacute;xima","Opciones");
         
             $tabla="<div class='row'><div class='12u'><table><thead><tr>";
@@ -43,16 +61,20 @@ function verTabla($informacion){
             
             $tabla.="</tr></thead><tbody>";
             foreach ($informacion as $paciente){
-                $sucursal="";
-                if ($objSession->getidRol()==1)
-                    $sucursal="<td>".$paciente['sucursal']."</td>";
-                    
+                
+                if ($objSession->getidRol()==1&&$sucursal=='')
+                    $txtSucursal="<td>".$paciente['sucursal']."</td>";
+                else
+                    $txtSucursal="";
                 $citaProxima="-";
-                if ($paciente['fechaProxima']!=NULL)
-                    $citaProxima="<a onClick='verCita(".$paciente['cita'].")'>".$paciente['fechaProxima']." </a>";
+                if ($paciente['fechaProxima']!=NULL){
+                    $fechaCita=explode("-", $paciente['fechaProxima']);
+                    $citaProxima="<a onClick='verCita(".$paciente['cita'].")'>$fechaCita[2] de ".obtenMes(''.intval($fechaCita[1]))." del $fechaCita[0] </a>";
+                    }
+                    $fecha=explode("-", $paciente['fecha']);
                     
-                    
-                    $tabla.="<tr><td colspan='2'>".$paciente['nombreP']."</td>$sucursal<td>".$paciente['telefonoCel']."</td><td>".$paciente['completitud']."%</td><td>".$paciente['fecha']."</td>
+                    $tabla.="<tr><td colspan='2'>".$paciente['nombreP']."</td><td>".$paciente['telefonoCel']."</td>$txtSucursal<td>".$paciente['completitud']."%</td>
+                    <td>$fecha[2]/".obtenMes(''.intval($fecha[1]))."/$fecha[0]</td>
                     <td>".$paciente['consultasHechas']."</td><td>".$paciente['consultasProximas']."</td><td>".$citaProxima."</td>
                     <td><a onClick='verPaciente(".$paciente['idPaciente'].")'>Ver detalles</a></td></tr>";
             }

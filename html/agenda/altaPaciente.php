@@ -210,7 +210,7 @@ require_once 'masterInclude.inc.php';
 																<label style="float: left;" for="demo-priority-noA">No</label> </form>
 								</div>
 								<div class="2u 12u$(xsmall)  divAlergia" style="display: none;">
-									<label>&iquest;Qu&aacute;l?</label>
+									<label>&iquest;Cu&aacute;l?</label>
 								</div>
 								<div class="4u 12u$(xsmall)  divAlergia" style="display: none;">
 									<input type="text" id="txtAlergias" class="" />

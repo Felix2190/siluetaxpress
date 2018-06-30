@@ -74,9 +74,9 @@ $paciente = new ModeloPaciente();
 $paciente->setIdPaciente($idPaciente);
 
 if ($paciente->getIdPaciente()>0){
-    $hoja=new ModeloHojaclinica();
+    $hojaClinica=new ModeloHojaclinica();
     
-    $hoja->setIdHojaClinica($paciente->getIdHojaClinica());
+    $hojaClinica->setIdHojaClinica($paciente->getIdHojaClinica());
     
 }else {
     header("Location: listadoPaciente.php");
