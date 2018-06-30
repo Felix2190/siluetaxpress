@@ -79,10 +79,22 @@ require_once 'masterInclude.inc.php';
 								
 								</section>
 									<div class="row uniform">
-								<div class="4u 12u$(xsmall)" style="float: right;">
+								<div class="2u 12u$(xsmall)" style="float: right;" >
 									<a id="btnSig" class="button small">Siguiente semana</a>
 								</div>
+								<div class="2u 12u$(xsmall)" style="float: right;" id="divBtnAnt">
 								</div>
+								<div class="2u 12u$(xsmall)" style="float: right;" >
+									<input type="text" id="txtFecha" placeholder="AAAA-MM-DD" readonly="readonly"
+																class="datepicker" />
+								</div>
+								<div class="2u 12u$(xsmall)" style="float: right;" >
+									<label>Seleccionar d&iacute;a:</label>
+								</div>
+								
+								</div>
+								<input type="hidden" id="hdnFechaFin" value="<?php echo date("Y-m-d");?>"/>
+								<input type="hidden" id="hdnFechaActual" value="<?php echo date("Y-m-d");?>"/>
 								<input type="hidden" id="hdnFechaInicio" value="<?php echo date("Y-m-d");?>"/>
 									<div class="table-wrapper" id="divTabla">
 													</div>
@@ -94,7 +106,6 @@ require_once 'masterInclude.inc.php';
 			</div>
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/skel.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->

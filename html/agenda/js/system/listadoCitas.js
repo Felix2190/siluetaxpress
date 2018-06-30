@@ -3,8 +3,15 @@ $(document).ready(function(){
 });
 	 
 function iniciar(){
-	listarCitas();
-		
+	listarCitas($( "#hdnFechaActual" ).val());
+	$('.datepicker').datepicker({
+		dateFormat : 'yy-mm-dd',
+		changeMonth : true,
+		changeYear : true,
+		minDate : '0D'
+	});
+	
+	
 		 $( "#slcSucursal" ).change(mostrarCabinas);
 		 
 		 if($("#hdnRol").val()==1){
@@ -23,11 +30,21 @@ function iniciar(){
 			 mostrarCabinas();
 		 }
 		 
-		 $( "#slcConsultorio" ).change(listarCitas);
-		 $( "#btnSig" ).click(listarCitas);
+		 $( "#slcConsultorio" ).change(function(){
+			 listarCitas($( "#hdnFechaActual" ).val());
+		 });
+		
+		 $( "#btnSig" ).click(function(){
+			 listarCitas($( "#hdnFechaFin" ).val());
+		 });
+		 
+		 $( "#txtFecha" ).change(function(){
+			 listarCitas($( "#txtFecha" ).val());
+		 });
+		
 }
 
-function listarCitas(){
+function listarCitas(fechaI){
 	var idCabina="";
 	var alta=$( "#hdnAlta" ).val();
 	var nsucursal=$( "#hdnSucursal" ).val();
@@ -44,18 +61,17 @@ function listarCitas(){
 				paciente:$( "#hdnPaciente" ).val(),
 				usuario:$( "#hdnUsuario" ).val(),
 				cabina:idCabina,
-				fechaInicio:$( "#hdnFechaInicio" ).val(),
+				fechaInicio:fechaI
 			},
 			success : function(data) {
 				respuesta=JSON.parse(data);
-				xajax_consultarCitas(respuesta,$( "#hdnFechaInicio" ).val());
+				xajax_consultarCitas(respuesta,fechaI);
 			}
 		});
 	 
 }
 
 function mostrarCabinas(){
-	
 	var nsucursal=$( "#hdnSucursal" ).val();
 	if (nsucursal=='')
 		nsucursal=$( "#slcSucursal" ).val();
@@ -70,7 +86,7 @@ function mostrarCabinas(){
 				$("#slcConsultorio").html(data);
 			}
 		});
-	 listarCitas();
+	listarCitas($( "#hdnFechaActual" ).val());
 }
 
 function ocultarDetalles(id){
@@ -82,8 +98,14 @@ function verDetalles(id){
 	$( "#c"+id ).show();
 	$( "#l"+id ).hide();
 }
-function colocaFecha(fecha){
-	$( "#hdnFechaInicio" ).val(fecha);
+function colocaFechas(fechaF,fechaA,fechaI){
+	$( "#hdnFechaFin" ).val(fechaF);
+	$( "#hdnFechaActual" ).val(fechaA);
+	$( "#hdnFechaInicio" ).val(fechaI);
+	 $( "#btnAnt" ).click(function(){
+		 listarCitas(fechaI);
+	 });
+
 }
 	//$("#").();
 //var alert = alertify.alert('Titulo','TextoAlerta').set('label', 'Aceptar');     	 

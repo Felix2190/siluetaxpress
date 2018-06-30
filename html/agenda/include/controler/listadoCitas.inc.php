@@ -43,11 +43,12 @@ function obtenMes($numMes){
 
 $xajax = new xajax();
 
-function consultarCitas($informacion,$fechaInicio){
+function consultarCitas($informacion,$fechaI){
     $r=new xajaxResponse();
     global $objSession;
-    $fecha1=explode("-", $fechaInicio);
-    $fechaFin = date ("Y-m-d",strtotime ( '+7 day' , strtotime ( $fechaInicio) ) );
+    $fecha1=explode("-", $fechaI);
+    $fechaFin = date ("Y-m-d",strtotime ( '+7 day' , strtotime ( $fechaI) ) );
+    $fechaInicio = date ("Y-m-d",strtotime ( '-7 day' , strtotime ( $fechaI) ) );
     $fecha2=explode("-", $fechaFin);
     $rango="$fecha1[2]/".obtenMes(''.intval($fecha1[1]))."/$fecha1[0] al $fecha2[2]/".obtenMes(''.intval($fecha2[1]))."/$fecha2[0]";
     
@@ -81,7 +82,9 @@ function consultarCitas($informacion,$fechaInicio){
             $min=$cita['duracion']%60;
             $duracion=($hr>0?($hr. ' hora'.($hr>1?'s':'')).($min>0?(', '.$min.' minutos'):''):('').$min.' minutos');
             
-            $detalles="<div id='l".$cita['idCita']."'> <a onClick='verDetalles(".$cita['idCita'].")'>Ver detalles </a> </div>
+            $detalles="<div id='l".$cita['idCita']."'> <p> <strong>Consultorio: </strong> ".$cita['cabina']."</p>
+                        <a onClick='verDetalles(".$cita['idCita'].")'>Ver detalles </a> </div>
+
                         <div id='c".$cita['idCita']."' style='display: none'; > <blockqoute> 
                             <p> <strong>Servicio: </strong> ".$cita['servicio']."</p>
                             <p> <strong>Consultorio: </strong> ".$cita['cabina']."</p>
@@ -94,9 +97,23 @@ function consultarCitas($informacion,$fechaInicio){
         }
         $tabla.="</tbody></table></div></div><br />";
     }
+    $fI=strtotime($fechaI);
+    $fh=strtotime(date ( 'Y-m-d'));
+    $fA=strtotime($fechaInicio);
+    
+    $disable="";
+    if ($fI<=$fh){
+        $disable="disabled";
+    }
+    if ($fA<$fh){
+        $fechaInicio=date ( 'Y-m-d');
+    }
+    
+    $btn='<a id="btnAnt" class="button small '.$disable.'">Anterior semana</a>';
     $r->assign('divTabla', 'innerHTML', $tabla);
     $r->assign('fechasEntre', 'innerHTML', $rango);
-    $r->call('colocaFecha', $fechaFin);
+    $r->assign('divBtnAnt', 'innerHTML', $btn);
+    $r->call('colocaFechas', $fechaFin,$fechaI,$fechaInicio);
     return $r;
     
 }

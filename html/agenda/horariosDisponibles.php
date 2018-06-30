@@ -65,6 +65,25 @@ require_once 'masterInclude.inc.php';
 								
 								</div>
 								<br />
+								<div class="row uniform">
+								<div class="2u 12u$(xsmall)" style="float: right;" >
+									<a id="btnSig" class="button small">Siguiente semana</a>
+								</div>
+								<div class="2u 12u$(xsmall)" style="float: right;" id="divBtnAnt">
+								</div>
+								<div class="2u 12u$(xsmall)" style="float: right;" >
+									<input type="text" id="txtFecha" placeholder="AAAA-MM-DD" readonly="readonly"
+																class="datepicker" />
+								</div>
+								<div class="2u 12u$(xsmall)" style="float: right;" >
+									<label>Seleccionar d&iacute;a:</label>
+								</div>
+								
+								</div>
+								<input type="hidden" id="hdnFechaFin" value="<?php echo date("Y-m-d");?>"/>
+								<input type="hidden" id="hdnFechaActual" value="<?php echo date("Y-m-d");?>"/>
+								<input type="hidden" id="hdnFechaInicio" value="<?php echo date("Y-m-d");?>"/>
+								<br />
 								<div class="row" id="divHorarios">
 									
 									
