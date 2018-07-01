@@ -56,7 +56,7 @@ require_once 'masterInclude.inc.php';
 									</div>
 									<?php } ?>
 								
-								<div class="1u 12u$(xsmall)">
+								<div class="2u 12u$(xsmall)">
 									<label>Consultorio:</label>
 								</div>
 								<div class="3u 12u$(xsmall)">
@@ -92,7 +92,7 @@ require_once 'masterInclude.inc.php';
 								<br />
 								<div class="row" id="divHorarios">
 									
-									
+								
 								</div>
 
 						</div>

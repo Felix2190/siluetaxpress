@@ -16,7 +16,10 @@ function consultaDatos(){
 			$( "#slcPaciente" ).html(respuesta);
 		}
 	});
-	 
+	if($( "#hdnPredefinida" ).val()=='true'){
+		$( "#txtFecha" ).val($( "#hdnFecha" ).val());
+		$( "#slcDuracion" ).val('10');
+	}
 	 $.ajax({
 			method : "post",
 			url : "adminFunciones.php",
@@ -26,6 +29,9 @@ function consultaDatos(){
 			success : function(data) {
 				respuesta=JSON.parse(data);
 				$( "#slcConsulta" ).html(respuesta);
+				if($( "#hdnPredefinida" ).val()=='true'){
+					$( "#slcConsulta" ).val($( "#hdnConsulta" ).val());
+				}
 			}
 		});
 		 
@@ -39,6 +45,11 @@ function consultaDatos(){
 			success : function(data) {
 				respuesta=JSON.parse(data);
 				$( "#slcSucursal" ).html(respuesta);
+				if($( "#hdnPredefinida" ).val()=='true'){
+					$( "#slcSucursal" ).val($( "#hdnSucursal" ).val());
+					mostrarCabinas();
+				}
+				
 			}
 		});
 		 
@@ -74,10 +85,12 @@ function iniciar(){
 		minDate : '0D'
 	});
 	
+	
      $( "#slcSucursal" ).change(mostrarCabinas);
 	 $( "#txtFecha" ).change(verHorarios);
 	 $( "#slcConsulta" ).change(mostrarCabinas);
 	 $( "#slcConsultorio" ).change(verHorarios);
+	
 	 
 	 $( "#slcHr" ).change(function(){
 		 var opcion2='';
@@ -136,6 +149,16 @@ function iniciar(){
 		$("#btnGuardar").show();
 		$('#divFechasNoDisponibles').hide();
 	});
+	
+	if($( "#hdnPredefinida" ).val()=='true'){
+	setTimeout(function() {
+		$( "#slcConsultorio" ).val($( "#hdnCabina" ).val());
+		verHorarios();
+		},1700);
+	setTimeout(function() {
+		$( "#slcHr" ).val($( "#hdnHr" ).val());
+		},2200);
+	}
 }
 var arrFechas=[];
 
@@ -150,7 +173,6 @@ function obtenerDias() {
 }
 
 function verHorarios(){
-
 	var sucursal= $("#slcSucursal").val().trim();
 	var consulta = $("#slcConsulta").val().trim();
 	var consultorio = $("#slcConsultorio").val().trim();

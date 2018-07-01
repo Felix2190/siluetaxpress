@@ -14,24 +14,6 @@ require_once 'masterInclude.inc.php';
 		
 		<?php require_once 'importar_scripts.php'; ?>
 	</head>
-<?php 
-$aux =$_SESSION['editaPaciente'];
-$titulo=$aux['titulo'];
-$idPaciente=$aux['idPaciente'];
-
-$paciente = new ModeloPaciente();
-$paciente->setIdPaciente($idPaciente);
-
-if ($paciente->getIdPaciente()>0){
-    $hoja=new ModeloHojaclinica();
-    
-    $hoja->setIdHojaClinica($paciente->getIdHojaClinica());
-    
-}else {
-    header("Location: listadoPaciente.php");
-}
-
-?>
 <body>
 		<!-- Wrapper -->
 			<div id="wrapper">
@@ -96,7 +78,7 @@ if ($paciente->getIdPaciente()>0){
 			<div class="row">
 				<div class="2u 12u$(small)">
 					<ul>
-						<li><strong>Cirugías: </strong><?php echo $hojaClinica->getCirugia();?></li>
+						<li><strong>Cirug&iacute;as: </strong><?php echo $hojaClinica->getCirugia();?></li>
 					</ul>
 					</div>
 				<?php if ($hojaClinica->getCirugia()=="Si"){ ?>
@@ -124,7 +106,7 @@ if ($paciente->getIdPaciente()>0){
 			<div class="row">
 				<div class="3u 12u$(small)">
 					<ul>
-						<li><strong>Estreñimiento:&emsp;</strong><?php echo $hojaClinica->getEstrenimiento();?></li>
+						<li><strong>Estre&ntilde;imiento:&emsp;</strong><?php echo $hojaClinica->getEstrenimiento();?></li>
 					</ul>
 					</div>
 				<?php if ($hojaClinica->getEstrenimiento()=="Si"){ ?>
@@ -176,7 +158,7 @@ if ($paciente->getIdPaciente()>0){
 				<?php if ($hojaClinica->getHrsComer()!=0){?>
 				<div class="5u 12u$(small)">
 					<ul>
-						<li><strong>Comidas al día:&emsp;</strong><?php echo $hojaClinica->getHrsComer();?> </li>
+						<li><strong>Comidas al d&iacute;a:&emsp;</strong><?php echo $hojaClinica->getHrsComer();?> </li>
 					</ul>
 			 </div>
 			<?php }?>
@@ -189,7 +171,7 @@ if ($paciente->getIdPaciente()>0){
 			<div class="row">
 				<div class="3u 12u$(small)">
 					<ul>
-						<li><strong>Toma café:&emsp;</strong><?php echo $hojaClinica->getCafe();?></li>
+						<li><strong>Toma caf&eacute;:&emsp;</strong><?php echo $hojaClinica->getCafe();?></li>
 					</ul>
 					</div>
 				<?php if ($hojaClinica->getCafe()=="Si"){ ?>
@@ -204,7 +186,7 @@ if ($paciente->getIdPaciente()>0){
 			<div class="row">
 				<div class="4u 12u$(small)">
 					<ul>
-						<li><strong>Ingiere bebidas alcohólicas:&emsp;</strong><?php echo $hojaClinica->getBeber();?></li>
+						<li><strong>Ingiere bebidas alcoh&oacute;licas:&emsp;</strong><?php echo $hojaClinica->getBeber();?></li>
 					</ul>
 					</div>
 				<?php if ($hojaClinica->getBeber()=="Si"){ ?>
@@ -259,7 +241,7 @@ if ($paciente->getIdPaciente()>0){
 			<div class="row">
 				<div class="3u 12u$(small)">
 					<ul>
-						<li><strong>Actividad física:&emsp;</strong><?php echo $hojaClinica->getActividadFisica();?></li>
+						<li><strong>Actividad f&iacute;sica:&emsp;</strong><?php echo $hojaClinica->getActividadFisica();?></li>
 					</ul>
 					</div>
 				<?php if ($hojaClinica->getAlergia()=="Si"){ ?>
@@ -285,7 +267,7 @@ if ($paciente->getIdPaciente()>0){
 			<div class="row">
 				<div class="8u 12u$(small)">
 					<ul>
-						<li><strong>Motivación para iniciar el plan nutricional:&emsp;</strong><?php echo $hojaClinica->getMotivacion();?></li>
+						<li><strong>Motivaci&oacute;n para iniciar el plan nutricional:&emsp;</strong><?php echo $hojaClinica->getMotivacion();?></li>
 					</ul>
 				</div>
 			 </div>
@@ -313,7 +295,7 @@ if ($paciente->getIdPaciente()>0){
 			<?php if ($hojaClinica->getHorarioActividad()!="00:00 AM"){?>
 				<div class="4u 12u$(small)">
 					<ul>
-						<li><strong>Horario de actividad física:&emsp;</strong><?php echo $hojaClinica->getHorarioActividad();?></li>
+						<li><strong>Horario de actividad f&iacute;sica:&emsp;</strong><?php echo $hojaClinica->getHorarioActividad();?></li>
 					</ul>
 				</div>
 			<?php }?>
@@ -351,7 +333,7 @@ if ($paciente->getIdPaciente()>0){
 																	<td colspan="3"><?php echo $hojaClinica->getActividadDesayuno();?></td>
 																</tr>
 																<tr>
-																<td >Colación 1</td>
+																<td >Colaci&oacute;n 1</td>
 																	<td><?php echo ($hojaClinica->getHorarioColacion()=="00:00 AM"?"-":$hojaClinica->getHorarioColacion());?></td>
 																	<td colspan="3"><?php echo $hojaClinica->getActividadColacion();?></td>
 																</tr>
@@ -361,7 +343,7 @@ if ($paciente->getIdPaciente()>0){
 																	<td colspan="3"><?php echo $hojaClinica->getActividadDesayuno();?></td>
 																</tr>
 																<tr>
-																<td >Colación 2</td>
+																<td >Colaci&oacute;n 2</td>
 																	<td><?php echo ($hojaClinica->getHorarioColacion2()=="00:00 AM"?"-":$hojaClinica->getHorarioColacion2());?></td>
 																	<td colspan="3"><?php echo $hojaClinica->getActividadColacion2();?></td>
 																</tr>

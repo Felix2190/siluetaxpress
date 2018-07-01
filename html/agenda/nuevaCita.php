@@ -52,7 +52,14 @@ require_once 'masterInclude.inc.php';
 					<div class="12u 12u$(small)">
 						<div class="box">
 						<input type="hidden" id="hdnRol" value="<?php echo $objSession->getidRol();?>"/>
-						<?php ?>
+						<input type="hidden" id="hdnPredefinida" value="<?php echo $predefinida;?>"/>
+						<?php if ($predefinida=='true') {?>
+						<input type="hidden" id="hdnSucursal" value="<?php echo $idSucursal;?>"/>
+						<input type="hidden" id="hdnConsulta" value="<?php echo $idConsulta;?>"/>
+						<input type="hidden" id="hdnFecha" value="<?php echo $fecha;?>"/>
+						<input type="hidden" id="hdnHr" value="<?php echo $hr;?>"/>
+						<input type="hidden" id="hdnCabina" value="<?php echo $idCabina;?>"/>
+						<?php }?>
 							<div class="row uniform" id="divInicio">
 								<div class="1u 12u$(xsmall)">
 									<label>Paciente:</label>

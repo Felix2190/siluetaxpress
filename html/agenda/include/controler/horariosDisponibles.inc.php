@@ -73,6 +73,7 @@ function mostrarHorarios($arrInfo, $arrFechas, $fechaI)
     $disable="";
     if ($fI<=$fh){
         $disable="disabled";
+        $fechaI=date('Y-m-d');
     }
     if ($fA<$fh){
         $fechaInicio=date ( 'Y-m-d');
@@ -105,9 +106,11 @@ function mostrarHorarios($arrInfo, $arrFechas, $fechaI)
                 if (key_exists($fecha, $arrFechaHorarios)) {
                 $arrHorarios = $arrFechaHorarios[$fecha];
                 $txtHorarios .= '<td><ul class="alt">';
-                foreach ($arrHorarios as $horario)
-                    $txtHorarios .= "<li>$horario</li>";
-                
+                foreach ($arrHorarios as $horario){
+                    $auxH=explode("-", $horario);
+                    $auxH=explode("-", $auxH[0]);
+                    $txtHorarios .= "<li> <a onclick='predefineFecha(\"$idSucursal\",\"$idCabina\",\"$fecha\",\"$auxH[0]\")'>$horario</a></li>";
+                }
                 $txtHorarios .= '</ul></td>';
                 }else {
                     $txtHorarios .= '<td></td>';
@@ -118,6 +121,7 @@ function mostrarHorarios($arrInfo, $arrFechas, $fechaI)
         $txtHorarios .= '</tbody></table></div></div>';
     }
     
+    
     $r->assign('divHorarios', 'innerHTML', $txtHorarios);
     $r->assign('fechasEntre', 'innerHTML', $rango);
     $r->assign('divBtnAnt', 'innerHTML', $btn);
@@ -126,7 +130,19 @@ function mostrarHorarios($arrInfo, $arrFechas, $fechaI)
     return $r;
 }
 
+function agendarCita($sucursal, $cabina, $fecha,$hr)
+{
+    $r = new xajaxResponse();
+    
+    $_SESSION['citaPredefinida']=array('sucursal'=>$sucursal,'cabina'=>$cabina,'hora'=>$hr,'fecha'=>$fecha);
+    
+    $r->call('mostrarMsjEspera','Espere un momento...',3);
+    $r->redirect('nuevaCita.php',4);
+    return $r;
+}
+
 $xajax->registerFunction("mostrarHorarios");
+$xajax->registerFunction("agendarCita");
 
 $xajax->processRequest();
 

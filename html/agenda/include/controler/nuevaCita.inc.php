@@ -7,6 +7,7 @@ require_once FOLDER_MODEL_EXTEND. "model.servicio.inc.php";
 require_once FOLDER_MODEL_EXTEND. "model.paciente.inc.php";
 require_once FOLDER_MODEL_EXTEND. "model.sucursal.inc.php";
 require_once FOLDER_MODEL_EXTEND. "model.consulta.inc.php";
+require_once FOLDER_MODEL_EXTEND. "model.cabina.inc.php";
 require_once FOLDER_INCLUDE_AGENDA.'controler/adminFunciones.inc.php';
 
 // -----------------------------------------------------------------------------------------------------------------#
@@ -180,6 +181,24 @@ for ($tiempoI=10;$tiempoI<=240;$tiempoI+=10){
     $arrTiempo[$tiempoI]=$duracion;
 }
 
-$operadores=obtenCombo($arrTiempo,'Seleccione una opci&oacute;n')
+$operadores=obtenCombo($arrTiempo,'Seleccione una opci&oacute;n');
 
+// cita predefinia
+$predefinida='';
+if (isset($_SESSION['citaPredefinida'])){
+    $citaP=$_SESSION['citaPredefinida'];
+    $predefinida='true';
+    $idSucursal=$citaP['sucursal'];
+    $idCabina=$citaP['cabina'];
+    $hr=intval($citaP['hora']);
+   // $hr=($hr<10?'0':'').$hr;
+    $fecha=$citaP['fecha'];
+    $idConsulta=1;
+    
+    $cabina = new ModeloCabina();
+    $cabina->setIdCabina($idCabina);
+    if ($cabina->getTipo()=='cabina')
+        $idConsulta=2;
+    
+}
 ?>

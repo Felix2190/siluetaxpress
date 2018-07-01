@@ -61,6 +61,7 @@ if (isset($_POST['listadoPacientes'])){
     echo obtenerListadoPacientes($_POST['listadoPacientes']);
 }
 
+
 function obtenCombo($array,$default){
     $combo='<option value="">'.$default.'</option>';
     foreach ($array as $key => $opcion)
@@ -93,6 +94,7 @@ function obtenerIntervalosDisponibles($idSucursal,$idCabina,$fechaInicio){
         $segundo=false;
         $fechaInicial=$fechaInicio;
         $dia=date('N',strtotime ($fechaInicial));
+        
         $hrInicio = date("H");
         if ($dia==7){ //es domingo
             $segundo=true;
@@ -103,10 +105,25 @@ function obtenerIntervalosDisponibles($idSucursal,$idCabina,$fechaInicio){
         
         $sucursal->setIdSucursal($idSucursal);
         
-        $hrFin = $sucursal->getEntreSemanaSalida();
+        // sacar hr
+        if ($dia==6){
+            $hrInicio = $sucursal->getSabadoEntrada();
+            $hrFin=$sucursal->getSabadoSalida();
+        }else {
+            $hrInicio = $sucursal->getEntreSemanaEntrada();
+            $hrFin = $sucursal->getEntreSemanaSalida();
+        }
+        
+        $auxFechaEntrada=strtotime(date(date("Y-m-d", strtotime($fechaInicio)). " $hrInicio:00:00"));
+        $auxFechaFin=strtotime(date(date("Y-m-d", strtotime($fechaInicio)). " $hrFin:00:00"));
+        $auxFechaActual=strtotime(date("Y-m-d H:i:s"));
+        
+        if ($auxFechaActual<$auxFechaEntrada)
+            $segundo=true;
+        
         $fechaFin = date(date("Y-m-d", strtotime($fechaInicial)). " $hrFin:00:00");
         if ($segundo) {
-            $hrInicio = $sucursal->getEntreSemanaEntrada();
+        //    $hrInicio = $sucursal->getEntreSemanaEntrada();
             $fechaInicial = date($fechaInicial . " $hrInicio:00:00");
         }
         
@@ -125,12 +142,19 @@ function obtenerIntervalosDisponibles($idSucursal,$idCabina,$fechaInicio){
             }
 /**/    //return json_encode($arrCabinas);
         foreach ($arrCabinas as $idConsultorio=>$nomConsultorio) {
-            
+            $fecha=$fechaInicial;
             $cita->setIdCabina($idConsultorio);
             
-            
             do{
-                $fecha=$fechaInicial;
+                
+                $auxFechaEntrada=strtotime(date(date("Y-m-d", strtotime($fecha)). " $hrInicio:00:00"));
+                $auxFechaFin=strtotime(date(date("Y-m-d", strtotime($fecha)). " $hrFin:00:00"));
+                //$auxFechaActual=strtotime($fecha.date(" H:i:s"));
+                
+                if ($auxFechaActual<$auxFechaEntrada)
+                    $segundo=true;
+                    
+                    
                 $fechaFin = date(date("Y-m-d", strtotime($fecha)). " $hrFin:00:00");
                 $cita->setFechaInicio($fecha);
                 $cita->setFechaFin($fechaFin);
@@ -145,39 +169,43 @@ function obtenerIntervalosDisponibles($idSucursal,$idCabina,$fechaInicio){
             }
             
 //            return json_encode($horarioAgendado);
-            $horaInicio=$hrInicio.":00";
-            for ($hr=$hrInicio;$hr<$hrFin;$hr++){
-                for ($min=0;$min<=50;$min+=10){
-                    $hora=($hr<10?'0':'').$hr;
-                    $minuto=($min<10?'0':'').$min;
-                    $auxFecha2=$fecha;
-                    if ($segundo)
-                        $auxFecha2=date("Y-m-d", strtotime($fecha)).' '.$hora.':'.$minuto.':00';
-                        else{  // definir hora apartir de la actual
-                            $auxFecha=$auxFecha2;
+            if ($auxFechaActual>$auxFechaFin){
+                array_push($horasDisponibles, "Horario fuera de servcio");
+            }else{
+                $horaInicio=$hrInicio.":00";
+                for ($hr=$hrInicio;$hr<$hrFin;$hr++){
+                    for ($min=0;$min<=50;$min+=10){
+                        $hora=($hr<10?'0':'').$hr;
+                        $minuto=($min<10?'0':'').$min;
+                        $auxFecha2=$fecha;
+                        if ($segundo)
+                            $auxFecha2=date("Y-m-d", strtotime($fecha)).' '.$hora.':'.$minuto.':00';
+                            else{  // definir hora apartir de la actual
+                                $auxFecha=$auxFecha2;
+                                $auxFecha=explode(' ', $auxFecha);
+                                
+                                $auxFecha=explode(':', $auxFecha[1]);
+                                $hr=intval($auxFecha[0]);;
+                                $min=intval($auxFecha[1]);
+                            }
+                        $segundo=true;
+                        
+                        if (key_exists($auxFecha2,$horarioAgendado)){ // EXISTE CITA
+                            $auxFecha=$horarioAgendado[$auxFecha2];
                             $auxFecha=explode(' ', $auxFecha);
+                            if ($horaInicio!=$hr.':'.($min<10?'0':'').$min) //hora igual
+                                array_push($horasDisponibles, $horaInicio.' - '.$hr.':'.$min); // intervalo disponible
                             
                             $auxFecha=explode(':', $auxFecha[1]);
                             $hr=intval($auxFecha[0]);;
                             $min=intval($auxFecha[1]);
+                            $horaInicio=$hr.":".$min;
                         }
-                    $segundo=true;
-                    
-                    if (key_exists($auxFecha2,$horarioAgendado)){ // EXISTE CITA
-                        $auxFecha=$horarioAgendado[$auxFecha2];
-                        $auxFecha=explode(' ', $auxFecha);
-                        if ($horaInicio!=$hr.':'.($min<10?'0':'').$min) //hora igual
-                            array_push($horasDisponibles, $horaInicio.' - '.$hr.':'.$min); // intervalo disponible
-                        
-                        $auxFecha=explode(':', $auxFecha[1]);
-                        $hr=intval($auxFecha[0]);;
-                        $min=intval($auxFecha[1]);
-                        $horaInicio=$hr.":".$min;
                     }
                 }
+                if ($horaInicio!=$hr.':00') //hora igual
+                    array_push($horasDisponibles, $horaInicio.' - '.$hr.':00'); // intervalo disponible
             }
-            if ($horaInicio!=$hr.':00') //hora igual
-                array_push($horasDisponibles, $horaInicio.' - '.$hr.':00'); // intervalo disponible
             //array_push($horasDisponibles, "<<<".date ( 'Y-m-d',strtotime ( '+1 day' , strtotime ( $fecha) ) ).">>> ");
             $auxFecha=date("Y-m-d", strtotime($fecha));
             $horarioDisponible[$idSucursal][$idConsultorio][$auxFecha]=$horasDisponibles;
@@ -195,6 +223,15 @@ function obtenerIntervalosDisponibles($idSucursal,$idCabina,$fechaInicio){
             }
 //            $hrInicio = $sucursal->getEntreSemanaEntrada();
             //$fecha = date($fecha . " $hrInicio:00:00");
+            
+            // sacar hr
+            if ($auxDia==6){
+                $hrInicio = $sucursal->getSabadoEntrada();
+                $hrFin=$sucursal->getSabadoSalida();
+            }else {
+                $hrInicio = $sucursal->getEntreSemanaEntrada();
+                $hrFin = $sucursal->getEntreSemanaSalida();
+            }
             
             }while ($dia!=$auxDia);
         }

@@ -133,6 +133,9 @@ function colocaFechas(fechaF,fechaA,fechaI){
 
 }
 
+function predefineFecha(idSucursal,idCabina,fecha,auxH){
+	xajax_agendarCita(idSucursal,idCabina,fecha,auxH);
+}
 	//$("#").();
 //var alert = alertify.alert('Titulo','TextoAlerta').set('label', 'Aceptar');     	 
 //alert.set({transition:'zoom'}); //slide, zoom, flipx, flipy, fade, pulse (default)
