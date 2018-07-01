@@ -29,10 +29,15 @@ require_once 'masterInclude.inc.php';
 							<!-- Section -->
 								<section>
 									<h2 id="content">Horarios disponibles </h2>
-									<div class="10u 12u$(xsmall)">
-									<p style="float: right;" id="divAct"></p>
+									<div class="row" >
+							<div class="8u 12u$(xsmall)" >
+								<p style="float: right;" id="fechasEntre"></p>
 									</div>
-								</section>
+								<div class="4u 12u$(xsmall)" >
+									<p style="float: right;"  id="divAct"></p>
+									</div>
+								</div>
+								
 								
 								<input type="hidden" id="hdnRol" value="<?php echo $objSession->getidRol();?>"/>
 									<input type="hidden" id="hdnSucursal" value="<?php echo $sucursal;?>"/>
@@ -43,7 +48,7 @@ require_once 'masterInclude.inc.php';
 									<div class="1u 12u$(xsmall)">
 									<label>Sucursal:</label>
 								</div>
-								<div class="4u 12u$(xsmall)">
+								<div class="3u 12u$(xsmall)">
 									<div class="select-wrapper">
 									<select name="demo-category" id="slcSucursal">
 									</select>
@@ -51,7 +56,7 @@ require_once 'masterInclude.inc.php';
 									</div>
 									<?php } ?>
 								
-								<div class="2u 12u$(xsmall)">
+								<div class="1u 12u$(xsmall)">
 									<label>Consultorio:</label>
 								</div>
 								<div class="3u 12u$(xsmall)">
@@ -64,7 +69,8 @@ require_once 'masterInclude.inc.php';
 								
 								
 								</div>
-								<br />
+								</section>
+								
 								<div class="row uniform">
 								<div class="2u 12u$(xsmall)" style="float: right;" >
 									<a id="btnSig" class="button small">Siguiente semana</a>
@@ -97,7 +103,6 @@ require_once 'masterInclude.inc.php';
 			</div>
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/skel.min.js"></script>
 			<script src="assets/js/util.js"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->

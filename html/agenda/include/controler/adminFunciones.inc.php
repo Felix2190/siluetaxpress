@@ -53,8 +53,8 @@ if (isset($_POST['Consulta'])&&isset($_POST['Sucursal'])){
     echo obtenCombo(obtenerConsultorios($_POST['Consulta'],$_POST['Sucursal']),'Selecciona una opci&oacute;n');
 }
 
-if (isset($_POST['Sucursal'])&&isset($_POST['Consultorio'])){
-    echo obtenerIntervalosDisponibles($_POST['Sucursal'], $_POST['Consultorio']);
+if (isset($_POST['Sucursal'])&&isset($_POST['Consultorio'])&&isset($_POST['fechaInicio'])){
+    echo obtenerIntervalosDisponibles($_POST['Sucursal'], $_POST['Consultorio'], $_POST['fechaInicio']);
 }
 
 if (isset($_POST['listadoPacientes'])){
@@ -68,7 +68,7 @@ function obtenCombo($array,$default){
     return $combo;
 }
 
-function obtenerIntervalosDisponibles($idSucursal,$idCabina){
+function obtenerIntervalosDisponibles($idSucursal,$idCabina,$fechaInicio){
     require_once FOLDER_MODEL_EXTEND. "model.cita.inc.php";
     require_once FOLDER_MODEL_EXTEND. "model.sucursal.inc.php";
     require_once FOLDER_MODEL_EXTEND. "model.cabina.inc.php";
@@ -91,7 +91,7 @@ function obtenerIntervalosDisponibles($idSucursal,$idCabina){
     
     foreach ($arrSucursales as $idSucursal) {
         $segundo=false;
-        $fechaInicial=date("Y-m-d H:i:s");
+        $fechaInicial=$fechaInicio;
         $dia=date('N',strtotime ($fechaInicial));
         $hrInicio = date("H");
         if ($dia==7){ //es domingo
@@ -125,11 +125,12 @@ function obtenerIntervalosDisponibles($idSucursal,$idCabina){
             }
 /**/    //return json_encode($arrCabinas);
         foreach ($arrCabinas as $idConsultorio=>$nomConsultorio) {
-            $fecha=$fechaInicial;
+            
             $cita->setIdCabina($idConsultorio);
             
             
             do{
+                $fecha=$fechaInicial;
                 $fechaFin = date(date("Y-m-d", strtotime($fecha)). " $hrFin:00:00");
                 $cita->setFechaInicio($fecha);
                 $cita->setFechaFin($fechaFin);

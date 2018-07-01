@@ -45,7 +45,7 @@ function obtenMes($numMes)
 
 $xajax = new xajax();
 
-function mostrarHorarios($arrInfo, $arrFechas)
+function mostrarHorarios($arrInfo, $arrFechas, $fechaI)
 {
     $r = new xajaxResponse();
     $dias = array(
@@ -58,6 +58,29 @@ function mostrarHorarios($arrInfo, $arrFechas)
         'S&aacute;bado',
         'domingo'
     );
+    
+    $fechaFin = date ("Y-m-d",strtotime ( '+7 day' , strtotime ( $fechaI) ) );
+    $fechaInicio = date ("Y-m-d",strtotime ( '-7 day' , strtotime ( $fechaI) ) );
+    
+    $fecha1=explode("-", $fechaI);
+    $fecha2=explode("-", $fechaFin);
+    $rango="$fecha1[2]/".obtenMes(''.intval($fecha1[1]))."/$fecha1[0] al $fecha2[2]/".obtenMes(''.intval($fecha2[1]))."/$fecha2[0]";
+    
+    $fI=strtotime($fechaI);
+    $fh=strtotime(date ( 'Y-m-d'));
+    $fA=strtotime($fechaInicio);
+    
+    $disable="";
+    if ($fI<=$fh){
+        $disable="disabled";
+    }
+    if ($fA<$fh){
+        $fechaInicio=date ( 'Y-m-d');
+    }
+    
+    $btn='<a id="btnAnt" class="button small '.$disable.'">Anterior semana</a>';
+    
+    
     $sucursal = new ModeloSucursal();
     $cabina = new ModeloCabina();
     $txtHorarios = '';
@@ -94,7 +117,12 @@ function mostrarHorarios($arrInfo, $arrFechas)
         }
         $txtHorarios .= '</tbody></table></div></div>';
     }
+    
     $r->assign('divHorarios', 'innerHTML', $txtHorarios);
+    $r->assign('fechasEntre', 'innerHTML', $rango);
+    $r->assign('divBtnAnt', 'innerHTML', $btn);
+    $r->call('colocaFechas', $fechaFin,$fechaI,$fechaInicio);
+    
     return $r;
 }
 

@@ -26,10 +26,27 @@ function iniciar(){
 	 }
 	
 	$( "#slcSucursal" ).change(mostrarCabinas);
-	$( "#slcConsultorio" ).change(mostrarHorarios);
-	mostrarHorarios();
+	$( "#slcConsultorio" ).change(function(){mostrarHorarios($( "#hdnFechaActual" ).val());});
+	
+	mostrarHorarios($( "#hdnFechaActual" ).val());
 	actualizaHorarios();
 	
+	$('.datepicker').datepicker({
+		dateFormat : 'yy-mm-dd',
+		changeMonth : true,
+		changeYear : true,
+		minDate : '0D'
+	});
+	
+	 $( "#btnSig" ).click(function(){
+		 mostrarHorarios($( "#hdnFechaFin" ).val());
+	 });
+	 
+	 $( "#txtFecha" ).change(function(){
+		 mostrarHorarios($( "#txtFecha" ).val());
+	 });
+
+		
 }
 
 function mostrarCabinas(){
@@ -51,10 +68,10 @@ function mostrarCabinas(){
 			}
 		});
 	}
-	mostrarHorarios();
+	mostrarHorarios($( "#hdnFechaActual" ).val());
 }
 
-function mostrarHorarios(){
+function mostrarHorarios(fechaActual){
 	var nsucursal=$( "#hdnSucursal" ).val();
 	if (nsucursal=='')
 		nsucursal=$( "#slcSucursal" ).val();
@@ -65,11 +82,12 @@ function mostrarHorarios(){
 		url : "adminFunciones.php",
 		data : {
 			Sucursal:nsucursal,
-			Consultorio:nConsultorio
+			Consultorio:nConsultorio,
+			fechaInicio:fechaActual
 		},
 		success : function(data) {
 			respuesta=JSON.parse(data);
-			xajax_mostrarHorarios(respuesta[0],respuesta[1]);
+			xajax_mostrarHorarios(respuesta[0],respuesta[1],fechaActual);
 		}
 	});
 }
@@ -79,7 +97,7 @@ function actualizaHorarios(){
 	setTimeout(function() { 
 		setInterval(function() 
 				{ 
-			mostrarHorarios();
+			mostrarHorarios($( "#hdnFechaActual" ).val());
 			$( "#divAct" ).html(obtenHora());
 			},15000)
 		},2000);
@@ -104,6 +122,17 @@ function obtenHora(){
 	 
 	 return "<strong>&Uacute;ltima actualizaci&oacute;n... "+hours+":"+minutes+":"+seconds+" "+dn+"</strong>";
 }
+
+function colocaFechas(fechaF,fechaA,fechaI){
+	$( "#hdnFechaFin" ).val(fechaF);
+	$( "#hdnFechaActual" ).val(fechaA);
+	$( "#hdnFechaInicio" ).val(fechaI);
+	 $( "#btnAnt" ).click(function(){
+		 mostrarHorarios(fechaI);
+	 });
+
+}
+
 	//$("#").();
 //var alert = alertify.alert('Titulo','TextoAlerta').set('label', 'Aceptar');     	 
 //alert.set({transition:'zoom'}); //slide, zoom, flipx, flipy, fade, pulse (default)

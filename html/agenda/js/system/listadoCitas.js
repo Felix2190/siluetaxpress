@@ -2,8 +2,13 @@ $(document).ready(function(){
 	iniciar();
 });
 	 
+var Digital=new Date();
+var hours, minutes,seconds,dn;
+
 function iniciar(){
 	listarCitas($( "#hdnFechaActual" ).val());
+	actualizaHorarios();
+	
 	$('.datepicker').datepicker({
 		dateFormat : 'yy-mm-dd',
 		changeMonth : true,
@@ -107,6 +112,38 @@ function colocaFechas(fechaF,fechaA,fechaI){
 	 });
 
 }
+
+function actualizaHorarios(){
+	
+	setTimeout(function() { 
+		setInterval(function() 
+				{ 
+			listarCitas($( "#hdnFechaActual" ).val());
+			$( "#divAct" ).html(obtenHora());
+			},15000)
+		},2000);
+}
+
+function obtenHora(){
+	Digital=new Date();
+	 hours=Digital.getHours();
+	 minutes=Digital.getMinutes();
+	 seconds=Digital.getSeconds();
+	 dn="AM";
+	 if (hours>12){
+	 dn="PM";
+	 hours=hours-12;
+	 }
+	 if (hours==0)
+	 hours=12;
+	 if (minutes<=9)
+	 minutes="0"+minutes;
+	 if (seconds<=9)
+	 seconds="0"+seconds;
+	 
+	 return "<strong>&Uacute;ltima actualizaci&oacute;n... "+hours+":"+minutes+":"+seconds+" "+dn+"</strong>";
+}
+
 	//$("#").();
 //var alert = alertify.alert('Titulo','TextoAlerta').set('label', 'Aceptar');     	 
 //alert.set({transition:'zoom'}); //slide, zoom, flipx, flipy, fade, pulse (default)
