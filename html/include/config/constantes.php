@@ -149,7 +149,7 @@ case $case2:
  * ***************** AGENDA **********************************
  */
     include_once 'variables.php';
-    
+    include_once 'activarmenus.php';
 if (is_file(FOLDER_INCLUDE_AGENDA . "controler/" . $__FILE_NAME__ . ".inc.php")) {
     require_once (FOLDER_INCLUDE_AGENDA . "controler/" . $__FILE_NAME__ . ".inc.php");
 }

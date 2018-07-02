@@ -15,38 +15,38 @@
 		<!-- Menu -->
 		<nav id="menu">
 			<ul>
-				<li><span class="opener">Mi cuenta</span>
+				<li><span class="opener <?php if($seccion=="cuenta") echo "active";?>" class="opener">Mi cuenta</span>
 					<ul>
-						<li><a href="">Perfil</a></li>
-						<li><a href="">Cambiar contrase&ntilde;a</a></li>
+						<li><a class="<?php if($subseccion=="") echo "active";?>" href="">Perfil</a></li>
+						<li><a class="<?php if($subseccion=="") echo "active";?>" href="">Cambiar contrase&ntilde;a</a></li>
 						<li><a href="logout.php">Cerrar sessi&oacute;n</a></li>
 					</ul></li>
 
-				<li><span class="opener">Administrar</span>
+				<li><span class="opener <?php if($seccion=="administracionn") echo "active";?>" class="opener">Administrar</span>
 					<ul>
-						<li><a href="">Consultorios</a></li>
-						<li><a href="">Usuarios</a></li>
+						<li><a class="<?php if($subseccion=="") echo "active";?>" href="">Consultorios</a></li>
+						<li><a class="<?php if($subseccion=="") echo "active";?>" href="">Usuarios</a></li>
 					</ul></li>
 
-				<li><span class="opener">Pacientes</span>
+				<li><span class="opener <?php if($seccion=="pacientes") echo "active";?>" class="opener">Pacientes</span>
 					<ul>
-						<li><a href="listadoPacientes.php">Listado</a></li>
-						<li><a href="altaPaciente.php">Agregar nuevo</a></li>
-						<li><a href="">B&uacute;squeda</a></li>
+						<li><a class="<?php if($subseccion=="listadoPacientes") echo "active";?>" href="listadoPacientes.php">Listado</a></li>
+						<li><a class="<?php if($subseccion=="altaPaciente") echo "active";?>" href="altaPaciente.php">Agregar nuevo</a></li>
+						<li><a class="<?php if($subseccion=="") echo "active";?>" href="">B&uacute;squeda</a></li>
 					</ul></li>
 
-				<li><span class="opener">Citas</span>
+				<li><span class="opener <?php if($seccion=="citas") echo "active";?>">Citas</span>
 					<ul>
-						<li><a href="listadoCitas.php">Listado</a></li>
-						<li><a href="nuevaCita.php">Agregar nueva</a></li>
-						<li><a href="">B&uacute;squedad</a></li>
-						<li><a href="horariosDisponibles.php">Disponibilidad</a></li>
+						<li><a class="<?php if($subseccion=="listadoCitas") echo "active";?>" href="listadoCitas.php">Listado</a></li>
+						<li><a class="<?php if($subseccion=="nuevaCita") echo "active";?>" href="nuevaCita.php">Agregar nueva</a></li>
+						<li><a class="<?php if($subseccion=="") echo "active";?>" href="">B&uacute;squedad</a></li>
+						<li><a class="<?php if($subseccion=="horariosDisponibles") echo "active";?>" href="horariosDisponibles.php">Disponibilidad</a></li>
 						
 					</ul></li>
 
 
-				<li><a href="">Promociones</a></li>
-				<li><a href="">Cr&eacute;ditos SMS</a></li>
+				<li><a class="<?php if($subseccion=="") echo "active";?>" href="">Promociones</a></li>
+				<li><a class="<?php if($subseccion=="") echo "active";?>" href="">Cr&eacute;ditos SMS</a></li>
 
 			</ul>
 		</nav>

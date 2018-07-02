@@ -270,38 +270,48 @@ function obtenerHorarioDisponibles($idConsulta,$idSucursal,$fecha,$duracion,$idC
             $hora=($hr<10?'0':'').$hr;
             $minuto=($min<10?'0':'').$min;
             $auxFecha2=$fecha.' '.$hora.':'.$minuto.':00';
-            $finicio=strtotime($auxFecha2);
+            $finicio=strtotime($auxFecha2); // hr cita nueva inicio
             if (key_exists($auxFecha2,$horarioAgendado)){
                 $auxFecha=$horarioAgendado[$auxFecha2];
                 $auxFecha=explode(' ', $auxFecha);
                 $auxFecha=explode(':', $auxFecha[1]);
                 $hr=intval($auxFecha[0]);;
                 $min=intval($auxFecha[1]);
+                if ($min==0){
+                    $min=50;
+                    $hr-=1;
+                }else {
+                    $min-=10;
+                }
      //           unset($horarioAgendado[$auxFecha2]);
             }else {
                 $b=false;
                 $auxFecha = strtotime ( '+'.$duracion.' minute' , strtotime ( $auxFecha2 ) ) ;
                 $nuevafecha = date ( 'Y-m-d H:i:s' , $auxFecha);
-                $f3=strtotime($nuevafecha);
+                $f3=strtotime($nuevafecha); // cita nueva  hr final
                 $ffin=strtotime(($fecha.' '.$hrFin.':00:00'));
                 
                 foreach ($horarioAgendado as $fecha_inicio=>$fecha_fin){
-                    $f1=strtotime($fecha_inicio);
-                    $f2=strtotime($fecha_fin);
+                    $f1=strtotime($fecha_inicio); // hr agendada inicio
+                    $f2=strtotime($fecha_fin); // hr agendada final
                         
-                    if (($finicio>=$f1&&$finicio<=$f2)||($f3>=$f1&&$f3<=$f2)||($finicio<$f1&&$f3>$f2)){ // dentro
+                    if (($finicio>=$f1&&$finicio<$f2)||($f3>$f1&&$f3<=$f2)||($finicio<$f1&&$f3>$f2)){ // dentro
        //                     unset($horarioAgendado[$fecha_inicio]);
-                            
                         $auxFecha=explode(' ', $fecha_fin);
                         $auxFecha=explode(':', $auxFecha[1]);
                         $hr=intval($auxFecha[0]);;
                         $min=intval($auxFecha[1]);
+                        if ($min==0){
+                            $min=50;
+                            $hr-=1;
+                        }else {
+                            $min-=10;
+                        }
                         $b=true;
                     }
                 }
                 if ($f3>$ffin)
                     $b=true;
-                
                 if (!$b){
                     if (!key_exists($hr, $horarioDisponible))
                         $horarioDisponible[$hr]=array();

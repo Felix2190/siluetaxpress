@@ -1,0 +1,25 @@
+<?php
+$seccion="";
+$subseccion="";
+$arrSeccionesPagina=array(
+    "nuevaCita"=>"citas",
+    "listadoCitas"=>"citas",
+    "horariosDisponibles"=>"citas",
+    "verCita"=>"citas",
+    
+    "listadoPacientes"=>"pacientes",
+    "altaPaciente"=>"pacientes",
+    "editaPaciente"=>"pacientes",
+    ""=>"",
+    ""=>""
+);
+
+
+$idOp='';
+
+$seccion=isset($arrSeccionesPagina[$__FILE_NAME__])?$arrSeccionesPagina[$__FILE_NAME__]:"";
+$subseccion=$__FILE_NAME__;
+
+
+
+//echo "[" . $seccion . "][" . $subseccion . "]<br />";
