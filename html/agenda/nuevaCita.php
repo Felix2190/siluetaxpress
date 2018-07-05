@@ -65,10 +65,23 @@ require_once 'masterInclude.inc.php';
 									<label>Paciente:</label>
 								</div>
 								
+								<?php if (isset($_SESSION['pacientePredefinido'])){?>
+								<div class="6u 12u$(xsmall)">
+								<input type="hidden" id="slcPaciente" value="<?php echo $idPaciente;?>"/>
+								<input type="hidden" id="visible" value="none"/>
+								<p > <?php echo $nombreP;?></p>
+								</div>
+								
+								<?php }else{?>
+								<input type="hidden" id="visible" value=""/>
 								<div class="6u 12u$(xsmall)">
 									  <select id="slcPaciente" style="width: 500px;">
 									 	</select>
 								</div>
+								<div class="2u 12u$(xsmall)" >
+									<a id="btnPaciente" class="button small">Nuevo</a>
+								</div>
+								<?php }?>
 							</div>
 							<div class="row uniform" id="divInicio">
 								<div class="1u 12u$(xsmall)">
@@ -220,7 +233,7 @@ require_once 'masterInclude.inc.php';
 								</div>
 								
 								<div class="2u 12u$(small)">
-									<input class="checkDias" value="viernes" id="chkviernes" name="chkviernes" type="checkbox"> <label for="chkviernes">Viernes</label>
+									<input class="checkDias" value="viernes" disabled="disabled" id="chkviernes" name="chkviernes" type="checkbox"> <label for="chkviernes">Viernes</label>
 								</div>
 								
 								<div class="2u 12u$(small)">

@@ -79,19 +79,36 @@ function iniciar(){
 		dateFormat : 'yy-mm-dd',
 		changeMonth : true,
 		changeYear : true,
-		minDate : '0D'
+		minDate : '0D',
+			beforeShowDay: function(date) {
+			    var day = date.getDay();
+			    return [(day != 0), ''];
+			}
 	});
 	
 	
-     $( "#slcSucursal" ).change(mostrarCabinas);
-	 $( "#txtFecha" ).change(verHorarios);
+     $( "#slcSucursal" ).change(function(){
+    	 mostrarCabinas();
+    	 seleccionaDiaChecaSabado();
+     });
+     
+	 $( "#txtFecha" ).change(function(){
+		 verHorarios();
+		 seleccionaDiaChecaSabado();
+	 });
 	 $( "#slcConsulta" ).change(mostrarCabinas);
 	 $( "#slcConsultorio" ).change(verHorarios);
 	
 	 
 	 $( "#slcHr" ).change(function(){
 		 cambioMin();
+		 seleccionaDiaChecaSabado();
 	 });
+	
+	 $( "#slcMin" ).change(function(){
+		 seleccionaDiaChecaSabado();
+	 });
+	
 	 
 	 $( "#checkRepetir" ).click(function(){
 		 if( $('#checkRepetir').is(':checked') ) {
@@ -101,10 +118,20 @@ function iniciar(){
 					method : "post",
 					url : "adminFunciones.php",
 					data : {
-						fechaConvertir:$("#txtFecha").val()
+						fechaConvertir:$("#txtFecha").val(),
+						horaInicial: $("#slcHr").val()+':'+$("#slcMin").val(),
+						duracion:$("#slcDuracion").val(),
+						sucursal:$("#slcSucursal").val()
 					},
 					success : function(data) {
-						$( "#chk"+data ).attr('checked',true);
+						respuesta=JSON.parse(data);
+						if(respuesta[1]=='false')
+							$( "#chksabado").attr('disabled','disabled');
+						else{
+							$( "#chksabado").removeAttr('disabled');
+							$( "#chksabado").removeAttr('checked');
+						}
+						$( "#chk"+respuesta[0]).attr('checked',true);
 					}
 				});
 		 }else{
@@ -156,6 +183,10 @@ function iniciar(){
 		$( "#slcHr" ).val($( "#hdnHr" ).val());
 		},2200);
 	}
+
+	$("#btnPaciente").click(function(){
+		 xajax_paciente();
+	});
 	
 }
 var arrFechas=[];
@@ -229,6 +260,38 @@ function cambioMin(){
 	 $("#slcMin").html(opcion2);
 }
 
+function seleccionaDiaChecaSabado(){
+	if( $('#checkRepetir').is(':checked') ) {
+	var sucursal= $("#slcSucursal").val().trim();
+	var duracion = $("#slcDuracion").val().trim();
+	var fecha = $("#txtFecha").val().trim();
+	
+	if (fecha != "" && duracion != "" && sucursal != "" ) {
+		$.ajax({
+			method : "post",
+			url : "adminFunciones.php",
+			data : {
+				fechaConvertir:fecha,
+				horaInicial: $("#slcHr").val()+':'+$("#slcMin").val(),
+				duracion:duracion,
+				sucursal:sucursal
+			},
+			success : function(data) {
+				respuesta=JSON.parse(data);
+
+				if(respuesta[1]=='false')
+					$( "#chksabado").attr('disabled','disabled');
+				else{
+					$( "#chksabado").removeAttr('disabled');
+					$( "#chksabado").removeAttr('checked');
+				}
+				$( "#chk"+respuesta[0]).attr('checked',true);
+			}
+		});
+	}
+	
+	}
+}
 function altaCita(arrDias){
 	var existeError = false;
 		
@@ -351,6 +414,7 @@ function iniciarAutoacomplete(){
 	      _create: function() {
 	        this.wrapper = $( "<span>" )
 	          .addClass( "custom-combobox" )
+	          .attr( "style", "display: "+$("#visible").val()+";" )
 	          .insertAfter( this.element );
 	 
 	        this.element.hide();
@@ -365,7 +429,7 @@ function iniciarAutoacomplete(){
 	        this.input = $( "<input>" )
 	          .appendTo( this.wrapper )
 	          .val( value )
-	          .attr( "style", "width: 400px;" )
+	          .attr( "style", "width: 400px; display: "+$("#visible").val()+";" )
 	          .addClass( "custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left" )
 	          .autocomplete({
 	            delay: 0,
@@ -397,6 +461,7 @@ function iniciarAutoacomplete(){
 	        $( "<a>" )
 	          .attr( "tabIndex", -1 )
 	          .attr( "title", "Show All Items" )
+	          .attr( "style", "display: "+$("#visible").val()+";" )
 	          .tooltip()
 	          .appendTo( this.wrapper )
 	          .button({

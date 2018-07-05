@@ -11,9 +11,17 @@ if ($__FILE_NAME__ != "adminFunciones") {
             unset($_SESSION['editaPaciente']);
         }
     }
+    if ($__FILE_NAME__ != "altaPaciente") {
+        if (isset($_SESSION['paciente'])) {
+            unset($_SESSION['paciente']);
+        }
+    }
     if ($__FILE_NAME__ != "nuevaCita") {
         if (isset($_SESSION['citaPredefinida'])) {
             unset($_SESSION['citaPredefinida']);
+        }
+        if (isset($_SESSION['pacientePredefinido'])) {
+            unset($_SESSION['pacientePredefinido']);
         }
     }
     if ($__FILE_NAME__ != "verCita") {

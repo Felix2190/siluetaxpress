@@ -147,12 +147,13 @@ function guardarCita($paciente,$sucursal,$idCabina,$consulta,$duracion,$fecha,$h
     $nConsulta->setIdConsulta($consulta);
     $paciente_ = new ModeloPaciente();
     $paciente_->setIdPaciente($paciente);
-    
+    /*
     $resSMS = enviaSMS_CitaNueva("52".$paciente_->getTelefonoCel(), $nConsulta->getTipoConsulta(), $fecha, $hora, $nSucursal->getSucursal(), $idConsulta);
     
     if ($resSMS){
-        $r->call('mostrarMsjExito',"Se envi&oacute; el SMS al ",3);
+        $r->call('mostrarMsjExito',"Se envi&oacute; el SMS al ".$paciente_->getTelefonoCel(),3);
     }
+    */
     
     $r->call('mostrarMsjExito','Se agreg&oacute; correctamente las citas!',3);
     $r->call('limpiarDatos');
@@ -166,6 +167,19 @@ function guardarCita($paciente,$sucursal,$idCabina,$consulta,$duracion,$fecha,$h
 }
 
 $xajax->registerFunction("guardarCita");
+
+function paciente(){
+    global $objSession;
+    
+    $r=new xajaxResponse();
+    $_SESSION['paciente']=true;
+    
+    $r->redirect("altaPaciente.php",4);
+    return $r;
+    
+}
+
+$xajax->registerFunction("paciente");
 
 $xajax->processRequest();
 
@@ -200,5 +214,11 @@ if (isset($_SESSION['citaPredefinida'])){
     if ($cabina->getTipo()=='cabina')
         $idConsulta=2;
     
+}
+
+if (isset($_SESSION['pacientePredefinido'])){
+    $pacienteP=$_SESSION['pacientePredefinido'];
+    $idPaciente=$pacienteP['idPaciente'];
+    $nombreP=$pacienteP['nombre'];
 }
 ?>

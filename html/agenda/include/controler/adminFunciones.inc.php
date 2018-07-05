@@ -28,9 +28,36 @@ if (isset($_POST['idConsulta_'])){
     echo json_encode($servicio->obtenerConsulta());
 }
 
-if (isset($_POST['fechaConvertir'])){
+if (isset($_POST['fechaConvertir'])&&isset($_POST['horaInicial'])&&isset($_POST['duracion'])&&isset($_POST['sucursal'])){
     $dias = array('','lunes','martes','miercoles','jueves','viernes','sabado','domingo');
-    echo strtolower($dias[date('N', strtotime($_POST['fechaConvertir']))]);
+    
+    // obtener rangos fecha
+    $fechaCitaInicio=$_POST['fechaConvertir'].' '.$_POST['horaInicial'];
+    $fechaCitaFinal= date('Y-m-d H:i:s',strtotime ( '+'.intval($_POST['duracion']).' min' , strtotime ( $fechaCitaInicio) ) );
+    $dia=date('N', strtotime($_POST['fechaConvertir']));
+    $horaValida = 'false';
+    if ($dia==6){
+        $horaValida = 'true';
+    }else {
+        require_once FOLDER_MODEL_EXTEND. "model.sucursal.inc.php";
+        $sucursal=new ModeloSucursal();
+        $sucursal->setIdSucursal($_POST['sucursal']);
+        $hrInicio = $sucursal->getSabadoEntrada();
+        $hrFin = $sucursal->getSabadoSalida();
+    
+    $fechaRangoInicio=$_POST['fechaConvertir'].' '.$hrInicio.':00:00';
+    $fechaRangoFinal=$_POST['fechaConvertir'].' '.$hrFin.':00:00';
+    
+    $tcitaI=strtotime($fechaCitaInicio);
+    $tcitaF=strtotime($fechaCitaFinal);
+    $trangoI=strtotime($fechaRangoInicio);
+    $trangoF=strtotime($fechaRangoFinal);
+    
+    if ($tcitaI>=$trangoI&&$tcitaF<=$trangoF)
+        $horaValida='true';
+    
+    }
+    echo json_encode(array(strtolower($dias[$dia]),$horaValida));
 }
 
 if (isset($_POST['sucursal'])&&isset($_POST['paciente'])&&isset($_POST['usuario'])&&isset($_POST['cabina'])&&isset($_POST['fechaInicio'])){
@@ -261,8 +288,16 @@ function obtenerHorarioDisponibles($idConsulta,$idSucursal,$fecha,$duracion,$idC
     $sucursal=new ModeloSucursal();
     $sucursal->setIdSucursal($idSucursal);
     
-    $hrInicio=$sucursal->getEntreSemanaEntrada();
-    $hrFin=$sucursal->getEntreSemanaSalida();
+    $dia=date('N',strtotime ($fecha));
+    // sacar hr
+    if ($dia==6){
+        $hrInicio = $sucursal->getSabadoEntrada();
+        $hrFin=$sucursal->getSabadoSalida();
+    }else {
+        $hrInicio = $sucursal->getEntreSemanaEntrada();
+        $hrFin = $sucursal->getEntreSemanaSalida();
+    }
+    
     $horarioDisponible=array();
     
     for ($hr=$hrInicio;$hr<$hrFin;$hr++){

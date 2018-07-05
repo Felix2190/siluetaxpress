@@ -144,9 +144,15 @@ function guardar($datos){
     }
     
     $r->call('mostrarMsjExito','Se agreg&oacute; correctamente al paciente!',4);
+    
+    if (isset($_SESSION['paciente'])){
+        $_SESSION['pacientePredefinido']=array("idPaciente"=>$paciente->getIdPaciente(),"nombre"=>$paciente->getNombre()." ".$paciente->getApellidos());
+        $r->redirect('nuevaCita.php',5);
+    }else{
     $_SESSION['editaPaciente']=array("titulo"=>"Ver paciente","idPaciente"=>$paciente->getIdPaciente());
     ///$r->call('limpiarDatos');
     $r->redirect('editaPaciente.php',5);
+        }
     return $r;
     
 }

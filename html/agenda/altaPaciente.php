@@ -664,7 +664,7 @@ require_once 'masterInclude.inc.php';
 								<div class="2u 12u$(xsmall)">
 									<label>Sucursal: </label>
 								</div>
-								<div class="2u 12u$(xsmall)">
+								<div class="4u 12u$(xsmall)">
 									<div class="select-wrapper">
 										<select name="demo-category" id="slcSucursal">
 										
