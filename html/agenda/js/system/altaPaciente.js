@@ -166,12 +166,6 @@ function altaPaciente(){
 		console.log("Error: txTelMovil");
 	}
 	
-	paciente['Email']= $("#txtCorreo").val().trim();
-	if (paciente['Email'] == "") {
-		//existeError2 = true;
-		console.log("Error: txtEmail");
-	}
-	
 	paciente['Edad']= $("#txtEdad").val().trim();
 	if (paciente['Edad'] == "") {
 		existeError = true;
@@ -628,6 +622,18 @@ function altaPaciente(){
 	}
 	*/
     
+    paciente['Email']= $("#txtCorreo").val().trim();
+	if (paciente['Email'] == "") {
+		//existeError2 = true;
+		console.log("Error: txtEmail");
+	}else{
+		if(!validarEmail(paciente['Email'])){
+			mostrarMsjError('El formato del correo electr&oacute;nico es incorrecto ',3);
+			return false;
+		}
+	}
+	
+	
 	var completitud=100-((100/41)*faltan);
 	hoja['completitud']=Number(completitud.toFixed(2));
 	datos['hojaclinica']=hoja;
@@ -655,6 +661,12 @@ function limpiarDatos(){
 	$("#txtEdad").val('');
 	
 }
+
+function validarEmail(email) {
+	  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	  return re.test(email);
+	}
+
 //var alert = alertify.alert('Titulo','TextoAlerta').set('label', 'Aceptar');     	 
 //alert.set({transition:'zoom'}); //slide, zoom, flipx, flipy, fade, pulse (default)
 //alert.set('modal', false);  //al pulsar fuera del dialog se cierra o no	

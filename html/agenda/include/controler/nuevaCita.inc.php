@@ -128,7 +128,7 @@ function guardarCita($paciente,$sucursal,$idCabina,$consulta,$duracion,$fecha,$h
     $cita->setDuracion($duracion);
     $cita->setEstatusNueva();
     $cita->setTelefonoPaciente("52".$paciente_->getTelefonoCel());
-    
+    $cita->setFechaRegistroCita(date( 'Y-m-d'));
     $cita->Guardar();
     if ($cita->getError()){
         $r->call('mostrarMsjError',$cita->getStrError(),5);

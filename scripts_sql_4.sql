@@ -1,0 +1,1 @@
+ALTER TABLE `cita` ADD `fechaRegistroCita` DATE NOT NULL ; 

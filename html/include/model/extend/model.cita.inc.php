@@ -78,7 +78,7 @@
                     inner join consulta as co on c.idConsulta=co.idConsulta
                     inner join servicio as ser on c.idServicio=ser.idServicio
                     inner join cabina as ca on c.idCabina=ca.idCabina
-                    where  fechaInicio>='$this->fechaInicio'  $condicion order by fecha,hora";
+                    where  fechaInicio>='$this->fechaInicio'  $condicion order by fecha,hora,c.idCabina";
 
 		    $respuesta = array();
 		    $resultado = mysqli_query($this->dbLink, $query);
@@ -145,6 +145,45 @@
 		    return $respuesta;
 		}
 		
+		public function buscarCitas($fecha,$hora)
+		{
+		    $condicion="true ";
+		    if ($hora!="0:0")
+		        $condicion.=" and DATE_FORMAT(fechaInicio,'%H:%i')='$hora'";
+		    if ($fecha!="")
+		        $condicion.="and DATE_FORMAT(fechaInicio,'%Y-%m-%d')='$fecha' ";
+		        if ($this->idPaciente!="")
+		        $condicion.=" and c.idPaciente=$this->idPaciente";
+		        
+		        if ($this->idSucursal!="")
+		            $condicion.=" and c.idSucursal=".$this->idSucursal;
+		            if ($this->idConsulta!="")
+		                $condicion.=" and c.idConsulta=".$this->idConsulta;
+		                if ($this->idCabina!="")
+		                    $condicion.=" and c.idCabina=$this->idCabina";
+		                    if ($this->estatus!="")
+		                        $condicion.=" and c.estatus=$this->estatus";
+		                        
+		                    $query = "Select idCita, DATE_FORMAT(fechaInicio,'%Y-%m-%d') as fecha, DATE_FORMAT(fechaInicio,'%H:%i') as hora, duracion,
+                    concat_ws(' ', p.nombre, p.apellidos) as nombre_paciente,c.estatus,u.idUsuario,
+                    tipoConsulta, sucursal, ser.nombre as servicio, ca.nombre as cabina from cita as c
+                    inner join usuario as u on c.idUsuario=u.idUsuario
+                    inner join paciente as p on c.idPaciente=p.idPaciente
+                    inner join sucursal as s on c.idSucursal=s.idSucursal
+                    inner join consulta as co on c.idConsulta=co.idConsulta
+                    inner join servicio as ser on c.idServicio=ser.idServicio
+                    inner join cabina as ca on c.idCabina=ca.idCabina
+                    where  $condicion order by fecha,hora,c.idCabina";
+		                 //   return $query;
+		                    $respuesta = array();
+		                    $resultado = mysqli_query($this->dbLink, $query);
+		                    if ($resultado && mysqli_num_rows($resultado) > 0) {
+		                        while ($row_inf = mysqli_fetch_assoc($resultado)){
+		                            $respuesta[] = $row_inf;
+		                        }
+		                    }
+		                    return $respuesta;
+		}
 		
 	}
 

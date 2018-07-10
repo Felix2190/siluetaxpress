@@ -2,6 +2,7 @@
 if (isset($_POST['pacientes'])){
     require_once FOLDER_MODEL_EXTEND. "model.paciente.inc.php";
     $pacientes = new ModeloPaciente();
+    $pacientes->setIdSucursal($_POST['pacientes']);
     echo json_encode(obtenCombo($pacientes->obtenerPacientes(),'Seleccione una opci&oacute;n'));
 }
 
@@ -86,6 +87,26 @@ if (isset($_POST['Sucursal'])&&isset($_POST['Consultorio'])&&isset($_POST['fecha
 
 if (isset($_POST['listadoPacientes'])){
     echo obtenerListadoPacientes($_POST['listadoPacientes']);
+}
+
+if (isset($_POST['idSucursalB'])&&isset($_POST['fechaB'])){
+    echo obtenerHorarioByDia($_POST['idSucursalB'],$_POST['fechaB']);
+}
+
+if (isset($_POST['sucursalB'])&&isset($_POST['pacienteB'])&&isset($_POST['estatusB'])&&isset($_POST['cabinaB'])&&isset($_POST['fechaInicioB'])&&isset($_POST['horaB'])&&isset($_POST['consultaB'])){
+    require_once FOLDER_MODEL_EXTEND. "model.cita.inc.php";
+    $cita = new ModeloCita();
+    if ($_POST['sucursalB']!='')
+        $cita->setIdSucursal($_POST['sucursalB']);
+        if ($_POST['pacienteB']!='')
+            $cita->setIdPaciente($_POST['pacienteB']);
+            if ($_POST['estatusB']!='')
+                $cita->setEstatus($_POST['estatusB']);
+                if ($_POST['cabinaB']!='')
+                    $cita->setIdCabina($_POST['cabinaB']);
+                    if ($_POST['consultaB']!='')
+                    $cita->setIdConsulta($_POST['consultaB']);
+                    echo json_encode($cita->buscarCitas($_POST['fechaInicioB'],$_POST['horaB']));
 }
 
 
@@ -377,26 +398,28 @@ function obtenerConsultorios($idConsulta,$idSucursal){
     
 }
 
-function enviaSMS_CitaNueva($numPaciente, $consulta, $dia, $hora, $sucursal, $idConsulta){
-    $sMessage="Haz agendado una cita en Silueta Express el dia $dia a la(s) $hora hr(s) en la sucursal $sucursal.
+function enviaSMS_CitaNueva($numPaciente, $consulta, $dia, $hora, $sucursal, $idConsulta)
+{
+    $sMessage = "Haz agendado una cita en Silueta Express el dia $dia a la(s) $hora hr(s) en la sucursal $sucursal.
             \nPara cancelar tu cita, responde: CANCELAR C$idConsulta";
     return enviaSMS($numPaciente, $sMessage);
 }
 
-function enviaSMS($numPaciente, $sMessage){
-    $sData ='cmd=sendsms&';
-    $sData .='domainId=siluetaexpress&';
-    $sData .='login=lic.lezliedelariva@gmail.com&';
-    $sData .='passwd=L7fr9P3sPMw6&concat=true&';
+function enviaSMS($numPaciente, $sMessage)
+{
+    $sData = 'cmd=sendsms&';
+    $sData .= 'domainId=siluetaexpress&';
+    $sData .= 'login=lic.lezliedelariva@gmail.com&';
+    $sData .= 'passwd=L7fr9P3sPMw6&concat=true&';
     
-    $sData .='dest='.str_replace(',','&dest=',$numPaciente).'&';
-    $sData .='msg='.urlencode(utf8_encode($sMessage));
+    $sData .= 'dest=' . str_replace(',', '&dest=', $numPaciente) . '&';
+    $sData .= 'msg=' . urlencode(utf8_encode($sMessage));
     
-    $timeOut =5;
+    $timeOut = 5;
     
     $fp = fsockopen('www.altiria.net', 80, $errno, $errstr, $timeOut);
-    if (!$fp) {
-        //Error de conexion o tiempo maximo de conexion rebasado
+    if (! $fp) {
+        // Error de conexion o tiempo maximo de conexion rebasado
         $output = "ERROR de conexion: $errno - $errstr\n";
         $output .= "Compruebe que ha configurado correctamente la direccion/url ";
         $output .= "suministrada por altiria";
@@ -475,4 +498,39 @@ function obtenerListadoPacientes($idSucursal){
     return json_encode($paciente->listadoPacientes($idSucursal));
     
 }
+
+function obtenerHorarioByDia($idSucursal,$fecha){
+    require_once FOLDER_MODEL_EXTEND. "model.sucursal.inc.php";
+    
+    $sucursal=new ModeloSucursal();
+    $sucursal->setIdSucursal($idSucursal);
+    
+    $dia=date('N',strtotime ($fecha));
+    // sacar hr
+    if ($dia==6){
+        $hrInicio = $sucursal->getSabadoEntrada();
+        $hrFin=$sucursal->getSabadoSalida();
+    }else {
+        $hrInicio = $sucursal->getEntreSemanaEntrada();
+        $hrFin = $sucursal->getEntreSemanaSalida();
+    }
+    
+    $horarioDisponible=array();
+    
+    $horarioDisponible['0']=array();
+    array_push($horarioDisponible['0'], array('0'));
+    
+    for ($hr=$hrInicio;$hr<$hrFin;$hr++){
+        for ($min=0;$min<=50;$min+=10){
+            $hora=($hr<10?'0':'').$hr;
+            $minuto=($min<10?'0':'').$min;
+                if (!key_exists($hora, $horarioDisponible))
+                            $horarioDisponible[$hr]=array();
+                            array_push($horarioDisponible[$hr], $minuto);
+                         
+        }
+    }
+    return json_encode($horarioDisponible);
+}
+
 ?>

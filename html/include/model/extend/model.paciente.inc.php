@@ -54,10 +54,14 @@
 		public function obtenerPacientes()
 		{
 		    global $objSession;
-		    $where = " p.idSucursal=".$objSession->getIdSucursal();
+		    if ($this->idSucursal==0){
+		        $where = " p.idSucursal=".$objSession->getIdSucursal();
+		    }else{
+		        $where = " p.idSucursal=".$this->idSucursal;
+		    }
 		    $concat=" ";
 		    $inner=" ";
-		    if ($objSession->getidRol()==1){
+		    if ($objSession->getidRol()==1&&$this->idSucursal==''){
 		        $where=" true ";
 		        $concat=", '(', s.sucursal, ')'";
 		        $inner=" inner join sucursal as s on p.idSucursal=s.idSucursal ";
