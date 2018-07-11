@@ -198,7 +198,8 @@ function obtenerIntervalosDisponibles($idSucursal,$idCabina,$fechaInicio){
             $auxFechaFin=strtotime(date(date("Y-m-d", strtotime($fecha)). " $hrFin:00:00"));
             if ($auxFechaActual>$auxFechaEntrada&&$auxFechaActual<$auxFechaFin){  // hora entre horario de citas
                 $fecha=date("Y-m-d H:i:s");
-                $hrInicio = date("H");
+                $hrInicio = intval(date("H"));
+                $auxHrInicio=($hrInicio<10?'0':'').$hrInicio;
                 $auxMin=intval(date("i"));
                 if ($auxMin<10)
                     $minInicio=0;
@@ -212,7 +213,7 @@ function obtenerIntervalosDisponibles($idSucursal,$idCabina,$fechaInicio){
                                     $minInicio=40;
                                     else if ($auxMin<59)
                                         $minInicio=50;
-                  $fecha = date(date("Y-m-d", strtotime($fecha)). " $hrInicio:$minInicio:00");
+                  $fecha = date(date("Y-m-d", strtotime($fecha)). " $auxHrInicio:$minInicio:00");
             }
             $cita->setIdCabina($idConsultorio);
 ///            if ($idConsultorio>1)
@@ -237,7 +238,7 @@ function obtenerIntervalosDisponibles($idSucursal,$idCabina,$fechaInicio){
             if ($auxFechaActual>$auxFechaFin){
                 array_push($horasDisponibles, "Horario fuera de servcio");
             }else{
-                $horaInicio=$hrInicio.":".($minInicio<10?'0':'').$minInicio;
+                $horaInicio=($hrInicio<10?'0':'').$hrInicio.":".($minInicio<10?'0':'').$minInicio;
                 for ($hr=$hrInicio;$hr<$hrFin;$hr++){
                     for ($min=$minInicio;$min<=50;$min+=10){
                         $hora=($hr<10?'0':'').$hr;
@@ -370,9 +371,29 @@ function obtenerHorarioDisponibles($idConsulta,$idSucursal,$fecha,$duracion,$idC
     }
     
     $horarioDisponible=array();
-    
+    $auxFechaEntrada=strtotime(date(date("Y-m-d", strtotime($fecha)). " $hrInicio:00:00"));
+    $auxFechaActual=strtotime(date("Y-m-d H:i:s"));
+    $minInicio=0;
+    if ($auxFechaActual>$auxFechaEntrada){
+        $hrInicio = intval(date("H"));
+        $auxMin=intval(date("i"));
+        if ($auxMin<10)
+            $minInicio=0;
+            else if ($auxMin<20)
+                $minInicio=10;
+                else if ($auxMin<30)
+                    $minInicio=20;
+                    else if ($auxMin<40)
+                        $minInicio=30;
+                        else if ($auxMin<50)
+                            $minInicio=40;
+                            else if ($auxMin<59)
+                                $minInicio=50;
+                                
+    }
+        
     for ($hr=$hrInicio;$hr<$hrFin;$hr++){
-        for ($min=0;$min<=50;$min+=10){
+        for ($min=$minInicio;$min<=50;$min+=10){
             $hora=($hr<10?'0':'').$hr;
             $minuto=($min<10?'0':'').$min;
             $auxFecha2=$fecha.' '.$hora.':'.$minuto.':00';

@@ -92,7 +92,7 @@ function consultarCitas($informacion,$fechaI){
                             <p> <a onClick='ocultarDetalles(".$cita['idCita'].")'>Ocultar </a> </p>  </blockqoute></div>";
             
             
-            $tabla.="<tr><td>".$cita['hora']."</td><td colspan='2'>".$cita['nombre_paciente']."</td><td>".$cita['tipoConsulta']."</td>
+            $tabla.="<tr><td>".$cita['hora']." - ".$cita['horaFin']."</td><td colspan='2'>".$cita['nombre_paciente']."</td><td>".$cita['tipoConsulta']."</td>
                     <td colspan='3'>".$detalles."</td>$sucursal<td></td></tr>";
         }
         $tabla.="</tbody></table></div></div><br />";

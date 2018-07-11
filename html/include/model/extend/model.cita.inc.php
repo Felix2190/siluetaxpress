@@ -53,7 +53,7 @@
 		
 		public function obtenerCitas()
 		{
-		    $fecha=date("Y-m-d");
+		    $fecha=date("Y-m-d H:i:s");
 		    $condicion=" ";
 		    
 		    if ($this->idPaciente>0)
@@ -70,7 +70,7 @@
 		        $condicion.=" and c.idCabina=$this->idCabina";
 		    
 		    $query = "Select idCita, DATE_FORMAT(fechaInicio,'%Y-%m-%d') as fecha, DATE_FORMAT(fechaInicio,'%H:%i') as hora, duracion, 
-                    concat_ws(' ', p.nombre, p.apellidos) as nombre_paciente, 
+                    concat_ws(' ', p.nombre, p.apellidos) as nombre_paciente, DATE_FORMAT(fechaFin,'%H:%i') as horaFin,
                     tipoConsulta, sucursal, ser.nombre as servicio, ca.nombre as cabina from cita as c
                     inner join usuario as u on c.idUsuario=u.idUsuario
                     inner join paciente as p on c.idPaciente=p.idPaciente

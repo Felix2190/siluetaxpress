@@ -99,7 +99,7 @@ require_once 'masterInclude.inc.php';
 								
 								</div>
 								<input type="hidden" id="hdnFechaFin" value="<?php echo date("Y-m-d");?>"/>
-								<input type="hidden" id="hdnFechaActual" value="<?php echo date("Y-m-d");?>"/>
+								<input type="hidden" id="hdnFechaActual" value="<?php echo date("Y-m-d H:00:00");?>"/>
 								<input type="hidden" id="hdnFechaInicio" value="<?php echo date("Y-m-d");?>"/>
 									<div class="table-wrapper" id="divTabla">
 													</div>

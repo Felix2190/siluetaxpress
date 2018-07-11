@@ -32,14 +32,14 @@
 					<ul>
 						<li><a class="<?php if($subseccion=="listadoPacientes") echo "active";?>" href="listadoPacientes.php">Listado</a></li>
 						<li><a class="<?php if($subseccion=="altaPaciente") echo "active";?>" href="altaPaciente.php">Agregar nuevo</a></li>
-						<li><a class="<?php if($subseccion=="") echo "active";?>" href="">B&uacute;squeda</a></li>
+						<li><a class="<?php if($subseccion=="buscarPaciente") echo "active";?>" href="buscarPaciente.php">B&uacute;squeda</a></li>
 					</ul></li>
 
 				<li><span class="opener <?php if($seccion=="citas") echo "active";?>">Citas</span>
 					<ul>
 						<li><a class="<?php if($subseccion=="listadoCitas") echo "active";?>" href="listadoCitas.php">Listado</a></li>
 						<li><a class="<?php if($subseccion=="nuevaCita") echo "active";?>" href="nuevaCita.php">Agregar nueva</a></li>
-						<li><a class="<?php if($subseccion=="") echo "active";?>" href="">B&uacute;squedad</a></li>
+						<li><a class="<?php if($subseccion=="buscarCita") echo "active";?>" href="buscarCita.php">B&uacute;squeda</a></li>
 						<li><a class="<?php if($subseccion=="horariosDisponibles") echo "active";?>" href="horariosDisponibles.php">Disponibilidad</a></li>
 						
 					</ul></li>

@@ -6,6 +6,7 @@ $arrSeccionesPagina=array(
     "listadoCitas"=>"citas",
     "horariosDisponibles"=>"citas",
     "verCita"=>"citas",
+    "buscarCita"=>"citas",
     
     "listadoPacientes"=>"pacientes",
     "altaPaciente"=>"pacientes",
