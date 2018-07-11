@@ -174,6 +174,7 @@ function obtenerIntervalosDisponibles($idSucursal,$idCabina,$fechaInicio){
         //    $hrInicio = $sucursal->getEntreSemanaEntrada();
             $fechaInicial = date($fechaInicial . " $hrInicio:00:00");
         }
+                                    
         
         $cita->setFechaInicio($fechaInicial);
         $cita->setFechaFin($fechaFin);
@@ -188,41 +189,57 @@ function obtenerIntervalosDisponibles($idSucursal,$idCabina,$fechaInicio){
             $cabina->setIdCabina($idCabina);
             $arrCabinas=array($idCabina=>$cabina->getNombre());
             }
+            $minInicio=0;
 /**/    //return json_encode($arrCabinas);
         foreach ($arrCabinas as $idConsultorio=>$nomConsultorio) {
+            ///$auxFechaActual=strtotime(date("Y-m-d H:i:s"));
             $fecha=$fechaInicial;
+            $auxFechaEntrada=strtotime(date(date("Y-m-d", strtotime($fecha)). " $hrInicio:00:00"));
+            $auxFechaFin=strtotime(date(date("Y-m-d", strtotime($fecha)). " $hrFin:00:00"));
+            if ($auxFechaActual>$auxFechaEntrada&&$auxFechaActual<$auxFechaFin){  // hora entre horario de citas
+                $fecha=date("Y-m-d H:i:s");
+                $hrInicio = date("H");
+                $auxMin=intval(date("i"));
+                if ($auxMin<10)
+                    $minInicio=0;
+                    else if ($auxMin<20)
+                        $minInicio=10;
+                        else if ($auxMin<30)
+                            $minInicio=20;
+                            else if ($auxMin<40)
+                                $minInicio=30;
+                                else if ($auxMin<50)
+                                    $minInicio=40;
+                                    else if ($auxMin<59)
+                                        $minInicio=50;
+                  $fecha = date(date("Y-m-d", strtotime($fecha)). " $hrInicio:$minInicio:00");
+            }
             $cita->setIdCabina($idConsultorio);
-            
+///            if ($idConsultorio>1)
+   //             return $fecha;
             do{
-                
                 $auxFechaEntrada=strtotime(date(date("Y-m-d", strtotime($fecha)). " $hrInicio:00:00"));
                 $auxFechaFin=strtotime(date(date("Y-m-d", strtotime($fecha)). " $hrFin:00:00"));
                 //$auxFechaActual=strtotime($fecha.date(" H:i:s"));
-                
                 if ($auxFechaActual<$auxFechaEntrada)
                     $segundo=true;
-                    
-                    
                 $fechaFin = date(date("Y-m-d", strtotime($fecha)). " $hrFin:00:00");
                 $cita->setFechaInicio($fecha);
                 $cita->setFechaFin($fechaFin);
-                
                 $arrCitas = $cita->obtenerCitasSucursalConsultorioFechaDuracion();
-            
             $horasDisponibles=array();
             $horarioAgendado=array();
             // obtener hora inicio y duracion
             foreach ($arrCitas as $info) {
                 $horarioAgendado[$info['fechaInicio']] = $info['fechaFin'];
             }
-            
-//            return json_encode($horarioAgendado);
+  //          return json_encode($fecha);
             if ($auxFechaActual>$auxFechaFin){
                 array_push($horasDisponibles, "Horario fuera de servcio");
             }else{
-                $horaInicio=$hrInicio.":00";
+                $horaInicio=$hrInicio.":".($minInicio<10?'0':'').$minInicio;
                 for ($hr=$hrInicio;$hr<$hrFin;$hr++){
-                    for ($min=0;$min<=50;$min+=10){
+                    for ($min=$minInicio;$min<=50;$min+=10){
                         $hora=($hr<10?'0':'').$hr;
                         $minuto=($min<10?'0':'').$min;
                         $auxFecha2=$fecha;
@@ -234,24 +251,56 @@ function obtenerIntervalosDisponibles($idSucursal,$idCabina,$fechaInicio){
                                 
                                 $auxFecha=explode(':', $auxFecha[1]);
                                 $hr=intval($auxFecha[0]);;
-                                $min=intval($auxFecha[1]);
+                                $auxMin=$min=intval($auxFecha[1]);
+                                
+                                if ($auxMin<10)
+                                    $min=0;
+                                    else if ($auxMin<20)
+                                        $min=10;
+                                        else if ($auxMin<30)
+                                            $min=20;
+                                            else if ($auxMin<40)
+                                                $min=30;
+                                                else if ($auxMin<50)
+                                                    $min=40;
+                                                    else if ($auxMin<59)
+                                                        $min=50;
+                                $auxFecha2 = date(date("Y-m-d", strtotime($fecha)). " $hora:$min:00");
+                                
+                                // comparar fechas
+                                foreach ($horarioAgendado as $fecha_inicio=>$fecha_fin){
+                                    $f1=strtotime($fecha_inicio); // hr agendada inicio
+                                    $f2=strtotime($fecha_fin); // hr agendada final
+                                    $fI=strtotime($auxFecha2);
+                                    if ($fI>$f1&&$fI<$f2){ // dentro
+                                        $auxFecha=explode(' ', $fecha_fin);
+                                        if ($horaInicio!=$hora.':'.$minuto) //hora igual
+                                            array_push($horasDisponibles, $horaInicio.' - '.$hora.':'.$minuto); // intervalo disponible
+                                            
+                                            $auxFecha=explode(':', $auxFecha[1]);
+                                            $hr=intval($auxFecha[0]);;
+                                            $min=intval($auxFecha[1]);
+                                            $horaInicio=($hr<10?'0':'').$hr.":".($min<10?'0':'').$min;
+                                    }
+                                }
                             }
+            //               return $auxFecha2;
                         $segundo=true;
-                        
                         if (key_exists($auxFecha2,$horarioAgendado)){ // EXISTE CITA
                             $auxFecha=$horarioAgendado[$auxFecha2];
                             $auxFecha=explode(' ', $auxFecha);
-                            if ($horaInicio!=$hr.':'.($min<10?'0':'').$min) //hora igual
-                                array_push($horasDisponibles, $horaInicio.' - '.$hr.':'.$min); // intervalo disponible
+                            if ($horaInicio!=$hora.':'.$minuto) //hora igual
+                                array_push($horasDisponibles, $horaInicio.' - '.$hora.':'.$minuto); // intervalo disponible
                             
                             $auxFecha=explode(':', $auxFecha[1]);
                             $hr=intval($auxFecha[0]);;
                             $min=intval($auxFecha[1]);
-                            $horaInicio=$hr.":".$min;
+                            $horaInicio=($hr<10?'0':'').$hr.":".($min<10?'0':'').$min;
                         }
                     }
+                    $minInicio=0;
                 }
-                if ($horaInicio!=$hr.':00') //hora igual
+                if ($horaInicio!=$hora.':'.$minuto&&intval($hr)<=intval($hrFin)) //hora igual
                     array_push($horasDisponibles, $horaInicio.' - '.$hr.':00'); // intervalo disponible
             }
             //array_push($horasDisponibles, "<<<".date ( 'Y-m-d',strtotime ( '+1 day' , strtotime ( $fecha) ) ).">>> ");
@@ -282,6 +331,7 @@ function obtenerIntervalosDisponibles($idSucursal,$idCabina,$fechaInicio){
             }
             
             }while ($dia!=$auxDia);
+            $segundo=false;
         }
     }
  //   return json_encode($auxx);

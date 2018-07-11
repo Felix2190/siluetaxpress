@@ -10,8 +10,10 @@ function iniciar(){
 	
 	$('.datepicker').datepicker({
 		dateFormat : 'yy-mm-dd',
+		yearRange: 'c-100:c',
 		changeMonth : true,
 		changeYear : true,
+		minDate : '-120Y',
 		maxDate : '0D'
 	});
 	

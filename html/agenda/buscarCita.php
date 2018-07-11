@@ -134,6 +134,7 @@ require_once 'masterInclude.inc.php';
 						<div class="2u 12u$(xsmall)">
 							<div class="select-wrapper">
 								<select name="demo-category" id="slcEstatus">
+									<option value="">Todos</option>
 									<option value="nueva">Nueva</option>
 									<option value="cancelada">Cancelada</option>
 									<option value="realizada">Realizada</option>

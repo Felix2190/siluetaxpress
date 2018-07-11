@@ -174,7 +174,7 @@
                     inner join servicio as ser on c.idServicio=ser.idServicio
                     inner join cabina as ca on c.idCabina=ca.idCabina
                     where  $condicion order by fecha,hora,c.idCabina";
-		                 //   return $query;
+		                 // return $query;
 		                    $respuesta = array();
 		                    $resultado = mysqli_query($this->dbLink, $query);
 		                    if ($resultado && mysqli_num_rows($resultado) > 0) {

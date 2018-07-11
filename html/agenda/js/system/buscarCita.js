@@ -174,6 +174,14 @@ function buscarCita(){
 	if (paciente == "" && fecha=="") {
 		existeError = true;
 		console.log("Error: paciente, fecha");
+	}else{
+		if($("#hdnRol").val()==1)
+			if (sucursal == "" ) {
+				existeError = true;
+				console.log("Error: sucursal");
+				mostrarMsjError('Datos incompletos!! <br />Por favor, seleccione una sucursal.',5);
+				return false;
+			}
 	}
 	
 	if(hora=="")

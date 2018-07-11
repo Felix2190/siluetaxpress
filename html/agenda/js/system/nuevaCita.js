@@ -27,6 +27,7 @@ function consultaDatos(){
 				$( "#slcConsulta" ).html(respuesta);
 				if($( "#hdnPredefinida" ).val()=='true'){
 					$( "#slcConsulta" ).val($( "#hdnConsulta" ).val());
+					cargarServicios();
 				}
 			}
 		});
@@ -52,21 +53,8 @@ function consultaDatos(){
 	 $( "#slcDuracion" ).change(verHorarios);
 	 $( "#slcConsulta" ).change(function(){
 		 verHorarios();
-		 $.ajax({
-				method : "post",
-				url : "adminFunciones.php",
-				data : {
-					idConsulta_:$("#slcConsulta").val().trim()
-				},
-				success : function(data) {
-					respuesta=JSON.parse(data);
-					 $( "#txtServicio" ).autocomplete({
-					        source: respuesta
-					      });
-					      
-				}
-			});
-		 });
+		 cargarServicios();
+	 });
 }
 function iniciar(){
 	iniciarAutoacomplete();
@@ -385,6 +373,23 @@ function mostrarConfirmacion(){
 	$('html,body').animate({
 	    scrollTop: $("#divFechasNoDisponibles").offset().top
 	}, 2000);
+}
+
+function cargarServicios(){
+	 $.ajax({
+			method : "post",
+			url : "adminFunciones.php",
+			data : {
+				idConsulta_:$("#slcConsulta").val().trim()
+			},
+			success : function(data) {
+				respuesta=JSON.parse(data);
+				 $( "#txtServicio" ).autocomplete({
+				        source: respuesta
+				      });
+				      
+			}
+		});
 }
 
 function limpiarDatos(){
