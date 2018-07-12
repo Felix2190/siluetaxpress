@@ -78,7 +78,7 @@
                     inner join consulta as co on c.idConsulta=co.idConsulta
                     inner join servicio as ser on c.idServicio=ser.idServicio
                     inner join cabina as ca on c.idCabina=ca.idCabina
-                    where  fechaInicio>='$this->fechaInicio'  $condicion order by fecha,hora,c.idCabina";
+                    where (c.estatus='nueva' or c.estatus='curso') and fechaInicio>='$this->fechaInicio'  $condicion order by fecha,hora,c.idCabina";
 
 		    $respuesta = array();
 		    $resultado = mysqli_query($this->dbLink, $query);
@@ -95,7 +95,7 @@
 		    $fechaF = strtotime ( '+1 day' , strtotime ( $this->fechaFin ) ) ;
 		    $fechaF = date ( 'Y-m-d' , $fechaF );
 		    $query = "Select idCita, fechaInicio, fechaFin, duracion from cita 
-                    where idSucursal=$this->idSucursal and idConsulta=$this->idConsulta and idCabina=$this->idCabina and fechaInicio between DATE('$this->fechaInicio') and DATE('$fechaF')";
+                    where (estatus='nueva' or estatus='curso') and idSucursal=$this->idSucursal and idConsulta=$this->idConsulta and idCabina=$this->idCabina and fechaInicio between DATE('$this->fechaInicio') and DATE('$fechaF')";
 		    $respuesta = array();
 		    $resultado = mysqli_query($this->dbLink, $query);
 		    if ($resultado && mysqli_num_rows($resultado) > 0) {
@@ -113,7 +113,7 @@
 		public function disponibliadDia()
 		{
 		    $query = "Select * from cita
-                    where idSucursal=$this->idSucursal and idConsulta=$this->idConsulta and idCabina=$this->idCabina 
+                    where (estatus='nueva' or estatus='curso') and idSucursal=$this->idSucursal and idConsulta=$this->idConsulta and idCabina=$this->idCabina 
             and (('$this->fechaInicio'>=fechaInicio and '$this->fechaInicio'<=fechaFin) or ('$this->fechaFin'>=fechaInicio and '$this->fechaFin'<=fechaFin)
             or ('$this->fechaInicio'<=fechaInicio and '$this->fechaFin'>=fechaFin))";
 		    $respuesta = true;
@@ -133,7 +133,7 @@
 		                $condicion.=" and idCabina=$this->idCabina";
 		                
 		    $query = "Select idSucursal, idCabina, fechaInicio, fechaFin, duracion from cita
-                    where true $condicion and 
+                    where (estatus='nueva' or estatus='curso') $condicion and 
                     fechaInicio >='$this->fechaInicio' and fechaFin<='$this->fechaFin' order by idSucursal, idCabina, fechaInicio";
 		    $respuesta = array();
 		    $resultado = mysqli_query($this->dbLink, $query);
@@ -165,7 +165,7 @@
 		                        $condicion.=" and c.estatus=$this->estatus";
 		                        
 		                    $query = "Select idCita, DATE_FORMAT(fechaInicio,'%Y-%m-%d') as fecha, DATE_FORMAT(fechaInicio,'%H:%i') as hora, duracion,
-                    concat_ws(' ', p.nombre, p.apellidos) as nombre_paciente,c.estatus,u.idUsuario,
+                    concat_ws(' ', p.nombre, p.apellidos) as nombre_paciente,ec.descripcion,u.idUsuario,
                     tipoConsulta, sucursal, ser.nombre as servicio, ca.nombre as cabina from cita as c
                     inner join usuario as u on c.idUsuario=u.idUsuario
                     inner join paciente as p on c.idPaciente=p.idPaciente
@@ -173,6 +173,7 @@
                     inner join consulta as co on c.idConsulta=co.idConsulta
                     inner join servicio as ser on c.idServicio=ser.idServicio
                     inner join cabina as ca on c.idCabina=ca.idCabina
+                    inner join estatuscita as ec on c.estatus=ec.estatusCita
                     where  $condicion order by fecha,hora,c.idCabina";
 		                 // return $query;
 		                    $respuesta = array();

@@ -28,7 +28,7 @@ class clsBasicCommon extends ConexionBD
 	#------------------------------------Constructor Destructor-------------------------------------#
 	#-----------------------------------------------------------------------------------------------#
 
-	public function clsBasicCommon()
+	public function __construct()
 	{
 	    parent::__construct();
 	}

@@ -2,11 +2,6 @@
 require_once 'masterInclude.inc.php';
 ?>
 <!DOCTYPE HTML>
-<!--
-	Minimaxing by HTML5 UP
-	html5up.net | @ajlkn
-	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
--->
 <html>
 	<head>
 		<title><?php echo $sesion==true?'Bienvenido '.$objSession->getUserName():'Iniciar sesi&oacute;n'; ?></title>
@@ -68,6 +63,7 @@ require_once 'masterInclude.inc.php';
 						</section>
 						<section>
 						<a class="button2" id="btnEntrar" >Entrar</a>
+						<input type="hidden" id="sesion" value=""/>
 						</section>
 						
 					<?php }else{?>
@@ -82,6 +78,7 @@ require_once 'masterInclude.inc.php';
 						<div class="row" >
 						<p><label class="gris">Sucursal: </label><label> <?php echo $objSession->getSucursal().' ['.$objSession->getLugar().']';?></label></p>
 						</div>
+						<input type="hidden" id="sesion" value="1"/>
 						</section>
 					
 					<?php }?>	
@@ -113,7 +110,6 @@ require_once 'masterInclude.inc.php';
 		<?php include_once 'footer.php';?>
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
 			<script src="assets/js/skel.min.js"></script>
 			<script src="assets/js/skel-viewport.min.js"></script>
 			<script src="assets/js/util.js"></script>

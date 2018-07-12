@@ -126,7 +126,7 @@ function guardarCita($paciente,$sucursal,$idCabina,$consulta,$duracion,$fecha,$h
     $auxFecha = strtotime ( '+'.$duracion.' minute' , strtotime ( $fecha.' '.$hora.':'.$minutos.':00') ) ;
     $cita->setFechaFin(date( 'Y-m-d H:i:s' , $auxFecha));
     $cita->setDuracion($duracion);
-    $cita->setEstatusNueva();
+    $cita->setEstatus("nueva");
     $cita->setTelefonoPaciente("52".$paciente_->getTelefonoCel());
     $cita->setFechaRegistroCita(date( 'Y-m-d'));
     $cita->Guardar();

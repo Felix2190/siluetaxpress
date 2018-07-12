@@ -4,6 +4,8 @@ $(document).ready(function(){
 	 
 function iniciar(){
 	$("#btnEntrar").click(entrar);
+	if($("#sesion").val()=="1")
+		irAgenda();
 }
 
 function entrar(){

@@ -9,7 +9,7 @@ class ConexionBD{
     
     protected $dbLink;
     
-    public function ConexionBD(){
+    public function __construct(){
         $this->dbLink= new mysqli(BD_HOST,BD_USER,BD_PASS,BD_DB);
         if ($this->dbLink->connect_errno){
             echo 'existe un error';

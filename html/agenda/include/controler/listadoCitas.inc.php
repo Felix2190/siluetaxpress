@@ -46,7 +46,8 @@ $xajax = new xajax();
 function consultarCitas($informacion,$fechaI){
     $r=new xajaxResponse();
     global $objSession;
-    $fecha1=explode("-", $fechaI);
+    $fecha1=explode(" ", $fechaI);
+    $fecha1=explode("-", $fecha1[0]);
     $fechaFin = date ("Y-m-d",strtotime ( '+7 day' , strtotime ( $fechaI) ) );
     $fechaInicio = date ("Y-m-d",strtotime ( '-7 day' , strtotime ( $fechaI) ) );
     $fecha2=explode("-", $fechaFin);

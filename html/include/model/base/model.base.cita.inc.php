@@ -100,18 +100,6 @@
 			
 			$this->estatus=$estatus;
 		}
-		public function setEstatusNueva()
-		{
-			$this->estatus='nueva';
-		}
-		public function setEstatusCancelada()
-		{
-			$this->estatus='cancelada';
-		}
-		public function setEstatusRealizada()
-		{
-			$this->estatus='realizada';
-		}
 		public function setRecordatorio1()
 		{
 			$this->recordatorio1=1;
