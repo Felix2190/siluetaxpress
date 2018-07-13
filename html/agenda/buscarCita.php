@@ -131,7 +131,7 @@ require_once 'masterInclude.inc.php';
 							<label>Estatus:</label>
 						</div>
 
-						<div class="2u 12u$(xsmall)">
+						<div class="3u 12u$(xsmall)">
 							<div class="select-wrapper">
 								<select name="demo-category" id="slcEstatus">
 									<option value="">Todos</option>
@@ -142,7 +142,7 @@ require_once 'masterInclude.inc.php';
 							</div>
 						</div>
 						
-								<div class="8u"></div>
+								<div class="7u"></div>
 								<a id="btnBuscar" class="button special" >Buscar</a>
 							</div>
 								</section>

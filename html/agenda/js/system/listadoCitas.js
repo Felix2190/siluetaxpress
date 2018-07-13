@@ -3,7 +3,7 @@ $(document).ready(function(){
 });
 	 
 var Digital=new Date();
-var hours, minutes,seconds,dn;
+var hours, minutes,seconds,dn,cita;
 
 function iniciar(){
 	listarCitas($( "#hdnFechaActual" ).val());
@@ -46,7 +46,35 @@ function iniciar(){
 		 $( "#txtFecha" ).change(function(){
 			 listarCitas($( "#txtFecha" ).val());
 		 });
-		
+		 
+		 $( "#btnPaciente" ).click(function(){
+			 cancelarCita('paciente');
+		 });
+		 
+		 $( "#btnEncargado" ).click(function(){
+			 
+		 });
+		 
+		 /*
+		 alertify.confirm('Confirm Title', 'Confirm Message', function(){ alertify.success('Ok') }
+         , function(){ alertify.error('Cancel')}).set('labels',{ok:'Encargado',cancel:'Paciente'}).set('modal', true).set('closable',false); 
+		 
+		 var confirm= alertify.confirm('Probando confirm','Confirmar solicitud?',null,null).set('labels', {ok:'Confirmar', acccpt:'aceptar'}); 	
+		 
+		 confirm.set({transition:'slide'});   	
+		  
+		 confirm.set('onok', function(){ //callbak al pulsar botón positivo
+		     	alertify.success('Has confirmado');
+		 });
+		  
+		 confirm.set('oncancel', function(){ //callbak al pulsar botón negativo
+		     alertify.error('Has Cancelado el dialog');
+		 });
+
+		 confirm.set('onclose', function(){ //callbak al pulsar botón negativo
+		     alertify.error('Has acept el dialog');
+		 });
+		 */
 }
 
 function listarCitas(fechaI){
@@ -142,6 +170,31 @@ function obtenHora(){
 	 seconds="0"+seconds;
 	 
 	 return "<strong>&Uacute;ltima actualizaci&oacute;n... "+hours+":"+minutes+":"+seconds+" "+dn+"</strong>";
+}
+
+function cancelarCita(canceladaPor){
+	$.ajax({
+		method : "post",
+		url : "adminFunciones.php",
+		data : {
+			idCita:cita,
+			por:canceladaPor
+		},
+		success : function(data) {
+			$( "#msjConfirm" ).hide();
+			
+			if(data=='true')
+				mostrarMsjExito('Se ha cancelado la cita correctamente.',5);
+			else
+				mostrarMsjError('Ha ocurrido un error, int&eacute;ntelo m&aacute;s tarde.',5);
+		}
+	});
+}
+
+function cancelar(idCita){
+	//alert(idCita);
+	$( "#msjConfirm" ).show();
+	cita=idCita;
 }
 
 	//$("#").();

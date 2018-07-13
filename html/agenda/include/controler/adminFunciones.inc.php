@@ -8,8 +8,8 @@ if (isset($_POST['pacientes'])){
 
 if (isset($_POST['sucursales'])){
     require_once FOLDER_MODEL_EXTEND. "model.sucursal.inc.php";
-    $sucursales = new ModeloSucursal();
-    echo json_encode(obtenCombo($sucursales->obtenerSucurales(),'Seleccione una opci&oacute;n'));
+    $estatus = new ModeloSucursal();
+    echo json_encode(obtenCombo($estatus->obtenerSucurales(),'Seleccione una opci&oacute;n'));
 }
 
 if (isset($_POST['tiposConsulta'])){
@@ -109,12 +109,29 @@ if (isset($_POST['sucursalB'])&&isset($_POST['pacienteB'])&&isset($_POST['estatu
                     echo json_encode($cita->buscarCitas($_POST['fechaInicioB'],$_POST['horaB']));
 }
 
+if (isset($_POST['estatusCita'])){
+    require_once FOLDER_MODEL_EXTEND. "model.estatusCita.inc.php";
+    $estatus = new ModeloEstatuscita();
+  echo json_encode(obtenCombo($estatus->obtenerEstatus(),'Seleccione una opci&oacute;n'));
+}
 
 function obtenCombo($array,$default){
     $combo='<option value="">'.$default.'</option>';
     foreach ($array as $key => $opcion)
         $combo.='<option value="'.$key.'">'.$opcion.'</option>';
     return $combo;
+}
+
+if (isset($_POST['idCita'])&&isset($_POST['por'])){
+    require_once FOLDER_MODEL_EXTEND. "model.cita.inc.php";
+    $cita = new ModeloCita();
+    $cita->setIdCita($_POST['idCita']);
+    $cita->setEstatus("cancelada_".$_POST['por']);
+    $cita->Guardar();
+    if ($cita->getError()){
+        echo '';
+    }else 
+        echo 'true';
 }
 
 function obtenerIntervalosDisponibles($idSucursal,$idCabina,$fechaInicio){

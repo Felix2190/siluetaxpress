@@ -136,7 +136,7 @@ function guardarCita($paciente,$sucursal,$idCabina,$consulta,$duracion,$fecha,$h
     }
     
     if ($primero){
-        $idConsulta=$cita->getIdCita();
+        $idCita=$cita->getIdCita();
         $primero=false;
     }
     }
@@ -147,13 +147,17 @@ function guardarCita($paciente,$sucursal,$idCabina,$consulta,$duracion,$fecha,$h
     $nConsulta->setIdConsulta($consulta);
     $paciente_ = new ModeloPaciente();
     $paciente_->setIdPaciente($paciente);
-    /*
-    $resSMS = enviaSMS_CitaNueva("52".$paciente_->getTelefonoCel(), $nConsulta->getTipoConsulta(), $fecha, $hora, $nSucursal->getSucursal(), $idConsulta);
+    /**/
+    $resSMS = enviaSMS_CitaNueva("52".$paciente_->getTelefonoCel(), $nConsulta->getTipoConsulta(), $fecha, $hora, $nSucursal->getSucursal(), $idCita);
     
     if ($resSMS){
         $r->call('mostrarMsjExito',"Se envi&oacute; el SMS al ".$paciente_->getTelefonoCel(),3);
+        $cita = new ModeloCita();
+        $cita->setIdCita($idCita);
+        $cita->setRecordatorio1();
+        $cita->Guardar();
     }
-    */
+    //*/
     
     $r->call('mostrarMsjExito','Se agreg&oacute; correctamente las citas!',3);
     $r->call('limpiarDatos');
@@ -221,4 +225,5 @@ if (isset($_SESSION['pacientePredefinido'])){
     $idPaciente=$pacienteP['idPaciente'];
     $nombreP=$pacienteP['nombre'];
 }
+var_dump(enviaSMS('527331258053','sMessage'));
 ?>

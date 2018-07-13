@@ -16,6 +16,19 @@ function consultaDatos(){
 			}
 		});
 		 
+	 $.ajax({
+			method : "post",
+			url : "adminFunciones.php",
+			data : {
+				estatusCita:''
+			},
+			success : function(data) {
+				respuesta=JSON.parse(data);
+				$( "#slcEstatus" ).html(respuesta);
+			}
+		});
+		 
+	 
 	 if($("#hdnRol").val()==1)
 	 $.ajax({
 			method : "post",

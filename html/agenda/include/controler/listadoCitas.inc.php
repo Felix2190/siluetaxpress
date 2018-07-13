@@ -94,11 +94,14 @@ function consultarCitas($informacion,$fechaI){
             
             
             $tabla.="<tr><td>".$cita['hora']." - ".$cita['horaFin']."</td><td colspan='2'>".$cita['nombre_paciente']."</td><td>".$cita['tipoConsulta']."</td>
-                    <td colspan='3'>".$detalles."</td>$sucursal<td></td></tr>";
+                    <td colspan='3'>".$detalles."</td>$sucursal
+                    <td><img src='images/editaCita.png' title='Ver/editar' style='width: 34px' /> 
+                     <a onclick='cancelar(\"".$cita['idCita']."\")'><img src='images/cancelarCita2.png' title='Cancelar cita' style='width: 34px' /></a></td></tr>";
         }
         $tabla.="</tbody></table></div></div><br />";
     }
-    $fI=strtotime($fechaI);
+    $fecha1=explode(" ", $fechaI);
+    $fI=strtotime($fecha1[0]);
     $fh=strtotime(date ( 'Y-m-d'));
     $fA=strtotime($fechaInicio);
     
