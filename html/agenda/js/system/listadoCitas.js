@@ -48,11 +48,11 @@ function iniciar(){
 		 });
 		 
 		 $( "#btnPaciente" ).click(function(){
-			 cancelarCita('paciente');
+			cancelar('paciente');
 		 });
 		 
 		 $( "#btnEncargado" ).click(function(){
-			 
+			cancelar('encargado');			 
 		 });
 		 
 		 /*
@@ -172,31 +172,58 @@ function obtenHora(){
 	 return "<strong>&Uacute;ltima actualizaci&oacute;n... "+hours+":"+minutes+":"+seconds+" "+dn+"</strong>";
 }
 
-function cancelarCita(canceladaPor){
+function cancelarCita(password,canceladaPor){
+
 	$.ajax({
 		method : "post",
 		url : "adminFunciones.php",
 		data : {
-			idCita:cita,
-			por:canceladaPor
+			password:password
 		},
 		success : function(data) {
-			$( "#msjConfirm" ).hide();
-			
-			if(data=='true')
-				mostrarMsjExito('Se ha cancelado la cita correctamente.',5);
-			else
-				mostrarMsjError('Ha ocurrido un error, int&eacute;ntelo m&aacute;s tarde.',5);
+			if(data=='true'){
+				$.ajax({
+					method : "post",
+					url : "adminFunciones.php",
+					data : {
+						idCita:cita,
+						por:canceladaPor
+					},
+					success : function(data) {
+						$( "#msjConfirm" ).hide();
+						
+						if(data=='true')
+							mostrarMsjExito('Se ha cancelado la cita correctamente por el '+canceladaPor+'.',5);
+						else
+							mostrarMsjError('Ha ocurrido un error, int&eacute;ntelo m&aacute;s tarde.',5);
+					}
+				});
+			}else{
+				//el password es incorrecto
+				mostrarMsjError('La contrase&ntilde;a es incorrecta!. '+data,2);
+				setTimeout(function() { 
+					cancelar(canceladaPor);
+					},2400);
+
+			}
+
 		}
 	});
 }
 
-function cancelar(idCita){
+function cancelar(canceladaPor){
 	//alert(idCita);
-	$( "#msjConfirm" ).show();
-	cita=idCita;
+	mensajeConfirmacion("Cancelar cita", "Escribe su contrase&ntilde;a para continuar", canceladaPor, "msjConfirm");
 }
 
+function verOpciones(idCita){
+	 $( "#msjConfirm" ).show();
+		cita=idCita;
+}
+
+function verCita(idCita){
+	xajax_verCita(idCita);
+}
 	//$("#").();
 //var alert = alertify.alert('Titulo','TextoAlerta').set('label', 'Aceptar');     	 
 //alert.set({transition:'zoom'}); //slide, zoom, flipx, flipy, fade, pulse (default)

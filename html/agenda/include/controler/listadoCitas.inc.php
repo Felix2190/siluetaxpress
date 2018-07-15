@@ -95,8 +95,8 @@ function consultarCitas($informacion,$fechaI){
             
             $tabla.="<tr><td>".$cita['hora']." - ".$cita['horaFin']."</td><td colspan='2'>".$cita['nombre_paciente']."</td><td>".$cita['tipoConsulta']."</td>
                     <td colspan='3'>".$detalles."</td>$sucursal
-                    <td><img src='images/editaCita.png' title='Ver/editar' style='width: 34px' /> 
-                     <a onclick='cancelar(\"".$cita['idCita']."\")'><img src='images/cancelarCita2.png' title='Cancelar cita' style='width: 34px' /></a></td></tr>";
+                    <td><a onclick='verCita(\"".$cita['idCita']."\")'><img src='images/editaCita.png' title='Ver/editar' style='width: 34px' /></a> 
+                     <a onclick='verOpciones(\"".$cita['idCita']."\")'><img src='images/cancelarCita2.png' title='Cancelar cita' style='width: 34px' /></a></td></tr>";
         }
         $tabla.="</tbody></table></div></div><br />";
     }
@@ -122,6 +122,16 @@ function consultarCitas($informacion,$fechaI){
     
 }
 $xajax->registerFunction("consultarCitas");
+
+function verCita($idCita){
+    $r=new xajaxResponse();
+    
+    $_SESSION['verCita']=array('titulo'=>'Detalles de la cita','idCita'=>$idCita);
+    $r->call('mostrarMsjEspera','Consultando informaci&oacute;n de la cita...',2);
+    $r->redirect("verCita.php",3);
+    return $r;
+}
+$xajax->registerFunction("verCita");
 
 $xajax->processRequest();
 

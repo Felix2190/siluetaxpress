@@ -63,11 +63,52 @@ require_once 'masterInclude.inc.php';
 						</div>
 						
 				<div class="row">
-					<div class="12u 12u$(small)">
+					<div class="7u 12u$(small)">
+					<div class="box">
+						<div class="row">
+								<div class="3u 12u$(xsmall)">
+									<h3>Informaci&oacute;n</h3>
+								</div>
+							</div>
+							
+							<div class="row">
+						
 					<ul>
-						<li></li>
+						<li><strong>&acute;: </strong><?php echo '$';?></li>
 					</ul>
+							</div>
 					</div>
+					</div>
+					
+					<div class="5u 12u$(small)">
+    					<div class="12u">
+        					<div class="box">
+        						<div class="row">
+        								<div class="3u 12u$(xsmall)">
+        									<h3>Comentarios</h3>
+        								</div>
+        							</div>
+        							
+        							<div class="row">
+        							</div>
+        					</div>
+						</div>
+						
+						<br />
+						
+						<div class="12u">
+        					<div class="box">
+        						<div class="row">
+        								<div class="3u 12u$(xsmall)">
+        									<h3>Opciones</h3>
+        								</div>
+        							</div>
+        							
+        							<div class="row">
+        							</div>
+        					</div>
+						</div>
+				</div>
 					
 				</div>
 						

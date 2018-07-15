@@ -74,7 +74,6 @@ $citas = new ModeloCita();
 $citas->setIdCita($idCita);
 
 if ($citas->getIdCita()>0){
-    $hoja=new ModeloHojaclinica();
     $paciente = new ModeloPaciente();
     $paciente->setIdPaciente($citas->getIdPaciente());
     

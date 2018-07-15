@@ -117,7 +117,19 @@ $_JAVASCRIPT_ALERTAS = "<script type='text/javascript'>
          function mostrarMensaje(texto, tiempo){
             alertify.set('notifier','position', 'top-right'); //top-left, top-right, bootom-left, bottom-right
             alertify.notify(texto, tiempo, null); //mensaje, tipo, tiempo en segundo (0 siempre visible, quitar al hacer click
-      } </script>";
+      } 
+
+         function mensajeConfirmacion(titulo, texto, canceladaPor, divAlerta){
+            alertify.prompt( titulo, texto, ''
+            , function(evt, password) { 
+		cancelarCita(password,canceladaPor) 
+		}
+            , function() { 
+            	$( '#'+divAlerta).hide();
+            }).set('modal', true).set('closable',false);
+	
+      } 
+</script>";
 
 
 

@@ -115,6 +115,13 @@ if (isset($_POST['estatusCita'])){
   echo json_encode(obtenCombo($estatus->obtenerEstatus(),'Seleccione una opci&oacute;n'));
 }
 
+if (isset($_POST['password'])){
+    require_once FOLDER_MODEL_EXTEND. "model.login.inc.php";
+    $login = new ModeloLogin();
+    echo $login->validaPassword($_POST['password']);
+}
+
+
 function obtenCombo($array,$default){
     $combo='<option value="">'.$default.'</option>';
     foreach ($array as $key => $opcion)
@@ -620,5 +627,4 @@ function obtenerHorarioByDia($idSucursal,$fecha){
     }
     return json_encode($horarioDisponible);
 }
-
 ?>

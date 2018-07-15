@@ -129,6 +129,15 @@ function guardarCita($paciente,$sucursal,$idCabina,$consulta,$duracion,$fecha,$h
     $cita->setEstatus("nueva");
     $cita->setTelefonoPaciente("52".$paciente_->getTelefonoCel());
     $cita->setFechaRegistroCita(date( 'Y-m-d'));
+    //decidir si se envía el segundo recordatorio
+    $datetime2 = new DateTime($cita->getFechaInicio());
+    $datetime1 = new DateTime(date( 'Y-m-d H:i:s'));
+    $interval = $datetime1->diff($datetime2);
+    if (intval($interval->format('%R%a'))>=2)
+        $cita->setEnviarRecordatorio2();
+    else
+        $cita->unsetEnviarRecordatorio2();
+    
     $cita->Guardar();
     if ($cita->getError()){
         $r->call('mostrarMsjError',$cita->getStrError(),5);

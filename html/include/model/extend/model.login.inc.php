@@ -89,5 +89,20 @@ class ModeloLogin extends ModeloBaseLogin
         }
         return $arreglo;
     }
+    
+    function validaPassword($password)
+    {
+        global $objSession;
+        $query = "SELECT * from login WHERE idUsuario =".$objSession->getidUsuario();
+        $result = mysqli_query($this->dbLink, $query);
+        if ($result && mysqli_num_rows($result) == 1) {
+            $row = mysqli_fetch_assoc($result);
+            $password = hash('sha512', $password . $row['salt']);
+            if ($row['password'] == $password) {
+                return 'true';
+            }
+        }
+        return $query;
+    }
+    
 }
-
