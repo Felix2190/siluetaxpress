@@ -30,91 +30,22 @@ require_once 'masterInclude.inc.php';
 									<h3 id="content">Cita: <strong><?php echo $idCita;?></strong></h3>
 								</section>
 								
-								
-							<div class="row">
-					<div class="12u 12u$(small)">
-						<div class="box">
-							<div class="row">
-							
-							<!-- 
-								<div class="1u 12u$(small)">
-									Nombre:
-								</div>
-								<div class="5u 12u$(xsmall)">
-									<p style="border-bottom: 2px solid;"><?php echo "$paciente->nombre $paciente->apellidos";?></p>
-								</div>
-								<div class="1u 12u$(small)">
-									Edad:
-								</div>
-								<div class="1u 12u$(xsmall)">
-									<p style="border-bottom: 2px solid;"><?php echo "$paciente->edad";?></p>
-								</div>
-								<div class="2u 12u$(small)">
-									Fecha de nac.:
-								</div>
-								<div class="2u 12u$(xsmall)">
-								<?php $fecha=explode("-",$paciente->fechaNacimiento);?>
-									<p style="border-bottom: 2px solid;"><?php echo "$fecha[2] de ".obtenMes(''.intval($fecha[1]))." del $fecha[0]";?></p>
-								</div>
-								-->
-							</div>	
-						</div>
-					</div>
-						</div>
-						
-				<div class="row">
-					<div class="7u 12u$(small)">
-					<div class="box">
-						<div class="row">
-								<div class="3u 12u$(xsmall)">
-									<h3>Informaci&oacute;n</h3>
-								</div>
-							</div>
-							
-							<div class="row">
-						
-					<ul>
-						<li><strong>&acute;: </strong><?php echo '$';?></li>
-					</ul>
-							</div>
-					</div>
+								<input type="hidden" id="hdnRol" value="<?php echo $objSession->getidRol();?>"/>
+								<input type="hidden" id="hdnCita" value="<?php echo $idCita;?>"/>
+														
+			<div class='row' id='divInformacion'>
+			
+				<div class='row' style="display: none;">
+					<div class='12u'>
+						<a id="btnGuardar" class="button special" >Guardar cambios</a>
 					</div>
 					
-					<div class="5u 12u$(small)">
-    					<div class="12u">
-        					<div class="box">
-        						<div class="row">
-        								<div class="3u 12u$(xsmall)">
-        									<h3>Comentarios</h3>
-        								</div>
-        							</div>
-        							
-        							<div class="row">
-        							</div>
-        					</div>
-						</div>
-						
-						<br />
-						
-						<div class="12u">
-        					<div class="box">
-        						<div class="row">
-        								<div class="3u 12u$(xsmall)">
-        									<h3>Opciones</h3>
-        								</div>
-        							</div>
-        							
-        							<div class="row">
-        							</div>
-        					</div>
-						</div>
-				</div>
-					
-				</div>
-						
+				</div>	
+				<br /><br />
 												</div>
 					</div>
-
+					
+				</div>
 				<!-- Sidebar -->
 					<?php include_once 'sidebar.php';?>
 			</div>

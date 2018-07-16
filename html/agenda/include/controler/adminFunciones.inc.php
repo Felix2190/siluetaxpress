@@ -121,6 +121,13 @@ if (isset($_POST['password'])){
     echo $login->validaPassword($_POST['password']);
 }
 
+if (isset($_POST['idCita'])){
+    require_once FOLDER_MODEL_EXTEND. "model.cita.inc.php";
+    $cita = new ModeloCita();
+    $cita->setIdCita($_POST['idCita']);
+    echo json_encode($cita->obtenerInformacionCita());
+}
+
 
 function obtenCombo($array,$default){
     $combo='<option value="">'.$default.'</option>';

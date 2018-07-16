@@ -186,18 +186,21 @@
 		                    return $respuesta;
 		}
 
-    public function obtenerCitas()
+    public function obtenerInformacionCita()
     {
         $query = "Select idCita, DATE_FORMAT(fechaInicio,'%Y-%m-%d') as fecha, DATE_FORMAT(fechaInicio,'%H:%i') as hora, duracion,
                     concat_ws(' ', p.nombre, p.apellidos) as nombre_paciente, DATE_FORMAT(fechaFin,'%H:%i') as horaFin,
-                    tipoConsulta, sucursal, ser.nombre as servicio, ca.nombre as cabina,enviarRecordatorio2 from cita as c
+                    tipoConsulta, sucursal, ser.nombre as servicio, ca.nombre as cabina,enviarRecordatorio2,
+                    idUsuarioCancela, concat_ws(' ', u.nombre, u.apellidos) as nombre_usuario, e.descripcion,
+                    if(idUsuarioCancela=0,'', (select concat_ws(' ', nombre, apellidos) from usuario where idUsuario=idUsuarioCancela)) as personaCancela from cita as c
                     inner join usuario as u on c.idUsuario=u.idUsuario
                     inner join paciente as p on c.idPaciente=p.idPaciente
                     inner join sucursal as s on c.idSucursal=s.idSucursal
                     inner join consulta as co on c.idConsulta=co.idConsulta
                     inner join servicio as ser on c.idServicio=ser.idServicio
                     inner join cabina as ca on c.idCabina=ca.idCabina
-                    where idCita'$this->idCita";
+                    inner join estatuscita as e on c.estatus=e.estatusCita
+                    where idCita=$this->idCita";
         
         $respuesta = array();
         $resultado = mysqli_query($this->dbLink, $query);

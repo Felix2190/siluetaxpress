@@ -3,11 +3,27 @@ $(document).ready(function(){
 });
 	 
 function iniciar(){
-	
+	actualizarCita();
 }
-	//$("#").();
-//var alert = alertify.alert('Titulo','TextoAlerta').set('label', 'Aceptar');     	 
-//alert.set({transition:'zoom'}); //slide, zoom, flipx, flipy, fade, pulse (default)
+
+function actualizarCita(){
+	    $.ajax({
+		method : "post",
+		url : "adminFunciones.php",
+		data : {
+			idCita:$( "#hdnCita" ).val()
+		},
+
+		success : function(data) {
+			respuesta = JSON.parse(data);
+			xajax_cargarInformacion(respuesta[0]);
+		}
+	});
+}
+	// $("#").();
+// var alert = alertify.alert('Titulo','TextoAlerta').set('label', 'Aceptar');
+// alert.set({transition:'zoom'}); //slide, zoom, flipx, flipy, fade, pulse
+// (default)
 //alert.set('modal', false);  //al pulsar fuera del dialog se cierra o no	
 //alertify.set('notifier','position', 'top-right'); //top-left, top-right, bootom-left, bottom-right
 

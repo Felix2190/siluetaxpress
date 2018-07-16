@@ -233,7 +233,7 @@ require_once 'masterInclude.inc.php';
 								</div>
 								
 								<div class="2u 12u$(small)">
-									<input class="checkDias" value="viernes" disabled="disabled" id="chkviernes" name="chkviernes" type="checkbox"> <label for="chkviernes">Viernes</label>
+									<input class="checkDias" value="viernes" id="chkviernes" name="chkviernes" type="checkbox"> <label for="chkviernes">Viernes</label>
 								</div>
 								
 								<div class="2u 12u$(small)">
