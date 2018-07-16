@@ -192,6 +192,7 @@
                     concat_ws(' ', p.nombre, p.apellidos) as nombre_paciente, DATE_FORMAT(fechaFin,'%H:%i') as horaFin,
                     tipoConsulta, sucursal, ser.nombre as servicio, ca.nombre as cabina,enviarRecordatorio2,
                     idUsuarioCancela, concat_ws(' ', u.nombre, u.apellidos) as nombre_usuario, e.descripcion,
+                    s.idSucursal,ca.idCabina,co.idConsulta,c.idUsuario,
                     if(idUsuarioCancela=0,'', (select concat_ws(' ', nombre, apellidos) from usuario where idUsuario=idUsuarioCancela)) as personaCancela from cita as c
                     inner join usuario as u on c.idUsuario=u.idUsuario
                     inner join paciente as p on c.idPaciente=p.idPaciente

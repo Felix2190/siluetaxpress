@@ -478,6 +478,7 @@ function obtenerHorarioDisponibles($idConsulta,$idSucursal,$fecha,$duracion,$idC
             }
             
         }
+        $minInicio=0;
     }
     
    return json_encode($horarioDisponible);

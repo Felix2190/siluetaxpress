@@ -34,15 +34,15 @@ require_once 'masterInclude.inc.php';
 								<input type="hidden" id="hdnCita" value="<?php echo $idCita;?>"/>
 														
 			<div class='row' id='divInformacion'>
-			
-				<div class='row' style="display: none;">
+			</div>
+				<div class="row" style="display: none;" id="divGuardar">
 					<div class='12u'>
 						<a id="btnGuardar" class="button special" >Guardar cambios</a>
 					</div>
 					
 				</div>	
 				<br /><br />
-												</div>
+			
 					</div>
 					
 				</div>

@@ -3,6 +3,7 @@
 // ---------------------------------------Archivos necesarios Require Include---------------------------------------#
 // -----------------------------------------------------------------------------------------------------------------#
 require_once FOLDER_MODEL_EXTEND. "model.cita.inc.php";
+require_once FOLDER_MODEL_EXTEND. "model.comentarioscita.inc.php";
 require_once FOLDER_MODEL_EXTEND. "model.servicio.inc.php";
 require_once FOLDER_MODEL_EXTEND. "model.paciente.inc.php";
 require_once FOLDER_MODEL_EXTEND. "model.sucursal.inc.php";
@@ -148,6 +149,16 @@ function guardarCita($paciente,$sucursal,$idCabina,$consulta,$duracion,$fecha,$h
         $idCita=$cita->getIdCita();
         $primero=false;
     }
+    
+    if ($comen!=""){
+        
+        $comentarios= new ModeloComentarioscita();
+        $comentarios->setIdCita($cita->getIdCita());
+        $comentarios->setFechaComentario($cita->getFechaInicio());
+        $comentarios->setComentario($comen);
+        $comentarios->Guardar();
+    }
+        
     }
     
     $nSucursal= new ModeloSucursal();
