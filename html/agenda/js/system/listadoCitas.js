@@ -55,6 +55,10 @@ function iniciar(){
 			cancelar('encargado');			 
 		 });
 		 
+		 $( "#btnCerrar" ).click(function(){
+			 $( "#msjConfirm" ).hide();
+			 });
+			 
 		 /*
 		 alertify.confirm('Confirm Title', 'Confirm Message', function(){ alertify.success('Ok') }
          , function(){ alertify.error('Cancel')}).set('labels',{ok:'Encargado',cancel:'Paciente'}).set('modal', true).set('closable',false); 
@@ -186,7 +190,7 @@ function cancelarCita(password,canceladaPor){
 					method : "post",
 					url : "adminFunciones.php",
 					data : {
-						idCita:cita,
+						idCitaCancelar:cita,
 						por:canceladaPor
 					},
 					success : function(data) {
@@ -200,7 +204,7 @@ function cancelarCita(password,canceladaPor){
 				});
 			}else{
 				//el password es incorrecto
-				mostrarMsjError('La contrase&ntilde;a es incorrecta!. '+data,2);
+				mostrarMsjError('La contrase&ntilde;a es incorrecta!. ',2);
 				setTimeout(function() { 
 					cancelar(canceladaPor);
 					},2400);

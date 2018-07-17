@@ -92,10 +92,15 @@
 		
 		public function obtenerCitasFechaDuracion()
 		{
+		    $idCita=0;
+		    if (isset($_SESSION['verCita'])){
+		    $aux =$_SESSION['verCita'];
+		    $idCita=$aux['idCita'];
+		    }
 		    $fechaF = strtotime ( '+1 day' , strtotime ( $this->fechaFin ) ) ;
 		    $fechaF = date ( 'Y-m-d' , $fechaF );
 		    $query = "Select idCita, fechaInicio, fechaFin, duracion from cita 
-                    where (estatus='nueva' or estatus='curso') and idSucursal=$this->idSucursal and idConsulta=$this->idConsulta and idCabina=$this->idCabina and fechaInicio between DATE('$this->fechaInicio') and DATE('$fechaF')";
+                    where idCita<>$idCita and (estatus='nueva' or estatus='curso') and idSucursal=$this->idSucursal and idConsulta=$this->idConsulta and idCabina=$this->idCabina and fechaInicio between DATE('$this->fechaInicio') and DATE('$fechaF')";
 		    $respuesta = array();
 		    $resultado = mysqli_query($this->dbLink, $query);
 		    if ($resultado && mysqli_num_rows($resultado) > 0) {
@@ -190,7 +195,7 @@
     {
         $query = "Select idCita, DATE_FORMAT(fechaInicio,'%Y-%m-%d') as fecha, DATE_FORMAT(fechaInicio,'%H:%i') as hora, duracion,
                     concat_ws(' ', p.nombre, p.apellidos) as nombre_paciente, DATE_FORMAT(fechaFin,'%H:%i') as horaFin,
-                    tipoConsulta, sucursal, ser.nombre as servicio, ca.nombre as cabina,enviarRecordatorio2,
+                    tipoConsulta, sucursal, ser.nombre as servicio, ca.nombre as cabina,enviarRecordatorio2,recordatorio2,
                     idUsuarioCancela, concat_ws(' ', u.nombre, u.apellidos) as nombre_usuario, e.descripcion,
                     s.idSucursal,ca.idCabina,co.idConsulta,c.idUsuario,
                     if(idUsuarioCancela=0,'', (select concat_ws(' ', nombre, apellidos) from usuario where idUsuario=idUsuarioCancela)) as personaCancela from cita as c

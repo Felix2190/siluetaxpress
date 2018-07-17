@@ -64,9 +64,12 @@ function cargarInformacion($informacion,$txtDuracion,$hora,$minuto,$cabina,$chkb
         $_duracion=($hr>0?($hr. ' hora'.($hr>1?'s':'')).($min>0?(', '.$min.' minutos'):''):('').$min.' minutos');
         $arrTiempo[$tiempoI]=$_duracion;
     }
+    $hr=intval(intval($informacion['duracion'])/60);
+    $min=intval(intval($informacion['duracion'])%60);
+    $duracion_=($hr>0?($hr. ' hora'.($hr>1?'s':'')).($min>0?(', '.$min.' minutos'):''):('').$min.' minutos');
     
     $duracion=_obtenCombo($arrTiempo,intval($txtDuracion));
-    
+
     $arrConsultorios=obtenerConsultorios($informacion['idConsulta'],$informacion['idSucursal']);
     $consultorios=_obtenCombo($arrConsultorios,$cabina);
     
@@ -77,22 +80,27 @@ function cargarInformacion($informacion,$txtDuracion,$hora,$minuto,$cabina,$chkb
     $arrComentarios=$comentarios->obtenerComentarios();
     $AUX=explode(":", $informacion['hora']);
     
+    $auxFecha=explode('-',$informacion['fecha']);
+    $auxFecha="$auxFecha[2] de ".obtenMes(intval($auxFecha[1]))." del $auxFecha[0]";
+    
     $textCita= "<div class='7u 12u$(small)'><div class='box'><div class='row'><div class='3u 12u$(xsmall)'><h3>Informaci&oacute;n</h3></div></div>
 					<div class='row'>
                     <input type='hidden' id='hdnSucursal' value='".$informacion['idSucursal']."'/>
                     <input type='hidden' id='hdnCabina' value='".$informacion['idCabina']."'/>
+                    <input type='hidden' id='hdnDuracion' value='".$informacion['duracion']."'/>
 						<input type='hidden' id='hdnConsulta' value='".$informacion['idConsulta']."'/>
                     <input type='hidden' id='hdnHR' value='".$AUX[0]."'/><input type='hidden' id='hdnMIN' value='".$AUX[1]."'/>
 						<input type='hidden' id='hdnFecha' value='".$informacion['fecha']."'/>
 						
-					<ul><li><strong>Fecha: </strong>".$informacion['fecha']."</li><li><strong>Paciente: </strong>".$informacion['nombre_paciente']."</li>
+					<ul><li><strong>Fecha: </strong>".$auxFecha."</li><li><strong>Paciente: </strong>".$informacion['nombre_paciente']."</li>
                         <li><strong>Sucursal: </strong>".$informacion['sucursal']."</li>
 						<li><strong>Horario: </strong>".$informacion['hora']." - ".$informacion['horaFin']."</li><li><strong>Consulta: </strong>".$informacion['tipoConsulta']."</li>
+                        <li><strong>Duracion: </strong>".$duracion_."</li>
                         <li><strong>Servicio: </strong>".$informacion['servicio']."</li>
 						<li><strong>Cabina: </strong>".$informacion['cabina']."</li> <li><strong>Responsable: </strong>".$informacion['nombre_usuario']."</li>
                     <li><strong>Estatus: </strong>".$informacion['descripcion']."</li>";
-    if (intval($informacion['idUsuarioCancela'])>0)
-        $textCita.= "<li><strong>Cancelada por: </strong>$</li>";
+    if (intval($informacion['idUsuarioCancela'])>0&&($informacion['descripcion']=="Cancelada por el paciente"||$informacion['descripcion']=="Cancelada por el encargado"))
+        $textCita.= "<li><strong>Cancelada por: </strong>".$informacion['personaCancela']."</li>";
         
      if ($informacion['descripcion']=='Nueva'&&($objSession->getidUsuario()==$informacion['idUsuario']||$objSession->getidRol()==1))
         $textCita.= "</ul></div>
@@ -128,7 +136,9 @@ function cargarInformacion($informacion,$txtDuracion,$hora,$minuto,$cabina,$chkb
         $recordatorio="";
         if ($chkbox=='1'||$chkbox=='true')
              $recordatorio="checked";
-                    
+         if ($informacion['recordatorio2']=='1')
+             $recordatorio.=" disabled";
+         
                     $textCita.="</div></div><br />";
                     if ($informacion['descripcion']=="Nueva")
                         $textCita.="<div class='12u'><div class='box'><div class='row'><div class='3u 12u$(xsmall)'><h3>Opciones</h3></div></div><br />
@@ -187,6 +197,8 @@ function guardarCambios($idCita,$duracion,$hora,$minuto,$consultorio,$chkbox){
     $cita->setFechaInicio($fecha);
     $cita->setDuracion($duracion);
     $cita->setIdCabina($consultorio);
+    $auxFecha = strtotime ( '+'.$duracion.' minute' , strtotime ( $fecha ) ) ;
+    $cita->setFechaFin(date( 'Y-m-d H:i:s' , $auxFecha));
     
     $cita->unsetEnviarRecordatorio2();
     if ($chkbox=="true")

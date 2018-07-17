@@ -55,6 +55,26 @@ require_once 'masterInclude.inc.php';
 			<script src="assets/js/util.js"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="assets/js/main.js"></script>
-
+	<div class="alertify  ajs-movable ajs-closable ajs-pinnable ajs-slide" id="msjConfirm" style="display: none;">
+		<div class="ajs-dimmer"></div>
+		<div class="ajs-modal" tabindex="0">
+			<div class="ajs-dialog" tabindex="0" style="">
+				<div class="ajs-commands">
+					<button class="ajs-close"  id="btnCerrar"></button>
+				</div>
+				<div class="ajs-header">Cancelar cita</div>
+				<div class="ajs-body">
+					<div class="ajs-content">&iquest;Qui&eacute;n cancela la cita?</div>
+				</div>
+				<div class="ajs-footer">
+					<div class="ajs-auxiliary ajs-buttons"></div>
+					<div class="ajs-primary ajs-buttons">
+						<button class="ajs-button " id="btnEncargado">Encargado</button>
+						<button class="ajs-button " id="btnPaciente">Paciente</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 	</body>
 </html>

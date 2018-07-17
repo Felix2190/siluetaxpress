@@ -15,3 +15,14 @@ ALTER TABLE `cita` ADD FOREIGN KEY (`estatus`) REFERENCES `estatuscita`(`estatus
 
 ALTER TABLE `cita` ADD `enviarRecordatorio2` TINYINT NOT NULL DEFAULT '1' ; 
 ALTER TABLE `cita` ADD `idUsuarioCancela` INT NOT NULL DEFAULT '0', ADD INDEX (`idUsuarioCancela`) ; 
+
+CREATE TABLE IF NOT EXISTS `comentarioscita` (
+  `idComentario` int(11) NOT NULL AUTO_INCREMENT,
+  `idCita` int(11) NOT NULL,
+  `fechaComentario` datetime NOT NULL,
+  `comentario` text NOT NULL,
+  PRIMARY KEY (`idComentario`),
+  KEY `idCita` (`idCita`)
+) ENGINE=InnoDB DEFAULT CHARSET=latin1 AUTO_INCREMENT=1 ;
+
+ALTER TABLE `comentarioscita` ADD FOREIGN KEY (`idCita`) REFERENCES `cita`(`idCita`) ON DELETE RESTRICT ON UPDATE RESTRICT; 

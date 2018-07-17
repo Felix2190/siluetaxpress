@@ -9,9 +9,21 @@ function iniciar(){
 	setTimeout(function() { 
 		setInterval(function() {
 			actualizarCita();
-			},50000)
+			},30000)
 		},2000);
-
+	
+	 $( "#btnPaciente" ).click(function(){
+			cancelar('paciente');
+		 });
+		 
+		 $( "#btnEncargado" ).click(function(){
+			cancelar('encargado');			 
+		 });
+		 
+		 $( "#btnCerrar" ).click(function(){
+			 $( "#msjConfirm" ).hide();
+			 });
+			 
 }
 
 function actualizarCita(){
@@ -53,25 +65,30 @@ function cargarHorasMin(arrH,hr_,minuto){
 	$( "#slcConsultorio" ).change(function(){
 		 verHorarios();
 		});
-
+	
 	arrFechas=JSON.parse(arrH);
-//.	alert(arrH);
-	 opcion='';
-	b=true;
+//	alert(arrH);
+	 opcion='',opcion2='';
+	b=true;/*/
 //	arrFechas=new Array();
 	if(arrFechas.length==0){
-		arrFechas[0]=new Array('-');
+		arrFechas[parseInt($( "#hdnHR" ).val())]=new Array('-');
 	}
+	//alert(arrFechas["08"]);
+	if(arrFechas[parseInt($( "#hdnHR" ).val())]==undefined)
+		arrFechas[parseInt($( "#hdnHR" ).val())]=new Array('-');/*/
+	primero=true;
 	$.each(arrFechas, function( index, arr ) {
-		opcion+='<option value="'+index+'" '+(index==hr_?'selected':'')+'>'+index+'</option>';
+		opcion+='<option value="'+index+'" '+(index==hr_?'selected':'')+'>'+index+'</option>';/*/
 		if(arr.length==0){
 			arr[index]=new Array('-');
-		}
-		if((parseInt($( "#hdnHR" ).val())==parseInt(index))&&(parseInt($( "#hdnCabina" ).val())==parseInt($("#slcConsultorio").val()))){
-			if(primero){
-				arr.push(minuto);
+		}/*/
+		if((parseInt($( "#hdnHR" ).val())==parseInt(index))/*/&&(parseInt($( "#hdnCabina" ).val())==parseInt($("#slcConsultorio").val()))/*/){
+			if(primero/*/&&parseInt($( "#slcDuracion" ).val())<=parseInt($( "#hdnDuracion" ).val())/*/){
+				/*/	arr.push(minuto);
 				min=minuto;
-				hr=hr_;
+				hr=hr_;/*/
+				primero=false;
 			}
 			$.each(arr, function( index2, min ) {
 				opcion2+='<option value="'+min+'"  '+(parseInt(min)==parseInt(minuto)?'selected':'')+'>'+min+'</option>';
@@ -84,19 +101,20 @@ function cargarHorasMin(arrH,hr_,minuto){
 	$( "#slcHr" ).change(function(){
 		 opcion2='';
 		 
-		 arrMin=arrFechas[$("#slcHr").val()];
-		 if((parseInt($( "#hdnHR" ).val())==parseInt($("#slcHr").val()))&&(parseInt($( "#hdnCabina" ).val())==parseInt($("#slcConsultorio").val()))){
+		 arrMin=arrFechas[$("#slcHr").val()];/*/
+		 if((parseInt($( "#hdnHR" ).val())==parseInt($("#slcHr").val()))&&(parseInt($( "#hdnCabina" ).val())==parseInt($("#slcConsultorio").val()))&&(parseInt($( "#slcDuracion" ).val())<=parseInt($( "#hdnDuracion" ).val()))){
 					arrMin.push($( "#hdnMIN" ).val());
-		 }
+		 }/*/
 		 $.each(arrMin, function( index2, min ) {
 				opcion2+='<option value="'+min+'">'+min+'</option>';
 			});
 		 $("#slcMin").html(opcion2);
 	 });
-	primero=false;
+	
 }
 
 function verHorarios(){
+	
 	var sucursal= $("#hdnSucursal").val();
 	var consulta = $("#hdnConsulta").val();
 	var consultorio = $("#slcConsultorio").val().trim();
@@ -115,14 +133,28 @@ function verHorarios(){
 				idConsultorio:consultorio
 			},
 			success : function(data) {
-				arrFechas=JSON.parse(data);
-				opcion='',opcion2='', b=true;
+				arrFechas=JSON.parse(data);/*/
+				if(arrFechas.length==0){
+					arrFechas[parseInt($( "#hdnHR" ).val())]=new Array('-');
+				}
+				//alert(arrFechas["08"]);
+				if(arrFechas[parseInt($( "#hdnHR" ).val())]==undefined)
+					arrFechas[parseInt($( "#hdnHR" ).val())]=new Array('-');
+				/*/
+				opcion='',opcion2='';
 				$.each(arrFechas, function( index, arr ) {
-					opcion+='<option value="'+index+'">'+index+'</option>';
-					if(b){
-						b=false;
+					opcion+='<option value="'+index+'">'+index+'</option>';/*/
+					if(arr.length==0){
+						arr[index]=new Array('-');
+					}/*/
+					if((parseInt($( "#hdnHR" ).val())==parseInt(index))){/*/
+						primero=true;
+						if(primero&&parseInt($( "#slcDuracion" ).val())<=parseInt($( "#hdnDuracion" ).val())){
+							arr.push(parseInt($( "#hdnMIN" ).val()));
+							primero=false;
+						}/*/
 						$.each(arr, function( index2, min ) {
-							opcion2+='<option value="'+min+'">'+min+'</option>';
+							opcion2+='<option value="'+min+'"  '+(parseInt(min)==parseInt(parseInt($( "#hdnHR" ).val()))?'selected':'')+'>'+min+'</option>';
 						});
 					}
 					});
@@ -140,7 +172,7 @@ function visualizar(v,estatus){
 	}else
 		$( "#divGuardar" ).hide();
 	
-	if(estatus=='En curso'||estatus=='Nueva')
+	if(estatus=='En curso'||estatus=='Nueva'){
 		$( "#btnAgregar" ).click(function(){
 			if($( "#txtComentarios" ).val()==""){
 				mostrarMsjError('No se ha ingresado un comentario!!',3);
@@ -149,15 +181,21 @@ function visualizar(v,estatus){
 			xajax_agregaComentario($( "#txtComentarios" ).val(),idCita);
 			$( "#txtComentarios" ).val('');
 		 });
+		if(estatus=='Nueva')
+		$( "#btnCancelar" ).click(function(){
+			$( "#msjConfirm" ).show();
+		 });
+	}
+	primero=false;
 }
 
 function activarBtn(){
-	$( "#btnGuardar" ).click(function(){
+	if(primero){
+		$( "#btnGuardar" ).click(function(){
 		if($( "#slcHr" ).val()=="0"||$( "#slcMin" ).val()=="-"){
 			mostrarMsjError('Datos incompletos!! <br />Por favor, llene la informaci&oacute;n que se solicita',5);
 			return false;
-		}
-		
+		}		
 		var consultorio = $("#slcConsultorio").val().trim();
 		 duracion = $("#slcDuracion").val().trim();
 		var hora=$( "#slcHr" ).val();
@@ -165,7 +203,53 @@ function activarBtn(){
 		chkbox=$('#checkRecordatorio').is(':checked');
 		xajax_guardarCambios(idCita,duracion,hora,minuto,consultorio,chkbox);
 	 });
+	}
 }
+
+function cancelar(canceladaPor){
+	//alert(idCita);
+	mensajeConfirmacion("Cancelar cita", "Escribe su contrase&ntilde;a para continuar", canceladaPor, "msjConfirm");
+}
+
+
+function cancelarCita(password,canceladaPor){
+	$.ajax({
+		method : "post",
+		url : "adminFunciones.php",
+		data : {
+			password:password
+		},
+		success : function(data2) {
+			if(data2=='true'){
+				$.ajax({
+					method : "post",
+					url : "adminFunciones.php",
+					data : {
+						idCitaCancelar:idCita,
+						por:canceladaPor
+					},
+					success : function(data3) {
+						$( "#msjConfirm" ).hide();
+						
+						if(data3=='true')
+							mostrarMsjExito('Se ha cancelado la cita correctamente por el '+canceladaPor+'.',5);
+						else
+							mostrarMsjError('Ha ocurrido un error, int&eacute;ntelo m&aacute;s tarde.'+data3,50);
+					}
+				});
+			}else{
+				//el password es incorrecto
+				mostrarMsjError('La contrase&ntilde;a es incorrecta!. ',2);
+				setTimeout(function() { 
+					cancelar(canceladaPor);
+					},2400);
+
+			}
+
+		}
+	});
+}
+
 	// $("#").();
 // var alert = alertify.alert('Titulo','TextoAlerta').set('label', 'Aceptar');
 // alert.set({transition:'zoom'}); //slide, zoom, flipx, flipy, fade, pulse

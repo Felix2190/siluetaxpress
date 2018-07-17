@@ -128,24 +128,25 @@ if (isset($_POST['idCita'])){
     echo json_encode($cita->obtenerInformacionCita());
 }
 
+if (isset($_POST['idCitaCancelar'])&&isset($_POST['por'])){
+    require_once FOLDER_MODEL_EXTEND. "model.cita.inc.php";
+    global $objSession;
+    $cita = new ModeloCita();
+    $cita->setIdCita($_POST['idCitaCancelar']);
+    $cita->setEstatus("cancelada_".$_POST['por']);
+    $cita->setIdUsuarioCancela($objSession->getidUsuario());
+    $cita->Guardar();
+    if ($cita->getError())
+        echo $cita->getStrError();
+    else
+        echo 'true';
+}
 
 function obtenCombo($array,$default){
     $combo='<option value="">'.$default.'</option>';
     foreach ($array as $key => $opcion)
         $combo.='<option value="'.$key.'">'.$opcion.'</option>';
     return $combo;
-}
-
-if (isset($_POST['idCita'])&&isset($_POST['por'])){
-    require_once FOLDER_MODEL_EXTEND. "model.cita.inc.php";
-    $cita = new ModeloCita();
-    $cita->setIdCita($_POST['idCita']);
-    $cita->setEstatus("cancelada_".$_POST['por']);
-    $cita->Guardar();
-    if ($cita->getError()){
-        echo '';
-    }else 
-        echo 'true';
 }
 
 function obtenerIntervalosDisponibles($idSucursal,$idCabina,$fechaInicio){
