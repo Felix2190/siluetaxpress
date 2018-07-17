@@ -334,6 +334,7 @@ function altaCita(arrDias){
 		console.log("Error: comen");
 	}
 	var repetir=$('#checkRepetir').is(':checked');
+	var Recordatorio=$('#checkRecordatorio').is(':checked');
 	var periodo=$("#slcPeriodo").val().trim();
 	var veces = $("#slcVeces").val().trim();
 	
@@ -342,7 +343,7 @@ function altaCita(arrDias){
 		$("#btnGuardar").show();
 	}else{
 		mostrarMsjEspera('Espere un momento... guardando informaci&oacute;n.', 3);
-		xajax_guardarCita(paciente,sucursal,consultorio,consulta,duracion,fecha,hora,minutos,servicio,comen,repetir,arrDias,periodo,veces,bandera);
+		xajax_guardarCita(paciente,sucursal,consultorio,consulta,duracion,fecha,hora,minutos,servicio,comen,repetir,arrDias,periodo,veces,bandera,Recordatorio);
 	}
 }
 

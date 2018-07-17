@@ -273,6 +273,12 @@ require_once 'masterInclude.inc.php';
 							
 							</div>
 							<br />
+							<div class="row">
+							<div class='12u'>
+        						<input id='checkRecordatorio' checked name='checkRecordatorio' type='checkbox' > <label for='checkRecordatorio'>Enviar recordatorio SMS</label>
+        					</div>
+        					</div>
+							<br />
 							<br />
 								
 								<div class="row" id="divFechasNoDisponibles" style="display: none;">

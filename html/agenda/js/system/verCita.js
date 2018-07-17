@@ -234,7 +234,7 @@ function cancelarCita(password,canceladaPor){
 						if(data3=='true')
 							mostrarMsjExito('Se ha cancelado la cita correctamente por el '+canceladaPor+'.',5);
 						else
-							mostrarMsjError('Ha ocurrido un error, int&eacute;ntelo m&aacute;s tarde.'+data3,50);
+							mostrarMsjError('Ha ocurrido un error, int&eacute;ntelo m&aacute;s tarde.'+data3,5);
 					}
 				});
 			}else{

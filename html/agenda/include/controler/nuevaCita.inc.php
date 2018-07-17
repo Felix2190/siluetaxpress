@@ -49,7 +49,7 @@ function obtenMes($numMes){
 
 $xajax = new xajax();
 
-function guardarCita($paciente,$sucursal,$idCabina,$consulta,$duracion,$fecha,$hora,$minutos,$servicio,$comen,$repetir,$arrDias,$periodo,$veces,$bandera){
+function guardarCita($paciente,$sucursal,$idCabina,$consulta,$duracion,$fecha,$hora,$minutos,$servicio,$comen,$repetir,$arrDias,$periodo,$veces,$bandera,$Recordatorio){
     global $objSession;
     
     $r=new xajaxResponse();
@@ -69,12 +69,12 @@ function guardarCita($paciente,$sucursal,$idCabina,$consulta,$duracion,$fecha,$h
                 $auxFecha = strtotime ( '+'.$duracion.' minute' , strtotime ( $fecha.' '.$hora.':'.$minutos.':00') ) ;
                 $cita->setFechaFin(date( 'Y-m-d H:i:s' , $auxFecha));
                 
-                if (in_array($nomDia, $arrDias))
+                if (in_array($nomDia, $arrDias)){
                     if ($cita->disponibliadDia())
                         $arrFechas[]=$fecha;
                     else 
                         $arrFechasNO[]=$fecha;
-                 
+                }
                 $auxFecha = strtotime ( '+1 day' , strtotime ( $fecha.' '.$hora.':'.$minutos.':00') ) ;
                 $fecha = date ( 'Y-m-d' , $auxFecha);
                  $dia=$dias[date('N', $auxFecha)];
@@ -134,7 +134,7 @@ function guardarCita($paciente,$sucursal,$idCabina,$consulta,$duracion,$fecha,$h
     $datetime2 = new DateTime($cita->getFechaInicio());
     $datetime1 = new DateTime(date( 'Y-m-d H:i:s'));
     $interval = $datetime1->diff($datetime2);
-    if (intval($interval->format('%R%a'))>=2)
+    if (intval($interval->format('%R%a'))>=2&&$Recordatorio=='1')
         $cita->setEnviarRecordatorio2();
     else
         $cita->unsetEnviarRecordatorio2();
@@ -168,7 +168,9 @@ function guardarCita($paciente,$sucursal,$idCabina,$consulta,$duracion,$fecha,$h
     $paciente_ = new ModeloPaciente();
     $paciente_->setIdPaciente($paciente);
     /**/
-    $resSMS = enviaSMS_CitaNueva("52".$paciente_->getTelefonoCel(), $nConsulta->getTipoConsulta(), $fecha, $hora, $nSucursal->getSucursal(), $idCita);
+    $resSMS=false; 
+    if ($Recordatorio=='1')
+        $resSMS = enviaSMS_CitaNueva("52".$paciente_->getTelefonoCel(), $nConsulta->getTipoConsulta(), $fecha, $hora, $nSucursal->getSucursal(), $idCita);
     
     if ($resSMS){
         $r->call('mostrarMsjExito',"Se envi&oacute; el SMS al ".$paciente_->getTelefonoCel(),3);

@@ -329,6 +329,14 @@ function obtenerIntervalosDisponibles($idSucursal,$idCabina,$fechaInicio){
                             $hr=intval($auxFecha[0]);;
                             $min=intval($auxFecha[1]);
                             $horaInicio=($hr<10?'0':'').$hr.":".($min<10?'0':'').$min;
+                            //regresar 10 min atras
+                            if ($min==0){
+                                $min=50;
+                                $hr-=1;
+                            }else {
+                                $min-=10;
+                            }
+                            
                         }
                     }
                     $minInicio=0;

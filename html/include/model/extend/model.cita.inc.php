@@ -119,7 +119,7 @@
 		{
 		    $query = "Select * from cita
                     where (estatus='nueva' or estatus='curso') and idSucursal=$this->idSucursal and idConsulta=$this->idConsulta and idCabina=$this->idCabina 
-            and (('$this->fechaInicio'>=fechaInicio and '$this->fechaInicio'<=fechaFin) or ('$this->fechaFin'>=fechaInicio and '$this->fechaFin'<=fechaFin)
+            and (('$this->fechaInicio'>=fechaInicio and '$this->fechaInicio'<fechaFin) or ('$this->fechaFin'>fechaInicio and '$this->fechaFin'<=fechaFin)
             or ('$this->fechaInicio'<=fechaInicio and '$this->fechaFin'>=fechaFin))";
 		    $respuesta = true;
 		    $resultado = mysqli_query($this->dbLink, $query);
