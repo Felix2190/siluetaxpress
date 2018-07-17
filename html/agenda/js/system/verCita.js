@@ -1,8 +1,8 @@
 $(document).ready(function(){
 	iniciar();
 });
-	 var primero=true,duracion,hr,min,chkbox,cabina,b,opcion='',opcion2='';
-	 var arrFechas=new Array();
+	 var primero=true,duracion,hr,min,chkbox,cabina,b,opcion='',opcion2='',idCita;
+	 var arrFechas=new Array(),arrMin=new Array();
 function iniciar(){
 	actualizarCita();
 	
@@ -24,6 +24,7 @@ function actualizarCita(){
 
 		success : function(data) {
 			respuesta = JSON.parse(data);
+			idCita=respuesta[0]['idCita'];
 			if(primero){
 				duracion=respuesta[0]['duracion'];
 				var horario=respuesta[0]['hora'].split(':');
@@ -31,20 +32,21 @@ function actualizarCita(){
 				min=horario[1];
 				cabina=respuesta[0]['idCabina'];
 				chkbox=respuesta[0]['enviarRecordatorio2'];
+				comentario='';
 			}else{
 				duracion=$( "#slcDuracion" ).val();
 				hr=$( "#slcHr" ).val();
 				min=$( "#slcMin" ).val();
 				cabina=$( "#slcConsultorio" ).val();
 				chkbox=$('#checkRecordatorio').is(':checked');
-			}
-			xajax_cargarInformacion(respuesta[0],duracion,hr,min,cabina,chkbox);
-			primero=false;
+				comentario=$( "#txtComentarios" ).val();
+			} //alert(duracion+' '+min+' '+cabina);
+			xajax_cargarInformacion(respuesta[0],duracion,hr,min,cabina,chkbox,comentario);
 		}
 	});
 }
 
-function cargarHorasMin(arrH,hr,minuto){
+function cargarHorasMin(arrH,hr_,minuto){
 	$( "#slcDuracion" ).change(function(){
 		 verHorarios();
 		});
@@ -53,25 +55,45 @@ function cargarHorasMin(arrH,hr,minuto){
 		});
 
 	arrFechas=JSON.parse(arrH);
-//	alert(minuto);
+//.	alert(arrH);
 	 opcion='';
 	b=true;
+//	arrFechas=new Array();
+	if(arrFechas.length==0){
+		arrFechas[0]=new Array('-');
+	}
 	$.each(arrFechas, function( index, arr ) {
-		opcion+='<option value="'+index+'" '+(index==hr?'selected':'')+'>'+index+'</option>';
-		opcion2='';
+		opcion+='<option value="'+index+'" '+(index==hr_?'selected':'')+'>'+index+'</option>';
+		if(arr.length==0){
+			arr[index]=new Array('-');
+		}
+		if((parseInt($( "#hdnHR" ).val())==parseInt(index))&&(parseInt($( "#hdnCabina" ).val())==parseInt($("#slcConsultorio").val()))){
+			if(primero){
+				arr.push(minuto);
+				min=minuto;
+				hr=hr_;
+			}
 			$.each(arr, function( index2, min ) {
 				opcion2+='<option value="'+min+'"  '+(parseInt(min)==parseInt(minuto)?'selected':'')+'>'+min+'</option>';
 			});
+		}
 		});
 	$("#slcHr").html(opcion);
 	$("#slcMin").html(opcion2);
-	 $( "#slcHr" ).change(function(){
+	 
+	$( "#slcHr" ).change(function(){
 		 opcion2='';
-		 $.each(arrFechas[$("#slcHr").val()], function( index2, min ) {
+		 
+		 arrMin=arrFechas[$("#slcHr").val()];
+		 if((parseInt($( "#hdnHR" ).val())==parseInt($("#slcHr").val()))&&(parseInt($( "#hdnCabina" ).val())==parseInt($("#slcConsultorio").val()))){
+					arrMin.push($( "#hdnMIN" ).val());
+		 }
+		 $.each(arrMin, function( index2, min ) {
 				opcion2+='<option value="'+min+'">'+min+'</option>';
 			});
 		 $("#slcMin").html(opcion2);
-});
+	 });
+	primero=false;
 }
 
 function verHorarios(){
@@ -111,13 +133,39 @@ function verHorarios(){
 	
 }
 
-function visualizar(v){
-	if(v=='si')
+function visualizar(v,estatus){
+	if(v=='si'){
 		$( "#divGuardar" ).show();
-	else
+		activarBtn();
+	}else
 		$( "#divGuardar" ).hide();
+	
+	if(estatus=='En curso'||estatus=='Nueva')
+		$( "#btnAgregar" ).click(function(){
+			if($( "#txtComentarios" ).val()==""){
+				mostrarMsjError('No se ha ingresado un comentario!!',3);
+				return false;
+			}
+			xajax_agregaComentario($( "#txtComentarios" ).val(),idCita);
+			$( "#txtComentarios" ).val('');
+		 });
 }
 
+function activarBtn(){
+	$( "#btnGuardar" ).click(function(){
+		if($( "#slcHr" ).val()=="0"||$( "#slcMin" ).val()=="-"){
+			mostrarMsjError('Datos incompletos!! <br />Por favor, llene la informaci&oacute;n que se solicita',5);
+			return false;
+		}
+		
+		var consultorio = $("#slcConsultorio").val().trim();
+		 duracion = $("#slcDuracion").val().trim();
+		var hora=$( "#slcHr" ).val();
+		var minuto=$( "#slcMin" ).val();
+		chkbox=$('#checkRecordatorio').is(':checked');
+		xajax_guardarCambios(idCita,duracion,hora,minuto,consultorio,chkbox);
+	 });
+}
 	// $("#").();
 // var alert = alertify.alert('Titulo','TextoAlerta').set('label', 'Aceptar');
 // alert.set({transition:'zoom'}); //slide, zoom, flipx, flipy, fade, pulse

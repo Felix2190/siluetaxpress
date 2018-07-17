@@ -245,5 +245,4 @@ if (isset($_SESSION['pacientePredefinido'])){
     $idPaciente=$pacienteP['idPaciente'];
     $nombreP=$pacienteP['nombre'];
 }
-var_dump(enviaSMS('527331258053','sMessage'));
 ?>

@@ -338,7 +338,7 @@ function altaCita(arrDias){
 	var veces = $("#slcVeces").val().trim();
 	
 	if(existeError){
-		mostrarMsjError('Datos incompletos!! <br />Por favor, llene la informaaci&oacute;n que se solicita',5);
+		mostrarMsjError('Datos incompletos!! <br />Por favor, llene la informaci&oacute;n que se solicita',5);
 		$("#btnGuardar").show();
 	}else{
 		mostrarMsjEspera('Espere un momento... guardando informaci&oacute;n.', 3);
