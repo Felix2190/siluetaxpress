@@ -45,7 +45,7 @@ require_once 'masterInclude.inc.php';
 
 							<!-- Section -->
 								<section>
-									<h2 id="content">Agregar cita </h2>
+									<h2 id="content"><img src="images/cita.png" style="width: 70px;" />&ensp;Agregar cita </h2>
 								</section>
 
 				<div class="row">

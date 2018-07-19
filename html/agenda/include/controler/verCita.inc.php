@@ -130,7 +130,7 @@ function cargarInformacion($informacion,$txtDuracion,$hora,$minuto,$cabina,$chkb
                 
         if (($informacion['descripcion']=="En curso"||$informacion['descripcion']=="Nueva")&&($objSession->getidUsuario()==$informacion['idUsuario']||$objSession->getidRol()==1))
             $textCita.="<div class='12u'><textarea rows='2' cols='' id='txtComentarios'>$txtComentario</textarea></div>
-                        <div class='12u'><br /><a id='btnAgregar' class='button' >Agregar comentario</a></div>";
+                        <div class='12u'><br /><a id='btnAgregar' class='button' ><img src='images/agregar.png' style='width: 18px;' />&ensp;Agregar comentario</a></div>";
                     
      if ($informacion['descripcion']=="Nueva"&&($objSession->getidUsuario()==$informacion['idUsuario']||$objSession->getidRol()==1)){
         $recordatorio="";
@@ -142,7 +142,7 @@ function cargarInformacion($informacion,$txtDuracion,$hora,$minuto,$cabina,$chkb
                     $textCita.="</div></div><br />";
                     if ($informacion['descripcion']=="Nueva")
                         $textCita.="<div class='12u'><div class='box'><div class='row'><div class='3u 12u$(xsmall)'><h3>Opciones</h3></div></div><br />
-        						<div class='row'><div class='6u 12u$(xsmall)'><a id='btnCancelar' class='button' >Cancelar cita</a></div>
+        						<div class='row'><div class='6u 12u$(xsmall)'><a id='btnCancelar' class='button' ><img src='images/cancelarCita.png' style='width: 18px;' />&ensp;Cancelar cita</a></div>
         			 			<div class='6u 12u$(xsmall)'>
         						<input id='checkRecordatorio' $recordatorio name='checkRecordatorio' type='checkbox' > <label for='checkRecordatorio'>Enviar recordatorio</label>
         						</div></div></div></div>";

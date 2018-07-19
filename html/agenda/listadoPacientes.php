@@ -28,7 +28,7 @@ require_once 'masterInclude.inc.php';
 
 							<!-- Section -->
 								<section>
-									<h2 id="content">Listado Pacientes </h2>
+									<h2 id="content"><img src="images/pacientes.png" style="width: 60px;" />&ensp;Listado Pacientes </h2>
 									
 								<div class="4u 12u$(xsmall)" style="float: right;">
 								<p id="fechasEntre"></p>

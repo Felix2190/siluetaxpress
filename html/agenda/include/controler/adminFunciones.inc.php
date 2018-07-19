@@ -512,24 +512,24 @@ function obtenerConsultorios($idConsulta,$idSucursal){
 
 function enviaSMS_CitaNueva($numPaciente, $consulta, $dia, $hora, $sucursal, $idConsulta)
 {
-    $sMessage = "Ha agendado una cita en Silueta Express el dia $dia a la(s) $hora hr(s) en la sucursal $sucursal.
-            \nPara cancelar su cita, responde: CANCELAR C$idConsulta";
+    $sMessage = "Ha agendado una cita en SiluetaExpress el dia $dia a las $hora hrs en $sucursal.\nPara cancelar responde: CANCELAR C$idConsulta";
     return enviaSMS($numPaciente, $sMessage);
 }
 
 function enviaSMS_recordatorio($numPaciente, $nombre, $servicio, $dia, $hora, $sucursal, $idConsulta)
 {
-    $sMessage = "$nombre, Silueta Express le recuerda su cita '$servicio' el dia $dia a la(s) $hora hr(s) en la sucursal $sucursal.
-            \nPara cancelar su cita, responde: CANCELAR C$idConsulta";
+    $sMessage = "SiluetaExpress le recuerda su cita para el dia $dia a las $hora hrs en $sucursal.\nPara cancelar responde: CANCELAR C$idConsulta";
     return enviaSMS($numPaciente, $sMessage);
 }
 
 function enviaSMS($numPaciente, $sMessage)
 {
+    $concat="";
+    //$concat="concat=true&";
     $sData = 'cmd=sendsms&';
     $sData .= 'domainId=siluetaexpress&';
     $sData .= 'login=lic.lezliedelariva@gmail.com&';
-    $sData .= 'passwd=L7fr9P3sPMw6&concat=true&';
+    $sData .= 'passwd=L7fr9P3sPMw6&';
     
     $sData .= 'dest=' . str_replace(',', '&dest=', $numPaciente) . '&';
     $sData .= 'msg=' . urlencode(utf8_encode($sMessage));

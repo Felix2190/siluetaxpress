@@ -39,8 +39,6 @@ define("CLASS_COMUN", FOLDER_MODEL_DATA . "clsBasicCommon.inc.php");
 
 require_once(CLASS_COMUN);
 
-var_dump(FOLDER_INCLUDE_AGENDA);
-
 
 require_once FOLDER_MODEL_EXTEND. "model.sucursal.inc.php";
 require_once FOLDER_MODEL_EXTEND. "model.consulta.inc.php";

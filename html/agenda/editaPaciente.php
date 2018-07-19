@@ -27,7 +27,7 @@ require_once 'masterInclude.inc.php';
 
 							<!-- Section -->
 								<section>
-									<h3 id="content"><?php echo $titulo;?></h3>
+									<h3 id="content"><img src="images/verPerfil.png" style="width: 55px;" />&ensp;<?php echo $titulo;?></h3>
 								</section>
 								
 								

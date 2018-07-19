@@ -27,7 +27,7 @@ require_once 'masterInclude.inc.php';
 
 							<!-- Section -->
 								<section>
-									<h3 id="content">Cita: <strong><?php echo $idCita;?></strong></h3>
+									<h3 id="content"><img src="images/observaciones.png" style="width: 55px;" />&ensp;Cita: <strong><?php echo $idCita;?></strong></h3>
 								</section>
 								
 								<input type="hidden" id="hdnRol" value="<?php echo $objSession->getidRol();?>"/>

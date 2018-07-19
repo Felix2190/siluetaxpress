@@ -46,7 +46,7 @@ require_once 'masterInclude.inc.php';
 
 							<!-- Section -->
 								<section>
-									<h2 id="content">B&uacute;squeda de cita</h2>
+									<h2 id="content"><img src="images/lupa.png" style="width: 45px;" />&ensp; B&uacute;squeda de cita</h2>
 									
 									<input type="hidden" id="hdnRol" value="<?php echo $objSession->getidRol();?>"/>
 									<div class="row" id="">

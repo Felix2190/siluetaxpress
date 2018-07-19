@@ -28,7 +28,7 @@ require_once 'masterInclude.inc.php';
 
 							<!-- Section -->
 								<section>
-									<h2 id="content">Horarios disponibles </h2>
+									<h2 id="content"><img src="images/calendario.png" style="width: 60px;" />&ensp;Horarios disponibles </h2>
 									<div class="row" >
 							<div class="8u 12u$(xsmall)" >
 								<p style="float: right;" id="fechasEntre"></p>

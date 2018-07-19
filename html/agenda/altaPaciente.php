@@ -28,7 +28,7 @@ require_once 'masterInclude.inc.php';
 
 							<!-- Section -->
 								<section>
-									<h2 id="content">Agregar nuevo paciente </h2>
+									<h2 id="content"><img src="images/agregaPaciente.png" style="width: 55px;" />&emsp;Agregar nuevo paciente </h2>
 								</section>
 
 				<div class="row">
