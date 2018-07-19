@@ -16,22 +16,7 @@ function consultaDatos(){
 		}
 	});
 	
-	 $.ajax({
-			method : "post",
-			url : "adminFunciones.php",
-			data : {
-				tiposConsulta:''
-			},
-			success : function(data) {
-				respuesta=JSON.parse(data);
-				$( "#slcConsulta" ).html(respuesta);
-				if($( "#hdnPredefinida" ).val()=='true'){
-					$( "#slcConsulta" ).val($( "#hdnConsulta" ).val());
-					cargarServicios();
-				}
-			}
-		});
-		 
+	 
 	 if($("#hdnRol").val()==1)
 	 $.ajax({
 			method : "post",
@@ -44,9 +29,31 @@ function consultaDatos(){
 				$( "#slcSucursal" ).html(respuesta);
 				if($( "#hdnPredefinida" ).val()=='true'){
 					$( "#slcSucursal" ).val($( "#hdnSucursal" ).val());
-					mostrarCabinas();
+					setTimeout(function() {
+						mostrarCabinas();
+					},1500);
 				}
 				
+			}
+		});
+		
+	
+	 $.ajax({
+			method : "post",
+			url : "adminFunciones.php",
+			data : {
+				tiposConsulta:''
+			},
+			success : function(data) {
+				respuesta=JSON.parse(data);
+				$( "#slcConsulta" ).html(respuesta);
+				setTimeout(function() {
+					mostrarCabinas();
+				},1500);
+				if($( "#hdnPredefinida" ).val()=='true'){
+					$( "#slcConsulta" ).val($( "#hdnConsulta" ).val());
+					cargarServicios();
+				}
 			}
 		});
 		 
@@ -163,12 +170,18 @@ function iniciar(){
 	}
 	if($( "#hdnPredefinida" ).val()=='true'){
 	setTimeout(function() {
+		console.log('cabina '+$( "#hdnCabina" ).val());
 		$( "#slcConsultorio" ).val($( "#hdnCabina" ).val());
-		verHorarios();
-		},1700);
+		setTimeout(function() {
+//			console.log($("#slcConsultorio").val());
+			verHorarios();
+		},400);
+		//
+		},1800);
 	setTimeout(function() {
+//		console.log($("#hdnHr").val());
 		$( "#slcHr" ).val($( "#hdnHr" ).val());
-		},2200);
+		},2600);
 	}
 
 	$("#btnPaciente").click(function(){
@@ -350,7 +363,6 @@ function altaCita(arrDias){
 function mostrarCabinas(){
 	var sucursal= $("#slcSucursal").val().trim();
 	var consulta = $("#slcConsulta").val().trim();
-	
 	if ( sucursal != "" && consulta!= "") {
 		$.ajax({
 			method : "post",

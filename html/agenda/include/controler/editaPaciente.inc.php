@@ -63,7 +63,7 @@ $xajax->processRequest();
 // -----------------------------------------------------------------------------------------------------------------#
 
 if (!isset($_SESSION['editaPaciente'])){
-    header("Location: listadoPaciente.php");
+    header("Location: listadoPacientes.php");
 }
 
 $aux =$_SESSION['editaPaciente'];
@@ -79,7 +79,7 @@ if ($paciente->getIdPaciente()>0){
     $hojaClinica->setIdHojaClinica($paciente->getIdHojaClinica());
     
 }else {
-    header("Location: listadoPaciente.php");
+    header("Location: listadoPacientes.php");
 }
 
 ?>

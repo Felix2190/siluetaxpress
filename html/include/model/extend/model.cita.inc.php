@@ -78,7 +78,7 @@
                     inner join consulta as co on c.idConsulta=co.idConsulta
                     inner join servicio as ser on c.idServicio=ser.idServicio
                     inner join cabina as ca on c.idCabina=ca.idCabina
-                    where (c.estatus='nueva' or c.estatus='curso') and fechaInicio>='$this->fechaInicio'  $condicion order by fecha,hora,c.idCabina";
+                    where (c.estatus='nueva' or c.estatus='curso') and fechaInicio>='$this->fechaInicio'  $condicion order by fechaInicio,c.idCabina";
 
 		    $respuesta = array();
 		    $resultado = mysqli_query($this->dbLink, $query);
@@ -179,7 +179,7 @@
                     inner join servicio as ser on c.idServicio=ser.idServicio
                     inner join cabina as ca on c.idCabina=ca.idCabina
                     inner join estatuscita as ec on c.estatus=ec.estatusCita
-                    where  $condicion order by fecha,hora,c.idCabina";
+                    where  $condicion order by fechaInicio,c.idCabina";
 		                 // return $query;
 		                    $respuesta = array();
 		                    $resultado = mysqli_query($this->dbLink, $query);

@@ -68,10 +68,10 @@ if ($cita->getIdCita()>0&&$cita->getTelefonoPaciente()==$telefono&&$cita->getEst
     $nConsulta->setIdConsulta($cita->getIdConsulta());
     
     
-    $cita->setEstatusCancelada();
+    $cita->setEstatus("cancelada_paciente");
     $cita->Guardar();
     if (!$cita->getError()){
-        enviaSMS($telefono, "Haz cancelado tu cita para ".$nConsulta->getTipoConsulta()." en ".$nSucursal->getSucursal());
+        enviaSMS($telefono, "Ha cancelado su cita para ".$nConsulta->getTipoConsulta()." en ".$nSucursal->getSucursal());
     }
 }
 

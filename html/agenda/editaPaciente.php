@@ -340,7 +340,7 @@ require_once 'masterInclude.inc.php';
 																<tr>
 																<td >Comida</td>
 																	<td><?php echo ($hojaClinica->getHorarioComida()=="00:00 AM"?"-":$hojaClinica->getHorarioComida());?></td>
-																	<td colspan="3"><?php echo $hojaClinica->getActividadDesayuno();?></td>
+																	<td colspan="3"><?php echo $hojaClinica->getActividadComida();?></td>
 																</tr>
 																<tr>
 																<td >Colaci&oacute;n 2</td>
