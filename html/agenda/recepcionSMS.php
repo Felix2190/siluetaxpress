@@ -6,13 +6,10 @@ if (! DEVELOPER) {
     /**
      * constantes de producción
      */
-    define("FOLDER_INCLUDE", $_SERVER['DOCUMENT_ROOT'] . "/include/");
-    define("FOLDER_INCLUDE_AGENDA", $_SERVER['DOCUMENT_ROOT'] . "/agenda/include/"); //agenda
     
-    define("FOLDER_HTDOCS", $_SERVER['DOCUMENT_ROOT'] . "/");
-    define("FOLDER_HTDOCS_AGENDA", $_SERVER['DOCUMENT_ROOT'] . "/agenda/");//AGENDA
-    
-    
+    define("FOLDER_INCLUDE", "/home/zs5xw0qfuut5/public_html/include/");
+    define("FOLDER_INCLUDE_AGENDA", "/home/zs5xw0qfuut5/public_html/agenda/include/");
+        
 } else {
     /**
      * constantes de desarrollo
@@ -42,6 +39,8 @@ define("CLASS_COMUN", FOLDER_MODEL_DATA . "clsBasicCommon.inc.php");
 
 require_once(CLASS_COMUN);
 
+var_dump(FOLDER_INCLUDE_AGENDA);
+
 
 require_once FOLDER_MODEL_EXTEND. "model.sucursal.inc.php";
 require_once FOLDER_MODEL_EXTEND. "model.consulta.inc.php";
@@ -57,7 +56,6 @@ $keyword = $_POST['keyword'];
 $mensaje=str_replace($keyword, "", $mensaje);
 $mensaje=str_replace(" ","" , $mensaje);
 $mensaje=str_replace("C","" , $mensaje);
-
 
 $cita = new ModeloCita();
 $cita->setIdCita($mensaje);

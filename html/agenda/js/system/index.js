@@ -3,7 +3,21 @@ $(document).ready(function(){
 });
 	 
 function iniciar(){
+/*	 $.ajax({
+			method : "post",
+			url : "http://www.siluetaexpress.com.mx/agenda/recepcionSMS.php",
+			data : {
+				text:'CANCELAR C18',
+				keyword:'CANCELAR',
+				telnum:'527331258053'
+			},
+			success : function(data) {
+				respuesta=JSON.parse(data);
+				$( "#slcSucursal" ).html(respuesta);
+			}
+		});
 	
+*/
 }
 	//$("#").();
 //var alert = alertify.alert('Titulo','TextoAlerta').set('label', 'Aceptar');     	 
