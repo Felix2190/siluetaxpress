@@ -1,4 +1,5 @@
 $(document).ready(function(){
+	
 	iniciar();
 });
 	 
@@ -18,6 +19,12 @@ function iniciar(){
 		});
 	
 */
+	
+	xajax_verGraficas('');
+	
+}
+function knob_(){
+	$(".knob").knob();
 }
 	//$("#").();
 //var alert = alertify.alert('Titulo','TextoAlerta').set('label', 'Aceptar');     	 

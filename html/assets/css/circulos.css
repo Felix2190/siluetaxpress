@@ -1,0 +1,69 @@
+@charset "ISO-8859-1";
+.circular-stats{
+	position : relative;
+	float    : left;
+	width    : 100px;
+	margin   : 0 20px 0 0;
+}
+
+.circular-stats.radius-60{
+	width : 120px;
+}
+.circular-stats-inner{
+	position : relative;
+	float    : left;
+	overflow : hidden;
+	height   : 100px;
+	width    : 100px;
+}
+.circular-stats.radius-60 .circular-stats-inner{
+	height : 120px;
+	width  : 120px;
+}
+.circular-stats.radius-60 .circular-stats-data{
+	position : absolute;
+	top      : 30px;	
+	left     : 30px;
+	height   : 60px;
+	width    : 60px;
+}
+.circular-stats-data{
+	position : absolute;
+	top      : 18px;
+	left     : 20px;
+	height   : 60px;
+	width    : 60px;
+}
+.circular-stats .circular-stats-data strong{
+	float       : left;
+	height      : 24px;
+	width       : 100%;
+	margin      : 8px 0 0 0;
+	font-size   : 16px;
+	line-height : 24px;
+	text-align  : center;
+}
+.circular-stats .circular-stats-data span{
+	float       : left;
+	height      : 24px;
+	width       : 100%;
+	line-height : 24px;
+	text-align  : center;
+}
+audio,canvas,video {
+ display:inline-block
+}
+.circular-stats.radius-60 .circular-stats-data i{
+	height      : 52px;
+	font-size   : 32px;
+	line-height : 52px;
+}
+.circular-stats input,
+.circular-stats-gage input{
+	display : none;
+}
+.knob{
+	cursor : default!important;
+	border : none;
+}
+

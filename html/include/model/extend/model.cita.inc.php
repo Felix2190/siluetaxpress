@@ -218,6 +218,40 @@
         return $respuesta;
     }
 		
+    public function resumenCitas($fecha)
+    {
+            if ($this->idSucursal>0)
+                $condicion.=" and c.idSucursal=".$this->idSucursal;
+                if ($this->idUsuario)
+                    $condicion.=" and c.idUsuario=".$this->idUsuario;
+                        
+               $query = "Select count(*) as resultado from cita
+                    where estatus='realizada' DATE_FORMAT(fechaInicio,'%Y-%m-%d')>='$fecha' and DATE_FORMAT(fechaFin,'%Y-%m-%d')<='$fecha'  $condicion
+               union 
+                Select count(*) as resultado from cita
+                    where estatus='nueva' DATE_FORMAT(fechaInicio,'%Y-%m-%d')>='$fecha' and DATE_FORMAT(fechaFin,'%Y-%m-%d')<='$fecha'  $condicion
+               union 
+                Select count(*) as resultado from cita
+                    where estatus='cancelada_encargado' DATE_FORMAT(fechaInicio,'%Y-%m-%d')>='$fecha' and DATE_FORMAT(fechaFin,'%Y-%m-%d')<='$fecha'  $condicion
+               union 
+                Select count(*) as resultado from cita
+                    where estatus='cancelada_paciente' DATE_FORMAT(fechaInicio,'%Y-%m-%d')>='$fecha' and DATE_FORMAT(fechaFin,'%Y-%m-%d')<='$fecha'  $condicion
+               union 
+                 Select idCita from cita
+                    where estatus='nueva' DATE_FORMAT(fechaInicio,'%Y-%m-%d')>='$fecha'  $condicion order by fechaInicio asc";
+        $items = array("Realizada","Pr&oacute;ximas","Canceladas por el encargado","Canceladas por el paciente","Pr&oacute;xima","Total");
+        $respuesta = array();
+        $resultado = mysqli_query($this->dbLink, $query);
+        if ($resultado && mysqli_num_rows($resultado) > 0) {
+            $i=0;
+            while ($row_inf = mysqli_fetch_assoc($resultado)) {
+                $respuesta[$items[$i]]= $row_inf['resultadoo'];
+                $i++;
+            }
+        }
+        return $respuesta;
+    }
+    
 		
 	}
 

@@ -24,8 +24,26 @@
 
 $xajax = new xajax();
 
+function verGraficas($informacion){
+    $r=new xajaxResponse();
+    $tex='<div class="circular-stats radius-60" >
+                                    <div class="circular-stats-inner">	                        			
+                                        <div class="circular-stats-data">
+                                            <strong>69103</strong>
+                                            <span>67%</span>
+                                        </div>	
+                                        <input class="knob" data-width="120" data-cursor="false" data-fgColor="#a033ac" data-bgColor="#d183da" data-thickness=".30" 
+                                        value="67" data-readOnly="true" data-angleOffset="-0" data-displayInput="false" />
+                                    </div>
+                                </div>';
+    
+    $r->assign("divGraficas", "innerHTML", $tex);
+    $r->call("knob_");
+    return $r;
+    
+}
 
-$xajax->registerFunction("");
+$xajax->registerFunction("verGraficas");
 
 $xajax->processRequest();
 

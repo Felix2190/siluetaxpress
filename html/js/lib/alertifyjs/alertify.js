@@ -3480,7 +3480,7 @@
             },
             build: function () {
                 input.className = alertify.defaults.theme.input;
-                input.setAttribute('type', 'text');
+                input.setAttribute('type', 'password');
                 input.value = this.get('value');
                 this.elements.content.appendChild(p);
                 this.elements.content.appendChild(input);
