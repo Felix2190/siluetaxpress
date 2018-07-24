@@ -7,16 +7,16 @@ function iniciar(){
 		 this.value = (this.value + '').replace(/[^0-9]/g, '');
 		});*/
 	$('.numeric').numeric({negative : false});
-	
-	$('.datepicker').datepicker({
-		dateFormat : 'yy-mm-dd',
+/*
+	$.datepicker.setDefaults($.datepicker.regional['es-MX']);;
+	$('#txtFecha').datepicker({
 		yearRange: 'c-100:c',
 		changeMonth : true,
 		changeYear : true,
 		minDate : '-120Y',
 		maxDate : '0D'
 	});
-	
+	*/
 	$("input[name=cirugias]").click(function(){
 		if($(this).val()=="Si"){
 			 $('.divCirugia').show();

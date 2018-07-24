@@ -111,8 +111,7 @@ require_once 'masterInclude.inc.php';
 									<label>Fecha de nacimiento:</label>
 								</div>
 								<div class="3u 12u$(xsmall)">
-									<input type="text" id="txtFecha" placeholder="AAAA-MM-DD" readonly="readonly"
-																class="datepicker" />
+									<input type="date" id="txtFecha" />
 								</div>
 								
 							</div>

@@ -76,7 +76,10 @@ require_once 'masterInclude.inc.php';
 					</div>
 					
 				</div>
-				
+				<input type="hidden" id="hdnRol" value="<?php echo $objSession->getidRol();?>"/>
+									<input type="hidden" id="hdnSucursal" value="<?php echo $objSession->getIdSucursal();?>"/>
+									<input type="hidden" id="hdnUsuario" value="<?php echo $objSession->getidUsuario();?>"/>
+								
 				
 				<div class="4u 12u$(small)">
 					<div class="box">
@@ -89,9 +92,25 @@ require_once 'masterInclude.inc.php';
 									<label>D&iacute;a:</label>
 								</div>
 								<div class="9u 12u$(xsmall)">
-									<input type="text" id="txtFecha" placeholder="AAAA-MM-DD" readonly="readonly"
+									<input type="text" id="txtFecha" placeholder="AAAA-MM-DD" readonly="readonly" value="<?php echo date("Y-m-d");?>"
 																class="datepicker" />
 								</div>
+						<div class="12u 12u$(xsmall)">
+						<br />
+						</div>
+						
+						<?php if ($objSession->getidRol()==1){?>
+									<div class="3u 12u$(xsmall)">
+									<label>Sucursal:</label>
+								</div>
+								<div class="9u 12u$(xsmall)">
+									<div class="select-wrapper">
+									<select name="demo-category" id="slcSucursal">
+									</select>
+									</div>
+									</div>
+									<?php } ?>
+								
 								
 						</div>
 						
@@ -99,13 +118,8 @@ require_once 'masterInclude.inc.php';
 						<hr />
 						</div>
 						
-						<div class="row">
-							<div class="12u 12u$(xsmall)" style="text-align: center;">
-							<strong>Citas realizadas</strong>
-							</div>
-							<div class="12u 12u$(xsmall)" style="display: flex; justify-content: center;" id="divGraficas">
-							
-			                </div>
+						<div class="row" id="divGraficas">
+						
 						</div>
 						
 					</div>

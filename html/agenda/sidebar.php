@@ -15,6 +15,7 @@
 		<!-- Menu -->
 		<nav id="menu">
 			<ul>
+			<li><a class="<?php if($subseccion=="index") echo "active";?>" href="index.php">Inicio</a></li>
 				<li><span class="opener <?php if($seccion=="cuenta") echo "active";?>" class="opener">Mi cuenta</span>
 					<ul>
 						<li><a class="<?php if($subseccion=="") echo "active";?>" href="">Perfil</a></li>

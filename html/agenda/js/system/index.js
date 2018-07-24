@@ -4,6 +4,7 @@ $(document).ready(function(){
 });
 	 
 function iniciar(){
+	
 /*	 $.ajax({
 			method : "post",
 			url : "http://www.siluetaexpress.com.mx/agenda/recepcionSMS.php",
@@ -19,12 +20,36 @@ function iniciar(){
 		});
 	
 */
+	actualizaResumen();
 	
-	xajax_verGraficas('');
 	
 }
 function knob_(){
 	$(".knob").knob();
+}
+
+function actualizaResumen(){
+	var nsucursal,usuario='';
+	if($("#hdnRol").val()!=1){
+		nsucursal=$( "#hdnSucursal" ).val();
+		usuario=$( "#hdnUsuario" ).val();
+	}else{
+		nsucursal=$( "#slcSucursal" ).val();
+	}
+	 $.ajax({
+			method : "post",
+			url : "adminFunciones.php",
+			data : {
+				fechaIndex:$( "#txtFecha" ).val(),
+				SucursalIndex:nsucursal,
+				usuarioIndex:usuario
+			},
+			success : function(data) {
+				respuesta=JSON.parse(data);
+				//alert(data);
+				xajax_verGraficas(respuesta);
+			}
+		});
 }
 	//$("#").();
 //var alert = alertify.alert('Titulo','TextoAlerta').set('label', 'Aceptar');     	 

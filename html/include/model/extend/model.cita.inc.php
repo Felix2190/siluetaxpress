@@ -220,34 +220,55 @@
 		
     public function resumenCitas($fecha)
     {
+        $condicion=" ";
             if ($this->idSucursal>0)
                 $condicion.=" and c.idSucursal=".$this->idSucursal;
                 if ($this->idUsuario)
                     $condicion.=" and c.idUsuario=".$this->idUsuario;
                         
-               $query = "Select count(*) as resultado from cita
-                    where estatus='realizada' DATE_FORMAT(fechaInicio,'%Y-%m-%d')>='$fecha' and DATE_FORMAT(fechaFin,'%Y-%m-%d')<='$fecha'  $condicion
+               $query = "Select count(*) as resultado, '0' from cita
+                    where estatus='curso' and DATE_FORMAT(fechaInicio,'%Y-%m-%d')>='$fecha' and DATE_FORMAT(fechaFin,'%Y-%m-%d')<='$fecha'  $condicion
                union 
-                Select count(*) as resultado from cita
-                    where estatus='nueva' DATE_FORMAT(fechaInicio,'%Y-%m-%d')>='$fecha' and DATE_FORMAT(fechaFin,'%Y-%m-%d')<='$fecha'  $condicion
+                Select count(*) as resultado, '1' from cita
+                    where estatus='realizada' and DATE_FORMAT(fechaInicio,'%Y-%m-%d')>='$fecha' and DATE_FORMAT(fechaFin,'%Y-%m-%d')<='$fecha'  $condicion
                union 
-                Select count(*) as resultado from cita
-                    where estatus='cancelada_encargado' DATE_FORMAT(fechaInicio,'%Y-%m-%d')>='$fecha' and DATE_FORMAT(fechaFin,'%Y-%m-%d')<='$fecha'  $condicion
+                Select count(*) as resultado, '2' from cita
+                    where estatus='nueva' and DATE_FORMAT(fechaInicio,'%Y-%m-%d')>='$fecha' and DATE_FORMAT(fechaFin,'%Y-%m-%d')<='$fecha'  $condicion
                union 
-                Select count(*) as resultado from cita
-                    where estatus='cancelada_paciente' DATE_FORMAT(fechaInicio,'%Y-%m-%d')>='$fecha' and DATE_FORMAT(fechaFin,'%Y-%m-%d')<='$fecha'  $condicion
+                Select count(*) as resultado, '3' from cita
+                    where estatus='cancelada_encargado' and  DATE_FORMAT(fechaInicio,'%Y-%m-%d')>='$fecha' and DATE_FORMAT(fechaFin,'%Y-%m-%d')<='$fecha'  $condicion
                union 
-                 Select idCita from cita
-                    where estatus='nueva' DATE_FORMAT(fechaInicio,'%Y-%m-%d')>='$fecha'  $condicion order by fechaInicio asc";
-        $items = array("Realizada","Pr&oacute;ximas","Canceladas por el encargado","Canceladas por el paciente","Pr&oacute;xima","Total");
+                Select count(*) as resultado, '4' from cita
+                    where estatus='cancelada_paciente' and  DATE_FORMAT(fechaInicio,'%Y-%m-%d')>='$fecha' and DATE_FORMAT(fechaFin,'%Y-%m-%d')<='$fecha'  $condicion
+               union 
+                 select  IFNULL((Select idCita as resultado from cita
+                    where estatus='curso' and  DATE_FORMAT(fechaInicio,'%Y-%m-%d')>='$fecha'  $condicion order by fechaInicio asc limit 1),0),'5'
+             union 
+                 select  IFNULL((Select idCita as resultado from cita
+                    where estatus='nueva' and  DATE_FORMAT(fechaInicio,'%Y-%m-%d')>='$fecha'  $condicion order by fechaInicio asc limit 1), 0),'6'";
+               
+               $items = array("divCitaCurso","divCitaRea","divCitaProxs","divCitaCP","divCitaCE","divCitaC","divCitaProx","divCitaTot");
+               $titulos = array("en curso","realizadas","pr&oacute;ximas","canceladas por el encargado","canceladas por el paciente","En curso","Pr&oacute;xima","totales");
+        $total=0;
         $respuesta = array();
         $resultado = mysqli_query($this->dbLink, $query);
         if ($resultado && mysqli_num_rows($resultado) > 0) {
             $i=0;
             while ($row_inf = mysqli_fetch_assoc($resultado)) {
-                $respuesta[$items[$i]]= $row_inf['resultadoo'];
+                $respuesta[$items[$i]]= array($row_inf['resultado'],$titulos[$i]);
+                if ($i<5)
+                    $total+=$row_inf['resultado'];
                 $i++;
             }
+            $respuesta['divCitaTot']=array($total,'totales',100);
+        }
+        $i=0;
+        $porcentaje=100/$total;
+        foreach ($items as $item){
+            if ($i<5){
+                $respuesta[$item][2]=intval($respuesta[$item][0]*$porcentaje);
+            }
+            $i++;
         }
         return $respuesta;
     }

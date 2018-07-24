@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	iniciar();
 });
-	 var primero=true,duracion,hr,min,chkbox,cabina,b,opcion='',opcion2='',idCita;
+	 var primero=true,duracion,hr,min,chkbox,cabina,b,opcion='',opcion2='',idCita,evento_boton=true;
 	 var arrFechas=new Array(),arrMin=new Array();
 function iniciar(){
 	actualizarCita();
@@ -190,7 +190,7 @@ function visualizar(v,estatus){
 }
 
 function activarBtn(){
-	if(primero){
+	if(evento_boton){
 		$( "#btnGuardar" ).click(function(){
 		if($( "#slcHr" ).val()=="0"||$( "#slcMin" ).val()=="-"){
 			mostrarMsjError('Datos incompletos!! <br />Por favor, llene la informaci&oacute;n que se solicita',5);
@@ -204,6 +204,8 @@ function activarBtn(){
 		xajax_guardarCambios(idCita,duracion,hora,minuto,consultorio,chkbox);
 	 });
 	}
+	
+	evento_boton=false;
 }
 
 function cancelar(canceladaPor){

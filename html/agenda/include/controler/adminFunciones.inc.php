@@ -142,6 +142,19 @@ if (isset($_POST['idCitaCancelar'])&&isset($_POST['por'])){
         echo 'true';
 }
 
+if (isset($_POST['SucursalIndex'])&&isset($_POST['usuarioIndex'])&&isset($_POST['fechaIndex'])){
+    $dia=date('N',strtotime ($_POST['fechaIndex']));
+    if ($dia==7) //es domingo
+        echo json_encode(array());
+    else {
+    require_once FOLDER_MODEL_EXTEND. "model.cita.inc.php";
+    $cita = new ModeloCita();
+    $cita->setIdSucursal($_POST['SucursalIndex']);
+    $cita->setIdUsuario($_POST['usuarioIndex']);
+    echo json_encode($cita->resumenCitas($_POST['fechaIndex']));
+    }
+}
+
 function obtenCombo($array,$default){
     $combo='<option value="">'.$default.'</option>';
     foreach ($array as $key => $opcion)

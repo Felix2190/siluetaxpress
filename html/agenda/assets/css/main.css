@@ -4040,8 +4040,8 @@
 		padding: 0.5em 0 0 0;
 	}
 	
-	#menu > ul > li.active >a {
-	color: #7F09BA;
+	#menu > ul > li a.active {
+	color: #b048cc;
 	}
 	#menu > ul > li > ul >li.active >a {
 	color: #7F09BA;

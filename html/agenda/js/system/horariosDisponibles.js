@@ -99,7 +99,7 @@ function actualizaHorarios(){
 				{ 
 			mostrarHorarios($( "#hdnFechaActual" ).val());
 			$( "#divAct" ).html(obtenHora());
-			},15000)
+			},4500)
 		},2000);
 }
 

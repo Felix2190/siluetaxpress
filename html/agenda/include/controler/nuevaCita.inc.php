@@ -148,6 +148,7 @@ function guardarCita($paciente,$sucursal,$idCabina,$consulta,$duracion,$fecha,$h
     if ($primero){
         $idCita=$cita->getIdCita();
         $primero=false;
+        $fechaCita=$fecha;
     }
     
     if ($comen!=""){
@@ -170,7 +171,7 @@ function guardarCita($paciente,$sucursal,$idCabina,$consulta,$duracion,$fecha,$h
     /**/
     $resSMS=false; 
     if ($Recordatorio=='1')
-        $resSMS = enviaSMS_CitaNueva("52".$paciente_->getTelefonoCel(), $nConsulta->getTipoConsulta(), date("d/m/Y",strtotime($fecha)), "$hora:$minutos", $nSucursal->getSucursal(), $idCita);
+        $resSMS = enviaSMS_CitaNueva("52".$paciente_->getTelefonoCel(), $nConsulta->getTipoConsulta(), date("d/m/Y",strtotime($fechaCita)), "$hora:$minutos", $nSucursal->getSucursal(), $idCita);
     
     if ($resSMS){
         $r->call('mostrarMsjExito',"Se envi&oacute; el SMS al ".$paciente_->getTelefonoCel(),3);
