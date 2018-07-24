@@ -43,11 +43,13 @@ require_once 'masterInclude.inc.php';
    							<p class="neron2"><a>Perfil</a></p>
     					</div>
 					</div>
+					<br /><br />
 					<div class="12u">
     					<div class="box">
    							<p class="neron5"><a>Ver citas</a></p>
     					</div>
 					</div>
+					<br /><br />
 					<div class="12u">
     					<div class="box">
    							<p class="neron2"><a>Agregar paciente</a></p>
@@ -63,12 +65,13 @@ require_once 'masterInclude.inc.php';
     							<p class="neron5"><a>Agendar cita</a></p>
     					</div>
 					</div>
-					
+					<br /><br />
 					<div class="12u">
     					<div class="box">
    							<p class="neron2"><a>Horarios disponibles</a></p>
     					</div>
 					</div>
+					<br /><br />
 					<div class="12u">
     					<div class="box">
    							<p class="neron5"><a>Listado pacientes</a></p>
@@ -79,7 +82,6 @@ require_once 'masterInclude.inc.php';
 				<input type="hidden" id="hdnRol" value="<?php echo $objSession->getidRol();?>"/>
 									<input type="hidden" id="hdnSucursal" value="<?php echo $objSession->getIdSucursal();?>"/>
 									<input type="hidden" id="hdnUsuario" value="<?php echo $objSession->getidUsuario();?>"/>
-								
 				
 				<div class="4u 12u$(small)">
 					<div class="box">

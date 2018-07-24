@@ -226,29 +226,23 @@
                 if ($this->idUsuario)
                     $condicion.=" and c.idUsuario=".$this->idUsuario;
                         
-               $query = "Select count(*) as resultado, '0' from cita
-                    where estatus='curso' and DATE_FORMAT(fechaInicio,'%Y-%m-%d')>='$fecha' and DATE_FORMAT(fechaFin,'%Y-%m-%d')<='$fecha'  $condicion
+               $query = "Select count(*) as resultado, '0' from cita as c
+                    where c.estatus='curso' and DATE_FORMAT(c.fechaInicio,'%Y-%m-%d')>='$fecha' and DATE_FORMAT(c.fechaFin,'%Y-%m-%d')<='$fecha'  $condicion
                union 
-                Select count(*) as resultado, '1' from cita
-                    where estatus='realizada' and DATE_FORMAT(fechaInicio,'%Y-%m-%d')>='$fecha' and DATE_FORMAT(fechaFin,'%Y-%m-%d')<='$fecha'  $condicion
+                Select count(*) as resultado, '1' from cita as c
+                    where estatus='realizada' and DATE_FORMAT(c.fechaInicio,'%Y-%m-%d')>='$fecha' and DATE_FORMAT(c.fechaFin,'%Y-%m-%d')<='$fecha'  $condicion
                union 
-                Select count(*) as resultado, '2' from cita
-                    where estatus='nueva' and DATE_FORMAT(fechaInicio,'%Y-%m-%d')>='$fecha' and DATE_FORMAT(fechaFin,'%Y-%m-%d')<='$fecha'  $condicion
+                Select count(*) as resultado, '2' from cita as c
+                    where c.estatus='nueva' and DATE_FORMAT(c.fechaInicio,'%Y-%m-%d')>='$fecha' and DATE_FORMAT(c.fechaFin,'%Y-%m-%d')<='$fecha'  $condicion
                union 
-                Select count(*) as resultado, '3' from cita
-                    where estatus='cancelada_encargado' and  DATE_FORMAT(fechaInicio,'%Y-%m-%d')>='$fecha' and DATE_FORMAT(fechaFin,'%Y-%m-%d')<='$fecha'  $condicion
+                Select count(*) as resultado, '3' from cita as c
+                    where estatus='cancelada_encargado' and  DATE_FORMAT(c.fechaInicio,'%Y-%m-%d')>='$fecha' and DATE_FORMAT(c.fechaFin,'%Y-%m-%d')<='$fecha'  $condicion
                union 
-                Select count(*) as resultado, '4' from cita
-                    where estatus='cancelada_paciente' and  DATE_FORMAT(fechaInicio,'%Y-%m-%d')>='$fecha' and DATE_FORMAT(fechaFin,'%Y-%m-%d')<='$fecha'  $condicion
-               union 
-                 select  IFNULL((Select idCita as resultado from cita
-                    where estatus='curso' and  DATE_FORMAT(fechaInicio,'%Y-%m-%d')>='$fecha'  $condicion order by fechaInicio asc limit 1),0),'5'
-             union 
-                 select  IFNULL((Select idCita as resultado from cita
-                    where estatus='nueva' and  DATE_FORMAT(fechaInicio,'%Y-%m-%d')>='$fecha'  $condicion order by fechaInicio asc limit 1), 0),'6'";
+                Select count(*) as resultado, '4' from cita as c
+                    where c.estatus='cancelada_paciente' and  DATE_FORMAT(c.fechaInicio,'%Y-%m-%d')>='$fecha' and DATE_FORMAT(c.fechaFin,'%Y-%m-%d')<='$fecha'  $condicion";
                
-               $items = array("divCitaCurso","divCitaRea","divCitaProxs","divCitaCP","divCitaCE","divCitaC","divCitaProx","divCitaTot");
-               $titulos = array("en curso","realizadas","pr&oacute;ximas","canceladas por el encargado","canceladas por el paciente","En curso","Pr&oacute;xima","totales");
+               $items = array("divCitaCurso","divCitaRea","divCitaProxs","divCitaCP","divCitaCE");
+               $titulos = array("en curso","realizadas","pr&oacute;ximas","canceladas por el encargado","canceladas por el paciente");
         $total=0;
         $respuesta = array();
         $resultado = mysqli_query($this->dbLink, $query);
@@ -256,21 +250,51 @@
             $i=0;
             while ($row_inf = mysqli_fetch_assoc($resultado)) {
                 $respuesta[$items[$i]]= array($row_inf['resultado'],$titulos[$i]);
-                if ($i<5)
                     $total+=$row_inf['resultado'];
                 $i++;
             }
             $respuesta['divCitaTot']=array($total,'totales',100);
         }
         $i=0;
-        $porcentaje=100/$total;
+        if ($total==0)
+            $porcentaje=0;
+        else
+            $porcentaje=100/$total;
         foreach ($items as $item){
-            if ($i<5){
-                $respuesta[$item][2]=intval($respuesta[$item][0]*$porcentaje);
-            }
-            $i++;
+            $respuesta[$item][2]=intval($respuesta[$item][0]*$porcentaje);
         }
-        return $respuesta;
+        
+        $citasProximas=$citasCurso = array();
+        
+        if ($this->idSucursal>0)
+        {
+        $query="select distinct c.idCabina, idCita, ca.nombre as cabina from cita as c inner join cabina as ca on c.idCabina=ca.idCabina
+                    where estatus='curso' and  DATE_FORMAT(fechaInicio,'%Y-%m-%d')>='$fecha'  and DATE_FORMAT(fechaFin,'%Y-%m-%d')<='$fecha'
+                 $condicion  order by fechaInicio asc ";
+            
+             $resultado = mysqli_query($this->dbLink, $query);
+            
+            if ($resultado && mysqli_num_rows($resultado) > 0) {
+                while ($row_inf = mysqli_fetch_assoc($resultado)) {
+                    if (!key_exists($row_inf['idCabina'], $citasCurso))
+                        $citasCurso[$row_inf['idCabina']]=array('idCita'=>$row_inf['idCita'],'cabina'=>$row_inf['cabina']);
+                }
+            }
+        
+        $query="select distinct c.idCabina, idCita, ca.nombre as cabina from cita as c inner join cabina as ca on c.idCabina=ca.idCabina
+                    where estatus='nueva' and  DATE_FORMAT(fechaInicio,'%Y-%m-%d')>='$fecha'  and DATE_FORMAT(fechaFin,'%Y-%m-%d')<='$fecha'
+                 $condicion  order by fechaInicio asc ";
+        
+                 $resultado = mysqli_query($this->dbLink, $query);
+                 
+                 if ($resultado && mysqli_num_rows($resultado) > 0) {
+                     while ($row_inf = mysqli_fetch_assoc($resultado)) {
+                         if (!key_exists($row_inf['idCabina'], $citasProximas))
+                             $citasProximas[$row_inf['idCabina']]=array('idCita'=>$row_inf['idCita'],'cabina'=>$row_inf['cabina']);
+                     }
+                 }
+        }
+        return array($respuesta,$citasCurso,$citasProximas);
     }
     
 		

@@ -4,7 +4,28 @@ $(document).ready(function(){
 });
 	 
 function iniciar(){
-	
+	$('.datepicker').datepicker({
+		dateFormat : 'yy-mm-dd',
+		changeMonth : true,
+		changeYear : true,
+		minDate : '0D'
+	});
+
+	if($("#hdnRol").val()==1){
+		$.ajax({
+					method : "post",
+					url : "adminFunciones.php",
+					data : {
+						sucursales:''
+					},
+					success : function(data) {
+						respuesta=JSON.parse(data);
+						$( "#slcSucursal" ).html(respuesta);
+						$( "#slcSucursal" ).change(actualizaResumen);
+					}
+				});
+	}
+	$( "#txtFecha" ).change(actualizaResumen);
 /*	 $.ajax({
 			method : "post",
 			url : "http://www.siluetaexpress.com.mx/agenda/recepcionSMS.php",
@@ -20,6 +41,13 @@ function iniciar(){
 		});
 	
 */
+	setTimeout(function() { 
+		setInterval(function() 
+				{ 
+			actualizaResumen();
+			},4500)
+		},2000);
+
 	actualizaResumen();
 	
 	
@@ -47,7 +75,7 @@ function actualizaResumen(){
 			success : function(data) {
 				respuesta=JSON.parse(data);
 				//alert(data);
-				xajax_verGraficas(respuesta);
+				xajax_verGraficas(respuesta,nsucursal);
 			}
 		});
 }
