@@ -394,7 +394,7 @@ require_once 'masterInclude.inc.php';
 				</div>
 				<div class="ajs-header">Hoja cl&iacute;nica</div>
 				<div class="ajs-body">
-					<div class="ajs-content">&iquest;Ver la opci&acute;n de firma del paciente?</div>
+					<div class="ajs-content">&iquest;Ver la opci&oacute;n de firma del paciente?</div>
 				</div>
 				<div class="ajs-footer">
 					<div class="ajs-auxiliary ajs-buttons"></div>

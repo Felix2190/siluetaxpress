@@ -37,22 +37,21 @@ if (isset($_GET['idPaciente']) && isset($_GET['firma'])) {
     class PDF extends FPDF{
         var $direccion;
         function PaginaUno($responsable,$sucursal,$dir){
-            $this->Ln(5);
-            $this->SetFont('Arial','B',42);
-            $this->Cell(190,35,'',1,0,'C',0);
-            $this->Image('images/logo_siluetaExpress.png',15,20,55,null);//
+            $this->SetFont('Arial','B',30);
+            $this->Cell(190,27,'',1,0,'C',0);
+            $this->Image('images/logo_siluetaExpress.png',15,13,45,null);//
             $this->SetFont('Arial','',16);
             $this->Ln(1);
             $this->direccion=$dir;
             //TItulo
             
-            $this->Cell(185,20,'Hoja clínica ',0,0,'R',0);
-            $this->Ln(15);
+            $this->Cell(185,15,'Hoja clínica ',0,0,'R',0);
+            $this->Ln(8);
             $this->SetFont('Arial','',10);
-            $this->Cell(185,20,utf8_decode($responsable),0,0,'R',0);
+            $this->Cell(185,18,utf8_decode($responsable),0,0,'R',0);
             $this->Ln(5);
             $this->SetFont('Arial','',8);
-            $this->Cell(185,20,$sucursal,0,0,'R',0);
+            $this->Cell(185,18,$sucursal,0,0,'R',0);
             $this->Ln(15);
         }
         
@@ -88,7 +87,7 @@ if (isset($_GET['idPaciente']) && isset($_GET['firma'])) {
     $pdf->Cell(15,8,' Sexo:',0,0,'L',1);
     $pdf->Cell(25,8,$paciente->getSexo(),0,0,'C',0);
     
-    $pdf->Ln(16);
+    $pdf->Ln(12);
     if ($hojaClinica->getCirugia()!="sinrespuesta"){
         $pdf->SetFont('Arial','U',12);
         $pdf->Cell(20,5,' Cirugías: ',0,0,'L');
@@ -285,9 +284,9 @@ if (isset($_GET['idPaciente']) && isset($_GET['firma'])) {
     if ($hojaClinica->getHorarioLevantarse()!="00:00 AM"||$hojaClinica->getHorarioAcostarse()!="00:00 AM"||$hojaClinica->getHorarioActividad()!="00:00 AM"){
         $pdf->Ln(10);
     }
-    $pdf->Ln(8);
+    $pdf->Ln(6);
     $pdf->SetFont('Arial','B',16);
-    $pdf->Cell(185,10,' Recordatorio 24 hrs ',1,0,'C');
+    $pdf->Cell(185,8,' Recordatorio 24 hrs ',1,0,'C');
     $pdf->Ln(15);
     
     $pdf->SetFillColor(194,246,199);///verde
