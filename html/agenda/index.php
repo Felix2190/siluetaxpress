@@ -46,13 +46,13 @@ require_once 'masterInclude.inc.php';
 					<br /><br />
 					<div class="12u">
     					<div class="box">
-   							<p class="neron5"><a>Ver citas</a></p>
+   							<p class="neron5"><a href="listadoCitas.php">Ver citas</a></p>
     					</div>
 					</div>
 					<br /><br />
 					<div class="12u">
     					<div class="box">
-   							<p class="neron2"><a>Agregar paciente</a></p>
+   							<p class="neron2"><a href="altaPaciente.php">Agregar paciente</a></p>
     					</div>
 					</div>
 						
@@ -62,19 +62,19 @@ require_once 'masterInclude.inc.php';
 				<br /><br />
 					<div class="12u">
     					<div class="box">
-    							<p class="neron5"><a>Agendar cita</a></p>
+    							<p class="neron5"><a href="nuevaCita.php">Agendar cita</a></p>
     					</div>
 					</div>
 					<br /><br />
 					<div class="12u">
     					<div class="box">
-   							<p class="neron2"><a>Horarios disponibles</a></p>
+   							<p class="neron2"><a href="horariosDisponibles.php">Horarios disponibles</a></p>
     					</div>
 					</div>
 					<br /><br />
 					<div class="12u">
     					<div class="box">
-   							<p class="neron5"><a>Listado pacientes</a></p>
+   							<p class="neron5"><a href="listadoPacientes.php">Listado pacientes</a></p>
     					</div>
 					</div>
 					

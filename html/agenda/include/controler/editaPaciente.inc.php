@@ -46,14 +46,15 @@ function obtenMes($numMes){
 $xajax = new xajax();
 
 
-function x(){
+function verPDF($b){
     $r=new xajaxResponse();
+    $aux =$_SESSION['editaPaciente'];
+    $idPaciente=$aux['idPaciente'];
     
+    $r->redirect("getHojaClinicaPDF.php?idPaciente=$idPaciente&firma=$b",3);
     return $r;
-    
 }
-
-$xajax->registerFunction("");
+$xajax->registerFunction("verPDF");
 
 $xajax->processRequest();
 

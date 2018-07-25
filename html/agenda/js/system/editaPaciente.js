@@ -3,7 +3,23 @@ $(document).ready(function(){
 });
 	 
 function iniciar(){
-	
+	 $( "#btnNo" ).click(function(){
+		 xajax_verPDF('no');
+		 });
+		 
+		 $( "#btnSi" ).click(function(){
+			xajax_verPDF('Si');
+		 });
+		 
+		 $( "#btnCerrar" ).click(function(){
+			 $( "#msjConfirm" ).hide();
+			 });
+
+}
+
+
+function verOpciones(){
+	 $( "#msjConfirm" ).show();
 }
 	//$("#").();
 //var alert = alertify.alert('Titulo','TextoAlerta').set('label', 'Aceptar');     	 

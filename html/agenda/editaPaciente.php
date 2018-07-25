@@ -361,8 +361,9 @@ require_once 'masterInclude.inc.php';
 				
 				<br />
 				<div class="row">
+				
 					<div class="12u 12u$(small)">
-						<a href="getHojaClinicaPDF.php?idPaciente=<?php echo $paciente->idPaciente;?>" class="button special">Descargar PDF</a>
+						<a id="aPDF" onclick="verOpciones();" class="button special">Descargar PDF</a>
 					</div>
 				</div>
 				<br />
@@ -384,6 +385,27 @@ require_once 'masterInclude.inc.php';
 			<script src="assets/js/util.js"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="assets/js/main.js"></script>
+	<div class="alertify  ajs-movable ajs-closable ajs-pinnable ajs-slide" id="msjConfirm" style="display: none;">
+		<div class="ajs-dimmer"></div>
+		<div class="ajs-modal" tabindex="0">
+			<div class="ajs-dialog" tabindex="0" style="">
+				<div class="ajs-commands">
+					<button class="ajs-close"  id="btnCerrar"></button>
+				</div>
+				<div class="ajs-header">Hoja cl&iacute;nica</div>
+				<div class="ajs-body">
+					<div class="ajs-content">&iquest;Ver la opci&acute;n de firma del paciente?</div>
+				</div>
+				<div class="ajs-footer">
+					<div class="ajs-auxiliary ajs-buttons"></div>
+					<div class="ajs-primary ajs-buttons">
+						<button class="ajs-button " id="btnSi">Si</button>
+						<button class="ajs-button " id="btnNo">No</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 
 	</body>
 </html>

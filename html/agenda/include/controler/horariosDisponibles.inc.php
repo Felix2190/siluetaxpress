@@ -136,8 +136,8 @@ function agendarCita($sucursal, $cabina, $fecha,$hr)
     
     $_SESSION['citaPredefinida']=array('sucursal'=>$sucursal,'cabina'=>$cabina,'hora'=>$hr,'fecha'=>$fecha);
     
-    $r->call('mostrarMsjEspera','Espere un momento...',3);
-    $r->redirect('nuevaCita.php',4);
+    $r->call('mostrarMsjEspera','Espere un momento...',1);
+    $r->redirect('nuevaCita.php',2);
     return $r;
 }
 

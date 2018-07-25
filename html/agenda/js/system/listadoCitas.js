@@ -3,7 +3,7 @@ $(document).ready(function(){
 });
 	 
 var Digital=new Date();
-var hours, minutes,seconds,dn,cita;
+var hours, minutes,seconds,dn,cita,presionado=false;
 
 function iniciar(){
 	listarCitas($( "#hdnFechaActual" ).val());
@@ -150,8 +150,12 @@ function actualizaHorarios(){
 	setTimeout(function() { 
 		setInterval(function() 
 				{ 
-			listarCitas($( "#hdnFechaActual" ).val());
-			$( "#divAct" ).html(obtenHora());
+			if(!presionado){
+				listarCitas($( "#hdnFechaActual" ).val());
+				$( "#divAct" ).html(obtenHora());
+			}else{
+				presionado=false;
+			}
 			},4500)
 		},2000);
 }
@@ -226,6 +230,7 @@ function verOpciones(idCita){
 }
 
 function verCita(idCita){
+	presionado=true;
 	xajax_verCita(idCita);
 }
 	//$("#").();

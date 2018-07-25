@@ -16,6 +16,9 @@ function consultaDatos(){
 		}
 	});
 	
+
+	if($( "#hdnPredefinida" ).val()=='true')
+		mostrarMsjEspera('Espere un momento... recuperando informaci&oacute;n.', 3);
 	 
 	 if($("#hdnRol").val()==1)
 	 $.ajax({
@@ -175,13 +178,13 @@ function iniciar(){
 		setTimeout(function() {
 //			console.log($("#slcConsultorio").val());
 			verHorarios();
-		},400);
+		},500);
 		//
-		},1800);
+		},2000);
 	setTimeout(function() {
 //		console.log($("#hdnHr").val());
 		$( "#slcHr" ).val($( "#hdnHr" ).val());
-		},2600);
+		},2800);
 	}
 
 	$("#btnPaciente").click(function(){

@@ -127,8 +127,8 @@ function verCita($idCita){
     $r=new xajaxResponse();
     
     $_SESSION['verCita']=array('titulo'=>'Detalles de la cita','idCita'=>$idCita);
-    $r->call('mostrarMsjEspera','Consultando informaci&oacute;n de la cita...',2);
-    $r->redirect("verCita.php",3);
+    $r->call('mostrarMsjEspera','Consultando informaci&oacute;n de la cita...',1);
+    $r->redirect("verCita.php",2);
     return $r;
 }
 $xajax->registerFunction("verCita");

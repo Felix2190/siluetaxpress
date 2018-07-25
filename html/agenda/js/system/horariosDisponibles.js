@@ -2,7 +2,7 @@ $(document).ready(function(){
 	iniciar();
 });
 var Digital=new Date();
-var hours, minutes,seconds,dn;
+var hours, minutes,seconds,dn,presionado=false;
 	 
 function iniciar(){
 	var nsucursal='';
@@ -97,8 +97,12 @@ function actualizaHorarios(){
 	setTimeout(function() { 
 		setInterval(function() 
 				{ 
-			mostrarHorarios($( "#hdnFechaActual" ).val());
-			$( "#divAct" ).html(obtenHora());
+			if(!presionado){
+				mostrarHorarios($( "#hdnFechaActual" ).val());
+				$( "#divAct" ).html(obtenHora());
+			}else{
+				presionado=false;
+			}
 			},4500)
 		},2000);
 }
@@ -134,6 +138,7 @@ function colocaFechas(fechaF,fechaA,fechaI){
 }
 
 function predefineFecha(idSucursal,idCabina,fecha,auxH){
+	presionado=true;
 	xajax_agendarCita(idSucursal,idCabina,fecha,auxH);
 }
 	//$("#").();

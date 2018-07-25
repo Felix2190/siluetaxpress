@@ -22,10 +22,12 @@ Function pdfErrorMensaje($texto){
     $pdf->Cell(40,10,utf8_decode($texto));
     $pdf->Output();
 }
-if (isset($_GET['idPaciente']) ) {
-    $idCita=$_GET['idPaciente'];
+
+if (isset($_GET['idPaciente']) && isset($_GET['firma'])) {
+    $idPaciente=$_GET['idPaciente'];
+    $firma=$_GET['firma'];
     $paciente = new ModeloPaciente();
-    $paciente->setIdPaciente($idCita);
+    $paciente->setIdPaciente($idPaciente);
     $hojaClinica = new ModeloHojaclinica();
     $hojaClinica->setIdHojaClinica($paciente->getIdHojaClinica());
     
@@ -86,7 +88,7 @@ if (isset($_GET['idPaciente']) ) {
     $pdf->Cell(15,8,' Sexo:',0,0,'L',1);
     $pdf->Cell(25,8,$paciente->getSexo(),0,0,'C',0);
     
-    $pdf->Ln(20);
+    $pdf->Ln(16);
     if ($hojaClinica->getCirugia()!="sinrespuesta"){
         $pdf->SetFont('Arial','U',12);
         $pdf->Cell(20,5,' Cirugías: ',0,0,'L');
@@ -283,7 +285,7 @@ if (isset($_GET['idPaciente']) ) {
     if ($hojaClinica->getHorarioLevantarse()!="00:00 AM"||$hojaClinica->getHorarioAcostarse()!="00:00 AM"||$hojaClinica->getHorarioActividad()!="00:00 AM"){
         $pdf->Ln(10);
     }
-    $pdf->Ln(10);
+    $pdf->Ln(8);
     $pdf->SetFont('Arial','B',16);
     $pdf->Cell(185,10,' Recordatorio 24 hrs ',1,0,'C');
     $pdf->Ln(15);
@@ -359,7 +361,24 @@ if (isset($_GET['idPaciente']) ) {
     }
     $pdf->MultiCell(130,8,$alimento,1,'J',1);
     
+    if ($firma=='Si'){
+    $pdf->SetFont('Arial','',11);
+    $pdf->Ln(5);
+    $pdf->SetX(120);
+    $pdf->Cell(60,8,' ','B',0,'L',0);
+    $pdf->Ln();
+    $pdf->SetX(120);
+    $pdf->Cell(60,8,'FIRMA DEL PACIENTE',0,0,'C');
+ 
     
+    $pdf->SetFont('Arial','',9);
+    $pdf->Ln(8);
+    $pdf->SetX(90);
+    $pdf->Cell(130,5,'Acepto que la información en este expediente es VERÁS y PRESENTE',0,0,'L');
+    $pdf->Ln();
+    $pdf->SetX(90);
+    $pdf->Cell(130,5,'Acepto que Silueta Express comparta mis logros en redes sociales',0,0,'L');
+    }
     /*
      $pdf->Cell(30,8,'',1,0,'C');
     $horario=$hojaClinica->getHorario;
