@@ -1,4 +1,24 @@
 <?php
+if(!empty($_FILES['imagen']))
+{
+    $carpeta=FOLDER_FOTOS;
+    $archivo=$_FILES['imagen'];
+    if($archivo['name']!=''){
+        $tempFile = $archivo['tmp_name'];
+        if (!file_exists($carpeta))
+            mkdir($carpeta,0777);
+            $targetFile =  ($_POST['id'].'_'.$archivo['name']);
+            $targetFileFinal = $carpeta.$targetFile;
+            try{
+                move_uploaded_file($tempFile,$targetFileFinal);
+                echo "../tmp/fotosperfil/".$targetFile;
+            }catch(Exception $e){
+                echo '';
+            }
+    }
+    
+}
+
 if (isset($_POST['pacientes'])){
     require_once FOLDER_MODEL_EXTEND. "model.paciente.inc.php";
     $pacientes = new ModeloPaciente();
@@ -121,6 +141,12 @@ if (isset($_POST['password'])){
     echo $login->validaPassword($_POST['password']);
 }
 
+if (isset($_POST['passwordNuevo'])){
+    require_once FOLDER_MODEL_EXTEND. "model.login.inc.php";
+    $login = new ModeloLogin();
+    echo $login->cambiaPassword($_POST['passwordNuevo']);
+}
+
 if (isset($_POST['idCita'])){
     require_once FOLDER_MODEL_EXTEND. "model.cita.inc.php";
     $cita = new ModeloCita();
@@ -155,6 +181,66 @@ if (isset($_POST['SucursalIndex'])&&isset($_POST['usuarioIndex'])&&isset($_POST[
     }
 }
 
+if (isset($_POST['sucursalP'])&&isset($_POST['cabinaP'])&&isset($_POST['fechaRegistroP'])&&isset($_POST['servicioP'])&&isset($_POST['consultaP'])
+    &&isset($_POST['nombreP'])&&isset($_POST['apellidosP'])&&isset($_POST['edadP'])&&isset($_POST['sexoP'])&&isset($_POST['telefonoP'])&&isset($_POST['citaP'])){
+    require_once CLASS_CONEXION;
+    $condicion=$inner="";
+    if($_POST['nombreP']!="")
+        $condicion.=" and p.nombre LIKE '".$_POST['nombreP']."%' ";
+    
+        if($_POST['apellidosP']!="")
+            $condicion.=" and p.apellidos LIKE '%".$_POST['apellidosP']."%' ";
+            
+            if($_POST['sexoP']!="")
+                $condicion.=" and p.sexo='".$_POST['sexoP']."' ";
+                
+                if($_POST['edadP']!="")
+                    $condicion.=" and p.edad=".$_POST['edadP'];
+                    
+                    if($_POST['fechaRegistroP']!="")
+                        $condicion.=" and DATE_FORMAT(p.fechaRegistro,'%Y-%m-%d') ='".$_POST['fechaRegistroP']."";
+                        
+                        if($_POST['telefonoP']!="")
+                            $condicion.=" and p.telefonoCel LIKE '".$_POST['telefonoP']."%' ";
+                            
+                            if($_POST['sucursalP']!="")
+                                $condicion.=" and p.idSucursal = ".$_POST['sucursalP'];
+                            
+                            
+                            if($_POST['citaP']=="si"){
+                                $inner.=" inner join cita as c on p.idPaciente=c.idPaciente ";
+                                    if($_POST['consultaP']!="")
+                                        $condicion.=" and c.idConsulta = ".$_POST['consultaP'];
+                                        if($_POST['cabinaP']!="")
+                                            $condicion.=" and c.idCabina = ".$_POST['cabinaP'];
+                                            if($_POST['servicioP']!="")
+                                                $condicion.=" and c.id = ".$_POST['servicioP'];
+                            }
+                                
+                            
+                            $query = "Select p.idPaciente, concat_ws(' ', p.nombre, p.apellidos) as nombreP, telefonoCel, sucursal, completitud,
+                    DATE_FORMAT(p.fechaRegistro,'%Y-%m-%d') as fecha,
+                    (select count(*) from cita where idPaciente=p.idPaciente and estatus='realizada') as consultasHechas,
+                    (select count(*) from cita where idPaciente=p.idPaciente and estatus='nueva') as consultasProximas,
+                    (select DATE_FORMAT(fechaInicio,'%Y-%m-%d') from cita where idPaciente=p.idPaciente and estatus='nueva' order by fechaInicio limit 1) as fechaProxima ,
+                     (select idCita from cita where idPaciente=p.idPaciente and estatus='nueva' order by fechaInicio limit 1) as cita
+                    from paciente as p $inner
+		             inner join sucursal as s on p.idSucursal=s.idSucursal
+                       inner join hojaclinica as h on p.idHojaClinica=h.idHojaClinica where true $condicion";
+                            
+        $respuesta = array();
+        $Conexion =  new mysqli(BD_HOST,BD_USER,BD_PASS,BD_DB);
+        $resultado = mysqli_query($Conexion, $query);
+        
+        if ($resultado && mysqli_num_rows($resultado) > 0) {
+            while ($row_inf = mysqli_fetch_assoc($resultado)){
+                $respuesta[]=$row_inf;
+            }
+        }
+        
+        echo json_encode($respuesta);
+        
+}
 function obtenCombo($array,$default){
     $combo='<option value="">'.$default.'</option>';
     foreach ($array as $key => $opcion)

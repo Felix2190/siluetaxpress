@@ -40,7 +40,7 @@ require_once 'masterInclude.inc.php';
 				<br /><br />
 					<div class="12u">
     					<div class="box">
-   							<p class="neron2"><a>Perfil</a></p>
+   							<p class="neron2"><a href="miPerfil.php">Perfil</a></p>
     					</div>
 					</div>
 					<br /><br />

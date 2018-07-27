@@ -18,8 +18,8 @@
 			<li><a class="<?php if($subseccion=="index") echo "active";?>" href="index.php">Inicio</a></li>
 				<li><span class="opener <?php if($seccion=="cuenta") echo "active";?>" class="opener">Mi cuenta</span>
 					<ul>
-						<li><a class="<?php if($subseccion=="") echo "active";?>" href="">Perfil</a></li>
-						<li><a class="<?php if($subseccion=="") echo "active";?>" href="">Cambiar contrase&ntilde;a</a></li>
+						<li><a class="<?php if($subseccion=="miPerfil") echo "active";?>" href="miPerfil.php">Perfil</a></li>
+						<li><a class="<?php if($subseccion=="cambioContrasena") echo "active";?>" href="cambioContrasena.php">Cambiar contrase&ntilde;a</a></li>
 						<li><a href="logout.php">Cerrar sessi&oacute;n</a></li>
 					</ul></li>
 
@@ -46,7 +46,7 @@
 					</ul></li>
 
 
-				<li><a class="<?php if($subseccion=="") echo "active";?>" href="">Promociones</a></li>
+				<!-- <li><a class="<?php if($subseccion=="") echo "active";?>" href="">Promociones</a></li> -->
 				<li><a class="<?php if($subseccion=="") echo "active";?>" href="">Cr&eacute;ditos SMS</a></li>
 
 			</ul>

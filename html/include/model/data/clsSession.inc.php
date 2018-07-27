@@ -23,7 +23,7 @@ class clsSession
 	#--------------------------------------------Control--------------------------------------------#
 	#-----------------------------------------------------------------------------------------------#
 
-	var $__s=array(	"userName",	"idUsuario","nombre","apellidos","tipoUsuario","sucursal","lugar","correo","idRol", "idSucursal");
+	var $__s=array(	"userName",	"idUsuario","nombre","apellidos","tipoUsuario","sucursal","lugar","correo","idRol", "idSucursal","abrev");
 
 	public function __construct()
 	{
@@ -98,6 +98,11 @@ class clsSession
 	    return $this->idRol;
 	}
 
+	public function getAbrev()
+	{
+	    return $this->abrev;
+	}
+	
 	public function isSessionActive()
 	{
 		return time()-$this->_lastTime<defined("SESSION_TIME")?SESSION_TIME:1800;

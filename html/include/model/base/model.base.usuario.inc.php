@@ -15,8 +15,9 @@
 		var $telefonoCel='';
 		var $idSucursal=0;
 		var $idTipoUsuario=0;
+		var $foto='';
 
-		var $__s=array("idUsuario","nombre","apellidos","correo","telefonoCel","idSucursal","idTipoUsuario");
+		var $__s=array("idUsuario","nombre","apellidos","correo","telefonoCel","idSucursal","idTipoUsuario","foto");
 		var $__ss=array();
 
 		#------------------------------------------------------------------------------------------------------#
@@ -74,6 +75,10 @@
 			
 			$this->idTipoUsuario=$idTipoUsuario;
 		}
+		public function setFoto($foto)
+		{
+			$this->foto=$foto;
+		}
 
 		#------------------------------------------------------------------------------------------------------#
 		#-----------------------------------------------Unsetter-----------------------------------------------#
@@ -114,6 +119,10 @@
 		{
 			return $this->idTipoUsuario;
 		}
+		public function getFoto()
+		{
+			return $this->foto;
+		}
 
 		#------------------------------------------------------------------------------------------------------#
 		#------------------------------------------------Querys------------------------------------------------#
@@ -135,6 +144,7 @@
 			$this->telefonoCel='';
 			$this->idSucursal=0;
 			$this->idTipoUsuario=0;
+			$this->foto='';
 		}
 
 		
@@ -144,8 +154,8 @@
 		{
 			try
 			{
-				$SQL="INSERT INTO usuario(nombre,apellidos,correo,telefonoCel,idSucursal,idTipoUsuario)
-						VALUES('" . mysqli_real_escape_string($this->dbLink,$this->nombre) . "','" . mysqli_real_escape_string($this->dbLink,$this->apellidos) . "','" . mysqli_real_escape_string($this->dbLink,$this->correo) . "','" . mysqli_real_escape_string($this->dbLink,$this->telefonoCel) . "','" . mysqli_real_escape_string($this->dbLink,$this->idSucursal) . "','" . mysqli_real_escape_string($this->dbLink,$this->idTipoUsuario) . "')";
+				$SQL="INSERT INTO usuario(nombre,apellidos,correo,telefonoCel,idSucursal,idTipoUsuario,foto)
+						VALUES('" . mysqli_real_escape_string($this->dbLink,$this->nombre) . "','" . mysqli_real_escape_string($this->dbLink,$this->apellidos) . "','" . mysqli_real_escape_string($this->dbLink,$this->correo) . "','" . mysqli_real_escape_string($this->dbLink,$this->telefonoCel) . "','" . mysqli_real_escape_string($this->dbLink,$this->idSucursal) . "','" . mysqli_real_escape_string($this->dbLink,$this->idTipoUsuario) . "','" . mysqli_real_escape_string($this->dbLink,$this->foto) . "')";
 				$result=mysqli_query($this->dbLink,$SQL);
 				if(!$result)
 					return $this->setSystemError("Error en la insercion de registro.","[" . $SQL . "][" . mysqli_error($this->dbLink) . "][ModeloBaseUsuario::Insertar]");
@@ -165,7 +175,7 @@
 		{
 			try
 			{
-				$SQL="UPDATE usuario SET nombre='" . mysqli_real_escape_string($this->dbLink,$this->nombre) . "',apellidos='" . mysqli_real_escape_string($this->dbLink,$this->apellidos) . "',correo='" . mysqli_real_escape_string($this->dbLink,$this->correo) . "',telefonoCel='" . mysqli_real_escape_string($this->dbLink,$this->telefonoCel) . "',idSucursal='" . mysqli_real_escape_string($this->dbLink,$this->idSucursal) . "',idTipoUsuario='" . mysqli_real_escape_string($this->dbLink,$this->idTipoUsuario) . "'
+				$SQL="UPDATE usuario SET nombre='" . mysqli_real_escape_string($this->dbLink,$this->nombre) . "',apellidos='" . mysqli_real_escape_string($this->dbLink,$this->apellidos) . "',correo='" . mysqli_real_escape_string($this->dbLink,$this->correo) . "',telefonoCel='" . mysqli_real_escape_string($this->dbLink,$this->telefonoCel) . "',idSucursal='" . mysqli_real_escape_string($this->dbLink,$this->idSucursal) . "',idTipoUsuario='" . mysqli_real_escape_string($this->dbLink,$this->idTipoUsuario) . "',foto='" . mysqli_real_escape_string($this->dbLink,$this->foto) . "'
 					WHERE idUsuario=" . $this->idUsuario;
 				
 				$result=mysqli_query($this->dbLink,$SQL);
@@ -207,7 +217,7 @@
 			try
 			{
 				$SQL="SELECT
-						idUsuario,nombre,apellidos,correo,telefonoCel,idSucursal,idTipoUsuario
+						idUsuario,nombre,apellidos,correo,telefonoCel,idSucursal,idTipoUsuario,foto
 					FROM usuario
 					WHERE idUsuario=" . mysqli_real_escape_string($this->dbLink,$this->idUsuario);
 					

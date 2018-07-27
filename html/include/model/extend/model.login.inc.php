@@ -77,7 +77,7 @@ class ModeloLogin extends ModeloBaseLogin
 
     public function obtenerDatosUsuario($idUsuario)
     {
-        $query = "Select idUsuario, u.nombre, apellidos, t.nombre as tipoUsuario, sucursal, m.NOM_MUN as lugar, correo, u.idSucursal from usuario as u
+        $query = "Select idUsuario, u.nombre, apellidos, t.nombre as tipoUsuario, sucursal, m.NOM_MUN as lugar, correo, u.idSucursal,abrev from usuario as u
     		inner join tipousuario as t on u.idTipoUsuario=t.idTipoUsuario inner join sucursal as s on u.idSucursal=s.idSucursal
 	       	inner join inegidomgeo_cat_municipio as m on CVE_ENT=cveEstado and CVE_MUN=cveMunicipio
             where idUsuario=" . $idUsuario;
@@ -102,7 +102,21 @@ class ModeloLogin extends ModeloBaseLogin
                 return 'true';
             }
         }
-        return $query;
+        return 'false';
+    }
+    
+    function cambiaPassword($password)
+    {
+        global $objSession;
+        $random_salt = hash('sha512', uniqid(mt_rand(1, mt_getrandmax()), true));
+        $passwordSalt = hash('sha512', $password. $random_salt);
+        
+        $query = "update login set password='$passwordSalt', salt='$random_salt' WHERE idUsuario =".$objSession->getidUsuario();
+        $result = mysqli_query($this->dbLink, $query);
+        if ($result) 
+            return 'true';
+         
+        return 'false';
     }
     
 }

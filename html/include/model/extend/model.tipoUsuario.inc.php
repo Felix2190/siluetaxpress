@@ -1,6 +1,6 @@
 <?php
 
-	require FOLDER_MODEL_BASE . "model.base.tipoUsuario.inc.php";
+	require FOLDER_MODEL_BASE . "model.base.tipousuario.inc.php";
 
 	class ModeloTipoUsuario extends ModeloBaseTipoUsuario
 	{

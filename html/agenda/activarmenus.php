@@ -10,8 +10,13 @@ $arrSeccionesPagina=array(
     
     "listadoPacientes"=>"pacientes",
     "altaPaciente"=>"pacientes",
+    "buscarPaciente"=>"pacientes",
     "editaPaciente"=>"pacientes",
+    
     "index"=>"inicio",
+    
+    "cambioContrasena"=>"cuenta",
+    "miPerfil"=>"cuenta",
     ""=>""
 );
 

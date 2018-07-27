@@ -13,7 +13,7 @@ if (! DEVELOPER) {
     
     define("FOLDER_HTDOCS", $_SERVER['DOCUMENT_ROOT'] . "/");
     define("FOLDER_HTDOCS_AGENDA", $_SERVER['DOCUMENT_ROOT'] . "/agenda/");//AGENDA
-    
+    define("FOLDER_FOTOS", $_SERVER['DOCUMENT_ROOT'] . "tmp/fotosperfil/"); // carpeta para fotos de perfil
     define("ERR_DEBUG", false);
     define("SESSION_TIME", 1800);
     define("SOPORTE_TIME", 600);
@@ -28,6 +28,7 @@ if (! DEVELOPER) {
     
     define("FOLDER_HTDOCS", $_SERVER['DOCUMENT_ROOT'] . "siluetaxpress/html/");
     define("FOLDER_HTDOCS_AGENDA", $_SERVER['DOCUMENT_ROOT'] . "siluetaxpress/html/agenda/");//AGENDA
+    define("FOLDER_FOTOS", $_SERVER['DOCUMENT_ROOT'] . "siluetaxpress/html/tmp/fotosperfil/"); // carpeta para fotos de perfil
 //    define("DOMINIO", "http://planet/" . SUBDIR . "/");
     define("ERR_DEBUG", true);
     $case1=4;$case2=5;

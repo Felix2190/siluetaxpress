@@ -644,11 +644,11 @@ function altaPaciente(){
 //	alert(JSON.stringify(datos));
 	
 	if(existeError){
-		mostrarMsjError('Datos incompletos!! <br />Por favor, llene la informaaci&oacute;n que se solicita',5);
+		mostrarMsjError('Datos incompletos!! <br />Por favor, llene la informaci&oacute;n que se solicita',5);
 		return false;
 	}
 
-	mostrarMsjEspera('Espere un momento... guardando informaaci&oacute;n.', 3);
+	mostrarMsjEspera('Espere un momento... guardando informaci&oacute;n.', 3);
 	xajax_guardar(JSON.stringify(datos));
 }
 

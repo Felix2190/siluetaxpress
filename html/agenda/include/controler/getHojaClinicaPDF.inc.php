@@ -36,7 +36,7 @@ if (isset($_GET['idPaciente']) && isset($_GET['firma'])) {
     $sucursal->setIdSucursal($objSession->getIdSucursal());
     class PDF extends FPDF{
         var $direccion;
-        function PaginaUno($responsable,$sucursal,$dir){
+        function PaginaUno($responsable,$sucursal,$dir,$cargo){
             $this->SetFont('Arial','B',30);
             $this->Cell(190,27,'',1,0,'C',0);
             $this->Image('images/logo_siluetaExpress.png',15,13,45,null);//
@@ -48,7 +48,7 @@ if (isset($_GET['idPaciente']) && isset($_GET['firma'])) {
             $this->Cell(185,15,'Hoja clínica ',0,0,'R',0);
             $this->Ln(8);
             $this->SetFont('Arial','',10);
-            $this->Cell(185,18,utf8_decode($responsable),0,0,'R',0);
+            $this->Cell(185,18,$cargo.' '.utf8_decode($responsable),0,0,'R',0);
             $this->Ln(5);
             $this->SetFont('Arial','',8);
             $this->Cell(185,18,$sucursal,0,0,'R',0);
@@ -74,7 +74,7 @@ if (isset($_GET['idPaciente']) && isset($_GET['firma'])) {
     //$pdf->AddPage();
     $pdf->AddPage();
     $pdf->SetTitle("hoja_clinica.pdf");
-    $pdf->PaginaUno($responsable,$sucursal->getSucursal(),utf8_decode($sucursal->getDireccion()));
+    $pdf->PaginaUno($responsable,$sucursal->getSucursal(),utf8_decode($sucursal->getDireccion()),$objSession->getAbrev());
     
     $pdf->SetFillColor(255,255,255);/// color blanco celda
     $pdf->Cell(180,8,' ','B',0,'L',0);

@@ -16,7 +16,13 @@ require_once CLASS_CONEXION;
 require_once FOLDER_INCLUDE_AGENDA.'controler/adminFunciones.inc.php';
 
 $fechaActual = date("Y-m-d H:i:s");
-$auxFecha = strtotime('+22 hours', strtotime($fechaActual));
+$horaActual= intval(date("H"));
+
+if ($horaActual>=8&&$horaActual<=20){
+    if ($horaActual>=19)
+        $auxFecha = strtotime('+1 day', strtotime($fechaActual));
+    else 
+        $auxFecha = strtotime('+22 hours', strtotime($fechaActual));
 
 $dia = date('N', $auxFecha);
 
@@ -76,6 +82,7 @@ if ($dia != 7) { // no es domingo
                $query = "update cita set recordatorio2=1 where idCita=$idCita";
                mysqli_query($Conexion, $query);
            }
+}
 }
 /*
  * // realizadas
