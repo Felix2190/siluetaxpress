@@ -19,6 +19,11 @@ $arrSeccionesPagina=array(
     "miPerfil"=>"cuenta",
     
     "creditoSMS"=>"credito",
+    
+    "listadoUsuarios"=>"administrar",
+    "listadoTipoUsuarios"=>"administrar",
+    "listadoSucursal"=>"administrar",
+    
     ""=>""
 );
 

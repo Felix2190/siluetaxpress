@@ -22,12 +22,18 @@
 						<li><a class="<?php if($subseccion=="cambioContrasena") echo "active";?>" href="cambioContrasena.php">Cambiar contrase&ntilde;a</a></li>
 						<li><a href="logout.php">Cerrar sessi&oacute;n</a></li>
 					</ul></li>
+					
+					<?php if ($objSession->getidRol()==1){?>
 
-				<li><span class="opener <?php if($seccion=="administracionn") echo "active";?>" class="opener">Administrar</span>
+				<li><span class="opener <?php if($seccion=="administrar") echo "active";?>" class="opener">Administrar</span>
 					<ul>
-						<li><a class="<?php if($subseccion=="") echo "active";?>" href="">Consultorios</a></li>
-						<li><a class="<?php if($subseccion=="") echo "active";?>" href="">Usuarios</a></li>
+						<li><a class="<?php if($subseccion=="listadoSucursal") echo "active";?>" href="listadoSucursal.php">Consultorios</a></li>
+						<li><a class="<?php if($subseccion=="listadoUsuarios") echo "active";?>" href="listadoUsuarios.php">Usuarios</a></li>
+						<li><a class="<?php if($subseccion=="listadoTipoUsuarios") echo "active";?>" href="listadoTipoUsuarios.php">Roles</a></li>
+						
 					</ul></li>
+					
+					<?php }?>
 
 				<li><span class="opener <?php if($seccion=="pacientes") echo "active";?>" class="opener">Pacientes</span>
 					<ul>
@@ -47,8 +53,9 @@
 
 
 				<!-- <li><a class="<?php if($subseccion=="") echo "active";?>" href="">Promociones</a></li> -->
-				
+				<?php if ($objSession->getidRol()==1){?>
 				<li><a class="<?php if($subseccion=="creditoSMS") echo "active";?>" href="creditoSMS.php">Cr&eacute;ditos SMS</a></li>
+				<?php }?>
 
 			</ul>
 		</nav>

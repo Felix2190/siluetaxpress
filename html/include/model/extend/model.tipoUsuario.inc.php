@@ -55,7 +55,20 @@
 		{
 			return true;
 		}
-
+		
+		public function obtenerTipoUsuarios()
+		{
+		    $query = "Select * from tipousuario where idTipoUsuario<>1";
+		    $arreglo = array();
+		    $resultado = mysqli_query($this->dbLink, $query);
+		    if ($resultado && mysqli_num_rows($resultado) > 0) {
+		        while ($row_inf = mysqli_fetch_assoc($resultado)){
+		            $arreglo[] = $row_inf;
+		        }
+		    }
+		    return $arreglo;
+		}
+		
 
 	}
 

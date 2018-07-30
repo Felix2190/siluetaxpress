@@ -256,6 +256,23 @@ if (isset($_POST['consultaSMS'])){
     echo $cita->SMSEnviados();
 }
 
+if (isset($_POST['listadoSucursal'])){
+    require_once FOLDER_MODEL_EXTEND. "model.sucursal.inc.php";
+    $sucursal = new ModeloSucursal();
+    echo json_encode($sucursal->listadoSucursales());
+}
+
+if (isset($_POST['listadoUsuario'])){
+    require_once FOLDER_MODEL_EXTEND. "model.usuario.inc.php";
+    $usuario = new ModeloUsuario();
+    echo json_encode($usuario->obtenerUsuarios());
+}
+
+if (isset($_POST['listadoTipoUsuario'])){
+    require_once FOLDER_MODEL_EXTEND. "model.tipousuario.inc.php";
+    $tipo = new ModeloTipoUsuario();
+    echo json_encode($tipo->obtenerTipoUsuarios());
+}
 
 function obtenCombo($array,$default){
     $combo='<option value="">'.$default.'</option>';
