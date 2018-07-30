@@ -47,7 +47,8 @@
 
 
 				<!-- <li><a class="<?php if($subseccion=="") echo "active";?>" href="">Promociones</a></li> -->
-				<li><a class="<?php if($subseccion=="") echo "active";?>" href="">Cr&eacute;ditos SMS</a></li>
+				
+				<li><a class="<?php if($subseccion=="creditoSMS") echo "active";?>" href="creditoSMS.php">Cr&eacute;ditos SMS</a></li>
 
 			</ul>
 		</nav>

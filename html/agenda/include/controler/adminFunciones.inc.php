@@ -182,7 +182,8 @@ if (isset($_POST['SucursalIndex'])&&isset($_POST['usuarioIndex'])&&isset($_POST[
 }
 
 if (isset($_POST['sucursalP'])&&isset($_POST['cabinaP'])&&isset($_POST['fechaRegistroP'])&&isset($_POST['servicioP'])&&isset($_POST['consultaP'])
-    &&isset($_POST['nombreP'])&&isset($_POST['apellidosP'])&&isset($_POST['edadP'])&&isset($_POST['sexoP'])&&isset($_POST['telefonoP'])&&isset($_POST['citaP'])){
+    &&isset($_POST['nombreP'])&&isset($_POST['edadP'])&&isset($_POST['sexoP'])&&isset($_POST['citaP'])&&isset($_POST['telP'])&&isset($_POST['apellidosP'])){
+    
     require_once CLASS_CONEXION;
     $condicion=$inner="";
     if($_POST['nombreP']!="")
@@ -198,10 +199,10 @@ if (isset($_POST['sucursalP'])&&isset($_POST['cabinaP'])&&isset($_POST['fechaReg
                     $condicion.=" and p.edad=".$_POST['edadP'];
                     
                     if($_POST['fechaRegistroP']!="")
-                        $condicion.=" and DATE_FORMAT(p.fechaRegistro,'%Y-%m-%d') ='".$_POST['fechaRegistroP']."";
+                        $condicion.=" and DATE_FORMAT(p.fechaRegistro,'%Y-%m-%d') ='".$_POST['fechaRegistroP']."'";
                         
-                        if($_POST['telefonoP']!="")
-                            $condicion.=" and p.telefonoCel LIKE '".$_POST['telefonoP']."%' ";
+                        if($_POST['telP']!="")
+                            $condicion.=" and p.telefonoCel LIKE '".$_POST['telP']."%' ";
                             
                             if($_POST['sucursalP']!="")
                                 $condicion.=" and p.idSucursal = ".$_POST['sucursalP'];
@@ -213,12 +214,14 @@ if (isset($_POST['sucursalP'])&&isset($_POST['cabinaP'])&&isset($_POST['fechaReg
                                         $condicion.=" and c.idConsulta = ".$_POST['consultaP'];
                                         if($_POST['cabinaP']!="")
                                             $condicion.=" and c.idCabina = ".$_POST['cabinaP'];
-                                            if($_POST['servicioP']!="")
-                                                $condicion.=" and c.id = ".$_POST['servicioP'];
+                                            if($_POST['servicioP']!=""){
+                                                $inner.=" inner join servicio as se on c.idServicio=se.idServicio";
+                                                $condicion.=" and se.nombre ='".$_POST['servicioP']."%'";
+                                            }
                             }
                                 
                             
-                            $query = "Select p.idPaciente, concat_ws(' ', p.nombre, p.apellidos) as nombreP, telefonoCel, sucursal, completitud,
+                            $query = "Select distinct p.idPaciente, concat_ws(' ', p.nombre, p.apellidos) as nombreP, telefonoCel, sucursal, completitud,
                     DATE_FORMAT(p.fechaRegistro,'%Y-%m-%d') as fecha,
                     (select count(*) from cita where idPaciente=p.idPaciente and estatus='realizada') as consultasHechas,
                     (select count(*) from cita where idPaciente=p.idPaciente and estatus='nueva') as consultasProximas,
@@ -230,6 +233,7 @@ if (isset($_POST['sucursalP'])&&isset($_POST['cabinaP'])&&isset($_POST['fechaReg
                             
         $respuesta = array();
         $Conexion =  new mysqli(BD_HOST,BD_USER,BD_PASS,BD_DB);
+        $Conexion->set_charset(BD_CHARSET);
         $resultado = mysqli_query($Conexion, $query);
         
         if ($resultado && mysqli_num_rows($resultado) > 0) {
@@ -239,8 +243,20 @@ if (isset($_POST['sucursalP'])&&isset($_POST['cabinaP'])&&isset($_POST['fechaReg
         }
         
         echo json_encode($respuesta);
-        
 }
+
+if (isset($_POST['consultaCredito'])){
+    echo json_encode(consultaCredito());
+}
+
+if (isset($_POST['consultaSMS'])){
+    require_once FOLDER_MODEL_EXTEND. "model.cita.inc.php";
+    
+    $cita = new ModeloCita();
+    echo $cita->SMSEnviados();
+}
+
+
 function obtenCombo($array,$default){
     $combo='<option value="">'.$default.'</option>';
     foreach ($array as $key => $opcion)
@@ -749,5 +765,88 @@ function obtenerHorarioByDia($idSucursal,$fecha){
         }
     }
     return json_encode($horarioDisponible);
+}
+
+function consultaCredito()
+{
+    $sData = 'cmd=getcredit&';
+    $sData .= 'domainId=siluetaexpress&';
+    $sData .= 'login=lic.lezliedelariva@gmail.com&';
+    $sData .= 'passwd=L7fr9P3sPMw6&';
+    
+    $timeOut = 5;
+    
+    $fp = fsockopen('www.altiria.net', 80, $errno, $errstr, $timeOut);
+    if (! $fp) {
+        // Error de conexion o tiempo maximo de conexion rebasado
+        $output = "ERROR de conexion: $errno - $errstr\n";
+        $output .= "Compruebe que ha configurado correctamente la direccion/url ";
+        $output .= "suministrada por altiria";
+        return array(false,$output);
+        return $output;
+    } else {
+        $buf = "POST http://www.altiria.net/api/http HTTP/1.0\r\n";
+        $buf .= "Host: www.altiria.net\r\n";
+        $buf .= "Content-type: application/x-www-form-urlencoded; charset=UTF-8\r\n";
+        $buf .= "Content-length: ".strlen($sData)."\r\n";
+        $buf .= "\r\n";
+        $buf .= $sData;
+        fputs($fp, $buf);
+        $buf = "";
+        
+        //Tiempo máximo de espera de respuesta del servidor = 60 seg
+        $responseTimeOut = 60;
+        stream_set_timeout($fp,$responseTimeOut);
+        stream_set_blocking ($fp, true);
+        if (!feof($fp)){
+            if (($buf=fgets($fp,128))===false){
+                // TimeOut?
+                $info = stream_get_meta_data($fp);
+                if ($info['timed_out']){
+                    $output = 'ERROR Tiempo de respuesta agotado';
+                    return array(false,$output);
+                    return $output;
+                } else {
+                    $output = 'ERROR de respuesta';
+                    return array(false,$output);
+                    return $output;
+                }
+            } else{
+                while(!feof($fp)){
+                    $buf.=fgets($fp,128);
+                }
+            }
+        } else {
+            $output = 'ERROR de respuesta';
+            return array(false,$output);
+            return $output;
+        }
+        
+        fclose($fp);
+        
+        
+        //Se comprueba que se ha conectado realmente con el servidor
+        //y que se obtenga un codigo HTTP OK 200
+        if (strpos($buf,"HTTP/1.1 200 OK") === false){
+            $output = "ERROR. Codigo error HTTP: ".substr($buf,9,3)."\n";
+            $output .= "Compruebe que ha configurado correctamente la direccion/url ";
+            $output .= "suministrada por Altiria";
+            return array(false,$output);
+            return $output;
+        }
+        //Se comprueba la respuesta de Altiria
+        if (strstr($buf,"ERROR")){
+            $output = $buf."<br />\n";
+            $output .= " Ha ocurrido algun error. Compruebe la especificacion";
+            return array(false,$output);
+            return $output;
+        } else {
+            $respuesta=explode(' ', $buf);
+            $respuesta=explode(':', $respuesta[12]);
+            $output = $buf."\n";
+            $output .= " Exito";
+            return array(true,$respuesta[1]);
+        }
+    }
 }
 ?>

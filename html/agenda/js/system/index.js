@@ -79,7 +79,14 @@ function actualizaResumen(){
 			}
 		});
 }
-	//$("#").();
+
+
+function verCita(idCita){
+	presionado=true;
+	xajax_verCita(idCita);
+}
+
+//$("#").();
 //var alert = alertify.alert('Titulo','TextoAlerta').set('label', 'Aceptar');     	 
 //alert.set({transition:'zoom'}); //slide, zoom, flipx, flipy, fade, pulse (default)
 //alert.set('modal', false);  //al pulsar fuera del dialog se cierra o no	

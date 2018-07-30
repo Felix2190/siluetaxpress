@@ -90,9 +90,9 @@ function mostrarCabinas(){
 function buscarPaciente(){
 	var existeError = false;
 	var nombre = $("#txtNombre").val();
-	var apellido = $("#txtApellido").val();
+	var apellido = $("#txtApellidos").val();
 	var edad = $("#txtEdad").val();
-	var telefono = $("#txtTelefono").val();
+	var telefono = $("#txtTelMovil").val();
 	var sexo='';
 	$("input[name=sexo]").each(function (index) { 
 	       if($(this).is(':checked')){
@@ -119,18 +119,17 @@ function buscarPaciente(){
 				cabinaP:consultorio,
 				fechaRegistroP:fecha,
 				servicioP:servicio,
-				
 				nombreP:nombre,
 				apellidosP:apellido,
 				edadP:edad,
-				telefonoP:telefono,
+				telP: telefono,
 				sexoP:sexo,
 				citaP:cita
 			},
 			success : function(data) {
 				respuesta=JSON.parse(data);
 //			alert(data);
-//				xajax_buscarCitas(respuesta);
+				xajax_verTabla(respuesta);
 			}
 		});
 	
@@ -153,6 +152,12 @@ function cargarServicios(){
 		});
 }
 
+function verPaciente(id){
+	xajax_verPaciente(id);
+}
+function verCita(id){
+	xajax_verCita(id);
+}
 
 
 	//$("#").();

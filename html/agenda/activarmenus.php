@@ -17,6 +17,8 @@ $arrSeccionesPagina=array(
     
     "cambioContrasena"=>"cuenta",
     "miPerfil"=>"cuenta",
+    
+    "creditoSMS"=>"credito",
     ""=>""
 );
 

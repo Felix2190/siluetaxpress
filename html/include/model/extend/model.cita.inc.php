@@ -220,13 +220,13 @@
 		
     public function resumenCitas($fecha)
     {
-        $condicion=" ";
-            if ($this->idSucursal>0)
-                $condicion.=" and c.idSucursal=".$this->idSucursal;
-                if ($this->idUsuario)
-                    $condicion.=" and c.idUsuario=".$this->idUsuario;
-                        
-               $query = "Select count(*) as resultado, '0' from cita as c
+        $condicion = " ";
+        if ($this->idSucursal > 0)
+            $condicion .= " and c.idSucursal=" . $this->idSucursal;
+        if ($this->idUsuario)
+            $condicion .= " and c.idUsuario=" . $this->idUsuario;
+        
+        $query = "Select count(*) as resultado, '0' from cita as c
                     where c.estatus='curso' and DATE_FORMAT(c.fechaInicio,'%Y-%m-%d')>='$fecha' and DATE_FORMAT(c.fechaFin,'%Y-%m-%d')<='$fecha'  $condicion
                union 
                 Select count(*) as resultado, '1' from cita as c
@@ -297,6 +297,29 @@
         return array($respuesta,$citasCurso,$citasProximas);
     }
     
-		
-	}
+    public function SMSEnviados()
+    {
+          $query = "Select count(*) as total from cita where recordatorio1=1
+                    union
+                    Select count(*) as total from cita where recordatorio2=1
+                    union
+                    Select count(*) as total from cita where idUsuarioCancela=0 and estatus='cancelada_paciente'";
+                
+                $titulos = array("Confirmaci&oacute;n de cita","Recordatorio","Respuesta de cancelaci&oacute;n");
+                $total=0;
+                $respuesta = array();
+                $resultado = mysqli_query($this->dbLink, $query);
+                if ($resultado && mysqli_num_rows($resultado) > 0) {
+                    $i=0;
+                    while ($row_inf = mysqli_fetch_assoc($resultado)) {
+                        $respuesta[$titulos[$i]]= $row_inf['total'];
+                        $total+=$row_inf['total'];
+                        $i++;
+                    }
+                    $respuesta['Total']=$total;
+                }
+                
+                        return json_encode($respuesta);
+    }
+}
 
