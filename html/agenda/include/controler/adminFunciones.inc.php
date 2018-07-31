@@ -902,6 +902,38 @@ function enviar_mail($para,$asunto,$mensaje){
     $mailWeb = new PHPMailer();
     $mailWeb->IsSMTP();
     $mailWeb->SMTPSecure = 'tls';
+    $mailWeb->Host = "a2plcpnl0309.prod.iad2.secureserver.net ";
+    $mailWeb->SMTPDebug = 0;
+    $mailWeb->SMTPAuth = true;
+    $mailWeb->Port = 25;
+    $mailWeb->Username = "admin@siluetaexpress.com.mx";
+    $mailWeb->Password = "admin2018.";
+    $mailWeb->SetFrom("admin@siluetaexpress.com.mx", "SiluetaExpress @NoReply");
+    $mailWeb->AddReplyTo("admin@siluetaexpress.com.mx", "SiluetaExpress @NoReply");
+    $mailWeb->Subject = $asunto;
+    $mailWeb->AltBody = $mensaje;
+    $mailWeb->MsgHTML($mensaje);
+    $mailWeb->AddAddress($para);
+    try{
+        return $mailWeb->Send();
+        return true;
+    }catch(Exception $e){
+        return false;
+        echo $e;
+    }
+}
+
+/*
+$mailWeb->Host = "a2plcpnl0309.prod.iad2.secureserver.net ";
+    $mailWeb->SMTPDebug = 0;
+    $mailWeb->SMTPAuth = true;
+    $mailWeb->Port = 80;
+    $mailWeb->Username = "admin@siluetaexpress.com.mx";
+    $mailWeb->Password = "admin2018.";
+    $mailWeb->SetFrom("admin@siluetaexpress.com.mx", "SiluetaExpress @NoReply");
+    $mailWeb->AddReplyTo("admin@siluetaexpress.com.mx", "SiluetaExpress @NoReply");
+    
+    
     $mailWeb->Host = "smtp.gmail.com";
     $mailWeb->SMTPDebug = 0;
     $mailWeb->SMTPAuth = true;
@@ -910,17 +942,6 @@ function enviar_mail($para,$asunto,$mensaje){
     $mailWeb->Password = "silueta2018";
     $mailWeb->SetFrom("siluetaexpress2018@gmail.com", "SiluetaExpress @NoReply");
     $mailWeb->AddReplyTo("siluetaexpress2018@gmail.com", "SiluetaExpress @NoReply");
-    $mailWeb->Subject = $asunto;
-    $mailWeb->AltBody = $mensaje;
-    $mailWeb->MsgHTML($mensaje);
-    $mailWeb->AddAddress($para);
-    try{
-        $mailWeb->Send();
-        return true;
-    }catch(Exception $e){
-        return false;
-        echo $e;
-    }
-}
-
+    
+*/
 ?>
