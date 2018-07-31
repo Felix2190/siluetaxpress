@@ -274,6 +274,35 @@ if (isset($_POST['listadoTipoUsuario'])){
     echo json_encode($tipo->obtenerTipoUsuarios());
 }
 
+if (isset($_POST['listadoCargos'])){
+    require_once FOLDER_MODEL_EXTEND. "model.tipousuario.inc.php";
+    $tipo = new ModeloTipoUsuario();
+    echo json_encode(obtenCombo($tipo->obtenerCargos(),'Seleccione una opci&oacute;n'));
+}
+
+if (isset($_POST['listadoEstados'])){
+    require_once FOLDER_MODEL_EXTEND. "model.inegidomgeo_cat_estado.inc.php";
+    $estados = new ModeloInegidomgeo_cat_estado();
+    echo json_encode(obtenCombo($estados->getAll(),'Seleccione una opci&oacute;n'));
+}
+
+if (isset($_POST['cve_ent'])){
+    require_once FOLDER_MODEL_EXTEND. "model.inegidomgeo_cat_municipio.inc.php";
+    $municipio = new ModeloInegidomgeo_cat_municipio();
+    $municipio->setCVE_ENT($_POST['cve_ent']);
+    echo json_encode(obtenCombo($municipio->getAllByCVE_Est($_POST['cve_ent']),'Seleccione una opci&oacute;n'));
+}
+
+if (isset($_POST['correo'])&&isset($_POST['mensaje'])&&isset($_POST['asunto'])){
+    echo enviar_mail($_POST['correo'],$_POST['mensaje'],$_POST['asunto']);
+}
+
+if (isset($_POST['valor'])&&isset($_POST['campo'])&&isset($_POST['tabla'])){
+    require_once FOLDER_MODEL_EXTEND. "model.login.inc.php";
+    $login=new ModeloLogin();
+    echo $login->validarCampo($_POST['tabla'],$_POST['campo'],$_POST['valor']);
+}
+
 function obtenCombo($array,$default){
     $combo='<option value="">'.$default.'</option>';
     foreach ($array as $key => $opcion)
@@ -866,4 +895,32 @@ function consultaCredito()
         }
     }
 }
+
+function enviar_mail($para,$asunto,$mensaje){
+    require_once(FOLDER_LIB.'PHPMailer/class.phpmailer.php');
+    require_once(FOLDER_LIB."PHPMailer/class.smtp.php");
+    $mailWeb = new PHPMailer();
+    $mailWeb->IsSMTP();
+    $mailWeb->SMTPSecure = 'tls';
+    $mailWeb->Host = "smtp.gmail.com";
+    $mailWeb->SMTPDebug = 0;
+    $mailWeb->SMTPAuth = true;
+    $mailWeb->Port = 587;
+    $mailWeb->Username = "siluetaexpress2018@gmail.com";
+    $mailWeb->Password = "silueta2018";
+    $mailWeb->SetFrom("siluetaexpress2018@gmail.com", "SiluetaExpress @NoReply");
+    $mailWeb->AddReplyTo("siluetaexpress2018@gmail.com", "SiluetaExpress @NoReply");
+    $mailWeb->Subject = $asunto;
+    $mailWeb->AltBody = $mensaje;
+    $mailWeb->MsgHTML($mensaje);
+    $mailWeb->AddAddress($para);
+    try{
+        $mailWeb->Send();
+        return true;
+    }catch(Exception $e){
+        return false;
+        echo $e;
+    }
+}
+
 ?>

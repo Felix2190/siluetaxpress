@@ -114,6 +114,6 @@
 		public function validarDatos(){
 		    return true;
 		}
-
+		
 	}
 

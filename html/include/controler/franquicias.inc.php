@@ -45,8 +45,6 @@ function cambioEstado($cveEstado) {
 $xajax->registerFunction ( "cambioEstado" );
 
 
-$xajax->registerFunction("");
-
 $xajax->processRequest();
 
 

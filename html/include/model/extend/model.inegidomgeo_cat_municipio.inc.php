@@ -56,17 +56,11 @@
 		{
 		    if($cveEstado=="")
 		        $cveEstado=$this->CVE_ENT;
-		        if(is_null($cveEstado)||$cveEstado=="")
-		            return $this->setError("No se especifico el estado para la busqueda de los municipios");
-		            
 		            $query = "SELECT CVE_MUN,NOM_MUN FROM inegidomgeo_cat_municipio WHERE cve_ent='" . mysqli_real_escape_string($this->dbLink,$cveEstado) . "' ORDER BY NOM_MUN ASC";
 		            $result = mysqli_query($this->dbLink,$query);
-		            if (! $result)
-		                return $this->setSystemError(
-		                    "Error en una consulta a la base de datos, intentalo de nueva cuenta mas tarde.",
-		                    "[" . $query . "][" . mysql_error() ."]");
-		                
+		            
 		                $retorno = array();
+		                if ($result&&mysqli_num_rows($result)>0)
 		                while ($row = mysqli_fetch_assoc($result))
 		                    $retorno[$row['CVE_MUN']] = $row['NOM_MUN'];
 		                    return $retorno;

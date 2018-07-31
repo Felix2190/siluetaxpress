@@ -119,4 +119,24 @@ class ModeloLogin extends ModeloBaseLogin
         return 'false';
     }
     
+    public function validarCampo($tabla,$campo,$valor)
+    {
+        $query = "SELECT * from $tabla WHERE $campo ='" . mysqli_real_escape_string($this->dbLink, $valor) . "'  LIMIT 1";
+        $result = mysqli_query($this->dbLink, $query);
+        //return $query;
+        if ($result) {
+            if (mysqli_num_rows($result) == 1) {
+                return 'false';
+            }
+            return 'true';
+        }else {
+            return 'false';
+        }
+    }
+    
+    public function validarDatos(){
+        return true;
+    }
+    
+    
 }

@@ -31,7 +31,7 @@ require_once 'masterInclude.inc.php';
 									<h2 id="content"><img src="images/pacientes.png" style="width: 60px;" />&ensp;Listado sucursales</h2>
 									
 								<div class="12u$(xsmall)" style="float: right;">
-								<a id="btnNuevo" class="button">Nueva sucursal</a>
+								<a href="altaSucursal.php" id="btnNuevo" class="button">Nueva sucursal</a>
 									</div>
 									
 								

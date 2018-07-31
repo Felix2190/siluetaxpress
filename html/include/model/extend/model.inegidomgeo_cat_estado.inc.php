@@ -53,23 +53,20 @@
 		
 		public function getAll ()
 		{
-		    $query = "SELECT CVE_ENT,NOM_ENT FROM inegidomgeo_cat_estado ORDER BY NOM_ENT ASC";
+		    $query = "SELECT CVE_ENT,NOM_ENT FROM inegidomgeo_cat_estado where CVE_ENT<>'00' ORDER BY NOM_ENT ASC";
 		    $result = mysqli_query($this->dbLink,$query);
-		    if (! $result)
-		        return $this->setSystemError(
-		            "Error en una consulta a la base de datos, intentalo de nueva cuenta mas tarde.",
-		            "[" . $query . "][" . mysql_error() ."]");
-		        $retorno = array();
+		    
+		    $retorno = array();
+		    if ($result&&mysqli_num_rows($result)>0)
 		        while ($row = mysqli_fetch_assoc($result))
 		            $retorno[$row['CVE_ENT']] = $row['NOM_ENT'];
-		            return $retorno;
+		        return $retorno;
 		}
 		
 		public function validarDatos()
 		{
 			return true;
 		}
-
 
 	}
 

@@ -31,7 +31,7 @@ require_once 'masterInclude.inc.php';
 									<h2 id="content"><img src="images/pacientes.png" style="width: 60px;" />&ensp;Listado de tipo de usuarios</h2>
 									
 								<div class="12u$(xsmall)" style="float: right;">
-								<a id="btnNuevo" class="button">Nuevo tipo</a>
+								<a href="nuevoTipo.php" id="btnNuevo" class="button">Nuevo tipo</a>
 									</div>
 									
 								
