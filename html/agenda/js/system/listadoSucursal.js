@@ -14,8 +14,10 @@ function iniciar(){
 					xajax_mostrarTabla(respuesta);
 				}
 			});
-		 
-		 
+}
+
+function verSucursal(id){
+	xajax_verSucursal(id);
 }
 
 	//$("#").();

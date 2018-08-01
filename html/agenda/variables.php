@@ -29,5 +29,20 @@ if ($__FILE_NAME__ != "adminFunciones") {
             unset($_SESSION['verCita']);
         }
     }
+    if ($__FILE_NAME__ != "verSucursal") {
+        if (isset($_SESSION['verSucursal'])) {
+            unset($_SESSION['verSucursal']);
+        }
+    }
+    if ($__FILE_NAME__ != "verUsuario") {
+        if (isset($_SESSION['verUsuario'])) {
+            unset($_SESSION['verUsuario']);
+        }
+    }
+    if ($__FILE_NAME__ != "verTipoUsuario") {
+        if (isset($_SESSION['verTipoUsuario'])) {
+            unset($_SESSION['verTipoUsuario']);
+        }
+    }
 }
 ?>

@@ -37,8 +37,10 @@ require_once 'masterInclude.inc.php';
 								
 								</section>
 								<br />
+								<div class="8u 12u$(xsmall)">
 									<div class="table-wrapper" id="divTabla">
 													</div>
+								</div>
 						</div>
 					</div>
 

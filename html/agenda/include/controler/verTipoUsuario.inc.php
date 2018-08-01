@@ -3,7 +3,7 @@
 // -----------------------------------------------------------------------------------------------------------------#
 // ---------------------------------------Archivos necesarios Require Include---------------------------------------#
 // -----------------------------------------------------------------------------------------------------------------#
-//require_once FOLDER_MODEL_EXTEND. "model..inc.php";
+require_once FOLDER_MODEL_EXTEND. "model.tipousuario.inc.php";
 // -----------------------------------------------------------------------------------------------------------------#
 // --------------------------------------------Inicializacion de control--------------------------------------------#
 // -----------------------------------------------------------------------------------------------------------------#
@@ -25,41 +25,25 @@
 $xajax = new xajax();
 
 
-function mostrarTabla($informacion)
-{
-    $r = new xajaxResponse();
-    $arrTitulos=array("Nombre","Sucursal","Correo","Tel&eacute;fono","Cargo","Opciones");
-    $tabla = "";
-    if (count($informacion) > 0) {
-        $tabla .= "<table><thead><tr>";
-        
-        foreach ($arrTitulos as $titulo)
-            $tabla .= "<th>$titulo</th>";
-        
-        $tabla.="</tr></thead><tbody>";
-        
-        foreach ($informacion as $id => $arr)
-            $tabla .= "<tr><td>" . $arr['nombreCompleto'] . "</td><td>" . $arr['sucursal'] . "</td><td>" . $arr['correo'] . "</td>
-                        <td>" . $arr['telefonoCel'] . "</td><td>" . $arr['nombre'] . "</td>
-                    <td><a onclick='verUsuario(\"".$arr['idUsuario']."\")'><img src='images/ver.png' title='Ver/editar' style='width: 30px' /></a></td></tr>";
-            
-            $tabla .= "</tbody></table>";
-    }
-    
-    $r->assign('divTabla', 'innerHTML', $tabla);
-    return $r;
-}
-$xajax->registerFunction("mostrarTabla");
-
-function verUsuario($idUsuario){
+function guardarCargo($cargo,$abreviatura){
     $r=new xajaxResponse();
+    $usuario = new ModeloTipoUsuario();
+    $usuario->setNombre($cargo);
+    $usuario->setAbrev($abreviatura);
     
-    $_SESSION['verUsuario']=array('titulo'=>'','idUsuario'=>$idUsuario);
-    $r->call('mostrarMsjEspera','Espere un momento, consultando informaci&oacute;n...',1);
-    $r->redirect("verUsuario.php",2);
+    $usuario->Guardar();
+    if ($usuario->getError()){
+        $r->call('mostrarMsjError',$usuario->getStrError(),5);
+        return $r;
+    }
+      $r->call('mostrarMsjExito','Se agreg&oacute; correctamente el tipo!',4);
+    $r->redirect('listadoTipoUsuarios.php',5);
+    
     return $r;
+    
 }
-$xajax->registerFunction("verUsuario");
+
+$xajax->registerFunction("guardarCargo");
 
 $xajax->processRequest();
 
@@ -67,4 +51,23 @@ $xajax->processRequest();
 // -----------------------------------------------------------------------------------------------------------------#
 // -------------------------------------------Inicializacion de variables-------------------------------------------#
 // -----------------------------------------------------------------------------------------------------------------#
+
+if (!isset($_SESSION['verTipoUsuario'])){
+    header("Location: listadoTipoUsuarios.php");
+}
+
+$aux =$_SESSION['verTipoUsuario'];
+$idTipoUsuario=$aux['idTipoUsuario'];
+
+$TipoUsuario = new ModeloTipoUsuario();
+$TipoUsuario->setIdTipoUsuario($idTipoUsuario);
+
+if ($TipoUsuario->getIdTipoUsuario()>0){
+//    $ = new Modelo();
+//    $->setId($->getId());
+    
+}else {
+    header("Location: listadoTipoUsuarios.php");
+}
+
 ?>

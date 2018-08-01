@@ -39,7 +39,8 @@ function mostrarTabla($informacion)
         $tabla.="</tr></thead><tbody>";
         
         foreach ($informacion as $id => $arr)
-            $tabla .= "<tr><td>" . $arr['nombre'] . "</td><td>" . $arr['abrev'] . "</td><td></td></tr>";
+            $tabla .= "<tr><td>" . $arr['nombre'] . "</td><td>" . $arr['abrev'] . "</td>
+                <td><a onclick='verTipoUsuario(\"".$arr['idTipoUsuario']."\")'><img src='images/ver.png' title='Ver/editar' style='width: 30px' /></a></td></tr>";
             
             $tabla .= "</tbody></table>";
     }
@@ -49,7 +50,15 @@ function mostrarTabla($informacion)
 }
 $xajax->registerFunction("mostrarTabla");
 
-$xajax->registerFunction("");
+function verTipoUsuario($idTipoUsuario){
+    $r=new xajaxResponse();
+    
+    $_SESSION['verTipoUsuario']=array('titulo'=>'','idTipoUsuario'=>$idTipoUsuario);
+    $r->call('mostrarMsjEspera','Espere un momento, consultando informaci&oacute;n...',1);
+    $r->redirect("verTipoUsuario.php",2);
+    return $r;
+}
+$xajax->registerFunction("verTipoUsuario");
 
 $xajax->processRequest();
 

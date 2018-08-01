@@ -14,10 +14,12 @@ function iniciar(){
 					xajax_mostrarTabla(respuesta);
 				}
 			});
-		 
-		 
 }
 
+function verTipoUsuario(id){
+	xajax_verTipoUsuario(id);
+}
+ 
 	//$("#").();
 //var alert = alertify.alert('Titulo','TextoAlerta').set('label', 'Aceptar');     	 
 //alert.set({transition:'zoom'}); //slide, zoom, flipx, flipy, fade, pulse (default)

@@ -41,7 +41,8 @@ function mostrarTabla($informacion)
         foreach ($informacion as $id => $arr)
             $tabla .= "<tr><td>" . $arr['sucursal'] . "</td><td>" . $arr['NOM_ENT'] . "</td><td>" . $arr['NOM_MUN'] . "</td>
                         <td>" . $arr['direccion'] . "</td><td>" . $arr['entreSemanaEntrada'] . ":00 a " . $arr['entreSemanaSalida'] . ":00</td>
-                        <td>" . $arr['sabadoEntrada'] . ":00 a " . $arr['sabadoSalida'] . ":00</td><td>Opciones</td></tr>";
+                        <td>" . $arr['sabadoEntrada'] . ":00 a " . $arr['sabadoSalida'] . ":00</td>
+                    <td><a onclick='verSucursal(\"".$arr['idSucursal']."\")'><img src='images/ver.png' title='Ver/editar' style='width: 30px' /></a></td></tr>";
             
             $tabla .= "</tbody></table>";
     }
@@ -51,7 +52,15 @@ function mostrarTabla($informacion)
 }
 $xajax->registerFunction("mostrarTabla");
 
-$xajax->registerFunction("");
+function verSucursal($idSucursal){
+    $r=new xajaxResponse();
+    
+    $_SESSION['verSucursal']=array('titulo'=>'','idSucursal'=>$idSucursal);
+    $r->call('mostrarMsjEspera','Espere un momento, consultando informaci&oacute;n...',1);
+    $r->redirect("verSucursal.php",2);
+    return $r;
+}
+$xajax->registerFunction("verSucursal");
 
 $xajax->processRequest();
 
