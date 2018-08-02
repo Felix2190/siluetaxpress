@@ -134,6 +134,43 @@ class ModeloLogin extends ModeloBaseLogin
         }
     }
     
+    public function getDatosByIdUsuario()
+    {
+        try
+        {
+            $SQL="SELECT
+						idLogin,idUsuario,userName,password,salt,idRol,estatus
+					FROM login
+					WHERE idUsuario=" . mysqli_real_escape_string($this->dbLink,$this->idUsuario);
+            
+            $result=mysqli_query($this->dbLink,$SQL);
+            if(!$result)
+                return $this->setSystemError("Error en la obtencion de detalles de registro.","[ModeloBaseLogin::getDatos][" . $SQL . "][" . mysqli_error($this->dbLink) . "]");
+                
+                
+                if(mysqli_num_rows($result)==0)
+                {
+                    $this->limpiarPropiedades();
+                }
+                else
+                {
+                    $datos=mysqli_fetch_assoc($result);
+                    foreach($datos as $k=>$v)
+                    {
+                        $campo="" . $k;
+                        $this->$campo=$v;
+                    }
+                }
+                return true;
+        }
+        catch (Exception $e)
+        {
+            return $this->setErrorCatch($e);
+        }
+    }
+    
+    
+    
     public function validarDatos(){
         return true;
     }

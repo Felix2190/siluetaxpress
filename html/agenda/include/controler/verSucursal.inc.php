@@ -26,10 +26,11 @@ require_once FOLDER_MODEL_EXTEND. "model.cabina.inc.php";
 $xajax = new xajax();
 
 
-function guardarSucursal($ent,$mun,$sucursalN,$direccion,$hrEntreI,$hrEntreF,$hrSabI,$hrSabF,$numCon,$numCa){
+function guardarSucursal($ent,$mun,$sucursalN,$direccion,$hrEntreI,$hrEntreF,$hrSabI,$hrSabF,$numCon,$numCa,$idSucursal){
     $r=new xajaxResponse();
     
     $sucursal= new ModeloSucursal();
+    $sucursal->setIdSucursal($idSucursal);
     $sucursal->setCveEstado($ent);
     $sucursal->setCveMunicipio($mun);
     $sucursal->setSucursal($sucursalN);
@@ -48,7 +49,7 @@ function guardarSucursal($ent,$mun,$sucursalN,$direccion,$hrEntreI,$hrEntreF,$hr
     }
     
     $cabinas= array();
-    $con=-1;
+    $con=0;
     $tipo="consultorio";
     
     for($i=1;$i<=$numCon;$i++){
@@ -73,8 +74,8 @@ function guardarSucursal($ent,$mun,$sucursalN,$direccion,$hrEntreI,$hrEntreF,$hr
                 }
             }
             
-            $r->call('mostrarMsjExito','Se agreg&oacute; correctamente la sucursal!',4);
-            $r->redirect('listadoSucursal.php',5);
+            $r->call('mostrarMsjExito','Se actualiz&oacute; correctamente la sucursal!',4);
+            $r->redirect('verSucursal.php',5);
     return $r;
     
 }
@@ -110,9 +111,10 @@ foreach ($arr as $key => $opcion)
     $Sucursal->setIdSucursal($idSucursal);
     
     if ($Sucursal->getIdSucursal()>0){
-//        $ = new Modelo();
-  //      $->setId($->getId());
+        $cabina = new ModeloCabina();
+        $cabina->setIdSucursal($idSucursal);
         
+        $arrCabinas=$cabina->obtenerTotalBySucussal();
     }else {
         header("Location: listadoSucursal.php");
     }

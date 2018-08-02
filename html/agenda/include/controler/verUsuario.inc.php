@@ -96,8 +96,12 @@ $Usuario = new ModeloUsuario();
 $Usuario->setIdUsuario($idUsuario);
 
 if ($Usuario->getIdUsuario()>0){
-    //$ = new Modelo();
-    //$->setId($->getId());
+    $login = new ModeloLogin();
+    $login->setIdUsuario($idUsuario);
+    $login->getDatosByIdUsuario();
+    $estatus=$login->getEstatus();
+    $userName=$login->getUserName();
+    $idL=$login->getIdLogin();
     
 }else {
     header("Location: listadoUsuarios.php");

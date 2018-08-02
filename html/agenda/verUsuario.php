@@ -40,11 +40,14 @@ $Usuario->setIdUsuario($idUsuario);
 						
 						<div class="row">
 						<input type="hidden" value="<?php echo $Usuario->getIdUsuario();?>" id="idUsuario"/>
+						<input type="hidden" value="<?php echo $idL;?>" id="idLogin"/>
+						<input type="hidden" value="<?php echo $Usuario->getIdSucursal();?>" id="idSucursal"/>
+						<input type="hidden" value="<?php echo $Usuario->getIdTipoUsuario();?>" id="idTipoUsuario"/>
 							<div class="3u 12u$(xsmall)">
 								<label>Nombre:</label>
 							</div>
 							<div class="5u 12u$(xsmall)">
-								<input type="text" id="txtNombre" value="<?php echo $Usuario->getNombre();?>"/>
+								<input type="text" id="txtNombre" value="<?php echo $Usuario->getNombre();?>"   readonly="readonly"/>
 							</div>
 						</div>
 						
@@ -54,7 +57,7 @@ $Usuario->setIdUsuario($idUsuario);
 								<label>Apellidos:</label>
 							</div>
 							<div class="5u 12u$(xsmall)">
-								<input type="text" id="txtApellidos" value="<?php echo $Usuario->getApellidos();?>"/>
+								<input type="text" id="txtApellidos" value="<?php echo $Usuario->getApellidos();?>"  readonly="readonly"/>
 							</div>
 						</div>
 						<br />
@@ -76,7 +79,7 @@ $Usuario->setIdUsuario($idUsuario);
 							</div>
 							<div class="4u 12u$(xsmall)">
 								<div class="select-wrapper">
-									<select name="demo-category" id="slcCargo">
+									<select name="demo-category" id="slcCargo"  disabled="disabled">
 									<option value="">Seleccione una opci&oacute;n</option>
 									</select>
 								</div>
@@ -90,7 +93,7 @@ $Usuario->setIdUsuario($idUsuario);
 								<label>Correo:</label>
 							</div>
 							<div class="4u 12u$(xsmall)">
-								<input type="text" id="txtCorreo" value="<?php echo $Usuario->getCorreo();?>"/>
+								<input type="text" id="txtCorreo"  readonly="readonly" value="<?php echo $Usuario->getCorreo();?>"/>
 							</div>
 						</div>
 						<br />
@@ -100,7 +103,7 @@ $Usuario->setIdUsuario($idUsuario);
 								<label>Tel&eacute;fono:</label>
 							</div>
 							<div class="3u 12u$(xsmall)">
-								<input type="text" id="txtTelefono" class="numeric" maxlength="10" value="<?php echo $Usuario->getTelefonoCel();?>"/>
+								<input type="text" id="txtTelefono" readonly="readonly" class="numeric" maxlength="10" value="<?php echo $Usuario->getTelefonoCel();?>"/>
 							</div>
 						</div>
 						
@@ -111,18 +114,38 @@ $Usuario->setIdUsuario($idUsuario);
 								<label>UserName:</label>
 							</div>
 							<div class="4u 12u$(xsmall)">
-								<input type="text" id="txtUserName" />
+								<input type="text" id="txtUserName" value="<?php echo $userName;?>" readonly="readonly"/>
 							</div>
 						</div>
 						
 						<br />
+						</div>
+						
+						<div class="row" >
+						<div class="2u 12u$(xsmall)" >
+								<a href="listadoSucursal.php" class="button">Volver al listado</a>
+						</div>
 						
 						
+						<div class="4u 12u$(xsmall)" >
+								<a style="float: right;" id="btnPass" class="button">Crear nueva contrase&ntilde;a</a>&ensp;
+								
+						</div>
 						
-						<div class="8u 12u$(xsmall)" >
-								<a  id="btnAgregar" class="button special">Agregar</a>
-								<br />
-									</div>
+						
+						<div class="2u 12u$(xsmall)" >
+								<?php if ($estatus=='activo'){?>
+								<a style="float: right;" id="btnBloquear" class="button">Bloquear</a>&ensp;
+								<?php } else{?>
+								<a style="float: right;" id="btnActivar" class="button">Activar</a>&ensp;
+								<?php }?>
+						</div>
+						
+						
+						<div class="2u 12u$(xsmall)" >
+								<a  id="btnGuardar" class="button special">Guardar</a>
+								
+						</div>
 						</div>
 						<br /><br />
 						</div>

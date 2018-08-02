@@ -303,6 +303,19 @@ if (isset($_POST['valor'])&&isset($_POST['campo'])&&isset($_POST['tabla'])){
     echo $login->validarCampo($_POST['tabla'],$_POST['campo'],$_POST['valor']);
 }
 
+
+if (isset($_POST['estatusU'])&&isset($_POST['idLogin'])){
+    require_once FOLDER_MODEL_EXTEND. "model.login.inc.php";
+    $usuario = new ModeloLogin();
+    $usuario->setIdLogin($_POST['idLogin']);
+    $usuario->setEstatus($_POST['estatusU']);
+    $usuario->Guardar();
+    if ($usuario->getError())
+        echo $usuario->getStrError();
+    else 
+        echo 'true';
+}
+
 function obtenCombo($array,$default){
     $combo='<option value="">'.$default.'</option>';
     foreach ($array as $key => $opcion)

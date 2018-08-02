@@ -64,5 +64,20 @@ class ModeloCabina extends ModeloBaseCabina
         }
         return $arreglo;
     }
+
+    public function obtenerTotalBySucussal()
+    {
+        $condicion = " and idSucursal=" . $this->idSucursal;
+        
+        $query = "Select tipo, count(*) as total from cabina where true $condicion group by tipo";
+        $arreglo = array();
+        $resultado = mysqli_query($this->dbLink, $query);
+        if ($resultado && mysqli_num_rows($resultado) > 0) {
+            while ($row_inf = mysqli_fetch_assoc($resultado)) {
+                $arreglo[$row_inf['tipo']] = $row_inf['total'];
+            }
+        }
+        return $arreglo;
+    }
 }
 

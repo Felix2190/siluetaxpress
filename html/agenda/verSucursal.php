@@ -1,7 +1,5 @@
 <?php 
 require_once 'masterInclude.inc.php';
-$Sucursal = new ModeloSucursal();
-$Sucursal->setIdSucursal($idSucursal);
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -38,12 +36,20 @@ $Sucursal->setIdSucursal($idSucursal);
 								<div class="12u 12u$(xsmall)" >
 						<div class="row">
 						<input type="hidden" value="<?php echo $Sucursal->getIdSucursal();?>" id="idSucursal"/>
+						<input type="hidden" value="<?php echo $Sucursal->getCveEstado();?>" id="hdnEstado"/>
+						<input type="hidden" value="<?php echo $Sucursal->getCveMunicipio();?>" id="hdnMunicipio"/>
+						<input type="hidden" value="<?php echo $Sucursal->getEntreSemanaEntrada();?>" id="hdnHrEntreE"/>
+						<input type="hidden" value="<?php echo $Sucursal->getEntreSemanaSalida();?>" id="hdnHrEntreS"/>
+						<input type="hidden" value="<?php echo $Sucursal->getSabadoEntrada();?>" id="hdnHrSabadoE"/>
+						<input type="hidden" value="<?php echo $Sucursal->getSabadoSalida();?>" id="hdnHrSabadoS"/>
+						<input type="hidden" id="hdnConsultorios" value="<?php echo $arrCabinas['consultorio'];?>" />
+						<input type="hidden" id="hdnCabinas" value="<?php echo $arrCabinas['cabina'];?>" />
 							<div class="3u 12u$(xsmall)">
 								<label>Estado:</label>
 							</div>
 							<div class="3u 12u$(xsmall)">
 								<div class="select-wrapper">
-									<select name="demo-category" id="slcEstado">
+									<select name="demo-category" id="slcEstado" disabled="disabled">
 									</select>
 								</div>
 							</div>
@@ -55,7 +61,7 @@ $Sucursal->setIdSucursal($idSucursal);
 							</div>
 							<div class="3u 12u$(xsmall)">
 								<div class="select-wrapper">
-									<select name="demo-category" id="slcMunicipio">
+									<select name="demo-category" id="slcMunicipio"  disabled="disabled">
 									<option value="">Seleccione una opci&oacute;n</option>
 									</select>
 								</div>
@@ -128,7 +134,7 @@ $Sucursal->setIdSucursal($idSucursal);
 								<label>N&uacute;mero de consultorios:</label>
 							</div>
 							<div class="1u 12u$(xsmall)">
-							<input type="text" id="txtConsultorios" class="numeric" />
+							<input type="text" id="txtConsultorios" class="numeric" value="<?php echo $arrCabinas['consultorio'];?>" />
 							</div>
 						</div>
 						<br />
@@ -137,13 +143,14 @@ $Sucursal->setIdSucursal($idSucursal);
 								<label>N&uacute;mero de cabinas:</label>
 							</div>
 							<div class="1u 12u$(xsmall)">
-							<input type="text" id="txtCabinas" class="numeric" />
+							<input type="text" id="txtCabinas" class="numeric" value="<?php echo $arrCabinas['cabina'];?>" />
 							</div>
 						</div>
 						<br />
 						
 						<div class="8u 12u$(xsmall)" >
-								<a  id="btnAgregar" class="button special">Agregar</a>
+								<a  id="btnGuardar" class="button special">Guardar</a>
+								<a href="listadoSucursal.php" class="button">Volver al listado</a>
 								<br />
 									</div>
 						</div>
