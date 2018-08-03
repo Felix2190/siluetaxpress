@@ -11,7 +11,7 @@ $arrSeccionesPagina=array(
     "listadoPacientes"=>"pacientes",
     "altaPaciente"=>"pacientes",
     "buscarPaciente"=>"pacientes",
-    "editaPaciente"=>"pacientes",
+    "verPaciente"=>"pacientes",
     
     "index"=>"inicio",
     
@@ -21,8 +21,14 @@ $arrSeccionesPagina=array(
     "creditoSMS"=>"credito",
     
     "listadoUsuarios"=>"administrar",
+    "nuevoUsuario"=>"administrar",
+    "verUsuario"=>"administrar",
     "listadoTipoUsuarios"=>"administrar",
+    "nuevoTipo"=>"administrar",
+    "verTipoUsuario"=>"administrar",
     "listadoSucursal"=>"administrar",
+    "altaSucursal"=>"administrar",
+    "verSucursal"=>"administrar",
     
     ""=>""
 );

@@ -106,7 +106,7 @@ function altaUsuario(){
 	if(existeError){
 		mostrarMsjError('Datos incompletos!! <br />Por favor, llene la informaci&oacute;n que se solicita',5);
 	}else{
-		mostrarMsjEspera('Espere un momento... guardando informaci&oacute;n.', 8);
+		mostrarMsjEspera('Espere un momento... guardando informaci&oacute;n.', 15);
 
 		validarCampo('login','userName',userName)
 		 setTimeout(function() {

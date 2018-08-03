@@ -69,14 +69,15 @@ function verTabla($informacion,$sucursal){
                 $citaProxima="-";
                 if ($paciente['fechaProxima']!=NULL){
                     $fechaCita=explode("-", $paciente['fechaProxima']);
-                    $citaProxima="<a onClick='verCita(".$paciente['cita'].")'>$fechaCita[2] de ".obtenMes(''.intval($fechaCita[1]))." del $fechaCita[0] </a>";
+                    $citaProxima="<a onClick='verCita(".$paciente['cita'].")'> <img src='images/editaCita.png' title='$fechaCita[2] de ".obtenMes(''.intval($fechaCita[1]))." del $fechaCita[0]' style='width: 30px' /></a></a>";
                     }
                     $fecha=explode("-", $paciente['fecha']);
                     
                     $tabla.="<tr><td colspan='2'>".$paciente['nombreP']."</td><td>".$paciente['telefonoCel']."</td>$txtSucursal<td>".$paciente['completitud']."%</td>
                     <td>$fecha[2]/".obtenMes(''.intval($fecha[1]))."/$fecha[0]</td>
                     <td>".$paciente['consultasHechas']."</td><td>".$paciente['consultasProximas']."</td><td>".$citaProxima."</td>
-                    <td><a onClick='verPaciente(".$paciente['idPaciente'].")'>Ver detalles</a></td></tr>";
+                    <td><a onClick='verPaciente(".$paciente['idPaciente'].")'><img src='images/ver.png' title='Ver' style='width: 30px' /></a>
+                    <a onClick='editPaciente(".$paciente['idPaciente'].")'><img src='images/editPaciente.png' title='editar' style='width: 30px' /></a></td></tr>";
             }
             $tabla.="</tbody></table></div></div><br />";
         
@@ -90,9 +91,9 @@ $xajax->registerFunction("verTabla");
 function verPaciente($idPaciente){
     $r=new xajaxResponse();
     
-    $_SESSION['editaPaciente']=array('titulo'=>'Detalles del paciente','idPaciente'=>$idPaciente);
+    $_SESSION['verPaciente']=array('titulo'=>'Detalles del paciente','idPaciente'=>$idPaciente);
     $r->call('mostrarMsjEspera','Consultando detalles del paciente...',2);
-    $r->redirect("editaPaciente.php",3);
+    $r->redirect("verPaciente.php",3);
     return $r;
 }
 $xajax->registerFunction("verPaciente");

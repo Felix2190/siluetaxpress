@@ -33,20 +33,12 @@ function iniciar(){
 	
 	$("#btnGuardar").click(altaUsuario);
 	
-	$("#txtNombre").blur(function(){
-		 var userN = $(this).val().split(" ");
-		 if(userN[0]!=''){
-			 validarCampo('login','userName',userN[0])
-			 setTimeout(function() {
-				
-			 if(resp=='true')
-				 $("#txtUserName").val(userN[0]);
-			 else{
-				 $("#txtUserName").val('');
-			 }
-				},1500);
-				
-		 }
+	$("#btnPass").click(function(){
+		$('html,body').animate({
+		    scrollTop: $("#divArriba").offset().top
+		}, 200);
+		mostrarMsjEspera('Espere un momento...',15);
+		xajax_generaPassword($("#idUsuario").val(),$("#idLogin").val());
 	});
 	
 	$("#btnActivar").click(function(){
@@ -64,51 +56,11 @@ function iniciar(){
 function altaUsuario(){
 	var existeError = false;
 	var sucursal = $("#slcSucursal").val();
-	var Cargo = $("#slcCargo").val();
-	var nombre = $("#txtNombre").val();
-	var apellidos = $("#txtApellidos").val();
-	var userName = $("#txtUserName").val();
-	var correo = $("#txtCorreo").val();
-	var telefono = $("#txtTelefono").val();
+	var idUsuario = $("#idUsuario").val();
 	
-	if ( apellidos == "") {
-		existeError = true;
-		console.log("Error: apellidos");
-	}
-	if ( Cargo == "") {
-		existeError = true;
-		console.log("Error: Cargo");
-	}
-	if ( nombre == "") {
-		existeError = true;
-		console.log("Error: nombre");
-	}
 	if ( sucursal == "") {
 		existeError = true;
 		console.log("Error: sucursal");
-	}
-	if ( telefono == "") {
-		existeError = true;
-		console.log("Error: telefono");
-	}else{
-		if(telefono.length<10){
-			mostrarMsjError('El n&uacute;mero telef&oacute;nico es incorrecto ',3);
-			return false;
-		}
-	}
-	if ( userName == "") {
-		existeError = true;
-		console.log("Error: userName");
-	}
-	if ( correo == "") {
-		existeError = true;
-		console.log("Error: correo");
-	}else{
-	
-	if(!validarEmail(correo)){
-		mostarMsjError('El formato del correo electr&oacute;nico es incorrecto ',3);
-		return false;
-	}
 	}
 
 	$('html,body').animate({
@@ -117,29 +69,10 @@ function altaUsuario(){
 	if(existeError){
 		mostrarMsjError('Datos incompletos!! <br />Por favor, llene la informaci&oacute;n que se solicita',5);
 	}else{
-		mostrarMsjEspera('Espere un momento... guardando informaci&oacute;n.', 8);
+		mostrarMsjEspera('Espere un momento... guardando informaci&oacute;n.',5);
 
-		validarCampo('login','userName',userName)
-		 setTimeout(function() {
-			
-		 if(resp=='true'){
-			 validarCampo('usuario','correo',correo)
-			 setTimeout(function() {
-				
-			 if(resp=='true'){
-				 xajax_guardarUsuario(nombre, apellidos, sucursal, Cargo, correo, telefono, userName);
-			 } else{
-				 mostrarMsjError('El correo electr&oacute;nico ingresado ya existe',3);
-				 $("#txtCorreo").val('');
-			 }
-				},1500);
+		xajax_guardarUsuario(idUsuario, sucursal);
 			 
-			 
-		 } else{
-			 mostrarMsjError('El username ingresado ya existe',3);
-			 $("#txtUserName").val('');
-		 }
-			},1500);
 	}
 }
 

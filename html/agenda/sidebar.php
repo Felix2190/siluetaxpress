@@ -27,9 +27,9 @@
 
 				<li><span class="opener <?php if($seccion=="administrar") echo "active";?>" class="opener">Administrar</span>
 					<ul>
-						<li><a class="<?php if($subseccion=="listadoSucursal") echo "active";?>" href="listadoSucursal.php">Consultorios</a></li>
-						<li><a class="<?php if($subseccion=="listadoUsuarios") echo "active";?>" href="listadoUsuarios.php">Usuarios</a></li>
-						<li><a class="<?php if($subseccion=="listadoTipoUsuarios") echo "active";?>" href="listadoTipoUsuarios.php">Roles</a></li>
+						<li><a class="<?php if($subseccion=="listadoSucursal"||$subseccion=="verSucursal"||$subseccion=="altaSucursal") echo "active";?>" href="listadoSucursal.php">Consultorios</a></li>
+						<li><a class="<?php if($subseccion=="listadoUsuarios"||$subseccion=="verUsuario"||$subseccion=="nuevoUsuario") echo "active";?>" href="listadoUsuarios.php">Usuarios</a></li>
+						<li><a class="<?php if($subseccion=="listadoTipoUsuarios"||$subseccion=="verTipoUsuario"||$subseccion=="nuevoTipo") echo "active";?>" href="listadoTipoUsuarios.php">Roles</a></li>
 						
 					</ul></li>
 					

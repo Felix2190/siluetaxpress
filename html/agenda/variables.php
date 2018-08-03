@@ -6,6 +6,11 @@ if ($__FILE_NAME__ != "adminFunciones") {
            unset($_SESSION['altaCita']);
         }
     }
+    if ($__FILE_NAME__ != "verPaciente") {
+        if (isset($_SESSION['verPaciente'])) {
+            unset($_SESSION['verPaciente']);
+        }
+    }
     if ($__FILE_NAME__ != "editaPaciente") {
         if (isset($_SESSION['editaPaciente'])) {
             unset($_SESSION['editaPaciente']);

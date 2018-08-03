@@ -48,10 +48,10 @@ $xajax = new xajax();
 
 function verPDF($b){
     $r=new xajaxResponse();
-    $aux =$_SESSION['editaPaciente'];
+    $aux =$_SESSION['verPaciente'];
     $idPaciente=$aux['idPaciente'];
     
-    $r->redirect("getHojaClinicaPDF.php?idPaciente=$idPaciente&firma=$b",3);
+    $r->redirect("getHojaClinicaPDF.php?idPaciente=$idPaciente&firma=$b");
     return $r;
 }
 $xajax->registerFunction("verPDF");
@@ -63,11 +63,11 @@ $xajax->processRequest();
 // -------------------------------------------Inicializacion de variables-------------------------------------------#
 // -----------------------------------------------------------------------------------------------------------------#
 
-if (!isset($_SESSION['editaPaciente'])){
+if (!isset($_SESSION['verPaciente'])){
     header("Location: listadoPacientes.php");
 }
 
-$aux =$_SESSION['editaPaciente'];
+$aux =$_SESSION['verPaciente'];
 $titulo=$aux['titulo'];
 $idPaciente=$aux['idPaciente'];
 

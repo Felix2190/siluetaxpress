@@ -54,9 +54,14 @@ class ModeloLogin extends ModeloBaseLogin
                 if ($row['password'] == $password) {
                     $arrInfoUsuario =$this->obtenerDatosUsuario($row['idUsuario']);
                     if (count($arrInfoUsuario) > 0) {
-                        $arrInfoUsuario['userName'] = $infoUsuario['username'];
-                        $arrInfoUsuario['idRol'] = $row['idRol'];
-                        return array(true,$arrInfoUsuario);
+                        if ($row['estatus']=='activo') {
+                            $arrInfoUsuario['userName'] = $infoUsuario['username'];
+                            $arrInfoUsuario['idRol'] = $row['idRol'];
+                            return array(true,$arrInfoUsuario);
+                        }else{
+                            //_usuario bloqueado
+                            return array(false,'Tu cuenta ha sido bloqueada, contacte al administador para activar su cuenta.');
+                        }
                     }else {
                         // error al encontrar el usuario
                         return array(false,'Error al cargar los datos del usuario');

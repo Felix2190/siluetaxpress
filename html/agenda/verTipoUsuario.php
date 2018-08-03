@@ -1,8 +1,5 @@
 <?php 
 require_once 'masterInclude.inc.php';
-$TipoUsuario = new ModeloTipoUsuario();
-$TipoUsuario->setIdTipoUsuario($idTipoUsuario);
-
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -65,7 +62,8 @@ $TipoUsuario->setIdTipoUsuario($idTipoUsuario);
 						
 						
 						<div class="8u 12u$(xsmall)" >
-								<a  id="btnAgregar" class="button special">Agregar</a>
+								<a  id="btnGuardar" class="button special">Guardar</a>
+								<a href="listadoTipoUsuarios.php" class="button">Volver al listado</a>
 								<br />
 									</div>
 						</div>

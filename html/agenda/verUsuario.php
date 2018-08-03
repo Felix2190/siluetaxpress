@@ -1,7 +1,5 @@
 <?php 
 require_once 'masterInclude.inc.php';
-$Usuario = new ModeloUsuario();
-$Usuario->setIdUsuario($idUsuario);
 ?>
 <!DOCTYPE HTML>
 <html>
@@ -123,7 +121,7 @@ $Usuario->setIdUsuario($idUsuario);
 						
 						<div class="row" >
 						<div class="2u 12u$(xsmall)" >
-								<a href="listadoSucursal.php" class="button">Volver al listado</a>
+								<a href="listadoUsuarios.php" class="button">Volver al listado</a>
 						</div>
 						
 						

@@ -25,9 +25,10 @@ require_once FOLDER_MODEL_EXTEND. "model.tipousuario.inc.php";
 $xajax = new xajax();
 
 
-function guardarCargo($cargo,$abreviatura){
+function guardarCargo($ID,$cargo,$abreviatura){
     $r=new xajaxResponse();
     $usuario = new ModeloTipoUsuario();
+    $usuario->setIdTipoUsuario($ID);;
     $usuario->setNombre($cargo);
     $usuario->setAbrev($abreviatura);
     
@@ -36,8 +37,8 @@ function guardarCargo($cargo,$abreviatura){
         $r->call('mostrarMsjError',$usuario->getStrError(),5);
         return $r;
     }
-      $r->call('mostrarMsjExito','Se agreg&oacute; correctamente el tipo!',4);
-    $r->redirect('listadoTipoUsuarios.php',5);
+      $r->call('mostrarMsjExito','Se actualizg&oacute; correctamente el tipo!',2);
+    $r->redirect('verTipoUsuario.php',3);
     
     return $r;
     

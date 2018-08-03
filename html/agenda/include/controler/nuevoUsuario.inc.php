@@ -57,7 +57,7 @@ function guardarUsuario($nombre, $apellidos, $sucursal, $Cargo, $correo, $telefo
     $login->setIdRol($Cargo);
     
     $login->Guardar();
-    if ($usuario->getError()){
+    if ($login->getError()){
         $r->call('mostrarMsjError',$login->getStrError(),5);
         return $r;
     }
@@ -69,7 +69,7 @@ function guardarUsuario($nombre, $apellidos, $sucursal, $Cargo, $correo, $telefo
     else
         $r->call('mostrarMsjExito','No se pudo enviar la contrase&ntilde;a, int&eacute;ntelo m&acute;s tarde.',4);
     
-    $r->call('mostrarMsjExito','Se agreg&oacute; correctamente la sucursal!',4);
+    $r->call('mostrarMsjExito','Se agreg&oacute; correctamente el usuario!',4);
     $r->redirect('listadoUsuarios.php',5);
     
     return $r;
