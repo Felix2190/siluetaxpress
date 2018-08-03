@@ -28,7 +28,7 @@ require_once 'masterInclude.inc.php';
 
 							<!-- Section -->
 								<section>
-									<h2 id="content"><img src="images/pacientes.png" style="width: 60px;" />&ensp;Listado de tipo de usuarios</h2>
+									<h2 id="content"><img src="images/roles.png" style="width: 60px;" />&ensp;Listado de tipo de usuarios</h2>
 									
 								<div class="12u$(xsmall)" style="float: right;">
 								<a href="nuevoTipo.php" id="btnNuevo" class="button">Nuevo tipo</a>

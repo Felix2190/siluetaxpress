@@ -28,7 +28,7 @@ require_once 'masterInclude.inc.php';
 
 							<!-- Section -->
 								<section>
-									<h2 id="content"><img src="images/lupa.png" style="width: 45px;" />&ensp; B&uacute;squeda de paciente</h2>
+									<h2 id="content"><img src="images/buscarPaciente.png" style="width: 45px;" />&ensp; B&uacute;squeda de paciente</h2>
 									
 									<input type="hidden" id="hdnRol" value="<?php echo $objSession->getidRol();?>"/>
 									

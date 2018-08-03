@@ -28,7 +28,7 @@ require_once 'masterInclude.inc.php';
 
 							<!-- Section -->
 								<section >
-									<h3 id="content"><img src="images/.png" style="width: 60px;" />&ensp;Usuario: <i><?php echo $Usuario->getNombre().' '.$Usuario->getApellidos();?></i></h3>
+									<h3 id="content"><img src="images/editar.png" style="width: 60px;" />&ensp;Usuario: <i><?php echo $Usuario->getNombre().' '.$Usuario->getApellidos();?></i></h3>
 									
 								
 								</section>

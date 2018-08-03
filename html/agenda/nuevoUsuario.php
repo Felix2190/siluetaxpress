@@ -28,7 +28,7 @@ require_once 'masterInclude.inc.php';
 
 							<!-- Section -->
 								<section >
-									<h2 id="content"><img src="images/.png" style="width: 60px;" />&ensp;Nueva usuario</h2>
+									<h2 id="content"><img src="images/agregar.png" style="width: 60px;" />&ensp;Nuevo usuario</h2>
 									
 								
 								</section>

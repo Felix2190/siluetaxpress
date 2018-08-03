@@ -28,7 +28,7 @@ require_once 'masterInclude.inc.php';
 
 							<!-- Section -->
 								<section>
-									<h2 id="content"><img src="images/pacientes.png" style="width: 60px;" />&ensp;Listado sucursales</h2>
+									<h2 id="content"><img src="images/sucursal.png" style="width: 60px;" />&ensp;Listado sucursales</h2>
 									
 								<div class="12u$(xsmall)" style="float: right;">
 								<a href="altaSucursal.php" id="btnNuevo" class="button">Nueva sucursal</a>
