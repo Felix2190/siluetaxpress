@@ -42,6 +42,10 @@ function listarPacientes(){
 function verPaciente(id){
 	xajax_verPaciente(id);
 }
+function editarPaciente(id){
+	xajax_editarPaciente(id);
+}
+
 function verCita(id){
 	xajax_verCita(id);
 }

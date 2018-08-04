@@ -12,6 +12,7 @@ $arrSeccionesPagina=array(
     "altaPaciente"=>"pacientes",
     "buscarPaciente"=>"pacientes",
     "verPaciente"=>"pacientes",
+    "editarPaciente"=>"pacientes",
     
     "index"=>"inicio",
     

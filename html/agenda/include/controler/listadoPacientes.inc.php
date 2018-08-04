@@ -77,7 +77,7 @@ function verTabla($informacion,$sucursal){
                     <td>$fecha[2]/".obtenMes(''.intval($fecha[1]))."/$fecha[0]</td>
                     <td>".$paciente['consultasHechas']."</td><td>".$paciente['consultasProximas']."</td><td>".$citaProxima."</td>
                     <td><a onClick='verPaciente(".$paciente['idPaciente'].")'><img src='images/ver.png' title='Ver' style='width: 30px' /></a>
-                    <a onClick='editPaciente(".$paciente['idPaciente'].")'><img src='images/editPaciente.png' title='editar' style='width: 30px' /></a></td></tr>";
+                    <a onClick='editarPaciente(".$paciente['idPaciente'].")'><img src='images/editPaciente.png' title='editar' style='width: 30px' /></a></td></tr>";
             }
             $tabla.="</tbody></table></div></div><br />";
         
@@ -97,6 +97,17 @@ function verPaciente($idPaciente){
     return $r;
 }
 $xajax->registerFunction("verPaciente");
+
+function editarPaciente($idPaciente){
+    $r=new xajaxResponse();
+    
+    $_SESSION['editarPaciente']=array('titulo'=>'','idPaciente'=>$idPaciente);
+    $r->call('mostrarMsjEspera','Consultando detalles del paciente...',2);
+    $r->redirect("editarPaciente.php",3);
+    return $r;
+}
+$xajax->registerFunction("editarPaciente");
+
 
 function verCita($idCita){
     $r=new xajaxResponse();
