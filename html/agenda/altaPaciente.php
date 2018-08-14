@@ -30,8 +30,112 @@ require_once 'masterInclude.inc.php';
 								<section>
 									<h2 id="content"><img src="images/agregaPaciente.png" style="width: 55px;" />&emsp;Agregar nuevo paciente </h2>
 								</section>
-
-				<div class="row">
+								
+							<div class="row">
+								<div class="3u 12u$(xsmall)"> <form>
+																<input id="demo-priority-Minimo" name="datos" value="Minimo" type="radio">
+																<label for="demo-priority-Minimo">M&iacute;nimo</label> 
+																<input id="demo-priority-Completo" name="datos" value="Completo" type="radio" checked="checked">
+																<label for="demo-priority-Completo">Completo</label>
+															</form>
+								</div>
+							</div>
+							
+							<div class="row" id="divMinimo" style="display: none">
+					<div class="9u 12u$(small)">
+						<div class="box">
+							<div class="row">
+								<div class="3u 12u$(xsmall)">
+									<h3>Datos personales</h3>
+								</div>
+							</div>
+							<div class="row">
+								<div class="3u 12u$(xsmall)">
+									<label>Nombre:</label>
+								</div>
+								<div class="9u 12u$(xsmall)">
+									<input type="text" id="txtNombre2" />
+								</div>
+							</div>
+							<br />
+							<div class="row">
+								<div class="3u 12u$(xsmall)">
+									<label>Apellidos:</label>
+								</div>
+								<div class="9u 12u$(xsmall)">
+									<input type="text" id="txtApellidos2" />
+								</div>
+							</div>
+							<br />
+							<div class="row">
+								<div class="3u 12u$(xsmall)">
+									<label>Tel&eacute;fono (m&oacute;vil):</label>
+								</div>
+								<div class="3u 12u$(xsmall)">
+									<input type="text" id="txtTelMovil2" class="numeric" maxlength="10" />
+								</div>
+								
+								<div class="2u 12u$(xsmall)">
+									<label>Sexo:</label>
+								</div>
+								<div class="3u 12u$(xsmall)"> <form>
+																<input id="demo-priority-Masculino2" name="sexo2" value="Masculino" type="radio">
+																<label for="demo-priority-Masculino2">Masculino</label>
+																<input id="demo-priority-Femenino2" name="sexo2" value="Femenino" type="radio">
+																<label for="demo-priority-Femenino2">Femenino</label> </form>
+								</div>
+							</div>
+							<br />
+							<div class="row">
+								<div class="3u 12u$(xsmall)">
+									<label>Correo electr&oacute;nico:</label>
+								</div>
+								<div class="4u 12u$(xsmall)">
+									<input type="text" id="txtCorreo2" />
+								</div>
+								
+								
+							</div>
+							
+							<input type="hidden" id="hdnRol" value="<?php echo $objSession->getidRol();?>"/>
+							<?php if ($objSession->getidRol()==1){?>
+							<div class="row">
+								<div class="5u 12u$(xsmall)">
+									<h3>Lugar</h3>
+								</div>
+							</div>
+							<div class="row">
+								<div class="2u 12u$(xsmall)">
+									<label>Sucursal: </label>
+								</div>
+								<div class="4u 12u$(xsmall)">
+									<div class="select-wrapper">
+										<select name="demo-category" id="slcSucursal2">
+										
+									</select>
+									</div>
+								</div>
+								
+							</div>
+							<?php } else {?>
+									<input type="hidden" id="slcSucursal" value="<?php echo $objSession->getIdSucursal();?>"/>
+									<?php } ?>
+							
+							<br />
+							
+							<div class="row">
+								<div class="12u"></div>
+								<a id="btnGuardar2" class="button special">Guardar</a>
+							</div>
+							
+							
+						</div>
+					</div>
+				</div>
+				
+							
+							
+				<div class="row" id="divCompleto" style="display: ">
 					<div class="9u 12u$(small)">
 						<div class="box">
 							<div class="row">
@@ -183,7 +287,7 @@ require_once 'masterInclude.inc.php';
 								<div class="3u 12u$(xsmall)">
 									<label>Periodo menstrual:</label>
 								</div>
-								<div class="12u$(xsmall)">
+								<div class="9u 12u$(xsmall)">
 											<form>					<input id="demo-priority-regular" name="menstrual" value="Regular" type="radio">
 																<label style="float: left;" for="demo-priority-regular">Regular</label>
 																<input id="demo-priority-irregular" name="menstrual" value="Irregular" type="radio"> 
@@ -192,6 +296,8 @@ require_once 'masterInclude.inc.php';
 																<label style="float: left;" for="demo-priority-menopausa">Menopausa</label>
 																<input id="demo-priority-yano" name="menstrual" value="No" type="radio"> 
 																<label style="float: left;" for="demo-priority-yano">Ya no menstr&uacute;a</label> 
+																<input id="demo-priority-sinrespuesta" name="menstrual" value="sinrespuesta" type="radio"> 
+																<label style="float: left;" for="demo-priority-sinrespuesta">No aplica</label>
 														</form>
 								</div>
 							</div>
@@ -413,13 +519,31 @@ require_once 'masterInclude.inc.php';
 								<div class="4u 12u$(xsmall)">
 									<label>Horario de levantarse: </label>
 								</div>
-								<div class="3u 12u$(xsmall)">
-									<div class="select-wrapper">
-										<select name="demo-category" id="slcHrLevantar">
-										<?php echo $comboHr;?>
-									</select>
-									</div>
+								<div class="row 4u 12u$(xsmall)">
+    								<div class="4u 12u$(xsmall)">
+    									<div class="select-wrapper">
+    										<select name="demo-category" id="slcHrLevantarH">
+    										<?php echo $comboHora;?>
+    									</select>
+    									</div>
+    								</div>
+								<div class="4u 12u$(xsmall)">
+    									<div class="select-wrapper">
+    										<select name="demo-category" id="slcHrLevantarM">
+    										<?php echo $comboMin;?>
+    									</select>
+    									</div>
+    								</div>
+								<div class="4u 12u$(xsmall)">
+    									<div class="select-wrapper">
+    										<select name="demo-category" id="slcHrLevantar_">
+    										<option value=" AM">AM</option>
+    										<option value=" PM">PM</option>
+    									</select>
+    									</div>
+    								</div>
 								</div>
+								
 							</div>
 								
 							<br />
@@ -428,14 +552,30 @@ require_once 'masterInclude.inc.php';
 								<div class="4u 12u$(xsmall)">
 									<label>Horario de acostarse: </label>
 								</div>
-								<div class="3u 12u$(xsmall)">
-									<div class="select-wrapper">
-										<select name="demo-category" id="slcHrAcostar">
-										<?php echo $comboHr;?>
-									</select>
-									</div>
-								</div>
-							
+								<div class="row 4u 12u$(xsmall)">
+    								<div class="4u 12u$(xsmall)">
+    									<div class="select-wrapper">
+    										<select name="demo-category" id="slcHrAcostarH">
+    										<?php echo $comboHora;?>
+    									</select>
+    									</div>
+    								</div>
+    								<div class="4u 12u$(xsmall)">
+    									<div class="select-wrapper">
+    										<select name="demo-category" id="slcHrAcostarM">
+    										<?php echo $comboMin;?>
+    									</select>
+    									</div>
+    								</div>
+    								<div class="4u 12u$(xsmall)">
+    									<div class="select-wrapper">
+    										<select name="demo-category" id="slcHrAcostar_">
+    										<option value=" AM">AM</option>
+    										<option value=" PM">PM</option>
+    									</select>
+    									</div>
+    								</div>
+							</div>
 							</div>
 							
 							<br />
@@ -444,13 +584,30 @@ require_once 'masterInclude.inc.php';
 								<div class="4u 12u$(xsmall)">
 									<label>Horario de actividad f&iacute;sica: </label>
 								</div>
-								<div class="3u 12u$(xsmall)">
-									<div class="select-wrapper">
-										<select name="demo-category" id="slcHrEjercicio">
-										<?php echo $comboHr;?>
-									</select>
-									</div>
-								</div>
+								<div class="row 4u 12u$(xsmall)">
+    								<div class="4u 12u$(xsmall)">
+    									<div class="select-wrapper">
+    										<select name="demo-category" id="slcHrEjercicioH">
+    										<?php echo $comboHora;?>
+    									</select>
+    									</div>
+    								</div>
+    								<div class="4u 12u$(xsmall)">
+    									<div class="select-wrapper">
+    										<select name="demo-category" id="slcHrEjercicioM">
+    										<?php echo $comboMin;?>
+    									</select>
+    									</div>
+    								</div>
+    								<div class="4u 12u$(xsmall)">
+    									<div class="select-wrapper">
+    										<select name="demo-category" id="slcHrEjercicio_">
+    										<option value=" AM">AM</option>
+    										<option value=" PM">PM</option>
+    									</select>
+    									</div>
+    								</div>
+    							</div>
 							</div>
 							
 							<br />
@@ -475,24 +632,42 @@ require_once 'masterInclude.inc.php';
 							
 							<br />
 							
-							<div class="row divDesayuno" style="display: none;">
-								<div class="2u 12u$(xsmall)">
+							<div class="row divDesayuno" style="display: ;">
+							<div class="row 8u 12u$(xsmall)">
+								<div class="3u 12u$(xsmall)">
 									<label>Horario: </label>
 								</div>
 								<div class="2u 12u$(xsmall)">
 									<div class="select-wrapper">
-										<select name="demo-category" id="slcHrDesayuno">
-										<?php echo $comboHr;?>
+										<select name="demo-category" id="slcHrDesayunoH">
+										<?php echo $comboHora;?>
 									</select>
 									</div>
 								</div>
 								<div class="2u 12u$(xsmall)">
+									<div class="select-wrapper">
+										<select name="demo-category" id="slcHrDesayunoM">
+										<?php echo $comboMin;?>
+									</select>
+									</div>
+								</div>
+								<div class="2u 12u$(xsmall)">
+									<div class="select-wrapper">
+										<select name="demo-category" id="slcHrDesayuno_">
+											<option value=" AM">AM</option>
+    										<option value=" PM">PM</option>
+									</select>
+									</div>
+								</div>
+							</div>
+							<div class="row 4u 12u$(xsmall)">
+								<div class="2u 12u$(xsmall)">
 									<label>Alimentos: </label>
 								</div>
-								<div class="6u 12u$(xsmall)">
+								<div class="12u ">
 								<textarea rows="2" cols="" id="txtDesayuno"></textarea>
 								</div>
-								
+							</div>
 							</div>
 							
 							<br />

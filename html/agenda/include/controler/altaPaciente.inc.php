@@ -36,46 +36,46 @@ function guardar($datos){
     
     $hojaClinica = new ModeloHojaClinica();
     $hojaClinica->setFechaRegistro(date('Y-m-d H:i:s'));
-    if ($infoHoja['cirugias']!="")
+    if ($infoHoja['cirugias'] != "")
         $hojaClinica->setCirugia($infoHoja['cirugias']);
-    if ($hojaClinica->getCirugia()=="Si"){
+    if ($hojaClinica->getCirugia() == "Si") {
         $hojaClinica->setCirugias($infoHoja['cirugia']);
     }
     $hojaClinica->setEnfermedades($infoHoja['enfermedades']);
-    if ($infoHoja['estrenimiento']!="")
+    if ($infoHoja['estrenimiento'] != "")
         $hojaClinica->setEstrenimiento($infoHoja['estrenimiento']);
-    if ($hojaClinica->getEstrenimiento()=="Si"){
+    if ($hojaClinica->getEstrenimiento() == "Si") {
         $hojaClinica->setEstrenimientoFrecuencia($infoHoja['estrenimientoF']);
     }
-    if ($infoHoja['menstrual']!="")
+    if ($infoHoja['menstrual'] != "")
         $hojaClinica->setMenstruacion($infoHoja['menstrual']);
-        if ($infoHoja['alergia']!="")
-            $hojaClinica->setAlergia($infoHoja['alergia']);
-    if ($hojaClinica->getAlergia()=="Si"){
+    if ($infoHoja['alergia'] != "")
+        $hojaClinica->setAlergia($infoHoja['alergia']);
+    if ($hojaClinica->getAlergia() == "Si") {
         $hojaClinica->setAlimento($infoHoja['alergias']);
     }
     $hojaClinica->setHrsDormir($infoHoja['hrsDormir']);
     $hojaClinica->setHrsComer($infoHoja['hrsComida']);
-    if ($infoHoja['cafe']!="")
+    if ($infoHoja['cafe'] != "")
         $hojaClinica->setCafe($infoHoja['cafe']);
-    if ($hojaClinica->getCafe()=="Si"){
+    if ($hojaClinica->getCafe() == "Si") {
         $hojaClinica->setCafeFrecuencia($infoHoja['cafeF']);
     }
-    if ($infoHoja['bebidas']!="")
+    if ($infoHoja['bebidas'] != "")
         $hojaClinica->setBeber($infoHoja['bebidas']);
-    if ($hojaClinica->getBeber()=="Si"){
+    if ($hojaClinica->getBeber() == "Si") {
         $hojaClinica->setBeberFrecuencia($infoHoja['bebidasF']);
     }
-    if ($infoHoja['fuma']!="")
+    if ($infoHoja['fuma'] != "")
         $hojaClinica->setFuma($infoHoja['fuma']);
-    if ($hojaClinica->getFuma()=="Si"){
+    if ($hojaClinica->getFuma() == "Si") {
         $hojaClinica->setFumaFrecuencia($infoHoja['fumaF']);
     }
     $hojaClinica->setDesagradables($infoHoja['desagradable']);
     $hojaClinica->setAnsiedad($infoHoja['ansiedad']);
-    if ($infoHoja['actividadFisica']!="")
+    if ($infoHoja['actividadFisica'] != "")
         $hojaClinica->setActividadFisica($infoHoja['actividadFisica']);
-    if ($hojaClinica->getActividadFisica()=="Si"){
+    if ($hojaClinica->getActividadFisica() == "Si") {
         $hojaClinica->setActividad($infoHoja['actividad']);
         $hojaClinica->setTiempo($infoHoja['tiempo']);
         $hojaClinica->setTiempoSimbolo($infoHoja['tiempoSimbolo']);
@@ -85,7 +85,7 @@ function guardar($datos){
     $hojaClinica->setHorarioLevantarse($infoHoja['hrLevantar']);
     $hojaClinica->setHorarioAcostarse($infoHoja['hrAcostar']);
     $hojaClinica->setHorarioActividad($infoHoja['hrEjercicio']);
-    if ($infoHoja['desayunoF']!="")
+    if ($infoHoja['desayunoF'] != "")
         $hojaClinica->setDesayuno($infoHoja['desayunoF']);
     if ($hojaClinica->getDesayuno()=="Si"){
         $hojaClinica->setHorarioDesayuno($infoHoja['hrDesayuno']);
@@ -149,9 +149,9 @@ function guardar($datos){
         $_SESSION['pacientePredefinido']=array("idPaciente"=>$paciente->getIdPaciente(),"nombre"=>$paciente->getNombre()." ".$paciente->getApellidos());
         $r->redirect('nuevaCita.php',5);
     }else{
-    $_SESSION['editaPaciente']=array("titulo"=>"Ver paciente","idPaciente"=>$paciente->getIdPaciente());
-    ///$r->call('limpiarDatos');
-    $r->redirect('editaPaciente.php',5);
+        $_SESSION['verPaciente']=array("titulo"=>"Ver paciente","idPaciente"=>$paciente->getIdPaciente());
+        ///$r->call('limpiarDatos');
+        $r->redirect('verPaciente.php',5);
         }
     return $r;
     
@@ -159,13 +159,66 @@ function guardar($datos){
 
 $xajax->registerFunction("guardar");
 
+
+function guardar2($datos){
+    global $objSession;
+    
+    $r=new xajaxResponse();
+    $info=json_decode($datos,true);
+    
+    $infoPaciente=$info['paciente'];
+    $infoHoja=$info['hojaclinica'];
+    
+    $hojaClinica = new ModeloHojaClinica();
+    $hojaClinica->setFechaRegistro(date('Y-m-d H:i:s'));
+                                                        $hojaClinica->setCompletitud($infoHoja['completitud']);
+                                                        $hojaClinica->Guardar();
+                                                        if ($hojaClinica->getError()){
+                                                            $r->call('mostrarMsjError',$hojaClinica->getStrError(),5);
+                                                            return $r;
+                                                        }
+                                                        $r->call('mostrarMsjExito','Se ha acompletado la hoja cl&iacute;nica en un '.$infoHoja['completitud'].'%!',3);
+                                                        
+                                                        $paciente = new ModeloPaciente();
+                                                        $paciente->setNombre($infoPaciente['Nombre']);
+                                                        $paciente->setApellidos($infoPaciente['Apellidos']);
+                                                        $paciente->setTelefonoCel($infoPaciente['TelMovil']);
+                                                        $paciente->setCorreo($infoPaciente['Email']);
+                                                        $paciente->setSexo($infoPaciente['sexo']);
+                                                        
+                                                        $paciente->setIdHojaClinica($hojaClinica->getIdHojaClinica());
+                                                        $paciente->setIdUsuarioRegistro($objSession->getidUsuario());
+                                                        $paciente->setFechaRegistro(date('Y-m-d H:i:s'));
+                                                        $paciente->setIdSucursal($infoPaciente['sucursal']);
+                                                        $paciente->Guardar();
+                                                        if ($paciente->getError()){
+                                                            $r->call('mostrarMsjError',$paciente->getStrSystemError(),5);
+                                                            return $r;
+                                                        }
+                                                        
+                                                        $r->call('mostrarMsjExito','Se agreg&oacute; correctamente al paciente!',4);
+                                                        
+                                                        if (isset($_SESSION['paciente'])){
+                                                            $_SESSION['pacientePredefinido']=array("idPaciente"=>$paciente->getIdPaciente(),"nombre"=>$paciente->getNombre()." ".$paciente->getApellidos());
+                                                            $r->redirect('nuevaCita.php',5);
+                                                        }else{
+                                                            $_SESSION['verPaciente']=array("titulo"=>"Ver paciente","idPaciente"=>$paciente->getIdPaciente());
+                                                            ///$r->call('limpiarDatos');
+                                                            $r->redirect('verPaciente.php',5);
+                                                        }
+                                                        return $r;
+                                                        
+}
+
+$xajax->registerFunction("guardar2");
+
 $xajax->processRequest();
 
 
 // -----------------------------------------------------------------------------------------------------------------#
 // -------------------------------------------Inicializacion de variables-------------------------------------------#
 // -----------------------------------------------------------------------------------------------------------------#
-$comboHr="";
+$comboHr=$comboMin=$comboHora="";
 for ($hr=0;$hr<=23;$hr++)
     for ($min=0;$min<=45;$min+=15){
         $aux=" AM";
@@ -182,5 +235,12 @@ for ($hr=0;$hr<=23;$hr++)
         }
     }
 
-
+for ($hr=0;$hr<=12;$hr++){
+    $auxHr=$hr<10?"0".$hr:$hr;
+    $comboHora.="<option value='$auxHr'>$auxHr</option>";
+}
+for ($min=0;$min<=45;$min+=15){
+    $auxMin=$min==0?"0".$min:$min;
+    $comboMin.="<option value='$auxMin'>$auxMin</option>";
+    }
 ?>

@@ -17,6 +17,17 @@ function iniciar(){
 		maxDate : '0D'
 	});
 	*/
+
+	$("input[name=datos]").click(function(){
+		if($(this).val()=="Completo"){
+			 $('#divCompleto').show();
+			 $('#divMinimo').hide();
+		}else{
+			$('#divMinimo').show();
+			$('#divCompleto').hide();
+		}
+	});
+	
 	$("input[name=cirugias]").click(function(){
 		if($(this).val()=="Si"){
 			 $('.divCirugia').show();
@@ -137,6 +148,7 @@ function iniciar(){
 	});
 	*/
 	$("#btnGuardar").click(altaPaciente);
+	$("#btnGuardar2").click(altaPaciente2);
 }
 
 function altaPaciente(){
@@ -446,21 +458,21 @@ function altaPaciente(){
 		console.log("Error: motivacion");
 	}
 	
-	hoja['hrLevantar']= $("#slcHrLevantar").val().trim();
+	hoja['hrLevantar']= $("#slcHrLevantarH").val()+":"+$("#slcHrLevantarM").val()+$("#slcHrLevantar_").val();
 	if (hoja['hrLevantar'] == "") {
 		existeError2 = true;
 		faltan++;
 		console.log("Error: hrLevantar");
 	}
 	
-	hoja['hrAcostar']= $("#slcHrAcostar").val().trim();
+	hoja['hrAcostar']= $("#slcHrAcostarH").val()+":"+$("#slcHrAcostarM").val()+$("#slcHrAcostar_").val();
 	if (hoja['hrAcostar'] == "") {
 		existeError2 = true;
 		faltan++;
 		console.log("Error: hrAcostar");
 	}
 	
-	hoja['hrEjercicio']= $("#slcHrEjercicio").val().trim();
+	hoja['hrEjercicio']= $("#slcHrEjercicioH").val()+":"+$("#slcHrEjercicioM").val()+$("#slcHrEjercicio_").val();
 	if (hoja['hrEjercicio'] == "") {
 		existeError2 = true;
 		faltan++;
@@ -650,6 +662,71 @@ function altaPaciente(){
 
 	mostrarMsjEspera('Espere un momento... guardando informaci&oacute;n.', 3);
 	xajax_guardar(JSON.stringify(datos));
+}
+
+function altaPaciente2(){
+	var existeError2 = false,existeError = false;
+	var datos={},paciente={},hoja={};
+	var faltan=0;
+    
+	 paciente['Nombre']= $("#txtNombre2").val().trim();
+	if (paciente['Nombre'] == "") {
+		existeError = true;
+		console.log("Error: txtNombre");
+	}
+
+	paciente['Apellidos']= $("#txtApellidos2").val().trim();
+	if (paciente['Apellidos'] == "") {
+		console.log("Error: txtApellido");
+	}
+	
+	paciente['TelMovil']= $("#txtTelMovil2").val().trim();
+	if (paciente['TelMovil'] == "") {
+		existeError = true;
+		console.log("Error: txTelMovil");
+	}
+	
+	
+	paciente['sexo'] = '';
+    $("input[name=sexo2]").each(function (index) { 
+       if($(this).is(':checked')){
+    	   paciente['sexo'] = $(this).val();
+       }
+    });
+    
+    if (paciente['sexo'] == "") {
+		existeError = true;
+		console.log("Error: txt");
+	}
+    
+    paciente['sucursal']= $("#slcSucursal2").val().trim();
+    if ( paciente['sucursal'] == "") {
+		existeError = true;
+		console.log("Error: sucursal");
+	}
+
+    paciente['Email']= $("#txtCorreo2").val().trim();
+	if (paciente['Email'] == "") {
+		//existeError2 = true;
+		console.log("Error: txtEmail");
+	}else{
+		if(!validarEmail(paciente['Email'])){
+			mostrarMsjError('El formato del correo electr&oacute;nico es incorrecto ',3);
+			return false;
+		}
+	}
+	
+	hoja['completitud']=0;
+	datos['paciente']=paciente;
+	datos['hojaclinica']=hoja;
+		
+	if(existeError){
+		mostrarMsjError('Datos incompletos!! <br />Por favor, llene la informaci&oacute;n que se solicita',5);
+		return false;
+	}
+
+	mostrarMsjEspera('Espere un momento... guardando informaci&oacute;n.', 3);
+	xajax_guardar2(JSON.stringify(datos));
 }
 
 function limpiarDatos(){

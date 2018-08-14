@@ -51,8 +51,11 @@ require_once 'masterInclude.inc.php';
 									Fecha de nac.:
 								</div>
 								<div class="2u 12u$(xsmall)">
-								<?php $fecha=explode("-",$paciente->fechaNacimiento);?>
-									<p style="border-bottom: 2px solid;"><?php echo "$fecha[2] de ".obtenMes(''.intval($fecha[1]))." del $fecha[0]";?></p>
+								<?php if ($paciente->fechaNacimiento!='0000-00-00'){
+								    $fecha=explode("-",$paciente->fechaNacimiento);
+								?>
+									<p style="border-bottom: 2px solid;"><?php echo "$fecha[2] de ".obtenMes(''.intval($fecha[1]))." del $fecha[0]";?>
+									</p> <?php } ?>
 								</div>
 								
 							</div>	

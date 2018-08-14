@@ -7,6 +7,8 @@ require_once FOLDER_MODEL_EXTEND. "model.cita.inc.php";
 require_once FOLDER_MODEL_EXTEND. "model.comentarioscita.inc.php";
 require_once FOLDER_MODEL_EXTEND. "model.paciente.inc.php";
 require_once FOLDER_MODEL_EXTEND. "model.hojaclinica.inc.php";
+require_once FOLDER_MODEL_EXTEND. "model.sucursal.inc.php";
+require_once FOLDER_MODEL_EXTEND. "model.consulta.inc.php";
 require_once FOLDER_INCLUDE_AGENDA.'controler/adminFunciones.inc.php';
 // -----------------------------------------------------------------------------------------------------------------#
 // --------------------------------------------Inicializacion de control--------------------------------------------#
@@ -209,7 +211,15 @@ function guardarCambios($idCita,$duracion,$hora,$minuto,$consultorio,$chkbox){
            $r->call('mostrarMsjError',$cita->getStrError(),5);
            return $r;
        }
-       $r->call('mostrarMsjExito','Se han guardado correctamente los cambios!',3);
+       
+       $nSucursal= new ModeloSucursal();
+       $nSucursal->setIdSucursal($cita->getIdSucursal());
+       $nConsulta= new ModeloConsulta();
+       $nConsulta->setIdConsulta($cita->getIdConsulta());
+       
+       $Res=enviaSMS_CitaModificada($cita->getTelefonoPaciente(), date("d/m/Y",strtotime($fecha)), "$hora:$minuto", $nSucursal->getSucursal(), $idCita);
+       
+       $r->call('mostrarMsjExito','Se han guardado correctamente los cambios!' , 3);
        
        $r->redirect('verCita.php',4);
     return $r;

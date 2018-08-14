@@ -71,7 +71,7 @@
 		    
 		    $query = "Select idCita, DATE_FORMAT(fechaInicio,'%Y-%m-%d') as fecha, DATE_FORMAT(fechaInicio,'%H:%i') as hora, duracion, 
                     concat_ws(' ', p.nombre, p.apellidos) as nombre_paciente, DATE_FORMAT(fechaFin,'%H:%i') as horaFin,
-                    tipoConsulta, sucursal, ser.nombre as servicio, ca.nombre as cabina from cita as c
+                    tipoConsulta, sucursal, ser.nombre as servicio, ca.nombre as cabina, c.idUsuario from cita as c
                     inner join usuario as u on c.idUsuario=u.idUsuario
                     inner join paciente as p on c.idPaciente=p.idPaciente
                     inner join sucursal as s on c.idSucursal=s.idSucursal
@@ -303,9 +303,11 @@
                     union
                     Select count(*) as total from cita where recordatorio2=1
                     union
-                    Select count(*) as total from cita where idUsuarioCancela=0 and estatus='cancelada_paciente'";
+                    Select count(*) as total from cita where idUsuarioCancela=0 and estatus='cancelada_paciente'
+                    union
+                    Select count(*) as total from cita where idUsuarioCancela>0 and estatus='cancelada_encargado'";
                 
-                $titulos = array("Confirmaci&oacute;n de cita","Recordatorio","Respuesta de cancelaci&oacute;n");
+          $titulos = array("Confirmaci&oacute;n de cita","Recordatorio","Respuesta de cancelaci&oacute;n (paciente)","Respuesta de cancelaci&oacute;n (encargado)");
                 $total=0;
                 $respuesta = array();
                 $resultado = mysqli_query($this->dbLink, $query);

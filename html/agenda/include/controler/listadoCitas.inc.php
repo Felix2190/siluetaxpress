@@ -53,9 +53,9 @@ function consultarCitas($informacion,$fechaI){
     $fecha2=explode("-", $fechaFin);
     $rango="$fecha1[2]/".obtenMes(''.intval($fecha1[1]))."/$fecha1[0] al $fecha2[2]/".obtenMes(''.intval($fecha2[1]))."/$fecha2[0]";
     
-    $arrEncabezado=array('Hora','Paciente','Consulta','Detalles','Opciones');
+    $arrEncabezado=array('Hora','Paciente','Consulta','Detalles','Servicio','Opciones');
     if ($objSession->getidRol()==1)
-        $arrEncabezado=array( 'Hora','Paciente','Consulta','Detalles','Sucursal','Opciones');
+        $arrEncabezado=array( 'Hora','Paciente','Consulta','Detalles','Sucursal','Servicio','Opciones');
 //        $arrEncabezado=array('ID Consulta', 'Fecha','Hora','Paciente','Consulta','Duraci&oacute;n','Sucursal','Opciones');
         $tabla="";
         
@@ -66,10 +66,10 @@ function consultarCitas($informacion,$fechaI){
     								</div></div><div class='row'><div class='12u'><table><thead><tr>";
         foreach ($arrEncabezado as $idem){
             $colspan="";
-            if ($idem=='Paciente')
+            if ($idem=='Servicio')
                $colspan=" colspan='2'";
             if ($idem=='Detalles')
-                $colspan=" colspan='3'";
+                $colspan=" colspan='2'";
             $tabla.="<th $colspan>$idem</th>";
         }
         
@@ -85,21 +85,20 @@ function consultarCitas($informacion,$fechaI){
             
             $detalles="<div id='l".$cita['idCita']."'> <p> <strong>Consultorio: </strong> ".$cita['cabina']."</p>
                         <a onClick='verDetalles(".$cita['idCita'].")'>Ver detalles </a> </div>
-
-                        <div id='c".$cita['idCita']."' style='display: none'; > <blockqoute> 
-                            <p> <strong>Servicio: </strong> ".$cita['servicio']."</p>
+                       <div id='c".$cita['idCita']."' style='display: none'; > <blockqoute> 
+                            <!-- <p> <strong>Servicio: </strong> ".$cita['servicio']."</p> -->
                             <p> <strong>Consultorio: </strong> ".$cita['cabina']."</p>
                             <p> <strong>Duraci&oacute;n: </strong> ".$duracion."</p> 
                             <p> <a onClick='ocultarDetalles(".$cita['idCita'].")'>Ocultar </a> </p>  </blockqoute></div>";
             
             
-            $tabla.="<tr><td>".$cita['hora']." - ".$cita['horaFin']."</td><td colspan='2'>".$cita['nombre_paciente']."</td><td>".$cita['tipoConsulta']."</td>
-                    <td colspan='3'>".$detalles."</td>$sucursal";
+            $tabla.="<tr><td>".$cita['hora']." - ".$cita['horaFin']."</td><td >".$cita['nombre_paciente']."</td><td>".$cita['tipoConsulta']."</td>
+                    <td colspan='2'>".$detalles."</td>$sucursal <td colspan='2'>".$cita['servicio']."</td>";
         if ($objSession->getidRol()==1||$objSession->getidUsuario()==$cita['idUsuario'])
             $tabla.="<td><a onclick='verCita(\"".$cita['idCita']."\")'><img src='images/editaCita.png' title='Ver/editar' style='width: 34px' /></a> 
                      <a onclick='verOpciones(\"".$cita['idCita']."\")'><img src='images/cancelarCita2.png' title='Cancelar cita' style='width: 34px' /></a></td>";
             else 
-                $tabla.="<td></td>";
+                $tabla.="<td><a onclick='verOpciones(\"".$cita['idCita']."\")'><img src='images/cancelarCita2.png' title='Cancelar cita' style='width: 34px' /></a></td>";
             $tabla.="</tr>";
         }
         $tabla.="</tbody></table></div></div><br />";

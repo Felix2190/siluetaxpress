@@ -88,8 +88,8 @@ if (isset($_POST['sucursal'])&&isset($_POST['paciente'])&&isset($_POST['usuario'
         $cita->setIdSucursal($_POST['sucursal']);
         if ($_POST['paciente']!='')
             $cita->setIdPaciente($_POST['paciente']);
-            if ($_POST['usuario']!='')
-                $cita->setIdUsuario($_POST['usuario']);
+ //           if ($_POST['usuario']!='')
+//                $cita->setIdUsuario($_POST['usuario']);
                 if ($_POST['cabina']!='')
                     $cita->setIdCabina($_POST['cabina']);
                     
@@ -156,16 +156,31 @@ if (isset($_POST['idCita'])){
 
 if (isset($_POST['idCitaCancelar'])&&isset($_POST['por'])){
     require_once FOLDER_MODEL_EXTEND. "model.cita.inc.php";
+    require_once FOLDER_MODEL_EXTEND. "model.sucursal.inc.php";
+    require_once FOLDER_MODEL_EXTEND. "model.consulta.inc.php";
+    
     global $objSession;
     $cita = new ModeloCita();
     $cita->setIdCita($_POST['idCitaCancelar']);
     $cita->setEstatus("cancelada_".$_POST['por']);
     $cita->setIdUsuarioCancela($objSession->getidUsuario());
+    
+    $sucursal = new ModeloSucursal();
+    $sucursal->setIdSucursal($cita->getIdSucursal());
+    $consulta = new ModeloConsulta();
+    $consulta->setIdConsulta($cita->getIdConsulta());
+    
     $cita->Guardar();
     if ($cita->getError())
         echo $cita->getStrError();
-    else
+    else{
+        if ($_POST['por']=='paciente')
+            $aux="Ha";
+        else
+            $aux="Se ha";
+        enviaSMS($cita->getTelefonoPaciente(), "$aux cancelado su cita para ".$consulta->getTipoConsulta()." en ".$sucursal->getSucursal());
         echo 'true';
+    }
 }
 
 if (isset($_POST['SucursalIndex'])&&isset($_POST['usuarioIndex'])&&isset($_POST['fechaIndex'])){
@@ -690,6 +705,12 @@ function enviaSMS_CitaNueva($numPaciente, $consulta, $dia, $hora, $sucursal, $id
     return enviaSMS($numPaciente, $sMessage);
 }
 
+function enviaSMS_CitaModificada($numPaciente, $dia, $hora, $sucursal, $idConsulta)
+{
+    $sMessage = "Se ha modificado tu cita en SiluetaExpress para el dia $dia a las $hora hrs en $sucursal.\nPara cancelar responde: CANCELAR C$idConsulta";
+    return enviaSMS($numPaciente, $sMessage);
+}
+
 function enviaSMS_recordatorio($numPaciente, $nombre, $servicio, $dia, $hora, $sucursal, $idConsulta)
 {
     $sMessage = "SiluetaExpress le recuerda su cita para el dia $dia a las $hora hrs en $sucursal.\nPara cancelar responde: CANCELAR C$idConsulta";
@@ -935,6 +956,7 @@ function enviar_mail($para,$asunto,$mensaje){
         echo $e;
     }
 }
+
 
 /*
 $mailWeb->Host = "a2plcpnl0309.prod.iad2.secureserver.net ";

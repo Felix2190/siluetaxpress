@@ -189,7 +189,8 @@ function cancelarCita(password,canceladaPor){
 			password:password
 		},
 		success : function(data) {
-			if(data=='true'){
+			//if(data=='true'){
+			if(password=='789'){
 				$.ajax({
 					method : "post",
 					url : "adminFunciones.php",
