@@ -492,7 +492,7 @@ function altaPaciente(){
 	}
     
     if (hoja['desayunoF'] == "Si") {
-	    hoja['hrDesayuno']= $("#slcHrDesayuno").val().trim();
+	    hoja['hrDesayuno']= $("#slcHrDesayunoH").val()+":"+$("#slcHrDesayunoM").val()+$("#slcHrDesayuno_").val();
 		if (hoja['hrDesayuno'] == "") {
 			existeError = true;
 			faltan++;
@@ -520,7 +520,7 @@ function altaPaciente(){
 	}
     
     if (hoja['colacionF'] == "Si") {
-	    hoja['hrColacion1']= $("#slcHrColacion1").val().trim();
+	    hoja['hrColacion1']= $("#slcHrColacion1H").val()+":"+$("#slcHrColacion1M").val()+$("#slcHrColacion1_").val();
 		if (hoja['hrColacion1'] == "") {
 			existeError = true;
 			faltan++;
@@ -548,7 +548,7 @@ function altaPaciente(){
 	}
     
     if (hoja['comidaF'] == "Si") {
-	  hoja['hrComida']= $("#slcHrComida").val().trim();
+	  hoja['hrComida']= $("#slcHrComidaH").val()+":"+$("#slcHrComidaM").val()+$("#slcHrComida_").val();
 		if (hoja['hrComida'] == "") {
 			existeError = true;
 			faltan++;
@@ -576,7 +576,7 @@ function altaPaciente(){
 	}
     
     if (hoja['colacion2F'] == "Si") {
-	  hoja['hrColacion2']= $("#slcHrColacion2").val().trim();
+	  hoja['hrColacion2']= $("#slcHrColacion2H").val()+":"+$("#slcHrColacion2M").val()+$("#slcHrColacion2_").val();
 		if (hoja['hrColacion2'] == "") {
 			existeError = true;
 			faltan++;
@@ -603,7 +603,7 @@ function altaPaciente(){
 	}
     
     if (hoja['cenaF'] == "Si") {
-	     hoja['hrCena']= $("#slcHrCena").val().trim();
+	     hoja['hrCena']= $("#slcHrCenaH").val()+":"+$("#slcHrCenaM").val()+$("#slcHrCena_").val();
 		if (hoja['hrCena'] == "") {
 			existeError = true;
 			faltan++;

@@ -46,6 +46,17 @@ $xajax = new xajax();
 function consultarCitas($informacion,$fechaI){
     $r=new xajaxResponse();
     global $objSession;
+    $dias = array(
+        '',
+        'Lunes',
+        'Martes',
+        'Miercoles',
+        'Jueves',
+        'Viernes',
+        'S&aacute;bado',
+        'domingo'
+    );
+    
     $fecha1=explode(" ", $fechaI);
     $fecha1=explode("-", $fecha1[0]);
     $fechaFin = date ("Y-m-d",strtotime ( '+7 day' , strtotime ( $fechaI) ) );
@@ -60,9 +71,10 @@ function consultarCitas($informacion,$fechaI){
         $tabla="";
         
    foreach ($informacion as $fecha_=>$Citas){
-        $fecha=explode("-", $fecha_);
+       $fecha=explode("-", $fecha_);
+       $_dia = date('N', strtotime($fecha_));
         
-        $tabla.="<div class='row'><div class='3u 12u$(xsmall)'><h4>$fecha[2] de ".obtenMes(''.intval($fecha[1]))." del $fecha[0]</h4>
+        $tabla.="<div class='row'><div class='3u 12u$(xsmall)'><h4>$dias[$_dia] $fecha[2] de ".obtenMes(''.intval($fecha[1]))." del $fecha[0]</h4>
     								</div></div><div class='row'><div class='12u'><table><thead><tr>";
         foreach ($arrEncabezado as $idem){
             $colspan="";

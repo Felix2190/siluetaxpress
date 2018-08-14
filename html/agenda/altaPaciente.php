@@ -97,7 +97,7 @@ require_once 'masterInclude.inc.php';
 								
 							</div>
 							
-							<input type="hidden" id="hdnRol" value="<?php echo $objSession->getidRol();?>"/>
+							<input type="hidden" id="hdnRol2" value="<?php echo $objSession->getidRol();?>"/>
 							<?php if ($objSession->getidRol()==1){?>
 							<div class="row">
 								<div class="5u 12u$(xsmall)">
@@ -118,7 +118,7 @@ require_once 'masterInclude.inc.php';
 								
 							</div>
 							<?php } else {?>
-									<input type="hidden" id="slcSucursal" value="<?php echo $objSession->getIdSucursal();?>"/>
+									<input type="hidden" id="slcSucursal2" value="<?php echo $objSession->getIdSucursal();?>"/>
 									<?php } ?>
 							
 							<br />
@@ -575,7 +575,7 @@ require_once 'masterInclude.inc.php';
     									</select>
     									</div>
     								</div>
-							</div>
+								</div>
 							</div>
 							
 							<br />
@@ -632,7 +632,7 @@ require_once 'masterInclude.inc.php';
 							
 							<br />
 							
-							<div class="row divDesayuno" style="display: ;">
+							<div class="row divDesayuno" style="display: none;">
 							<div class="row 8u 12u$(xsmall)">
 								<div class="3u 12u$(xsmall)">
 									<label>Horario: </label>
@@ -681,33 +681,50 @@ require_once 'masterInclude.inc.php';
 																<input id="demo-priority-sicolacionF" name="colacionF"  value="Si" type="radio">
 																<label style="float: left;" for="demo-priority-sicolacionF">Si</label>
 																<input id="demo-priority-nocolacionF" name="colacionF" value="No" type="radio">
-																<label style="float: left;" for="demo-priority-nocolacionF">No</label> </form>
-								</div>
+																<label style="float: left;" for="demo-priority-nocolacionF">No</label> </form>								</div>
 							
 							</div>
 							
 							<br />
 							
 							<div class="row  divColacion1" style="display: none;">
-								<div class="2u 12u$(xsmall)">
+							<div class="row 8u 12u$(xsmall)">
+								<div class="3u 12u$(xsmall)">
 									<label>Horario: </label>
 								</div>
 								<div class="2u 12u$(xsmall)">
 									<div class="select-wrapper">
-										<select name="demo-category" id="slcHrColacion1">
-										<?php echo $comboHr;?>
+										<select name="demo-category" id="slcHrColacion1H">
+										<?php echo $comboHora;?>
 									</select>
 									</div>
 								</div>
 								<div class="2u 12u$(xsmall)">
+									<div class="select-wrapper">
+										<select name="demo-category" id="slcHrColacion1M">
+										<?php echo $comboMin;?>
+									</select>
+									</div>
+								</div>
+								<div class="2u 12u$(xsmall)">
+									<div class="select-wrapper">
+										<select name="demo-category" id="slcHrColacion1_">
+											<option value=" AM">AM</option>
+    										<option value=" PM">PM</option>
+									</select>
+									</div>
+								</div>
+							</div>
+							<div class="row 4u 12u$(xsmall)">
+								<div class="2u 12u$(xsmall)">
 									<label>Alimentos: </label>
 								</div>
-								<div class="6u 12u$(xsmall)">
+								<div class="12u 12u$(xsmall)">
 								<textarea rows="2" cols="" id="txtColacion1"></textarea>
 								</div>
 								
 							</div>
-							
+							</div>
 							
 							<br />
 							
@@ -728,25 +745,43 @@ require_once 'masterInclude.inc.php';
 							<br />
 							
 							<div class="row divComida" style="display: none;">
-								<div class="2u 12u$(xsmall)">
+							<div class="row 8u 12u$(xsmall)">
+								<div class="3u 12u$(xsmall)">
 									<label>Horario: </label>
 								</div>
 								<div class="2u 12u$(xsmall)">
 									<div class="select-wrapper">
-										<select name="demo-category" id="slcHrComida">
-										<?php echo $comboHr;?>
+										<select name="demo-category" id="slcHrComidaH">
+										<?php echo $comboHora;?>
 									</select>
 									</div>
 								</div>
 								<div class="2u 12u$(xsmall)">
+									<div class="select-wrapper">
+										<select name="demo-category" id="slcHrComidaM">
+										<?php echo $comboMin;?>
+									</select>
+									</div>
+								</div>
+								<div class="2u 12u$(xsmall)">
+									<div class="select-wrapper">
+										<select name="demo-category" id="slcHrComida_">
+											<option value=" AM">AM</option>
+    										<option value=" PM">PM</option>
+									</select>
+									</div>
+								</div>
+							</div>
+							<div class="row 4u 12u$(xsmall)">
+								<div class="2u 12u$(xsmall)">
 									<label>Alimentos: </label>
 								</div>
-								<div class="6u 12u$(xsmall)">
+								<div class="12u 12u$(xsmall)">
 								<textarea rows="2" cols="" id="txtComida"></textarea>
 								</div>
 								
 							</div>
-							
+							</div>
 							
 							<br />
 							
@@ -767,32 +802,50 @@ require_once 'masterInclude.inc.php';
 							<br />
 							
 							<div class="row divColacion2" style="display: none;">
-								<div class="2u 12u$(xsmall)">
+							<div class="row 8u 12u$(xsmall)">
+								<div class="3u 12u$(xsmall)">
 									<label>Horario: </label>
 								</div>
 								<div class="2u 12u$(xsmall)">
 									<div class="select-wrapper">
-										<select name="demo-category" id="slcHrColacion2">
-										<?php echo $comboHr;?>
+										<select name="demo-category" id="slcHrColacion2H">
+										<?php echo $comboHora;?>
 									</select>
 									</div>
 								</div>
 								<div class="2u 12u$(xsmall)">
+									<div class="select-wrapper">
+										<select name="demo-category" id="slcHrColacion2M">
+										<?php echo $comboMin;?>
+									</select>
+									</div>
+								</div>
+								<div class="2u 12u$(xsmall)">
+									<div class="select-wrapper">
+										<select name="demo-category" id="slcHrColacion2_">
+											<option value=" AM">AM</option>
+    										<option value=" PM">PM</option>
+									</select>
+									</div>
+								</div>
+							</div>
+							<div class="row 4u 12u$(xsmall)">
+								<div class="2u 12u$(xsmall)">
 									<label>Alimentos: </label>
 								</div>
-								<div class="6u 12u$(xsmall)">
+								<div class="12u 12u$(xsmall)">
 								<textarea rows="2" cols="" id="txtColacion2"></textarea>
 								</div>
 								
 							</div>
-							
+							</div>
 							
 							<br />
 							
 							
 							<div class="row">
 								<div class="3u 12u$(xsmall)">&emsp;</div>
-								<div class=2u 12u$(xsmall)">
+								<div class="2u 12u$(xsmall)">
 									<h4 style="float: left;">Cena</h4>
 								</div>
 								<div class="3u 12u$(xsmall)"> <form >
@@ -807,25 +860,44 @@ require_once 'masterInclude.inc.php';
 							<br />
 							
 							<div class="row divCena" style="display: none;">
-								<div class="2u 12u$(xsmall)">
+							<div class="row 8u 12u$(xsmall)">
+								<div class="3u 12u$(xsmall)">
 									<label>Horario: </label>
 								</div>
 								<div class="2u 12u$(xsmall)">
 									<div class="select-wrapper">
-										<select name="demo-category" id="slcHrCena">
-										<?php echo $comboHr;?>
+										<select name="demo-category" id="slcHrCenaH">
+										<?php echo $comboHora;?>
 									</select>
 									</div>
 								</div>
 								<div class="2u 12u$(xsmall)">
+									<div class="select-wrapper">
+										<select name="demo-category" id="slcHrCenaM">
+										<?php echo $comboMin;?>
+									</select>
+									</div>
+								</div>
+								<div class="2u 12u$(xsmall)">
+									<div class="select-wrapper">
+										<select name="demo-category" id="slcHrCena_">
+											<option value=" AM">AM</option>
+    										<option value=" PM">PM</option>
+									</select>
+									</div>
+								</div>
+								
+							</div>
+							<div class="row 4u 12u$(xsmall)">
+								<div class="2u 12u$(xsmall)">
 									<label>Alimentos: </label>
 								</div>
-								<div class="6u 12u$(xsmall)">
+								<div class="12u 12u$(xsmall)">
 								<textarea rows="2" cols="" id="txtCena"></textarea>
 								</div>
 								
 							</div>
-							
+							</div>
 							<br />
 							<input type="hidden" id="hdnRol" value="<?php echo $objSession->getidRol();?>"/>
 							<?php if ($objSession->getidRol()==1){?>

@@ -236,7 +236,7 @@ for ($hr=0;$hr<=23;$hr++)
     }
 
 for ($hr=0;$hr<=12;$hr++){
-    $auxHr=$hr<10?"0".$hr:$hr;
+    $auxHr=$hr==0?"0".$hr:$hr;
     $comboHora.="<option value='$auxHr'>$auxHr</option>";
 }
 for ($min=0;$min<=45;$min+=15){
