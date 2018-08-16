@@ -81,10 +81,12 @@
                     where (c.estatus='nueva' or c.estatus='curso') and fechaInicio>='$this->fechaInicio'  $condicion order by fechaInicio,c.idCabina";
 
 		    $respuesta = array();
+		    $count=1;
 		    $resultado = mysqli_query($this->dbLink, $query);
 		    if ($resultado && mysqli_num_rows($resultado) > 0) {
 		        while ($row_inf = mysqli_fetch_assoc($resultado)){
-		            $respuesta[$row_inf['fecha']][$row_inf['idCita']] = $row_inf;
+		            $respuesta[$row_inf['fecha']][$count] = $row_inf;
+		            $count++;
 		        }
 		    }
 		    return $respuesta;
@@ -100,7 +102,7 @@
 		    $fechaF = strtotime ( '+1 day' , strtotime ( $this->fechaFin ) ) ;
 		    $fechaF = date ( 'Y-m-d' , $fechaF );
 		    $query = "Select idCita, fechaInicio, fechaFin, duracion from cita 
-                    where idCita<>$idCita and (estatus='nueva' or estatus='curso') and idSucursal=$this->idSucursal and idConsulta=$this->idConsulta and idCabina=$this->idCabina and fechaInicio between DATE('$this->fechaInicio') and DATE('$fechaF')";
+                    where idCita<>$idCita and (estatus='nueva' or estatus='curso') and idSucursal=$this->idSucursal and idCabina=$this->idCabina and fechaInicio between DATE('$this->fechaInicio') and DATE('$fechaF')";
 		    $respuesta = array();
 		    $resultado = mysqli_query($this->dbLink, $query);
 		    if ($resultado && mysqli_num_rows($resultado) > 0) {

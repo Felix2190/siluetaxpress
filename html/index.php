@@ -40,7 +40,7 @@
 				</div>
 				
 				
-						<div class="7u 12u(mobile)">
+						<div class="7u">
 							
 							<h3>Pr&oacute;ximas (mayo)</h3>
 							<div class="row" style="margin-left: 5%;">
@@ -63,7 +63,7 @@
 						</div>
 						
 						
-						<div class="5u 12u(mobile)">
+						<div class="5u">
 						<h3>Otras</h3>
 						<section>
 						

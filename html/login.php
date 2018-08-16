@@ -35,6 +35,7 @@ require_once 'masterInclude.inc.php';
 					</div>
 				</div>
 			</div>
+			
 			<div id="banner-wrapper">
 				<div class="container">
 				
@@ -45,18 +46,18 @@ require_once 'masterInclude.inc.php';
 						<h2>Ingresar al sistema</h2>
 						<div class="row" ><section></section></div>
 						<div class="row" >
-							<div class="4u 12u$(xsmall)">
+							<div class="4u ">
 								<label>Usuario:</label>
 							</div> 
-							<div class="8u 12u$(xsmall)">
+							<div class="8u">
 								<input type="text" id="txtUserName"/>
 							</div>
 						</div>
 						<div class="row" >
-							<div class="4u 12u$(xsmall)">
+							<div class="4u )">
 								<label>Contrase&ntilde;a:</label>
 							</div> 
-							<div class="8u 12u$(xsmall)">
+							<div class="8u">
 								<input type="password" id="txtPassword"/>
 							</div>
 						</div>
@@ -90,16 +91,6 @@ require_once 'masterInclude.inc.php';
 		<div id="main">
 			<div class="container">
 				<div class="row main-row">
-					<div class="12u">
-
-						<section>
-							<h2></h2>
-							<p></p>
-							 							
-						</section>
-
-					</div>
-
 				</div>
 
 			</div>

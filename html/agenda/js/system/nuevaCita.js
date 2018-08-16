@@ -175,16 +175,19 @@ function iniciar(){
 	setTimeout(function() {
 		console.log('cabina '+$( "#hdnCabina" ).val());
 		$( "#slcConsultorio" ).val($( "#hdnCabina" ).val());
-		setTimeout(function() {
-//			console.log($("#slcConsultorio").val());
-			verHorarios();
-		},500);
-		//
-		},2000);
+		},1700);
 	setTimeout(function() {
 //		console.log($("#hdnHr").val());
+		$( "#slcConsultorio" ).val($( "#hdnCabina" ).val());
 		$( "#slcHr" ).val($( "#hdnHr" ).val());
-		},2800);
+		},2600);
+	setTimeout(function() {
+		verHorarios();
+	},2900);
+	setTimeout(function() {
+		$( "#slcHr" ).val($( "#hdnHr" ).val());
+		},3100);
+
 	}
 
 	$("#btnPaciente").click(function(){
