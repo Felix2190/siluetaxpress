@@ -17,6 +17,18 @@ function iniciar(){
 		maxDate : '0D'
 	});
 	*/
+	$("input[name=datos]").click(function(){
+		if($(this).val()=="Completo"){
+			 $('#divCompleto').show();
+			 $('#divMinimo').hide();
+		}else{
+			$('#divMinimo').show();
+			$('#divCompleto').hide();
+		}
+	});
+	
+	
+if($("#hdnLlenado").val()=="Completo"){
 	$("input[name=cirugias]").click(function(){
 		if($(this).val()=="Si"){
 			 $('.divCirugia').show();
@@ -148,8 +160,11 @@ function iniciar(){
 			$("#slcHrEjercicio").val($("#hdnHorarioActividad").val());
 			$("#slcHrAcostar").val($("#hdnHorarioAcostarse").val());
 		},1300);
+	
+  }
 
-	$("#btnGuardar").click(altaPaciente);
+$("#btnGuardar").click(altaPaciente);
+	  $("#btnGuardar2").click(altaPaciente2);
 }
 
 function altaPaciente(){
@@ -661,6 +676,65 @@ function altaPaciente(){
 	mostrarMsjEspera('Espere un momento... guardando informaci&oacute;n.', 3);
 	xajax_guardar(JSON.stringify(datos),idPaciente,idHoja);
 }
+
+function altaPaciente2(){
+	var existeError2 = false,existeError = false;
+	var datos={},paciente={};
+	var faltan=0;
+    var idPaciente= $("#idPaciente").val();
+    
+	 paciente['Nombre']= $("#txtNombre2").val().trim();
+	if (paciente['Nombre'] == "") {
+		existeError = true;
+		console.log("Error: txtNombre");
+	}
+
+	paciente['Apellidos']= $("#txtApellidos2").val().trim();
+	if (paciente['Apellidos'] == "") {
+		console.log("Error: txtApellido");
+	}
+	
+	paciente['TelMovil']= $("#txtTelMovil2").val().trim();
+	if (paciente['TelMovil'] == "") {
+		existeError = true;
+		console.log("Error: txTelMovil");
+	}
+	
+	
+	paciente['sexo'] = '';
+    $("input[name=sexo2]").each(function (index) { 
+       if($(this).is(':checked')){
+    	   paciente['sexo'] = $(this).val();
+       }
+    });
+    
+    if (paciente['sexo'] == "") {
+		existeError = true;
+		console.log("Error: txt");
+	}
+    
+    paciente['Email']= $("#txtCorreo2").val().trim();
+	if (paciente['Email'] == "") {
+		//existeError2 = true;
+		console.log("Error: txtEmail");
+	}else{
+		if(!validarEmail(paciente['Email'])){
+			mostrarMsjError('El formato del correo electr&oacute;nico es incorrecto ',3);
+			return false;
+		}
+	}
+	
+	datos['paciente']=paciente;
+		
+	if(existeError){
+		mostrarMsjError('Datos incompletos!! <br />Por favor, llene la informaci&oacute;n que se solicita',5);
+		return false;
+	}
+
+	mostrarMsjEspera('Espere un momento... guardando informaci&oacute;n.', 3);
+	xajax_guardar2(JSON.stringify(datos),idPaciente);
+}
+
 
 function limpiarDatos(){
 	$("#txtNombre").val('');

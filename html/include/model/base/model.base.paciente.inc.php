@@ -22,8 +22,10 @@
 		var $fechaRegistro='';
 		var $idUsuarioRegistro=0;
 		var $idSucursal=0;
+		var $llenado='Completo';
+		var $estatus='activo';
 
-		var $__s=array("idPaciente","nombre","apellidos","telefonoCasa","telefonoCel","edad","sexo","fechaNacimiento","ocupacion","correo","idHojaClinica","fechaRegistro","idUsuarioRegistro","idSucursal");
+		var $__s=array("idPaciente","nombre","apellidos","telefonoCasa","telefonoCel","edad","sexo","fechaNacimiento","ocupacion","correo","idHojaClinica","fechaRegistro","idUsuarioRegistro","idSucursal","llenado","estatus");
 		var $__ss=array();
 
 		#------------------------------------------------------------------------------------------------------#
@@ -122,6 +124,32 @@
 			
 			$this->idSucursal=$idSucursal;
 		}
+		public function setLlenado($llenado)
+		{
+			
+			$this->llenado=$llenado;
+		}
+		public function setLlenadoCompleto()
+		{
+			$this->llenado='Completo';
+		}
+		public function setLlenadoMinimo()
+		{
+			$this->llenado='Minimo';
+		}
+		public function setEstatus($estatus)
+		{
+			
+			$this->estatus=$estatus;
+		}
+		public function setEstatusActivo()
+		{
+			$this->estatus='activo';
+		}
+		public function setEstatusSuspendido()
+		{
+			$this->estatus='suspendido';
+		}
 
 		#------------------------------------------------------------------------------------------------------#
 		#-----------------------------------------------Unsetter-----------------------------------------------#
@@ -190,6 +218,14 @@
 		{
 			return $this->idSucursal;
 		}
+		public function getLlenado()
+		{
+			return $this->llenado;
+		}
+		public function getEstatus()
+		{
+			return $this->estatus;
+		}
 
 		#------------------------------------------------------------------------------------------------------#
 		#------------------------------------------------Querys------------------------------------------------#
@@ -218,6 +254,8 @@
 			$this->fechaRegistro='';
 			$this->idUsuarioRegistro=0;
 			$this->idSucursal=0;
+			$this->llenado='Completo';
+			$this->estatus='activo';
 		}
 
 		
@@ -227,8 +265,8 @@
 		{
 			try
 			{
-				$SQL="INSERT INTO paciente(nombre,apellidos,telefonoCasa,telefonoCel,edad,sexo,fechaNacimiento,ocupacion,correo,idHojaClinica,fechaRegistro,idUsuarioRegistro,idSucursal)
-						VALUES('" . mysqli_real_escape_string($this->dbLink,$this->nombre) . "','" . mysqli_real_escape_string($this->dbLink,$this->apellidos) . "','" . mysqli_real_escape_string($this->dbLink,$this->telefonoCasa) . "','" . mysqli_real_escape_string($this->dbLink,$this->telefonoCel) . "','" . mysqli_real_escape_string($this->dbLink,$this->edad) . "','" . mysqli_real_escape_string($this->dbLink,$this->sexo) . "','" . mysqli_real_escape_string($this->dbLink,$this->fechaNacimiento) . "','" . mysqli_real_escape_string($this->dbLink,$this->ocupacion) . "','" . mysqli_real_escape_string($this->dbLink,$this->correo) . "','" . mysqli_real_escape_string($this->dbLink,$this->idHojaClinica) . "','" . mysqli_real_escape_string($this->dbLink,$this->fechaRegistro) . "','" . mysqli_real_escape_string($this->dbLink,$this->idUsuarioRegistro) . "','" . mysqli_real_escape_string($this->dbLink,$this->idSucursal) . "')";
+				$SQL="INSERT INTO paciente(nombre,apellidos,telefonoCasa,telefonoCel,edad,sexo,fechaNacimiento,ocupacion,correo,idHojaClinica,fechaRegistro,idUsuarioRegistro,idSucursal,llenado,estatus)
+						VALUES('" . mysqli_real_escape_string($this->dbLink,$this->nombre) . "','" . mysqli_real_escape_string($this->dbLink,$this->apellidos) . "','" . mysqli_real_escape_string($this->dbLink,$this->telefonoCasa) . "','" . mysqli_real_escape_string($this->dbLink,$this->telefonoCel) . "','" . mysqli_real_escape_string($this->dbLink,$this->edad) . "','" . mysqli_real_escape_string($this->dbLink,$this->sexo) . "','" . mysqli_real_escape_string($this->dbLink,$this->fechaNacimiento) . "','" . mysqli_real_escape_string($this->dbLink,$this->ocupacion) . "','" . mysqli_real_escape_string($this->dbLink,$this->correo) . "','" . mysqli_real_escape_string($this->dbLink,$this->idHojaClinica) . "','" . mysqli_real_escape_string($this->dbLink,$this->fechaRegistro) . "','" . mysqli_real_escape_string($this->dbLink,$this->idUsuarioRegistro) . "','" . mysqli_real_escape_string($this->dbLink,$this->idSucursal) . "','" . mysqli_real_escape_string($this->dbLink,$this->llenado) . "','" . mysqli_real_escape_string($this->dbLink,$this->estatus) . "')";
 				$result=mysqli_query($this->dbLink,$SQL);
 				if(!$result)
 					return $this->setSystemError("Error en la insercion de registro.","[" . $SQL . "][" . mysqli_error($this->dbLink) . "][ModeloBasePaciente::Insertar]");
@@ -248,7 +286,7 @@
 		{
 			try
 			{
-				$SQL="UPDATE paciente SET nombre='" . mysqli_real_escape_string($this->dbLink,$this->nombre) . "',apellidos='" . mysqli_real_escape_string($this->dbLink,$this->apellidos) . "',telefonoCasa='" . mysqli_real_escape_string($this->dbLink,$this->telefonoCasa) . "',telefonoCel='" . mysqli_real_escape_string($this->dbLink,$this->telefonoCel) . "',edad='" . mysqli_real_escape_string($this->dbLink,$this->edad) . "',sexo='" . mysqli_real_escape_string($this->dbLink,$this->sexo) . "',fechaNacimiento='" . mysqli_real_escape_string($this->dbLink,$this->fechaNacimiento) . "',ocupacion='" . mysqli_real_escape_string($this->dbLink,$this->ocupacion) . "',correo='" . mysqli_real_escape_string($this->dbLink,$this->correo) . "',idHojaClinica='" . mysqli_real_escape_string($this->dbLink,$this->idHojaClinica) . "',fechaRegistro='" . mysqli_real_escape_string($this->dbLink,$this->fechaRegistro) . "',idUsuarioRegistro='" . mysqli_real_escape_string($this->dbLink,$this->idUsuarioRegistro) . "',idSucursal='" . mysqli_real_escape_string($this->dbLink,$this->idSucursal) . "'
+				$SQL="UPDATE paciente SET nombre='" . mysqli_real_escape_string($this->dbLink,$this->nombre) . "',apellidos='" . mysqli_real_escape_string($this->dbLink,$this->apellidos) . "',telefonoCasa='" . mysqli_real_escape_string($this->dbLink,$this->telefonoCasa) . "',telefonoCel='" . mysqli_real_escape_string($this->dbLink,$this->telefonoCel) . "',edad='" . mysqli_real_escape_string($this->dbLink,$this->edad) . "',sexo='" . mysqli_real_escape_string($this->dbLink,$this->sexo) . "',fechaNacimiento='" . mysqli_real_escape_string($this->dbLink,$this->fechaNacimiento) . "',ocupacion='" . mysqli_real_escape_string($this->dbLink,$this->ocupacion) . "',correo='" . mysqli_real_escape_string($this->dbLink,$this->correo) . "',idHojaClinica='" . mysqli_real_escape_string($this->dbLink,$this->idHojaClinica) . "',fechaRegistro='" . mysqli_real_escape_string($this->dbLink,$this->fechaRegistro) . "',idUsuarioRegistro='" . mysqli_real_escape_string($this->dbLink,$this->idUsuarioRegistro) . "',idSucursal='" . mysqli_real_escape_string($this->dbLink,$this->idSucursal) . "',llenado='" . mysqli_real_escape_string($this->dbLink,$this->llenado) . "',estatus='" . mysqli_real_escape_string($this->dbLink,$this->estatus) . "'
 					WHERE idPaciente=" . $this->idPaciente;
 				
 				$result=mysqli_query($this->dbLink,$SQL);
@@ -290,7 +328,7 @@
 			try
 			{
 				$SQL="SELECT
-						idPaciente,nombre,apellidos,telefonoCasa,telefonoCel,edad,sexo,fechaNacimiento,ocupacion,correo,idHojaClinica,fechaRegistro,idUsuarioRegistro,idSucursal
+						idPaciente,nombre,apellidos,telefonoCasa,telefonoCel,edad,sexo,fechaNacimiento,ocupacion,correo,idHojaClinica,fechaRegistro,idUsuarioRegistro,idSucursal,llenado,estatus
 					FROM paciente
 					WHERE idPaciente=" . mysqli_real_escape_string($this->dbLink,$this->idPaciente);
 					

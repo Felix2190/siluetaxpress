@@ -1,6 +1,6 @@
 $(document).ready(function(){
-	if(parseInt(screen.height)<737)
-		window.location="loginMovil.php";
+	if(parseInt(screen.height)>736)
+		window.location="login.php";
 	iniciar();
 });
 	 

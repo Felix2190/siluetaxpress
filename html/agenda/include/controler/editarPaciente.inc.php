@@ -29,53 +29,53 @@ function guardar($datos,$idPaciente,$idHoja){
     global $objSession;
     
     $r=new xajaxResponse();
-    $info=json_decode($datos,true);
+    $info = json_decode($datos, true);
     
-    $infoPaciente=$info['paciente'];
-    $infoHoja=$info['hojaclinica'];
+    $infoPaciente = $info['paciente'];
+    $infoHoja = $info['hojaclinica'];
     
     $hojaClinica = new ModeloHojaClinica();
     $hojaClinica->setIdHojaClinica($idHoja);
     
     $hojaClinica->setFechaRegistro(date('Y-m-d H:i:s'));
-    if ($infoHoja['cirugias']!="")
+    if ($infoHoja['cirugias'] != "")
         $hojaClinica->setCirugia($infoHoja['cirugias']);
-    if ($hojaClinica->getCirugia()=="Si"){
+    if ($hojaClinica->getCirugia() == "Si") {
         $hojaClinica->setCirugias($infoHoja['cirugia']);
     }
     $hojaClinica->setEnfermedades($infoHoja['enfermedades']);
-    if ($infoHoja['estrenimiento']!="")
+    if ($infoHoja['estrenimiento'] != "")
         $hojaClinica->setEstrenimiento($infoHoja['estrenimiento']);
-    if ($hojaClinica->getEstrenimiento()=="Si"){
+    if ($hojaClinica->getEstrenimiento() == "Si") {
         $hojaClinica->setEstrenimientoFrecuencia($infoHoja['estrenimientoF']);
     }
-    if ($infoHoja['menstrual']!="")
+    if ($infoHoja['menstrual'] != "")
         $hojaClinica->setMenstruacion($infoHoja['menstrual']);
-        if ($infoHoja['alergia']!="")
-            $hojaClinica->setAlergia($infoHoja['alergia']);
-    if ($hojaClinica->getAlergia()=="Si"){
+    if ($infoHoja['alergia'] != "")
+        $hojaClinica->setAlergia($infoHoja['alergia']);
+    if ($hojaClinica->getAlergia() == "Si") {
         $hojaClinica->setAlimento($infoHoja['alergias']);
     }
     $hojaClinica->setHrsDormir($infoHoja['hrsDormir']);
     $hojaClinica->setHrsComer($infoHoja['hrsComida']);
-    if ($infoHoja['cafe']!="")
+    if ($infoHoja['cafe'] != "")
         $hojaClinica->setCafe($infoHoja['cafe']);
-    if ($hojaClinica->getCafe()=="Si"){
+    if ($hojaClinica->getCafe() == "Si") {
         $hojaClinica->setCafeFrecuencia($infoHoja['cafeF']);
     }
-    if ($infoHoja['bebidas']!="")
+    if ($infoHoja['bebidas'] != "")
         $hojaClinica->setBeber($infoHoja['bebidas']);
-    if ($hojaClinica->getBeber()=="Si"){
+    if ($hojaClinica->getBeber() == "Si") {
         $hojaClinica->setBeberFrecuencia($infoHoja['bebidasF']);
     }
-    if ($infoHoja['fuma']!="")
+    if ($infoHoja['fuma'] != "")
         $hojaClinica->setFuma($infoHoja['fuma']);
-    if ($hojaClinica->getFuma()=="Si"){
+    if ($hojaClinica->getFuma() == "Si") {
         $hojaClinica->setFumaFrecuencia($infoHoja['fumaF']);
     }
     $hojaClinica->setDesagradables($infoHoja['desagradable']);
     $hojaClinica->setAnsiedad($infoHoja['ansiedad']);
-    if ($infoHoja['actividadFisica']!="")
+    if ($infoHoja['actividadFisica'] != "")
         $hojaClinica->setActividadFisica($infoHoja['actividadFisica']);
     if ($hojaClinica->getActividadFisica()=="Si"){
         $hojaClinica->setActividad($infoHoja['actividad']);
@@ -133,6 +133,7 @@ function guardar($datos,$idPaciente,$idHoja){
     $paciente->setTelefonoCel($infoPaciente['TelMovil']);
     $paciente->setCorreo($infoPaciente['Email']);
     $paciente->setIdHojaClinica($idHoja);
+    $paciente->setLlenadoCompleto();
     $paciente->Guardar();
     if ($paciente->getError()){
         $r->call('mostrarMsjError',$paciente->getStrSystemError(),5);
@@ -148,6 +149,41 @@ function guardar($datos,$idPaciente,$idHoja){
 }
 
 $xajax->registerFunction("guardar");
+
+
+function guardar2($datos,$idPaciente){
+    global $objSession;
+    
+    $r=new xajaxResponse();
+    $info=json_decode($datos,true);
+    
+    $infoPaciente=$info['paciente'];                                                   
+                                                        $paciente = new ModeloPaciente();
+                                                        $paciente->setIdPaciente($idPaciente);
+                                                        $paciente->setNombre($infoPaciente['Nombre']);
+                                                        $paciente->setApellidos($infoPaciente['Apellidos']);
+                                  
+                                                        $paciente->setTelefonoCel($infoPaciente['TelMovil']);
+                                                        $paciente->setCorreo($infoPaciente['Email']);
+                                    
+                                                        $paciente->Guardar();
+                                                        
+                                                        if ($paciente->getError()){
+                                                            $r->call('mostrarMsjError',$paciente->getStrSystemError(),5);
+                                                            return $r;
+                                                        }
+                                                        
+                                                        $r->call('mostrarMsjExito','Se actualiz&oacute; correctamente el paciente!',4);
+                                                        
+                                                        $r->redirect('editarPaciente.php',5);
+                                                        
+                                                        return $r;
+                                                        
+}
+
+$xajax->registerFunction("guardar2");
+
+
 
 $xajax->processRequest();
 

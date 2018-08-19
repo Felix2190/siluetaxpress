@@ -88,6 +88,10 @@ if (isset($_GET['idPaciente']) && isset($_GET['firma'])) {
     $pdf->Cell(25,8,$paciente->getSexo(),0,0,'C',0);
     
     $pdf->Ln(12);
+    
+    if ($paciente->getLlenado()=="Completo"){
+        
+    
     if ($hojaClinica->getCirugia()!="sinrespuesta"){
         $pdf->SetFont('Arial','U',11);
         $pdf->Cell(20,5,' Cirugías: ',0,0,'L');
@@ -359,6 +363,8 @@ if (isset($_GET['idPaciente']) && isset($_GET['firma'])) {
         $alimento="-";
     }
     $pdf->MultiCell(130,7,utf8_decode($alimento),1,'J',1);
+    
+    }
     
     if ($firma=='Si'){
     $pdf->SetFont('Arial','',9);

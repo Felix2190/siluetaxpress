@@ -29,7 +29,7 @@ require_once 'masterInclude.inc.php';
 								<section>
 									<h3 id="content"><img src="images/verPerfil.png" style="width: 55px;" />&ensp;<?php echo $titulo;?></h3>
 								</section>
-								
+								<input type="hidden" value="<?php echo $paciente->getLlenado();?>" />
 								
 							<div class="row">
 					<div class="12u 12u$(small)">
@@ -66,6 +66,7 @@ require_once 'masterInclude.inc.php';
 								
 				
 				<br />
+				<?php if ($paciente->getLlenado()=="Completo"){?>
 							<div class="row">
 								<div class="3u 12u$(xsmall)">
 									<h4>Hoja cl&iacute;nica</h4>
@@ -362,7 +363,10 @@ require_once 'masterInclude.inc.php';
 					</div>
 				</div>
 				
+				
+				<?php } ?>
 				<br />
+				
 				<div class="row">
 				
 					<div class="12u 12u$(small)">

@@ -48,7 +48,79 @@ $hojaClinica->setIdHojaClinica($paciente->getIdHojaClinica());
 				<input type="hidden" value="<?php echo $hojaClinica->getHorarioComida();?>" id="hdnHorarioComida"/>
 				<input type="hidden" value="<?php echo $hojaClinica->getHorarioDesayuno();?>" id="hdnHorarioDesayuno"/>
 				<input type="hidden" value="<?php echo $hojaClinica->getHorarioLevantarse();?>" id="hdnHorarioLevantarse"/>
-					
+				<input type="hidden" value="<?php echo $paciente->getLlenado();?>" id="hdnLlenado"/>
+									
+				
+							<div class="row">
+								<div class="3u 12u$(xsmall)"> <form>
+																<input id="demo-priority-Minimo" name="datos" value="Minimo" type="radio" <?php if ($paciente->getLlenado()=="Minimo") :?>checked="checked" <?php endif;?> <?php if ($paciente->getLlenado()=="Completo") :?> disabled="disabled" <?php endif;?> >
+																<label for="demo-priority-Minimo">M&iacute;nimo</label> 
+																<input id="demo-priority-Completo" name="datos" value="Completo" type="radio" <?php if ($paciente->getLlenado()=="Completo") :?>checked="checked" <?php endif;?>>
+																<label for="demo-priority-Completo">Completo</label>
+															</form>
+								</div>
+							</div>
+									
+					<div id="divMinimo" style="display:<?php echo ($paciente->getLlenado()=='Minimo'?" ":"none");?>">
+							<div class="row">
+								<div class="3u 12u$(xsmall)">
+									<h3>Datos personales</h3>
+								</div>
+							</div>
+							<div class="row">
+								<div class="2u 12u$(xsmall)">
+									<label>Nombre:</label>
+								</div>
+								<div class="7u 12u$(xsmall)">
+									<input type="text" id="txtNombre2" value="<?php echo $paciente->getNombre();?>"/>
+								</div>
+							</div>
+							<br />
+							<div class="row">
+								<div class="2u 12u$(xsmall)">
+									<label>Apellidos:</label>
+								</div>
+								<div class="7u 12u$(xsmall)">
+									<input type="text" id="txtApellidos2" value="<?php echo $paciente->getApellidos();?>"/>
+								</div>
+							</div>
+							<br />
+							<div class="row">
+								<div class="2u 12u$(xsmall)">
+									<label>Tel&eacute;fono (m&oacute;vil):</label>
+								</div>
+								<div class="2u 12u$(xsmall)">
+									<input type="text" id="txtTelMovil2" class="numeric" maxlength="10" value="<?php echo $paciente->getTelefonoCel();?>"/>
+								</div>
+								<div class="2u 12u$(xsmall)">
+									<label>Sexo:</label>
+								</div>
+								<div class="2u 12u$(xsmall)"> <form>
+																<input id="demo-priority-Masculino2" name="sexo2" value="Masculino" type="radio" <?php if ($paciente->getSexo()=="Masculino") echo "checked";?> disabled="disabled">
+																<label for="demo-priority-Masculino2">Masculino</label>
+																<input id="demo-priority-Femenino2" name="sexo2" value="Femenino" type="radio" <?php if ($paciente->getSexo()=="Femenino") echo "checked";?> disabled="disabled">
+																<label for="demo-priority-Femenino2">Femenino</label> </form>
+								</div>
+							</div>
+							<br />
+							<div class="row">
+								<div class="2u 12u$(xsmall)">
+									<label>Correo electr&oacute;nico:</label>
+								</div>
+								<div class="4u 12u$(xsmall)">
+									<input type="text" id="txtCorreo2" value="<?php echo $paciente->getCorreo();?>"/>
+								</div>
+							</div>					
+							<br />
+							
+							<div class="row">
+								<div class="12u"></div>
+								<a id="btnGuardar2" class="button special">Guardar</a>
+							</div>
+
+					</div>		
+							
+				<div id="divCompleto" style="display:<?php echo ($paciente->getLlenado()=='Completo'?" ":"none");?>">
 							<div class="row">
 								<div class="3u 12u$(xsmall)">
 									<h3>Datos personales</h3>
@@ -662,15 +734,18 @@ $hojaClinica->setIdHojaClinica($paciente->getIdHojaClinica());
 								</div>
 								
 							</div>
-							
 							<br />
-							<input type="hidden" id="hdnRol" value="<?php echo $objSession->getidRol();?>"/>
 							
 							<div class="row">
 								<div class="12u"></div>
 								<a id="btnGuardar" class="button special">Guardar</a>
 							</div>
 
+				</div>
+				
+				
+							<br />
+							<input type="hidden" id="hdnRol" value="<?php echo $objSession->getidRol();?>"/>
 					</div>
 				</div>
 

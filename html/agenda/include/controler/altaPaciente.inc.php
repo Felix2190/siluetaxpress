@@ -137,6 +137,8 @@ function guardar($datos){
     $paciente->setIdUsuarioRegistro($objSession->getidUsuario());
     $paciente->setFechaRegistro(date('Y-m-d H:i:s'));
     $paciente->setIdSucursal($infoPaciente['sucursal']);
+    $paciente->setLlenadoCompleto();
+    
     $paciente->Guardar();
     if ($paciente->getError()){
         $r->call('mostrarMsjError',$paciente->getStrSystemError(),5);
@@ -190,6 +192,8 @@ function guardar2($datos){
                                                         $paciente->setIdUsuarioRegistro($objSession->getidUsuario());
                                                         $paciente->setFechaRegistro(date('Y-m-d H:i:s'));
                                                         $paciente->setIdSucursal($infoPaciente['sucursal']);
+                                                        $paciente->setLlenadoMinimo();
+                                                        
                                                         $paciente->Guardar();
                                                         if ($paciente->getError()){
                                                             $r->call('mostrarMsjError',$paciente->getStrSystemError(),5);

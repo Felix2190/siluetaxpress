@@ -25,6 +25,17 @@ function iniciar(){
 		}else{
 			$('#divMinimo').show();
 			$('#divCompleto').hide();
+			 $.ajax({
+					method : "post",
+					url : "adminFunciones.php",
+					data : {
+						sucursales:''
+					},
+					success : function(data) {
+						respuesta=JSON.parse(data);
+						$( "#slcSucursal2" ).html(respuesta);
+					}
+				});
 		}
 	});
 	
@@ -134,6 +145,7 @@ function iniciar(){
 				success : function(data) {
 					respuesta=JSON.parse(data);
 					$( "#slcSucursal" ).html(respuesta);
+					$( "#slcSucursal2" ).html(respuesta);
 				}
 			});
 		
