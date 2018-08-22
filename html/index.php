@@ -16,9 +16,8 @@
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 			<link rel="stylesheet" type="text/css" href="assets/css/banner_style.css" />
 	<script type="text/javascript" src="js/lib/banner/jquery.js"></script>
+	<script type="text/javascript" src="js/system/headerLogo.js"></script>
 	<!-- End WOWSlider.com HEAD section -->
-
-		
 	</head>
 	<body>
 		<div id="page-wrapper">
@@ -41,6 +40,27 @@
 				
 				
 						<div class="7u">
+						
+							<h3>Nuevas (agosto)</h3>
+							<div class="row" style="margin-left: 5%;">
+        						<section>
+        						<img src="images/agosto1.jpeg" alt=""  style="width: 80%">
+        						</section>
+        					</div>
+        					<div class="row" style="margin-left: 5%;">
+        						<section>
+        						<img src="images/agosto2.jpeg" alt=""  style="width: 80%">
+        						</section>
+        						
+        					</div>
+        					<div class="row" style="margin-left: 5%;">
+        						<section>
+        						<img src="images/agosto3.jpeg" alt=""  style="width: 80%">
+        						</section>
+        					</div>
+        					
+						</div>
+						<div class="7u" style="display: none;">
 							
 							<h3>Pr&oacute;ximas (mayo)</h3>
 							<div class="row" style="margin-left: 5%;">

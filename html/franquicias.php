@@ -166,6 +166,7 @@ require_once 'masterInclude.inc.php';
 		
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
+			<script type="text/javascript" src="js/system/headerLogo.js"></script>
 			<script src="assets/js/skel.min.js"></script>
 			<script src="assets/js/skel-viewport.min.js"></script>
 			<script src="assets/js/util.js"></script>

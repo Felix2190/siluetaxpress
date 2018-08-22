@@ -8,7 +8,7 @@
 			<div class="12u">
 			
 				<header id="header">
-					<img src="images/logo_siluetaExpress.png" alt=""  style="width: 16%; margin-top: -10px"/>
+					<div id="headerLogo"><img src="images/logo_siluetaExpress.png" alt=""  style="width: 16%; margin-top: -10px"/></div>
 					<nav id="nav">
 						<a href="index.php">Inicio</a> <a href="nosotros.php">Con&oacute;cenos</a> 
 						<a href="tratamientos.php">Tratamientos</a>

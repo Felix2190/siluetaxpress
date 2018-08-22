@@ -15,7 +15,7 @@
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 	<!-- End WOWSlider.com HEAD section -->
-
+	<script type="text/javascript" src="js/system/headerLogo.js"></script>
 		
 	</head>
 	<body>
