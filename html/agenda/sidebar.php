@@ -48,6 +48,7 @@
 						<li><a class="<?php if($subseccion=="nuevaCita") echo "active";?>" href="nuevaCita.php">Agregar nueva</a></li>
 						<li><a class="<?php if($subseccion=="buscarCita") echo "active";?>" href="buscarCita.php">B&uacute;squeda</a></li>
 						<li><a class="<?php if($subseccion=="horariosDisponibles") echo "active";?>" href="horariosDisponibles.php">Disponibilidad</a></li>
+						<li><a class="<?php if($subseccion=="registroApartado") echo "active";?>" href="registroApartado.php">Reservar espacio</a></li>
 						
 					</ul></li>
 

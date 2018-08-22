@@ -331,6 +331,15 @@ if (isset($_POST['estatusU'])&&isset($_POST['idLogin'])){
         echo 'true';
 }
 
+if (isset($_POST['SucursalA'])){
+    echo json_encode(obtenerConsultorios('',$_POST['SucursalA']));
+}
+
+if (isset($_POST['idSucursalA'])&&isset($_POST['fechaA'])){
+    echo obtenerHorarioSucursal($_POST['idSucursalA'],$_POST['fechaA']);
+}
+
+
 function obtenCombo($array,$default){
     $combo='<option value="">'.$default.'</option>';
     foreach ($array as $key => $opcion)
@@ -873,13 +882,13 @@ function consultaCredito()
         $buf .= $sData;
         fputs($fp, $buf);
         $buf = "";
-        
-        //Tiempo máximo de espera de respuesta del servidor = 60 seg
+            
+            // Tiempo máximo de espera de respuesta del servidor = 60 seg
         $responseTimeOut = 60;
-        stream_set_timeout($fp,$responseTimeOut);
-        stream_set_blocking ($fp, true);
-        if (!feof($fp)){
-            if (($buf=fgets($fp,128))===false){
+        stream_set_timeout($fp, $responseTimeOut);
+        stream_set_blocking($fp, true);
+        if (! feof($fp)) {
+            if (($buf = fgets($fp, 128)) === false) {
                 // TimeOut?
                 $info = stream_get_meta_data($fp);
                 if ($info['timed_out']){
@@ -955,6 +964,36 @@ function enviar_mail($para,$asunto,$mensaje){
         return false;
         echo $e;
     }
+}
+
+function obtenerHorarioSucursal($idSucursal,$fecha){
+
+    require_once FOLDER_MODEL_EXTEND. "model.sucursal.inc.php";
+    
+    $sucursal=new ModeloSucursal();
+    $sucursal->setIdSucursal($idSucursal);
+    
+    $dia=date('N',strtotime ($fecha));
+    // sacar hr
+    if ($dia==6){
+        $hrInicio = $sucursal->getSabadoEntrada();
+        $hrFin=$sucursal->getSabadoSalida();
+    }else {
+        $hrInicio = $sucursal->getEntreSemanaEntrada();
+        $hrFin = $sucursal->getEntreSemanaSalida();
+    }
+    
+    $horas=$minutos=array();
+    
+    for ($hr=$hrInicio;$hr<$hrFin;$hr++)
+       array_push($horas, $hr);
+    
+    
+    for ($min=0;$min<=50;$min+=10)
+        array_push($minutos, $min);
+            
+    return json_encode(array($horas,$minutos,$hrFin));
+
 }
 
 
