@@ -42,30 +42,47 @@ require_once 'masterInclude.inc.php';
 					<div id="banner_login">
 					<?php if (!$sesion){?>
 					
-						<section>
-						<h2>Ingresar al sistema</h2>
-						<div class="row" ><section></section></div>
+						
 						<div class="row" >
-							<div class="4u ">
+							<div class="4u " style="padding: 30px 50px 0 0;">
+								<h2>Ingresar al sistema</h2>
+								</div>
+						</div>
+						<div class="row" >
+							<div class="4u " style="padding: 70px 10px 0 0;">
 								<label>Usuario:</label>
 							</div> 
-							<div class="8u">
+							<div class="8u" style="padding: 70px 10px 0 0;">
 								<input type="text" id="txtUserName"/>
 							</div>
 						</div>
 						<div class="row" >
-							<div class="4u )">
+							<div class="4u " style="padding: 40px 10px 0 0;">
 								<label>Contrase&ntilde;a:</label>
 							</div> 
-							<div class="8u">
+							<div class="8u" style="padding: 40px 10px 0 0;">
 								<input type="password" id="txtPassword"/>
 							</div>
 						</div>
-						</section>
-						<section>
-						<a class="button2" id="btnEntrar" >Entrar</a>
-						<input type="hidden" id="sesion" value=""/>
-						</section>
+						<div class="row" >
+							<div class="4u " style="padding: 40px 10px 0 0;">
+								<label>Sucursal:</label>
+							</div> 
+							<div class="8u" style="padding: 40px 10px 0 0;">
+								<div class="select-wrapper">
+									<select name="demo-category" id="slcSucursal">
+									<?php echo $txtSucursal;?>
+									</select>
+								</div>
+							</div>
+						</div>
+						
+						<div class="row" >
+							<div class="12u " style="padding: 30px 0 0 0;">
+								<a class="button2" id="btnEntrar" >Entrar</a>
+								<input type="hidden" id="sesion" value=""/>
+							</div>
+						</div>
 						
 					<?php }else{?>
 						<section>

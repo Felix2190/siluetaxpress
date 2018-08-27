@@ -55,9 +55,25 @@ class ModeloLogin extends ModeloBaseLogin
                     $arrInfoUsuario =$this->obtenerDatosUsuario($row['idUsuario']);
                     if (count($arrInfoUsuario) > 0) {
                         if ($row['estatus']=='activo') {
-                            $arrInfoUsuario['userName'] = $infoUsuario['username'];
-                            $arrInfoUsuario['idRol'] = $row['idRol'];
-                            return array(true,$arrInfoUsuario);
+                            $query2 = "SELECT s.sucursal,s.idSucursal from usuariosucursal as us 
+                                inner join sucursal as s on us.idSucursal=s.idSucursal
+                                WHERE idUsuario =" .$row['idUsuario']. " and us.idSucursal =" .$infoUsuario['sucursal']. " and us.estatus ='activo'   LIMIT 1";
+                            $result2 = mysqli_query($this->dbLink, $query2);
+                            if ($result2&&mysqli_num_rows($result2) == 1) {
+                                //actualiza sucursal
+                                $query3 = "update usuario set idSucursal=" .$infoUsuario['sucursal']. " WHERE idUsuario =" .$row['idUsuario'];
+                                mysqli_query($this->dbLink, $query3);
+                                
+                                $row2= mysqli_fetch_assoc($result2);
+                                $arrInfoUsuario['userName'] = $infoUsuario['username'];
+                                $arrInfoUsuario['idRol'] = $row['idRol'];
+                                $arrInfoUsuario['idSucursal'] = $row2['idSucursal'];
+                                $arrInfoUsuario['sucursal'] = $row2['sucursal'];
+                                return array(true,$arrInfoUsuario);
+                            }else {
+                                // sucursal inválida
+                                return array(false,'No tiene acceso a esta sucursal');
+                            }
                         }else{
                             //_usuario bloqueado
                             return array(false,'Tu cuenta ha sido bloqueada, contacte al administador para activar su cuenta.');

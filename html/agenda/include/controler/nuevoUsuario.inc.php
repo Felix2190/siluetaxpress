@@ -4,7 +4,9 @@
 // ---------------------------------------Archivos necesarios Require Include---------------------------------------#
 // -----------------------------------------------------------------------------------------------------------------#
 require_once FOLDER_MODEL_EXTEND. "model.login.inc.php";
+require_once FOLDER_MODEL_EXTEND. "model.sucursal.inc.php";
 require_once FOLDER_MODEL_EXTEND. "model.usuario.inc.php";
+require_once FOLDER_MODEL_EXTEND. "model.usuariosucursal.inc.php";
 require_once FOLDER_INCLUDE_AGENDA.'controler/adminFunciones.inc.php';
 // -----------------------------------------------------------------------------------------------------------------#
 // --------------------------------------------Inicializacion de control--------------------------------------------#
@@ -27,7 +29,7 @@ require_once FOLDER_INCLUDE_AGENDA.'controler/adminFunciones.inc.php';
 $xajax = new xajax();
 
 
-function guardarUsuario($nombre, $apellidos, $sucursal, $Cargo, $correo, $telefono, $userName){
+function guardarUsuario($nombre, $apellidos, $Cargo, $correo, $telefono, $userName, $arrSucursal){
     $r=new xajaxResponse();
     $passw=substr( md5(microtime()), 1, 10);
     $random_salt = hash('sha512', uniqid(mt_rand(1, mt_getrandmax()), true));
@@ -38,7 +40,7 @@ function guardarUsuario($nombre, $apellidos, $sucursal, $Cargo, $correo, $telefo
     $usuario->setApellidos($apellidos);
     $usuario->setCorreo($correo);
     $usuario->setTelefonoCel($telefono);
-    $usuario->setIdSucursal($sucursal);
+    $usuario->setIdSucursal($arrSucursal[0]);
     $usuario->setIdTipoUsuario($Cargo);
     $usuario->setFoto("../tmp/fotosperfil/perfil.png");
     
@@ -46,6 +48,20 @@ function guardarUsuario($nombre, $apellidos, $sucursal, $Cargo, $correo, $telefo
     if ($usuario->getError()){
         $r->call('mostrarMsjError',$usuario->getStrError(),5);
         return $r;
+    }
+    
+    foreach ($arrSucursal as $sucursal){
+        $usuarioSucursal = new ModeloUsuariosucursal();
+        $usuarioSucursal->setIdSucursal($sucursal);
+        $usuarioSucursal->setIdUsuario($usuario->getIdUsuario());
+        $usuarioSucursal->setFechaAlta(date("Y-m-d"));
+        $usuarioSucursal->setEstatusActivo();
+        $usuarioSucursal->Guardar();
+        if ($usuarioSucursal->getError()){
+            $r->call('mostrarMsjError',$usuarioSucursal->getStrError(),5);
+            return $r;
+        }
+        
     }
     
     $login = new ModeloLogin();
@@ -84,4 +100,7 @@ $xajax->processRequest();
 // -----------------------------------------------------------------------------------------------------------------#
 // -------------------------------------------Inicializacion de variables-------------------------------------------#
 // -----------------------------------------------------------------------------------------------------------------#
+$Susurcal = new ModeloSucursal();
+$arrSucursal=$Susurcal->obtenerSucurales();
+
 ?>

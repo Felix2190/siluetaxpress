@@ -3,7 +3,7 @@ $(document).ready(function(){
 });
 var hrEntreI,hrEntreF,hrSabI,hrSabF,resp;
 function iniciar(){
-	$.ajax({
+/*	$.ajax({
 		method : "post",
 		url : "adminFunciones.php",
 		data : {
@@ -15,7 +15,7 @@ function iniciar(){
 			$( "#slcSucursal" ).html(respuesta);
 		}
 	});
-	
+*/	
 	$.ajax({
 		method : "post",
 		url : "adminFunciones.php",
@@ -52,7 +52,7 @@ function iniciar(){
 
 function altaUsuario(){
 	var existeError = false;
-	var sucursal = $("#slcSucursal").val();
+//	var sucursal = $("#slcSucursal").val();
 	var Cargo = $("#slcCargo").val();
 	var nombre = $("#txtNombre").val();
 	var apellidos = $("#txtApellidos").val();
@@ -72,10 +72,10 @@ function altaUsuario(){
 		existeError = true;
 		console.log("Error: nombre");
 	}
-	if ( sucursal == "") {
+/*	if ( sucursal == "") {
 		existeError = true;
 		console.log("Error: sucursal");
-	}
+	}*/
 	if ( telefono == "") {
 		existeError = true;
 		console.log("Error: telefono");
@@ -99,6 +99,18 @@ function altaUsuario(){
 		return false;
 	}
 	}
+	
+	var arrSucursal = [];
+	var i = 0;
+	$('.checkSucursal:checked').each(function() {
+		arrSucursal[i] = $(this).val();
+		i++;
+	});
+	if(i==0){
+		mostrarMsjError('Debe seleccionar por lo menos 1 sucursal',3);
+		return false;
+	}
+	
 
 	$('html,body').animate({
 	    scrollTop: $("#divArriba").offset().top
@@ -116,7 +128,7 @@ function altaUsuario(){
 			 setTimeout(function() {
 				
 			 if(resp=='true'){
-				 xajax_guardarUsuario(nombre, apellidos, sucursal, Cargo, correo, telefono, userName);
+				 xajax_guardarUsuario(nombre, apellidos, Cargo, correo, telefono, userName,arrSucursal);
 			 } else{
 				 mostrarMsjError('El correo electr&oacute;nico ingresado ya existe',3);
 				 $("#txtCorreo").val('');

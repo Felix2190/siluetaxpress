@@ -8,12 +8,13 @@ function iniciar(){
 	$("#btnEntrar").click(entrar);
 	if($("#sesion").val()=="1")
 		irAgenda();
+
 }
 
 function entrar(){
 	var user = $("#txtUserName").val();
 	var pass = $("#txtPassword").val().trim();
-	
+	var sucursal= $("#slcSucursal").val();
 var existeError = false;
 	
 	if (user == "") {
@@ -26,12 +27,17 @@ var existeError = false;
 		console.log("Error: txtPassword");
 	}
 	
+	if (sucursal == "") {
+		existeError = true;
+		console.log("Error: txtSucursal");
+	}
+	
 	if(existeError){
 		mostrarMsjError('Datos incompletos!! <br />Por favor, llene la informaaci&oacute;n que se solicita',3); 
 		return false;
 	}
 	mostrarMsjEspera('Espere un momento... validando datos.', 1);
-	xajax_ingresar(user,pass);
+	xajax_ingresar(user,pass,sucursal);
 	
 }
 function irAgenda(){

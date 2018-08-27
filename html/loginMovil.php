@@ -60,6 +60,19 @@ require_once 'masterInclude.inc.php';
 								<input type="password" id="txtPassword"/>
 							</div>
 						</div>
+						
+						<div class="row" >
+							<div class="4u ">
+								<label>Sucursal:</label>
+							</div> 
+							<div class="8u" >
+								<div class="select-wrapper">
+									<select name="demo-category" id="slcSucursal">
+									<?php echo $txtSucursal;?>
+									</select>
+								</div>
+							</div>
+						</div>
 						</section>
 						<section>
 						<a class="button2" id="btnEntrar" >Entrar</a>

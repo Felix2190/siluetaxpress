@@ -4,6 +4,7 @@
 // ---------------------------------------Archivos necesarios Require Include---------------------------------------#
 // -----------------------------------------------------------------------------------------------------------------#
 require_once FOLDER_MODEL_EXTEND. "model.login.inc.php";
+require_once FOLDER_MODEL_EXTEND. "model.sucursal.inc.php";
 // -----------------------------------------------------------------------------------------------------------------#
 // --------------------------------------------Inicializacion de control--------------------------------------------#
 // -----------------------------------------------------------------------------------------------------------------#
@@ -24,9 +25,9 @@ require_once FOLDER_MODEL_EXTEND. "model.login.inc.php";
 
 $xajax = new xajax();
 
-function ingresar($user,$pass){
+function ingresar($user,$pass,$sucursal){
     $login=new ModeloLogin();
-    $arrSesion=$login->validarUsuarioPassword(array('username'=>$user,'password'=>$pass));
+    $arrSesion=$login->validarUsuarioPassword(array('username'=>$user,'password'=>$pass,'sucursal'=>$sucursal));
     
     $r=new xajaxResponse();
     
@@ -53,4 +54,12 @@ $xajax->processRequest();
 // -----------------------------------------------------------------------------------------------------------------#
 // -------------------------------------------Inicializacion de variables-------------------------------------------#
 // -----------------------------------------------------------------------------------------------------------------#
+
+$sucursal=new ModeloSucursal();
+$arrSucursal=$sucursal->obtenerSucurales();
+
+$txtSucursal='<option value="">Selecciona una opci&oacute;n</option>';
+foreach ($arrSucursal as $key => $opcion)
+    $txtSucursal.='<option value="'.$key.'">'.$opcion.'</option>';
+    
 ?>

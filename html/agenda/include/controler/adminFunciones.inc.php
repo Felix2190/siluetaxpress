@@ -339,6 +339,42 @@ if (isset($_POST['idSucursalA'])&&isset($_POST['fechaA'])){
     echo obtenerHorarioSucursal($_POST['idSucursalA'],$_POST['fechaA']);
 }
 
+if (isset($_POST['sucursalBar'])){
+    require_once FOLDER_MODEL_EXTEND. "model.usuariosucursal.inc.php";
+    $sucursal = new ModeloUsuariosucursal();
+    $tmp=$sucursal->obtenerSucurales();
+    $arrSucursal=$tmp[0];
+    $idSucursal=$tmp[1];
+    $combo='';
+    foreach ($arrSucursal as $key => $nombre)
+        $combo.='<option value="'.$key.'" '.($idSucursal==$key?'selected':'').'>'.$nombre.'</option>';
+     echo $combo;
+}
+
+if (isset($_POST['actualizaSucursal'])){
+    require_once FOLDER_MODEL_EXTEND. "model.usuario.inc.php";
+    require_once FOLDER_MODEL_EXTEND. "model.sucursal.inc.php";
+    
+    $objSession=unserialize($_SESSION['objSession']);
+    
+    $objSession->setIdSucursal($_POST['actualizaSucursal']);
+    $sucursal=new ModeloSucursal();
+    $sucursal->setIdSucursal($_POST['actualizaSucursal']);
+    $objSession->setSucursal($sucursal->getSucursal());
+    $objSession->setLugar($sucursal->getDireccion());
+    
+    $usuario=new ModeloUsuario();
+    $usuario->setIdUsuario($objSession->getIdUsuario());
+    $usuario->setIdSucursal($sucursal->getIdSucursal());
+    
+    $usuario->Guardar();
+    
+    $_SESSION['objSession']=serialize($objSession);
+    
+    echo "true";
+    
+}
+
 
 function obtenCombo($array,$default){
     $combo='<option value="">'.$default.'</option>';

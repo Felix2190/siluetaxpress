@@ -8,5 +8,6 @@ echo '  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jqu
    <script src="../js/lib/alertifyjs/alertify.min.js"></script>
 <script src="../js/lib/jquery.numeric.js"></script>
  <script src="js/lib/jquery.knob.js"></script>
-<script type="text/javascript" src="../js/lib/ui.datepicker-es-MX.js"></script>'.$_JAVASCRIPT_CSS_AGENDA;
+<script type="text/javascript" src="../js/lib/ui.datepicker-es-MX.js"></script>
+<script type="text/javascript" src="js/system/headerBar.js"></script>'.$_JAVASCRIPT_CSS_AGENDA;
 ?>

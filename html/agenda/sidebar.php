@@ -9,7 +9,15 @@
 				<h4>Hola</h4>
 				<h2><?php echo ' '.$objSession->getNombre();?></h2>
 			</header>
-
+			<ul class="contact">
+				<li class="fa-home">
+					<div class="select-wrapper">
+							<select name="demo-category" id="slcSucursalBar">
+								</select>
+					</div>
+				</li>
+			</ul>
+			
 		</section>
 
 		<!-- Menu -->
@@ -60,9 +68,7 @@
 
 			</ul>
 		</nav>
-
-
-		<!-- Footer -->
+				<!-- Footer -->
 		<?php include_once 'footer.php';?>
 	</div>
 </div>

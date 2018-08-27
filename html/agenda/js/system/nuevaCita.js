@@ -194,6 +194,11 @@ function iniciar(){
 		 xajax_paciente();
 	});
 	
+	setTimeout(function() {
+		window.location="nuevaCita.php";
+		},600000);
+
+	
 }
 var arrFechas=[];
 

@@ -659,6 +659,10 @@ function altaPaciente(){
 		}
 	}
 	
+	if (paciente['TelMovil'].length<10) {
+		mostrarMsjError('El n&uacute;mero telef&oacute;nico es incorrecto ',3);
+		return false;
+	}
 	
 	var completitud=100-((100/41)*faltan);
 	hoja['completitud']=Number(completitud.toFixed(2));
@@ -727,7 +731,12 @@ function altaPaciente2(){
 			return false;
 		}
 	}
-	
+
+	if (paciente['TelMovil'].length<10) {
+		mostrarMsjError('El n&uacute;mero telef&oacute;nico es incorrecto ',3);
+		return false;
+	}
+
 	hoja['completitud']=0;
 	datos['paciente']=paciente;
 	datos['hojaclinica']=hoja;

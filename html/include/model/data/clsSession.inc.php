@@ -134,8 +134,19 @@ class clsSession
 	}
 
 
-
-
+	
+	public function setSucursal($sucursal)
+	{
+	    $this->sucursal=$sucursal;
+	}
+	public function setIdSucursal($idSucursal)
+	{
+	    $this->idSucursal=$idSucursal;
+	}
+	public function setLugar($lugar)
+	{
+	    $this->lugar=$lugar;
+	}
 	#-----------------------------------------------------------------------------------------------#
 	#-----------------------------------------------------------------------------------------------#
 } ?>
