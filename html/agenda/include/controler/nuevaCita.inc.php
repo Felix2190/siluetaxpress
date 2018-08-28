@@ -9,6 +9,7 @@ require_once FOLDER_MODEL_EXTEND. "model.paciente.inc.php";
 require_once FOLDER_MODEL_EXTEND. "model.sucursal.inc.php";
 require_once FOLDER_MODEL_EXTEND. "model.consulta.inc.php";
 require_once FOLDER_MODEL_EXTEND. "model.cabina.inc.php";
+require_once FOLDER_MODEL_EXTEND. "model.citaactualizacion.inc.php";
 require_once FOLDER_INCLUDE_AGENDA.'controler/adminFunciones.inc.php';
 
 // -----------------------------------------------------------------------------------------------------------------#
@@ -109,6 +110,8 @@ function guardarCita($paciente,$sucursal,$idCabina,$consulta,$duracion,$fecha,$h
         $servicio_ = new ModeloServicio();
         $paciente_ = new ModeloPaciente();
         $cita = new ModeloCita();
+        $citaactualizacion = new ModeloCitaactualizacion();
+        $citaactualizacion->setTipoCreacion();
         
     $servicio_->setNombre($servicio);
     $servicio_->setIdConsulta($consulta);
@@ -142,6 +145,20 @@ function guardarCita($paciente,$sucursal,$idCabina,$consulta,$duracion,$fecha,$h
     $cita->Guardar();
     if ($cita->getError()){
         $r->call('mostrarMsjError',$cita->getStrError(),5);
+        return $r;
+    }
+    
+    //tabla actualizacion
+    $citaactualizacion->setHora($hora.':'.$minutos);
+    $citaactualizacion->setIdCabina($idCabina);
+    $citaactualizacion->setFecha(date( 'Y-m-d H:i:s'));
+    $citaactualizacion->setDuracion($duracion);
+    $citaactualizacion->setIdUsuario($objSession->getidUsuario());
+    $citaactualizacion->setIdCita($cita->getIdCita());
+    
+    $citaactualizacion->Guardar();
+    if ($citaactualizacion->getError()){
+        $r->call('mostrarMsjError',$citaactualizacion->getStrError(),5);
         return $r;
     }
     

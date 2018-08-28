@@ -56,6 +56,20 @@ function actualizarCita(){
 			xajax_cargarInformacion(respuesta[0],duracion,hr,min,cabina,chkbox,comentario);
 		}
 	});
+
+	    $.ajax({
+			method : "post",
+			url : "adminFunciones.php",
+			data : {
+				idCitaAct:$( "#hdnCita" ).val()
+			},
+
+			success : function(data) {
+				respuesta = JSON.parse(data);
+				xajax_cargarActualizaciones(respuesta);
+			}
+		});
+
 }
 
 function cargarHorasMin(arrH,hr_,minuto){
@@ -236,8 +250,10 @@ function cancelarCita(password,canceladaPor){
 						
 						if(data3=='true')
 							mostrarMsjExito('Se ha cancelado la cita correctamente por el '+canceladaPor+'.',5);
-						else
-							mostrarMsjError('Ha ocurrido un error, int&eacute;ntelo m&aacute;s tarde.'+data3,5);
+						if(data3=='false')
+							mostrarMsjError('Ha ocurrido un error, int&eacute;ntelo m&aacute;s tarde.',5);
+						if(data3=='false2')
+							mostrarMsjError('No se puede enviar el SMS, el n&uacute;mero es incorrecto.',5);
 					}
 				});
 			}else{

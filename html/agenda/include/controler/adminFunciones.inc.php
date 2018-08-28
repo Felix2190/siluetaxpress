@@ -172,14 +172,19 @@ if (isset($_POST['idCitaCancelar'])&&isset($_POST['por'])){
     
     $cita->Guardar();
     if ($cita->getError())
-        echo $cita->getStrError();
+        echo 'false';
     else{
         if ($_POST['por']=='paciente')
             $aux="Ha";
         else
             $aux="Se ha";
-        enviaSMS($cita->getTelefonoPaciente(), "$aux cancelado su cita para ".$consulta->getTipoConsulta()." en ".$sucursal->getSucursal());
-        echo 'true';
+            if (strlen($cita->getTelefonoPaciente())==12){
+                enviaSMS($cita->getTelefonoPaciente(), "$aux cancelado su cita para ".$consulta->getTipoConsulta()." en ".$sucursal->getSucursal());
+                echo 'true';
+            }else {
+                echo 'false2'; 
+                
+            }
     }
 }
 
@@ -373,6 +378,13 @@ if (isset($_POST['actualizaSucursal'])){
     
     echo "true";
     
+}
+
+if (isset($_POST['idCitaAct'])){
+    require_once FOLDER_MODEL_EXTEND. "model.citaactualizacion.inc.php";
+    $cita = new ModeloCitaactualizacion();
+    $cita->setIdCita($_POST['idCitaAct']);
+    echo json_encode($cita->obtenerCitas());
 }
 
 

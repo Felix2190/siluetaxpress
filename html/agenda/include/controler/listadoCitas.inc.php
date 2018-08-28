@@ -106,12 +106,12 @@ function consultarCitas($informacion,$fechaI){
             
             $tabla.="<tr><td>".$cita['hora']." - ".$cita['horaFin']."</td><td >".$cita['nombre_paciente']."</td><td>".$cita['tipoConsulta']."</td>
                     <td colspan='2'>".$detalles."</td>$sucursal <td colspan='2'>".$cita['servicio']."</td>";
-        if ($objSession->getidRol()==1||$objSession->getidUsuario()==$cita['idUsuario'])
+//        if ($objSession->getidRol()==1||$objSession->getidUsuario()==$cita['idUsuario'])
             $tabla.="<td><a onclick='verCita(\"".$cita['idCita']."\")'><img src='images/editaCita.png' title='Ver/editar' style='width: 34px' /></a> 
                      <a onclick='verOpciones(\"".$cita['idCita']."\")'><img src='images/cancelarCita2.png' title='Cancelar cita' style='width: 34px' /></a></td>";
-            else 
+ /*           else 
                 $tabla.="<td><a onclick='verOpciones(\"".$cita['idCita']."\")'><img src='images/cancelarCita2.png' title='Cancelar cita' style='width: 34px' /></a></td>";
-            $tabla.="</tr>";
+   */         $tabla.="</tr>";
         }
         $tabla.="</tbody></table></div></div><br />";
     }

@@ -41,7 +41,10 @@ function consultaDatos(){
 				$( "#slcSucursal" ).html(respuesta);
 				listarPacientes();
 			}
-		});}
+		});
+	 else
+		 listarPacientes();
+}
 
 
 function iniciar(){
@@ -227,6 +230,10 @@ function buscarCita(){
 		});
 	
 	}
+}
+
+function verCita(idCita){
+	xajax_verCita(idCita);
 }
 
 

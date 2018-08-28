@@ -172,7 +172,7 @@
 		                        $condicion.=" and c.estatus=$this->estatus";
 		                        
 		                    $query = "Select idCita, DATE_FORMAT(fechaInicio,'%Y-%m-%d') as fecha, DATE_FORMAT(fechaInicio,'%H:%i') as hora, duracion,
-                    concat_ws(' ', p.nombre, p.apellidos) as nombre_paciente,ec.descripcion,u.idUsuario,
+                    concat_ws(' ', p.nombre, p.apellidos) as nombre_paciente,ec.descripcion,u.idUsuario,ec.descripcion,
                     tipoConsulta, sucursal, ser.nombre as servicio, ca.nombre as cabina from cita as c
                     inner join usuario as u on c.idUsuario=u.idUsuario
                     inner join paciente as p on c.idPaciente=p.idPaciente
@@ -307,9 +307,11 @@
                     union
                     Select count(*) as total from cita where idUsuarioCancela=0 and estatus='cancelada_paciente'
                     union
-                    Select count(*) as total from cita where idUsuarioCancela>0 and estatus='cancelada_encargado'";
+                    Select count(*) as total from cita where idUsuarioCancela>0 and estatus='cancelada_encargado'
+                    union
+                   Select count(*) as total from citaactualizacion where sms=1 and tipo='Actualizacion'";
                 
-          $titulos = array("Confirmaci&oacute;n de cita","Recordatorio","Respuesta de cancelaci&oacute;n (paciente)","Respuesta de cancelaci&oacute;n (encargado)");
+          $titulos = array("Confirmaci&oacute;n de cita","Recordatorio","Respuesta de cancelaci&oacute;n (paciente)","Respuesta de cancelaci&oacute;n (encargado)","Actualizaci&oacute;n de cita");
                 $total=0;
                 $respuesta = array();
                 $resultado = mysqli_query($this->dbLink, $query);

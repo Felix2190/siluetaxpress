@@ -9,6 +9,7 @@ require_once FOLDER_MODEL_EXTEND. "model.paciente.inc.php";
 require_once FOLDER_MODEL_EXTEND. "model.hojaclinica.inc.php";
 require_once FOLDER_MODEL_EXTEND. "model.sucursal.inc.php";
 require_once FOLDER_MODEL_EXTEND. "model.consulta.inc.php";
+require_once FOLDER_MODEL_EXTEND. "model.citaactualizacion.inc.php";
 require_once FOLDER_INCLUDE_AGENDA.'controler/adminFunciones.inc.php';
 // -----------------------------------------------------------------------------------------------------------------#
 // --------------------------------------------Inicializacion de control--------------------------------------------#
@@ -104,7 +105,7 @@ function cargarInformacion($informacion,$txtDuracion,$hora,$minuto,$cabina,$chkb
     if (intval($informacion['idUsuarioCancela'])>0&&($informacion['descripcion']=="Cancelada por el paciente"||$informacion['descripcion']=="Cancelada por el encargado"))
         $textCita.= "<li><strong>Cancelada por: </strong>".$informacion['personaCancela']."</li>";
         
-     if ($informacion['descripcion']=='Nueva'&&($objSession->getidUsuario()==$informacion['idUsuario']||$objSession->getidRol()==1))
+     if ($informacion['descripcion']=='Nueva'/*&&($objSession->getidUsuario()==$informacion['idUsuario']||$objSession->getidRol()==1)*/)
         $textCita.= "</ul></div>
 					<div class='row'><div class='3u 12u$(xsmall)'><h4>Editar</h4></div></div>
 					<div class='row'><div class='2u 12u$(xsmall)'><label>Duraci&oacute;n:</label></div>
@@ -166,6 +167,41 @@ function cargarInformacion($informacion,$txtDuracion,$hora,$minuto,$cabina,$chkb
 
 $xajax->registerFunction("cargarInformacion");
 
+function cargarActualizaciones($informacion){
+    $r=new xajaxResponse();
+    $arrEncabezado=array('Fecha de actualizaci&oacute;n','Tipo','Usuario','Consultorio','Hora','Duraci&oacute;n');
+    if (intval($informacion)>0){
+        $tabla="<div class='box'><div class='row'><div class='3u 12u$(xsmall)'><h3>Actualizaciones</h3></div></div><div class='row'><div class='12u'><table><thead><tr>";
+        foreach ($arrEncabezado as $idem){
+            $tabla.="<th>$idem</th>";
+        }
+        
+        $tabla.="</tr></thead><tbody>";
+        
+        foreach ($informacion as $cita){
+            $fecha=explode("-", $cita['fecha_']);
+            
+            
+                $hr=intval($cita['duracion']/60);
+                $min=$cita['duracion']%60;
+                $duracion=($hr>0?($hr. ' hora'.($hr>1?'s':'')).($min>0?(', '.$min.' minutos'):''):('').$min.' minutos');
+                
+                
+      $tabla.="<tr><td>$fecha[2] de ".obtenMes(''.intval($fecha[1]))." del $fecha[0] [".$cita['hora_']."]</td>
+                        <td > ".$cita['tipo']."</td><td>".$cita['nombre_usuario']."</td><td >".$cita['cabina']."</td><td>".$cita['hora']."</td><td>".$duracion."</td></tr>";
+    }
+    $tabla.="</tbody></table></div></div></div><br />";
+    }else{
+        $tabla="<div class='box'><div class='row'><div class='3u 12u$(xsmall)'><h3>Actualizaciones</h3></div></div><div class='row'>
+                    <div class='12u'><i>No hay actualizaciones. <br /></i></div></div></div>";
+    }
+    $r->assign('divTablaAct', 'innerHTML', $tabla);
+    return $r;
+    
+}
+
+$xajax->registerFunction("cargarActualizaciones");
+
 
 function agregaComentario($txtComentario,$idCita){
     $r=new xajaxResponse();
@@ -188,6 +224,7 @@ function agregaComentario($txtComentario,$idCita){
 $xajax->registerFunction("agregaComentario");
 
 function guardarCambios($idCita,$duracion,$hora,$minuto,$consultorio,$chkbox){
+    global $objSession;
     $r=new xajaxResponse();
     $cita = new ModeloCita();
     $cita->setIdCita($idCita);
@@ -212,13 +249,35 @@ function guardarCambios($idCita,$duracion,$hora,$minuto,$consultorio,$chkbox){
            return $r;
        }
        
+       //tabla actualizacion
+       $citaactualizacion = new ModeloCitaactualizacion();
+       $citaactualizacion->setHora($hora.':'.$minuto);
+       $citaactualizacion->setIdCabina($consultorio);
+       $citaactualizacion->setFecha(date( 'Y-m-d H:i:s'));
+       $citaactualizacion->setDuracion($duracion);
+       $citaactualizacion->setIdUsuario($objSession->getidUsuario());
+       $citaactualizacion->setIdCita($cita->getIdCita());
+       
        $nSucursal= new ModeloSucursal();
        $nSucursal->setIdSucursal($cita->getIdSucursal());
        $nConsulta= new ModeloConsulta();
        $nConsulta->setIdConsulta($cita->getIdConsulta());
        
-       $Res=enviaSMS_CitaModificada($cita->getTelefonoPaciente(), date("d/m/Y",strtotime($fecha)), "$hora:$minuto", $nSucursal->getSucursal(), $idCita);
+       if (strlen($cita->getTelefonoPaciente())==12){
+           $Res=enviaSMS_CitaModificada($cita->getTelefonoPaciente(), date("d/m/Y",strtotime($fecha)), "$hora:$minuto", $nSucursal->getSucursal(), $idCita);
+           $citaactualizacion->setSms();
+       } else{
+          $r->call('mostrarMsjError',"No se puede enviar el SMS, el n&uacute;mero es incorrecto ",3);
+       }
        
+       
+       $citaactualizacion->Guardar();
+       if ($citaactualizacion->getError()){
+           $r->call('mostrarMsjError',$citaactualizacion->getStrError(),5);
+           return $r;
+       }
+       
+               
        $r->call('mostrarMsjExito','Se han guardado correctamente los cambios!' , 3);
        
        $r->redirect('verCita.php',4);

@@ -35,8 +35,11 @@ require_once 'masterInclude.inc.php';
 														
 			<div class='row' id='divInformacion'>
 			</div>
-				<div class="row" style="display: none;" id="divGuardar">
-					<div class='12u'>
+				<div class="row" >
+					<div class='9u' id="divTablaAct">
+					
+					</div>
+					<div class="3u" style="display: none;" id="divGuardar">
 						<a id="btnGuardar" class="button special" >Guardar cambios</a>
 					</div>
 					
