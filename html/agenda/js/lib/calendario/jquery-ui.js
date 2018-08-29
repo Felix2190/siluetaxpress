@@ -197,7 +197,7 @@ function Datepicker2() {
 	$.extend( this._defaults, this.regional[ "" ] );
 	this.regional.en = $.extend( true, {}, this.regional[ "" ] );
 	this.regional[ "en-US" ] = $.extend( true, {}, this.regional.en );
-	this.dpDiv = datepicker_bindHover( $( "<div id='" + this._mainDivId + "' class='ui-datepickerMenu ui-widget ui-widget-content ui-helper-clearfix ui-corner-all'></div>" ) );
+	this.dpDiv = datepicker_bindHover( $( "<div id='" + this._mainDivId + "' class='ui-datepickerMenu ui-widgetMenu ui-widgetMenu-content ui-helper-clearfix ui-corner-all'></div>" ) );
 }
 
 $.extend( Datepicker2.prototype, {
@@ -250,7 +250,7 @@ $.extend( Datepicker2.prototype, {
 			drawMonth: 0, drawYear: 0, // month being drawn
 			inline: inline, // is datepicker2 inline or not
 			dpDiv: ( !inline ? this.dpDiv : // presentation div
-			datepicker_bindHover( $( "<div class='" + this._inlineClass + " ui-datepickerMenu ui-widget ui-widget-content ui-helper-clearfix ui-corner-all'></div>" ) ) ) };
+			datepicker_bindHover( $( "<div class='" + this._inlineClass + " ui-datepickerMenu ui-widgetMenu ui-widgetMenu-content ui-helper-clearfix ui-cornerMenu-all'></div>" ) ) ) };
 	},
 
 	/* Attach the date picker to an input field. */
@@ -1748,9 +1748,9 @@ $.extend( Datepicker2.prototype, {
 			this._getFormatConfig( inst ) ) );
 
 		prev = ( this._canAdjustMonth( inst, -1, drawYear, drawMonth ) ?
-			"<a class='ui-datepickerMenu-prev ui-corner-all' data-handler='prev' data-event='click'" +
-			" title='" + prevText + "'><span class='ui-icon ui-icon-circle-triangle-" + ( isRTL ? "e" : "w" ) + "'>" + prevText + "</span></a>" :
-			( hideIfNoPrevNext ? "" : "<a class='ui-datepickerMenu-prev ui-corner-all ui-state-disabled' title='" + prevText + "'><span class='ui-icon ui-icon-circle-triangle-" + ( isRTL ? "e" : "w" ) + "'>" + prevText + "</span></a>" ) );
+			"<a class='ui-datepickerMenu-prev ui-cornerMenu-all' data-handler='prev' data-event='click'" +
+			" title='" + prevText + "'><span class='ui-iconMenu ui-iconMenu-circle-triangle-" + ( isRTL ? "e" : "w" ) + "'>" + prevText + "</span></a>" :
+			( hideIfNoPrevNext ? "" : "<a class='ui-datepickerMenu-prev ui-cornerMenu-all ui-stateMenu-disabled' title='" + prevText + "'><span class='ui-iconMenu ui-iconMenu-circle-triangle-" + ( isRTL ? "e" : "w" ) + "'>" + prevText + "</span></a>" ) );
 
 		nextText = this._get( inst, "nextText" );
 		nextText = ( !navigationAsDateFormat ? nextText : this.formatDate( nextText,
@@ -1758,20 +1758,20 @@ $.extend( Datepicker2.prototype, {
 			this._getFormatConfig( inst ) ) );
 
 		next = ( this._canAdjustMonth( inst, +1, drawYear, drawMonth ) ?
-			"<a class='ui-datepickerMenu-next ui-corner-all' data-handler='next' data-event='click'" +
-			" title='" + nextText + "'><span class='ui-icon ui-icon-circle-triangle-" + ( isRTL ? "w" : "e" ) + "'>" + nextText + "</span></a>" :
-			( hideIfNoPrevNext ? "" : "<a class='ui-datepickerMenu-next ui-corner-all ui-state-disabled' title='" + nextText + "'><span class='ui-icon ui-icon-circle-triangle-" + ( isRTL ? "w" : "e" ) + "'>" + nextText + "</span></a>" ) );
+			"<a class='ui-datepickerMenu-next ui-cornerMenu-all' data-handler='next' data-event='click'" +
+			" title='" + nextText + "'><span class='ui-iconMenu ui-iconMenu-circle-triangle-" + ( isRTL ? "w" : "e" ) + "'>" + nextText + "</span></a>" :
+			( hideIfNoPrevNext ? "" : "<a class='ui-datepickerMenu-next ui-cornerMenu-all ui-stateMenu-disabled' title='" + nextText + "'><span class='ui-iconMenu ui-iconMenu-circle-triangle-" + ( isRTL ? "w" : "e" ) + "'>" + nextText + "</span></a>" ) );
 
 		currentText = this._get( inst, "currentText" );
 		gotoDate = ( this._get( inst, "gotoCurrent" ) && inst.currentDay ? currentDate : today );
 		currentText = ( !navigationAsDateFormat ? currentText :
 			this.formatDate( currentText, gotoDate, this._getFormatConfig( inst ) ) );
 
-		controls = ( !inst.inline ? "<button type='button' class='ui-datepickerMenu-close ui-state-default ui-priority-primary ui-corner-all' data-handler='hide' data-event='click'>" +
+		controls = ( !inst.inline ? "<button type='button' class='ui-datepickerMenu-close ui-stateMenu-default ui-priority-primary ui-cornerMenu-all' data-handler='hide' data-event='click'>" +
 			this._get( inst, "closeText" ) + "</button>" : "" );
 
-		buttonPanel = ( showButtonPanel ) ? "<div class='ui-datepickerMenu-buttonpane ui-widget-content'>" + ( isRTL ? controls : "" ) +
-			( this._isInRange( inst, gotoDate ) ? "<button type='button' class='ui-datepickerMenu-current ui-state-default ui-priority-secondary ui-corner-all' data-handler='today' data-event='click'" +
+		buttonPanel = ( showButtonPanel ) ? "<div class='ui-datepickerMenu-buttonpane ui-widgetMenu-content'>" + ( isRTL ? controls : "" ) +
+			( this._isInRange( inst, gotoDate ) ? "<button type='button' class='ui-datepickerMenu-current ui-stateMenu-default ui-priority-secondary ui-cornerMenu-all' data-handler='today' data-event='click'" +
 			">" + currentText + "</button>" : "" ) + ( isRTL ? "" : controls ) + "</div>" : "";
 
 		firstDay = parseInt( this._get( inst, "firstDay" ), 10 );
@@ -1800,7 +1800,7 @@ $.extend( Datepicker2.prototype, {
 					if ( numMonths[ 1 ] > 1 ) {
 						switch ( col ) {
 							case 0: calender += " ui-datepickerMenu-group-first";
-								cornerClass = " ui-corner-" + ( isRTL ? "right" : "left" ); break;
+								cornerClass = " ui-cornerMenu-" + ( isRTL ? "right" : "left" ); break;
 							case numMonths[ 1 ] - 1: calender += " ui-datepickerMenu-group-last";
 								cornerClass = " ui-corner-" + ( isRTL ? "left" : "right" ); break;
 							default: calender += " ui-datepickerMenu-group-middle"; cornerClass = ""; break;
@@ -1808,7 +1808,7 @@ $.extend( Datepicker2.prototype, {
 					}
 					calender += "'>";
 				}
-				calender += "<div class='ui-datepickerMenu-header ui-widget-header ui-helper-clearfix" + cornerClass + "'>" +
+				calender += "<div class='ui-datepickerMenu-header ui-widgetMenu-header ui-helper-clearfix" + cornerClass + "'>" +
 					( /all|left/.test( cornerClass ) && row === 0 ? ( isRTL ? next : prev ) : "" ) +
 					( /all|right/.test( cornerClass ) && row === 0 ? ( isRTL ? prev : next ) : "" ) +
 					this._generateMonthYearHeader( inst, drawMonth, drawYear, minDate, maxDate,
@@ -1849,16 +1849,16 @@ $.extend( Datepicker2.prototype, {
 
 							// or defaultDate is current printedDate and defaultDate is selectedDate
 							" " + this._dayOverClass : "" ) + // highlight selected day
-							( unselectable ? " " + this._unselectableClass + " ui-state-disabled" : "" ) +  // highlight unselectable days
+							( unselectable ? " " + this._unselectableClass + " ui-stateMenu-disabled" : "" ) +  // highlight unselectable days
 							( otherMonth && !showOtherMonths ? "" : " " + daySettings[ 1 ] + // highlight custom dates
 							( printDate.getTime() === currentDate.getTime() ? " " + this._currentClass : "" ) + // highlight selected day
 							( printDate.getTime() === today.getTime() ? " ui-datepickerMenu-today" : "" ) ) + "'" + // highlight today (if different)
 							( ( !otherMonth || showOtherMonths ) && daySettings[ 2 ] ? " title='" + daySettings[ 2 ].replace( /'/g, "&#39;" ) + "'" : "" ) + // cell title
 							( unselectable ? "" : " data-handler='selectDay' data-event='click' data-month='" + printDate.getMonth() + "' data-year='" + printDate.getFullYear() + "'" ) + ">" + // actions
 							( otherMonth && !showOtherMonths ? "&#xa0;" : // display for other months
-							( unselectable ? "<span class='ui-state-default'>" + printDate.getDate() + "</span>" : "<a class='ui-state-default" +
-							( printDate.getTime() === today.getTime() ? " ui-state-highlight" : "" ) +
-							( printDate.getTime() === currentDate.getTime() ? " ui-state-active" : "" ) + // highlight selected day
+							( unselectable ? "<span class='ui-stateMenu-default'>" + printDate.getDate() + "</span>" : "<a class='ui-stateMenu-default" +
+							( printDate.getTime() === today.getTime() ? " ui-stateMenu-highlight" : "" ) +
+							( printDate.getTime() === currentDate.getTime() ? " ui-stateMenu-active" : "" ) + // highlight selected day
 							( otherMonth ? " ui-priority-secondary" : "" ) + // distinguish dates from other months
 							"' href='#'>" + printDate.getDate() + "</a>" ) ) + "</td>"; // display selectable date
 						printDate.setDate( printDate.getDate() + 1 );
@@ -2092,8 +2092,8 @@ function datepicker_bindHover( dpDiv ) {
 
 function datepicker_handleMouseover() {
 	if ( !$.datepicker2._isDisabledDatepicker( datepicker_instActive.inline ? datepicker_instActive.dpDiv.parent()[ 0 ] : datepicker_instActive.input[ 0 ] ) ) {
-		$( this ).parents( ".ui-datepickerMenu-calendar" ).find( "a" ).removeClass( "ui-state-hover" );
-		$( this ).addClass( "ui-state-hover" );
+		$( this ).parents( ".ui-datepickerMenu-calendar" ).find( "a" ).removeClass( "ui-stateMenu-hover" );
+		$( this ).addClass( "ui-stateMenu-hover" );
 		if ( this.className.indexOf( "ui-datepickerMenu-prev" ) !== -1 ) {
 			$( this ).addClass( "ui-datepickerMenu-prev-hover" );
 		}
