@@ -57,7 +57,7 @@ function _obtenCombo($array,$idem){
 $xajax = new xajax();
 
 
-function cargarInformacion($informacion,$txtDuracion,$hora,$minuto,$cabina,$chkbox,$txtComentario){
+function cargarInformacion($informacion,$txtDuracion,$hora,$minuto,$cabina,$chkbox,$txtComentario,$txtFecha){
     $r=new xajaxResponse();
     global $objSession;
     $arrTiempo=array();
@@ -108,7 +108,12 @@ function cargarInformacion($informacion,$txtDuracion,$hora,$minuto,$cabina,$chkb
      if ($informacion['descripcion']=='Nueva'/*&&($objSession->getidUsuario()==$informacion['idUsuario']||$objSession->getidRol()==1)*/)
         $textCita.= "</ul></div>
 					<div class='row'><div class='3u 12u$(xsmall)'><h4>Editar</h4></div></div>
-					<div class='row'><div class='2u 12u$(xsmall)'><label>Duraci&oacute;n:</label></div>
+					<div class='row'><div class='2u 12u$(xsmall)'><label>D&iacute;a:</label></div>
+					 <div class='6u 12u$(xsmall)'>
+                            <input type='text' id='txtFecha' placeholder='AAAA-MM-DD' readonly='readonly' class='datepicker'  value='".$txtFecha."'/>
+                     </div></div><br />
+					
+                    <div class='row'><div class='2u 12u$(xsmall)'><label>Duraci&oacute;n:</label></div>
 					 <div class='6u 12u$(xsmall)'><div class='select-wrapper'><select name='demo-category' id='slcDuracion'>$duracion</select></div></div></div><br />
 					<div class='row'><div class='2u 12u$(xsmall)'><label>Consultorio:</label></div>
 					 <div class='6u 12u$(xsmall)'><div class='select-wrapper'><select name='demo-category' id='slcConsultorio'>$consultorios</select></div></div></div><br />
@@ -223,15 +228,15 @@ function agregaComentario($txtComentario,$idCita){
 
 $xajax->registerFunction("agregaComentario");
 
-function guardarCambios($idCita,$duracion,$hora,$minuto,$consultorio,$chkbox){
+function guardarCambios($idCita,$duracion,$hora,$minuto,$consultorio,$chkbox,$fecha){
     global $objSession;
     $r=new xajaxResponse();
     $cita = new ModeloCita();
     $cita->setIdCita($idCita);
     
-    $fecha=explode(" ",$cita->getFechaInicio());
+//    $fecha=explode(" ",$cita->getFechaInicio());
     
-    $fecha=$fecha[0]." $hora:$minuto:00";
+    $fecha=$fecha." $hora:$minuto:00";
     
     $cita->setFechaInicio($fecha);
     $cita->setDuracion($duracion);

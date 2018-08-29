@@ -43,7 +43,7 @@
 							<h2>DEPILACI&Oacute;N SHR Luz pulsada </h2>
 							<p>Combina la tecnolog&iacute;a l&aacute;ser y beneficios de la luz, elimina el vello permanente y blanquea la zona. 
 							</p>
-							 							
+							<p><a href="docs/Consentimiento_Informado.pdf" target="_blank">Consentimiento informado Fotodepilaci&oacute;n SHR</a></p>							 							
 						</section>
 
 					</div>
@@ -111,7 +111,7 @@
 				<div class="12u" style="align-content: center;">
 					<br />
 					<br />
-					<h4>¡¡¡Manejamos paquetes que incluyen varios de nuestros servicios!!!</h4>
+					<h4>&iexcl;&iexcl;&iexcl;Manejamos paquetes que incluyen varios de nuestros servicios!!!</h4>
 					</div>
 					
 					

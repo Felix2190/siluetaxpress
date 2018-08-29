@@ -1,4 +1,9 @@
 $(document).ready(function(){
+
+	$( "#calendarioMenu" ).datepicker2({
+		inline: true
+	});
+
 	$.ajax({
 		method : "post",
 		url : "adminFunciones.php",

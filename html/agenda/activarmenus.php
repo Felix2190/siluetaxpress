@@ -8,6 +8,7 @@ $arrSeccionesPagina=array(
     "verCita"=>"citas",
     "buscarCita"=>"citas",
     "registroApartado"=>"citas",
+    "citasAnteriores"=>"citas",
     
     "listadoPacientes"=>"pacientes",
     "altaPaciente"=>"pacientes",

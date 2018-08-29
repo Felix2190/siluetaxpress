@@ -19,7 +19,7 @@
 			</ul>
 			
 		</section>
-
+		<div id="calendarioMenu"></div>
 		<!-- Menu -->
 		<nav id="menu">
 			<ul>
@@ -57,7 +57,7 @@
 						<li><a class="<?php if($subseccion=="buscarCita") echo "active";?>" href="buscarCita.php">B&uacute;squeda</a></li>
 						<li><a class="<?php if($subseccion=="horariosDisponibles") echo "active";?>" href="horariosDisponibles.php">Disponibilidad</a></li>
 						<li><a class="<?php if($subseccion=="registroApartado") echo "active";?>" href="registroApartado.php">Reservar espacio</a></li>
-						
+						<li><a class="<?php if($subseccion=="citasAnteriores") echo "active";?>" href="listadoCitas.php">Anteriores/Realizadas</a></li>
 					</ul></li>
 
 
@@ -68,6 +68,8 @@
 
 			</ul>
 		</nav>
+		
+		
 				<!-- Footer -->
 		<?php include_once 'footer.php';?>
 	</div>

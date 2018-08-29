@@ -1,15 +1,21 @@
 $(document).ready(function(){
 	iniciar();
 });
-	 var primero=true,duracion,hr,min,chkbox,cabina,b,opcion='',opcion2='',idCita,evento_boton=true;
+	 var primero=true,duracion,hr,min,chkbox,cabina,b,opcion='',opcion2='',idCita,evento_boton=true,fecha;
 	 var arrFechas=new Array(),arrMin=new Array();
 function iniciar(){
 	actualizarCita();
 	
-	setTimeout(function() { 
+	
+	setTimeout(function() {
+		establece_datapicker();
+		
 		setInterval(function() {
 			actualizarCita();
+			establece_datapicker();
+			
 			},30000)
+			
 		},2000);
 	
 	 $( "#btnPaciente" ).click(function(){
@@ -23,7 +29,7 @@ function iniciar(){
 		 $( "#btnCerrar" ).click(function(){
 			 $( "#msjConfirm" ).hide();
 			 });
-			 
+
 }
 
 function actualizarCita(){
@@ -45,6 +51,7 @@ function actualizarCita(){
 				cabina=respuesta[0]['idCabina'];
 				chkbox=respuesta[0]['enviarRecordatorio2'];
 				comentario='';
+				fecha=respuesta[0]['fecha'];
 			}else{
 				duracion=$( "#slcDuracion" ).val();
 				hr=$( "#slcHr" ).val();
@@ -52,8 +59,9 @@ function actualizarCita(){
 				cabina=$( "#slcConsultorio" ).val();
 				chkbox=$('#checkRecordatorio').is(':checked');
 				comentario=$( "#txtComentarios" ).val();
+				fecha=$( "#txtFecha" ).val();
 			} //alert(duracion+' '+min+' '+cabina);
-			xajax_cargarInformacion(respuesta[0],duracion,hr,min,cabina,chkbox,comentario);
+			xajax_cargarInformacion(respuesta[0],duracion,hr,min,cabina,chkbox,comentario,fecha);
 		}
 	});
 
@@ -79,6 +87,9 @@ function cargarHorasMin(arrH,hr_,minuto){
 	$( "#slcConsultorio" ).change(function(){
 		 verHorarios();
 		});
+	$( "#txtFecha" ).change(function(){
+		 verHorarios();
+	 });
 	
 	arrFechas=JSON.parse(arrH);
 //	alert(arrH);
@@ -123,6 +134,8 @@ function cargarHorasMin(arrH,hr_,minuto){
 				opcion2+='<option value="'+min+'">'+min+'</option>';
 			});
 		 $("#slcMin").html(opcion2);
+
+		 establece_datapicker();	
 	 });
 	
 }
@@ -133,7 +146,7 @@ function verHorarios(){
 	var consulta = $("#hdnConsulta").val();
 	var consultorio = $("#slcConsultorio").val().trim();
 	 duracion = $("#slcDuracion").val().trim();
-	var fecha = $("#hdnFecha").val();
+	var fecha = $("#txtFecha").val();
 	$("#slcHr").html('<option value=""></option>');
 	$("#slcMin").html('<option value=""></option>');
 		$.ajax({
@@ -206,7 +219,7 @@ function visualizar(v,estatus){
 function activarBtn(){
 	if(evento_boton){
 		$( "#btnGuardar" ).click(function(){
-		if($( "#slcHr" ).val()=="0"||$( "#slcMin" ).val()=="-"){
+		if($( "#slcHr" ).val()=="0"||$( "#slcMin" ).val()=="-"||$( "#slcMin" ).val()==undefined){
 			mostrarMsjError('Datos incompletos!! <br />Por favor, llene la informaci&oacute;n que se solicita',5);
 			return false;
 		}		
@@ -215,7 +228,8 @@ function activarBtn(){
 		var hora=$( "#slcHr" ).val();
 		var minuto=$( "#slcMin" ).val();
 		chkbox=$('#checkRecordatorio').is(':checked');
-		xajax_guardarCambios(idCita,duracion,hora,minuto,consultorio,chkbox);
+		var fecha = $("#txtFecha").val();
+		xajax_guardarCambios(idCita,duracion,hora,minuto,consultorio,chkbox,fecha);
 	 });
 	}
 	
@@ -266,6 +280,19 @@ function cancelarCita(password,canceladaPor){
 			}
 
 		}
+	});
+}
+
+function establece_datapicker(){
+	$('.datepicker').datepicker({
+		dateFormat : 'yy-mm-dd',
+		changeMonth : true,
+		changeYear : true,
+		minDate : '0D',
+			beforeShowDay: function(date) {
+			    var day = date.getDay();
+			    return [(day != 0), ''];
+			}
 	});
 }
 
