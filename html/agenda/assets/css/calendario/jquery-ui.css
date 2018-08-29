@@ -80,7 +80,7 @@
 	height: 100%;
 }
 .ui-datepickerMenu {
-	width: 17em;
+	width:  95%;
 	padding: .2em .2em 0;
 	display: none;
 }
@@ -259,20 +259,20 @@
 ----------------------------------*/
 .ui-widgetMenu {
 	font-family: segoe ui,Arial,sans-serif;
-	font-size: 1.1em;
+	font-size: .9em;
 }
 .ui-widgetMenu .ui-widgetMenu {
-	font-size: 1em;
+	font-size: .7em;
 }
 .ui-widgetMenu input,
 .ui-widgetMenu select,
 .ui-widgetMenu textarea,
 .ui-widgetMenu button {
 	font-family: segoe ui,Arial,sans-serif;
-	font-size: 1em;
+	font-size: .7em;
 }
 .ui-widgetMenu.ui-widgetMenu-content {
-	border: 1px solid #327E04;
+	border: 1px solid #d200d2;
 }
 .ui-widgetMenu-content {
 	border: 1px solid #dfd9c3;
