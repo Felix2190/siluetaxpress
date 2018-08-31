@@ -1,8 +1,5 @@
 $(document).ready(function(){
 
-	$( "#calendarioMenu" ).datepicker2({
-		inline: true
-	});
 
 	$.ajax({
 		method : "post",
@@ -28,6 +25,11 @@ $(document).ready(function(){
 					window.location=window.location;
 			}
 		});
+	});
+	
+
+	$( "#calendarioLila" ).datepickerLila({
+		inline: true
 	});
    
 });

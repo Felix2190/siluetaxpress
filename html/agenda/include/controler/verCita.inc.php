@@ -93,6 +93,7 @@ function cargarInformacion($informacion,$txtDuracion,$hora,$minuto,$cabina,$chkb
                     <input type='hidden' id='hdnDuracion' value='".$informacion['duracion']."'/>
 						<input type='hidden' id='hdnConsulta' value='".$informacion['idConsulta']."'/>
                     <input type='hidden' id='hdnHR' value='".$AUX[0]."'/><input type='hidden' id='hdnMIN' value='".$AUX[1]."'/>
+                    <input type='hidden' id='hdnCheck' value='".$informacion['enviarRecordatorio2']."'/>
 						<input type='hidden' id='hdnFecha' value='".$informacion['fecha']."'/>
 						
 					<ul><li><strong>Fecha: </strong>".$auxFecha."</li><li><strong>Paciente: </strong>".$informacion['nombre_paciente']."</li>
@@ -159,7 +160,6 @@ function cargarInformacion($informacion,$txtDuracion,$hora,$minuto,$cabina,$chkb
                         
                         
     $r->assign("divInformacion", "innerHTML", $textCita);
-    
     $visible="none";
     if ($informacion['descripcion']=="Nueva"){
         $r->call("cargarHorasMin",$horarios,$hora,$minuto);
@@ -174,7 +174,7 @@ $xajax->registerFunction("cargarInformacion");
 
 function cargarActualizaciones($informacion){
     $r=new xajaxResponse();
-    $arrEncabezado=array('Fecha de actualizaci&oacute;n','Tipo','Usuario','Consultorio','Hora','Duraci&oacute;n');
+    $arrEncabezado=array('Fecha de actualizaci&oacute;n','Tipo','Usuario','Consultorio','Fecha/Hora','Duraci&oacute;n');
     if (intval($informacion)>0){
         $tabla="<div class='box'><div class='row'><div class='3u 12u$(xsmall)'><h3>Actualizaciones</h3></div></div><div class='row'><div class='12u'><table><thead><tr>";
         foreach ($arrEncabezado as $idem){
@@ -185,6 +185,7 @@ function cargarActualizaciones($informacion){
         
         foreach ($informacion as $cita){
             $fecha=explode("-", $cita['fecha_']);
+            $fecha2=explode("-", $cita['fechaCita']);
             
             
                 $hr=intval($cita['duracion']/60);
@@ -193,7 +194,8 @@ function cargarActualizaciones($informacion){
                 
                 
       $tabla.="<tr><td>$fecha[2] de ".obtenMes(''.intval($fecha[1]))." del $fecha[0] [".$cita['hora_']."]</td>
-                        <td > ".$cita['tipo']."</td><td>".$cita['nombre_usuario']."</td><td >".$cita['cabina']."</td><td>".$cita['hora']."</td><td>".$duracion."</td></tr>";
+                        <td > ".$cita['tipo']."</td><td>".$cita['nombre_usuario']."</td><td >".$cita['cabina']."</td>
+                <td>$fecha2[2]/".obtenMes(''.intval($fecha2[1]))."/$fecha2[0] <br />".$cita['hora']." hrs.</td><td>".$duracion."</td></tr>";
     }
     $tabla.="</tbody></table></div></div></div><br />";
     }else{
@@ -235,7 +237,7 @@ function guardarCambios($idCita,$duracion,$hora,$minuto,$consultorio,$chkbox,$fe
     $cita->setIdCita($idCita);
     
 //    $fecha=explode(" ",$cita->getFechaInicio());
-    
+    $FechaCita=$fecha;
     $fecha=$fecha." $hora:$minuto:00";
     
     $cita->setFechaInicio($fecha);
@@ -262,6 +264,7 @@ function guardarCambios($idCita,$duracion,$hora,$minuto,$consultorio,$chkbox,$fe
        $citaactualizacion->setDuracion($duracion);
        $citaactualizacion->setIdUsuario($objSession->getidUsuario());
        $citaactualizacion->setIdCita($cita->getIdCita());
+       $citaactualizacion->setFechaCita($FechaCita);
        
        $nSucursal= new ModeloSucursal();
        $nSucursal->setIdSucursal($cita->getIdSucursal());

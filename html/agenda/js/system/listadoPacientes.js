@@ -3,7 +3,10 @@ $(document).ready(function(){
 });
 	 
 function iniciar(){
-	listarPacientes();
+	setTimeout(function() {
+		listarPacientes(); 
+	},700);
+	
 	if($("#hdnRol").val()==1){
 		 $.ajax({
 				method : "post",

@@ -14,11 +14,12 @@
 		var $fecha='';
 		var $tipo='Actualizacion';
 		var $idCabina=0;
+		var $fechaCita='';
 		var $hora='';
 		var $duracion=0;
 		var $sms='0';
 
-		var $__s=array("idActualizacion","idCita","idUsuario","fecha","tipo","idCabina","hora","duracion","sms");
+		var $__s=array("idActualizacion","idCita","idUsuario","fecha","tipo","idCabina","fechaCita","hora","duracion","sms");
 		var $__ss=array();
 
 		#------------------------------------------------------------------------------------------------------#
@@ -78,6 +79,10 @@
 			
 			$this->idCabina=$idCabina;
 		}
+		public function setFechaCita($fechaCita)
+		{
+			$this->fechaCita=$fechaCita;
+		}
 		public function setHora($hora)
 		{
 			
@@ -132,6 +137,10 @@
 		{
 			return $this->idCabina;
 		}
+		public function getFechaCita()
+		{
+			return $this->fechaCita;
+		}
 		public function getHora()
 		{
 			return $this->hora;
@@ -164,6 +173,7 @@
 			$this->fecha='';
 			$this->tipo='Actualizacion';
 			$this->idCabina=0;
+			$this->fechaCita='';
 			$this->hora='';
 			$this->duracion=0;
 			$this->sms='0';
@@ -176,8 +186,8 @@
 		{
 			try
 			{
-				$SQL="INSERT INTO citaactualizacion(idCita,idUsuario,fecha,tipo,idCabina,hora,duracion,sms)
-						VALUES('" . mysqli_real_escape_string($this->dbLink,$this->idCita) . "','" . mysqli_real_escape_string($this->dbLink,$this->idUsuario) . "','" . mysqli_real_escape_string($this->dbLink,$this->fecha) . "','" . mysqli_real_escape_string($this->dbLink,$this->tipo) . "','" . mysqli_real_escape_string($this->dbLink,$this->idCabina) . "','" . mysqli_real_escape_string($this->dbLink,$this->hora) . "','" . mysqli_real_escape_string($this->dbLink,$this->duracion) . "','" . mysqli_real_escape_string($this->dbLink,$this->sms) . "')";
+				$SQL="INSERT INTO citaactualizacion(idCita,idUsuario,fecha,tipo,idCabina,fechaCita,hora,duracion,sms)
+						VALUES('" . mysqli_real_escape_string($this->dbLink,$this->idCita) . "','" . mysqli_real_escape_string($this->dbLink,$this->idUsuario) . "','" . mysqli_real_escape_string($this->dbLink,$this->fecha) . "','" . mysqli_real_escape_string($this->dbLink,$this->tipo) . "','" . mysqli_real_escape_string($this->dbLink,$this->idCabina) . "','" . mysqli_real_escape_string($this->dbLink,$this->fechaCita) . "','" . mysqli_real_escape_string($this->dbLink,$this->hora) . "','" . mysqli_real_escape_string($this->dbLink,$this->duracion) . "','" . mysqli_real_escape_string($this->dbLink,$this->sms) . "')";
 				$result=mysqli_query($this->dbLink,$SQL);
 				if(!$result)
 					return $this->setSystemError("Error en la insercion de registro.","[" . $SQL . "][" . mysqli_error($this->dbLink) . "][ModeloBaseCitaactualizacion::Insertar]");
@@ -197,7 +207,7 @@
 		{
 			try
 			{
-				$SQL="UPDATE citaactualizacion SET idCita='" . mysqli_real_escape_string($this->dbLink,$this->idCita) . "',idUsuario='" . mysqli_real_escape_string($this->dbLink,$this->idUsuario) . "',fecha='" . mysqli_real_escape_string($this->dbLink,$this->fecha) . "',tipo='" . mysqli_real_escape_string($this->dbLink,$this->tipo) . "',idCabina='" . mysqli_real_escape_string($this->dbLink,$this->idCabina) . "',hora='" . mysqli_real_escape_string($this->dbLink,$this->hora) . "',duracion='" . mysqli_real_escape_string($this->dbLink,$this->duracion) . "',sms='" . mysqli_real_escape_string($this->dbLink,$this->sms) . "'
+				$SQL="UPDATE citaactualizacion SET idCita='" . mysqli_real_escape_string($this->dbLink,$this->idCita) . "',idUsuario='" . mysqli_real_escape_string($this->dbLink,$this->idUsuario) . "',fecha='" . mysqli_real_escape_string($this->dbLink,$this->fecha) . "',tipo='" . mysqli_real_escape_string($this->dbLink,$this->tipo) . "',idCabina='" . mysqli_real_escape_string($this->dbLink,$this->idCabina) . "',fechaCita='" . mysqli_real_escape_string($this->dbLink,$this->fechaCita) . "',hora='" . mysqli_real_escape_string($this->dbLink,$this->hora) . "',duracion='" . mysqli_real_escape_string($this->dbLink,$this->duracion) . "',sms='" . mysqli_real_escape_string($this->dbLink,$this->sms) . "'
 					WHERE idActualizacion=" . $this->idActualizacion;
 				
 				$result=mysqli_query($this->dbLink,$SQL);
@@ -239,7 +249,7 @@
 			try
 			{
 				$SQL="SELECT
-						idActualizacion,idCita,idUsuario,fecha,tipo,idCabina,hora,duracion,sms
+						idActualizacion,idCita,idUsuario,fecha,tipo,idCabina,fechaCita,hora,duracion,sms
 					FROM citaactualizacion
 					WHERE idActualizacion=" . mysqli_real_escape_string($this->dbLink,$this->idActualizacion);
 					

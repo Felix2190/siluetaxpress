@@ -29,7 +29,11 @@ if (isset($_POST['pacientes'])){
 if (isset($_POST['sucursales'])){
     require_once FOLDER_MODEL_EXTEND. "model.sucursal.inc.php";
     $estatus = new ModeloSucursal();
-    echo json_encode(obtenCombo($estatus->obtenerSucurales(),'Seleccione una opci&oacute;n'));
+    $combo='';
+    foreach ($estatus->obtenerSucurales() as $key => $opcion)
+        $combo.='<option value="'.$key.'" '.($key==$objSession->getIdSucursal()?'selected':'').'>'.$opcion.'</option>';
+        
+    echo json_encode($combo);
 }
 
 if (isset($_POST['tiposConsulta'])){
@@ -385,6 +389,22 @@ if (isset($_POST['idCitaAct'])){
     $cita = new ModeloCitaactualizacion();
     $cita->setIdCita($_POST['idCitaAct']);
     echo json_encode($cita->obtenerCitas());
+}
+
+if (isset($_POST['sucursalAn'])&&isset($_POST['pacienteAn'])&&isset($_POST['usuarioAn'])&&isset($_POST['cabinaAn'])&&isset($_POST['fechaInicioAn'])){
+    require_once FOLDER_MODEL_EXTEND. "model.cita.inc.php";
+    $cita = new ModeloCita();
+    if ($_POST['sucursalAn']!='')
+        $cita->setIdSucursal($_POST['sucursalAn']);
+        if ($_POST['pacienteAn']!='')
+            $cita->setIdPaciente($_POST['pacienteAn']);
+            //           if ($_POST['usuario']!='')
+                //                $cita->setIdUsuario($_POST['usuario']);
+            if ($_POST['cabinaAn']!='')
+                $cita->setIdCabina($_POST['cabinaAn']);
+                
+                $cita->setFechaFin($_POST['fechaInicioAn']);
+                echo json_encode($cita->obtenerCitasAnteriores());
 }
 
 

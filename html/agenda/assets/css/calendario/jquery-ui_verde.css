@@ -1,0 +1,697 @@
+/*! jQuery UI - v1.12.1 - 2018-08-30
+* http://jqueryui.com
+* Includes: core.css, datepicker.css, theme.css
+* To view and modify this theme, visit http://jqueryui.com/themeroller/?scope=&folderName=custom-theme&bgImgOpacityError=45&bgImgOpacityHighlight=55&bgImgOpacityActive=65&bgImgOpacityHover=55&bgImgOpacityDefault=40&bgImgOpacityContent=100&bgImgOpacityHeader=8&cornerRadiusShadow=8px&offsetLeftShadow=-8px&offsetTopShadow=-8px&thicknessShadow=8px&opacityShadow=20&bgImgOpacityShadow=50&bgTextureShadow=highlight_soft&bgColorShadow=%23aaaaaa&opacityOverlay=30&bgImgOpacityOverlay=40&bgTextureOverlay=highlight_hard&bgColorOverlay=%23aaaaaa&iconColorError=%233a1123&fcError=%23ffffff&borderColorError=%239e2a05&bgTextureError=inset_hard&bgColorError=%23cd420a&iconColorHighlight=%234ca300&fcHighlight=%23f6f6f6&borderColorHighlight=%23ca94b9&bgTextureHighlight=inset_hard&bgColorHighlight=%23cb74aa&iconColorActive=%231b550f&fcActive=%231b550f&borderColorActive=%23cccccc&bgTextureActive=flat&bgColorActive=%23ffffff&iconColorHover=%23ffffff&fcHover=%23ffffff&borderColorHover=%23000000&bgTextureHover=glass&bgColorHover=%231b550f&iconColorDefault=%23ededed&fcDefault=%23e3e3e3&borderColorDefault=%23777777&bgTextureDefault=glass&bgColorDefault=%231b550f&iconColorContent=%231c610d&fcContent=%231c610d&borderColorContent=%23cccccc&bgTextureContent=highlight_hard&bgColorContent=%23f9f9f9&iconColorHeader=%23bbbbbb&fcHeader=%23eeeeee&borderColorHeader=%23a3a3a3&bgTextureHeader=diagonals_thick&bgColorHeader=%231c610d&cornerRadius=4px&fwDefault=normal&fsDefault=1.1em&ffDefault=Verdana%2CArial%2Csans-serif
+* Copyright jQuery Foundation and other contributors; Licensed MIT */
+
+/* Layout helpers
+----------------------------------*/
+.ui-helperVerde-hidden {
+	display: none;
+}
+.ui-helperVerde-hidden-accessible {
+	border: 0;
+	clip: rect(0 0 0 0);
+	height: 1px;
+	margin: -1px;
+	overflow: hidden;
+	padding: 0;
+	position: absolute;
+	width: 1px;
+}
+.ui-helperVerde-reset {
+	margin: 0;
+	padding: 0;
+	border: 0;
+	outline: 0;
+	line-height: 1.3;
+	text-decoration: none;
+	font-size: 100%;
+	list-style: none;
+}
+.ui-helperVerde-clearfix:before,
+.ui-helperVerde-clearfix:after {
+	content: "";
+	display: table;
+	border-collapse: collapse;
+}
+.ui-helperVerde-clearfix:after {
+	clear: both;
+}
+.ui-helperVerde-zfix {
+	width: 100%;
+	height: 100%;
+	top: 0;
+	left: 0;
+	position: absolute;
+	opacity: 0;
+	filter:Alpha(Opacity=0); /* support: IE8 */
+}
+
+.ui-front {
+	z-index: 100;
+}
+
+
+/* Interaction Cues
+----------------------------------*/
+.ui-stateVerde-disabled {
+	cursor: default !important;
+	pointer-events: none;
+}
+
+
+/* Icons
+----------------------------------*/
+.ui-iconVerde {
+	display: inline-block;
+	vertical-align: middle;
+	margin-top: -.25em;
+	position: relative;
+	text-indent: -99999px;
+	overflow: hidden;
+	background-repeat: no-repeat;
+}
+
+.ui-widgetVerde-icon-block {
+	left: 50%;
+	margin-left: -8px;
+	display: block;
+}
+
+/* Misc visuals
+----------------------------------*/
+
+/* Overlays */
+.ui-widgetVerde-overlay {
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	height: 100%;
+}
+.ui-datepickerVerde {
+	width:  99%;
+	padding: .2em .2em 0;
+	display: none;
+}
+.ui-datepickerVerde .ui-datepickerVerde-header {
+	position: relative;
+	padding: .2em 0;
+}
+.ui-datepickerVerde .ui-datepickerVerde-prev,
+.ui-datepickerVerde .ui-datepickerVerde-next {
+	position: absolute;
+	top: 2px;
+	width: 1.8em;
+	height: 1.8em;
+}
+.ui-datepickerVerde .ui-datepickerVerde-prev-hover,
+.ui-datepickerVerde .ui-datepickerVerde-next-hover {
+	top: 1px;
+}
+.ui-datepickerVerde .ui-datepickerVerde-prev {
+	left: 2px;
+}
+.ui-datepickerVerde .ui-datepickerVerde-next {
+	right: 2px;
+}
+.ui-datepickerVerde .ui-datepickerVerde-prev-hover {
+	left: 1px;
+}
+.ui-datepickerVerde .ui-datepickerVerde-next-hover {
+	right: 1px;
+}
+.ui-datepickerVerde .ui-datepickerVerde-prev span,
+.ui-datepickerVerde .ui-datepickerVerde-next span {
+	display: block;
+	position: absolute;
+	left: 50%;
+	margin-left: -8px;
+	top: 50%;
+	margin-top: -8px;
+}
+.ui-datepickerVerde .ui-datepickerVerde-title {
+	margin: 0 2.3em;
+	line-height: 1.8em;
+	text-align: center;
+}
+.ui-datepickerVerde .ui-datepickerVerde-title select {
+	font-size: 1em;
+	margin: 1px 0;
+}
+.ui-datepickerVerde select.ui-datepickerVerde-month,
+.ui-datepickerVerde select.ui-datepickerVerde-year {
+	width: 45%;
+}
+.ui-datepickerVerde table {
+	width: 100%;
+	font-size: .9em;
+	border-collapse: collapse;
+	margin: 0 0 .4em;
+}
+.ui-datepickerVerde th {
+	padding: .7em .3em;
+	text-align: center;
+	font-weight: bold;
+	border: 0;
+}
+.ui-datepickerVerde td {
+	border: 0;
+	padding: 1px;
+}
+.ui-datepickerVerde td span,
+.ui-datepickerVerde td a {
+	display: block;
+	padding: .2em;
+	text-align: right;
+	text-decoration: none;
+}
+.ui-datepickerVerde .ui-datepickerVerde-buttonpane {
+	background-image: none;
+	margin: .7em 0 0 0;
+	padding: 0 .2em;
+	border-left: 0;
+	border-right: 0;
+	border-bottom: 0;
+}
+.ui-datepickerVerde .ui-datepickerVerde-buttonpane button {
+	float: right;
+	margin: .5em .2em .4em;
+	cursor: pointer;
+	padding: .2em .6em .3em .6em;
+	width: auto;
+	overflow: visible;
+}
+.ui-datepickerVerde .ui-datepickerVerde-buttonpane button.ui-datepickerVerde-current {
+	float: left;
+}
+
+/* with multiple calendars */
+.ui-datepickerVerde.ui-datepickerVerde-multi {
+	width: auto;
+}
+.ui-datepickerVerde-multi .ui-datepickerVerde-group {
+	float: left;
+}
+.ui-datepickerVerde-multi .ui-datepickerVerde-group table {
+	width: 95%;
+	margin: 0 auto .4em;
+}
+.ui-datepickerVerde-multi-2 .ui-datepickerVerde-group {
+	width: 50%;
+}
+.ui-datepickerVerde-multi-3 .ui-datepickerVerde-group {
+	width: 33.3%;
+}
+.ui-datepickerVerde-multi-4 .ui-datepickerVerde-group {
+	width: 25%;
+}
+.ui-datepickerVerde-multi .ui-datepickerVerde-group-last .ui-datepickerVerde-header,
+.ui-datepickerVerde-multi .ui-datepickerVerde-group-middle .ui-datepickerVerde-header {
+	border-left-width: 0;
+}
+.ui-datepickerVerde-multi .ui-datepickerVerde-buttonpane {
+	clear: left;
+}
+.ui-datepickerVerde-row-break {
+	clear: both;
+	width: 100%;
+	font-size: 0;
+}
+
+/* RTL support */
+.ui-datepickerVerde-rtl {
+	direction: rtl;
+}
+.ui-datepickerVerde-rtl .ui-datepickerVerde-prev {
+	right: 2px;
+	left: auto;
+}
+.ui-datepickerVerde-rtl .ui-datepickerVerde-next {
+	left: 2px;
+	right: auto;
+}
+.ui-datepickerVerde-rtl .ui-datepickerVerde-prev:hover {
+	right: 1px;
+	left: auto;
+}
+.ui-datepickerVerde-rtl .ui-datepickerVerde-next:hover {
+	left: 1px;
+	right: auto;
+}
+.ui-datepickerVerde-rtl .ui-datepickerVerde-buttonpane {
+	clear: right;
+}
+.ui-datepickerVerde-rtl .ui-datepickerVerde-buttonpane button {
+	float: left;
+}
+.ui-datepickerVerde-rtl .ui-datepickerVerde-buttonpane button.ui-datepickerVerde-current,
+.ui-datepickerVerde-rtl .ui-datepickerVerde-group {
+	float: right;
+}
+.ui-datepickerVerde-rtl .ui-datepickerVerde-group-last .ui-datepickerVerde-header,
+.ui-datepickerVerde-rtl .ui-datepickerVerde-group-middle .ui-datepickerVerde-header {
+	border-right-width: 0;
+	border-left-width: 1px;
+}
+
+/* Icons */
+.ui-datepickerVerde .ui-iconVerde {
+	display: block;
+	text-indent: -99999px;
+	overflow: hidden;
+	background-repeat: no-repeat;
+	left: .5em;
+	top: .3em;
+}
+
+/* Component containers
+----------------------------------*/
+.ui-widgetVerde {
+	font-family: Verdana,Arial,sans-serif;
+	font-size: 1.1em;
+}
+.ui-widgetVerde .ui-widgetVerde {
+	font-size: 1em;
+}
+.ui-widgetVerde input,
+.ui-widgetVerde select,
+.ui-widgetVerde textarea,
+.ui-widgetVerde button {
+	font-family: Verdana,Arial,sans-serif;
+	font-size: 1em;
+}
+.ui-widgetVerde.ui-widgetVerde-content {
+	border: 1px solid #777777;
+}
+.ui-widgetVerde-content {
+	border: 1px solid #cccccc;
+	background: #f9f9f9 url("images_verde/ui-bg_highlight-hard_100_f9f9f9_1x100.png") 50% top repeat-x;
+	color: #1c610d;
+}
+.ui-widgetVerde-content a {
+	color: #1c610d;
+}
+.ui-widgetVerde-header {
+	border: 1px solid #a3a3a3;
+	background: #1c610d url("images_verde/ui-bg_diagonals-thick_8_1c610d_40x40.png") 50% 50% repeat;
+	color: #eeeeee;
+	font-weight: bold;
+}
+.ui-widgetVerde-header a {
+	color: #eeeeee;
+}
+
+/* Interaction states
+----------------------------------*/
+.ui-stateVerde-default,
+.ui-widgetVerde-content .ui-stateVerde-default,
+.ui-widgetVerde-header .ui-stateVerde-default,
+.ui-buttonVerde,
+
+/* We use html here because we need a greater specificity to make sure disabled
+works properly when clicked or hovered */
+html .ui-buttonVerde.ui-stateVerde-disabled:hover,
+html .ui-buttonVerde.ui-stateVerde-disabled:active {
+	border: 1px solid #777777;
+	background: #1b550f url("images_verde/ui-bg_glass_40_1b550f_1x400.png") 50% 50% repeat-x;
+	font-weight: normal;
+	color: #e3e3e3;
+}
+.ui-stateVerde-default a,
+.ui-stateVerde-default a:link,
+.ui-stateVerde-default a:visited,
+a.ui-buttonVerde,
+a:link.ui-buttonVerde,
+a:visited.ui-buttonVerde,
+.ui-buttonVerde {
+	color: #e3e3e3;
+	text-decoration: none;
+}
+.ui-stateVerde-hover,
+.ui-widgetVerde-content .ui-stateVerde-hover,
+.ui-widgetVerde-header .ui-stateVerde-hover,
+.ui-stateVerde-focus,
+.ui-widgetVerde-content .ui-stateVerde-focus,
+.ui-widgetVerde-header .ui-stateVerde-focus,
+.ui-buttonVerde:hover,
+.ui-buttonVerde:focus {
+	border: 1px solid #000000;
+	background: #1b550f url("images_verde/ui-bg_glass_55_1b550f_1x400.png") 50% 50% repeat-x;
+	font-weight: normal;
+	color: #ffffff;
+}
+.ui-stateVerde-hover a,
+.ui-stateVerde-hover a:hover,
+.ui-stateVerde-hover a:link,
+.ui-stateVerde-hover a:visited,
+.ui-stateVerde-focus a,
+.ui-stateVerde-focus a:hover,
+.ui-stateVerde-focus a:link,
+.ui-stateVerde-focus a:visited,
+a.ui-buttonVerde:hover,
+a.ui-buttonVerde:focus {
+	color: #ffffff;
+	text-decoration: none;
+}
+
+.ui-visual-focus {
+	box-shadow: 0 0 3px 1px rgb(94, 158, 214);
+}
+.ui-stateVerde-active,
+.ui-widgetVerde-content .ui-stateVerde-active,
+.ui-widgetVerde-header .ui-stateVerde-active,
+a.ui-buttonVerde:active,
+.ui-buttonVerde:active,
+.ui-buttonVerde.ui-stateVerde-active:hover {
+	border: 1px solid #cccccc;
+	background: #ffffff;
+	font-weight: normal;
+	color: #1b550f;
+}
+.ui-iconVerde-background,
+.ui-stateVerde-active .ui-iconVerde-background {
+	border: #cccccc;
+	background-color: #1b550f;
+}
+.ui-stateVerde-active a,
+.ui-stateVerde-active a:link,
+.ui-stateVerde-active a:visited {
+	color: #1b550f;
+	text-decoration: none;
+}
+
+/* Interaction Cues
+----------------------------------*/
+.ui-stateVerde-highlight,
+.ui-widgetVerde-content .ui-stateVerde-highlight,
+.ui-widgetVerde-header .ui-stateVerde-highlight {
+	border: 1px solid #ca94b9;
+	background: #cb74aa url("images_verde/ui-bg_inset-hard_55_cb74aa_1x100.png") 50% bottom repeat-x;
+	color: #f6f6f6;
+}
+.ui-stateVerde-checked {
+	border: 1px solid #ca94b9;
+	background: #cb74aa;
+}
+.ui-stateVerde-highlight a,
+.ui-widgetVerde-content .ui-stateVerde-highlight a,
+.ui-widgetVerde-header .ui-stateVerde-highlight a {
+	color: #f6f6f6;
+}
+.ui-stateVerde-error,
+.ui-widgetVerde-content .ui-stateVerde-error,
+.ui-widgetVerde-header .ui-stateVerde-error {
+	border: 1px solid #9e2a05;
+	background: #cd420a url("images_verde/ui-bg_inset-hard_45_cd420a_1x100.png") 50% bottom repeat-x;
+	color: #ffffff;
+}
+.ui-stateVerde-error a,
+.ui-widgetVerde-content .ui-stateVerde-error a,
+.ui-widgetVerde-header .ui-stateVerde-error a {
+	color: #ffffff;
+}
+.ui-stateVerde-error-text,
+.ui-widgetVerde-content .ui-stateVerde-error-text,
+.ui-widgetVerde-header .ui-stateVerde-error-text {
+	color: #ffffff;
+}
+.ui-priority-primary,
+.ui-widgetVerde-content .ui-priority-primary,
+.ui-widgetVerde-header .ui-priority-primary {
+	font-weight: bold;
+}
+.ui-priority-secondary,
+.ui-widgetVerde-content .ui-priority-secondary,
+.ui-widgetVerde-header .ui-priority-secondary {
+	opacity: .7;
+	filter:Alpha(Opacity=70); /* support: IE8 */
+	font-weight: normal;
+}
+.ui-stateVerde-disabled,
+.ui-widgetVerde-content .ui-stateVerde-disabled,
+.ui-widgetVerde-header .ui-stateVerde-disabled {
+	opacity: .35;
+	filter:Alpha(Opacity=35); /* support: IE8 */
+	background-image: none;
+}
+.ui-stateVerde-disabled .ui-iconVerde {
+	filter:Alpha(Opacity=35); /* support: IE8 - See #6059 */
+}
+
+/* Icons
+----------------------------------*/
+
+/* states and images_verde */
+.ui-iconVerde {
+	width: 16px;
+	height: 16px;
+}
+.ui-iconVerde,
+.ui-widgetVerde-content .ui-iconVerde {
+	background-image: url("images_verde/ui-iconVerdes_1c610d_256x240.png");
+}
+.ui-widgetVerde-header .ui-iconVerde {
+	background-image: url("images_verde/ui-iconVerdes_bbbbbb_256x240.png");
+}
+.ui-stateVerde-hover .ui-iconVerde,
+.ui-stateVerde-focus .ui-iconVerde,
+.ui-buttonVerde:hover .ui-iconVerde,
+.ui-buttonVerde:focus .ui-iconVerde {
+	background-image: url("images_verde/ui-iconVerdes_ffffff_256x240.png");
+}
+.ui-stateVerde-active .ui-iconVerde,
+.ui-buttonVerde:active .ui-iconVerde {
+	background-image: url("images_verde/ui-iconVerdes_1b550f_256x240.png");
+}
+.ui-stateVerde-highlight .ui-iconVerde,
+.ui-buttonVerde .ui-stateVerde-highlight.ui-iconVerde {
+	background-image: url("images_verde/ui-iconVerdes_4ca300_256x240.png");
+}
+.ui-stateVerde-error .ui-iconVerde,
+.ui-stateVerde-error-text .ui-iconVerde {
+	background-image: url("images_verde/ui-iconVerdes_3a1123_256x240.png");
+}
+.ui-buttonVerde .ui-iconVerde {
+	background-image: url("images_verde/ui-iconVerdes_ededed_256x240.png");
+}
+
+/* positioning */
+.ui-iconVerde-blank { background-position: 16px 16px; }
+.ui-iconVerde-caret-1-n { background-position: 0 0; }
+.ui-iconVerde-caret-1-ne { background-position: -16px 0; }
+.ui-iconVerde-caret-1-e { background-position: -32px 0; }
+.ui-iconVerde-caret-1-se { background-position: -48px 0; }
+.ui-iconVerde-caret-1-s { background-position: -65px 0; }
+.ui-iconVerde-caret-1-sw { background-position: -80px 0; }
+.ui-iconVerde-caret-1-w { background-position: -96px 0; }
+.ui-iconVerde-caret-1-nw { background-position: -112px 0; }
+.ui-iconVerde-caret-2-n-s { background-position: -128px 0; }
+.ui-iconVerde-caret-2-e-w { background-position: -144px 0; }
+.ui-iconVerde-triangle-1-n { background-position: 0 -16px; }
+.ui-iconVerde-triangle-1-ne { background-position: -16px -16px; }
+.ui-iconVerde-triangle-1-e { background-position: -32px -16px; }
+.ui-iconVerde-triangle-1-se { background-position: -48px -16px; }
+.ui-iconVerde-triangle-1-s { background-position: -65px -16px; }
+.ui-iconVerde-triangle-1-sw { background-position: -80px -16px; }
+.ui-iconVerde-triangle-1-w { background-position: -96px -16px; }
+.ui-iconVerde-triangle-1-nw { background-position: -112px -16px; }
+.ui-iconVerde-triangle-2-n-s { background-position: -128px -16px; }
+.ui-iconVerde-triangle-2-e-w { background-position: -144px -16px; }
+.ui-iconVerde-arrow-1-n { background-position: 0 -32px; }
+.ui-iconVerde-arrow-1-ne { background-position: -16px -32px; }
+.ui-iconVerde-arrow-1-e { background-position: -32px -32px; }
+.ui-iconVerde-arrow-1-se { background-position: -48px -32px; }
+.ui-iconVerde-arrow-1-s { background-position: -65px -32px; }
+.ui-iconVerde-arrow-1-sw { background-position: -80px -32px; }
+.ui-iconVerde-arrow-1-w { background-position: -96px -32px; }
+.ui-iconVerde-arrow-1-nw { background-position: -112px -32px; }
+.ui-iconVerde-arrow-2-n-s { background-position: -128px -32px; }
+.ui-iconVerde-arrow-2-ne-sw { background-position: -144px -32px; }
+.ui-iconVerde-arrow-2-e-w { background-position: -160px -32px; }
+.ui-iconVerde-arrow-2-se-nw { background-position: -176px -32px; }
+.ui-iconVerde-arrowstop-1-n { background-position: -192px -32px; }
+.ui-iconVerde-arrowstop-1-e { background-position: -208px -32px; }
+.ui-iconVerde-arrowstop-1-s { background-position: -224px -32px; }
+.ui-iconVerde-arrowstop-1-w { background-position: -240px -32px; }
+.ui-iconVerde-arrowthick-1-n { background-position: 1px -48px; }
+.ui-iconVerde-arrowthick-1-ne { background-position: -16px -48px; }
+.ui-iconVerde-arrowthick-1-e { background-position: -32px -48px; }
+.ui-iconVerde-arrowthick-1-se { background-position: -48px -48px; }
+.ui-iconVerde-arrowthick-1-s { background-position: -64px -48px; }
+.ui-iconVerde-arrowthick-1-sw { background-position: -80px -48px; }
+.ui-iconVerde-arrowthick-1-w { background-position: -96px -48px; }
+.ui-iconVerde-arrowthick-1-nw { background-position: -112px -48px; }
+.ui-iconVerde-arrowthick-2-n-s { background-position: -128px -48px; }
+.ui-iconVerde-arrowthick-2-ne-sw { background-position: -144px -48px; }
+.ui-iconVerde-arrowthick-2-e-w { background-position: -160px -48px; }
+.ui-iconVerde-arrowthick-2-se-nw { background-position: -176px -48px; }
+.ui-iconVerde-arrowthickstop-1-n { background-position: -192px -48px; }
+.ui-iconVerde-arrowthickstop-1-e { background-position: -208px -48px; }
+.ui-iconVerde-arrowthickstop-1-s { background-position: -224px -48px; }
+.ui-iconVerde-arrowthickstop-1-w { background-position: -240px -48px; }
+.ui-iconVerde-arrowreturnthick-1-w { background-position: 0 -64px; }
+.ui-iconVerde-arrowreturnthick-1-n { background-position: -16px -64px; }
+.ui-iconVerde-arrowreturnthick-1-e { background-position: -32px -64px; }
+.ui-iconVerde-arrowreturnthick-1-s { background-position: -48px -64px; }
+.ui-iconVerde-arrowreturn-1-w { background-position: -64px -64px; }
+.ui-iconVerde-arrowreturn-1-n { background-position: -80px -64px; }
+.ui-iconVerde-arrowreturn-1-e { background-position: -96px -64px; }
+.ui-iconVerde-arrowreturn-1-s { background-position: -112px -64px; }
+.ui-iconVerde-arrowrefresh-1-w { background-position: -128px -64px; }
+.ui-iconVerde-arrowrefresh-1-n { background-position: -144px -64px; }
+.ui-iconVerde-arrowrefresh-1-e { background-position: -160px -64px; }
+.ui-iconVerde-arrowrefresh-1-s { background-position: -176px -64px; }
+.ui-iconVerde-arrow-4 { background-position: 0 -80px; }
+.ui-iconVerde-arrow-4-diag { background-position: -16px -80px; }
+.ui-iconVerde-extlink { background-position: -32px -80px; }
+.ui-iconVerde-newwin { background-position: -48px -80px; }
+.ui-iconVerde-refresh { background-position: -64px -80px; }
+.ui-iconVerde-shuffle { background-position: -80px -80px; }
+.ui-iconVerde-transfer-e-w { background-position: -96px -80px; }
+.ui-iconVerde-transferthick-e-w { background-position: -112px -80px; }
+.ui-iconVerde-folder-collapsed { background-position: 0 -96px; }
+.ui-iconVerde-folder-open { background-position: -16px -96px; }
+.ui-iconVerde-document { background-position: -32px -96px; }
+.ui-iconVerde-document-b { background-position: -48px -96px; }
+.ui-iconVerde-note { background-position: -64px -96px; }
+.ui-iconVerde-mail-closed { background-position: -80px -96px; }
+.ui-iconVerde-mail-open { background-position: -96px -96px; }
+.ui-iconVerde-suitcase { background-position: -112px -96px; }
+.ui-iconVerde-comment { background-position: -128px -96px; }
+.ui-iconVerde-person { background-position: -144px -96px; }
+.ui-iconVerde-print { background-position: -160px -96px; }
+.ui-iconVerde-trash { background-position: -176px -96px; }
+.ui-iconVerde-locked { background-position: -192px -96px; }
+.ui-iconVerde-unlocked { background-position: -208px -96px; }
+.ui-iconVerde-bookmark { background-position: -224px -96px; }
+.ui-iconVerde-tag { background-position: -240px -96px; }
+.ui-iconVerde-home { background-position: 0 -112px; }
+.ui-iconVerde-flag { background-position: -16px -112px; }
+.ui-iconVerde-calendar { background-position: -32px -112px; }
+.ui-iconVerde-cart { background-position: -48px -112px; }
+.ui-iconVerde-pencil { background-position: -64px -112px; }
+.ui-iconVerde-clock { background-position: -80px -112px; }
+.ui-iconVerde-disk { background-position: -96px -112px; }
+.ui-iconVerde-calculator { background-position: -112px -112px; }
+.ui-iconVerde-zoomin { background-position: -128px -112px; }
+.ui-iconVerde-zoomout { background-position: -144px -112px; }
+.ui-iconVerde-search { background-position: -160px -112px; }
+.ui-iconVerde-wrench { background-position: -176px -112px; }
+.ui-iconVerde-gear { background-position: -192px -112px; }
+.ui-iconVerde-heart { background-position: -208px -112px; }
+.ui-iconVerde-star { background-position: -224px -112px; }
+.ui-iconVerde-link { background-position: -240px -112px; }
+.ui-iconVerde-cancel { background-position: 0 -128px; }
+.ui-iconVerde-plus { background-position: -16px -128px; }
+.ui-iconVerde-plusthick { background-position: -32px -128px; }
+.ui-iconVerde-minus { background-position: -48px -128px; }
+.ui-iconVerde-minusthick { background-position: -64px -128px; }
+.ui-iconVerde-close { background-position: -80px -128px; }
+.ui-iconVerde-closethick { background-position: -96px -128px; }
+.ui-iconVerde-key { background-position: -112px -128px; }
+.ui-iconVerde-lightbulb { background-position: -128px -128px; }
+.ui-iconVerde-scissors { background-position: -144px -128px; }
+.ui-iconVerde-clipboard { background-position: -160px -128px; }
+.ui-iconVerde-copy { background-position: -176px -128px; }
+.ui-iconVerde-contact { background-position: -192px -128px; }
+.ui-iconVerde-image { background-position: -208px -128px; }
+.ui-iconVerde-video { background-position: -224px -128px; }
+.ui-iconVerde-script { background-position: -240px -128px; }
+.ui-iconVerde-alert { background-position: 0 -144px; }
+.ui-iconVerde-info { background-position: -16px -144px; }
+.ui-iconVerde-notice { background-position: -32px -144px; }
+.ui-iconVerde-help { background-position: -48px -144px; }
+.ui-iconVerde-check { background-position: -64px -144px; }
+.ui-iconVerde-bullet { background-position: -80px -144px; }
+.ui-iconVerde-radio-on { background-position: -96px -144px; }
+.ui-iconVerde-radio-off { background-position: -112px -144px; }
+.ui-iconVerde-pin-w { background-position: -128px -144px; }
+.ui-iconVerde-pin-s { background-position: -144px -144px; }
+.ui-iconVerde-play { background-position: 0 -160px; }
+.ui-iconVerde-pause { background-position: -16px -160px; }
+.ui-iconVerde-seek-next { background-position: -32px -160px; }
+.ui-iconVerde-seek-prev { background-position: -48px -160px; }
+.ui-iconVerde-seek-end { background-position: -64px -160px; }
+.ui-iconVerde-seek-start { background-position: -80px -160px; }
+/* ui-iconVerde-seek-first is deprecated, use ui-iconVerde-seek-start instead */
+.ui-iconVerde-seek-first { background-position: -80px -160px; }
+.ui-iconVerde-stop { background-position: -96px -160px; }
+.ui-iconVerde-eject { background-position: -112px -160px; }
+.ui-iconVerde-volume-off { background-position: -128px -160px; }
+.ui-iconVerde-volume-on { background-position: -144px -160px; }
+.ui-iconVerde-power { background-position: 0 -176px; }
+.ui-iconVerde-signal-diag { background-position: -16px -176px; }
+.ui-iconVerde-signal { background-position: -32px -176px; }
+.ui-iconVerde-battery-0 { background-position: -48px -176px; }
+.ui-iconVerde-battery-1 { background-position: -64px -176px; }
+.ui-iconVerde-battery-2 { background-position: -80px -176px; }
+.ui-iconVerde-battery-3 { background-position: -96px -176px; }
+.ui-iconVerde-circle-plus { background-position: 0 -192px; }
+.ui-iconVerde-circle-minus { background-position: -16px -192px; }
+.ui-iconVerde-circle-close { background-position: -32px -192px; }
+.ui-iconVerde-circle-triangle-e { background-position: -48px -192px; }
+.ui-iconVerde-circle-triangle-s { background-position: -64px -192px; }
+.ui-iconVerde-circle-triangle-w { background-position: -80px -192px; }
+.ui-iconVerde-circle-triangle-n { background-position: -96px -192px; }
+.ui-iconVerde-circle-arrow-e { background-position: -112px -192px; }
+.ui-iconVerde-circle-arrow-s { background-position: -128px -192px; }
+.ui-iconVerde-circle-arrow-w { background-position: -144px -192px; }
+.ui-iconVerde-circle-arrow-n { background-position: -160px -192px; }
+.ui-iconVerde-circle-zoomin { background-position: -176px -192px; }
+.ui-iconVerde-circle-zoomout { background-position: -192px -192px; }
+.ui-iconVerde-circle-check { background-position: -208px -192px; }
+.ui-iconVerde-circlesmall-plus { background-position: 0 -208px; }
+.ui-iconVerde-circlesmall-minus { background-position: -16px -208px; }
+.ui-iconVerde-circlesmall-close { background-position: -32px -208px; }
+.ui-iconVerde-squaresmall-plus { background-position: -48px -208px; }
+.ui-iconVerde-squaresmall-minus { background-position: -64px -208px; }
+.ui-iconVerde-squaresmall-close { background-position: -80px -208px; }
+.ui-iconVerde-grip-dotted-vertical { background-position: 0 -224px; }
+.ui-iconVerde-grip-dotted-horizontal { background-position: -16px -224px; }
+.ui-iconVerde-grip-solid-vertical { background-position: -32px -224px; }
+.ui-iconVerde-grip-solid-horizontal { background-position: -48px -224px; }
+.ui-iconVerde-gripsmall-diagonal-se { background-position: -64px -224px; }
+.ui-iconVerde-grip-diagonal-se { background-position: -80px -224px; }
+
+
+/* Misc visuals
+----------------------------------*/
+
+/* Corner radius */
+.ui-cornerVerde-all,
+.ui-cornerVerde-top,
+.ui-cornerVerde-left,
+.ui-cornerVerde-tl {
+	border-top-left-radius: 4px;
+}
+.ui-cornerVerde-all,
+.ui-cornerVerde-top,
+.ui-cornerVerde-right,
+.ui-cornerVerde-tr {
+	border-top-right-radius: 4px;
+}
+.ui-cornerVerde-all,
+.ui-cornerVerde-bottom,
+.ui-cornerVerde-left,
+.ui-cornerVerde-bl {
+	border-bottom-left-radius: 4px;
+}
+.ui-cornerVerde-all,
+.ui-cornerVerde-bottom,
+.ui-cornerVerde-right,
+.ui-cornerVerde-br {
+	border-bottom-right-radius: 4px;
+}
+
+/* Overlays */
+.ui-widgetVerde-overlay {
+	background: #aaaaaa url("images_verde/ui-bg_highlight-hard_40_aaaaaa_1x100.png") 50% top repeat-x;
+	opacity: .3;
+	filter: Alpha(Opacity=30); /* support: IE8 */
+}
+.ui-widgetVerde-shadow {
+	-webkit-box-shadow: -8px -8px 8px #aaaaaa;
+	box-shadow: -8px -8px 8px #aaaaaa;
+}

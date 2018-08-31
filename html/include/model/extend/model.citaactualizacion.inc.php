@@ -59,7 +59,7 @@
 		public function obtenerCitas()
     {
         $query = "Select idActualizacion, DATE_FORMAT(fecha,'%Y-%m-%d') as fecha_, DATE_FORMAT(fecha,'%H:%i') as hora_, hora, ca.duracion, ca.tipo,
-                    concat_ws(' ', u.nombre, u.apellidos) as nombre_usuario, cab.nombre as cabina from citaactualizacion as ca
+                    concat_ws(' ', u.nombre, u.apellidos) as nombre_usuario, cab.nombre as cabina, fechaCita from citaactualizacion as ca
                     inner join cita as c on ca.idCita=c.idCita
                     inner join usuario as u on ca.idUsuario=u.idUsuario
                     inner join cabina as cab on ca.idCabina=cab.idCabina

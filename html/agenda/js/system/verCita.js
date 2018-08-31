@@ -226,9 +226,23 @@ function activarBtn(){
 		var consultorio = $("#slcConsultorio").val().trim();
 		 duracion = $("#slcDuracion").val().trim();
 		var hora=$( "#slcHr" ).val();
-		var minuto=$( "#slcMin" ).val();
-		chkbox=$('#checkRecordatorio').is(':checked');
+		var minuto=$( "#slcMin" ).val()<1?('0'+$( "#slcMin" ).val()):$( "#slcMin" ).val();
+		chkbox=$('#checkRecordatorio').is(':checked')+'';
 		var fecha = $("#txtFecha").val();
+		
+		var consultorioAn = $("#hdnCabina").val();
+		 var duracionAn = $("#hdnDuracion").val();
+		var horaAn=$( "#hdnHR" ).val();
+		var minutoAn=$( "#hdnMIN" ).val();
+		var chkboxAn=$('#hdnCheck').val(),ch=0;
+		var fechaAn = $("#hdnFecha").val();
+		if(chkbox=='true')
+			ch=1;
+//		console.log(consultorio+'=='+consultorioAn+'&&'+chkboxAn+'=='+ch+'&&'+duracion+'=='+duracionAn+'&&'+fecha+'=='+fechaAn+'&&'+minuto+'=='+minutoAn+'&&'+hora+'=='+horaAn+'   '+chkbox);
+		if(consultorio==consultorioAn&&chkboxAn==ch&&duracion==duracionAn&&fecha==fechaAn&&minuto==minutoAn&&hora==horaAn){
+			mostrarMsjError('No ha hecho ning&uacute;n cambio en la cita',5);
+			return false;
+		}
 		xajax_guardarCambios(idCita,duracion,hora,minuto,consultorio,chkbox,fecha);
 	 });
 	}

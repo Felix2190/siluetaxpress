@@ -92,7 +92,11 @@ if(isset($_SESSION['objSession'])){
     if($objSession->isSessionActive()){
     $objSession->updateTime();
     $_SESSION['objSession']=serialize($objSession);
+    }else {
+        header("Location: logout.php");
     }
+}else {
+//   header("Location: login.php");
 }
 
 

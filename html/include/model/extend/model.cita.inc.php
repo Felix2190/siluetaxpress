@@ -327,5 +327,47 @@
                 
                         return json_encode($respuesta);
     }
+    
+    public function obtenerCitasAnteriores()
+    {
+        ///$fecha=date("Y-m-d H:i:s");
+        $condicion=" ";
+        
+        if ($this->idPaciente>0)
+            $condicion.=" and c.idPaciente=$this->idPaciente";
+            else{
+                $fechaInicio = date ("Y-m-d",strtotime ( '-7 day' , strtotime ( $this->fechaFin) ) );
+                $condicion.="and fechaFin<='$this->fechaFin' ";
+            }
+            if ($this->idSucursal>0)
+                $condicion.=" and c.idSucursal=".$this->idSucursal;
+                if ($this->idUsuario)
+                    $condicion.=" and c.idUsuario=".$this->idUsuario;
+                    if ($this->idCabina>0)
+                        $condicion.=" and c.idCabina=$this->idCabina";
+                        
+                        $query = "Select idCita, DATE_FORMAT(fechaInicio,'%Y-%m-%d') as fecha, DATE_FORMAT(fechaInicio,'%H:%i') as hora, duracion,
+                    concat_ws(' ', p.nombre, p.apellidos) as nombre_paciente, DATE_FORMAT(fechaFin,'%H:%i') as horaFin, e.descripcion,
+                    tipoConsulta, sucursal, ser.nombre as servicio, ca.nombre as cabina, c.idUsuario from cita as c
+                    inner join usuario as u on c.idUsuario=u.idUsuario
+                    inner join paciente as p on c.idPaciente=p.idPaciente
+                    inner join sucursal as s on c.idSucursal=s.idSucursal
+                    inner join consulta as co on c.idConsulta=co.idConsulta
+                    inner join servicio as ser on c.idServicio=ser.idServicio
+                    inner join cabina as ca on c.idCabina=ca.idCabina
+                    inner join estatuscita as e on c.estatus=e.estatusCita
+                    where (c.estatus<>'nueva' or c.estatus<>'curso') and fechaInicio>='$fechaInicio'  $condicion order by fechaInicio desc,c.idCabina";
+                        
+                        $respuesta = array();
+                        $count=1;
+                        $resultado = mysqli_query($this->dbLink, $query);
+                        if ($resultado && mysqli_num_rows($resultado) > 0) {
+                            while ($row_inf = mysqli_fetch_assoc($resultado)){
+                                $respuesta[$row_inf['fecha']][$count] = $row_inf;
+                                $count++;
+                            }
+                        }
+                        return $respuesta;
+    }
 }
 

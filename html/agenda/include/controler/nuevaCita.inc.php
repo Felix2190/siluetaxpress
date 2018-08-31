@@ -155,6 +155,7 @@ function guardarCita($paciente,$sucursal,$idCabina,$consulta,$duracion,$fecha,$h
     $citaactualizacion->setDuracion($duracion);
     $citaactualizacion->setIdUsuario($objSession->getidUsuario());
     $citaactualizacion->setIdCita($cita->getIdCita());
+    $citaactualizacion->setFechaCita($fecha);
     
     $citaactualizacion->Guardar();
     if ($citaactualizacion->getError()){

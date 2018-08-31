@@ -9,13 +9,15 @@ function iniciar(){
 	listarCitas($( "#hdnFechaActual" ).val());
 	actualizaHorarios();
 	
-	$('.datepicker').datepicker({
-		dateFormat : 'yy-mm-dd',
+	$.datepicker.setDefaults($.datepicker.regional['es-MX']);;
+	$('#txtFecha').datepicker({
+		yearRange: 'c-100:c',
 		changeMonth : true,
 		changeYear : true,
-		minDate : '0D'
+		minDate : '-120Y',
+		maxDate : '0D'
 	});
-	
+
 	
 		 $( "#slcSucursal" ).change(mostrarCabinas);
 		 
@@ -40,8 +42,8 @@ function iniciar(){
 			 listarCitas($( "#hdnFechaActual" ).val());
 		 });
 		
-		 $( "#btnSig" ).click(function(){
-			 listarCitas($( "#hdnFechaFin" ).val());
+		 $( "#btnAnt" ).click(function(){
+			 listarCitas($( "#hdnFechaAnterior" ).val());
 		 });
 		 
 		 $( "#txtFecha" ).change(function(){
@@ -95,11 +97,11 @@ function listarCitas(fechaI){
 			method : "post",
 			url : "adminFunciones.php",
 			data : {
-				sucursal:nsucursal,
-				paciente:$( "#hdnPaciente" ).val(),
-				usuario:$( "#hdnUsuario" ).val(),
-				cabina:idCabina,
-				fechaInicio:fechaI
+				sucursalAn:nsucursal,
+				pacienteAn:$( "#hdnPaciente" ).val(),
+				usuarioAn:$( "#hdnUsuario" ).val(),
+				cabinaAn:idCabina,
+				fechaInicioAn:fechaI
 			},
 			success : function(data) {
 				respuesta=JSON.parse(data);
@@ -136,12 +138,12 @@ function verDetalles(id){
 	$( "#c"+id ).show();
 	$( "#l"+id ).hide();
 }
-function colocaFechas(fechaF,fechaA,fechaI){
-	$( "#hdnFechaFin" ).val(fechaF);
-	$( "#hdnFechaActual" ).val(fechaA);
-	$( "#hdnFechaInicio" ).val(fechaI);
-	 $( "#btnAnt" ).click(function(){
-		 listarCitas(fechaI);
+function colocaFechas(fechaAnt,fechaActual,fechaSig){
+	$( "#hdnFechaAnterior" ).val(fechaAnt);
+	$( "#hdnFechaActual" ).val(fechaActual);
+	$( "#hdnFechaSiguiente" ).val(fechaSig);
+	 $( "#btnSig" ).click(function(){
+		 listarCitas(fechaSig);
 	 });
 
 }
