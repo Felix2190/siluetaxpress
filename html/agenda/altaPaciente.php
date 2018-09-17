@@ -336,7 +336,7 @@ require_once 'masterInclude.inc.php';
 									<label>&iquest;Cu&aacute;ntas comidas realiza al d&iacute;a?</label>
 								</div>
 								<div class="2u 12u$(xsmall)">
-									<input type="text" id="txtComidas" class="numeric" maxlength="2" />
+									<input type="text" id="txtComida" class="numeric" maxlength="2" />
 								</div>
 							</div>
 							

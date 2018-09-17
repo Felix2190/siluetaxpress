@@ -1903,7 +1903,7 @@ $.extend( DatepickerLila.prototype, {
 		inst._keyEvent = false;
 		return html;
 	},
-
+/// " + printDate.getDate() + "
 	/* Generate the month and year header. */
 	_generateMonthYearHeader: function( inst, drawMonth, drawYear, minDate, maxDate,
 			secondary, monthNames, monthNamesShort ) {

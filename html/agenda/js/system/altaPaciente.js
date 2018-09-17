@@ -167,7 +167,7 @@ function altaPaciente(){
 	var existeError2 = false,existeError = false;
 	var datos={},paciente={},hoja={};
 	var faltan=0;
-    
+
 	 paciente['Nombre']= $("#txtNombre").val().trim();
 	if (paciente['Nombre'] == "") {
 		existeError = true;
@@ -321,7 +321,7 @@ function altaPaciente(){
 		console.log("Error: hrsDormir");
 	}
 	
-	hoja['hrsComida']= $("#txtComida").val().trim();
+	hoja['hrsComida']= $("#txtComida").val();
 	if (hoja['hrsComida'] == "") {
 		faltan++;
 		existeError2 = true;

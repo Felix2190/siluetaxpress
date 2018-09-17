@@ -77,15 +77,17 @@ if (isset($_GET['idPaciente']) && isset($_GET['firma'])) {
     $pdf->PaginaUno($responsable,$sucursal->getSucursal(),utf8_decode($sucursal->getDireccion()),$objSession->getAbrev());
     
     $pdf->SetFillColor(255,255,255);/// color blanco celda
-    $pdf->Cell(180,8,' ','B',0,'L',0);
+    $pdf->Cell(190,8,' ','B',0,'L',0);
     $pdf->Ln(2);
     $pdf->SetFont('Arial','',12);
-    $pdf->Cell(22,8,' Nombre: ',0,0,'L',1);
-    $pdf->Cell(90,8,utf8_decode($paciente->getNombre(). ' '.$paciente->getApellidos()),0,0,'L');
-    $pdf->Cell(15,8,' Edad: ',0,0,'L',1);
-    $pdf->Cell(15,8,$paciente->getEdad(),0,0,'C',0);
-    $pdf->Cell(15,8,' Sexo:',0,0,'L',1);
-    $pdf->Cell(25,8,$paciente->getSexo(),0,0,'C',0);
+    $pdf->Cell(20,8,' Nombre: ',0,0,'L',1);
+    $pdf->Cell(85,8,utf8_decode($paciente->getNombre(). ' '.$paciente->getApellidos()),0,0,'L');
+    $pdf->Cell(13,8,' Edad: ',0,0,'L',1);
+    $pdf->Cell(8,8,$paciente->getEdad(),0,0,'C',0);
+    $pdf->Cell(14,8,' Sexo:',0,0,'L',1);
+    $pdf->Cell(20,8,$paciente->getSexo(),0,0,'C',0);
+    $pdf->Cell(10,8,' Cel:',0,0,'L',1);
+    $pdf->Cell(25,8,$paciente->getTelefonoCel(),0,0,'C',0);
     
     $pdf->Ln(12);
     
@@ -174,6 +176,13 @@ if (isset($_GET['idPaciente']) && isset($_GET['firma'])) {
         $pdf->Ln(10);
     }
     
+    if ($hojaClinica->getDesagradables()!=""){
+        $pdf->SetFont('Arial','U',11);
+        $pdf->Cell(50,5,' Alimentos desagradables: ',0,0,'L');
+        $pdf->SetFont('Arial','',11);
+        $pdf->MultiCell(125,6,utf8_decode($hojaClinica->getDesagradables()),0,'J',0);
+        $pdf->Ln(5);
+    }
     
     if ($hojaClinica->getCafe()!="sinrespuesta"){
         $pdf->SetFont('Arial','U',11);
@@ -186,15 +195,14 @@ if (isset($_GET['idPaciente']) && isset($_GET['firma'])) {
             $pdf->SetFont('Arial','U',11);
             $pdf->Cell(25,5,'Frecuencia: ',0,0,'L');
             $pdf->SetFont('Arial','',11);
-            $pdf->Cell(55,6,$arrOpciones[$hojaClinica->getCafeFrecuencia()],0,0,'L',0);
+            $pdf->Cell(40,6,$arrOpciones[$hojaClinica->getCafeFrecuencia()],0,0,'L',0);
             
         }
-        $pdf->Ln(10);
     }
     
     if ($hojaClinica->getFuma()!="sinrespuesta"){
         $pdf->SetFont('Arial','U',11);
-        $pdf->Cell(25,5,' Fuma: ',0,0,'L');
+        $pdf->Cell(15,5,' Fuma: ',0,0,'L');
         
         $pdf->SetFont('Arial','',11);
         $pdf->Cell(15,5,$hojaClinica->getFuma(),0,0,'L',0);
@@ -203,9 +211,12 @@ if (isset($_GET['idPaciente']) && isset($_GET['firma'])) {
             $pdf->SetFont('Arial','U',11);
             $pdf->Cell(25,5,'Frecuencia: ',0,0,'L');
             $pdf->SetFont('Arial','',11);
-            $pdf->Cell(55,6,$arrOpciones[$hojaClinica->getFumaFrecuencia()],0,0,'L',0);
+            $pdf->Cell(30,6,$arrOpciones[$hojaClinica->getFumaFrecuencia()],0,0,'L',0);
             
         }
+    }
+    
+    if ($hojaClinica->getCafe()!="sinrespuesta"||$hojaClinica->getFuma()!="sinrespuesta"){
         $pdf->Ln(10);
     }
     
