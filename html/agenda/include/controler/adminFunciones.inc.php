@@ -206,7 +206,7 @@ if (isset($_POST['SucursalIndex'])&&isset($_POST['usuarioIndex'])&&isset($_POST[
 }
 
 if (isset($_POST['sucursalP'])&&isset($_POST['cabinaP'])&&isset($_POST['fechaRegistroP'])&&isset($_POST['servicioP'])&&isset($_POST['consultaP'])
-    &&isset($_POST['nombreP'])&&isset($_POST['edadP'])&&isset($_POST['sexoP'])&&isset($_POST['citaP'])&&isset($_POST['telP'])&&isset($_POST['apellidosP'])){
+    &&isset($_POST['nombreP'])&&isset($_POST['edadP'])&&isset($_POST['sexoP'])&&isset($_POST['citaP'])&&isset($_POST['telP'])&&isset($_POST['apellidosP'])&&isset($_POST['estatusP'])){
     
     require_once CLASS_CONEXION;
     $condicion=$inner="";
@@ -231,7 +231,10 @@ if (isset($_POST['sucursalP'])&&isset($_POST['cabinaP'])&&isset($_POST['fechaReg
                             if($_POST['sucursalP']!="")
                                 $condicion.=" and p.idSucursal = ".$_POST['sucursalP'];
                             
-                            
+                                
+                                if($_POST['estatusP']!="")
+                                    $condicion.=" and p.estatus='".$_POST['estatusP']."' ";
+                                    
                             if($_POST['citaP']=="si"){
                                 $inner.=" inner join cita as c on p.idPaciente=c.idPaciente ";
                                     if($_POST['consultaP']!="")
@@ -405,6 +408,21 @@ if (isset($_POST['sucursalAn'])&&isset($_POST['pacienteAn'])&&isset($_POST['usua
                 
                 $cita->setFechaFin($_POST['fechaInicioAn']);
                 echo json_encode($cita->obtenerCitasAnteriores());
+}
+
+if (isset($_POST['eliminarPaciente'])){
+            require_once FOLDER_MODEL_EXTEND. "model.paciente.inc.php";
+            $paciente = new ModeloPaciente();
+            $paciente->setIdPaciente($_POST['eliminarPaciente']);
+            $paciente->setEstatusSuspendido();
+            $paciente->Guardar();
+            if ($paciente->getError()){
+                echo json_encode(array('false',$paciente->getStrError()));
+            }else {
+                echo json_encode(array('true'));
+            }
+            
+        
 }
 
 

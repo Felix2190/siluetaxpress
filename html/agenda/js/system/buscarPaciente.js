@@ -106,8 +106,9 @@ function buscarPaciente(){
 	var consultorio = $("#slcConsultorio").val().trim();
 	var servicio = $("#txtServicio").val();
 	var cita='si';
+	var estatus= $("#slcEstatus").val().trim();
 	
-	if ( sucursal == "" && consulta =="" && consultorio =="" && servicio=="") 
+	if ( consulta =="" && consultorio =="" && servicio=="") 
 		cita = 'no';
 		
 		$.ajax({
@@ -124,7 +125,8 @@ function buscarPaciente(){
 				edadP:edad,
 				telP: telefono,
 				sexoP:sexo,
-				citaP:cita
+				citaP:cita,
+				estatusP:estatus
 			},
 			success : function(data) {
 				respuesta=JSON.parse(data);

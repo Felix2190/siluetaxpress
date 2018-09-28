@@ -68,7 +68,7 @@
 		        $inner=" inner join sucursal as s on p.idSucursal=s.idSucursal ";
 		        
 		    //}
-		    $query = "Select p.idPaciente, concat_ws(' ', p.nombre, p.apellidos$concat) as nombreP from paciente as p $inner where $where";
+		    $query = "Select p.idPaciente, concat_ws(' ', p.nombre, p.apellidos$concat) as nombreP from paciente as p $inner where $where and estatus='activo'";
 		    $arreglo = array();
 		    $resultado = mysqli_query($this->dbLink, $query);
 		    if ($resultado && mysqli_num_rows($resultado) > 0) {
@@ -94,12 +94,12 @@
 		    $query = "Select p.idPaciente, concat_ws(' ', p.nombre, p.apellidos) as nombreP, telefonoCel, sucursal, completitud, 
                     DATE_FORMAT(p.fechaRegistro,'%Y-%m-%d') as fecha, 
                     (select count(*) from cita where idPaciente=p.idPaciente and estatus='realizada') as consultasHechas, 
-                    (select count(*) from cita where idPaciente=p.idPaciente and estatus='nueva') as consultasProximas,
+                    (select count(*) from cita where idPaciente=p.idPaciente and (estatus='nueva' or estatus='curso')) as consultasProximas,
                     (select DATE_FORMAT(fechaInicio,'%Y-%m-%d') from cita where idPaciente=p.idPaciente and estatus='nueva' order by fechaInicio limit 1) as fechaProxima ,
                      (select idCita from cita where idPaciente=p.idPaciente and estatus='nueva' order by fechaInicio limit 1) as cita 
                     from paciente as p 
 		             inner join sucursal as s on p.idSucursal=s.idSucursal
-                       inner join hojaclinica as h on p.idHojaClinica=h.idHojaClinica where $where";
+                       inner join hojaclinica as h on p.idHojaClinica=h.idHojaClinica where $where  and p.estatus='activo'";
 		    $arreglo = array();
 		    $resultado = mysqli_query($this->dbLink, $query);
 		    if ($resultado && mysqli_num_rows($resultado) > 0) {

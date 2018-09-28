@@ -81,12 +81,24 @@ require_once 'masterInclude.inc.php';
 							<input type="text" id="txtEdad" class="numeric" maxlength="2" />
 						</div>
 
-						<div class="2u 12u$(xsmall)">
+						<div class="1u 12u$(xsmall)">
 							<label>Tel&eacute;fono (m&oacute;vil):</label>
 						</div>
-						<div class="3u 12u$(xsmall)">
+						<div class="2u 12u$(xsmall)">
 							<input type="text" id="txtTelMovil" class="numeric"
 								maxlength="10" />
+						</div>
+						
+						<div class="1u 12u$(xsmall)">
+							<label>Estatus:</label>
+						</div>
+						<div class="2u 12u$(xsmall)">
+							<div class="select-wrapper">
+								<select name="demo-category" id="slcEstatus">
+								<option value="activo">Activo</option>
+								<option value="suspendido">Eliminado</option>
+								</select>
+							</div>
 						</div>
 						
 				</div>

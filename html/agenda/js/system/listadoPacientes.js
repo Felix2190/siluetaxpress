@@ -52,6 +52,52 @@ function editarPaciente(id){
 function verCita(id){
 	xajax_verCita(id);
 }
+
+
+function eliminarPaciente(id){
+	//alert(idCita);
+	confirmacion("Elimina a paciente", "Escribe su contrase&ntilde;a para continuar", id);
+}
+
+function mostrarCitas(idCita){
+	xajax_mostrarCitas(idCita);
+}
+
+function confirmacion(titulo, texto, id, divAlerta){
+    alertify.prompt( titulo, texto, ''
+    , function(evt,password) {
+    	if(password=='789'){
+    	 $.ajax({
+				method : "post",
+				url : "adminFunciones.php",
+				data : {
+					eliminarPaciente:id
+				},
+				success : function(data) {
+					respuesta=JSON.parse(data);
+					if(respuesta[0]=='true'){
+						mostrarMsjExito('Se ha eliminado correctamente al paciente!!',3);
+						setTimeout(function() {
+							listarPacientes(); 
+						},2000);
+						
+					}else{
+						mostrarMsjError('Ocurri&oacute; un error!! <br />'+respuesta[1]+', int&eacute;ntelo mas tarde',5);
+					}
+				}
+			});
+    	}else{
+			//el password es incorrecto
+			mostrarMsjError('La contrase&ntilde;a es incorrecta!. ',2);
+		}
+
+    }
+    , function() { 
+    }).set('modal', true).set('closable',false);
+
+}
+
+
 	//$("#").();
 //var alert = alertify.alert('Titulo','TextoAlerta').set('label', 'Aceptar');     	 
 //alert.set({transition:'zoom'}); //slide, zoom, flipx, flipy, fade, pulse (default)
