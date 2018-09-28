@@ -68,7 +68,7 @@
 		        $inner=" inner join sucursal as s on p.idSucursal=s.idSucursal ";
 		        
 		    //}
-		    $query = "Select p.idPaciente, concat_ws(' ', p.nombre, p.apellidos$concat) as nombreP from paciente as p $inner where $where and estatus='activo'";
+		    $query = "Select p.idPaciente, concat_ws(' ', p.nombre, p.apellidos$concat) as nombreP from paciente as p $inner where $where and p.estatus='activo'";
 		    $arreglo = array();
 		    $resultado = mysqli_query($this->dbLink, $query);
 		    if ($resultado && mysqli_num_rows($resultado) > 0) {
