@@ -34,7 +34,8 @@ $(document).ready(function(){
    
 
 	setTimeout(function() { 
-		window.location="index.php";
-		},200000);
+		if(window.location!="nuevaCita.php"&&window.location!="altaPaciente.php")
+			window.location=window.location;
+		},300000);
 	
 });
