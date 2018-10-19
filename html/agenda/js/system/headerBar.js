@@ -32,4 +32,9 @@ $(document).ready(function(){
 		inline: true
 	});
    
+
+	setTimeout(function() { 
+		window.location="index.php";
+		},200000);
+	
 });
