@@ -61,5 +61,11 @@ $arrSucursal=$sucursal->obtenerSucurales();
 $txtSucursal='<option value="">Selecciona una opci&oacute;n</option>';
 foreach ($arrSucursal as $key => $opcion)
     $txtSucursal.='<option value="'.$key.'">'.$opcion.'</option>';
-    
+ 
+$URL="agenda/";
+if (isset($_SESSION['url']))    
+    $URL.=$_SESSION['url'];
+else 
+    $URL.="index.php";
+echo $_SESSION['url'];
 ?>

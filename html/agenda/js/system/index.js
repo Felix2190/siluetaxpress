@@ -60,8 +60,15 @@ function iniciar(){
 				respuesta=JSON.parse(data);
 				if(respuesta[0]==true){
 					var credito=parseInt(respuesta[1])
-					if(0>credito<400)
+					if(700>credito&&credito<900)
+						mostrarMsjEspera("Restan "+respuesta[1]+" de saldo para el env&iacute;o de confirmaci&oacute;n de citas. Comun&iacute;cate con Lezlie.",6);
+					if(500>credito&&credito<700)
+						mostrarMsjEspera("Restan "+respuesta[1]+" de saldo para el env&iacute;o de confirmaci&oacute;n de citas. Comun&iacute;cate con Lezlie.",8);
+					if(400>credito&&credito<500)
+						mostrarMsjError("Restan "+respuesta[1]+" de saldo para el env&iacute;o de confirmaci&oacute;n de citas. Comun&iacute;cate con Lezlie.",10);
+					if(0>credito&&credito<400)
 						mostrarMsjError("Restan "+respuesta[1]+" de saldo para el env&iacute;o de confirmaci&oacute;n de citas. Comun&iacute;cate con Lezlie.",15);
+				
 				}
 			}
 		});

@@ -24,6 +24,7 @@ require_once 'masterInclude.inc.php';
 					<header id="header">
 					<a id="logo"> SiluetaExpress</a>
 					<nav id="nav">
+					<input type="hidden" value="<?php echo $URL;?>" id="hdnURL"/>
 					<?php if (!$sesion){?>
 					<a>Iniciar sesi&oacute;n </a>
 						<?php }else{

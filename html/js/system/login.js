@@ -42,7 +42,7 @@ var existeError = false;
 }
 function irAgenda(){
 	setTimeout(function(){
-		window.location="agenda/index.php";
+		window.location=$("#hdnURL").val();
 	},2500);
 
 }

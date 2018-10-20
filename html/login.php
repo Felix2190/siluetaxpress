@@ -23,6 +23,7 @@ require_once 'masterInclude.inc.php';
 					<div class="12u">
 					<header id="header">
 					<img src="images/logo_siluetaExpress.png" alt=""  style="width: 16%; margin-top: -10px"/>
+					<input type="hidden" value="<?php echo $URL;?>" id="hdnURL"/>
 					<nav id="nav">
 					<?php if (!$sesion){?>
 					<a>Iniciar sesi&oacute;n </a>

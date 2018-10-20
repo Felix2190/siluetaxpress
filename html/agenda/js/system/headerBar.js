@@ -34,8 +34,33 @@ $(document).ready(function(){
    
 
 	setTimeout(function() { 
-		if(window.location!="nuevaCita.php"&&window.location!="altaPaciente.php")
-			window.location=window.location;
-		},300000);
+		if(window.location!="nuevaCita.php"&&window.location!="altaPaciente.php"){
+			var url=window.location.href;
+			
+			url=url.split("/");
+//			alert(url[url.length-1]);
+			$.ajax({
+				method : "post",
+				url : "redireccionar.php",
+				data : {
+					url:url[url.length-1]
+				},
+				success : function(data) {
+	//				alert(data);
+					window.location="redireccionar.php";
+				}
+			});
+
+		}
+			//window.location=window.location;
+		},306000);
+	
+	setTimeout(function() {
+		mostrarMsjEspera("En un minuto, esta p&aacute;gina se actualizar&aacute;...",12);	
+	},200000);
+	
+	
+	setTimeout(function() { mostrarMsjEspera("En breve, esta p&aacute;gina se actualizar&aacute;...",15);
+	},280600);
 	
 });
