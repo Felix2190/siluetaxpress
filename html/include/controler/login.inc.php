@@ -67,5 +67,5 @@ if (isset($_SESSION['url']))
     $URL.=$_SESSION['url'];
 else 
     $URL.="index.php";
-echo $_SESSION['url'];
+//echo $_SESSION['url'];
 ?>

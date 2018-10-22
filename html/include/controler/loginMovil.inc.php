@@ -68,6 +68,6 @@ foreach ($arrSucursal as $key => $opcion)
         $URL.=$_SESSION['url'];
     else
         $URL.="index.php";
-     echo $_SESSION['url'];
+//     echo $_SESSION['url'];
             
 ?>

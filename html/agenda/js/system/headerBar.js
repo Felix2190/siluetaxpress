@@ -1,5 +1,5 @@
 $(document).ready(function(){
-
+	var url=window.location.href;
 
 	$.ajax({
 		method : "post",
@@ -33,34 +33,43 @@ $(document).ready(function(){
 	});
    
 
-	setTimeout(function() { 
-		if(window.location!="nuevaCita.php"&&window.location!="altaPaciente.php"){
-			var url=window.location.href;
-			
-			url=url.split("/");
+	setTimeout(function() {
+	 url=url.split("/");
+		url=url[url.length-1];
+		
+		if(url!="nuevaCita.php"&&url!="altaPaciente.php"){
 //			alert(url[url.length-1]);
 			$.ajax({
 				method : "post",
 				url : "redireccionar.php",
 				data : {
-					url:url[url.length-1]
+					url:url
 				},
 				success : function(data) {
-	//				alert(data);
+					console.log(data);
 					window.location="redireccionar.php";
 				}
 			});
 
 		}
 			//window.location=window.location;
-		},306000);
+		},303000);
 	
 	setTimeout(function() {
-		mostrarMsjEspera("En un minuto, esta p&aacute;gina se actualizar&aacute;...",12);	
+		url=url.split("/");
+		url=url[url.length-1];
+		
+		if(url!="nuevaCita.php"&&url!="altaPaciente.php")	
+			mostrarMsjEspera("En un minuto, esta p&aacute;gina se actualizar&aacute;...",12);	
 	},200000);
 	
 	
-	setTimeout(function() { mostrarMsjEspera("En breve, esta p&aacute;gina se actualizar&aacute;...",15);
-	},280600);
+	setTimeout(function() {
+		url=url.split("/");
+		url=url[url.length-1];
+		
+		if(url!="nuevaCita.php"&&url!="altaPaciente.php")
+			mostrarMsjEspera("En breve, esta p&aacute;gina se actualizar&aacute;...",15);
+	},290600);
 	
 });

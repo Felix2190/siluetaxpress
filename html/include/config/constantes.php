@@ -183,4 +183,10 @@ if (isset($xajax))
         $_JAVASCRIPT_CSS_AGENDA .= '<script type="text/javascript" src="' . URL_JAVASCRIPT . $__FILE_NAME__ . '.js"></script>';
 break;
 }
+
+//ini_set('max_execution_time', 5000);
+//ini_set('max_input_time', 5000);
+//ini_set('memory_limit',500M);
+
+
 ?>

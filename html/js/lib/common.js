@@ -413,7 +413,29 @@
 	
 	var errorRespuestaXajax=function()
 	{
-		mostrarError("Estamos experimentando problemas t&eacute;cnicos, intenta tu consulta m&aacute;s tarde.");
+		mostrarMsjError("Estamos experimentando problemas t&eacute;cnicos",10);
+		/*
+		window.location="redireccionar.php";
+		
+		if(window.location!="nuevaCita.php"&&window.location!="altaPaciente.php"){
+			var url=window.location.href;
+			
+			url=url.split("/");
+//			alert(url[url.length-1]);
+			$.ajax({
+				method : "post",
+				url : "redireccionar.php",
+				data : {
+					url:url[url.length-1]
+				},
+				success : function(data) {
+					console.log(data);
+	//				window.location="redireccionar.php";
+				}
+			});
+
+		}
+		*/
 	}
 	
 	
@@ -423,7 +445,7 @@
 		return;
 		//setInterval(xajax_revisarPendientes,600000);
 	};
-	
+	 
 	function isNumber(n) {
 		return !isNaN(parseFloat(n)) && isFinite(n);
 	}
