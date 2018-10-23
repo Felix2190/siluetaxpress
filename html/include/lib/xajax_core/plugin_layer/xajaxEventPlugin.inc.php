@@ -226,4 +226,5 @@ class xajaxEventPlugin extends xajaxRequestPlugin
 }
 
 $objPluginManager = xajaxPluginManager::getInstance();
-$objPluginManager->registerPlugin(new xajaxEventPlugin(), 103);
+$xajaxEvent = new xajaxEventPlugin();
+$objPluginManager->registerPlugin($xajaxEvent, 103);

@@ -138,7 +138,7 @@ if (isset($_POST['sucursalB'])&&isset($_POST['pacienteB'])&&isset($_POST['estatu
 }
 
 if (isset($_POST['estatusCita'])){
-    require_once FOLDER_MODEL_EXTEND. "model.estatusCita.inc.php";
+    require_once FOLDER_MODEL_EXTEND. "model.estatuscita.inc.php";
     $estatus = new ModeloEstatuscita();
   echo json_encode(obtenCombo($estatus->obtenerEstatus(),'Seleccione una opci&oacute;n'));
 }

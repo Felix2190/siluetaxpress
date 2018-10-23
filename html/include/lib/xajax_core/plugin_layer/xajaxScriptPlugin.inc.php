@@ -263,4 +263,5 @@ class xajaxScriptPlugin extends xajaxRequestPlugin
 	Register the plugin with the xajax plugin manager.
 */
 $objPluginManager =xajaxPluginManager::getInstance();
-$objPluginManager->registerPlugin(new xajaxScriptPlugin(), 9999);
+$xajaxScript = new xajaxScriptPlugin();
+$objPluginManager->registerPlugin($xajaxScript, 9999);

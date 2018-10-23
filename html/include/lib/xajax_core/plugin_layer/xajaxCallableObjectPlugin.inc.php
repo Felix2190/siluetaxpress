@@ -216,4 +216,5 @@ class xajaxCallableObjectPlugin extends xajaxRequestPlugin
 }
 
 $objPluginManager = xajaxPluginManager::getInstance();
-$objPluginManager->registerPlugin(new xajaxCallableObjectPlugin(), 102);
+$xajaxCallable = new xajaxCallableObjectPlugin();
+$objPluginManager->registerPlugin($xajaxCallable, 102);
