@@ -103,7 +103,7 @@ function actualizaHorarios(){
 			}else{
 				presionado=false;
 			}
-			},4500)
+			},5600)
 		},2000);
 }
 

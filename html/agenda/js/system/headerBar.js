@@ -53,7 +53,7 @@ $(document).ready(function(){
 
 		}
 			//window.location=window.location;
-		},303000);
+		},300000);
 	
 	setTimeout(function() {
 		url=url.split("/");
@@ -65,11 +65,17 @@ $(document).ready(function(){
 	
 	
 	setTimeout(function() {
-		url=url.split("/");
-		url=url[url.length-1];
+		setInterval(function(){
+				url=url.split("/");
+				url=url[url.length-1];
 		
-		if(url!="nuevaCita.php"&&url!="altaPaciente.php")
-			mostrarMsjEspera("En breve, esta p&aacute;gina se actualizar&aacute;...",15);
+				if(url!="nuevaCita.php"&&url!="altaPaciente.php"){
+					mostrarMsjEspera("En breve, esta p&aacute;gina se actualizar&aacute;...",12);
+					setTimeout(function() {
+						window.location="redireccionar.php";
+					},30000);
+				}
+		},35000);
 	},290600);
 	
 });

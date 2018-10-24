@@ -7,7 +7,20 @@ class clsSession
 
 	private $user_name;
 	private $email;
-
+	private $userName;
+	private $idRol;
+	private $nombre;
+	private $idSucursal;
+	private $idUsuario;
+	private $apellidos;
+	private $correo;
+	private $sucursal;
+	private $tipoUsuario;
+	private $lugar;
+	private $abrev;
+	
+	
+	
 	public $_lastTime;
 	public $_lastTimeSoporte;
 

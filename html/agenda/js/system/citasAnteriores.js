@@ -159,7 +159,7 @@ function actualizaHorarios(){
 			}else{
 				presionado=false;
 			}
-			},4500)
+			},5700)
 		},2000);
 }
 

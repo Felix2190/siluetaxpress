@@ -95,7 +95,7 @@ function iniciar(){
 		setInterval(function() 
 				{ 
 			actualizaResumen();
-			},4500)
+			},6200)
 		},2000);
 
 	actualizaResumen();
