@@ -198,7 +198,6 @@ function iniciar(){
 		window.location="nuevaCita.php";
 		},600000);
 
-	
 }
 var arrFechas=[];
 
@@ -437,6 +436,27 @@ function limpiarDatos(){
 	$("#btnGuardar").show();
 }
 
+function consultarBloqueo(){
+	$.ajax({
+		method : "post",
+		url : "adminFunciones.php",
+		data : {
+			consultaBloqueo:$("#slcPaciente").val()
+		},
+		success : function(data) {
+			respuesta=JSON.parse(data);
+			if(respuesta[0]==true){
+				 mostrarMsjError('Este paciente ha sido bloqueado por '+respuesta[1],5);
+				 $("#btnGuardar").hide();
+			}else{
+				$("#btnGuardar").show();
+			}
+		}
+	});
+	
+	
+}
+
 function iniciarAutoacomplete(){
 	$.widget( "custom.combobox", {
 	      _create: function() {
@@ -533,6 +553,7 @@ function iniciarAutoacomplete(){
 	 
 	        // Selected an item, nothing to do
 	        if ( ui.item ) {
+	        	consultarBloqueo();
 	          return;
 	        }
 	 

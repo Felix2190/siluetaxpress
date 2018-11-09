@@ -425,8 +425,36 @@ if (isset($_POST['eliminarPaciente'])){
             }else {
                 echo json_encode(array('true'));
             }
-            
-        
+}
+
+if (isset($_POST['bloqueos'])){
+    require_once FOLDER_MODEL_EXTEND. "model.paciente.inc.php";
+    $pacientes = new ModeloPaciente();
+    echo json_encode(obtenCombo($pacientes->PacientesBloqueo(false),'Seleccione una opci&oacute;n'));
+}
+
+if (isset($_POST['listaBloqueos'])){
+    require_once FOLDER_MODEL_EXTEND. "model.bloqueos.inc.php";
+    $bloqueos = new ModeloBloqueos();
+    echo json_encode($bloqueos->listaBloqueos());
+}
+
+if (isset($_POST['idBloqueo'])){
+    require_once FOLDER_MODEL_EXTEND. "model.bloqueos.inc.php";
+    $bloqueos = new ModeloBloqueos();
+    $bloqueos->setIdBloqueo($_POST['idBloqueo']);
+    $bloqueos->Borrar();
+    if ($bloqueos->getError())
+        echo json_encode(array('false',$bloqueos->getStrError()));
+    else 
+        echo json_encode(array('true'));
+}
+
+if (isset($_POST['consultaBloqueo'])){
+    require_once FOLDER_MODEL_EXTEND. "model.bloqueos.inc.php";
+    $bloqueos = new ModeloBloqueos();
+    $bloqueos->setIdPaciente($_POST['consultaBloqueo']);
+    echo json_encode($bloqueos->buscarPaciente());
 }
 
 

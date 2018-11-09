@@ -48,6 +48,7 @@
 						<li><a class="<?php if($subseccion=="listadoPacientes") echo "active";?>" href="listadoPacientes.php">Listado</a></li>
 						<li><a class="<?php if($subseccion=="altaPaciente") echo "active";?>" href="altaPaciente.php">Agregar nuevo</a></li>
 						<li><a class="<?php if($subseccion=="buscarPaciente") echo "active";?>" href="buscarPaciente.php">B&uacute;squeda</a></li>
+						<li><a class="<?php if($subseccion=="bloqueos") echo "active";?>" href="bloqueos.php">Bloqueos</a></li>
 					</ul></li>
 
 				<li><span class="opener <?php if($seccion=="citas") echo "active";?>">Citas</span>

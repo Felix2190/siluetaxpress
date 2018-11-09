@@ -110,6 +110,26 @@
 		    return $arreglo;
 		}
 		
+		public function PacientesBloqueo()
+		{
+		    global $objSession;
+		    $where = " p.idSucursal=".$objSession->getIdSucursal();
+		    $concat=", '(', s.sucursal, ')'";
+		    $inner=" inner join sucursal as s on p.idSucursal=s.idSucursal ";
+		    
+		    $query = "Select p.idPaciente, concat_ws(' ', p.nombre, p.apellidos$concat) as nombreP from paciente as p 
+		              $inner  left join bloqueos as b on p.idPaciente=b.idPaciente
+                        where $where and p.estatus='activo' and b.idPaciente is null";
+		    $arreglo = array();
+		    $resultado = mysqli_query($this->dbLink, $query);
+		    if ($resultado && mysqli_num_rows($resultado) > 0) {
+		        while ($row_inf = mysqli_fetch_assoc($resultado)){
+		            $arreglo[$row_inf['idPaciente']] = $row_inf['nombreP'];
+		        }
+		    }
+		   return $arreglo;
+		}
+		
 		
 		public function validarDatos(){
 		    return true;
