@@ -32,7 +32,7 @@ $(document).ready(function(){
 		inline: true
 	});
    
-
+/*
 	setTimeout(function() {
 	 url=url.split("/");
 		url=url[url.length-1];
@@ -77,5 +77,6 @@ $(document).ready(function(){
 				}
 		},35000);
 	},290600);
-	
+	*/
 });
+	
