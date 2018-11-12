@@ -41,7 +41,7 @@
 				
 						<div class="7u">
 						
-							<h3>Nuevas (agosto)</h3>
+							<h3>Nuevas </h3>
 							<div class="row" style="margin-left: 5%;">
         						<section>
         						<img src="images/agosto1.jpeg" alt=""  style="width: 80%">
@@ -84,35 +84,68 @@
 						
 						
 						<div class="5u">
-						<h3>Otras</h3>
+						<h3>Por apertura en Metepec</h3>
 						<section>
-						
-						<div class="row" style="margin-left: 1%;">
-								<section>
-        						<img src="images/depilacion.jpg" alt=""  style="width: 110%;">
-        						</section>
-        				</div>
-						
+												
 						<div class="row" style="margin-left: 5%;">
 						
         						<section>
-        						<img src="images/facial.jpg" alt=""  style="width: 90%">
+        						<img src="images/metepec.jpeg" alt=""  style="width: 95%">
         						</section>
         					
         						<section>
-        						<img src="images/reduce.jpg" alt=""  style="width: 90%">
+        						<img src="images/metepec2.jpeg" alt=""  style="width: 85%">
         						</section>
         					
         						<section>
-        						<img src="images/reduce2.jpg" alt=""  style="width: 90%">
+        						<img src="images/metepec3.jpeg" alt=""  style="width: 85%">
+        						</section>
+        						
+        						<section>
+        						<img src="images/metepec4.jpeg" alt=""  style="width: 85%">
         						</section>
         					
+        						<section>
+        						<img src="images/metepec5.jpeg" alt=""  style="width: 85%">
+        						</section>
+        						
 						
 						</div>
 						
 						</section>
 
 					</div>
+					
+					
+					<div class="12u">
+
+						<section>
+							<h2>Otras</h3>
+						</section>
+						
+					</div>
+					
+					<div class="6u">						
+					<section>
+    				<img src="images/facial.jpg" alt=""  style="width: 80%">
+    				</section>
+        					
+    				<section>
+      				<img src="images/reduce.jpg" alt=""  style="width: 80%">
+        			</section>
+        					
+					</div>
+					
+					<div class="6u">
+						<section>
+        				<img src="images/depilacion.jpg" alt=""  style="width: 90%;">
+        				</section>
+        				<section>
+        				<img src="images/reduce2.jpg" alt=""  style="width: 80%">
+        				</section>
+        						
+					</div>
+					
 					
 					
 
