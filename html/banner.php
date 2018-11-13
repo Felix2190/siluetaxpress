@@ -6,8 +6,8 @@
 		<div id="wowslider-container1">
 			<div class="ws_images">
 				<ul>
-					<li><img src="images/banner/IMG00.jpg" alt="Consulta nutricional"
-						title="Consulta nutricional" id="wows1_5" /></li>
+					<li><img src="images/banner/IMG00.jpg" alt="Buen fin"
+						title="Buen fin" id="wows1_5" /></li>
 					<li><img src="images/banner/IMG01.jpg" alt="Cavitaci&oacute;n"
 						title="Cavitaci&oacute;n" id="wows1_0" /></li>
 					<li><img src="images/banner/IMG02.jpg" alt="Gimnasia pasiva"
@@ -18,11 +18,14 @@
 						title="Presoterapia" id="wows1_3" /></li>
 					<li><a href="http://wowslider.net"><img src="images/banner/IMG05.jpg"
 							alt="Depilaci&oacute;n SHR" title="Depilaci&oacute;n SHR" id="wows1_4" /></a></li>
+							
+					<li><img src="images/banner/IMG06.jpg" alt="Consulta nutricional"
+						title="Consulta nutricional" id="wows1_6" /></li>
 				</ul>
 			</div>
 			<div class="ws_bullets">
 				<div>
-					<a href="#" title="Consulta nutricional"><span><img
+					<a href="#" title="Buen fin"><span><img
 							src="images/miniaturas/IMG00.jpg"
 							alt="Consulta nutricional" />1</span></a> <a href="#"
 						title="Cavitaci&oacute;n"><span><img
@@ -40,6 +43,10 @@
 						title="Depilaci&oacute;n SHR"=><span><img
 							src="images/miniaturas/IMG05.jpg"
 							alt="Depilaci&oacute;n SHR" />6</span></a>
+							
+					<a href="#" title="Consulta nutricional"><span><img
+							src="images/miniaturas/IMG06.jpg"
+							alt="Consulta nutricional" />7</span></a
 				</div>
 			</div>
 			<div class="ws_script" style="position: absolute; left: -99%">
@@ -48,4 +55,7 @@
 		</div>
 
 	</div>
+	
+	<br /><br />
+	
 </div>

@@ -17,7 +17,17 @@
 			<link rel="stylesheet" type="text/css" href="assets/css/banner_style.css" />
 	<script type="text/javascript" src="js/lib/banner/jquery.js"></script>
 	<script type="text/javascript" src="js/system/headerLogo.js"></script>
-	<!-- End WOWSlider.com HEAD section -->
+	
+	<script type="text/javascript">
+	function verPromocion(div){
+		$("#div_acapulco").hide();
+		$("#div_toluca").hide();
+		$("#div_"+div).show();
+		$('html,body').animate({
+		    scrollTop: $("#div_"+div).offset().top
+		}, 2000);
+	}
+	</script>
 	</head>
 	<body>
 		<div id="page-wrapper">
@@ -36,10 +46,74 @@
 							<p></p>						
 						</section>
 						
-				</div>
+					</div>
+					
+					<div class="12u">
+						<section>
+							<h3><img alt="" src="images/icons/social/16/button-green.png">&emsp;<a onclick="verPromocion('acapulco');">En Acapulco</a></h3>
+							<div class="row" style="display: none;" id="div_acapulco">
+								<div class="4u">
+									<section>
+        								<img src="images/toluca1.jpg" alt=""  style="width: 105%">
+        							</section>
+        						
+								</div>
+								
+								<div class="4u">
+									<section>
+        								<img src="images/toluca2.jpg" alt=""  style="width: 98%">
+        							</section>
+        						
+								</div>
+								
+								<div class="4u">
+									<section>
+        								<img src="images/toluca3.jpg" alt=""  style="width: 88%">
+        							</section>
+        						
+								</div>
+								
+							</div>
+							
+							<h3><img alt="" src="images/icons/social/16/button-green.png">&emsp;<a onclick="verPromocion('toluca');">En Toluca</a></h3>
+							<div class="row" style="display: none;" id="div_toluca">
+							
+								<div class="6u">
+							
+        						<section>
+        						<img src="images/metepec.jpeg" alt=""  style="width: 75%">
+        						</section>
+        						
+        						<section>
+        						<img src="images/metepec2.jpeg" alt=""  style="width: 75%">
+        						</section>
+        						
+        						<section>
+        						<img src="images/metepec5.jpeg" alt=""  style="width: 75%">
+        						</section>
+        						
+        						
+								</div>
+								
+								<div class="6u">
+							
+        						<section>
+        						<img src="images/metepec3.jpeg" alt=""  style="width: 70%">
+        						</section>
+        					
+        						<section>
+        						<img src="images/metepec4.jpeg" alt=""  style="width: 70%">
+        						</section>
+        						
+								</div>
+								
+							</div>
+							
+						</section>
+					</div>
+					
 				
-				
-						<div class="7u">
+						<div class="7u" style="display: none;">
 						
 							<h3>Nuevas </h3>
 							<div class="row" style="margin-left: 5%;">
@@ -83,7 +157,7 @@
 						</div>
 						
 						
-						<div class="5u">
+						<div class="5u" style="display: none;">
 						<h3>Por apertura en Metepec</h3>
 						<section>
 												
@@ -117,7 +191,7 @@
 					</div>
 					
 					
-					<div class="12u">
+					<div class="12u" style="display: none;">
 
 						<section>
 							<h2>Otras</h3>
@@ -125,7 +199,7 @@
 						
 					</div>
 					
-					<div class="6u">						
+					<div class="6u" style="display: none;">						
 					<section>
     				<img src="images/facial.jpg" alt=""  style="width: 80%">
     				</section>
@@ -136,7 +210,7 @@
         					
 					</div>
 					
-					<div class="6u">
+					<div class="6u"style="display: none;">
 						<section>
         				<img src="images/depilacion.jpg" alt=""  style="width: 90%;">
         				</section>
@@ -156,8 +230,9 @@
 		</div>
 
 		</div>
-		<?php include_once 'footer.php';?>
 		
+		<?php include_once 'footer.php';?>
+		</div>
 
 		<!-- Scripts -->
 			<script src="assets/js/jquery.min.js"></script>
