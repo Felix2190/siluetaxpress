@@ -51,7 +51,7 @@ function verTabla($informacion,$sucursal){
     if ($objSession->getidRol()==1&&$sucursal=='')
         $arrEncabezado=array("Nombre","Tel&eacute;fono","Sucursal","Completitud [hoja cl&iacute;nica]","Registro","Consultas realizadas","Consultas pr&oacute;ximas","Cita pr&oacute;xima","Opciones");
         
-            $tabla="<div class='row'><div class='12u'><table><thead><tr>";
+            $tabla="<div class='row'><div class='12u'><table id='tablesort'><thead><tr>";
             foreach ($arrEncabezado as $idem){
                 $colspan="";
                 if ($idem=='Nombre')
@@ -74,9 +74,9 @@ function verTabla($informacion,$sucursal){
                     
                  $opciones="";
                  if (intval($paciente['consultasProximas'])>0){
-                     $opciones="<a onClick='mostrarCitas(".$paciente['idPaciente'].")'> <img src='images/citas.png' style='width: 30px' /></a></a>";
+                     $opciones="<a onClick='mostrarCitas(".$paciente['idPaciente'].")'> <img src='images/citas.png' style='width: 30px' /></a>";
                  }else {
-                     $opciones="<a onClick='eliminarPaciente(".$paciente['idPaciente'].")'> <img src='images/eliminaPaciente.png' style='width: 30px' /></a></a>";
+                     $opciones="<a onClick='eliminarPaciente(".$paciente['idPaciente'].")'> <img src='images/eliminaPaciente.png' style='width: 30px' /></a>";
                  }
                     
                     $fecha=explode("-", $paciente['fecha']);

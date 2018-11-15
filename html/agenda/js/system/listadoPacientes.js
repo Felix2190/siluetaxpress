@@ -24,10 +24,14 @@ function iniciar(){
 }
 
 function listarPacientes(){
-	var nsucursal=$( "#hdnSucursal" ).val();
+	nsucursal=$( "#hdnSucursal" ).val();
 	if (nsucursal=='')
 		nsucursal=$( "#slcSucursal" ).val();
 
+	setTimeout(function() {
+		estiloTabla(nsucursal);
+	},200);
+/*/
 	$.ajax({
 		method : "post",
 		url : "adminFunciones.php",
@@ -37,9 +41,13 @@ function listarPacientes(){
 		success : function(data) {
 			respuesta=JSON.parse(data);
 			xajax_verTabla(respuesta,nsucursal);
+			
+			setTimeout(function() {
+				estiloTabla();
+			},2000);
 		}
 	});
-
+/*/
 }
 
 function verPaciente(id){
@@ -79,7 +87,7 @@ function confirmacion(titulo, texto, id, divAlerta){
 						mostrarMsjExito('Se ha eliminado correctamente al paciente!!',3);
 						setTimeout(function() {
 							listarPacientes(); 
-						},2000);
+						},1000);
 						
 					}else{
 						mostrarMsjError('Ocurri&oacute; un error!! <br />'+respuesta[1]+', int&eacute;ntelo mas tarde',5);
@@ -97,7 +105,70 @@ function confirmacion(titulo, texto, id, divAlerta){
 
 }
 
-
+function estiloTabla(sucursal){
+  	$('#tablesorting-1').tablesorter({
+  		theme          : "bootstrap", // this will 
+  		widthFixed     : true,
+  		headerTemplate : '{content} {icon}', // new in v2.7. Needed to add the bootstrap icon!
+  		widgets        : [ "uitheme", "filter", "zebra" ],
+      serverSideSorting : true,
+  		widgetOptions  : {
+  			zebra : ["even", "odd"],
+  			filter_reset : ".reset",
+  		}
+  	}).tablesorterPager({
+            serverSideSorting : true,
+            ajaxUrl:   'getListadoPacientes.php?page={page}&size={size}&{sortList:col}&{filterList:filter}&sucursal='+sucursal+' ',
+            customAjaxUrl: function (table, url) {
+                return url;
+            },
+            ajaxProcessing: function (ajax, table) {
+           //   $("#tablesorting-1").trigger("update");
+              $(table).find('tbody').empty();
+                if (ajax) {
+                    $.each(ajax[1], function (i, item) {
+                    	if(item.fechaProxima!=null)
+                    		arrFechaProxima= item.fechaProxima.split("-");
+                    	arrFecha= item.fecha.split("-");
+                          var html = "<td>" + item.nombreP + "</td>" +
+                            "<td>" + item.telefonoCel + "</td>" +
+                            "<td>" + item.completitud + "%</td>" +
+                            "<td>" + arrFecha[2]+"/"+arrFecha[1]+"/"+arrFecha[0]+ "</td>" +
+                            "<td>" + item.consultasHechas + "</td>" +
+                            "<td>" + item.consultasProximas + "</td>" +
+                            "<td>" ;
+                          if(item.fechaProxima!=null)
+                            html+="<a onClick='verCita("+item.cita+")'> <img src='images/editaCita.png' title='"+arrFechaProxima[2]+" de "+obtenMes(parseInt(arrFechaProxima[1])-1)+" del "+arrFechaProxima[0]+"' style='width: 30px' /></a>";
+                            
+                          html+="</td><td><a onClick='verPaciente("+item.idPaciente+")'><img src='images/ver.png' title='Ver' style='width: 30px' /></a>"+
+                    "<a onClick='editarPaciente("+item.idPaciente+")'><img src='images/editPaciente.png' title='editar' style='width: 30px' /></a>";
+                    if(parseInt(item.consultasProximas )>0)
+                        html+="<a onClick='mostrarCitas("+item.idPaciente+")'> <img src='images/citas.png' style='width: 30px' /></a>";
+                    else
+                    	html+="<a onClick='eliminarPaciente("+item.idPaciente+")'> <img src='images/eliminaPaciente.png' style='width: 30px' /></a>";
+                          		"</td>";
+                        $("<tr/>").html(html).appendTo(table);
+                    });
+                    return [ajax[0]];                        
+        			
+                }                
+            },
+            container: $(".pager"),
+            cssGoto: $(".pagenum"),
+            cssPageSize: $(".pagesize"),
+            cssPageDisplay: $(".pagedisplay"),
+            removeRows: false,
+            output: '{startRow} - {endRow} | {totalRows}',
+            savePages: false,
+            fixedHeight: true
+        });
+ 
+}
+var arrFecha,arrFechaProx;
+function obtenMes(numMes){
+    var MESES=  new Array ("Enero","Febrero","Marzo","Abril","Mayo","Junio","Julio","Agosto","Septiembre","Octubre","Noviembre","Diciembre");
+    return MESES[''+numMes];
+}
 	//$("#").();
 //var alert = alertify.alert('Titulo','TextoAlerta').set('label', 'Aceptar');     	 
 //alert.set({transition:'zoom'}); //slide, zoom, flipx, flipy, fade, pulse (default)
