@@ -13,7 +13,6 @@ echo '  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jqu
 <script type="text/javascript" src="js/system/headerBar.js"></script>
 <link href="assets/css/tabla/theme.green.css" rel="stylesheet">
 <link href="assets/css/tabla/jquery.tablesorter.pager.css" rel="stylesheet">
-
  <script src="js/lib/tablesort/jquery.tablesorter.min.js"></script>
 <script src="js/lib/tablesort/jquery.tablesorter.widgets.min.js"></script>
 <script src="js/lib/tablesort/jquery.tablesorter.pager.min.js"></script>'.$_JAVASCRIPT_CSS_AGENDA;

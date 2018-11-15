@@ -156,14 +156,14 @@ $dbLink->set_charset(BD_CHARSET);
   $inicial = (($pagina) * $tamano);
   if($filtros!='')
   {
-    $query="Select idPaciente, nombreP, telefonoCel, sucursal, completitud, fecha,  consultasHechas, consultasProximas, fechaProxima , cita 
+    $query="select idPaciente, nombreP, telefonoCel, sucursal, completitud, fecha,  consultasHechas, consultasProximas, fechaProxima , cita 
           from vw_listado_pacientes where idSucursal=".$sucursal." and estatus='activo'  ".$filtros.$ordenar." LIMIT $inicial, $tamano";
     
     
   }
   else
   {
-      $query="Select idPaciente, nombreP, telefonoCel, sucursal, completitud, fecha,  consultasHechas, consultasProximas, fechaProxima , cita
+      $query="select idPaciente, nombreP, telefonoCel, sucursal, completitud, fecha,  consultasHechas, consultasProximas, fechaProxima , cita
           from vw_listado_pacientes where idSucursal=".$sucursal." and estatus='activo' ".$ordenar." LIMIT $inicial, $tamano"; 	
   }
 //  echo $query;
@@ -171,7 +171,7 @@ $dbLink->set_charset(BD_CHARSET);
 	if(!$result)
 		die("Ocurrio un error en la consulta de Llamadas.");
 
-	while($row = $result->fetch_array(MYSQL_ASSOC)) {
+  while($row = mysqli_fetch_array($result)) {
     $arreglo_filas[] = $row;
   }
 

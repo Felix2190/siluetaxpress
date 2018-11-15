@@ -62,14 +62,6 @@ require_once 'masterInclude.inc.php';
                   											<thead>
                   											<tr >
                   											<td colspan="8" style="text-align: right;">
-                  											<div class="select-wrapper 1u 12u$(xsmall)" style="float: right;">
-                  														<select class="pagesize demo-category">
-                  														<option value="10">10</option>
-                  															<option value="20" selected="selected">20</option>
-                  															<option value="50">50</option>
-                  														</select>
-                  											</div>
-                  											<label>N&uacute;mero de registros:&emsp;</label> 
                   											</td>
                   											
                   											</tr>
@@ -95,7 +87,15 @@ require_once 'masterInclude.inc.php';
                   														<span class="pagedisplay"></span> <!-- this can be any element, including an input -->
                   														<button class="btn next"><i class="fa fa-arrow-right"></i></button>
                   														<button class="btn last"><i class="fa fa-step-forward"></i></button>
-                  														
+                  														<div class="select-wrapper 1u 12u$(xsmall)" style="float: right;">
+                  														<select class="pagesize demo-category">
+                  														<option value="10">10</option>
+                  															<option value="20" selected="selected">20</option>
+                  															<option value="50">50</option>
+                  														</select>
+                  											</div>
+                  											<label>N&uacute;mero de registros:&emsp;</label> 
+                  											
                   													</td>
                   												</tr>
                   											</tfoot>
