@@ -2107,3 +2107,9 @@
 					text-align: center;
 					letter-spacing: -2px;
 				}
+				
+		video{display:inline-block;vertical-align:baseline}
+				
+				
+	#demos .owl-carousel{margin:2rem 0}#demos .owl-carousel .item{height:10rem;background:#4DC7A0;padding:1rem}#demos .owl-carousel .item h4{color:#FFF;font-weight:400;margin-top:0rem}#demos .owl-carousel .item-video{height:300px}#demos #setup{margin-top:4rem}#demos .demo-list h5{margin:0}@media only screen{.demo-list [class*="column"]+[class*="column"]:last-child{float:left}}.callbacks div{margin-bottom:0.3rem}.callbacks span.label{-webkit-transition:all 300ms ease-in-out;-moz-transition:all 300ms ease-in-out;-ms-transition:all 300ms ease-in-out;-o-transition:all 300ms ease-in-out;transition:all 300ms ease-in-out}
+	

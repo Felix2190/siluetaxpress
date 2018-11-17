@@ -13,9 +13,41 @@
 		<meta name="viewport" content="width=device-width, initial-scale=1" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
 		<link rel="stylesheet" href="assets/css/main.css" />
+		
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 	<!-- End WOWSlider.com HEAD section -->
-		
+	
+
+    <!-- Owl Stylesheets -->
+    
+    <link rel="stylesheet" href="assets/css/owl.carousel.min.css">
+    
+    <link rel="stylesheet" href="assets/css/owl.theme.default.min.css">
+	
+	<script src="js/lib/jquery.min.js"></script>
+			<script type="text/javascript" src="js/system/headerLogo.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/skel-viewport.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+			<script src="js/lib/owl.carousel.js"></script>
+	
+    	
+		<script type="text/javascript">
+            $(document).ready(function() {
+              $('.owl-carousel').owlCarousel({
+                items: 1,
+                merge: true,
+                loop: false,
+                margin: 10,
+                video: true,
+                lazyLoad: true,
+                center: true,
+              })
+            })
+          </script>
+          		
 	</head>
 	<body>
 		<div id="page-wrapper">
@@ -42,17 +74,21 @@
 					</div>
 					
 					<div class="5u 12u(mobile)">
-					<section>
-					<br />
-					<br />
-					<br />
-					
+					<section id="demos">
 					<div class="row">
-								<video width=540 height=380 controls autoplay">
-									<source src="videos/sport.mp4" type="video/mp4">
-								</video>
-
-							</div>
+	<div class="owl-carousel owl-theme">
+          
+            <div class="item-video" data-merge="3">
+              <a class="owl-video" href="https://www.youtube.com/watch?v=RytFBOsondc"></a> 
+            </div>
+            <div class="item-video" data-merge="1">
+              <a class="owl-video" href="https://www.youtube.com/watch?v=RytFBOsondc"></a> 
+            </div>
+             
+      </div>
+      
+      
+</div>
 						
 					</section>
 					</div>
@@ -68,13 +104,6 @@
 		<?php include_once 'footer.php';?>
 
 		<!-- Scripts -->
-			<script src="assets/js/jquery.min.js"></script>
-			<script type="text/javascript" src="js/system/headerLogo.js"></script>
-			<script src="assets/js/skel.min.js"></script>
-			<script src="assets/js/skel-viewport.min.js"></script>
-			<script src="assets/js/util.js"></script>
-			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
-			<script src="assets/js/main.js"></script>
-
+			
 	</body>
 </html>
