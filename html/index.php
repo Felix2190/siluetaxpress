@@ -39,7 +39,7 @@
 		<div id="main">
 			<div class="container">
 				<div class="row main-row">
-					<div class="12u">
+					<div class="12u 12u(mobile)">
 
 						<section>
 							<h2>Promociones</h2>
@@ -48,25 +48,25 @@
 						
 					</div>
 					
-					<div class="12u">
+					<div class="12u 12u(mobile)">
 						<section>
 							<h3><img alt="" src="images/icons/social/16/button-green.png">&emsp;<a onclick="verPromocion('acapulco');">En Acapulco</a></h3>
 							<div class="row" style="display: none;" id="div_acapulco">
-								<div class="4u">
+								<div class="4u 12u(mobile)">
 									<section>
         								<img src="images/toluca1.jpg" alt=""  style="width: 105%">
         							</section>
         						
 								</div>
 								
-								<div class="4u">
+								<div class="4u 12u(mobile)">
 									<section>
         								<img src="images/toluca2.jpg" alt=""  style="width: 98%">
         							</section>
         						
 								</div>
 								
-								<div class="4u">
+								<div class="4u 12u(mobile)">
 									<section>
         								<img src="images/toluca3.jpg" alt=""  style="width: 88%">
         							</section>
@@ -78,7 +78,7 @@
 							<h3><img alt="" src="images/icons/social/16/button-green.png">&emsp;<a onclick="verPromocion('toluca');">En Toluca</a></h3>
 							<div class="row" style="display: none;" id="div_toluca">
 							
-								<div class="6u">
+								<div class="6u 12u(mobile)">
 							
         						<section>
         						<img src="images/metepec.jpeg" alt=""  style="width: 75%">
@@ -95,7 +95,7 @@
         						
 								</div>
 								
-								<div class="6u">
+								<div class="6u 12u(mobile)">
 							
         						<section>
         						<img src="images/metepec3.jpeg" alt=""  style="width: 70%">

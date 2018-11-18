@@ -457,6 +457,20 @@ if (isset($_POST['consultaBloqueo'])){
     echo json_encode($bloqueos->buscarPaciente());
 }
 
+if (isset($_POST['notificacion'])){
+    session_start();
+    
+    date_default_timezone_set('America/Mexico_City');
+    if (true) {
+        define("FOLDER_INCLUDE", $_SERVER['DOCUMENT_ROOT'] . "/include/");
+    } else {
+        define("FOLDER_INCLUDE", $_SERVER['DOCUMENT_ROOT'] . "siluetaxpress/html/include/");
+    }
+    define("FOLDER_LIB", FOLDER_INCLUDE . "lib/");
+    $mensaje="Se han enviado correctamente tus datos. <br />En breve nos pondremos en contacto contigo.<br /> <br />Gracias por su comentario.";
+    echo enviar_mail($_POST['notificacion'], "Notificación @siluetaexpress", $mensaje);
+}
+
 
 function obtenCombo($array,$default){
     $combo='<option value="">'.$default.'</option>';
