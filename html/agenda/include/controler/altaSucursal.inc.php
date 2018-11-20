@@ -59,7 +59,7 @@ function guardarSucursal($ent,$mun,$sucursalN,$direccion,$hrEntreI,$hrEntreF,$hr
             $cabinas[]="Cabina ".$i;
             
             foreach ($cabinas as $id=>$cabina){
-                if ($id==$con)
+                if ($id>$con)
                     $tipo="cabina";
                 $c = new ModeloCabina();
                 $c->setIdSucursal($sucursal->getIdSucursal());

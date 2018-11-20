@@ -71,5 +71,31 @@
 		    }
 		    return array($arreglo,$objSession->getIdSucursal());
 		}
+		
+		public function obtenerSucuralesByUsuario ()
+		{
+		    $query = "Select s.idSucursal, s.sucursal from usuariosucursal as us
+                    inner join sucursal as s on us.idSucursal=s.idSucursal
+                where idUsuario=".$this->getIdUsuario();
+		    $arreglo = array();
+		    $resultado = mysqli_query($this->dbLink, $query);
+		    if ($resultado && mysqli_num_rows($resultado) > 0) {
+		        while ($row_inf = mysqli_fetch_assoc($resultado)){
+		            $arreglo[$row_inf['idSucursal']] = $row_inf['sucursal'];
+		        }
+		    }
+		    return $arreglo;
+		}
+		
+		public function eliminarByUsuario ()
+		{
+		    $query = "delete from usuariosucursal where idUsuario=".$this->getIdUsuario();
+		    $arreglo = array();
+		    $resultado = mysqli_query($this->dbLink, $query);
+		    if ($resultado) {
+		        return true;
+		    }
+		    return false;
+		}
 
 	}

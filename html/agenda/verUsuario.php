@@ -63,10 +63,14 @@ require_once 'masterInclude.inc.php';
 							<div class="3u 12u$(xsmall)">
 								<label>Sucursal:</label>
 							</div>
-							<div class="4u 12u$(xsmall)">
-								<div class="select-wrapper">
-									<select name="demo-category" id="slcSucursal">
-									</select>
+							<div class="5u 12u$(xsmall)">
+								<div class="row" >
+								<?php 
+								$text='';
+								foreach ($arrSucursal as $id=>$valor)
+								$text.='<div class="6u 12u$(xsmall)"><input class="checkSucursal" value="'.$id.'" id="chk'.$id.'" name="chk'.$id.'"  type="checkbox"> <label for="chk'.$id.'">'.$valor.'</label></div>';
+								echo $text;
+								?>
 								</div>
 							</div>
 						</div>

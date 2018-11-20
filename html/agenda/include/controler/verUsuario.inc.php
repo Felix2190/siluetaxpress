@@ -5,6 +5,8 @@
 // -----------------------------------------------------------------------------------------------------------------#
 require_once FOLDER_MODEL_EXTEND. "model.login.inc.php";
 require_once FOLDER_MODEL_EXTEND. "model.usuario.inc.php";
+require_once FOLDER_MODEL_EXTEND. "model.usuariosucursal.inc.php";
+require_once FOLDER_MODEL_EXTEND. "model.sucursal.inc.php";
 require_once FOLDER_INCLUDE_AGENDA.'controler/adminFunciones.inc.php';
 // -----------------------------------------------------------------------------------------------------------------#
 // --------------------------------------------Inicializacion de control--------------------------------------------#
@@ -27,12 +29,35 @@ require_once FOLDER_INCLUDE_AGENDA.'controler/adminFunciones.inc.php';
 $xajax = new xajax();
 
 
-function guardarUsuario($idUsuario, $sucursal){
+function guardarUsuario($idUsuario, $arrSucursal){
     $r=new xajaxResponse();
+    
+    $usSu = new ModeloUsuariosucursal();
+    $usSu->setIdUsuario($idUsuario);
+    if (!$usSu->eliminarByUsuario()){
+        $r->call('mostrarMsjError','No se pudo eliminar las sucursales',5);
+        return $r;
+    }
+    $idSucursal='';
+    foreach ($arrSucursal as $sucursal){
+        $usuarioSucursal = new ModeloUsuariosucursal();
+        $usuarioSucursal->setIdSucursal($sucursal);
+        $usuarioSucursal->setIdUsuario($idUsuario);
+        $usuarioSucursal->setFechaAlta(date("Y-m-d"));
+        $usuarioSucursal->setEstatusActivo();
+        $usuarioSucursal->Guardar();
+        if ($usuarioSucursal->getError()){
+            $r->call('mostrarMsjError',$usuarioSucursal->getStrError(),5);
+            return $r;
+        }
+        if ($idSucursal=='')
+            $idSucursal=$sucursal;
+    }
+    
     
     $usuario = new ModeloUsuario();
     $usuario->setIdUsuario($idUsuario);
-    $usuario->setIdSucursal($sucursal);
+    $usuario->setIdSucursal($idSucursal);
     
     $usuario->Guardar();
     if ($usuario->getError()){
@@ -116,5 +141,8 @@ if ($Usuario->getIdUsuario()>0){
 }else {
     header("Location: listadoUsuarios.php");
 }
+
+$Susurcal = new ModeloSucursal();
+$arrSucursal=$Susurcal->obtenerSucurales();
 
 ?>

@@ -51,27 +51,58 @@ function iniciar(){
 		$("#slcSucursal").val($("#idSucursal").val());
 		$("#slcCargo").val($("#idTipoUsuario").val());
 	},700);
+	
+	$.ajax({
+		method : "post",
+		url : "adminFunciones.php",
+		data : {
+			listadoSucursales:$("#idUsuario").val()
+			
+		},
+
+		success : function(data) {
+			arrSucursales=JSON.parse(data);
+			$.each(arrSucursales, function( id, value ) {
+				$('#chk'+id).prop('checked', true);
+				});
+		}
+	});
+	
 }
 
 function altaUsuario(){
 	var existeError = false;
-	var sucursal = $("#slcSucursal").val();
+//	var sucursal = $("#slcSucursal").val();
 	var idUsuario = $("#idUsuario").val();
 	
+	$('html,body').animate({
+	    scrollTop: $("#divArriba").offset().top
+	}, 200);
+	/*
 	if ( sucursal == "") {
 		existeError = true;
 		console.log("Error: sucursal");
 	}
-
-	$('html,body').animate({
-	    scrollTop: $("#divArriba").offset().top
-	}, 200);
+*/
+	
+	var arrSucursal = [];
+	var i = 0;
+	$('.checkSucursal:checked').each(function() {
+		arrSucursal[i] = $(this).val();
+		i++;
+	});
+	if(i==0){
+		mostrarMsjError('Debe seleccionar por lo menos 1 sucursal',3);
+		return false;
+	}
+	
+	
 	if(existeError){
 		mostrarMsjError('Datos incompletos!! <br />Por favor, llene la informaci&oacute;n que se solicita',5);
 	}else{
 		mostrarMsjEspera('Espere un momento... guardando informaci&oacute;n.',5);
 
-		xajax_guardarUsuario(idUsuario, sucursal);
+		xajax_guardarUsuario(idUsuario,arrSucursal);
 			 
 	}
 }

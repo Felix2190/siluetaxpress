@@ -471,6 +471,12 @@ if (isset($_POST['notificacion'])){
     echo enviar_mail($_POST['notificacion'], "Notificación @siluetaexpress", $mensaje);
 }
 
+if (isset($_POST['listadoSucursales'])){
+    require_once FOLDER_MODEL_EXTEND. "model.usuariosucursal.inc.php";
+    $sucursal = new ModeloUsuariosucursal();
+    $sucursal->setIdUsuario($_POST['listadoSucursales']);
+    echo json_encode($sucursal->obtenerSucuralesByUsuario());
+}
 
 function obtenCombo($array,$default){
     $combo='<option value="">'.$default.'</option>';
