@@ -48,27 +48,28 @@
 						
 					</div>
 					
+				<div class="12u">
 					<div class="12u 12u(mobile)">
 						<section>
 							<h3><img alt="" src="images/icons/social/16/button-green.png">&emsp;<a onclick="verPromocion('acapulco');">En Acapulco</a></h3>
 							<div class="row" style="display: none;" id="div_acapulco">
-								<div class="4u 12u(mobile)">
+								<div class="5u 12u(mobile)">
 									<section>
-        								<img src="images/toluca1.jpg" alt=""  style="width: 105%">
+        								<img src="images/navidad1.jpeg" alt=""  style="width: 87%">
+        							</section>
+        						
+								</div>
+								
+								<div class="7u 12u(mobile)">
+									<section>
+        								<img src="images/navidad2.jpeg" alt=""  style="width: 92%">
         							</section>
         						
 								</div>
 								
 								<div class="4u 12u(mobile)">
 									<section>
-        								<img src="images/toluca2.jpg" alt=""  style="width: 98%">
-        							</section>
-        						
-								</div>
-								
-								<div class="4u 12u(mobile)">
-									<section>
-        								<img src="images/toluca3.jpg" alt=""  style="width: 88%">
+        								<img src="images/navidad3.jpeg" alt=""  style="width: 96%">
         							</section>
         						
 								</div>
@@ -112,7 +113,7 @@
 						</section>
 					</div>
 					
-				
+				</div>
 						<div class="7u" style="display: none;">
 						
 							<h3>Nuevas </h3>
