@@ -300,80 +300,90 @@ if (isset($_GET['idPaciente']) && isset($_GET['firma'])) {
         $pdf->Ln(10);
     }
     $pdf->Ln(3);
-    $pdf->SetFont('Arial','B',15);
-    $pdf->Cell(185,7,' Recordatorio 24 hrs ',1,0,'C');
-    $pdf->Ln(8);
+    $pdf->SetFont('Arial','B',13);
+    $pdf->Cell(185,5,' Recordatorio 24 hrs ',1,0,'C');
+    $pdf->Ln(4);
     
     $pdf->SetFillColor(194,246,199);///verde
     
     $pdf->SetFont('Arial','',11);
-    $pdf->Cell(30,6,' ',1,0,'C',1);
-    $pdf->Cell(25,6,'Horario',1,0,'C',1);
-    $pdf->Cell(130,6,'Alimentos',1,0,'C',1);
+    $pdf->Cell(30,5,' ',1,0,'C',1);
+    $pdf->Cell(25,5,'Horario',1,0,'C',1);
+    $pdf->Cell(130,5,'Alimentos',1,0,'C',1);
     
     $pdf->Ln();
     $pdf->SetFillColor(255,255,255);/// color blanco celda
     $pdf->SetFont('Arial','',10);
     
-    $pdf->Cell(30,7,'Desayuno',1,0,'C');
+    $alimento=$hojaClinica->getActividadDesayuno();
+    $numFilas=count(explode("\n", $alimento));
+    
+    $pdf->Cell(30,4*$numFilas,'Desayuno',1,0,'C');
     $horario=$hojaClinica->getHorarioDesayuno();
     if ($horario=="00:00 AM"){
         $horario="-";
     }
-    $pdf->Cell(25,7,$horario,1,0,'C');
-    $alimento=$hojaClinica->getActividadDesayuno();
+    $pdf->Cell(25,4*$numFilas,$horario,1,0,'C');
     if ($alimento==""){
         $alimento="-";
     }
-    $pdf->MultiCell(130,7,utf8_decode($alimento),1,'J',1);
+    $pdf->MultiCell(130,4,utf8_decode($alimento),1,'J',1);
     
-    $pdf->Cell(30,7,'Colación 1',1,0,'C');
+    $alimento=$hojaClinica->getActividadColacion();
+    $numFilas=count(explode("\n", $alimento));
+    
+    $pdf->Cell(30,4*$numFilas,'Colación 1',1,0,'C');
     $horario=$hojaClinica->getHorarioColacion();
     if ($horario=="00:00 AM"){
         $horario="-";
     }
-    $pdf->Cell(25,7,$horario,1,0,'C');
-    $alimento=$hojaClinica->getActividadColacion();
+    $pdf->Cell(25,4*$numFilas,$horario,1,0,'C');
     if ($alimento==""){
         $alimento="-";
     }
-    $pdf->MultiCell(130,7,utf8_decode($alimento),1,'J',1);
+    $pdf->MultiCell(130,4,utf8_decode($alimento),1,'J',1);
     
-    $pdf->Cell(30,7,'Comida',1,0,'C');
+    $alimento=$hojaClinica->getActividadComida();
+    $numFilas=count(explode("\n", $alimento));
+    
+    $pdf->Cell(30,4*$numFilas,'Comida',1,0,'C');
     $horario=$hojaClinica->getHorarioComida();
     if ($horario=="00:00 AM"){
         $horario="-";
     }
-    $pdf->Cell(25,7,$horario,1,0,'C');
-    $alimento=$hojaClinica->getActividadComida();
+    $pdf->Cell(25,4*$numFilas,$horario,1,0,'C');
     if ($alimento==""){
         $alimento="-";
     }
-    $pdf->MultiCell(130,7,utf8_decode($alimento),1,'J',1);
+    $pdf->MultiCell(130,4,utf8_decode($alimento),1,'J',1);
     
-    $pdf->Cell(30,7,'Colación 2',1,0,'C');
+    $alimento=$hojaClinica->getActividadColacion2();
+    $numFilas=count(explode("\n", $alimento));
+    
+    $pdf->Cell(30,4*$numFilas,'Colación 2',1,0,'C');
     $horario=$hojaClinica->getHorarioColacion2();
     if ($horario=="00:00 AM"){
         $horario="-";
     }
-    $pdf->Cell(25,7,$horario,1,0,'C');
-    $alimento=$hojaClinica->getActividadColacion2();
+    $pdf->Cell(25,4*$numFilas,$horario,1,0,'C');
     if ($alimento==""){
         $alimento="-";
     }
-    $pdf->MultiCell(130,7,utf8_decode($alimento),1,'J',1);
+    $pdf->MultiCell(130,4,utf8_decode($alimento),1,'J',1);
     
-    $pdf->Cell(30,7,'Cena',1,0,'C');
+    $alimento=$hojaClinica->getActividadCena();
+    $numFilas=count(explode("\n", $alimento));
+    
+    $pdf->Cell(30,4*$numFilas,'Cena',1,0,'C');
     $horario=$hojaClinica->getHorarioCena();
     if ($horario=="00:00 AM"){
         $horario="-";
     }
-    $pdf->Cell(25,7,$horario,1,0,'C');
-    $alimento=$hojaClinica->getActividadCena();
+    $pdf->Cell(25,4*$numFilas,$horario,1,0,'C');
     if ($alimento==""){
         $alimento="-";
     }
-    $pdf->MultiCell(130,7,utf8_decode($alimento),1,'J',1);
+    $pdf->MultiCell(130,4,utf8_decode($alimento),1,'J',1);
     
     }
     
@@ -384,16 +394,16 @@ if (isset($_GET['idPaciente']) && isset($_GET['firma'])) {
     $pdf->Cell(60,8,' ','B',0,'L',0);
     $pdf->Ln();
     $pdf->SetX(120);
-    $pdf->Cell(60,8,'FIRMA DEL PACIENTE',0,0,'C');
+    $pdf->Cell(60,6,'FIRMA DEL PACIENTE',0,0,'C');
  
     
     $pdf->SetFont('Arial','',8);
-    $pdf->Ln(8);
+    $pdf->Ln(4);
     $pdf->SetX(90);
-    $pdf->Cell(130,5,'Acepto que la información en este expediente es VERÁS y PRESENTE',0,0,'L');
+    $pdf->Cell(130,4,'Acepto que la información en este expediente es VERÁS y PRESENTE',0,0,'L');
     $pdf->Ln();
     $pdf->SetX(90);
-    $pdf->Cell(130,5,'Acepto que Silueta Express comparta mis logros en redes sociales',0,0,'L');
+    $pdf->Cell(130,4,'Acepto que Silueta Express comparta mis logros en redes sociales',0,0,'L');
     }
     /*
      $pdf->Cell(30,8,'',1,0,'C');
