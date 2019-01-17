@@ -207,7 +207,7 @@ function cancelarCita(password,canceladaPor){
 						if(data=='false')
 							mostrarMsjError('Ha ocurrido un error, int&eacute;ntelo m&aacute;s tarde.',5);
 						if(data=='false2')
-							mostrarMsjError('No se puede enviar el SMS, el n&uacute;mero es incorrecto.',5);
+						mostrarMsjError('No se puede enviar el SMS, el n&uacute;mero es incorrecto.',5);
 					}
 				});
 			}else{

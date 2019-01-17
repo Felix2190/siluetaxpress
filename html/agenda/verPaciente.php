@@ -78,7 +78,7 @@ require_once 'masterInclude.inc.php';
 				
 			<?php $arrOpciones=array("1"=>"Diario","2"=>"Casi diario","3"=>"Eventualmente");
 			
-			if ($hojaClinica->getCirugia()!="sinrespuesta"){?>
+			if ($hojaClinica->getCirugia()=="Si"){?>
 			<div class="row">
 				<div class="2u 12u$(small)">
 					<ul>

@@ -6,10 +6,10 @@
 		<div id="wowslider-container1">
 			<div class="ws_images">
 				<ul>
-					<li><img src="images/banner/IMG001.jpg" alt="Silueta express"
+			<!-- <li><img src="images/banner/IMG001.jpg" alt="Silueta express"
 						title="Silueta express" id="wows1_6" /></li>
 					<li><img src="images/banner/IMG002.jpg" alt="Felices fiestas decembrinas"
-						title="Felices fiestas decembrinas" id="wows1_5" /></li>
+						title="Felices fiestas decembrinas" id="wows1_5" /></li> -->
 					<li><img src="images/banner/IMG01.jpg" alt="Cavitaci&oacute;n"
 						title="Cavitaci&oacute;n" id="wows1_0" /></li>
 					<li><img src="images/banner/IMG02.jpg" alt="Gimnasia pasiva"
@@ -27,12 +27,12 @@
 			</div>
 			<div class="ws_bullets">
 				<div>
-					<a href="#" title="Silueta express0"><span><img
+				<!-- <a href="#" title="Silueta express0"><span><img
 							src="images/miniaturas/IMG001.jpg"
 							alt="" />1</span></a>
 					<a href="#" title="Felices fiestas decembrinas"><span><img
 							src="images/miniaturas/IMG002.jpg"
-							alt="" />2</span></a>
+							alt="" />2</span></a> -->
 							 <a href="#"
 						title="Cavitaci&oacute;n"><span><img
 							src="images/miniaturas/IMG01.jpg"
