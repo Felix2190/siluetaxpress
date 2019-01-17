@@ -107,7 +107,7 @@
 		}
 
 		.container {
-			width: 1400px;
+			width: 1350px;
 		}
 
 	}
@@ -1401,6 +1401,9 @@
 				background: #fff;
 				padding: 4em 0;
 			}
+			#main .container {
+			width: 1200px;
+		}
 
 		/* Footer */
 
