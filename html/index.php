@@ -37,8 +37,10 @@
 		?>
 
 		<div id="main">
-			<div class="container">
+		<div class="container">
 				<div class="row main-row">
+				<div class="12u">
+					
 					<div class="12u 12u(mobile)">
 
 						<section>
@@ -48,32 +50,28 @@
 						
 					</div>
 					
-				<div class="12u">
+				<div class="row main-row">
 					<div class="12u 12u(mobile)">
-						<section>
+						
 							<h3><img alt="" src="images/icons/social/16/button-green.png">&emsp;<a onclick="verPromocion('acapulco');">En Acapulco</a></h3>
 							<div class="row" style="display: none;" id="div_acapulco">
 								<div class="5u 12u(mobile)">
 									<section>
-        								<img src="images/navidad1.jpeg" alt=""  style="width: 87%">
+        								<img src="images/enero4.jpeg" alt=""  style="width: 92%">
         							</section>
-        						
-								</div>
+        							<section>
+        								<img src="images/enero1.jpeg" alt=""  style="width: 70%">
+        							</section>
+        						</div>
 								
 								<div class="7u 12u(mobile)">
 									<section>
-        								<img src="images/navidad2.jpeg" alt=""  style="width: 92%">
+        								<img src="images/enero3.jpeg" alt=""  style="width: 75%">
         							</section>
-        						
-								</div>
-								
-								<div class="4u 12u(mobile)">
-									<section>
-        								<img src="images/navidad3.jpeg" alt=""  style="width: 96%">
+        							<section>
+        								<img src="images/enero2.jpeg" alt=""  style="width: 97%">
         							</section>
-        						
 								</div>
-								
 							</div>
 							
 							<h3><img alt="" src="images/icons/social/16/button-green.png">&emsp;<a onclick="verPromocion('toluca');">En Toluca</a></h3>
@@ -110,7 +108,6 @@
 								
 							</div>
 							
-						</section>
 					</div>
 					
 				</div>
@@ -195,7 +192,7 @@
 					<div class="12u" style="display: none;">
 
 						<section>
-							<h2>Otras</h3>
+							<h2>Otras</h2>
 						</section>
 						
 					</div>
@@ -222,7 +219,7 @@
 					</div>
 					
 					
-					
+			</div>
 
 				
 
