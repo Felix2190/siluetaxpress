@@ -32,12 +32,11 @@ $(document).ready(function(){
 		inline: true
 	});
    
-/*
 	setTimeout(function() {
 	 url=url.split("/");
 		url=url[url.length-1];
 		
-		if(url!="nuevaCita.php"&&url!="altaPaciente.php"){
+		if(url!="nuevaCita.php"&&url!="altaPaciente.php"&&url!="index.php"){
 //			alert(url[url.length-1]);
 			$.ajax({
 				method : "post",
@@ -47,14 +46,21 @@ $(document).ready(function(){
 				},
 				success : function(data) {
 					console.log(data);
-					window.location="redireccionar.php";
+					window.location="index.php";
 				}
 			});
 
 		}
 			//window.location=window.location;
-		},300000);
-	
+		},180000);
+	setTimeout(function() {
+		url=url.split("/");
+		url=url[url.length-1];
+		
+		if(url!="nuevaCita.php"&&url!="altaPaciente.php"&&url!="index.php")	
+			mostrarMsjEspera("En 15 segundos se direccionar&aacute; a la p&aacute;gina principal.",14);	
+	},165000);
+	/*
 	setTimeout(function() {
 		url=url.split("/");
 		url=url[url.length-1];
