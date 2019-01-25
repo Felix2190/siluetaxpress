@@ -1,5 +1,5 @@
 <?php
-
+error_reporting(E_ALL ^ E_NOTICE);
 // -----------------------------------------------------------------------------------------------------------------#
 // ---------------------------------------Archivos necesarios Require Include---------------------------------------#
 // -----------------------------------------------------------------------------------------------------------------#
@@ -63,9 +63,8 @@ $xajax->processRequest();
 // -------------------------------------------Inicializacion de variables-------------------------------------------#
 // -----------------------------------------------------------------------------------------------------------------#
 
-if (!isset($_SESSION['verPaciente'])||$_SESSION['verPaciente']==NULL){
-    header("Location: listadoPacientes2.php");
-    var_dump($_SESSION['verPaciente']);
+if (!isset($_SESSION['verPaciente'])){
+    header("Location: listadoPacientes.php");
 }
 
 $aux =$_SESSION['verPaciente'];
