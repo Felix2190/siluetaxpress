@@ -63,8 +63,9 @@ $xajax->processRequest();
 // -------------------------------------------Inicializacion de variables-------------------------------------------#
 // -----------------------------------------------------------------------------------------------------------------#
 
-if (!isset($_SESSION['verPaciente'])){
-    header("Location: listadoPacientes.php");
+if (!isset($_SESSION['verPaciente'])||$_SESSION['verPaciente']==NULL){
+    header("Location: listadoPacientes2.php");
+    var_dump($_SESSION['verPaciente']);
 }
 
 $aux =$_SESSION['verPaciente'];

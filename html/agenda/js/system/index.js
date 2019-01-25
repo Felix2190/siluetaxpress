@@ -98,6 +98,14 @@ function iniciar(){
 			},120000)
 		},2000);
 
+	//cerrar sesión
+	setTimeout(function() { 
+		window.location="logout.php";
+	},600000);
+	setTimeout(function() {
+		mostrarMsjEspera("En breve se cerrar&aacute; la sesi&oacute;n actual, realice una acci&oacute;n para cancelar el cierre",20);	
+	},580000);
+	
 	actualizaResumen();
 	
 	
