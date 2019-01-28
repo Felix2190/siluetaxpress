@@ -36,7 +36,7 @@ $(document).ready(function(){
 	 url=url.split("/");
 		url=url[url.length-1];
 		
-		if(url!="nuevaCita.php"&&url!="altaPaciente.php"&&url!="index.php"){
+		if(url!="nuevaCita.php"&&url!="altaPaciente.php"&&url!="editarPaciente.php"&&url!="index.php"){
 //			alert(url[url.length-1]);
 			$.ajax({
 				method : "post",
@@ -57,8 +57,8 @@ $(document).ready(function(){
 		url=url.split("/");
 		url=url[url.length-1];
 		
-		if(url!="nuevaCita.php"&&url!="altaPaciente.php"&&url!="index.php")	
-			mostrarMsjEspera("En 15 segundos se direccionar&aacute; a la p&aacute;gina principal.",14);	
+		if(url!="nuevaCita.php"&&url!="altaPaciente.php"&&url!="editarPaciente.php"&&url!="index.php")
+				mostrarMsjEspera("En 15 segundos se direccionar&aacute; a la p&aacute;gina principal.",14);	
 	},165000);
 	/*
 	setTimeout(function() {
