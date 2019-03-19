@@ -1,0 +1,470 @@
+[24-Jan-2019 20:15:03 America/Mexico_City] PHP Notice:  Undefined index: verPaciente in /home/zs5xw0qfuut5/public_html/agenda/include/controler/verPaciente.inc.php on line 70
+[24-Jan-2019 20:15:03 America/Mexico_City] PHP Notice:  Undefined offset: 2 in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 57
+[24-Jan-2019 20:15:03 America/Mexico_City] PHP Notice:  Undefined offset: 1 in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 57
+[24-Jan-2019 20:15:03 America/Mexico_City] PHP Notice:  Undefined offset: 0 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/verPaciente.inc.php on line 35
+[24-Jan-2019 20:15:03 America/Mexico_City] PHP Notice:  Undefined variable: hojaClinica in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[24-Jan-2019 20:15:03 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[24-Jan-2019 20:20:55 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[25-Jan-2019 11:01:19 America/Mexico_City] PHP Notice:  Undefined index: verCita in /home/zs5xw0qfuut5/public_html/agenda/include/controler/verCita.inc.php on line 306
+[26-Jan-2019 07:03:40 America/Mexico_City] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/zs5xw0qfuut5/public_html/agenda/include/controler/adminFunciones.inc.php:105) in /home/zs5xw0qfuut5/public_html/agenda/masterInclude.inc.php on line 4
+[26-Jan-2019 13:09:17 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[26-Jan-2019 14:45:06 America/Mexico_City] PHP Notice:  Undefined index: cafeF in /home/zs5xw0qfuut5/public_html/agenda/include/controler/altaPaciente.inc.php on line 62
+[26-Jan-2019 14:45:19 America/Mexico_City] PHP Notice:  Undefined index:  in /home/zs5xw0qfuut5/public_html/agenda/include/controler/getHojaClinicaPDF.inc.php on line 198
+[26-Jan-2019 14:49:23 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[27-Jan-2019 13:40:49 America/Mexico_City] PHP Notice:  Undefined offset: 0 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 31
+[27-Jan-2019 13:40:49 America/Mexico_City] PHP Notice:  Undefined offset: 1 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 32
+[27-Jan-2019 13:40:49 America/Mexico_City] PHP Notice:  Undefined offset: 2 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 33
+[27-Jan-2019 13:45:26 America/Mexico_City] PHP Notice:  Undefined offset: 0 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 31
+[27-Jan-2019 13:45:26 America/Mexico_City] PHP Notice:  Undefined offset: 1 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 32
+[27-Jan-2019 13:45:26 America/Mexico_City] PHP Notice:  Undefined offset: 2 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 33
+[27-Jan-2019 13:48:44 America/Mexico_City] PHP Notice:  Undefined offset: 0 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 31
+[27-Jan-2019 13:48:44 America/Mexico_City] PHP Notice:  Undefined offset: 1 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 32
+[27-Jan-2019 13:48:44 America/Mexico_City] PHP Notice:  Undefined offset: 2 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 33
+[27-Jan-2019 13:49:31 America/Mexico_City] PHP Notice:  Undefined offset: 0 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 31
+[27-Jan-2019 13:49:31 America/Mexico_City] PHP Notice:  Undefined offset: 1 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 32
+[27-Jan-2019 13:49:31 America/Mexico_City] PHP Notice:  Undefined offset: 2 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 33
+[27-Jan-2019 13:54:29 America/Mexico_City] PHP Notice:  Undefined offset: 0 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 31
+[27-Jan-2019 13:54:29 America/Mexico_City] PHP Notice:  Undefined offset: 1 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 32
+[27-Jan-2019 13:54:29 America/Mexico_City] PHP Notice:  Undefined offset: 2 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 33
+[27-Jan-2019 13:55:26 America/Mexico_City] PHP Notice:  Undefined offset: 0 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 31
+[27-Jan-2019 13:55:26 America/Mexico_City] PHP Notice:  Undefined offset: 1 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 32
+[27-Jan-2019 13:55:26 America/Mexico_City] PHP Notice:  Undefined offset: 2 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 33
+[27-Jan-2019 14:14:16 America/Mexico_City] PHP Notice:  Undefined offset: 0 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 31
+[27-Jan-2019 14:14:16 America/Mexico_City] PHP Notice:  Undefined offset: 1 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 32
+[27-Jan-2019 14:14:16 America/Mexico_City] PHP Notice:  Undefined offset: 2 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 33
+[27-Jan-2019 22:00:41 America/Mexico_City] PHP Notice:  Undefined offset: 0 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 31
+[27-Jan-2019 22:00:41 America/Mexico_City] PHP Notice:  Undefined offset: 1 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 32
+[27-Jan-2019 22:00:41 America/Mexico_City] PHP Notice:  Undefined offset: 2 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 33
+[27-Jan-2019 22:04:14 America/Mexico_City] PHP Notice:  Undefined offset: 0 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 31
+[27-Jan-2019 22:04:14 America/Mexico_City] PHP Notice:  Undefined offset: 1 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 32
+[27-Jan-2019 22:04:14 America/Mexico_City] PHP Notice:  Undefined offset: 2 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 33
+[27-Jan-2019 22:05:03 America/Mexico_City] PHP Notice:  Undefined offset: 0 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 31
+[27-Jan-2019 22:05:03 America/Mexico_City] PHP Notice:  Undefined offset: 1 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 32
+[27-Jan-2019 22:05:03 America/Mexico_City] PHP Notice:  Undefined offset: 2 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 33
+[28-Jan-2019 15:48:10 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[28-Jan-2019 19:03:12 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[29-Jan-2019 09:44:03 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[29-Jan-2019 13:37:34 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[29-Jan-2019 15:22:07 America/Mexico_City] PHP Notice:  Undefined offset: 0 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/editaPaciente.inc.php on line 35
+[29-Jan-2019 15:22:27 America/Mexico_City] PHP Notice:  Undefined index: editaPaciente in /home/zs5xw0qfuut5/public_html/agenda/include/controler/editaPaciente.inc.php on line 70
+[29-Jan-2019 15:22:27 America/Mexico_City] PHP Notice:  Undefined offset: 2 in /home/zs5xw0qfuut5/public_html/agenda/editaPaciente.php on line 55
+[29-Jan-2019 15:22:27 America/Mexico_City] PHP Notice:  Undefined offset: 1 in /home/zs5xw0qfuut5/public_html/agenda/editaPaciente.php on line 55
+[29-Jan-2019 15:22:27 America/Mexico_City] PHP Notice:  Undefined offset: 0 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/editaPaciente.inc.php on line 35
+[29-Jan-2019 15:22:27 America/Mexico_City] PHP Notice:  Undefined variable: hojaClinica in /home/zs5xw0qfuut5/public_html/agenda/editaPaciente.php on line 77
+[29-Jan-2019 15:22:27 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/editaPaciente.php:77
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/editaPaciente.php on line 77
+[29-Jan-2019 18:53:34 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[30-Jan-2019 12:23:14 America/Mexico_City] PHP Notice:  Undefined index: cafeF in /home/zs5xw0qfuut5/public_html/agenda/include/controler/altaPaciente.inc.php on line 62
+[30-Jan-2019 12:23:36 America/Mexico_City] PHP Notice:  Undefined index:  in /home/zs5xw0qfuut5/public_html/agenda/include/controler/getHojaClinicaPDF.inc.php on line 198
+[30-Jan-2019 12:30:07 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[31-Jan-2019 10:24:45 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[31-Jan-2019 11:15:25 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[31-Jan-2019 11:18:27 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[31-Jan-2019 13:38:03 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[31-Jan-2019 18:25:08 America/Mexico_City] PHP Notice:  Undefined index: cafeF in /home/zs5xw0qfuut5/public_html/agenda/include/controler/altaPaciente.inc.php on line 62
+[31-Jan-2019 18:25:30 America/Mexico_City] PHP Notice:  Undefined index:  in /home/zs5xw0qfuut5/public_html/agenda/include/controler/getHojaClinicaPDF.inc.php on line 198
+[31-Jan-2019 18:56:29 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[01-Feb-2019 09:58:33 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[01-Feb-2019 11:06:58 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[01-Feb-2019 11:12:22 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[01-Feb-2019 11:54:36 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[01-Feb-2019 14:17:52 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[01-Feb-2019 15:14:59 America/Mexico_City] PHP Notice:  Undefined index: verCita in /home/zs5xw0qfuut5/public_html/agenda/include/controler/verCita.inc.php on line 306
+[01-Feb-2019 15:41:46 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[01-Feb-2019 15:41:58 America/Mexico_City] PHP Notice:  Undefined index: verCita in /home/zs5xw0qfuut5/public_html/agenda/include/controler/verCita.inc.php on line 306
+[01-Feb-2019 16:26:52 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[02-Feb-2019 10:32:54 America/Mexico_City] PHP Notice:  Undefined index: verCita in /home/zs5xw0qfuut5/public_html/agenda/include/controler/verCita.inc.php on line 306
+[02-Feb-2019 11:08:25 America/Mexico_City] PHP Notice:  Undefined index: cafeF in /home/zs5xw0qfuut5/public_html/agenda/include/controler/altaPaciente.inc.php on line 62
+[02-Feb-2019 11:09:15 America/Mexico_City] PHP Notice:  Undefined index:  in /home/zs5xw0qfuut5/public_html/agenda/include/controler/getHojaClinicaPDF.inc.php on line 198
+[02-Feb-2019 11:47:19 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[02-Feb-2019 12:07:18 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[02-Feb-2019 12:11:22 America/Mexico_City] PHP Notice:  Undefined index: cafeF in /home/zs5xw0qfuut5/public_html/agenda/include/controler/altaPaciente.inc.php on line 62
+[02-Feb-2019 12:11:31 America/Mexico_City] PHP Notice:  Undefined index:  in /home/zs5xw0qfuut5/public_html/agenda/include/controler/getHojaClinicaPDF.inc.php on line 198
+[02-Feb-2019 13:28:57 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[02-Feb-2019 15:13:18 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[03-Feb-2019 14:27:03 America/Mexico_City] PHP Notice:  Undefined offset: 0 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 31
+[03-Feb-2019 14:27:03 America/Mexico_City] PHP Notice:  Undefined offset: 1 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 32
+[03-Feb-2019 14:27:03 America/Mexico_City] PHP Notice:  Undefined offset: 2 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 33
+[03-Feb-2019 14:31:27 America/Mexico_City] PHP Notice:  Undefined offset: 0 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 31
+[03-Feb-2019 14:31:27 America/Mexico_City] PHP Notice:  Undefined offset: 1 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 32
+[03-Feb-2019 14:31:27 America/Mexico_City] PHP Notice:  Undefined offset: 2 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 33
+[03-Feb-2019 14:49:41 America/Mexico_City] PHP Notice:  Undefined offset: 0 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 31
+[03-Feb-2019 14:49:41 America/Mexico_City] PHP Notice:  Undefined offset: 1 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 32
+[03-Feb-2019 14:49:41 America/Mexico_City] PHP Notice:  Undefined offset: 2 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 33
+[03-Feb-2019 15:04:57 America/Mexico_City] PHP Notice:  Undefined offset: 0 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 31
+[03-Feb-2019 15:04:57 America/Mexico_City] PHP Notice:  Undefined offset: 1 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 32
+[03-Feb-2019 15:04:57 America/Mexico_City] PHP Notice:  Undefined offset: 2 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 33
+[04-Feb-2019 08:56:28 America/Mexico_City] PHP Notice:  Undefined index: verCita in /home/zs5xw0qfuut5/public_html/agenda/include/controler/verCita.inc.php on line 306
+[04-Feb-2019 12:00:21 America/Mexico_City] PHP Warning:  mysqli::__construct(): (HY000/2002): Can't connect to local MySQL server through socket '/var/lib/mysql/mysql.sock' (2) in /home/zs5xw0qfuut5/public_html/include/Conexion/Conexion.php on line 13
+[04-Feb-2019 12:00:21 America/Mexico_City] PHP Warning:  mysqli_query(): Couldn't fetch mysqli in /home/zs5xw0qfuut5/public_html/include/model/extend/model.cita.inc.php on line 85
+[04-Feb-2019 12:19:36 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[04-Feb-2019 13:06:59 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[04-Feb-2019 13:45:08 America/Mexico_City] PHP Notice:  Undefined offset: 0 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/editaPaciente.inc.php on line 35
+[04-Feb-2019 18:43:25 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[05-Feb-2019 10:31:14 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[05-Feb-2019 12:57:12 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[05-Feb-2019 13:27:03 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[05-Feb-2019 17:32:05 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[06-Feb-2019 12:47:12 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[06-Feb-2019 14:09:04 America/Mexico_City] PHP Notice:  Undefined index: verCita in /home/zs5xw0qfuut5/public_html/agenda/include/controler/verCita.inc.php on line 306
+[06-Feb-2019 14:44:49 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[06-Feb-2019 15:55:56 America/Mexico_City] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/zs5xw0qfuut5/public_html/agenda/include/controler/adminFunciones.inc.php:105) in /home/zs5xw0qfuut5/public_html/agenda/masterInclude.inc.php on line 4
+[06-Feb-2019 18:31:52 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[07-Feb-2019 13:42:30 America/Mexico_City] PHP Notice:  Undefined offset: 0 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/editaPaciente.inc.php on line 35
+[07-Feb-2019 15:34:08 America/Mexico_City] PHP Notice:  Undefined index: editaPaciente in /home/zs5xw0qfuut5/public_html/agenda/include/controler/editaPaciente.inc.php on line 70
+[07-Feb-2019 15:34:08 America/Mexico_City] PHP Notice:  Undefined offset: 2 in /home/zs5xw0qfuut5/public_html/agenda/editaPaciente.php on line 55
+[07-Feb-2019 15:34:08 America/Mexico_City] PHP Notice:  Undefined offset: 1 in /home/zs5xw0qfuut5/public_html/agenda/editaPaciente.php on line 55
+[07-Feb-2019 15:34:08 America/Mexico_City] PHP Notice:  Undefined offset: 0 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/editaPaciente.inc.php on line 35
+[07-Feb-2019 15:34:08 America/Mexico_City] PHP Notice:  Undefined variable: hojaClinica in /home/zs5xw0qfuut5/public_html/agenda/editaPaciente.php on line 77
+[07-Feb-2019 15:34:08 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/editaPaciente.php:77
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/editaPaciente.php on line 77
+[07-Feb-2019 18:51:28 America/Mexico_City] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/zs5xw0qfuut5/public_html/agenda/include/controler/adminFunciones.inc.php:105) in /home/zs5xw0qfuut5/public_html/agenda/masterInclude.inc.php on line 4
+[08-Feb-2019 10:39:03 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[09-Feb-2019 10:53:03 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[10-Feb-2019 12:53:42 America/Mexico_City] PHP Notice:  Undefined offset: 0 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 31
+[10-Feb-2019 12:53:42 America/Mexico_City] PHP Notice:  Undefined offset: 1 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 32
+[10-Feb-2019 12:53:42 America/Mexico_City] PHP Notice:  Undefined offset: 2 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 33
+[10-Feb-2019 12:54:12 America/Mexico_City] PHP Notice:  Undefined index: verCita in /home/zs5xw0qfuut5/public_html/agenda/include/controler/verCita.inc.php on line 306
+[10-Feb-2019 12:54:27 America/Mexico_City] PHP Notice:  Undefined index: verCita in /home/zs5xw0qfuut5/public_html/agenda/include/controler/verCita.inc.php on line 306
+[10-Feb-2019 12:57:18 America/Mexico_City] PHP Notice:  Undefined index: verCita in /home/zs5xw0qfuut5/public_html/agenda/include/controler/verCita.inc.php on line 306
+[10-Feb-2019 12:57:36 America/Mexico_City] PHP Notice:  Undefined index: verCita in /home/zs5xw0qfuut5/public_html/agenda/include/controler/verCita.inc.php on line 306
+[10-Feb-2019 12:58:49 America/Mexico_City] PHP Notice:  Undefined offset: 0 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 31
+[10-Feb-2019 12:58:49 America/Mexico_City] PHP Notice:  Undefined offset: 1 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 32
+[10-Feb-2019 12:58:49 America/Mexico_City] PHP Notice:  Undefined offset: 2 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 33
+[10-Feb-2019 13:02:55 America/Mexico_City] PHP Notice:  Undefined offset: 0 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 31
+[10-Feb-2019 13:02:55 America/Mexico_City] PHP Notice:  Undefined offset: 1 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 32
+[10-Feb-2019 13:02:55 America/Mexico_City] PHP Notice:  Undefined offset: 2 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 33
+[10-Feb-2019 13:04:00 America/Mexico_City] PHP Notice:  Undefined offset: 0 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 31
+[10-Feb-2019 13:04:00 America/Mexico_City] PHP Notice:  Undefined offset: 1 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 32
+[10-Feb-2019 13:04:00 America/Mexico_City] PHP Notice:  Undefined offset: 2 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 33
+[10-Feb-2019 13:04:26 America/Mexico_City] PHP Notice:  Undefined offset: 0 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 31
+[10-Feb-2019 13:04:26 America/Mexico_City] PHP Notice:  Undefined offset: 1 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 32
+[10-Feb-2019 13:04:26 America/Mexico_City] PHP Notice:  Undefined offset: 2 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 33
+[10-Feb-2019 13:07:38 America/Mexico_City] PHP Notice:  Undefined offset: 0 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 31
+[10-Feb-2019 13:07:38 America/Mexico_City] PHP Notice:  Undefined offset: 1 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 32
+[10-Feb-2019 13:07:38 America/Mexico_City] PHP Notice:  Undefined offset: 2 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 33
+[10-Feb-2019 13:10:28 America/Mexico_City] PHP Notice:  Undefined offset: 0 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 31
+[10-Feb-2019 13:10:28 America/Mexico_City] PHP Notice:  Undefined offset: 1 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 32
+[10-Feb-2019 13:10:28 America/Mexico_City] PHP Notice:  Undefined offset: 2 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 33
+[10-Feb-2019 20:03:15 America/Mexico_City] PHP Notice:  Undefined offset: 0 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 31
+[10-Feb-2019 20:03:15 America/Mexico_City] PHP Notice:  Undefined offset: 1 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 32
+[10-Feb-2019 20:03:15 America/Mexico_City] PHP Notice:  Undefined offset: 2 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 33
+[10-Feb-2019 21:24:46 America/Mexico_City] PHP Notice:  Undefined offset: 0 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 31
+[10-Feb-2019 21:24:46 America/Mexico_City] PHP Notice:  Undefined offset: 1 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 32
+[10-Feb-2019 21:24:46 America/Mexico_City] PHP Notice:  Undefined offset: 2 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 33
+[10-Feb-2019 21:25:46 America/Mexico_City] PHP Notice:  Undefined offset: 0 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 31
+[10-Feb-2019 21:25:46 America/Mexico_City] PHP Notice:  Undefined offset: 1 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 32
+[10-Feb-2019 21:25:46 America/Mexico_City] PHP Notice:  Undefined offset: 2 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 33
+[10-Feb-2019 21:26:03 America/Mexico_City] PHP Notice:  Undefined offset: 0 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 31
+[10-Feb-2019 21:26:03 America/Mexico_City] PHP Notice:  Undefined offset: 1 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 32
+[10-Feb-2019 21:26:03 America/Mexico_City] PHP Notice:  Undefined offset: 2 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 33
+[10-Feb-2019 21:26:08 America/Mexico_City] PHP Notice:  Undefined offset: 0 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 31
+[10-Feb-2019 21:26:08 America/Mexico_City] PHP Notice:  Undefined offset: 1 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 32
+[10-Feb-2019 21:26:08 America/Mexico_City] PHP Notice:  Undefined offset: 2 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 33
+[10-Feb-2019 21:28:35 America/Mexico_City] PHP Notice:  Undefined offset: 0 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 31
+[10-Feb-2019 21:28:35 America/Mexico_City] PHP Notice:  Undefined offset: 1 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 32
+[10-Feb-2019 21:28:35 America/Mexico_City] PHP Notice:  Undefined offset: 2 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 33
+[11-Feb-2019 13:56:03 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[12-Feb-2019 10:12:49 America/Mexico_City] PHP Warning:  fsockopen(): unable to connect to www.altiria.net:80 (Connection timed out) in /home/zs5xw0qfuut5/public_html/agenda/include/controler/adminFunciones.inc.php on line 1006
+[12-Feb-2019 11:58:04 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[12-Feb-2019 18:36:29 America/Mexico_City] PHP Notice:  Undefined index: verCita in /home/zs5xw0qfuut5/public_html/agenda/include/controler/verCita.inc.php on line 306
+[12-Feb-2019 22:01:43 America/Mexico_City] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/zs5xw0qfuut5/public_html/agenda/include/controler/adminFunciones.inc.php:105) in /home/zs5xw0qfuut5/public_html/agenda/masterInclude.inc.php on line 4
+[12-Feb-2019 22:02:14 America/Mexico_City] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/zs5xw0qfuut5/public_html/agenda/include/controler/adminFunciones.inc.php:105) in /home/zs5xw0qfuut5/public_html/agenda/masterInclude.inc.php on line 4
+[13-Feb-2019 16:41:14 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[14-Feb-2019 16:54:26 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[15-Feb-2019 13:26:34 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[15-Feb-2019 14:19:54 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[15-Feb-2019 14:26:12 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[15-Feb-2019 14:31:35 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[15-Feb-2019 14:32:52 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[15-Feb-2019 14:36:35 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[15-Feb-2019 15:11:57 America/Mexico_City] PHP Notice:  Undefined index: verCita in /home/zs5xw0qfuut5/public_html/agenda/include/controler/verCita.inc.php on line 306
+[15-Feb-2019 15:42:02 America/Mexico_City] PHP Notice:  Undefined index: verCita in /home/zs5xw0qfuut5/public_html/agenda/include/controler/verCita.inc.php on line 306
+[15-Feb-2019 15:51:04 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[15-Feb-2019 16:16:50 America/Mexico_City] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/zs5xw0qfuut5/public_html/agenda/include/controler/adminFunciones.inc.php:105) in /home/zs5xw0qfuut5/public_html/agenda/masterInclude.inc.php on line 4
+[16-Feb-2019 13:54:52 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[16-Feb-2019 15:37:05 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[18-Feb-2019 14:30:09 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[18-Feb-2019 15:39:54 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[18-Feb-2019 17:49:07 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[19-Feb-2019 18:09:55 America/Mexico_City] PHP Notice:  Undefined index: verCita in /home/zs5xw0qfuut5/public_html/agenda/include/controler/verCita.inc.php on line 306
+[21-Feb-2019 14:08:48 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[21-Feb-2019 17:06:28 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[22-Feb-2019 11:17:36 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[22-Feb-2019 11:35:55 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[22-Feb-2019 12:52:04 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[22-Feb-2019 14:34:44 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[23-Feb-2019 08:15:09 America/Mexico_City] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/zs5xw0qfuut5/public_html/agenda/include/controler/adminFunciones.inc.php:105) in /home/zs5xw0qfuut5/public_html/agenda/masterInclude.inc.php on line 4
+[23-Feb-2019 12:29:15 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[23-Feb-2019 13:49:17 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[23-Feb-2019 15:37:13 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[24-Feb-2019 10:16:23 America/Mexico_City] PHP Notice:  Undefined offset: 0 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 31
+[24-Feb-2019 10:16:23 America/Mexico_City] PHP Notice:  Undefined offset: 1 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 32
+[24-Feb-2019 10:16:23 America/Mexico_City] PHP Notice:  Undefined offset: 2 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 33
+[24-Feb-2019 10:26:50 America/Mexico_City] PHP Notice:  Undefined offset: 0 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 31
+[24-Feb-2019 10:26:50 America/Mexico_City] PHP Notice:  Undefined offset: 1 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 32
+[24-Feb-2019 10:26:50 America/Mexico_City] PHP Notice:  Undefined offset: 2 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 33
+[24-Feb-2019 10:29:02 America/Mexico_City] PHP Notice:  Undefined index: verCita in /home/zs5xw0qfuut5/public_html/agenda/include/controler/verCita.inc.php on line 306
+[24-Feb-2019 10:29:03 America/Mexico_City] PHP Notice:  Undefined index: verCita in /home/zs5xw0qfuut5/public_html/agenda/include/controler/verCita.inc.php on line 306
+[24-Feb-2019 10:29:05 America/Mexico_City] PHP Notice:  Undefined index: verCita in /home/zs5xw0qfuut5/public_html/agenda/include/controler/verCita.inc.php on line 306
+[24-Feb-2019 10:29:34 America/Mexico_City] PHP Notice:  Undefined index: verCita in /home/zs5xw0qfuut5/public_html/agenda/include/controler/verCita.inc.php on line 306
+[24-Feb-2019 10:44:03 America/Mexico_City] PHP Notice:  Undefined offset: 0 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 31
+[24-Feb-2019 10:44:03 America/Mexico_City] PHP Notice:  Undefined offset: 1 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 32
+[24-Feb-2019 10:44:03 America/Mexico_City] PHP Notice:  Undefined offset: 2 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 33
+[27-Feb-2019 10:19:01 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[27-Feb-2019 13:26:41 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[28-Feb-2019 13:53:25 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[28-Feb-2019 22:27:39 America/Mexico_City] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/zs5xw0qfuut5/public_html/agenda/include/controler/adminFunciones.inc.php:105) in /home/zs5xw0qfuut5/public_html/agenda/masterInclude.inc.php on line 4
+[01-Mar-2019 10:24:49 America/Mexico_City] PHP Notice:  Undefined index: verCita in /home/zs5xw0qfuut5/public_html/agenda/include/controler/verCita.inc.php on line 306
+[01-Mar-2019 15:50:49 America/Mexico_City] PHP Notice:  Undefined index: verCita in /home/zs5xw0qfuut5/public_html/agenda/include/controler/verCita.inc.php on line 306
+[01-Mar-2019 17:19:15 America/Mexico_City] PHP Notice:  Undefined index: verCita in /home/zs5xw0qfuut5/public_html/agenda/include/controler/verCita.inc.php on line 306
+[01-Mar-2019 17:58:47 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[01-Mar-2019 20:20:15 America/Mexico_City] PHP Warning:  Cannot modify header information - headers already sent by (output started at /home/zs5xw0qfuut5/public_html/agenda/include/controler/adminFunciones.inc.php:105) in /home/zs5xw0qfuut5/public_html/agenda/masterInclude.inc.php on line 4
+[02-Mar-2019 11:42:18 America/Mexico_City] PHP Fatal error:  Uncaught Error: Call to a member function getCirugia() on null in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php:81
+Stack trace:
+#0 {main}
+  thrown in /home/zs5xw0qfuut5/public_html/agenda/verPaciente.php on line 81
+[03-Mar-2019 11:13:59 America/Mexico_City] PHP Notice:  Undefined offset: 0 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 31
+[03-Mar-2019 11:13:59 America/Mexico_City] PHP Notice:  Undefined offset: 1 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 32
+[03-Mar-2019 11:13:59 America/Mexico_City] PHP Notice:  Undefined offset: 2 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 33
+[03-Mar-2019 11:16:01 America/Mexico_City] PHP Notice:  Undefined offset: 0 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 31
+[03-Mar-2019 11:16:01 America/Mexico_City] PHP Notice:  Undefined offset: 1 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 32
+[03-Mar-2019 11:16:01 America/Mexico_City] PHP Notice:  Undefined offset: 2 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 33
+[03-Mar-2019 11:18:01 America/Mexico_City] PHP Notice:  Undefined offset: 0 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 31
+[03-Mar-2019 11:18:01 America/Mexico_City] PHP Notice:  Undefined offset: 1 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 32
+[03-Mar-2019 11:18:01 America/Mexico_City] PHP Notice:  Undefined offset: 2 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 33
+[03-Mar-2019 11:20:01 America/Mexico_City] PHP Notice:  Undefined offset: 0 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 31
+[03-Mar-2019 11:20:01 America/Mexico_City] PHP Notice:  Undefined offset: 1 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 32
+[03-Mar-2019 11:20:01 America/Mexico_City] PHP Notice:  Undefined offset: 2 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 33
+[03-Mar-2019 11:22:01 America/Mexico_City] PHP Notice:  Undefined offset: 0 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 31
+[03-Mar-2019 11:22:01 America/Mexico_City] PHP Notice:  Undefined offset: 1 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 32
+[03-Mar-2019 11:22:01 America/Mexico_City] PHP Notice:  Undefined offset: 2 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 33
+[03-Mar-2019 19:38:44 America/Mexico_City] PHP Notice:  Undefined offset: 0 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 31
+[03-Mar-2019 19:38:44 America/Mexico_City] PHP Notice:  Undefined offset: 1 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 32
+[03-Mar-2019 19:38:44 America/Mexico_City] PHP Notice:  Undefined offset: 2 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 33
+[03-Mar-2019 19:38:59 America/Mexico_City] PHP Notice:  Undefined offset: 0 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 31
+[03-Mar-2019 19:38:59 America/Mexico_City] PHP Notice:  Undefined offset: 1 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 32
+[03-Mar-2019 19:38:59 America/Mexico_City] PHP Notice:  Undefined offset: 2 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 33
+[03-Mar-2019 19:41:01 America/Mexico_City] PHP Notice:  Undefined offset: 0 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 31
+[03-Mar-2019 19:41:01 America/Mexico_City] PHP Notice:  Undefined offset: 1 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 32
+[03-Mar-2019 19:41:01 America/Mexico_City] PHP Notice:  Undefined offset: 2 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 33
+[03-Mar-2019 19:43:01 America/Mexico_City] PHP Notice:  Undefined offset: 0 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 31
+[03-Mar-2019 19:43:01 America/Mexico_City] PHP Notice:  Undefined offset: 1 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 32
+[03-Mar-2019 19:43:01 America/Mexico_City] PHP Notice:  Undefined offset: 2 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 33
+[03-Mar-2019 19:45:01 America/Mexico_City] PHP Notice:  Undefined offset: 0 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 31
+[03-Mar-2019 19:45:01 America/Mexico_City] PHP Notice:  Undefined offset: 1 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 32
+[03-Mar-2019 19:45:01 America/Mexico_City] PHP Notice:  Undefined offset: 2 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 33
+[03-Mar-2019 19:47:01 America/Mexico_City] PHP Notice:  Undefined offset: 0 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 31
+[03-Mar-2019 19:47:01 America/Mexico_City] PHP Notice:  Undefined offset: 1 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 32
+[03-Mar-2019 19:47:01 America/Mexico_City] PHP Notice:  Undefined offset: 2 in /home/zs5xw0qfuut5/public_html/agenda/include/controler/index.inc.php on line 33
+[03-Mar-2019 20:18:27 America/Mexico_City] PHP Warning:  require_once(/home/zs5xw0qfuut5/public_html/siluetaxpress/html/include/Conexion/Conexion.php): failed to open stream: No such file or directory in /home/zs5xw0qfuut5/public_html/agenda/checar_saldo.php on line 16
+[03-Mar-2019 20:18:27 America/Mexico_City] PHP Fatal error:  require_once(): Failed opening required '/home/zs5xw0qfuut5/public_html/siluetaxpress/html/include/Conexion/Conexion.php' (include_path='.:/opt/alt/php71/usr/share/pear') in /home/zs5xw0qfuut5/public_html/agenda/checar_saldo.php on line 16
+[03-Mar-2019 20:19:44 America/Mexico_City] PHP Warning:  require_once(/home/zs5xw0qfuut5/public_html/include//agenda/include/controler/funcionesSMS.php): failed to open stream: No such file or directory in /home/zs5xw0qfuut5/public_html/agenda/checar_saldo.php on line 17
+[03-Mar-2019 20:19:44 America/Mexico_City] PHP Fatal error:  require_once(): Failed opening required '/home/zs5xw0qfuut5/public_html/include//agenda/include/controler/funcionesSMS.php' (include_path='.:/opt/alt/php71/usr/share/pear') in /home/zs5xw0qfuut5/public_html/agenda/checar_saldo.php on line 17
+[03-Mar-2019 20:20:37 America/Mexico_City] PHP Warning:  require_once(/home/zs5xw0qfuut5/public_html/include//agenda/include/controler/funcionesSMS.php): failed to open stream: No such file or directory in /home/zs5xw0qfuut5/public_html/agenda/checar_saldo.php on line 17
+[03-Mar-2019 20:20:37 America/Mexico_City] PHP Fatal error:  require_once(): Failed opening required '/home/zs5xw0qfuut5/public_html/include//agenda/include/controler/funcionesSMS.php' (include_path='.:/opt/alt/php71/usr/share/pear') in /home/zs5xw0qfuut5/public_html/agenda/checar_saldo.php on line 17
