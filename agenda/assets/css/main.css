@@ -2301,9 +2301,10 @@
 	label {
 		color: #3d4449;
 		display: block;
-		font-size: 0.9em;
+		font-size: 1em;
 		font-weight: 600;
 		margin: 0 0 1em 0;
+		float: right;
 	}
 
 	input[type="text"],
@@ -3030,6 +3031,7 @@
 			background-color: #2f890b;
 			box-shadow: none;
 			color: #ffffff !important;
+			float: right;
 		}
 
 			input[type="submit"].special:hover,
@@ -3037,7 +3039,7 @@
 			input[type="button"].special:hover,
 			button.special:hover,
 			.button.special:hover {
-				background-color: #f67878;
+				background-color: #00bb00;
 			}
 
 			input[type="submit"].special:active,
@@ -3605,8 +3607,8 @@
 
 			#sidebar > .inner > * {
 				border-bottom: solid 2px rgba(210, 215, 217, 0.75);
-				margin: 0 0 3.5em 0;
-				padding: 0 0 3.5em 0;
+				margin: 0 0 1em 0;
+				padding: 0 0 1em 0;
 			}
 
 				#sidebar > .inner > * > :last-child {
@@ -3793,7 +3795,7 @@
 		display: -ms-flex;
 		display: flex;
 		border-bottom: solid 5px #2f890b;
-		padding: 6em 0 1em 0;
+		padding: 3em 0 0em 0;
 		position: relative;
 	}
 
@@ -3819,7 +3821,7 @@
 		@media screen and (max-width: 1680px) {
 
 			#header {
-				padding-top: 5em;
+				padding-top: 3em;
 			}
 
 		}
@@ -3827,7 +3829,7 @@
 		@media screen and (max-width: 736px) {
 
 			#header {
-				padding-top: 6.5em;
+				padding-top: 3.5em;
 			}
 
 				#header .logo {
@@ -4038,8 +4040,8 @@
 		padding: 0.5em 0 0 0;
 	}
 	
-	#menu > ul > li.active >a {
-	color: #7F09BA;
+	#menu > ul > li a.active {
+	color: #b048cc;
 	}
 	#menu > ul > li > ul >li.active >a {
 	color: #7F09BA;
@@ -4059,7 +4061,9 @@
 						#menu > ul > li > ul a:hover {
 				color: #b048cc /*cambio  color menu desp*/ 
 			}
-			
+			#menu > ul > li > ul a.active {
+				color: #b048cc /*cambio  color menu desp*/ 
+			}
 
 			#menu > ul > li > ul > li {
 				margin: 0.125em 0 0 0;

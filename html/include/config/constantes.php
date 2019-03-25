@@ -3,37 +3,33 @@ session_start();
 
 date_default_timezone_set('America/Mexico_City');
 
-
 if (! DEVELOPER) {
     /**
      * constantes de producción
+     * /var/www/vhosts/siluetaexpress.com.mx/httpdocs 
      */
     define("FOLDER_INCLUDE", $_SERVER['DOCUMENT_ROOT'] . "/include/");
-    define("FOLDER_INCLUDE_AGENDA", $_SERVER['DOCUMENT_ROOT'] . "/agenda/include/"); //agenda
     
     define("FOLDER_HTDOCS", $_SERVER['DOCUMENT_ROOT'] . "/");
-    define("FOLDER_HTDOCS_AGENDA", $_SERVER['DOCUMENT_ROOT'] . "/agenda/");//AGENDA
-    define("FOLDER_FOTOS", $_SERVER['DOCUMENT_ROOT'] . "tmp/fotosperfil/"); // carpeta para fotos de perfil
+
     define("ERR_DEBUG", false);
     define("SESSION_TIME", 1800);
     define("SOPORTE_TIME", 600);
-    $case1=2;$case2=3;
-    
+
 } else {
     /**
      * constantes de desarrollo
      */
-    define("FOLDER_INCLUDE", $_SERVER['DOCUMENT_ROOT'] . "/siluetaxpress/html/include/");
-    define("FOLDER_INCLUDE_AGENDA", $_SERVER['DOCUMENT_ROOT'] . "/siluetaxpress/html/agenda/include/"); //agenda
+    define("FOLDER_INCLUDE", $_SERVER['DOCUMENT_ROOT'] . "/siluetaxpress2/html/include/");
+    define("FOLDER_INCLUDE_AGENDA", $_SERVER['DOCUMENT_ROOT'] . "/siluetaxpress2/html/include/"); //agenda
     
-    define("FOLDER_HTDOCS", $_SERVER['DOCUMENT_ROOT'] . "/siluetaxpress/html/");
-    define("FOLDER_HTDOCS_AGENDA", $_SERVER['DOCUMENT_ROOT'] . "/siluetaxpress/html/agenda/");//AGENDA
-    define("FOLDER_FOTOS", $_SERVER['DOCUMENT_ROOT'] . "/siluetaxpress/html/tmp/fotosperfil/"); // carpeta para fotos de perfil
+    define("FOLDER_HTDOCS", $_SERVER['DOCUMENT_ROOT'] . "/siluetaxpress2/html/");
+    define("FOLDER_HTDOCS_AGENDA", $_SERVER['DOCUMENT_ROOT'] . "/siluetaxpress2/html/");//AGENDA
+    define("FOLDER_FOTOS", $_SERVER['DOCUMENT_ROOT'] . "/siluetaxpress2/html/tmp/fotosperfil/"); // carpeta para fotos de perfil
 //    define("DOMINIO", "http://planet/" . SUBDIR . "/");
     define("ERR_DEBUG", true);
-    $case1=4;$case2=5;
+    $case1=4;$case2=4;
 }
-
 /*
  * DEFINIR VARIABLES
  */
@@ -41,7 +37,6 @@ define("CLASS_CONEXION", FOLDER_INCLUDE.'Conexion/Conexion.php');
 
 
 define("FOLDER_LIB", FOLDER_INCLUDE . "lib/");
-define("FOLDER_LIB_AGENDA", FOLDER_INCLUDE_AGENDA . "lib/"); //AGENDA
 
 //define("FOLDER_COMMON", FOLDER_INCLUDE . "common/");
 //define("FOLDER_CONF", FOLDER_INCLUDE . "conf/");
@@ -71,19 +66,13 @@ define("FOLDER_CONTROLLER", FOLDER_INCLUDE . "controler/");
 define("FOLDER_JS", FOLDER_HTDOCS . "js/system/");
 
 define("LIB_FPDF", FOLDER_INCLUDE . "lib/pdf/fpdf.php");
-// AGENDA
 
-define("FOLDER_CONTROLLER_AGENDA", FOLDER_INCLUDE_AGENDA . "controler/");
-
-define("FOLDER_JS_AGENDA", FOLDER_HTDOCS_AGENDA . "js/system/");
-/*******************************************************/
 
 define("URL_TMP", "datos/tmp/");
 
-
 require_once(CLASS_COMUN);
 require_once CLASS_SESSION;
-///var_dump(CLASS_SESSION);
+/*
 $objSession=new clsSession();
 $sesion=false;
 if(isset($_SESSION['objSession'])){
@@ -98,7 +87,7 @@ if(isset($_SESSION['objSession'])){
 }else {
 //   header("Location: login.php");
 }
-
+*/
 
 require_once(LIB_XAJAX);
 //require_once(LIB_EXCEPTION);
@@ -141,9 +130,6 @@ $_JAVASCRIPT_ALERTAS = "<script type='text/javascript'>
 $pedazos=explode("/", $_SERVER['PHP_SELF']);
 $__FILE_NAME__=str_replace(array("/",".php"),"",$pedazos[count($pedazos)-1]);
 
-switch (count($pedazos)){
-case $case1:
-/**************** SITIO ************************************/
 if(is_file(FOLDER_INCLUDE . "controler/" . $__FILE_NAME__ . ".inc.php")){
     require_once(FOLDER_INCLUDE . "controler/" . $__FILE_NAME__ . ".inc.php");
  }
@@ -159,30 +145,7 @@ $_JAVASCRIPT_CSS .= '<script type="text/javascript" src="' . URL_JAVASCRIPT . '.
 
 if (is_file(FOLDER_JS . $__FILE_NAME__ . ".js"))
     $_JAVASCRIPT_CSS .= '<script type="text/javascript" src="' . URL_JAVASCRIPT . $__FILE_NAME__ . '.js"></script>';
-    
-break;
-case $case2:
-/**
- * ***************** AGENDA **********************************
- */
-    include_once 'variables.php';
-    include_once 'activarmenus.php';
-if (is_file(FOLDER_INCLUDE_AGENDA . "controler/" . $__FILE_NAME__ . ".inc.php")) {
-    require_once (FOLDER_INCLUDE_AGENDA . "controler/" . $__FILE_NAME__ . ".inc.php");
-}
 
-if (! isset($_JAVASCRIPT_CSS_AGENDA))
-    $_JAVASCRIPT_CSS_AGENDA = $_JAVASCRIPT_ALERTAS;
-
-if (isset($xajax))
-    $_JAVASCRIPT_CSS_AGENDA .= $xajax->getJavascript("../js/lib/");
-
-    $_JAVASCRIPT_CSS_AGENDA .= '<script type="text/javascript" src="../' . URL_JAVASCRIPT . '../lib/common.js"></script>';
-
-    if (is_file(FOLDER_JS_AGENDA . $__FILE_NAME__ . ".js"))
-        $_JAVASCRIPT_CSS_AGENDA .= '<script type="text/javascript" src="' . URL_JAVASCRIPT . $__FILE_NAME__ . '.js"></script>';
-break;
-}
 
 //ini_set('max_execution_time', 5000);
 //ini_set('max_input_time', 5000);
