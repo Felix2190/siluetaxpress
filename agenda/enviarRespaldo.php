@@ -20,7 +20,7 @@ define("FOLDER_LIB", FOLDER_INCLUDE . "lib/");
 $fechaActual = date("Y-m-d H:i:s");
 $horaActual= intval(date("H"));
 
-$backup_file = "../resp/respaldo_" .date("Ymd"). ".sql";
+$backup_file = "/var/www/vhosts/siluetaexpress.com.mx/resp/respaldo_" .date("YmdH"). ".sql";
 
 // comandos a ejecutar
 $commands = array(
