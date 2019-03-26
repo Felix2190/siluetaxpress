@@ -61,7 +61,7 @@ if ($dia != 7) { // no es domingo
     
     $fechaFinal = date("Y-m-d H:$minInicio:00",$auxFecha);
     //($numPaciente, $consulta, $dia, $hora, $sucursal, $idConsulta)
-    $query = "Select c.idCita, p.telefonoCel, p.nombre, co.tipoConsulta, s.sucursal, DATE_FORMAT(fechaInicio,'%Y-%m-%d') as fecha, DATE_FORMAT(fechaInicio,'%H:%i') as hora from cita as c 
+    $query = "Select c.idCita, p.telefonoCel, p.nombre, co.tipoConsulta, s.numTelefono, s.sucursal, DATE_FORMAT(fechaInicio,'%Y-%m-%d') as fecha, DATE_FORMAT(fechaInicio,'%H:%i') as hora from cita as c 
             inner join paciente as p on c.idPaciente=p.idPaciente
             inner join sucursal as s on c.idSucursal=s.idSucursal
             inner join consulta as co on c.idConsulta=co.idConsulta
