@@ -88,9 +88,9 @@ $xajax->registerFunction("verTabla");
 function verPaciente($idPaciente){
     $r=new xajaxResponse();
     
-    $_SESSION['editaPaciente']=array('titulo'=>'Detalles del paciente','idPaciente'=>$idPaciente);
+    $_SESSION['editarPaciente']=array('titulo'=>'Detalles del paciente','idPaciente'=>$idPaciente);
     $r->call('mostrarMsjEspera','Consultando detalles del paciente...',2);
-    $r->redirect("editaPaciente.php",3);
+    $r->redirect("editarPaciente.php",3);
     return $r;
 }
 $xajax->registerFunction("verPaciente");
