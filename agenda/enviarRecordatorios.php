@@ -73,6 +73,7 @@ if ($dia != 7) { // no es domingo
      if ($resultado && mysqli_num_rows($resultado) > 0) {
         while ($row_inf = mysqli_fetch_assoc($resultado)){
              $sms=enviaSMS_recordatorio("52".$row_inf['telefonoCel'], $row_inf['nombre'], $row_inf['tipoConsulta'], date("d/m/Y",strtotime($row_inf['fecha'])), $row_inf['hora'], $row_inf['sucursal'], $row_inf['numTelefono']);
+             sleep(2);
              if ($sms)
                  $respuesta[]=$row_inf['idCita'];
              }

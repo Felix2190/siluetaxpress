@@ -26,12 +26,12 @@ if (! DEVELOPER) {
     /**
      * constantes de desarrollo
      */
-    define("FOLDER_INCLUDE", $_SERVER['DOCUMENT_ROOT'] . "/siluetaxpress2/html/include/");
-    define("FOLDER_INCLUDE_AGENDA", $_SERVER['DOCUMENT_ROOT'] . "/siluetaxpress2/html/include/"); //agenda
+    define("FOLDER_INCLUDE", $_SERVER['DOCUMENT_ROOT'] . "/siluetaxpress/agenda/include/");
+    define("FOLDER_INCLUDE_AGENDA", $_SERVER['DOCUMENT_ROOT'] . "/siluetaxpress/agenda/include/"); //agenda
     
-    define("FOLDER_HTDOCS", $_SERVER['DOCUMENT_ROOT'] . "/siluetaxpress2/html/");
-    define("FOLDER_HTDOCS_AGENDA", $_SERVER['DOCUMENT_ROOT'] . "/siluetaxpress2/html/");//AGENDA
-    define("FOLDER_FOTOS", $_SERVER['DOCUMENT_ROOT'] . "/siluetaxpress2/html/tmp/fotosperfil/"); // carpeta para fotos de perfil
+    define("FOLDER_HTDOCS", $_SERVER['DOCUMENT_ROOT'] . "/siluetaxpress/agenda/");
+    define("FOLDER_HTDOCS_AGENDA", $_SERVER['DOCUMENT_ROOT'] . "/siluetaxpress/agenda/");//AGENDA
+    define("FOLDER_FOTOS", $_SERVER['DOCUMENT_ROOT'] . "/siluetaxpress/agenda/tmp/fotosperfil/"); // carpeta para fotos de perfil
 //    define("DOMINIO", "http://planet/" . SUBDIR . "/");
     define("ERR_DEBUG", true);
     $case1=4;$case2=4;

@@ -868,6 +868,8 @@ function enviaSMS_recordatorio($numPaciente, $nombre, $servicio, $dia, $hora, $s
 
 function enviaSMS($numPaciente, $sMessage)
 {
+    date_default_timezone_set('America/Mexico_City');
+    
     $concat="";
     //$concat="concat=true&";
     $sData = 'cmd=sendsms&';
@@ -951,7 +953,7 @@ function enviaSMS($numPaciente, $sMessage)
         }
     }
     
-    return true;
+    return false;
 }
 
 

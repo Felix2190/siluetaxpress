@@ -193,26 +193,26 @@ function guardarCita($paciente,$sucursal,$idCabina,$consulta,$duracion,$fecha,$h
           $resSMS = enviaSMS_CitaNueva("52".$paciente_->getTelefonoCel(), $nConsulta->getTipoConsulta(), date("d/m/Y",strtotime($fechaCita)), "$hora:$minutos", $nSucursal->getSucursal(), $nSucursal->getNumTelefono());
         else 
             $r->call('mostrarMsjError',"No se puede enviar el SMS, el n&uacute;mero es incorrecto ",3);
-    sleep(3);
-    if ($resSMS){
+   $r->call('mostrarMsjExito',$resSMS.'  '.$Recordatorio.'   '.$paciente_->getTelefonoCel(),3);
+            sleep(5);
+            $r->call('mostrarMsjExito',$resSMS.'  '.$Recordatorio.'   '.$paciente_->getTelefonoCel(),3);
+    
+  if ($resSMS){
         $r->call('mostrarMsjExito',"Se envi&oacute; el SMS al ".$paciente_->getTelefonoCel(),3);
         $cita = new ModeloCita();
         $cita->setIdCita($idCita);
         $cita->setRecordatorio1();
         $cita->Guardar();
     }
-    else 
-        $r->call('mostrarMsjError',"No se envi&oacute; el SMS",3);
-    
     //*/
     
     $r->call('mostrarMsjExito','Se agreg&oacute; correctamente las citas!',3);
-    $r->call('limpiarDatos');
+ //   $r->call('limpiarDatos');
     
     
     $_SESSION['altaCita']=$paciente;
     
-    $r->redirect("listadoCitas.php",4);
+///    $r->redirect("listadoCitas.php",4);
     return $r;
     
 }
