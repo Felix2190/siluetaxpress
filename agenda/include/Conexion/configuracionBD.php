@@ -16,7 +16,7 @@ if (! DEVELOPER) {
     define("BD_HOST", "localhost");
     define("BD_USER", "root");
     define("BD_PASS", "");
-    define("BD_DB", "bd_siluetaxpress");
+    define("BD_DB", "bd_siluetaxpress2");
     define("BD_CHARSET", "utf8");
 }
 

@@ -133,6 +133,7 @@ function guardarCita($paciente,$sucursal,$idCabina,$consulta,$duracion,$fecha,$h
     $cita->setEstatus("nueva");
     $cita->setTelefonoPaciente("52".$paciente_->getTelefonoCel());
     $cita->setFechaRegistroCita(date( 'Y-m-d'));
+    $cita->setFechaEnvioSMS(date( 'Y-m-d'));
     //decidir si se envía el segundo recordatorio
     $datetime2 = new DateTime($cita->getFechaInicio());
     $datetime1 = new DateTime(date( 'Y-m-d H:i:s'));
@@ -141,7 +142,8 @@ function guardarCita($paciente,$sucursal,$idCabina,$consulta,$duracion,$fecha,$h
         $cita->setEnviarRecordatorio2();
     else
         $cita->unsetEnviarRecordatorio2();
-    
+    if ($primero)
+        $cita->setEnviarRecordatorio1();
     $cita->Guardar();
     if ($cita->getError()){
         $r->call('mostrarMsjError',$cita->getStrError(),5);
@@ -190,7 +192,7 @@ function guardarCita($paciente,$sucursal,$idCabina,$consulta,$duracion,$fecha,$h
     $resSMS=false; 
 //    if ($Recordatorio=='1')
         if (strlen($paciente_->getTelefonoCel())==10)
-          $resSMS = enviaSMS_CitaNueva("52".$paciente_->getTelefonoCel(), $nConsulta->getTipoConsulta(), date("d/m/Y",strtotime($fechaCita)), "$hora:$minutos", $nSucursal->getSucursal(), $nSucursal->getNumTelefono());
+         $resSMS = enviaSMS_CitaNueva("52".$paciente_->getTelefonoCel(), $nConsulta->getTipoConsulta(), date("d/m/Y",strtotime($fechaCita)), "$hora:$minutos", $nSucursal->getSucursal(), $nSucursal->getNumTelefono());
         else 
             $r->call('mostrarMsjError',"No se puede enviar el SMS, el n&uacute;mero es incorrecto ",3);
     sleep(3);
@@ -199,6 +201,7 @@ function guardarCita($paciente,$sucursal,$idCabina,$consulta,$duracion,$fecha,$h
         $cita = new ModeloCita();
         $cita->setIdCita($idCita);
         $cita->setRecordatorio1();
+        $cita->setFechaEnvioSMS(date( 'Y-m-d H:i:s'));
         $cita->Guardar();
     }
     else 

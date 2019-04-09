@@ -124,14 +124,24 @@ require_once 'masterInclude.inc.php';
 						</div>
 						
 						<div class="row" >
-						<div class="2u 12u$(xsmall)" >
+						<div class="3u 12u$(xsmall)" >
 								<a href="listadoUsuarios.php" class="button">Volver al listado</a>
 						</div>
 						
 						
 						<div class="4u 12u$(xsmall)" >
-								<a style="float: right;" id="btnPass" class="button">Crear nueva contrase&ntilde;a</a>&ensp;
-								
+							<?php if ($Usuario->getEnvioPassword()==0){?> 
+								<a style="float: right;" id="btnPass" class="button" >Crear nueva contrase&ntilde;a</a>&ensp;
+								<?php }else{?>
+								<div class="row">
+									
+									<div class="box2">
+										<div class="12u$(xsmall)" >
+											Se ha enviado la contrase&ntilde;a al correo.
+										</div>
+									</div>
+								</div>
+								<?php }?>
 						</div>
 						
 						

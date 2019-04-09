@@ -2509,6 +2509,14 @@
 		margin-bottom: 2em;
 		padding: 1.5em;
 	}
+	
+	.box2 {
+		border-radius: 0.375em;
+		border: solid 2px;
+			border-color: #ff8040;
+	margin-bottom: .5em;
+		padding: .5em;
+	}
 
 		.box > :last-child,
 		.box > :last-child > :last-child,

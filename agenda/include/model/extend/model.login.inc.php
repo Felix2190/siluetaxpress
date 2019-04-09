@@ -61,7 +61,7 @@ class ModeloLogin extends ModeloBaseLogin
                             $result2 = mysqli_query($this->dbLink, $query2);
                             if ($result2&&mysqli_num_rows($result2) == 1) {
                                 //actualiza sucursal
-                                $query3 = "update usuario set idSucursal=" .$infoUsuario['sucursal']. " WHERE idUsuario =" .$row['idUsuario'];
+                                $query3 = "update usuario set envioPassword=0, idSucursal=" .$infoUsuario['sucursal']. " WHERE idUsuario =" .$row['idUsuario'];
                                 mysqli_query($this->dbLink, $query3);
                                 
                                 $row2= mysqli_fetch_assoc($result2);

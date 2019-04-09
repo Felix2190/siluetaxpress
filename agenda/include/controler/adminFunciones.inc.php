@@ -327,7 +327,7 @@ if (isset($_POST['cve_ent'])){
 }
 
 if (isset($_POST['correo'])&&isset($_POST['mensaje'])&&isset($_POST['asunto'])){
-    echo enviar_mail($_POST['correo'],$_POST['mensaje'],$_POST['asunto']);
+//    echo enviar_mail($_POST['correo'],$_POST['mensaje'],$_POST['asunto']);
 }
 
 if (isset($_POST['valor'])&&isset($_POST['campo'])&&isset($_POST['tabla'])){
@@ -470,7 +470,7 @@ if (isset($_POST['notificacion'])){
     }
     define("FOLDER_LIB", FOLDER_INCLUDE . "lib/");
     $mensaje="Se han enviado correctamente tus datos. <br />En breve nos pondremos en contacto contigo.<br /> <br />Gracias por su comentario.";
-    echo enviar_mail($_POST['notificacion'], "Notificación @siluetaexpress", $mensaje);
+//    echo enviar_mail($_POST['notificacion'], "Notificación @siluetaexpress", $mensaje);
 }
 
 if (isset($_POST['listadoSucursales'])){
@@ -854,6 +854,12 @@ function enviaSMS_CitaNueva($numPaciente, $consulta, $dia, $hora, $sucursal, $nu
     return enviaSMS($numPaciente, $sMessage);
 }
 
+function enviaSMS_CitaNueva2($numPaciente, $consulta, $dia, $hora, $sucursal, $numSucursal)
+{
+    $sMessage = "Ha agendado una cita en SiluetaExpress el dia $dia a las $hora hrs en $sucursal.\nSi desea cancelar su cita, comunícate al $numSucursal";
+    return enviaSMS2($numPaciente, $sMessage);
+}
+
 function enviaSMS_CitaModificada($numPaciente, $dia, $hora, $sucursal, $numSucursal)
 {
     $sMessage = "Se ha modificado tu cita en SiluetaExpress para el dia $dia a las $hora hrs en $sucursal.\nSi desea cancelar su cita, comunícate al $numSucursal";
@@ -864,6 +870,96 @@ function enviaSMS_recordatorio($numPaciente, $nombre, $servicio, $dia, $hora, $s
 {
     $sMessage = "SiluetaExpress le recuerda su cita para el dia $dia a las $hora hrs en $sucursal.\nSi desea cancelar su cita, comunícate al $numSucursal";
     return enviaSMS($numPaciente, $sMessage);
+}
+
+function enviaSMS2($numPaciente, $sMessage)
+{
+    date_default_timezone_set('America/Mexico_City');
+    
+    $concat="";
+    //$concat="concat=true&";
+    $sData = 'cmd=sendsms&';
+    $sData .= 'domainId=siluetaexpress&';
+    $sData .= 'login=lic.lezliedelariva@gmail.com&';
+    $sData .= 'passwd=L7fr9P3sPMw6&';
+    
+    $sData .= 'dest=' . str_replace(',', '&dest=', $numPaciente) . '&';
+    $sData .= 'msg=' . urlencode(utf8_encode($sMessage));
+    
+    $timeOut = 5;
+    
+    $fp = fsockopen('www.altiria.net', 80, $errno, $errstr, $timeOut);
+    if (! $fp) {
+        // Error de conexion o tiempo maximo de conexion rebasado
+        $output = "ERROR de conexion: $errno - $errstr\n";
+        $output .= "Compruebe que ha configurado correctamente la direccion/url ";
+        $output .= "suministrada por altiria";
+        return $output;
+    } else {
+        $buf = "POST http://www.altiria.net/api/http HTTP/1.0\r\n";
+        $buf .= "Host: www.altiria.net\r\n";
+        $buf .= "Content-type: application/x-www-form-urlencoded; charset=UTF-8\r\n";
+        $buf .= "Content-length: ".strlen($sData)."\r\n";
+        $buf .= "\r\n";
+        $buf .= $sData;
+        fputs($fp, $buf);
+        $buf = "";
+        
+        //Tiempo máximo de espera de respuesta del servidor = 60 seg
+        $responseTimeOut = 60;
+        stream_set_timeout($fp,$responseTimeOut);
+        stream_set_blocking ($fp, true);
+        if (!feof($fp)){
+            if (($buf=fgets($fp,128))===false){
+                // TimeOut?
+                $info = stream_get_meta_data($fp);
+                if ($info['timed_out']){
+                    $output = 'ERROR Tiempo de respuesta agotado';
+                    //return false;
+                    return $output;
+                } else {
+                    $output = 'ERROR de respuesta';
+                   // return false;
+                    return $output;
+                }
+            } else{
+                while(!feof($fp)){
+                    $buf.=fgets($fp,128);
+                }
+            }
+        } else {
+            $output = 'ERROR de respuesta';
+ //           return false;
+            return $output;
+        }
+        
+        fclose($fp);
+        
+        
+        //Se comprueba que se ha conectado realmente con el servidor
+        //y que se obtenga un codigo HTTP OK 200
+        if (strpos($buf,"HTTP/1.1 200 OK") === false){
+            $output = "ERROR. Codigo error HTTP: ".substr($buf,9,3)."\n";
+            $output .= "Compruebe que ha configurado correctamente la direccion/url ";
+            $output .= "suministrada por Altiria";
+   //         return false;
+            return $output;
+        }
+        //Se comprueba la respuesta de Altiria
+        if (strstr($buf,"ERROR")){
+            $output = $buf."<br />\n";
+            $output .= " Ha ocurrido algun error. Compruebe la especificacion";
+     //       return false;
+            return $output;
+        } else {
+            $output = $buf."\n";
+            $output .= " Exito";
+       //     return true;
+            return $output;
+        }
+    }
+    
+    return false;
 }
 
 function enviaSMS($numPaciente, $sMessage)

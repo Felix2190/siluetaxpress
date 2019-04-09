@@ -99,12 +99,20 @@ function generaPassword($idUsuario,$idLogin){
     $userName=$login->getUserName();
     $mensaje="Hola ".$usuario->getNombre()."!  <br />Se ha actualizado tu contrase&ntilde;a. <br /> <br />UserName:  <b>$userName </b> <br />Password:  <b>$passw </b>";
     
-    if (enviar_mail($usuario->getCorreo(), "Recuperación de contraseña", $mensaje))
-        $r->call('mostrarMsjExito','Se ha generado correctamente la nueva contrase&ntilde;a y enviado al correo del usuario!',2);
-        else
+    if (enviar_mail($usuario->getCorreo(), "Recuperación de contraseña", $mensaje)){
+        $r->call('mostrarMsjExito','Se ha generado correctamente la nueva contrase&ntilde;a y enviado al correo del usuario!',3);
+        $usuario->setEnvioPassword();
+        $usuario->Guardar();
+        if ($usuario->getError()){
+            $r->call('mostrarMsjError',$usuario->getStrError(),5);
+            $r->redirect('verUsuario.php',4);
+            return $r;
+        }
+        
+    }  else
             $r->call('mostrarMsjExito','No se pudo enviar la contrase&ntilde;a, int&eacute;ntelo m&acute;s tarde.',4);
             
-            $r->redirect('verUsuario.php',3);
+            $r->redirect('verUsuario.php',4);
             
             return $r;
             
