@@ -1,4 +1,2 @@
 #!/bin/sh
-php /var/www/vhosts/pruebassointec.com.mx/httpdocs/agenda/enviarRespaldo.php
-~
-
+php /var/www/vhosts/siluetaexpress.com.mx/agenda.siluetaexpress.com.mx/enviarRespaldo.php

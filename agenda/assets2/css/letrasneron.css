@@ -97,7 +97,11 @@ p.neron5 a:hover{
   animation: neon5 1.5s ease-in-out infinite alternate;
 }
 
-
+p.simple {
+	font-family: 'Iceland';
+	font-size: 1.3em;
+	float: right;
+}
 
 /*glow*/
 @keyframes neon1 {

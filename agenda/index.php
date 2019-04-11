@@ -28,6 +28,7 @@ require_once 'masterInclude.inc.php';
 
 				<!-- Header -->
 								<?php include_once 'header.php';?>
+<p class="simple" id="ptiempo">Tiempo restante: 5 min</p>
 
 				<br />
  

@@ -23,7 +23,7 @@ if ($horaActual>=8&&$horaActual<=20){
 
 $dia = date('N', $auxFecha);
 
-if ($dia != 7) { // no es domingo
+if ($dia != 1) { // no es lunes
     $Conexion = new mysqli(BD_HOST, BD_USER, BD_PASS, BD_DB);
     $fechaInicial = date("Y-m-d",$auxFecha);
     //($numPaciente, $consulta, $dia, $hora, $sucursal, $idConsulta)

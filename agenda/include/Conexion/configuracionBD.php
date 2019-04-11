@@ -6,8 +6,8 @@
 if (! DEVELOPER) {
     /* variables de la BD */
     define("BD_HOST", "localhost");
-    define("BD_USER", "admin_l3zli3");
-    define("BD_PASS", "vw7Z2s*5");
+    define("BD_USER", "silu3ta_user");
+    define("BD_PASS", "Qo4v7j7Xnda#983");
     define("BD_DB", "bd_siluetaexpress");
     define("BD_CHARSET", "utf8");
 } else {

@@ -97,6 +97,13 @@ function iniciar(){
 			actualizaResumen();
 			},120000)
 		},2000);
+	
+var tiempo=300000,sesiont=0,min=60000;
+		setInterval(function() 
+				{ 
+			sesiont+=min;
+			$( "#ptiempo" ).html('Tiempo restante: '+(parseInt(tiempo-sesiont)/min)+' min.');
+			},60000);
 
 	//cerrar sesi�n
 	setTimeout(function() { 

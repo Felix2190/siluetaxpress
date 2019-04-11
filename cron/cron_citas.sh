@@ -1,3 +1,3 @@
 #!/bin/sh
-php /var/www/vhosts/pruebassointec.com.mx/httpdocs/agenda/actualizarCitas.php
+php /var/www/vhosts/siluetaexpress.com.mx/agenda.siluetaexpress.com.mx/actualizarCitas.php
 

@@ -26,7 +26,7 @@ if ($horaActual>=8&&$horaActual<=20){
 
 $dia = date('N', $auxFecha);
 
-if ($dia != 7) { // no es domingo
+if ($dia != 6) { // no es sabado
     $Conexion = new mysqli(BD_HOST, BD_USER, BD_PASS, BD_DB);
     
     $query = "Select MIN(entreSemanaEntrada) as entre, MIN(sabadoEntrada) as sabado,numTelefono FROM sucursal";
