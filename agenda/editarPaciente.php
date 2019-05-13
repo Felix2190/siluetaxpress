@@ -200,7 +200,7 @@ $hojaClinica->setIdHojaClinica($paciente->getIdHojaClinica());
 									<label>Fecha de nacimiento:</label>
 								</div>
 								<div class="3u 12u$(xsmall)">
-									<input type="date" id="txtFecha" value="<?php echo $paciente->getFechaNacimiento();?>" readonly="readonly"/>
+									<input type="date" id="txtFecha" value="<?php echo $paciente->getFechaNacimiento();?>" />
 								</div>
 								
 							</div>
@@ -281,6 +281,8 @@ $hojaClinica->setIdHojaClinica($paciente->getIdHojaClinica());
 																<label style="float: left;" for="demo-priority-menopausa">Menopausa</label>
 																<input id="demo-priority-yano" name="menstrual" value="No" type="radio" <?php if ($hojaClinica->getMenstruacion()=="") echo "No";?>> 
 																<label style="float: left;" for="demo-priority-yano">Ya no menstr&uacute;a</label> 
+																<input id="demo-priority-sinrespuesta" name="menstrual" value="sinrespuesta" type="radio"> 
+																<label style="float: left;" for="demo-priority-sinrespuesta">No aplica</label>
 														</form>
 								</div>
 							</div>
