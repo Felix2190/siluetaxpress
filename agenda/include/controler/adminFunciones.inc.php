@@ -480,6 +480,18 @@ if (isset($_POST['listadoSucursales'])){
     echo json_encode($sucursal->obtenerSucuralesByUsuario());
 }
 
+if (isset($_POST['completitud'])&&isset($_POST['idPaciente'])){
+    require_once FOLDER_MODEL_EXTEND. "model.paciente.inc.php";
+    $paciente = new ModeloPaciente();
+    $paciente->setIdPaciente($_POST['idPaciente']);
+    if ($paciente->getLlenado()=="Minimo")
+        $paciente->setFechaNacimiento("1900-01-01");
+    $paciente->setLlenado($_POST['completitud']);
+    $paciente->Guardar();
+    echo true;
+}
+
+
 function obtenCombo($array,$default){
     $combo='<option value="">'.$default.'</option>';
     foreach ($array as $key => $opcion)

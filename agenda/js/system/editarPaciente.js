@@ -25,6 +25,21 @@ function iniciar(){
 			$('#divMinimo').show();
 			$('#divCompleto').hide();
 		}
+		mostrarMsjEspera("Espere un momento...");
+		 $.ajax({
+				method : "post",
+				url : "adminFunciones.php",
+				data : {
+					completitud:$(this).val(),
+					idPaciente:$("#idPaciente").val()
+				},
+				success : function(data) {
+					setTimeout(function() {
+						window.location="editarPaciente.php";
+					},500);
+				}
+			});
+		
 	});
 	
 	

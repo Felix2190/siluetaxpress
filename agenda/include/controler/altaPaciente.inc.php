@@ -71,7 +71,8 @@ function guardar($datos){
         $hojaClinica->setFumaFrecuencia($infoHoja['fumaF']);
     }
     $hojaClinica->setDesagradables($infoHoja['desagradable']);
-    $hojaClinica->setAnsiedad($infoHoja['ansiedad']);
+    if ($infoHoja['ansiedad'] != "")
+        $hojaClinica->setAnsiedad($infoHoja['ansiedad']);
     if ($infoHoja['actividadFisica'] != "")
         $hojaClinica->setActividadFisica($infoHoja['actividadFisica']);
     if ($hojaClinica->getActividadFisica() == "Si") {

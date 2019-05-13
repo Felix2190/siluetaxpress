@@ -39,15 +39,15 @@ $hojaClinica->setIdHojaClinica($paciente->getIdHojaClinica());
 					<div class="11u 12u$(small)">
 					<input type="hidden" value="<?php echo $hojaClinica->getIdHojaClinica();?>" id="idHoja"/>
 					<input type="hidden" value="<?php echo $paciente->getIdPaciente();?>" id="idPaciente"/>
-					<input type="hidden" value="<?php echo $hojaClinica->getMotivacion();?>" id="hdnMotivacion"/>
-				<input type="hidden" value="<?php echo $hojaClinica->getHorarioAcostarse();?>" id="hdnHorarioAcostarse"/>
-				<input type="hidden" value="<?php echo $hojaClinica->getHorarioActividad();?>" id="hdnHorarioActividad"/>
+					<input type="hidden" value="<?php echo $hojaClinica->getMotivacion()==0?'1':$hojaClinica->getMotivacion();?>" id="hdnMotivacion"/>
+				<input type="hidden" value="<?php echo $hojaClinica->getHorarioAcostarse()==''?'00:00 AM':$hojaClinica->getHorarioAcostarse();?>" id="hdnHorarioAcostarse"/>
+				<input type="hidden" value="<?php echo $hojaClinica->getHorarioActividad()==''?'00:00 AM':$hojaClinica->getHorarioActividad();?>" id="hdnHorarioActividad"/>
 				<input type="hidden" value="<?php echo $hojaClinica->getHorarioCena();?>" id="hdnHorarioCena"/>
 				<input type="hidden" value="<?php echo $hojaClinica->getHorarioColacion();?>" id="hdnHorarioColacion"/>
 				<input type="hidden" value="<?php echo $hojaClinica->getHorarioColacion2();?>" id="hdnHorarioColacion2"/>
 				<input type="hidden" value="<?php echo $hojaClinica->getHorarioComida();?>" id="hdnHorarioComida"/>
 				<input type="hidden" value="<?php echo $hojaClinica->getHorarioDesayuno();?>" id="hdnHorarioDesayuno"/>
-				<input type="hidden" value="<?php echo $hojaClinica->getHorarioLevantarse();?>" id="hdnHorarioLevantarse"/>
+				<input type="hidden" value="<?php echo $hojaClinica->getHorarioLevantarse()==''?'00:00 AM':$hojaClinica->getHorarioLevantarse();?>" id="hdnHorarioLevantarse"/>
 				<input type="hidden" value="<?php echo $paciente->getLlenado();?>" id="hdnLlenado"/>
 									
 				
@@ -149,7 +149,7 @@ $hojaClinica->setIdHojaClinica($paciente->getIdHojaClinica());
 									<label>Ocupaci&oacute;n:</label>
 								</div>
 								<div class="7u 12u$(xsmall)">
-									<input type="text" id="txtOcupacion" value="<?php echo $paciente->getOcupacion();?>" readonly="readonly"/>
+									<input type="text" id="txtOcupacion" value="<?php echo $paciente->getOcupacion();?>" />
 								</div>
 							</div>
 							<br />
@@ -220,10 +220,10 @@ $hojaClinica->setIdHojaClinica($paciente->getIdHojaClinica());
 																<input id="demo-priority-no" name="cirugias" value="No" type="radio" <?php if ($hojaClinica->getCirugia()=="No") echo "checked";?>>
 																<label style="float: left;" for="demo-priority-no">No</label> </form>
 								</div>
-								<div class="2u 12u$(xsmall) divCirugia" style="display: <?php if ($hojaClinica->getCirugia()=="No") echo "none";?>;">
+							<div class="2u 12u$(xsmall) divCirugia" style="display: <?php if ($hojaClinica->getCirugia()!="Si") echo "none";?>;">
 									<label>&iquest;Cu&aacute;l?</label>
 								</div>
-								<div class="5u 12u$(xsmall) divCirugia" style="display: <?php if ($hojaClinica->getCirugia()=="No") echo "none";?>;">
+								<div class="5u 12u$(xsmall) divCirugia" style="display: <?php if ($hojaClinica->getCirugia()!="Si") echo "none";?>;">
 									<input type="text" id="txtCirugias"  value="<?php echo $hojaClinica->getCirugias();?>"/>
 								</div>
 								
@@ -253,10 +253,10 @@ $hojaClinica->setIdHojaClinica($paciente->getIdHojaClinica());
 																<input id="demo-priority-noE" name="estrenimiento" value="No" type="radio" <?php if ($hojaClinica->getEstrenimiento()=="No") echo "checked";?>>
 																<label style="float: left;" for="demo-priority-noE">No</label> </form>
 								</div>
-								<div class="2u 12u$(xsmall) divEstren" style="display: <?php if ($hojaClinica->getEstrenimiento()=="No") echo "none";?>;">
+								<div class="2u 12u$(xsmall) divEstren" style="display: <?php if ($hojaClinica->getEstrenimiento()!="Si") echo "none";?>;">
 									<label>&iquest;Qu&eacute; tan frecuente?</label>
 								</div>
-								<div class="5u 12u$(xsmall)  divEstren" style="display: <?php if ($hojaClinica->getEstrenimiento()=="No") echo "none";?>;"><form >
+								<div class="5u 12u$(xsmall)  divEstren" style="display: <?php if ($hojaClinica->getEstrenimiento()!="Si") echo "none";?>;"><form >
 																<input id="demo-priority-1E" name="estrenimientoF" value="1" type="radio" <?php if ($hojaClinica->getEstrenimientoFrecuencia()=="1") echo "checked";?>>
 																<label style="float: left;" for="demo-priority-1E">Diario</label>
 																<input id="demo-priority-2E" name="estrenimientoF" value="2" type="radio" <?php if ($hojaClinica->getEstrenimientoFrecuencia()=="2") echo "checked";?>>
@@ -299,10 +299,10 @@ $hojaClinica->setIdHojaClinica($paciente->getIdHojaClinica());
 																<input id="demo-priority-noA" name="alergia" value="No" type="radio" <?php if ($hojaClinica->getAlergia()=="No") echo "checked";?>>
 																<label style="float: left;" for="demo-priority-noA">No</label> </form>
 								</div>
-								<div class="1u 12u$(xsmall)  divAlergia" style="display: <?php if ($hojaClinica->getAlergia()=="No") echo "none";?>;">
+								<div class="1u 12u$(xsmall)  divAlergia" style="display: <?php if ($hojaClinica->getAlergia()!="Si") echo "none";?>;">
 									<label>&iquest;Cu&aacute;l?</label>
 								</div>
-								<div class="5u 12u$(xsmall)  divAlergia" style="display: <?php if ($hojaClinica->getAlergia()=="No") echo "none";?>;">
+								<div class="5u 12u$(xsmall)  divAlergia" style="display: <?php if ($hojaClinica->getAlergia()!="Si") echo "none";?>;">
 									<input type="text" id="txtAlergias" class="" value="<?php echo $hojaClinica->getAlimento();?>"/>
 								</div>
 							</div>
@@ -321,7 +321,7 @@ $hojaClinica->setIdHojaClinica($paciente->getIdHojaClinica());
 									<label>&iquest;Cu&aacute;ntas comidas realiza al d&iacute;a?</label>
 								</div>
 								<div class="2u 12u$(xsmall)">
-									<input type="text" id="txtComidas" class="numeric" maxlength="2" value="<?php echo $hojaClinica->getHrsComer();?>"/>
+									<input type="text" id="txtComida" class="numeric" maxlength="2" value="<?php echo $hojaClinica->getHrsComer();?>"/>
 								</div>
 							</div>
 							
@@ -337,10 +337,10 @@ $hojaClinica->setIdHojaClinica($paciente->getIdHojaClinica());
 																<input id="demo-priority-noCafe" name="cafe" value="No" type="radio" <?php if ($hojaClinica->getCafe()=="No") echo "checked";?>>
 																<label style="float: left;" for="demo-priority-noCafe">No</label> </form>
 								</div>
-								<div class="3u 12u$(xsmall)  divCafe" style="display: <?php if ($hojaClinica->getCafe()=="No") echo "none";?>;">
+								<div class="3u 12u$(xsmall)  divCafe" style="display: <?php if ($hojaClinica->getCafe()!="Si") echo "none";?>;">
 									<label>&iquest;Qu&eacute; tan frecuente?</label>
 								</div>
-								<div class="5u 12u$(xsmall) divCafe" style="display: <?php if ($hojaClinica->getCafe()=="No") echo "none";?>;"><form >
+								<div class="5u 12u$(xsmall) divCafe" style="display: <?php if ($hojaClinica->getCafe()!="Si") echo "none";?>;"><form >
 																<input id="demo-priority-1Cafe" name="cafeF" value="1" type="radio" <?php if ($hojaClinica->getCafeFrecuencia()=="1") echo "checked";?>>
 																<label style="float: left;" for="demo-priority-1Cafe">Diario</label>
 																<input id="demo-priority-2Cafe" name="cafeF" value="2" type="radio" <?php if ($hojaClinica->getCafeFrecuencia()=="2") echo "checked";?>>
@@ -362,10 +362,10 @@ $hojaClinica->setIdHojaClinica($paciente->getIdHojaClinica());
 																<input id="demo-priority-noFuma" name="fuma" value="No" type="radio"  <?php if ($hojaClinica->getFuma()=="No") echo "checked";?>>
 																<label style="float: left;" for="demo-priority-noFuma">No</label> </form>
 								</div>
-								<div class="3u 12u$(xsmall) divFuma" style="display: <?php if ($hojaClinica->getFuma()=="No") echo "none";?>;">
+								<div class="3u 12u$(xsmall) divFuma" style="display: <?php if ($hojaClinica->getFuma()!="Si") echo "none";?>;">
 									<label>&iquest;Qu&eacute; tan frecuente?</label>
 								</div>
-								<div class="5u 12u$(xsmall) divFuma" style="display: <?php if ($hojaClinica->getFuma()=="No") echo "none";?>;"> <form >
+								<div class="5u 12u$(xsmall) divFuma" style="display: <?php if ($hojaClinica->getFuma()!="Si") echo "none";?>;"> <form >
 																<input id="demo-priority-1Fuma" name="fumaF" value="1" type="radio" <?php if ($hojaClinica->getFumaFrecuencia()=="1") echo "checked";?>>
 																<label style="float: left;" for="demo-priority-1Fuma">Diario</label>
 																<input id="demo-priority-2Fuma" name="fumaF" value="2" type="radio" <?php if ($hojaClinica->getFumaFrecuencia()=="2") echo "checked";?>>
@@ -387,10 +387,10 @@ $hojaClinica->setIdHojaClinica($paciente->getIdHojaClinica());
 																<input id="demo-priority-noBebe" name="bebidas" value="No" type="radio" <?php if ($hojaClinica->getBeber()=="No") echo "checked";?>>
 																<label style="float: left;" for="demo-priority-noBebe">No</label> </form>
 								</div>
-								<div class="2u 12u$(xsmall)  divBebidas" style="display: <?php if ($hojaClinica->getBeber()=="No") echo "none";?>;">
+								<div class="2u 12u$(xsmall)  divBebidas" style="display: <?php if ($hojaClinica->getBeber()!="Si") echo "none";?>;">
 									<label>Frecuencia</label>
 								</div>
-								<div class="5u 12u$(xsmall) divBebidas" style="display: <?php if ($hojaClinica->getBeber()=="No") echo "none";?>;"> <form >
+								<div class="5u 12u$(xsmall) divBebidas" style="display: <?php if ($hojaClinica->getBeber()!="Si") echo "none";?>;"> <form >
 																<input id="demo-priority-1Bebe" name="bebidasF" value="1" type="radio" <?php if ($hojaClinica->getBeberFrecuencia()=="1") echo "checked";?>>
 																<label style="float: left;" for="demo-priority-1Bebe">Diario</label>
 																<input id="demo-priority-2Bebe" name="bebidasF" value="2" type="radio" <?php if ($hojaClinica->getBeberFrecuencia()=="2") echo "checked";?>>
@@ -432,10 +432,10 @@ $hojaClinica->setIdHojaClinica($paciente->getIdHojaClinica());
 																<input id="demo-priority-noActividad" name="actividadFisica" value="No" type="radio" <?php if ($hojaClinica->getActividadFisica()=="No") echo "checked";?>>
 																<label style="float: left;" for="demo-priority-noActividad">No</label> </form>
 								</div>
-								<div class="1u 12u$(xsmall)  divActividad" style="display: <?php if ($hojaClinica->getActividadFisica()=="No") echo "none";?>;">
+								<div class="1u 12u$(xsmall)  divActividad" style="display: <?php if ($hojaClinica->getActividadFisica()!="Si") echo "none";?>;">
 									<label>&iquest;Cu&aacute;l?</label>
 								</div>
-								<div class="5u 12u$(xsmall  divActividad" style="display: <?php if ($hojaClinica->getActividadFisica()=="No") echo "none";?>;">
+								<div class="5u 12u$(xsmall  divActividad" style="display: <?php if ($hojaClinica->getActividadFisica()!="Si") echo "none";?>;">
 									<input type="text" id="txtActividad" value="<?php echo $hojaClinica->getActividad();?>"/>
 								</div>
 								
@@ -444,7 +444,7 @@ $hojaClinica->setIdHojaClinica($paciente->getIdHojaClinica());
 							
 							<br />
 							
-							<div class="row  divActividad" style="display: <?php if ($hojaClinica->getActividadFisica()=="No") echo "none";?>;">
+							<div class="row  divActividad" style="display: <?php if ($hojaClinica->getActividadFisica()!="Si") echo "none";?>;">
 							
 								<div class="2u 12u$(xsmall)">
 									<label>&iquest;Cu&aacute;nto tiempo?</label>

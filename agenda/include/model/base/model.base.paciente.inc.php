@@ -291,7 +291,7 @@
 				
 				$result=mysqli_query($this->dbLink,$SQL);
 				if(!$result)
-					return $this->setSystemError("Error en la actualizacion de registro.","[" . $SQL . "][" . mysqli_error() . "][ModeloBasePaciente::Update]");
+					return $this->setSystemError("Error en la actualizacion de registro.","[" . $SQL . "][" . mysqli_error($this->dbLink) . "][ModeloBasePaciente::Update]");
 				
 				return true;
 			}

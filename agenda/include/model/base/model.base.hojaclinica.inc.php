@@ -822,7 +822,7 @@
 				
 				$result=mysqli_query($this->dbLink,$SQL);
 				if(!$result)
-					return $this->setSystemError("Error en la actualizacion de registro.","[" . $SQL . "][" . mysqli_error() . "][ModeloBaseHojaclinica::Update]");
+					return $this->setSystemError("Error en la actualizacion de registro.","[" . $SQL . "][" . mysqli_error($this->dbLink) . "][ModeloBaseHojaclinica::Update]");
 				
 				return true;
 			}
