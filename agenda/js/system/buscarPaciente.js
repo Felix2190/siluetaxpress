@@ -187,7 +187,7 @@ function confirmacion(titulo, texto, id, divAlerta){
 					if(respuesta[0]=='true'){
 						mostrarMsjExito('Se ha eliminado correctamente al paciente!!',3);
 						setTimeout(function() {
-							listarPacientes(); 
+					    	buscarPaciente(); 
 						},1000);
 						
 					}else{

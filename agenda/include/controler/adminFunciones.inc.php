@@ -252,7 +252,7 @@ if (isset($_POST['sucursalP'])&&isset($_POST['cabinaP'])&&isset($_POST['fechaReg
                             }
                                 
                             
-                            $query = "Select distinct p.idPaciente, concat_ws(' ', p.nombre, p.apellidos) as nombreP, telefonoCel, sucursal, completitud,
+                            $query = "Select distinct p.idPaciente, concat_ws(' ', p.nombre, p.apellidos) as nombreP, telefonoCel, sucursal, completitud, p.estatus as estatusPaciente,
                     DATE_FORMAT(p.fechaRegistro,'%Y-%m-%d') as fecha,
                     (select count(*) from cita where idPaciente=p.idPaciente and estatus='realizada') as consultasHechas,
                     (select count(*) from cita where idPaciente=p.idPaciente and estatus='nueva') as consultasProximas,

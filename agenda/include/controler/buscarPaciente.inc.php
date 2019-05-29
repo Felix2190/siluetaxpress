@@ -60,22 +60,26 @@ function verTabla($informacion){
             
             $tabla.="</tr></thead><tbody>";
             foreach ($informacion as $paciente){
-$txtSucursal="<td>".$paciente['sucursal']."</td>";
+                $txtSucursal="<td>".$paciente['sucursal']."</td>";
                 $citaProxima="-";
+                $opcionEliminar="";
                 if ($paciente['fechaProxima']!=NULL){
                     $fechaCita=explode("-", $paciente['fechaProxima']);
                     $citaProxima="<a onClick='verCita(".$paciente['cita'].")'>$fechaCita[2] de ".obtenMes(''.intval($fechaCita[1]))." del $fechaCita[0] </a>";
-                    }
+                  }else {
+                      if ($paciente['estatusPaciente']=="activo")
+                          $opcionEliminar="<a onClick='editarPaciente(".$paciente['idPaciente'].")'><img src='images/editPaciente.png' title='editar' style='width: 30px' /></a>
+                          <a onClick='eliminarPaciente(".$paciente['idPaciente'].")'> <img src='images/eliminaPaciente.png' style='width: 30px' /></a>";
+                          
+                  }
                     $fecha=explode("-", $paciente['fecha']);
-                    
+                
                     $tabla.="<tr><td colspan='2'>".$paciente['nombreP']."</td><td>".$paciente['telefonoCel']."</td>$txtSucursal<td>".$paciente['completitud']."%</td>
                     <td>$fecha[2]/".obtenMes(''.intval($fecha[1]))."/$fecha[0]</td>
                     <td>".$paciente['consultasHechas']."</td><td>".$paciente['consultasProximas']."</td><td>".$citaProxima."</td>
                     <td>
                     <a onClick='verPaciente(".$paciente['idPaciente'].")'><img src='images/ver.png' title='Ver' style='width: 30px' /></a>
-                    <a onClick='editarPaciente(".$paciente['idPaciente'].")'><img src='images/editPaciente.png' title='editar' style='width: 30px' /></a>
-                    <a onClick='eliminarPaciente(".$paciente['idPaciente'].")'> <img src='images/eliminaPaciente.png' style='width: 30px' /></a>
-                    </td></tr>";
+                    $opcionEliminar </td></tr>";
             }
             $tabla.="</tbody></table></div></div><br />";
     }else {
