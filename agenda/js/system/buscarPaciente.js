@@ -25,6 +25,7 @@ function consultaDatos(){
 			success : function(data) {
 				respuesta=JSON.parse(data);
 				$( "#slcSucursal" ).html(respuesta);
+				$( "#slcSucursal" ).html("<option value='0'>Todas</option>");
 			}
 		});}
 
