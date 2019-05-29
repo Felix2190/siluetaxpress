@@ -69,7 +69,7 @@ function mostrarCabinas(){
 	var sucursal= $("#slcSucursal").val().trim();
 	var consulta = $("#slcConsulta").val().trim();
 	
-	if ( sucursal != "" && consulta!= "") {
+	if ( sucursal != "" && sucursal != "0" && consulta!= "") {
 		$.ajax({
 			method : "post",
 			url : "adminFunciones.php",

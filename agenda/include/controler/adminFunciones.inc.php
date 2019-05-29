@@ -232,7 +232,7 @@ if (isset($_POST['sucursalP'])&&isset($_POST['cabinaP'])&&isset($_POST['fechaReg
                         if($_POST['telP']!="")
                             $condicion.=" and p.telefonoCel LIKE '".$_POST['telP']."%' ";
                             
-                            if($_POST['sucursalP']!="")
+                            if($_POST['sucursalP']!=""&&$_POST['sucursalP']!="0")
                                 $condicion.=" and p.idSucursal = ".$_POST['sucursalP'];
                             
                                 
