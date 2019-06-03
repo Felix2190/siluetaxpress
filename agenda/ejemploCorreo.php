@@ -22,13 +22,14 @@ define("FOLDER_LIB", FOLDER_INCLUDE . "lib/");
     $mailWeb->SMTPDebug = 0;
     $mailWeb->SMTPAuth = true;
     $mailWeb->Port = 587;
-    $mailWeb->Username = "sistemaagenda@siluetaexpress.com.mx";
-    $mailWeb->Password = "Gkhk8&32Tct09_2z";
-    $mailWeb->SetFrom("sistemaagenda@siluetaexpress.com.mx", "SiluetaExpress @NoReply");
-    $mailWeb->AddReplyTo("sistemaagenda@siluetaexpress.com.mx", "SiluetaExpress @NoReply");
+    $mailWeb->Username = "agenda@pruebassointec.com.mx";
+    $mailWeb->Password = "_f3L!X_0rt1Z_90";
+    $mailWeb->SetFrom("agenda@siluetaexpress.com.mx", "SiluetaExpress @NoReply");
+//    $mailWeb->AddReplyTo("siluetaexpress@pruebassointec.com.mx", "SiluetaExpress @NoReply");
     $mailWeb->Subject ="Respaldo ".date("d/m/Y");
     $mailWeb->AltBody = "Respaldo de @siluetaexpress.com.mx";
     $mailWeb->MsgHTML("Respaldo de @siluetaexpress.com.mx");
+    $mailWeb->AddAddress("lic.lezliedelariva@gmail.com");
     $mailWeb->AddAddress("ortizfelix9021@gmail.com");
     try
     {

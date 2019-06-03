@@ -43,7 +43,7 @@ sleep(10);
     $mailWeb->SMTPAuth = true;
     $mailWeb->Port = 587;
     $mailWeb->Username = "agenda@pruebassointec.com.mx";
-    $mailWeb->Password = "F3l!X_72kRa_90";
+    $mailWeb->Password = "_f3L!X_0rt1Z_90";
     $mailWeb->SetFrom("agenda@siluetaexpress.com.mx", "SiluetaExpress @NoReply");
     //    $mailWeb->AddReplyTo("siluetaexpress@pruebassointec.com.mx", "SiluetaExpress @NoReply");
     $mailWeb->Subject ="Respaldo ".date("d/m/Y");
