@@ -653,7 +653,7 @@ $hojaClinica->setIdHojaClinica($paciente->getIdHojaClinica());
 									<label>Alimentos: </label>
 								</div>
 								<div class="6u 12u$(xsmall)">
-								<textarea rows="2" cols="" id="txtComida"><?php echo $hojaClinica->getActividadComida();?></textarea>
+								<textarea rows="2" cols="" id="txtComidaPM"><?php echo $hojaClinica->getActividadComida();?></textarea>
 								</div>
 								
 							</div>

@@ -567,14 +567,14 @@ function altaPaciente(){
 			console.log("Error: hrComida");
 		}
 		
-		hoja['comida']= $("#txtComida").val().trim();
+		hoja['comida']= $("#txtComidaPM").val().trim();
 		if (hoja['comida'] == "") {
 			existeError2 = true;
 			faltan++;
 			console.log("Error: comida");
 		}
     }
-	
+
     hoja['colacion2F'] = '';
     $("input[name=colacion2F]").each(function (index) { 
        if($(this).is(':checked')){

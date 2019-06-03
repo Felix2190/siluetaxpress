@@ -136,7 +136,7 @@ require_once 'masterInclude.inc.php';
 							
 							
 				<div class="row" id="divCompleto" style="display: ">
-					<div class="9u 12u$(small)">
+					<div class="11u 12u$(small)">
 						<div class="box">
 							<div class="row">
 								<div class="3u 12u$(xsmall)">
@@ -777,7 +777,7 @@ require_once 'masterInclude.inc.php';
 									<label>Alimentos: </label>
 								</div>
 								<div class="12u 12u$(xsmall)">
-								<textarea rows="2" cols="" id="txtComida"></textarea>
+								<textarea rows="2" cols="" id="txtComidaPM"></textarea>
 								</div>
 								
 							</div>
