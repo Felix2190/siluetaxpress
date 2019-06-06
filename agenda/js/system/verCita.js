@@ -14,9 +14,9 @@ function iniciar(){
 			actualizarCita();
 			establece_datapicker();
 			
-			},30000)
+			},14000)
 			
-		},2000);
+		},1200);
 	
 	 $( "#btnPaciente" ).click(function(){
 			cancelar('paciente');
@@ -52,6 +52,7 @@ function actualizarCita(){
 				chkbox=respuesta[0]['enviarRecordatorio2'];
 				comentario='';
 				fecha=respuesta[0]['fecha'];
+//				alert(hr+'  '+min);
 			}else{
 				duracion=$( "#slcDuracion" ).val();
 				hr=$( "#slcHr" ).val();
@@ -90,7 +91,7 @@ function cargarHorasMin(arrH,hr_,minuto){
 	$( "#txtFecha" ).change(function(){
 		 verHorarios();
 	 });
-	
+
 	arrFechas=JSON.parse(arrH);
 //	alert(arrH);
 	 opcion='',opcion2='';
