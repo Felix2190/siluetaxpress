@@ -182,7 +182,7 @@ $hojaClinica->setIdHojaClinica($paciente->getIdHojaClinica());
 									<label>Edad:</label>
 								</div>
 								<div class="2u 12u$(xsmall)">
-									<input type="text" id="txtEdad" class="numeric" maxlength="2" value="<?php echo $paciente->getEdad();?>"  readonly="readonly"/>
+									<input type="text" id="txtEdad" class="numeric" maxlength="2" value="<?php echo $paciente->getEdad();?>" <?php echo intval($paciente->getEdad())==0?'':'readonly';?> />
 								</div>
 							</div>
 							<br />
@@ -273,15 +273,15 @@ $hojaClinica->setIdHojaClinica($paciente->getIdHojaClinica());
 									<label>Periodo menstrual:</label>
 								</div>
 								<div class="12u$(xsmall)">
-											<form>					<input id="demo-priority-regular" name="menstrual" value="Regular" type="radio" <?php if ($hojaClinica->getMenstruacion()=="Regular") echo "checked";?>>
+											<form>					<input id="demo-priority-regular" name="menstruacion" value="Regular" type="radio" <?php if ($hojaClinica->getMenstruacion()=="Regular") echo "checked";?>>
 																<label style="float: left;" for="demo-priority-regular">Regular</label>
-																<input id="demo-priority-irregular" name="menstrual" value="Irregular" type="radio" <?php if ($hojaClinica->getMenstruacion()=="Irregular") echo "checked";?>> 
+																<input id="demo-priority-irregular" name="menstruacion" value="Irregular" type="radio" <?php if ($hojaClinica->getMenstruacion()=="Irregular") echo "checked";?>> 
 																<label style="float: left;" for="demo-priority-irregular">Irregular</label>
-																<input id="demo-priority-menopausa" name="menstrual" value="Menopausa" type="radio" <?php if ($hojaClinica->getMenstruacion()=="Menopausa") echo "checked";?>> 
+																<input id="demo-priority-menopausa" name="menstruacion" value="Menopausa" type="radio" <?php if ($hojaClinica->getMenstruacion()=="Menopausa") echo "checked";?>> 
 																<label style="float: left;" for="demo-priority-menopausa">Menopausa</label>
-																<input id="demo-priority-yano" name="menstrual" value="No" type="radio" <?php if ($hojaClinica->getMenstruacion()=="") echo "No";?>> 
+																<input id="demo-priority-yano" name="menstruacion" value="No" type="radio" <?php if ($hojaClinica->getMenstruacion()=="No") echo "checked";?>> 
 																<label style="float: left;" for="demo-priority-yano">Ya no menstr&uacute;a</label> 
-																<input id="demo-priority-sinrespuesta" name="menstrual" value="sinrespuesta" type="radio"> 
+																<input id="demo-priority-sinrespuesta" name="menstruacion" value="sinrespuesta" type="radio" <?php if ($hojaClinica->getMenstruacion()=="sinrespuesta") echo "checked";?>> 
 																<label style="float: left;" for="demo-priority-sinrespuesta">No aplica</label>
 														</form>
 								</div>

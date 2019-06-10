@@ -130,9 +130,11 @@ function guardar($datos,$idPaciente,$idHoja){
     $paciente->setIdPaciente($idPaciente);
     $paciente->setNombre($infoPaciente['Nombre']);
     $paciente->setApellidos($infoPaciente['Apellidos']);
+    $paciente->setEdad($infoPaciente['Edad']);
     $paciente->setTelefonoCasa($infoPaciente['TelCasa']);
     $paciente->setTelefonoCel($infoPaciente['TelMovil']);
     $paciente->setCorreo($infoPaciente['Email']);
+    $paciente->setOcupacion($infoPaciente['ocupacion']);
     $paciente->setIdHojaClinica($idHoja);
     $paciente->setLlenadoCompleto();
     $paciente->Guardar();
@@ -142,8 +144,10 @@ function guardar($datos,$idPaciente,$idHoja){
     }
     
     $r->call('mostrarMsjExito','Se actualiz&oacute; correctamente el paciente!',4);
+    $_SESSION['verPaciente']=array('titulo'=>'Detalles del paciente','idPaciente'=>$idPaciente);
+    $r->redirect("verPaciente.php",3);
     
-    $r->redirect('editarPaciente.php',5);
+    //$r->redirect('editarPaciente.php',5);
         
     return $r;
     

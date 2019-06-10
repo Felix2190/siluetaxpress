@@ -298,13 +298,13 @@ function altaPaciente(){
     }
     
     hoja['menstrual'] = '';
-    $("input[name=menstrual]").each(function (index) { 
+    $("input[name=menstruacion]").each(function (index) { 
        if($(this).is(':checked')){
     	   hoja['menstrual'] = $(this).val();
        }
     });
     if (hoja['menstrual'] == "") {
-		existeError2 = true;
+		existeError = true;
 		faltan++;
 		console.log("Error: menstrual");
 	}
