@@ -58,7 +58,7 @@ p.neron1 a:hover{
 }
 
 p.neron2 a{
-  color:#9e9e9e;
+  color:#1baf65;
   font-family:Pacifico;
 }
 p.neron2 a:hover{
@@ -132,21 +132,21 @@ p.simple {
     text-shadow: 0 0 10px #fff,
                0 0 20px  #fff,
                0 0 30px  #fff,
-               0 0 40px  #d1d1d1,
-               0 0 70px  #d1d1d1,
-               0 0 80px  #d1d1d1,
-               0 0 100px #d1d1d1,
-               0 0 150px #d1d1d1;
+               0 0 40px  #25f807,
+               0 0 70px  #25f807,
+               0 0 80px  #25f807,
+               0 0 100px #25f807,
+               0 0 150px #25f807;
   }
   to {
     text-shadow: 0 0 5px #fff,
                0 0 10px #fff,
                0 0 15px #fff,
-               0 0 20px #c1c093,
-               0 0 35px #c1c093,
-               0 0 40px #c1c093,
-               0 0 50px #c1c093,
-               0 0 75px #c1c093;
+               0 0 20px #8acaa0,
+               0 0 35px #8acaa0,
+               0 0 40px #8acaa0,
+               0 0 50px #8acaa0,
+               0 0 75px #8acaa0;
   }
 }
 
