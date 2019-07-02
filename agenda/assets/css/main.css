@@ -2107,13 +2107,14 @@
 		-ms-transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
 		transition: color 0.2s ease-in-out, border-bottom-color 0.2s ease-in-out;
 		border-bottom: dotted 1px;
-		color: #2f890b;
+		color: #d58b4f;
 		text-decoration: none;
 	}
 
 		a:hover {
-			border-bottom-color: #2f890b ;
-			color: #b048cc!important;
+			border-bottom-color: #d58b4f ;
+			color: #828282!important;
+			/* #b048cc */
 		}
 
 			a:hover strong {
@@ -2282,7 +2283,8 @@
 	}
 
 	header.major > :last-child {
-		border-bottom: solid 3px  #a471d4;/* #2f890b;*/
+		border-bottom: solid 3px  #d58b4f;
+				/*#a471d4;/* #d58b4f;*/
 		display: inline-block;
 		margin: 0 0 2em 0;
 		padding: 0 0.75em 0.5em 0;
@@ -2350,8 +2352,8 @@
 		input[type="url"]:focus,
 		select:focus,
 		textarea:focus {
-			border-color: #2f890b;
-			box-shadow: 0 0 0 1px #2f890b;
+			border-color: #d58b4f;
+			box-shadow: 0 0 0 1px #d58b4f;
 		}
 
 	.select-wrapper {
@@ -2464,8 +2466,8 @@
 
 		input[type="checkbox"]:focus + label:before,
 		input[type="radio"]:focus + label:before {
-			border-color: #2f890b;
-			box-shadow: 0 0 0 1px #2f890b;
+			border-color: #d58b4f;
+			box-shadow: 0 0 0 1px #d58b4f;
 		}
 
 	input[type="checkbox"] + label:before {
@@ -2706,7 +2708,7 @@
 				}
 
 				ul.contact li:before {
-					color: #2f890b;
+						color: #d58b4f;
 					display: inline-block;
 					font-size: 1.5em;
 					height: 1.125em;
@@ -2830,7 +2832,7 @@
 				}
 
 					ul.pagination li > .page.active {
-						background-color: #2f890b;
+						background-color: #d58b4f;
 						color: #ffffff !important;
 					}
 
@@ -2962,8 +2964,8 @@
 		background-color: transparent;
 		border-radius: 0.375em;
 		border: 0;
-		box-shadow: inset 0 0 0 2px #2f890b;
-		color: #2f890b !important;
+		box-shadow: inset 0 0 0 2px #d58b4f;
+		color: #d58b4f !important;
 		cursor: pointer;
 		display: inline-block;
 		font-family: "Roboto Slab", serif;
@@ -3036,7 +3038,7 @@
 		input[type="button"].special,
 		button.special,
 		.button.special {
-			background-color: #2f890b;
+			background-color: #d58b4f;
 			box-shadow: none;
 			color: #ffffff !important;
 			float: right;
@@ -3157,7 +3159,7 @@
 			}
 
 				.features article .icon:before {
-					color: #2f890b;
+					color: #d58b4f;
 					font-size: 2.75rem;
 					position: relative;
 					top: 0.05em;
@@ -3597,7 +3599,8 @@
 		-webkit-transition: margin-left 0.5s ease, box-shadow 0.5s ease;
 		-ms-transition: margin-left 0.5s ease, box-shadow 0.5s ease;
 		transition: margin-left 0.5s ease, box-shadow 0.5s ease;
-		background-color:  #50e660 ;
+		background-color:  #d9d7b3 ;
+		/* #50e660  */
 		font-size: 0.9em;
 		position: relative;
 		width: 26em;
@@ -3630,7 +3633,8 @@
 				}
 
 			#sidebar > .inner > .alt {
-				background-color: #43C51F;
+				background-color: #c0c0c0;
+				/* #43C51F */
 				border-bottom: 0;
 				margin: -2.22222em 0 4.44444em -2.22222em;
 				padding: 2.22222em;
@@ -3802,7 +3806,7 @@
 		display: -webkit-flex;
 		display: -ms-flex;
 		display: flex;
-		border-bottom: solid 5px #2f890b;
+		border-bottom: solid 5px #d58b4f;
 		padding: 3em 0 0em 0;
 		position: relative;
 	}
@@ -3998,7 +4002,7 @@
 			padding: 0.625em 0;
 		}
 			#menu ul a:hover, #menu ul span:hover {
-				color: #b048cc /*cambio  color menu desp*/ 
+				color: #828282 /*cambio  color menu desp*/ 
 			}
 
 			#menu ul a.opener, #menu ul span.opener {
@@ -4012,7 +4016,7 @@
 					font-style: normal;
 					font-weight: normal;
 					text-transform: none !important;
-					color: #b048cc /*cambio  color menu desp*/
+					color: #828282 /*cambio  color menu desp*/
 				}
 
 				#menu ul a.opener:before, #menu ul span.opener:before {
@@ -4020,14 +4024,16 @@
 					-webkit-transition: color 0.2s ease-in-out, -webkit-transform 0.2s ease-in-out;
 					-ms-transition: color 0.2s ease-in-out, -ms-transform 0.2s ease-in-out;
 					transition: color 0.2s ease-in-out, transform 0.2s ease-in-out;
-					color: #338e05;
+					color: #d58b4f;
+					/*#338e05;*/
 					content: '\f078';
 					position: absolute;
 					right: 0;
 				}
 
 				#menu ul a.opener:hover:before, #menu ul span.opener:hover:before {
-					color: #338e05;
+					color: #d58b4f;
+					/*#338e05;*/
 				}
 
 				#menu ul a.opener.active + ul, #menu ul span.opener.active + ul {
@@ -4039,7 +4045,8 @@
 					-webkit-transform: rotate(-180deg);
 					-ms-transform: rotate(-180deg);
 					transform: rotate(-180deg);
-						color: #9662d6; /*flecha*/
+						color: #dea575;
+/*						#9662d6; flecha*/
 				}
 
 	#menu > ul > li {
@@ -4049,7 +4056,7 @@
 	}
 	
 	#menu > ul > li a.active {
-	color: #b048cc;
+	color: #828282;
 	}
 	#menu > ul > li > ul >li.active >a {
 	color: #7F09BA;
@@ -4067,10 +4074,10 @@
 			}
 			
 						#menu > ul > li > ul a:hover {
-				color: #b048cc /*cambio  color menu desp*/ 
+				color: #828282 /*cambio  color menu desp*/ 
 			}
 			#menu > ul > li > ul a.active {
-				color: #b048cc /*cambio  color menu desp*/ 
+				color: #828282 /*cambio  color menu desp*/ 
 			}
 
 			#menu > ul > li > ul > li {
