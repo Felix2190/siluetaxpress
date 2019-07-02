@@ -47,7 +47,7 @@ function verGraficas($arrayInformacion,$sucursal){
                                             <strong>'.$informacion[$item[$i]][0].'</strong>
                                             <span>'.$informacion[$item[$i]][2].'%</span>
                                         </div>	
-                                        <input class="knob" data-width="120" data-cursor="false" data-fgColor="#a033ac" data-bgColor="#d183da" data-thickness=".30" 
+                                        <input class="knob" data-width="120" data-cursor="false" data-fgColor="#a6a453" data-bgColor="#e4e3c9" data-thickness=".30" 
                                         value="'.$informacion[$item[$i]][2].'" data-readOnly="true" data-angleOffset="-0" data-displayInput="false" />
                                     </div>
                                 </div>
@@ -59,7 +59,7 @@ function verGraficas($arrayInformacion,$sucursal){
                                             <strong>'.$informacion[$item[$i+1]][0].'</strong>
                                             <span>'.$informacion[$item[$i+1]][2].'%</span>
                                         </div>
-                                        <input class="knob" data-width="120" data-cursor="false" data-fgColor="#a033ac" data-bgColor="#d183da" data-thickness=".30"
+                                        <input class="knob" data-width="120" data-cursor="false" data-fgColor="#a6a453" data-bgColor="#e4e3c9" data-thickness=".30"
                                         value="'.$informacion[$item[$i+1]][2].'" data-readOnly="true" data-angleOffset="-0" data-displayInput="false" />
                                     </div>
                                 </div>

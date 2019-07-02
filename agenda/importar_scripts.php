@@ -5,7 +5,7 @@ echo '  <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jqu
   <script src="https://code.jquery.com/ui/1.12.1/jquery-ui.js"></script>
  <link rel="stylesheet" href="assets2/css/alertify.min.css" />
 <link rel="stylesheet" href="assets/css/themes/default.min.css" />
-    <script src="js/lib/calendario/jquery-ui_lila.js"></script> <link href="assets/css/calendario/jquery-ui_lila.css" rel="stylesheet">
+    <script src="js/lib/calendario/jquery-ui_verde.js"></script> <link href="assets/css/calendario/jquery-ui_verde.css" rel="stylesheet">
    <script src="js/lib/alertifyjs/alertify.min.js"></script>
 <script src="js/lib/jquery.numeric.js"></script>
  <script src="js/lib/jquery.knob.js"></script>

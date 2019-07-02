@@ -28,7 +28,7 @@ $(document).ready(function(){
 	});
 	
 
-	$( "#calendarioLila" ).datepickerLila({
+	$( "#calendarioVerde" ).datepickerVerde({
 		inline: true
 	});
    

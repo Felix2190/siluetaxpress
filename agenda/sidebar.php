@@ -69,7 +69,7 @@
 
 			</ul>
 		</nav>
-		<div id="calendarioLila"></div>
+		<div id="calendarioVerde"></div>
 		
 				<!-- Footer -->
 		<?php include_once 'footer.php';?>
