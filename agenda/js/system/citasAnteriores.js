@@ -6,7 +6,7 @@ var Digital=new Date();
 var hours, minutes,seconds,dn,cita,presionado=false;
 
 function iniciar(){
-	listarCitas($( "#hdnFechaActual" ).val());
+//	listarCitas($( "#hdnFechaActual" ).val());
 	actualizaHorarios();
 	
 	$.datepicker.setDefaults($.datepicker.regional['es-MX']);;
@@ -151,6 +151,7 @@ function colocaFechas(fechaAnt,fechaActual,fechaSig){
 function actualizaHorarios(){
 	
 	setTimeout(function() { 
+		listarCitas($( "#hdnFechaActual" ).val());
 		setInterval(function() 
 				{ 
 			if(!presionado){
@@ -160,7 +161,7 @@ function actualizaHorarios(){
 				presionado=false;
 			}
 			},5700)
-		},2000);
+		},700);
 }
 
 function obtenHora(){

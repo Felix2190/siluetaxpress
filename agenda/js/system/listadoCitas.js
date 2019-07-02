@@ -6,7 +6,7 @@ var Digital=new Date();
 var hours, minutes,seconds,dn,cita,presionado=false;
 
 function iniciar(){
-	listarCitas($( "#hdnFechaActual" ).val());
+//	listarCitas($( "#hdnFechaActual" ).val());
 	actualizaHorarios();
 	
 	$('.datepicker').datepicker({
@@ -149,6 +149,7 @@ function colocaFechas(fechaF,fechaA,fechaI){
 function actualizaHorarios(){
 	
 	setTimeout(function() { 
+		listarCitas($( "#hdnFechaActual" ).val());
 		setInterval(function() 
 				{ 
 			if(!presionado){
@@ -158,7 +159,7 @@ function actualizaHorarios(){
 				presionado=false;
 			}
 			},5600)
-		},2000);
+		},700);
 }
 
 function obtenHora(){

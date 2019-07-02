@@ -28,7 +28,7 @@ function iniciar(){
 	$( "#slcSucursal" ).change(mostrarCabinas);
 	$( "#slcConsultorio" ).change(function(){mostrarHorarios($( "#hdnFechaActual" ).val());});
 	
-	mostrarHorarios($( "#hdnFechaActual" ).val());
+//	mostrarHorarios($( "#hdnFechaActual" ).val());
 	actualizaHorarios();
 	
 	$('.datepicker').datepicker({
@@ -95,6 +95,8 @@ function mostrarHorarios(fechaActual){
 function actualizaHorarios(){
 	
 	setTimeout(function() { 
+		mostrarHorarios($( "#hdnFechaActual" ).val());
+		
 		setInterval(function() 
 				{ 
 			if(!presionado){
@@ -104,7 +106,7 @@ function actualizaHorarios(){
 				presionado=false;
 			}
 			},5600)
-		},2000);
+		},700);
 }
 
 function obtenHora(){
