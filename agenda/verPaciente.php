@@ -78,6 +78,29 @@ require_once 'masterInclude.inc.php';
 				
 			<?php $arrOpciones=array("1"=>"Diario","2"=>"Casi diario","3"=>"Eventualmente");
 			
+			
+				if ($hojaClinica->getPeso_habitual()!=0||$hojaClinica->getPeso_ideal()!=0){?>
+			<div class="row">
+			
+				<?php if ($hojaClinica->getPeso_habitual()!=0){?>
+				<div class="3u 12u$(small)">
+					<ul>
+						<li><strong>Peso habitual:&emsp;</strong><?php echo $hojaClinica->getPeso_habitual();?> kg.</li>
+					</ul>
+				</div>
+			<?php }?>
+			
+				<?php if ($hojaClinica->getPeso_ideal()!=0){?>
+				<div class="5u 12u$(small)">
+					<ul>
+						<li><strong>Peso ideal:&emsp;</strong><?php echo $hojaClinica->getPeso_ideal();?> </li>
+					</ul>
+			 </div>
+			<?php }?>
+			
+			 </div>
+			<?php }
+			
 			if ($hojaClinica->getCirugia()=="Si"){?>
 			<div class="row">
 				<div class="2u 12u$(small)">
@@ -306,6 +329,18 @@ require_once 'masterInclude.inc.php';
 			 </div>
 			<?php }?>
 			
+					<?php if ($hojaClinica->getObservaciones()!=""){?>
+			<div class="row">
+				<div class="2u 12u$(small)">
+					<ul>
+						<li><strong>Observaciones:&emsp;</strong></li>
+					</ul>
+					</div>
+				<div class="8u 12u$(small)">
+						<p><?php echo $hojaClinica->getObservaciones();?></p>
+					</div>
+			 </div>
+			<?php }?>
 			
 				<!-- 
 					 -->

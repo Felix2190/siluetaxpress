@@ -34,6 +34,8 @@ function guardar($datos){
     $infoHoja=$info['hojaclinica'];
     
     $hojaClinica = new ModeloHojaClinica();
+    $hojaClinica->setPeso_habitual($infoHoja['pesoHabitual']);
+    $hojaClinica->setPeso_ideal($infoHoja['pesoIdeal']);
     $hojaClinica->setFechaRegistro(date('Y-m-d H:i:s'));
     if ($infoHoja['cirugias'] != "")
         $hojaClinica->setCirugia($infoHoja['cirugias']);
@@ -53,8 +55,10 @@ function guardar($datos){
     if ($hojaClinica->getAlergia() == "Si") {
         $hojaClinica->setAlimento($infoHoja['alergias']);
     }
-    $hojaClinica->setHrsDormir($infoHoja['hrsDormir']);
-    $hojaClinica->setHrsComer($infoHoja['hrsComida']);
+    if ($infoHoja['hrsDormir'] != "")
+        $hojaClinica->setHrsDormir($infoHoja['hrsDormir']);
+    if ($infoHoja['hrsComida'] != "")
+        $hojaClinica->setHrsComer($infoHoja['hrsComida']);
     if ($infoHoja['cafe'] != "")
         $hojaClinica->setCafe($infoHoja['cafe']);
     if ($hojaClinica->getCafe() == "Si") {
@@ -115,6 +119,7 @@ function guardar($datos){
         $hojaClinica->setHorarioCena($infoHoja['hrCena']);
         $hojaClinica->setActividadCena($infoHoja['cena']);
     }
+    $hojaClinica->setObservaciones($infoHoja['Observaciones']);
     $hojaClinica->setCompletitud($infoHoja['completitud']);
     $hojaClinica->Guardar();
     if ($hojaClinica->getError()){

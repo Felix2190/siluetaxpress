@@ -37,7 +37,9 @@ function guardar($datos,$idPaciente,$idHoja){
     $hojaClinica = new ModeloHojaClinica();
     $hojaClinica->setIdHojaClinica($idHoja);
     
-    $hojaClinica->setFechaRegistro(date('Y-m-d H:i:s'));
+    $hojaClinica->setPeso_habitual($infoHoja['pesoHabitual']);
+    $hojaClinica->setPeso_ideal($infoHoja['pesoIdeal']);
+    
     if ($infoHoja['cirugias'] != "")
         $hojaClinica->setCirugia($infoHoja['cirugias']);
     if ($hojaClinica->getCirugia() == "Si") {
@@ -118,7 +120,9 @@ function guardar($datos,$idPaciente,$idHoja){
         $hojaClinica->setHorarioCena($infoHoja['hrCena']);
         $hojaClinica->setActividadCena($infoHoja['cena']);
     }
+    $hojaClinica->setObservaciones($infoHoja['Observaciones']);
     $hojaClinica->setCompletitud($infoHoja['completitud']);
+    
     $hojaClinica->Guardar();
     if ($hojaClinica->getError()){
         $r->call('mostrarMsjError',$hojaClinica->getStrError(),5);

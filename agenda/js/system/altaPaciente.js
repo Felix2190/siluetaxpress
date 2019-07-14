@@ -229,6 +229,18 @@ function altaPaciente(){
 	}
 	
     
+    hoja['pesoHabitual']= $("#txtPesoHabitual").val().trim();
+	if (hoja['pesoHabitual'] == "") {
+		hoja['pesoHabitual']=0;
+		console.log("Error: txtPesoHabitual");
+	}
+	
+	hoja['pesoIdeal']= $("#txtPesoIdeal").val().trim();
+	if (hoja['pesoIdeal'] == "") {
+		hoja['pesoIdeal']=0;
+		console.log("Error: txtPesoIdeal");
+	}
+	
     hoja['cirugias'] = '';
     $("input[name=cirugias]").each(function (index) { 
        if($(this).is(':checked')){
@@ -629,6 +641,12 @@ function altaPaciente(){
 			console.log("Error: cena");
 		}
     }
+    
+    hoja['Observaciones']= $("#txtObservaciones").val().trim();
+	if (hoja['Observaciones'] == "") {
+		console.log("Error: txtObservaciones");
+	}
+	
 	/*
 	hoja['']= $("#txt").val().trim();
 	if (hoja[''] == "") {

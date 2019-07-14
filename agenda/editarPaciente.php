@@ -210,6 +210,26 @@ $hojaClinica->setIdHojaClinica($paciente->getIdHojaClinica());
 									<h3>Hoja cl&iacute;nica</h3>
 								</div>
 							</div>
+							
+							
+							<div class="row">
+								<div class="2u 12u$(xsmall)">
+									<label>Peso habitual:</label>
+								</div>
+								<div class="2u 12u$(xsmall)">
+									<input type="text" id="txtPesoHabitual" class="numeric" maxlength="5" value="<?php echo $hojaClinica->getPeso_habitual();?>"/>
+								</div>
+								
+								<div class="2u 12u$(xsmall)">
+									<label>Peso ideal:</label>
+								</div>
+								<div class="2u 12u$(xsmall)">
+									<input type="text" id="txtPesoIdeal" class="numeric" maxlength="5" value="<?php echo $hojaClinica->getPeso_ideal();?>"/>
+								</div>
+							</div>
+							
+							<br />
+							
 							<div class="row">
 								<div class="2u 12u$(xsmall)">
 									<label>Cirug&iacute;as:</label>
@@ -736,6 +756,20 @@ $hojaClinica->setIdHojaClinica($paciente->getIdHojaClinica());
 								</div>
 								
 							</div>
+							
+							<br />
+							
+							<div class="row">
+							<div class="2u 12u$(xsmall)">
+									<label>Observaciones:</label>
+								</div>
+								
+								<div class="9u 12u$(xsmall)">
+								<textarea rows="3" cols="" id="txtObservaciones"><?php echo $hojaClinica->getObservaciones();?></textarea>
+							</div>
+							
+							</div>
+							
 							<br />
 							
 							<div class="row">

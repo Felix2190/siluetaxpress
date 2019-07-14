@@ -93,7 +93,25 @@ if (isset($_GET['idPaciente']) && isset($_GET['firma'])) {
     
     if ($paciente->getLlenado()=="Completo"){
         
-    
+        
+        if ($hojaClinica->getPeso_habitual()!=0){
+            $pdf->SetFont('Arial','U',11);
+            $pdf->Cell(35,5,' Peso habitual: ',0,0,'L');
+            $pdf->SetFont('Arial','',11);
+            $pdf->Cell(20,5,$hojaClinica->getPeso_habitual().' kg.',0,0,'L');
+        }
+        
+        
+        if ($hojaClinica->getPeso_ideal()!=0){
+            $pdf->SetFont('Arial','U',11);
+            $pdf->Cell(35,5,' Peso ideal: ',0,0,'L');
+            $pdf->SetFont('Arial','',11);
+            $pdf->Cell(20,5,$hojaClinica->getPeso_ideal().' kg.',0,0,'L');
+        }
+        
+        if ($hojaClinica->getPeso_ideal()!=0||$hojaClinica->getPeso_ideal()!=0)
+            $pdf->Ln(10);
+        
     if ($hojaClinica->getCirugia()!="sinrespuesta"){
         $pdf->SetFont('Arial','U',11);
         $pdf->Cell(20,5,' Cirugías: ',0,0,'L');
@@ -299,6 +317,15 @@ if (isset($_GET['idPaciente']) && isset($_GET['firma'])) {
     if ($hojaClinica->getHorarioLevantarse()!="00:00 AM"||$hojaClinica->getHorarioAcostarse()!="00:00 AM"||$hojaClinica->getHorarioActividad()!="00:00 AM"){
         $pdf->Ln(10);
     }
+    
+    if ($hojaClinica->getObservaciones()!=""){
+        $pdf->SetFont('Arial','U',11);
+        $pdf->Cell(40,5,' Observaciones: ',0,0,'L');
+        $pdf->SetFont('Arial','',11);
+        $pdf->MultiCell(125,6,utf8_decode($hojaClinica->getObservaciones()),0,'J',0);
+        $pdf->Ln(5);
+    }
+    
     $pdf->Ln(3);
     $pdf->SetFont('Arial','B',13);
     $pdf->Cell(185,5,' Recordatorio 24 hrs ',1,0,'C');
