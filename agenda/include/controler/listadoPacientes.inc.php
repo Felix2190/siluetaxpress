@@ -78,7 +78,8 @@ function verTabla($informacion,$sucursal){
                  }else {
                      $opciones="<a onClick='eliminarPaciente(".$paciente['idPaciente'].")'> <img src='images/eliminaPaciente.png' style='width: 30px' /></a>";
                  }
-                    
+                 $opciones.="<a onClick='verSeg(".$paciente['idPaciente'].")'> <img src='images/folder1.png' style='width: 30px' /></a>";
+                 
                     $fecha=explode("-", $paciente['fecha']);
                     
                     $tabla.="<tr><td colspan='2'>".$paciente['nombreP']."</td><td>".$paciente['telefonoCel']."</td>$txtSucursal<td>".$paciente['completitud']."%</td>
@@ -137,6 +138,16 @@ function mostrarCitas($paciente){
     return $r;
 }
 $xajax->registerFunction("mostrarCitas");
+
+function seguimiento($idPaciente){
+    $r=new xajaxResponse();
+    
+    $_SESSION['verSeg']=$idPaciente;
+    $r->call('mostrarMsjEspera','Consultando informaci&oacute;n ...',2);
+    $r->redirect("seguimiento.php",3);
+    return $r;
+}
+$xajax->registerFunction("seguimiento");
 
 $xajax->processRequest();
 

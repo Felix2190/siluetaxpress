@@ -61,6 +61,9 @@ function verCita(id){
 	xajax_verCita(id);
 }
 
+function verSeg(id){
+	xajax_seguimiento(id);
+}
 
 function eliminarPaciente(id){
 	//alert(idCita);
@@ -146,6 +149,8 @@ function estiloTabla(sucursal){
                         html+="<a onClick='mostrarCitas("+item.idPaciente+")'> <img src='images/citas.png' style='width: 30px' /></a>";
                     else
                     	html+="<a onClick='eliminarPaciente("+item.idPaciente+")'> <img src='images/eliminaPaciente.png' style='width: 30px' /></a>";
+                          		"</td>";
+                    html+="<a onClick='verSeg("+item.idPaciente+")'> <img src='images/folder.png' style='width: 30px' /></a>";
                           		"</td>";
                         $("<tr/>").html(html).appendTo(table);
                     });
