@@ -1,13 +1,13 @@
 <?php
 
-	require FOLDER_MODEL_BASE . "model.base.usuario.inc.php";
+	require FOLDER_MODEL_BASE . "model.base.franquicia.inc.php";
 
-	class ModeloUsuario extends ModeloBaseUsuario
+	class ModeloFranquicia extends ModeloBaseFranquicia
 	{
 		#------------------------------------------------------------------------------------------------------#
 		#----------------------------------------------Propiedades---------------------------------------------#
 		#------------------------------------------------------------------------------------------------------#
-		var $_nombreClase="ModeloBaseUsuario";
+		var $_nombreClase="ModeloBaseFranquicia";
 
 		var $__ss=array();
 
@@ -55,24 +55,7 @@
 		{
 			return true;
 		}
-		
-		public function obtenerUsuarios()
-		{
-		    global $objSession;
-		    $query = "Select u.idUsuario, concat_ws(' ', u.nombre, u.apellidos) as nombreCompleto, correo, telefonoCel,
-                    tu.nombre, s.sucursal from usuario as u 
-                    inner join tipousuario as tu on u.idTipoUsuario=tu.idTipoUsuario
-                    inner join sucursal as s on u.idSucursal=s.idSucursal where u.idTipoUsuario<>1 and s.idFranquicia=".$objSession->getIdFranquicia();
-		    $arreglo = array();
-		    $resultado = mysqli_query($this->dbLink, $query);
-		    if ($resultado && mysqli_num_rows($resultado) > 0) {
-		        while ($row_inf = mysqli_fetch_assoc($resultado)){
-		            $arreglo[] = $row_inf;
-		        }
-		    }
-		    return $arreglo;
-		}
-		
+
 
 	}
 

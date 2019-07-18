@@ -31,6 +31,7 @@ $xajax = new xajax();
 
 function guardarUsuario($nombre, $apellidos, $Cargo, $correo, $telefono, $userName, $arrSucursal){
     $r=new xajaxResponse();
+    global $objSession;
     $passw=substr( md5(microtime()), 1, 10);
     $random_salt = hash('sha512', uniqid(mt_rand(1, mt_getrandmax()), true));
     $password = hash('sha512', $passw. $random_salt);
@@ -41,6 +42,7 @@ function guardarUsuario($nombre, $apellidos, $Cargo, $correo, $telefono, $userNa
     $usuario->setCorreo($correo);
     $usuario->setTelefonoCel($telefono);
     $usuario->setIdSucursal($arrSucursal[0]);
+    $usuario->setIdFranquicia($objSession->getIdFranquicia());
     $usuario->setIdTipoUsuario($Cargo);
     $usuario->setFoto("../tmp/fotosperfil/perfil.png");
     
@@ -101,6 +103,6 @@ $xajax->processRequest();
 // -------------------------------------------Inicializacion de variables-------------------------------------------#
 // -----------------------------------------------------------------------------------------------------------------#
 $Susurcal = new ModeloSucursal();
-$arrSucursal=$Susurcal->obtenerSucurales();
+$arrSucursal=$Susurcal->obtenerSucuralesFranquicia();
 
 ?>

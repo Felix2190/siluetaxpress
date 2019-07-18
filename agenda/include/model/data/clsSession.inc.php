@@ -18,6 +18,7 @@ class clsSession
 	private $tipoUsuario;
 	private $lugar;
 	private $abrev;
+	private $idFranquicia;
 	
 	
 	
@@ -36,7 +37,7 @@ class clsSession
 	#--------------------------------------------Control--------------------------------------------#
 	#-----------------------------------------------------------------------------------------------#
 
-	var $__s=array(	"userName",	"idUsuario","nombre","apellidos","tipoUsuario","sucursal","lugar","correo","idRol", "idSucursal","abrev");
+	var $__s=array(	"userName",	"idUsuario","nombre","apellidos","tipoUsuario","sucursal","lugar","correo","idRol", "idSucursal","abrev","idFranquicia");
 
 	public function __construct()
 	{
@@ -114,6 +115,11 @@ class clsSession
 	public function getAbrev()
 	{
 	    return $this->abrev;
+	}
+	
+	public function getIdFranquicia()
+	{
+	    return $this->idFranquicia;
 	}
 	
 	public function isSessionActive()
