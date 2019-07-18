@@ -17,8 +17,9 @@
 		var $idTipoUsuario=0;
 		var $foto='';
 		var $envioPassword='0';
+		var $idFranquicia=0;
 
-		var $__s=array("idUsuario","nombre","apellidos","correo","telefonoCel","idSucursal","idTipoUsuario","foto","envioPassword");
+		var $__s=array("idUsuario","nombre","apellidos","correo","telefonoCel","idSucursal","idTipoUsuario","foto","envioPassword","idFranquicia");
 		var $__ss=array();
 
 		#------------------------------------------------------------------------------------------------------#
@@ -84,6 +85,11 @@
 		{
 			$this->envioPassword=1;
 		}
+		public function setIdFranquicia($idFranquicia)
+		{
+			
+			$this->idFranquicia=$idFranquicia;
+		}
 
 		#------------------------------------------------------------------------------------------------------#
 		#-----------------------------------------------Unsetter-----------------------------------------------#
@@ -136,6 +142,10 @@
 		{
 			return $this->envioPassword;
 		}
+		public function getIdFranquicia()
+		{
+			return $this->idFranquicia;
+		}
 
 		#------------------------------------------------------------------------------------------------------#
 		#------------------------------------------------Querys------------------------------------------------#
@@ -159,6 +169,7 @@
 			$this->idTipoUsuario=0;
 			$this->foto='';
 			$this->envioPassword='0';
+			$this->idFranquicia=0;
 		}
 
 		
@@ -168,8 +179,8 @@
 		{
 			try
 			{
-				$SQL="INSERT INTO usuario(nombre,apellidos,correo,telefonoCel,idSucursal,idTipoUsuario,foto,envioPassword)
-						VALUES('" . mysqli_real_escape_string($this->dbLink,$this->nombre) . "','" . mysqli_real_escape_string($this->dbLink,$this->apellidos) . "','" . mysqli_real_escape_string($this->dbLink,$this->correo) . "','" . mysqli_real_escape_string($this->dbLink,$this->telefonoCel) . "','" . mysqli_real_escape_string($this->dbLink,$this->idSucursal) . "','" . mysqli_real_escape_string($this->dbLink,$this->idTipoUsuario) . "','" . mysqli_real_escape_string($this->dbLink,$this->foto) . "','" . mysqli_real_escape_string($this->dbLink,$this->envioPassword) . "')";
+				$SQL="INSERT INTO usuario(nombre,apellidos,correo,telefonoCel,idSucursal,idTipoUsuario,foto,envioPassword,idFranquicia)
+						VALUES('" . mysqli_real_escape_string($this->dbLink,$this->nombre) . "','" . mysqli_real_escape_string($this->dbLink,$this->apellidos) . "','" . mysqli_real_escape_string($this->dbLink,$this->correo) . "','" . mysqli_real_escape_string($this->dbLink,$this->telefonoCel) . "','" . mysqli_real_escape_string($this->dbLink,$this->idSucursal) . "','" . mysqli_real_escape_string($this->dbLink,$this->idTipoUsuario) . "','" . mysqli_real_escape_string($this->dbLink,$this->foto) . "','" . mysqli_real_escape_string($this->dbLink,$this->envioPassword) . "','" . mysqli_real_escape_string($this->dbLink,$this->idFranquicia) . "')";
 				$result=mysqli_query($this->dbLink,$SQL);
 				if(!$result)
 					return $this->setSystemError("Error en la insercion de registro.","[" . $SQL . "][" . mysqli_error($this->dbLink) . "][ModeloBaseUsuario::Insertar]");
@@ -189,7 +200,7 @@
 		{
 			try
 			{
-				$SQL="UPDATE usuario SET nombre='" . mysqli_real_escape_string($this->dbLink,$this->nombre) . "',apellidos='" . mysqli_real_escape_string($this->dbLink,$this->apellidos) . "',correo='" . mysqli_real_escape_string($this->dbLink,$this->correo) . "',telefonoCel='" . mysqli_real_escape_string($this->dbLink,$this->telefonoCel) . "',idSucursal='" . mysqli_real_escape_string($this->dbLink,$this->idSucursal) . "',idTipoUsuario='" . mysqli_real_escape_string($this->dbLink,$this->idTipoUsuario) . "',foto='" . mysqli_real_escape_string($this->dbLink,$this->foto) . "',envioPassword='" . mysqli_real_escape_string($this->dbLink,$this->envioPassword) . "'
+				$SQL="UPDATE usuario SET nombre='" . mysqli_real_escape_string($this->dbLink,$this->nombre) . "',apellidos='" . mysqli_real_escape_string($this->dbLink,$this->apellidos) . "',correo='" . mysqli_real_escape_string($this->dbLink,$this->correo) . "',telefonoCel='" . mysqli_real_escape_string($this->dbLink,$this->telefonoCel) . "',idSucursal='" . mysqli_real_escape_string($this->dbLink,$this->idSucursal) . "',idTipoUsuario='" . mysqli_real_escape_string($this->dbLink,$this->idTipoUsuario) . "',foto='" . mysqli_real_escape_string($this->dbLink,$this->foto) . "',envioPassword='" . mysqli_real_escape_string($this->dbLink,$this->envioPassword) . "',idFranquicia='" . mysqli_real_escape_string($this->dbLink,$this->idFranquicia) . "'
 					WHERE idUsuario=" . $this->idUsuario;
 				
 				$result=mysqli_query($this->dbLink,$SQL);
@@ -231,7 +242,7 @@
 			try
 			{
 				$SQL="SELECT
-						idUsuario,nombre,apellidos,correo,telefonoCel,idSucursal,idTipoUsuario,foto,envioPassword
+						idUsuario,nombre,apellidos,correo,telefonoCel,idSucursal,idTipoUsuario,foto,envioPassword,idFranquicia
 					FROM usuario
 					WHERE idUsuario=" . mysqli_real_escape_string($this->dbLink,$this->idUsuario);
 					
