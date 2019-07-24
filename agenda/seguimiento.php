@@ -25,12 +25,15 @@ require_once 'masterInclude.inc.php';
 						
 							<!-- Header -->
 								<?php include_once 'header.php';?>
-
 							<!-- Section -->
 								<section>
 									<h3 id="content"><img src="images/seg.png" style="width: 95px;" />&ensp;Seguimiento</h3>
+									<strong><?php echo $paciente->getNombre().' '.$paciente->getApellidos();?></strong>
 								</section>
+								
 				<div class="row">
+					<input type="hidden" id="idPaciente" value="<?php echo $idPaciente;?>"/>
+				
 					<div class="12u 12u$(xsmall)">
 						<h4> <a> Registrar avance </a></h4>
 					</div>
@@ -45,41 +48,41 @@ require_once 'masterInclude.inc.php';
 									<label>Peso (Kg):</label>
 								</div>
 								<div class="2u 12u$(xsmall)">
-									<input type="text" id="txtPeso" class="numeric" maxlength="5" />
+									<input type="text" id="txtPeso" class="numeric imc" maxlength="5" />
 								</div>
 								<div class="2u 12u$(xsmall)">
 									<label>Estatura:</label>
 								</div>
 								<div class="2u 12u$(xsmall)">
-									<input type="text" id="txtEstatura" class="numeric" maxlength="5" />
+									<input type="text" id="txtEstatura" class="numeric imc" maxlength="5" />
 								</div>
 								<div class="2u 12u$(xsmall)">
 									<label>IMC:</label>
 								</div>
 								<div class="2u 12u$(xsmall)">
-									<input type="text" id="txtIMC" class="numeric" disabled="disabled" />
+									<input type="text" id="txtIMC" class="numeric" disabled="disabled" maxlength="5"/>
 								</div>
 								
 							</div>
 							<br />
 							<div class="row">
 								<div class="2u 12u$(xsmall)">
-									<label>Talla:</label>
+									<label>Talle:</label>
 								</div>
 								<div class="2u 12u$(xsmall)">
-									<input type="text" id="txt" class="numeric" maxlength="5" />
+									<input type="text" id="txtTalle" class="numeric" maxlength="5" />
 								</div>
 								<div class="2u 12u$(xsmall)">
 									<label>Pecho:</label>
 								</div>
 								<div class="2u 12u$(xsmall)">
-									<input type="text" id="txt" class="numeric" maxlength="5" />
+									<input type="text" id="txtPecho" class="numeric" maxlength="5" />
 								</div>
 								<div class="2u 12u$(xsmall)">
 									<label>Cintura:</label>
 								</div>
 								<div class="2u 12u$(xsmall)">
-									<input type="text" id="txt" class="numeric" maxlength="5" />
+									<input type="text" id="txtCintura" class="numeric" maxlength="5" />
 								</div>
 								
 							</div>
@@ -90,13 +93,13 @@ require_once 'masterInclude.inc.php';
 									<label>Abdomen:</label>
 								</div>
 								<div class="2u 12u$(xsmall)">
-									<input type="text" id="txt" class="numeric" maxlength="5" />
+									<input type="text" id="txtAbdomen" class="numeric" maxlength="5" />
 								</div>
 								<div class="2u 12u$(xsmall)">
 									<label>Cadera:</label>
 								</div>
 								<div class="2u 12u$(xsmall)">
-									<input type="text" id="txt" class="numeric" maxlength="5" />
+									<input type="text" id="txtCadera" class="numeric" maxlength="5" />
 								</div>
 								
 							</div>

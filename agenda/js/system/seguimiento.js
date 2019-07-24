@@ -4,21 +4,78 @@ $(document).ready(function(){
 	 
 function iniciar(){
 	$('.numeric').numeric({negative : false});
-
+	$("#btnGuardar").click(guardar);
+	$(".imc").keyup(function(){
+		peso = $("#txtPeso").val();
+		estatura = $("#txtEstatura").val();
+		if(peso!=""&&estatura!=""){
+			imc=peso/(estatura*estatura);
+			$("#txtIMC").val(imc.toFixed(3));
+		}else
+			$("#txtIMC").val('');
+	});
+	
 }
-	//$("#").();
-//var alert = alertify.alert('Titulo','TextoAlerta').set('label', 'Aceptar');     	 
-//alert.set({transition:'zoom'}); //slide, zoom, flipx, flipy, fade, pulse (default)
-//alert.set('modal', false);  //al pulsar fuera del dialog se cierra o no	
-//alertify.set('notifier','position', 'top-right'); //top-left, top-right, bootom-left, bottom-right
+var peso,estatura,imc;
+function guardar(){
+	var existeError = false;
+	var datos={};
+	datos['idPaciente']= $("#idPaciente").val();
+	
+	datos['Peso']= $("#txtPeso").val();
+	if (datos['Peso'] == "") {
+		existeError = true;
+		console.log("Error: txtPeso");
+	}
+	datos['Estatura']= $("#txtEstatura").val();
+	if (datos['Estatura'] == "") {
+		existeError = true;
+		console.log("Error: txtEstatura");
+	}
+	datos['IMC']= $("#txtIMC").val();
+	if (datos['IMC'] == "") {
+		existeError = true;
+		console.log("Error: txtIMC");
+	}
+	datos['Talle']= $("#txtTalle").val();
+	if (datos['Talle'] == "") {
+		existeError = true;
+		console.log("Error: txtTalle");
+	}
+	datos['Pecho']= $("#txtPecho").val();
+	if (datos['Pecho'] == "") {
+		existeError = true;
+		console.log("Error: txtPecho");
+	}
+	datos['Cintura']= $("#txtCintura").val();
+	if (datos['Cintura'] == "") {
+		existeError = true;
+		console.log("Error: txtCintura");
+	}
+	datos['Abdomen']= $("#txtAbdomen").val();
+	if (datos['Abdomen'] == "") {
+		existeError = true;
+		console.log("Error: txtAbdomen");
+	}
+	datos['Cadera']= $("#txtCadera").val();
+	if (datos['Cadera'] == "") {
+		existeError = true;
+		console.log("Error: txtCadera");
+	}
+	datos['Sintomass']= $("#txtSintomas").val();
+	datos['Dieta']= $("#txtDieta").val();
+	datos['Tratamiento']= $("#txtTratamiento").val();
 
-//alertify.message('Mensaje Normal',10, null);
+	if(existeError){
+		mostrarMsjError('Datos incompletos!! <br />Por favor, llene la informaci&oacute;n que se solicita',5);
+		return false;
+	}
 
-//alertify.notify('texto','success',100, null); //mensaje, tipo, tiempo en segundo (0 siempre visible, quitar al hacer click 		  	
-
-//alertify.notify('error','error',100, null); 
-
-//alertify.notify('warning','warning',100, null);
+	mostrarMsjEspera('Espere un momento... guardando informaci&oacute;n.', 3);
+	xajax_guardar(JSON.stringify(datos));
+	
+}
+	//$("#").(); 
 /*
      $.ajax(
       {
