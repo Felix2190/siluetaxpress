@@ -39,6 +39,16 @@ require_once 'masterInclude.inc.php';
 					</div>
 					<div class="12u 12u$(small)" style="display: none;" id="divReg">
     					<div class="box">
+    						<div class="row">
+    							<div class="8u 12u$(xsmall)" style="text-align: right;">
+    							 <strong> Fecha: </strong>
+    							</div>
+    							<div class="3u 12u$(small)" style="text-align: right;">
+        								<input type="text" id="txtFecha" placeholder="AAAA-MM-DD" readonly="readonly"
+    																class="datepicker" value="<?php echo date("Y-m-d");?>"/>
+                				</div>
+            				</div>
+            					<br />
     						<div class="12u 12u$(xsmall)">
 							 <strong> Medidas </strong>
 							</div>
@@ -142,7 +152,7 @@ require_once 'masterInclude.inc.php';
 								<textarea rows="3" cols="" id="txtTratamiento"></textarea>
 								</div>
 							</div>
-							
+						 
 						</div>
 					
     				<br />

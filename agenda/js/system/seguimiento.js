@@ -3,6 +3,16 @@ $(document).ready(function(){
 });
 	 
 function iniciar(){
+	$('.datepicker').datepicker({
+		dateFormat : 'yy-mm-dd',
+		changeMonth : true,
+		changeYear : true,
+		maxDate : '0D',
+			beforeShowDay: function(date) {
+			    var day = date.getDay();
+			    return [(day != 0), ''];
+			}
+	});
 	$('.numeric').numeric({negative : false});
 	$("#btnGuardar").click(guardar);
 	$(".imc").keyup(function(){
@@ -45,6 +55,11 @@ function guardar(){
 	var datos={};
 	datos['idPaciente']= $("#idPaciente").val();
 	
+	datos['Fecha']= $("#txtFecha").val();
+	if (datos['Fecha'] == "") {
+		existeError = true;
+		console.log("Error: txtFecha");
+	}
 	datos['Peso']= $("#txtPeso").val();
 	if (datos['Peso'] == "") {
 		existeError = true;

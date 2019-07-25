@@ -60,7 +60,7 @@
 		{
 		    $query = "Select idHojaSeguimiento,DATE_FORMAT(fechaRegistro,'%d/%m/%Y') as fecha, 
                         pesoKg,estatura,IMC,pecho,talla,cintura,abdomen,cadera from hojaseguimiento 
-                        where idPaciente=".$idPaciente." order by idHojaSeguimiento desc";
+                        where idPaciente=".$idPaciente." order by fechaRegistro desc";
 		    $arreglo = array();
 		    $resultado = mysqli_query($this->dbLink, $query);
 		    $total=mysqli_num_rows($resultado);

@@ -46,7 +46,7 @@ function guardar($datos){
     $seg->setTratamiento($info['Tratamiento']);
     $seg->setIdUsuario($objSession->getidUsuario());
     $seg->setIdSucursal($objSession->getIdSucursal());
-    $seg->setFechaRegistro(date("Y-m-d H:i:s"));
+    $seg->setFechaRegistro($info['Fecha'].' '.date("H:i:s"));
     $seg->setIdPaciente($info['idPaciente']);
     
     $seg->Guardar();

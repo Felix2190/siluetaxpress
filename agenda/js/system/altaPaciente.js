@@ -188,7 +188,7 @@ function altaPaciente(){
 	}
 	paciente['TelMovil']= $("#txtTelMovil").val().trim();
 	if (paciente['TelMovil'] == "") {
-		existeError = true;
+//		existeError = true;
 		console.log("Error: txTelMovil");
 	}
 	
@@ -200,7 +200,7 @@ function altaPaciente(){
 	
 	paciente['ocupacion']= $("#txtOcupacion").val().trim();
 	if (paciente['ocupacion'] == "") {
-		existeError = true;
+	//	existeError = true;
 		console.log("Error: ocupacion");
 	}
 	
@@ -677,9 +677,13 @@ function altaPaciente(){
 		}
 	}
 	
-	if (paciente['TelMovil'].length<10) {
-		mostrarMsjError('El n&uacute;mero telef&oacute;nico es incorrecto ',3);
-		return false;
+	if (paciente['TelMovil'] != "") {
+		if (paciente['TelMovil'].length<10) {
+			mostrarMsjError('El n&uacute;mero telef&oacute;nico es incorrecto ',3);
+			return false;
+		}
+	}else{
+		paciente['TelMovil'] == "NINGUNO";
 	}
 	
 	var completitud=100-((100/41)*faltan);
@@ -716,7 +720,7 @@ function altaPaciente2(){
 	
 	paciente['TelMovil']= $("#txtTelMovil2").val().trim();
 	if (paciente['TelMovil'] == "") {
-		existeError = true;
+//		existeError = true;
 		console.log("Error: txTelMovil");
 	}
 	
@@ -750,11 +754,15 @@ function altaPaciente2(){
 		}
 	}
 
-	if (paciente['TelMovil'].length<10) {
-		mostrarMsjError('El n&uacute;mero telef&oacute;nico es incorrecto ',3);
-		return false;
+	if (paciente['TelMovil'] != "") {
+		if (paciente['TelMovil'].length<10) {
+			mostrarMsjError('El n&uacute;mero telef&oacute;nico es incorrecto ',3);
+			return false;
+		}
+	}else{
+		paciente['TelMovil'] == "NINGUNO";
 	}
-
+	
 	hoja['completitud']=0;
 	datos['paciente']=paciente;
 	datos['hojaclinica']=hoja;
