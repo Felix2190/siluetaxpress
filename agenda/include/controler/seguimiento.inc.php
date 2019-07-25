@@ -54,6 +54,7 @@ function guardar($datos){
         $r->call('mostrarMsjError',$seg->getStrSystemError(),5);
         return $r;
     }
+    $r->call('limpiarTxt');
     
     $r->call('mostrarMsjExito','Se guard&oacute; correctamente la informaci&oacute;n!',3);
     $r->call('verListado');

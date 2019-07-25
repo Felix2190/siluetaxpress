@@ -97,7 +97,7 @@ function guardar(){
 
 	mostrarMsjEspera('Espere un momento... guardando informaci&oacute;n.', 3);
 	xajax_guardar(JSON.stringify(datos));
-	limpiarTxt();
+//	limpiarTxt();
 }
 var regAvance=false;
 function visualizacion(){
@@ -123,6 +123,8 @@ function limpiarTxt(){
 	$("#txtSintomas").val('');
 	$("#txtDieta").val('');
 	$("#txtTratamiento").val('');
+	$("#divReg").hide();
+	regAvance=false;
 }
 
 function verDetalle(idSeg){
