@@ -55,14 +55,37 @@ function guardar($datos){
         return $r;
     }
     
-    $r->call('mostrarMsjExito','Se guar&oacute; correctamente la informaci&oacute;n!',3);
-    $r->redirect('seguimiento.php',2);
+    $r->call('mostrarMsjExito','Se guard&oacute; correctamente la informaci&oacute;n!',3);
+    $r->call('verListado');
     
     return $r;
     
 }
 
 $xajax->registerFunction("guardar");
+
+function mostrarTabla($informacion)
+{
+    $r = new xajaxResponse();
+    $arrTitulos=array("Fecha","Peso (kg)","Estatura (mts)","IMC","Pecho","Talle","Cintura","Abdomen","Cadera","");
+    $tabla = "<table><thead><tr>";
+        
+        foreach ($arrTitulos as $titulo)
+            $tabla .= "<th>$titulo</th>";
+            
+            $tabla.="</tr></thead><tbody>";
+            
+            foreach ($informacion as $id => $arr)
+                $tabla .= "<tr><td>".$arr['fecha']."</td><td>".$arr['pesoKg']."</td><td>".$arr['estatura']."</td><td>".$arr['IMC']."</td>
+                        <td>".$arr['pecho']."</td><td>".$arr['talla']."</td><td>".$arr['cintura']."</td><td>".$arr['abdomen']."</td><td>".$arr['cadera']."</td>
+                <td><a onclick='verDetalle(\"".$arr['idHojaSeguimiento']."\")'><img src='images/ver.png' title='Ver/editar' style='width: 15px' /></a></td></tr>";
+                
+                $tabla .= "</tbody></table>";
+    
+    $r->assign('divTabla', 'innerHTML', $tabla);
+    return $r;
+}
+$xajax->registerFunction("mostrarTabla");
 
 $xajax->processRequest();
 

@@ -491,6 +491,18 @@ if (isset($_POST['completitud'])&&isset($_POST['idPaciente'])){
     echo true;
 }
 
+if (isset($_POST['idPacienteSeguimiento'])){
+    require_once FOLDER_MODEL_EXTEND. "model.hojaseguimiento.inc.php";
+    $seg = new ModeloHojaseguimiento();
+    echo json_encode($seg->getSeguimientos($_POST['idPacienteSeguimiento']));
+}
+
+if (isset($_POST['idSeguimiento'])){
+    require_once FOLDER_MODEL_EXTEND. "model.hojaseguimiento.inc.php";
+    $seg = new ModeloHojaseguimiento();
+    echo json_encode($seg->getDetalleSeguimiento($_POST['idSeguimiento']));
+}
+
 
 function obtenCombo($array,$default){
     $combo='<option value="">'.$default.'</option>';

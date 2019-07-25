@@ -14,10 +14,33 @@ function iniciar(){
 		}else
 			$("#txtIMC").val('');
 	});
-	
+	verListado();
 }
+
 var peso,estatura,imc;
+
+function verListado(){
+	 $.ajax({
+			method : "post",
+			url : "adminFunciones.php",
+			data : {
+				idPacienteSeguimiento:$("#idPaciente").val()
+			},
+			success : function(data) {
+				respuesta=JSON.parse(data);
+				if(respuesta['total']>0){
+					$("#divTabla").show()
+					xajax_mostrarTabla(respuesta['info']);
+				}else{
+					$("#divTabla").hide()
+					mostrarMsjError("A&uacute;n no existen notas de seguimientos",3);
+				}
+			}
+		});
+}
+
 function guardar(){
+	$("#btnGuardar").hide();
 	var existeError = false;
 	var datos={};
 	datos['idPaciente']= $("#idPaciente").val();
@@ -62,18 +85,76 @@ function guardar(){
 		existeError = true;
 		console.log("Error: txtCadera");
 	}
-	datos['Sintomass']= $("#txtSintomas").val();
+	datos['Sintomas']= $("#txtSintomas").val();
 	datos['Dieta']= $("#txtDieta").val();
 	datos['Tratamiento']= $("#txtTratamiento").val();
 
 	if(existeError){
+		$("#btnGuardar").show();
 		mostrarMsjError('Datos incompletos!! <br />Por favor, llene la informaci&oacute;n que se solicita',5);
 		return false;
 	}
 
 	mostrarMsjEspera('Espere un momento... guardando informaci&oacute;n.', 3);
 	xajax_guardar(JSON.stringify(datos));
-	
+	limpiarTxt();
+}
+var regAvance=false;
+function visualizacion(){
+	if(regAvance){
+		$("#divReg").hide();
+		regAvance=false;
+	}else{
+		$("#divReg").show();
+		regAvance=true;
+	}
+}
+
+function limpiarTxt(){
+	$("#btnGuardar").show();
+	$("#txtPeso").val('');
+	$("#txtEstatura").val('');
+	$("#txtIMC").val('');
+	$("#txtTalle").val('');
+	$("#txtPecho").val('');
+	$("#txtCintura").val('');
+	$("#txtAbdomen").val('');
+	$("#txtCadera").val('');
+	$("#txtSintomas").val('');
+	$("#txtDieta").val('');
+	$("#txtTratamiento").val('');
+}
+
+function verDetalle(idSeg){
+	 $.ajax({
+			method : "post",
+			url : "adminFunciones.php",
+			data : {
+				idSeguimiento: idSeg
+			},
+			success : function(data) {
+				info=JSON.parse(data);
+				$("#divInfoSeg").show()
+				$("#dtPeso").html(info['pesoKg']);
+				$("#dtEstatura").html(info['estatura']);
+				$("#dtIMC").html(info['IMC']);
+				$("#dtTalle").html(info['talla']);
+				$("#dtPecho").html(info['pecho']);
+				$("#dtCintura").html(info['cintura']);
+				$("#dtAbdomen").html(info['abdomen']);
+				$("#dtCadera").html(info['cadera']);
+				$("#dtSintomas").html(info['sintomas']);
+				$("#dtDieta").html(info['dieta']);
+				$("#dtTratamiento").html(info['tratamiento']);
+				$("#dtNombre").html(info['nombreCom']);
+				$("#dtSucursal").html(info['sucursal']);
+				$("#dtFecha").html(info['fecha']);
+				$('html,body').animate({
+				    scrollTop: $("#divInfoSeg").offset().top
+				}, 2000);
+			
+			}
+		});
 }
 	//$("#").(); 
 /*

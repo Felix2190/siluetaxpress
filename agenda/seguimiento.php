@@ -28,16 +28,16 @@ require_once 'masterInclude.inc.php';
 							<!-- Section -->
 								<section>
 									<h3 id="content"><img src="images/seg.png" style="width: 95px;" />&ensp;Seguimiento</h3>
-									<strong><?php echo $paciente->getNombre().' '.$paciente->getApellidos();?></strong>
+									&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<strong><?php echo $paciente->getNombre().' '.$paciente->getApellidos();?></strong>
 								</section>
 								
 				<div class="row">
 					<input type="hidden" id="idPaciente" value="<?php echo $idPaciente;?>"/>
 				
 					<div class="12u 12u$(xsmall)">
-						<h4> <a> Registrar avance </a></h4>
+						<h4> <a onclick="visualizacion();"> Registrar avance </a></h4>
 					</div>
-					<div class="12u 12u$(small)">
+					<div class="12u 12u$(small)" style="display: none;" id="divReg">
     					<div class="box">
     						<div class="12u 12u$(xsmall)">
 							 <strong> Medidas </strong>
@@ -144,30 +144,103 @@ require_once 'masterInclude.inc.php';
 							</div>
 							
 						</div>
-						
-						
-    				</div>
+					
+    				<br />
+    				
+    				<div class="row">
+								<div class="12u"></div>
+								<a id="btnGuardar" class="button special">Guardar</a>
+						</div>
+				</div>							
+    				
 				</div>
 				<hr />					
 				<div class="row">
 					<div class="12u 12u$(xsmall)">
 									<h4>Historial</h4>
 					</div>
+					
+					<br />
+					<div class="table-wrapper" id="divTabla">
+					</div>
 						
 						
-    					<div class="12u 12u$(small)">
+    					<div id="divInfoSeg" class="12u 12u$(small)" style="display: none;">
     						<div class="box">
-    						</div>
-    					</div>
-    					<div class="12u 12u$(small)">
-    						<div class="box">
-    						</div>
-    					</div>
-    					<div class="12u 12u$(small)">
-    						<div class="box">
-    						</div>
-    					</div>
-					 
+								<div class="row">
+    								<div class="5u 12u$(small)" style="text-align: right;">Captur&oacute;: <i id="dtNombre"></i>
+            						</div>
+            						<div class="4u 12u$(small)" style="text-align: right;">en <i  id="dtSucursal"></i>
+            						</div>
+            						<div class="3u 12u$(small)" style="text-align: right;">Fecha: <strong id="dtFecha"></strong>
+            						</div>
+            						
+            						<br />
+            						<div class="12u 12u$(small)">
+            						<p>
+            						
+            						</p >
+            						</div>
+            						<br />
+            						
+            						<div class="2u 12u$(small)">
+            							<div class="12u$(small)">
+        									Peso:&ensp;<strong style="border-bottom: 2px solid;"  id="dtPeso"></strong>
+        								</div>
+        								<br />
+        								<div class="12u$(small)">
+        									Estatura:&ensp;<strong style="border-bottom: 2px solid;"  id="dtEstatura"></strong>
+        								</div>
+        								<br />
+        								<div class="12u$(small)">
+        									IMC:&ensp;<strong style="border-bottom: 2px solid;"  id="dtIMC"></strong>
+        								</div>
+        								<br />
+        								
+        							</div>
+        							
+            						<div class="3u 12u$(small)">
+            							<div class="12u$(small)">
+        									Pecho:&ensp;<strong style="border-bottom: 2px solid;" id="dtPecho"></strong>
+        								</div>
+        								<br />
+        								<div class="12u$(small)">
+        									Talle:&ensp;<strong style="border-bottom: 2px solid;" id="dtTalle"></strong>
+        								</div>
+        								<br />
+        								<div class="12u$(small)">
+        									Cintura:&ensp;<strong style="border-bottom: 2px solid;" id="dtCintura"></strong>
+        								</div>
+        								<br />
+        								<div class="12u$(small)">
+        									Abdomen:&ensp;<strong style="border-bottom: 2px solid;" id="dtAbdomen"></strong>
+        								</div>
+        								<br />
+        								<div class="12u$(small)">
+        									Cadera:&ensp;<strong style="border-bottom: 2px solid;" id="dtCadera"></strong>
+        								</div>
+        								<br />
+        								
+        							</div>
+        							<div class="7u 12u$(small)">
+        								<div class="12u$(small)">S&iacute;ntomas
+        									<p id="dtSintomas"> </p>
+        								</div>
+        								<br />
+        								<div class="12u$(small)">Dieta
+        									<p id="dtDieta"> </p>
+        								</div>
+        								<br />
+        								<div class="12u$(small)">Tratamiento
+        									<p id="dtTratamiento"> </p>
+        								</div>
+        								<br />
+        								
+        							</div>
+        							</div>
+							</div>	
+						</div>
+    				
 				</div>	
 						</div>
 					</div>

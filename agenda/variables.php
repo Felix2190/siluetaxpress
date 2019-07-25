@@ -49,5 +49,11 @@ if ($__FILE_NAME__ != "adminFunciones") {
             unset($_SESSION['verTipoUsuario']);
         }
     }
+    if ($__FILE_NAME__ != "seguimiento") {
+        if (isset($_SESSION['verSeg'])) {
+            unset($_SESSION['verSeg']);
+        }
+    }
+    
 }
 ?>
