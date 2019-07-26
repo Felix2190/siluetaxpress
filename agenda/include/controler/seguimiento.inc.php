@@ -5,6 +5,7 @@
 // -----------------------------------------------------------------------------------------------------------------#
 require_once FOLDER_MODEL_EXTEND. "model.hojaseguimiento.inc.php";
 require_once FOLDER_MODEL_EXTEND. "model.paciente.inc.php";
+require FOLDER_INCLUDE . 'lib/graficas/GraficasChart.php';
 
 // -----------------------------------------------------------------------------------------------------------------#
 // --------------------------------------------Inicializacion de control--------------------------------------------#
@@ -84,6 +85,25 @@ function mostrarTabla($informacion)
                 $tabla .= "</tbody></table>";
     
     $r->assign('divTabla', 'innerHTML', $tabla);
+    
+    $areaGraficas = '<div id="canvas-holder">
+						<div id="grafPay" style="display: none" class="col-sm-3 text-right">
+							<canvas id="chart-area" width="700" height="300"></canvas>
+						</div>
+					</div>
+				
+			<div class="spacer-30"></div>';
+    
+    $r->assign ( "misgraficas", "innerHTML", $areaGraficas );
+    
+    $GraficaChart = new DatosGraficaChart();
+    $GraficaChart->setAleaotorio ( true );
+    $GraficaChart->setTipoGrafica ( "Linea" );
+    $datosGraf = $GraficaChart->GraficaValores( array("d1"=>7,"d2"=>9,"d3"=>4,"d4"=>14) );
+    
+    $r->call ( "iniciarGraf", $datosGraf);
+//    $r->call('mostrarMsjExito',json_encode($datosGraf),60);
+    
     return $r;
 }
 $xajax->registerFunction("mostrarTabla");

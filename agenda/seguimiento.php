@@ -13,6 +13,7 @@ require_once 'masterInclude.inc.php';
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		
 		<?php require_once 'importar_scripts.php'; ?>
+		  <script src="js/lib/Chart.js"></script>
 	</head>
 	<body>
 
@@ -31,6 +32,19 @@ require_once 'masterInclude.inc.php';
 									&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;&emsp;<strong><?php echo $paciente->getNombre().' '.$paciente->getApellidos();?></strong>
 								</section>
 								
+				<div class="row">
+					<div class="12u 12u$(xsmall)">
+									<h4>Gr&aacute;ficas</h4>
+					</div>
+					
+					<br />
+									<div id='misgraficas' style="display: ;">
+
+										</div>	
+								
+				</div>
+								<hr />					
+				
 				<div class="row">
 					<input type="hidden" id="idPaciente" value="<?php echo $idPaciente;?>"/>
 				
@@ -251,7 +265,8 @@ require_once 'masterInclude.inc.php';
 							</div>	
 						</div>
     				
-				</div>	
+				</div>
+				
 						</div>
 					</div>
 

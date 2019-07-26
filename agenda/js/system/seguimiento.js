@@ -173,6 +173,19 @@ function verDetalle(idSeg){
 			}
 		});
 }
+
+var iniciarGraf =function (grafica) {
+	var subGraf = [];
+	$("#misgraficas").hide();
+	if (grafica[1] > 0) {
+		var graficar = new GraficarChart('chart-area', 'grafPay', 'legend',
+				750, 250, grafica);
+		$("#misgraficas").show();
+	}else{
+		
+	}
+}
+
 	//$("#").(); 
 /*
      $.ajax(
