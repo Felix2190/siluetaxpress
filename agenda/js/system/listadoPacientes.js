@@ -7,26 +7,23 @@ function iniciar(){
 		listarPacientes(); 
 	},700);
 	
-	if($("#hdnRol").val()==1){
 		 $.ajax({
 				method : "post",
 				url : "adminFunciones.php",
 				data : {
-					sucursales:''
+					sucursalBar:''
 				},
 				success : function(data) {
-					respuesta=JSON.parse(data);
-					$( "#slcSucursal" ).html(respuesta);
+					$( "#slcSucursal" ).html(data);
 				}
 			});
-	 }
 	$( "#slcSucursal" ).change(listarPacientes);
 }
 
 function listarPacientes(){
-	nsucursal=$( "#hdnSucursal" ).val();
+/*	nsucursal=$( "#hdnSucursal" ).val();
 	if (nsucursal=='')
-		nsucursal=$( "#slcSucursal" ).val();
+	*/	nsucursal=$( "#slcSucursal" ).val();
 
 	setTimeout(function() {
 		estiloTabla(nsucursal);

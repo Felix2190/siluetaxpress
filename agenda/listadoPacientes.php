@@ -35,15 +35,15 @@ require_once 'masterInclude.inc.php';
 									</div>
 									<input type="hidden" id="hdnRol" value="<?php echo $objSession->getidRol();?>"/>
 									<input type="hidden" id="hdnSucursal" value="<?php echo $sucursal;?>"/>
-									<?php 
+			<!--						<?php 
 									if ($objSession->getidRol()!=1):
 									echo "<p><strong>Sucursal:</strong> ".$objSession->getSucursal()."</p>";
 									endif;
 									?>
-									<div class="row uniform" id="divInicio">
+				-->					<div class="row uniform" id="divInicio">
 									
-								<?php if ($objSession->getidRol()==1){?>
-									<div class="1u 12u$(xsmall)">
+		<!--						<?php //if ($objSession->getidRol()==1){?>
+			-->						<div class="1u 12u$(xsmall)">
 									<label>Sucursal:</label>
 								</div>
 								<div class="4u 12u$(xsmall)">
@@ -52,8 +52,8 @@ require_once 'masterInclude.inc.php';
 									</select>
 									</div>
 									</div>
-									<?php } ?>
-								</div>
+	<!-- 							<?php //} ?>
+		-->						</div>
 									
 								
 								</section>
