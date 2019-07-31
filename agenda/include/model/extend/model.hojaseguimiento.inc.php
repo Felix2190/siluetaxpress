@@ -89,5 +89,21 @@
 		    }
 		    return $arreglo;
 		}
+		
+		public function getValoresByCampo($idPaciente,$campo)
+		{
+		    $query = "Select distinct DATE_FORMAT(fechaRegistro,'%d/%m/%Y') as fecha, $campo  from hojaseguimiento
+                        where idPaciente=".$idPaciente." order by fechaRegistro desc limit 15";
+		    $arreglo = array();
+		    $resultado = mysqli_query($this->dbLink, $query);
+		    $total=mysqli_num_rows($resultado);
+		    if ($resultado && $total > 0) {
+		        while ($row_inf = mysqli_fetch_assoc($resultado)){
+		            $arreglo[$row_inf['fecha']] = $row_inf["$campo"];
+		        }
+		    }
+		    return array('total'=>$total,'info'=>array_reverse($arreglo));
+		}
+		
 	}
 

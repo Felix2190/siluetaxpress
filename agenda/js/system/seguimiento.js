@@ -174,12 +174,15 @@ function verDetalle(idSeg){
 		});
 }
 
-var iniciarGraf =function (grafica) {
+var iniciarGraf =function (grafica,t1,grafica2,t2) {
 	var subGraf = [];
+	var x=120;
 	$("#misgraficas").hide();
 	if (grafica[1] > 0) {
 		var graficar = new GraficarChart('chart-area', 'grafPay', 'legend',
-				750, 250, grafica);
+				x+((t1-1)*40), 250, grafica);
+		var graficar = new GraficarChart('chart-area2', 'grafPay2', 'legend2',
+				x+((t2-1)*40), 250, grafica2);
 		$("#misgraficas").show();
 	}else{
 		

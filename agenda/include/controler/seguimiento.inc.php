@@ -86,22 +86,47 @@ function mostrarTabla($informacion)
     
     $r->assign('divTabla', 'innerHTML', $tabla);
     
-    $areaGraficas = '<div id="canvas-holder">
-						<div id="grafPay" style="display: none" class="col-sm-3 text-right">
-							<canvas id="chart-area" width="700" height="300"></canvas>
+    $areaGraficas = '
+			 
+				<div class="12u 12u$(xsmall)">
+			     				<strong>&emsp;&emsp;<h5>Control de peso</h5></strong>
+                                <div id="canvas-holder">
+						<div id="grafPay" style="display: none"  >
+							<canvas id="chart-area" ></canvas>
 						</div>
-					</div>
-				
+                     </div>
+				 </div>
+                <div class="12u 12u$(xsmall)">
+			          <strong><h5>&emsp;&emsp;IMC</h5></strong>
+                       <div id="canvas-holder">
+						<div id="grafPay2" style="display: none" >
+							<canvas id="chart-area2" ></canvas>
+						</div>
+                     </div>
+				</div>
+			       
 			<div class="spacer-30"></div>';
     
     $r->assign ( "misgraficas", "innerHTML", $areaGraficas );
     
-    $GraficaChart = new DatosGraficaChart();
-    $GraficaChart->setAleaotorio ( true );
-    $GraficaChart->setTipoGrafica ( "Linea" );
-    $datosGraf = $GraficaChart->GraficaValores( array("d1"=>7,"d2"=>9,"d3"=>4,"d4"=>14) );
+    $idPaciente =$_SESSION['verSeg'];
     
-    $r->call ( "iniciarGraf", $datosGraf);
+    $seg = new ModeloHojaseguimiento();
+    $datosPeso=$seg->getValoresByCampo($idPaciente, "pesoKg");
+    $datosIMC=$seg->getValoresByCampo($idPaciente, "IMC");
+    
+    $GraficaChart = new DatosGraficaChart();
+    $GraficaChart->setTipoGrafica ( "Linea" );
+    $GraficaChart->setCampo("pesoKg");
+   $datosGraf1 = $GraficaChart->GraficaValores($datosPeso['info']);
+   
+   
+   $GraficaChart = new DatosGraficaChart();
+   $GraficaChart->setTipoGrafica ( "Linea" );
+   $GraficaChart->setCampo("IMC");
+    $datosGraf2 = $GraficaChart->GraficaValores($datosIMC['info']);
+    
+    $r->call ( "iniciarGraf", $datosGraf1,$datosPeso['total'],$datosGraf2,$datosIMC['total']);
 //    $r->call('mostrarMsjExito',json_encode($datosGraf),60);
     
     return $r;

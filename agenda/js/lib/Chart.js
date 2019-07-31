@@ -58,24 +58,23 @@ function GraficarChart(contenedor, canvas, legenda, tamX, tamY, datos) {
 			case "Linea":
 				var linea = {
 					labels : datos[2],
-					datasets :  [{ 
-				        data: [86,114,106,106],
-				        label: "Africa",
-				        borderColor: "#3e95cd",
-				        fill: false
-				      }]
-
+					datasets :  JSON.parse(datos[0])
 				};
-				window.myPie = new Chart(ctx)
+				window.myLine = new Chart(ctx)
 						.Line(
 								linea,
 {
 								options: {
-									responsive: true,
-									title: {
-										display: true,
-										text: 'details.labe'
-									}
+								    animation: true,
+								    animationSteps: 900,
+								    animationEasing: "easeOutQuart",
+								    scaleFontSize: 16,
+								    responsive: true,
+								    showTooltip: true,
+								    tooltipTemplate: "<%= value %>",
+								    
+								    scaleShowGridLines : false,
+
 								}
 }									);
 			break;

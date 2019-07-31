@@ -37,8 +37,7 @@ require_once 'masterInclude.inc.php';
 									<h4>Gr&aacute;ficas</h4>
 					</div>
 					
-					<br />
-									<div id='misgraficas' style="display: ;">
+									<div  class="row" id='misgraficas' style="display: ;">
 
 										</div>	
 								

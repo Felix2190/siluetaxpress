@@ -9,6 +9,17 @@ class DatosGraficaChart{
 	var $error = false;
 	var $strError = "";
 	var $query = '';
+	var $COLORES2 = array (
+	  'pesoKg' => array('fillColor' => "#ecffe8",
+	        'strokeColor' => "##499305",
+	        'pointColor' => "#6ac119",
+	        'pointStrokeColor' => "#6ac119",),
+	  'IMC' => array('fillColor' => "#fbf6d9",
+	        'strokeColor' => "#e8902f",
+	        'pointColor' => "#eebe5c",
+	        'pointStrokeColor' => "#eebe5c",),
+	);
+	var $campo="";
 	var $COLORES = array (
 			'495b7c',
 			'a0cddb',
@@ -146,6 +157,9 @@ class DatosGraficaChart{
 	public function setEjeX($EjeX_estatus) {
 		$this->EjeX_estatus = $EjeX_estatus;
 	}
+	public function setCampo($campo) {
+	    $this->campo=$campo;
+	}
 	public function getError() {
 		return $this->error;
 	}
@@ -224,10 +238,11 @@ class DatosGraficaChart{
 					case 'Linea' :
 					    $objetoJSON = array (
 					    //									'label' => $key,
-					    'fill' =>false ,// "#" . $this->COLORES [$contador],
-					    'steppedLine' => true,
-					    'borderColor' => "rgba(220,220,220,0.8)",// . $this->COLORES [$contador],
-					    'data' => $arrayValores
+					    'data' => $arrayValores,
+					    'fillColor' => $this->COLORES2["$this->campo"]['fillColor'],
+					    'strokeColor' => $this->COLORES2["$this->campo"]['strokeColor'],
+					    'pointColor' => $this->COLORES2["$this->campo"]['pointColor'],
+					    'pointStrokeColor' => $this->COLORES2["$this->campo"]['pointStrokeColor'],
 					    );
 					    return array (
 					        json_encode ( array($objetoJSON )),
