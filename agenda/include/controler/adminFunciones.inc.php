@@ -995,7 +995,7 @@ function enviaSMS($numPaciente, $sMessage)
     $sData = 'cmd=sendsms&';
     $sData .= 'domainId=siluetaexpress&';
     $sData .= 'login=lic.lezliedelariva@gmail.com&';
-    $sData .= 'passwd=MwPeXyT9i5t3&';
+    $sData .= 'passwd=Y7uiC5WxZ2f&';
     
     $sData .= 'dest=' . str_replace(',', '&dest=', $numPaciente) . '&';
     $sData .= 'msg=' . urlencode(utf8_encode($sMessage));

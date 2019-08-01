@@ -4,7 +4,7 @@ function consultaCredito()
     $sData = 'cmd=getcredit&';
     $sData .= 'domainId=siluetaexpress&';
     $sData .= 'login=lic.lezliedelariva@gmail.com&';
-    $sData .= 'passwd=MwPeXyT9i5t3&';
+    $sData .= 'passwd=Y7uiC5WxZ2f&';
     
     $timeOut = 5;
     
