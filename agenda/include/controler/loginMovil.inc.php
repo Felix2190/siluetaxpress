@@ -5,6 +5,7 @@
 // -----------------------------------------------------------------------------------------------------------------#
 require_once FOLDER_MODEL_EXTEND. "model.login.inc.php";
 require_once FOLDER_MODEL_EXTEND. "model.sucursal.inc.php";
+require_once FOLDER_MODEL_EXTEND. "model.franquicia.inc.php";
 // -----------------------------------------------------------------------------------------------------------------#
 // --------------------------------------------Inicializacion de control--------------------------------------------#
 // -----------------------------------------------------------------------------------------------------------------#
@@ -25,9 +26,9 @@ require_once FOLDER_MODEL_EXTEND. "model.sucursal.inc.php";
 
 $xajax = new xajax();
 
-function ingresar($user,$pass,$sucursal){
+function ingresar($user,$pass,$sucursal,$franquicia){
     $login=new ModeloLogin();
-    $arrSesion=$login->validarUsuarioPassword(array('username'=>$user,'password'=>$pass,'sucursal'=>$sucursal));
+    $arrSesion=$login->validarUsuarioPassword(array('username'=>$user,'password'=>$pass,'franquicia'=>$franquicia,'sucursal'=>$sucursal));
     
     $r=new xajaxResponse();
     
@@ -56,12 +57,13 @@ $xajax->processRequest();
 // -----------------------------------------------------------------------------------------------------------------#
 
 
-$sucursal=new ModeloSucursal();
-$arrSucursal=$sucursal->obtenerSucurales();
+$franquicia=new ModeloFranquicia();
+$arrFranquicia=$franquicia->obtenerFranquicias();
 
-$txtSucursal='<option value="">Selecciona una opci&oacute;n</option>';
-foreach ($arrSucursal as $key => $opcion)
-    $txtSucursal.='<option value="'.$key.'">'.$opcion.'</option>';
+$txtFranquicia=$txtSucursal='<option value="">Selecciona una opci&oacute;n</option>';
+foreach ($arrFranquicia as $key => $opcion)
+    $txtFranquicia.='<option value="'.$key.'">'.$opcion.'</option>';
+    
     
     $URL="";
     if (isset($_SESSION['url']))

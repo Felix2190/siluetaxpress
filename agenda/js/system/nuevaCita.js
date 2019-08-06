@@ -25,11 +25,11 @@ function consultaDatos(){
 			method : "post",
 			url : "adminFunciones.php",
 			data : {
-				sucursales:''
+				sucursalCitaNueva:''
 			},
 			success : function(data) {
-				respuesta=JSON.parse(data);
-				$( "#slcSucursal" ).html(respuesta);
+//				respuesta=JSON.parse(data);
+				$( "#slcSucursal" ).html(data);
 				if($( "#hdnPredefinida" ).val()=='true'){
 					$( "#slcSucursal" ).val($( "#hdnSucursal" ).val());
 					setTimeout(function() {

@@ -30,6 +30,48 @@ if (isset($_POST['pacientes'])){
     echo json_encode(obtenCombo($pacientes->obtenerPacientes(),'Seleccione una opci&oacute;n'));
 }
 
+if (isset($_POST['franquicias'])){
+    require_once FOLDER_MODEL_EXTEND. "model.franquicia.inc.php";
+    $franquicia = new ModeloFranquicia();
+    $combo='';
+    foreach ($franquicia->obtenerFranquicias() as $key => $opcion)
+        $combo.='<option value="'.$key.'" >'.$opcion.'</option>';
+        
+        echo json_encode($combo);
+}
+
+if (isset($_POST['idFranquiciaLogin'])){
+    require_once FOLDER_MODEL_EXTEND. "model.sucursal.inc.php";
+    $sucursal = new ModeloSucursal();
+    $sucursal->setIdFranquicia($_POST['idFranquiciaLogin']);
+    $combo='<option value="">Selecciona una opci&oacute;n</option>';
+    foreach ($sucursal->obtenerSucuralesFranquicia() as $key => $opcion)
+        $combo.='<option value="'.$key.'" >'.$opcion.'</option>';
+        
+        echo $combo;
+}
+
+if (isset($_POST['sucursalFranquicia'])){
+    require_once FOLDER_MODEL_EXTEND. "model.sucursal.inc.php";
+    $sucursal = new ModeloSucursal();
+    $combo='<option value="">Todas</option>';
+    foreach ($sucursal->obtenerSucuralesFranquiciaSesion() as $key => $opcion)
+        $combo.='<option value="'.$key.'" '.($key==$objSession->getIdSucursal()?'selected':'').'>'.$opcion.'</option>';
+        
+        echo $combo;
+}
+
+
+if (isset($_POST['sucursalCitaNueva'])){
+    require_once FOLDER_MODEL_EXTEND. "model.sucursal.inc.php";
+    $sucursal = new ModeloSucursal();
+    $combo='';
+    foreach ($sucursal->obtenerSucuralesFranquiciaSesion() as $key => $opcion)
+        $combo.='<option value="'.$key.'" '.($key==$objSession->getIdSucursal()?'selected':'').'>'.$opcion.'</option>';
+        
+        echo $combo;
+}
+
 if (isset($_POST['sucursales'])){
     require_once FOLDER_MODEL_EXTEND. "model.sucursal.inc.php";
     $estatus = new ModeloSucursal();

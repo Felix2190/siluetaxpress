@@ -57,7 +57,8 @@ class ModeloLogin extends ModeloBaseLogin
                         if ($row['estatus']=='activo') {
                             $query2 = "SELECT s.sucursal,s.idSucursal from usuariosucursal as us 
                                 inner join sucursal as s on us.idSucursal=s.idSucursal
-                                WHERE idUsuario =" .$row['idUsuario']. " and us.idSucursal =" .$infoUsuario['sucursal']. " and us.estatus ='activo'   LIMIT 1";
+                                WHERE idUsuario =" .$row['idUsuario']. " and us.idSucursal =" .$infoUsuario['sucursal']. "
+                                and s.idFranquicia =" .$infoUsuario['franquicia']. " and us.estatus ='activo'   LIMIT 1";
                             $result2 = mysqli_query($this->dbLink, $query2);
                             if ($result2&&mysqli_num_rows($result2) == 1) {
                                 //actualiza sucursal
@@ -69,6 +70,7 @@ class ModeloLogin extends ModeloBaseLogin
                                 $arrInfoUsuario['idRol'] = $row['idRol'];
                                 $arrInfoUsuario['idSucursal'] = $row2['idSucursal'];
                                 $arrInfoUsuario['sucursal'] = $row2['sucursal'];
+                                $arrInfoUsuario['idFranquicia'] = $infoUsuario['franquicia'];
                                 return array(true,$arrInfoUsuario);
                             }else {
                                 // sucursal inválida

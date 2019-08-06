@@ -152,19 +152,25 @@ $dbLink->set_charset(BD_CHARSET);
   $ordenar="";
   $filtros = armar_filtros();
   $ordenar = ordenar();
-	
+  $inner="";
+  $where=" true ";
+  if ($sucursal==""){
+      $inner=" inner join sucursal as s on (vw.idSucursal=s.idSucursal and s.idFranquicia=".$objSession->getIdFranquicia().") ";
+  }else {
+      $where.=" and vw.idSucursal=".$sucursal;
+  }
   $inicial = (($pagina) * $tamano);
   if($filtros!='')
   {
-    $query="select idPaciente, nombreP, telefonoCel, sucursal, completitud, fecha,  consultasHechas, consultasProximas, fechaProxima , cita 
-          from vw_listado_pacientes where idSucursal=".$sucursal." and estatus='activo'  ".$filtros.$ordenar." LIMIT $inicial, $tamano";
+    $query="select idPaciente, nombreP, telefonoCel, vw.sucursal, completitud, fecha,  consultasHechas, consultasProximas, fechaProxima , cita 
+          from vw_listado_pacientes as vw $inner where $where and vw.estatus='activo'  ".$filtros.$ordenar." LIMIT $inicial, $tamano";
     
     
   }
   else
   {
-      $query="select idPaciente, nombreP, telefonoCel, sucursal, completitud, fecha,  consultasHechas, consultasProximas, fechaProxima , cita
-          from vw_listado_pacientes where idSucursal=".$sucursal." and estatus='activo' ".$ordenar." LIMIT $inicial, $tamano"; 	
+      $query="select idPaciente, nombreP, telefonoCel, vw.sucursal, completitud, fecha,  consultasHechas, consultasProximas, fechaProxima , cita
+          from vw_listado_pacientes as vw $inner where $where and vw.estatus='activo' ".$ordenar." LIMIT $inicial, $tamano"; 	
   }
 //  echo $query;
   $result=mysqli_query($dbLink,$query);
@@ -180,13 +186,13 @@ $dbLink->set_charset(BD_CHARSET);
     if($filtros!='')
     {
       $query="SELECT COUNT(*) AS total 		   			      		  	 
-  				FROM vw_listado_pacientes where idSucursal=".$sucursal." and estatus='activo' 
+  				FROM vw_listado_pacientes as vw $inner where $where and vw.estatus='activo' 
             ".$filtros."";
     }
     else
     {
       $query="SELECT COUNT(*) AS total    			 
-			  	FROM vw_listado_pacientes where idSucursal=".$sucursal." and estatus='activo'  ".$filtros;
+			  	FROM vw_listado_pacientes as vw $inner where $where and vw.estatus='activo'  ".$filtros;
     }//echo $query;
     $result=mysqli_query($dbLink,$query);
     if(!$result)

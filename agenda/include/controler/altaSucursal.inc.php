@@ -28,7 +28,7 @@ $xajax = new xajax();
 
 function guardarSucursal($ent,$mun,$sucursalN,$direccion,$hrEntreI,$hrEntreF,$hrSabI,$hrSabF,$numCon,$numCa){
     $r=new xajaxResponse();
-    
+    global $objSession;
     $sucursal= new ModeloSucursal();
     $sucursal->setCveEstado($ent);
     $sucursal->setCveMunicipio($mun);
@@ -39,7 +39,7 @@ function guardarSucursal($ent,$mun,$sucursalN,$direccion,$hrEntreI,$hrEntreF,$hr
     $sucursal->setSabadoEntrada($hrSabI);
     $sucursal->setSabadoSalida($hrSabF);
     $sucursal->setEstatusActiva();
-    
+    $sucursal->setIdFranquicia($objSession->getIdFranquicia());
     $sucursal->Guardar();
     
     if ($sucursal->getError()){

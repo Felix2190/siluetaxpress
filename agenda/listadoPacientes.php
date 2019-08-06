@@ -48,7 +48,7 @@ require_once 'masterInclude.inc.php';
 								</div>
 								<div class="4u 12u$(xsmall)">
 									<div class="select-wrapper">
-									<select name="demo-category" id="slcSucursal">
+									<select name="demo-category" id="slcSucursalFranquicia">
 									</select>
 									</div>
 									</div>

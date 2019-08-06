@@ -56,6 +56,18 @@
 			return true;
 		}
 
-
+		public function obtenerFranquicias()
+		{
+		    $query = "Select idFranquicia, franquicia from franquicia";
+		    $arreglo = array();
+		    $resultado = mysqli_query($this->dbLink, $query);
+		    if ($resultado && mysqli_num_rows($resultado) > 0) {
+		        while ($row_inf = mysqli_fetch_assoc($resultado)){
+		            $arreglo[$row_inf['idFranquicia']] = $row_inf['franquicia'];
+		        }
+		    }
+		    return $arreglo;
+		}
+		
 	}
 

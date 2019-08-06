@@ -5,15 +5,30 @@ $(document).ready(function(){
 });
 	 
 function iniciar(){
+	$("#slcFranquicia").change(listarSucursales);
 	$("#btnEntrar").click(entrar);
 	if($("#sesion").val()=="1")
 		irAgenda();
 }
 
+function listarSucursales(){
+
+	 $.ajax({
+			method : "post",
+			url : "adminFunciones.php",
+			data : {
+				idFranquiciaLogin:$("#slcFranquicia").val()
+			},
+			success : function(data) {
+				$( "#slcSucursal" ).html(data);
+			}
+		});
+}
 function entrar(){
 	var user = $("#txtUserName").val();
 	var pass = $("#txtPassword").val().trim();
-	var sucursal= $("#slcSucursal").val();
+	var franquicia = $("#slcFranquicia").val();
+	var sucursal = $("#slcSucursal").val();
 	var existeError = false;
 	
 	if (user == "") {
@@ -24,6 +39,11 @@ function entrar(){
 	if (pass == "") {
 		existeError = true;
 		console.log("Error: txtPassword");
+	}
+
+	if (franquicia == "") {
+		existeError = true;
+		console.log("Error: txtfranquicia");
 	}
 	
 	if (sucursal == "") {
@@ -36,7 +56,7 @@ function entrar(){
 		return false;
 	}
 	mostrarMsjEspera('Espere un momento... validando datos.', 1);
-	xajax_ingresar(user,pass,sucursal);
+	xajax_ingresar(user,pass,sucursal,franquicia);
 	
 }
 function irAgenda(){

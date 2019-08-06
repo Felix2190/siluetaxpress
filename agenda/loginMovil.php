@@ -30,26 +30,38 @@ require_once 'masterInclude.inc.php';
 								</div>
 						</div>
 						<div class="row" >
-							<div class="4u " style="padding: 70px 10px 0 0;">
+							<div class="4u " style="padding: 50px 10px 0 0;">
 								<label>Usuario:</label>
 							</div> 
-							<div class="8u" style="padding: 70px 10px 0 0;">
+							<div class="8u" style="padding: 50px 10px 0 0;">
 								<input type="text" id="txtUserName"/>
 							</div>
 						</div>
 						<div class="row" >
-							<div class="4u " style="padding: 40px 10px 0 0;">
+							<div class="4u " style="padding: 20px 10px 0 0;">
 								<label>Contrase&ntilde;a:</label>
 							</div> 
-							<div class="8u" style="padding: 40px 10px 0 0;">
+							<div class="8u" style="padding: 20px 10px 0 0;">
 								<input type="password" id="txtPassword"/>
 							</div>
 						</div>
 						<div class="row" >
-							<div class="4u " style="padding: 40px 10px 0 0;">
+							<div class="4u " style="padding: 20px 10px 0 0;">
+								<label>Ubicaci&oacute;n:</label>
+							</div> 
+							<div class="8u" style="padding: 20px 10px 0 0;">
+								<div class="select-wrapper">
+									<select name="demo-category" id="slcFranquicia">
+									<?php echo $txtFranquicia;?>
+									</select>
+								</div>
+							</div>
+						</div>
+						<div class="row" >
+							<div class="4u " style="padding: 20px 10px 0 0;">
 								<label>Sucursal:</label>
 							</div> 
-							<div class="8u" style="padding: 40px 10px 0 0;">
+							<div class="8u" style="padding: 20px 10px 0 0;">
 								<div class="select-wrapper">
 									<select name="demo-category" id="slcSucursal">
 									<?php echo $txtSucursal;?>

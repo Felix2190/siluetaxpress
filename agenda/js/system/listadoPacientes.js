@@ -2,9 +2,15 @@ $(document).ready(function(){
 	iniciar();
 });
 	 
+var arrSucursal=[]; 
+
 function iniciar(){
 	setTimeout(function() {
 		listarPacientes(); 
+		 $('#slcSucursalBar option').each(function() {
+			 arrSucursal.push($(this).text());
+		 });
+		 console.log(arrSucursal);
 	},700);
 	
 		 $.ajax({
@@ -17,13 +23,25 @@ function iniciar(){
 					$( "#slcSucursal" ).html(data);
 				}
 			});
-	$( "#slcSucursal" ).change(listarPacientes);
+		 
+
+		 $.ajax({
+				method : "post",
+				url : "adminFunciones.php",
+				data : {
+					sucursalFranquicia:''
+				},
+				success : function(data) {
+					$( "#slcSucursalFranquicia" ).html(data);
+				}
+			});
+	$( "#slcSucursalFranquicia" ).change(listarPacientes);
 }
 
 function listarPacientes(){
 /*	nsucursal=$( "#hdnSucursal" ).val();
 	if (nsucursal=='')
-	*/	nsucursal=$( "#slcSucursal" ).val();
+	*/	nsucursal=$( "#slcSucursalFranquicia" ).val();
 
 	setTimeout(function() {
 		estiloTabla(nsucursal);
@@ -106,7 +124,7 @@ function confirmacion(titulo, texto, id, divAlerta){
 }
 
 function estiloTabla(sucursal){
-  	$('#tablesorting-1').tablesorter({
+	$('#tablesorting-1').tablesorter({
   		theme          : "bootstrap", // this will 
   		widthFixed     : true,
   		headerTemplate : '{content} {icon}', // new in v2.7. Needed to add the bootstrap icon!
@@ -125,12 +143,13 @@ function estiloTabla(sucursal){
             ajaxProcessing: function (ajax, table) {
            //   $("#tablesorting-1").trigger("update");
               $(table).find('tbody').empty();
+
                 if (ajax) {
                     $.each(ajax[1], function (i, item) {
                     	if(item.fechaProxima!=null)
                     		arrFechaProxima= item.fechaProxima.split("-");
                     	arrFecha= item.fecha.split("-");
-                          var html = "<td>" + item.nombreP + "</td>" +
+                          var html = "<td>" + item.nombreP + ($( "#slcSucursalFranquicia" ).val()==''?('<br /> ['+item.sucursal+']'):'')+"</td>" +
                             "<td>" + item.telefonoCel + "</td>" +
                             "<td>" + item.completitud + "%</td>" +
                             "<td>" + arrFecha[2]+"/"+arrFecha[1]+"/"+arrFecha[0]+ "</td>" +
@@ -144,7 +163,7 @@ function estiloTabla(sucursal){
                     "<a onClick='editarPaciente("+item.idPaciente+")'><img src='images/editPaciente.png' title='editar' style='width: 30px' /></a>";
                     if(parseInt(item.consultasProximas )>0)
                         html+="<a onClick='mostrarCitas("+item.idPaciente+")'> <img src='images/citas.png' style='width: 30px' /></a>";
-                    else
+                    else if($.inArray(item.sucursal,arrSucursal)>0)
                     	html+="<a onClick='eliminarPaciente("+item.idPaciente+")'> <img src='images/eliminaPaciente.png' style='width: 30px' /></a>";
                           		"</td>";
                     html+="<a onClick='verSeg("+item.idPaciente+")'> <img src='images/folder.png' style='width: 30px' /></a>";

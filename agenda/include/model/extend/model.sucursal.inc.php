@@ -96,6 +96,20 @@
 		
 		public function obtenerSucuralesFranquicia()
 		{
+		    $query = "Select idSucursal, sucursal from sucursal where idSucursal<>1 and idFranquicia=".$this->getIdFranquicia();
+		    $arreglo = array();
+		    $resultado = mysqli_query($this->dbLink, $query);
+		    if ($resultado && mysqli_num_rows($resultado) > 0) {
+		        while ($row_inf = mysqli_fetch_assoc($resultado)){
+		            $arreglo[$row_inf['idSucursal']] = $row_inf['sucursal'];
+		        }
+		    }
+		    return $arreglo;
+		}
+		
+		
+		public function obtenerSucuralesFranquiciaSesion()
+		{
 		    global $objSession;
 		    $query = "Select idSucursal, sucursal from sucursal where idSucursal<>1 and idFranquicia=".$objSession->getIdFranquicia();
 		    $arreglo = array();

@@ -103,6 +103,6 @@ $xajax->processRequest();
 // -------------------------------------------Inicializacion de variables-------------------------------------------#
 // -----------------------------------------------------------------------------------------------------------------#
 $Susurcal = new ModeloSucursal();
-$arrSucursal=$Susurcal->obtenerSucuralesFranquicia();
+$arrSucursal=$Susurcal->obtenerSucuralesFranquiciaSesion();
 
 ?>
