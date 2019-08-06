@@ -12,7 +12,7 @@
 			<ul class="contact">
 				<li class="fa-home">
 					<div class="select-wrapper">
-							<select name="demo-category" id="slcSucursalBar" name="slcSucursalBar">
+							<select name="demo-category" id="slcSucursalBar">
 								</select>
 					</div>
 				</li>
