@@ -995,7 +995,7 @@ function enviaSMS($numPaciente, $sMessage)
     $sData = 'cmd=sendsms&';
     $sData .= 'domainId=siluetaexpress&';
     $sData .= 'login=lic.lezliedelariva@gmail.com&';
-    $sData .= 'passwd=zilu374_9021&';
+    $sData .= 'passwd=l3z.$ilu374_9021&';
     
     $sData .= 'dest=' . str_replace(',', '&dest=', $numPaciente) . '&';
     $sData .= 'msg=' . urlencode(utf8_encode($sMessage));
@@ -1010,7 +1010,7 @@ function enviaSMS($numPaciente, $sMessage)
         $output .= "suministrada por altiria";
         return $output;
     } else {
-         $buf = "POST http://www.altiria.net/api/http HTTP/1.0\r\n";
+         $buf = "POST http://www.altiria.net:8443/api/http HTTP/1.0\r\n";
         $buf .= "Host: www.altiria.net\r\n";
         $buf .= "Content-type: application/x-www-form-urlencoded; charset=UTF-8\r\n";
         $buf .= "Content-length: ".strlen($sData)."\r\n";

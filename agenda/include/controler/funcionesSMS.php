@@ -4,7 +4,7 @@ function consultaCredito()
     $sData = 'cmd=getcredit&';
     $sData .= 'domainId=siluetaexpress&';
     $sData .= 'login=lic.lezliedelariva@gmail.com&';
-    $sData .= 'passwd=zilu374_9021&';
+    $sData .= 'passwd=l3z.$ilu374_9021&';
     
     $timeOut = 5;
     
@@ -17,7 +17,7 @@ function consultaCredito()
         return array(false,$output);
         return $output;
     } else {
-        $buf = "POST http://www.altiria.net/api/http HTTP/1.0\r\n";
+        $buf = "POST http://www.altiria.net:8443/api/http HTTP/1.0\r\n";
         $buf .= "Host: www.altiria.net\r\n";
         $buf .= "Content-type: application/x-www-form-urlencoded; charset=UTF-8\r\n";
         $buf .= "Content-length: ".strlen($sData)."\r\n";
