@@ -1,12 +1,22 @@
 $(document).ready(function(){
 	iniciar();
 });
-	 
+	 var peso,estatura,imc;
 function iniciar(){
 	/*$(".numeric").keyup(function (){
 		 this.value = (this.value + '').replace(/[^0-9]/g, '');
 		});*/
 	$('.numeric').numeric({negative : false});
+	$(".imc").keyup(function(){
+		peso = $("#txtPesoInicial").val();
+		estatura = $("#txtEstatura").val();
+		if(peso!=""&&estatura!=""){
+			imc=peso/(estatura*estatura);
+			$("#txtIMC").val(imc.toFixed(3));
+		}else
+			$("#txtIMC").val('');
+	});
+	
 /*
 	$.datepicker.setDefaults($.datepicker.regional['es-MX']);;
 	$('#txtFecha').datepicker({
@@ -232,14 +242,38 @@ function altaPaciente(){
     hoja['pesoHabitual']= $("#txtPesoHabitual").val().trim();
 	if (hoja['pesoHabitual'] == "") {
 		hoja['pesoHabitual']=0;
+		faltan++;
 		console.log("Error: txtPesoHabitual");
 	}
 	
 	hoja['pesoIdeal']= $("#txtPesoIdeal").val().trim();
 	if (hoja['pesoIdeal'] == "") {
+		faltan++;
 		hoja['pesoIdeal']=0;
 		console.log("Error: txtPesoIdeal");
 	}
+	
+	hoja['pesoInicial']= $("#txtPesoInicial").val().trim();
+	if (hoja['pesoInicial'] == "") {
+		hoja['pesoInicial']=0;
+		console.log("Error: txtpesoInicial");
+	}
+
+		
+	hoja['Estatura']= $("#txtEstatura").val().trim();
+	if (hoja['Estatura'] == "") {
+		hoja['Estatura']=0;
+		console.log("Error: txtEstatura");
+	}
+	
+	var errorIMC=false;
+	if ((hoja['Estatura'] != 0&&hoja['pesoInicial'] == 0)||(hoja['Estatura'] == 0&&hoja['pesoInicial'] != 0))
+		errorIMC=true;
+	
+	hoja['IMC']= $("#txtIMC").val().trim();
+	if (hoja['IMC'] == "")
+		hoja['IMC']=0;
+	
 	
     hoja['cirugias'] = '';
     $("input[name=cirugias]").each(function (index) { 
@@ -647,6 +681,18 @@ function altaPaciente(){
 		console.log("Error: txtObservaciones");
 	}
 	
+	hoja['Tratamiento']= $("#txtTratamientoA").val().trim();
+	if (hoja['Tratamiento'] == "") {
+		faltan++;
+		console.log("Error: txtTratamiento");
+	}
+	hoja['Antecedentes']= $("#txtAntecedentes").val().trim();
+	if (hoja['Antecedentes'] == "") {
+		faltan++;
+		console.log("Error: txtAntecedentes");
+	}
+	
+	
 	/*
 	hoja['']= $("#txt").val().trim();
 	if (hoja[''] == "") {
@@ -686,13 +732,16 @@ function altaPaciente(){
 		paciente['TelMovil'] == "NINGUNO";
 	}
 	
-	var completitud=100-((100/41)*faltan);
+	var completitud=100-((100/45)*faltan);
 	hoja['completitud']=Number(completitud.toFixed(2));
 	datos['hojaclinica']=hoja;
 	datos['paciente']=paciente;
 	
 //	alert(JSON.stringify(datos));
-	
+	if(errorIMC){
+		mostrarMsjError("Datos incompletos para el registro de seguimiento.");
+		return false;;
+	}
 	if(existeError){
 		mostrarMsjError('Datos incompletos!! <br />Por favor, llene la informaci&oacute;n que se solicita',5);
 		return false;

@@ -104,6 +104,19 @@
 		    }
 		    return array('total'=>$total,'info'=>array_reverse($arreglo));
 		}
+
+		public function getPrimerRegistro($idPaciente)
+		{
+		    $query = "Select pesoKg,estatura,IMC from hojaseguimiento
+                     where idPaciente=".$idPaciente." order by fechaRegistro asc limit 1";
+		    $arreglo = array();
+		    $resultado = mysqli_query($this->dbLink, $query);
+		    $total=mysqli_num_rows($resultado);
+		    if ($resultado && $total > 0) {
+		        $row_inf = mysqli_fetch_assoc($resultado);
+		            $arreglo = $row_inf;
+		    }
+		    return $arreglo;
+		}
 		
 	}
-

@@ -122,6 +122,9 @@ function guardar($datos,$idPaciente,$idHoja){
     }
     $hojaClinica->setObservaciones($infoHoja['Observaciones']);
     $hojaClinica->setCompletitud($infoHoja['completitud']);
+    $hojaClinica->setTratamientos($infoHoja['Tratamiento']);
+    $hojaClinica->setAntecedentes($infoHoja['Antecedentes']);
+    
     
     $hojaClinica->Guardar();
     if ($hojaClinica->getError()){

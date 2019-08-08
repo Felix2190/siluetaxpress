@@ -662,6 +662,17 @@ function altaPaciente(){
 		console.log("Error: txtObservaciones");
 	}
 	
+	hoja['Tratamiento']= $("#txtTratamientoA").val().trim();
+	if (hoja['Tratamiento'] == "") {
+		faltan++;
+		console.log("Error: txtTratamiento");
+	}
+	hoja['Antecedentes']= $("#txtAntecedentes").val().trim();
+	if (hoja['Antecedentes'] == "") {
+		faltan++;
+		console.log("Error: txtAntecedentes");
+	}
+	
 	/*
 	hoja['']= $("#txt").val().trim();
 	if (hoja[''] == "") {
@@ -693,7 +704,7 @@ function altaPaciente(){
 	}
 	
 	
-	var completitud=100-((100/41)*faltan);
+	var completitud=100-((100/43)*faltan);
 	hoja['completitud']=Number(completitud.toFixed(2));
 	datos['hojaclinica']=hoja;
 	datos['paciente']=paciente;

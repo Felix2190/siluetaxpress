@@ -34,6 +34,8 @@ function guardar($datos){
     $info=json_decode($datos,true);
     
     $seg = new ModeloHojaseguimiento();
+    if (intval($info['idSeg'])>0)
+        $seg->setIdHojaSeguimiento($info['idSeg']);
     $seg->setPesoKg($info['Peso']);
     $seg->setEstatura($info['Estatura']);
     $seg->setIMC($info['IMC']);
@@ -80,7 +82,8 @@ function mostrarTabla($informacion)
             foreach ($informacion as $id => $arr)
                 $tabla .= "<tr><td>".$arr['fecha']."</td><td>".$arr['pesoKg']."</td><td>".$arr['estatura']."</td><td>".$arr['IMC']."</td>
                         <td>".$arr['pecho']."</td><td>".$arr['talla']."</td><td>".$arr['cintura']."</td><td>".$arr['abdomen']."</td><td>".$arr['cadera']."</td>
-                <td><a onclick='verDetalle(\"".$arr['idHojaSeguimiento']."\")'><img src='images/ver.png' title='Ver/editar' style='width: 15px' /></a></td></tr>";
+                <td><a onclick='verDetalle(\"".$arr['idHojaSeguimiento']."\")'><img src='images/ver.png' title='Ver' style='width: 15px' /></a>
+<a onclick='editar(\"".$arr['idHojaSeguimiento']."\")'><img src='images/editar.png' title='editar' style='width: 15px' /></a></td></tr>";
                 
                 $tabla .= "</tbody></table>";
     

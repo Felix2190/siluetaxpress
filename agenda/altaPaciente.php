@@ -222,17 +222,22 @@ require_once 'masterInclude.inc.php';
 							<br />
 							<div class="row">
 								<div class="3u 12u$(xsmall)">
-									<h3>Hoja cl&iacute;nica</h3>
+									<h3>Seguimiento</h3>
 								</div>
 							</div>
-							
-							
 							<div class="row">
-								<div class="3u 12u$(xsmall)">
+								<div class="2u 12u$(xsmall)">
 									<label>Peso habitual:</label>
 								</div>
 								<div class="2u 12u$(xsmall)">
 									<input type="text" id="txtPesoHabitual" class="numeric" maxlength="5" />
+								</div>
+								
+								<div class="2u 12u$(xsmall)">
+									<label>Peso inicial:</label>
+								</div>
+								<div class="2u 12u$(xsmall)">
+									<input type="text" id="txtPesoInicial" class="numeric imc" maxlength="5" />
 								</div>
 								
 								<div class="2u 12u$(xsmall)">
@@ -244,6 +249,31 @@ require_once 'masterInclude.inc.php';
 							</div>
 							
 							<br />
+							
+							<div class="row">
+								<div class="2u 12u$(xsmall)">
+									<label>Estatura:</label>
+								</div>
+								<div class="2u 12u$(xsmall)">
+									<input type="text" id="txtEstatura" class="numeric imc" maxlength="5" />
+								</div>
+								
+								<div class="2u 12u$(xsmall)">
+									<label>IMC:</label>
+								</div>
+								<div class="2u 12u$(xsmall)">
+									<input type="text" id="txtIMC" class="numeric"  maxlength="5" />
+								</div>
+								
+							</div>
+							
+							<br />
+							
+							<div class="row">
+								<div class="3u 12u$(xsmall)">
+									<h3>Hoja cl&iacute;nica</h3>
+								</div>
+							</div>
 							
 							<div class="row">
 								<div class="3u 12u$(xsmall)">
@@ -921,6 +951,37 @@ require_once 'masterInclude.inc.php';
 							
 							<br />
 							
+							
+							<div class="row">
+								<div class="5u 12u$(xsmall)">
+									<h3>Informaci&oacute;n adicional</h3>
+								</div>
+							</div>
+							<div class="row">
+							<div class="2u 12u$(xsmall)">
+									<label>Antecedentes heredofamiliares:</label>
+								</div>
+								
+								<div class="9u 12u$(xsmall)">
+								<textarea rows="3" cols="" id="txtAntecedentes"></textarea>
+							</div>
+							
+							</div>
+							
+							<br />
+							<div class="row">
+							<div class="2u 12u$(xsmall)">
+									<label>Tratamientos anteriores:</label>
+								</div>
+								
+								<div class="9u 12u$(xsmall)">
+								<textarea rows="3" cols="" id="txtTratamientoA"></textarea>
+							</div>
+							
+							</div>
+							
+							<br />
+							
 							<div class="row">
 							<div class="2u 12u$(xsmall)">
 									<label>Observaciones:</label>
@@ -931,7 +992,10 @@ require_once 'masterInclude.inc.php';
 							</div>
 							
 							</div>
+							
+							
 							<br />
+							
 							<input type="hidden" id="hdnRol" value="<?php echo $objSession->getidRol();?>"/>
 							<?php if ($objSession->getidRol()==1){?>
 							<div class="row">

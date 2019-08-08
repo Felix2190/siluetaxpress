@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	iniciar();
 });
-	 
+var idSeg=0;	 
 function iniciar(){
 	$('.datepicker').datepicker({
 		dateFormat : 'yy-mm-dd',
@@ -54,7 +54,7 @@ function guardar(){
 	var existeError = false;
 	var datos={};
 	datos['idPaciente']= $("#idPaciente").val();
-	
+	datos['idSeg']=idSeg;
 	datos['Fecha']= $("#txtFecha").val();
 	if (datos['Fecha'] == "") {
 		existeError = true;
@@ -189,6 +189,39 @@ var iniciarGraf =function (grafica,t1,grafica2,t2) {
 	}
 }
 
+function editar(idS){
+	idSeg=idS;
+	 $.ajax({
+			method : "post",
+			url : "adminFunciones.php",
+			data : {
+				idSeguimiento: idS
+			},
+			success : function(data) {
+				info=JSON.parse(data);
+				$("#divReg").show();
+				$("#txtPeso").val(info['pesoKg']);
+				$("#txtEstatura").val(info['estatura']);
+				$("#txtIMC").val(info['IMC']);
+				$("#txtTalle").val(info['talla']);
+				$("#txtPecho").val(info['pecho']);
+				$("#txtCintura").val(info['cintura']);
+				$("#txtAbdomen").val(info['abdomen']);
+				$("#txtCadera").val(info['cadera']);
+				$("#txtSintomas").val(info['sintomas']);
+				$("#txtDieta").val(info['dieta']);
+				$("#txtTratamiento").val(info['tratamiento']);
+				$("#txtNombre").val(info['nombreCom']);
+				$("#txtSucursal").val(info['sucursal']);
+				$("#txtFecha").val(info['fecha']);
+				$('html,body').animate({
+				    scrollTop: $("#divReg").offset().top
+				}, 2000);
+				regAvance=true;
+			
+			}
+		});
+}
 	//$("#").(); 
 /*
      $.ajax(

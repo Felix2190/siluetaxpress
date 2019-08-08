@@ -756,6 +756,35 @@ $hojaClinica->setIdHojaClinica($paciente->getIdHojaClinica());
 								</div>
 								
 							</div>
+							<br />
+							<div class="row">
+								<div class="5u 12u$(xsmall)">
+									<h3>Informaci&oacute;n adicional</h3>
+								</div>
+							</div>
+							
+							<div class="row">
+							<div class="2u 12u$(xsmall)">
+									<label>Antecedentes heredofamiliares:</label>
+								</div>
+								
+								<div class="9u 12u$(xsmall)">
+								<textarea rows="3" cols="" id="txtAntecedentes"><?php echo $hojaClinica->getAntecedentes();?></textarea>
+							</div>
+							
+							</div>
+							
+							<br />
+							<div class="row">
+							<div class="2u 12u$(xsmall)">
+									<label>Tratamientos anteriores:</label>
+								</div>
+								
+								<div class="9u 12u$(xsmall)">
+								<textarea rows="3" cols="" id="txtTratamientoA"><?php echo $hojaClinica->getTratamientos();?></textarea>
+							</div>
+							
+							</div>
 							
 							<br />
 							

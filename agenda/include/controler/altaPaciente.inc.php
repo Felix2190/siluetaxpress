@@ -4,6 +4,7 @@
 // -----------------------------------------------------------------------------------------------------------------#
 require_once FOLDER_MODEL_EXTEND. "model.hojaclinica.inc.php";
 require_once FOLDER_MODEL_EXTEND. "model.paciente.inc.php";
+require_once FOLDER_MODEL_EXTEND. "model.hojaseguimiento.inc.php";
 // -----------------------------------------------------------------------------------------------------------------#
 // --------------------------------------------Inicializacion de control--------------------------------------------#
 // -----------------------------------------------------------------------------------------------------------------#
@@ -119,6 +120,9 @@ function guardar($datos){
         $hojaClinica->setHorarioCena($infoHoja['hrCena']);
         $hojaClinica->setActividadCena($infoHoja['cena']);
     }
+    $hojaClinica->setTratamientos($infoHoja['Tratamiento']);
+    $hojaClinica->setAntecedentes($infoHoja['Antecedentes']);
+    
     $hojaClinica->setObservaciones($infoHoja['Observaciones']);
     $hojaClinica->setCompletitud($infoHoja['completitud']);
     $hojaClinica->Guardar();
@@ -150,6 +154,26 @@ function guardar($datos){
         return $r;
     }
     
+    
+    if (intval($infoHoja['IMC'])>0){
+        $seguim = new ModeloHojaseguimiento();
+        $seguim->setPesoKg($infoHoja['pesoInicial']);
+        $seguim->setEstatura($infoHoja['Estatura']);
+        $seguim->setIMC($infoHoja['IMC']);
+        $seguim->setIdPaciente($paciente->getIdPaciente());
+        $seguim->setIdSucursal($infoPaciente['sucursal']);
+        $seguim->setIdUsuario($objSession->getidUsuario());
+        $seguim->setFechaRegistro(date('Y-m-d H:i:s'));
+        $seguim->setCintura(0);
+        $seguim->setPecho(0);
+        $seguim->setAbdomen(0);
+        $seguim->setTalla(0);
+        $seguim->setCadera(0);
+        $seguim->Guardar();
+        if ($seguim->getError()){
+            $r->call('mostrarMsjError',"No se pudo registrar el seguimiento. ".$seguim->getStrSystemError(),50);
+        }
+    }
     $r->call('mostrarMsjExito','Se agreg&oacute; correctamente al paciente!',4);
     
     if (isset($_SESSION['paciente'])){
