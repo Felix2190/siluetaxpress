@@ -7,6 +7,7 @@ require_once LIB_FPDF;
 require_once FOLDER_MODEL_EXTEND. "model.sucursal.inc.php";
 require_once FOLDER_MODEL_EXTEND. "model.hojaclinica.inc.php";
 require_once FOLDER_MODEL_EXTEND. "model.paciente.inc.php";
+require_once FOLDER_MODEL_EXTEND. "model.hojaseguimiento.inc.php";
 
 // -----------------------------------------------------------------------------------------------------------------#
 // --------------------------------------------Inicializacion de control--------------------------------------------#
@@ -36,8 +37,8 @@ if (isset($_GET['idPaciente']) && isset($_GET['firma'])) {
     $sucursal->setIdSucursal($objSession->getIdSucursal());
     class PDF extends FPDF{
         var $direccion;
-        function PaginaUno($responsable,$sucursal,$dir,$cargo){
-            $this->SetFont('Arial','B',30);
+        function PaginaUno($responsable,$sucursal,$dir,$cargo,$fecha){
+            $this->SetFont('Arial','B',20);
             $this->Cell(190,27,'',1,0,'C',0);
             $this->Image('images/logo_siluetaExpress.png',15,13,45,null);//
             $this->SetFont('Arial','',16);
@@ -46,12 +47,15 @@ if (isset($_GET['idPaciente']) && isset($_GET['firma'])) {
             //TItulo
             
             $this->Cell(185,15,'Hoja clínica ',0,0,'R',0);
-            $this->Ln(8);
+            $this->Ln(4);
+            $this->SetFont('Arial','B',8);
+            $this->Cell(185,18,'Fecha de registro: '.$fecha,0,0,'R',0);
+            $this->Ln(6);
             $this->SetFont('Arial','',10);
             $this->Cell(185,18,$cargo.' '.utf8_decode($responsable),0,0,'R',0);
             $this->Ln(5);
             $this->SetFont('Arial','',8);
-            $this->Cell(185,18,$sucursal,0,0,'R',0);
+            $this->Cell(185,18,utf8_decode($sucursal),0,0,'R',0);
             $this->Ln(15);
         }
         
@@ -67,6 +71,9 @@ if (isset($_GET['idPaciente']) && isset($_GET['firma'])) {
     }
     
     $arrOpciones=array("1"=>"Diario","2"=>"Casi diario","3"=>"Eventualmente");
+    $fecha = explode(" ",$paciente->getFechaRegistro());
+    $fecha = explode("-", $fecha[0]);
+    $fecha = $fecha[2]."/".$fecha[1]."/".$fecha[0];
     
     $pdf = new PDF();
     
@@ -74,7 +81,7 @@ if (isset($_GET['idPaciente']) && isset($_GET['firma'])) {
     //$pdf->AddPage();
     $pdf->AddPage();
     $pdf->SetTitle("hoja_clinica.pdf");
-    $pdf->PaginaUno($responsable,$sucursal->getSucursal(),utf8_decode($sucursal->getDireccion()),$objSession->getAbrev());
+    $pdf->PaginaUno($responsable,$sucursal->getSucursal(),utf8_decode($sucursal->getDireccion()),$objSession->getAbrev(),$fecha);
     
     $pdf->SetFillColor(255,255,255);/// color blanco celda
     $pdf->Cell(190,8,' ','B',0,'L',0);
@@ -87,7 +94,8 @@ if (isset($_GET['idPaciente']) && isset($_GET['firma'])) {
     $pdf->Cell(14,8,' Sexo:',0,0,'L',1);
     $pdf->Cell(20,8,$paciente->getSexo(),0,0,'C',0);
     $pdf->Cell(10,8,' Cel:',0,0,'L',1);
-    $pdf->Cell(25,8,$paciente->getTelefonoCel(),0,0,'C',0);
+    $pdf->SetFont('Arial','',11);
+    $pdf->Cell(25,8,$paciente->getTelefonoCel(),0,0,'L',0);
     
     $pdf->Ln(12);
     
@@ -96,20 +104,39 @@ if (isset($_GET['idPaciente']) && isset($_GET['firma'])) {
         
         if ($hojaClinica->getPeso_habitual()!=0){
             $pdf->SetFont('Arial','U',11);
-            $pdf->Cell(35,5,' Peso habitual: ',0,0,'L');
+            $pdf->Cell(33,5,' Peso habitual: ',0,0,'L');
             $pdf->SetFont('Arial','',11);
-            $pdf->Cell(20,5,$hojaClinica->getPeso_habitual().' kg.',0,0,'L');
+            $pdf->Cell(12,5,$hojaClinica->getPeso_habitual().'kg.',0,0,'L');
         }
         
         
         if ($hojaClinica->getPeso_ideal()!=0){
             $pdf->SetFont('Arial','U',11);
-            $pdf->Cell(35,5,' Peso ideal: ',0,0,'L');
+            $pdf->Cell(26,5,' Peso ideal: ',0,0,'L');
             $pdf->SetFont('Arial','',11);
-            $pdf->Cell(20,5,$hojaClinica->getPeso_ideal().' kg.',0,0,'L');
+            $pdf->Cell(18,5,$hojaClinica->getPeso_ideal().'kg. ',0,0,'L');
         }
         
-        if ($hojaClinica->getPeso_ideal()!=0||$hojaClinica->getPeso_ideal()!=0)
+        $seguim = new ModeloHojaseguimiento();
+        $arrSeg = $seguim->getPrimerRegistro($paciente->getIdPaciente());
+        if (count($arrSeg)>0){
+            $pdf->SetFont('Arial','U',11);
+            $pdf->Cell(25,5,' Peso inicial: ',0,0,'L');
+            $pdf->SetFont('Arial','',11);
+            $pdf->Cell(18,5,$arrSeg['pesoKg'].'kg.',0,0,'L');
+            
+            $pdf->SetFont('Arial','U',11);
+            $pdf->Cell(20,5,' Estatura: ',0,0,'L');
+            $pdf->SetFont('Arial','',11);
+            $pdf->Cell(15,5,$arrSeg['estatura'].' m.',0,0,'L');
+            
+            $pdf->SetFont('Arial','U',11);
+            $pdf->Cell(12,5,' IMC: ',0,0,'L');
+            $pdf->SetFont('Arial','',11);
+            $pdf->Cell(12,5,$arrSeg['IMC'],0,0,'L');
+        }
+        
+        if ($hojaClinica->getPeso_habitual()!=0||$hojaClinica->getPeso_ideal()!=0||count($arrSeg)>0)
             $pdf->Ln(10);
         
     if ($hojaClinica->getCirugia()!="sinrespuesta"){
