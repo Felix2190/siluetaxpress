@@ -163,7 +163,7 @@ function estiloTabla(sucursal){
                     "<a onClick='editarPaciente("+item.idPaciente+")'><img src='images/editPaciente.png' title='editar' style='width: 30px' /></a>";
                     if(parseInt(item.consultasProximas )>0)
                         html+="<a onClick='mostrarCitas("+item.idPaciente+")'> <img src='images/citas.png' style='width: 30px' /></a>";
-                    else if($.inArray(item.sucursal,arrSucursal)>0)
+                    else if($.inArray(item.sucursal,arrSucursal)>0||$("#hdnRol").val()==1)
                     	html+="<a onClick='eliminarPaciente("+item.idPaciente+")'> <img src='images/eliminaPaciente.png' style='width: 30px' /></a>";
                           		"</td>";
                     html+="<a onClick='verSeg("+item.idPaciente+")'> <img src='images/folder.png' style='width: 30px' /></a>";

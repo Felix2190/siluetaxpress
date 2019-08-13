@@ -68,8 +68,10 @@ function verTabla($informacion){
                     $citaProxima="<a onClick='verCita(".$paciente['cita'].")'>$fechaCita[2] de ".obtenMes(''.intval($fechaCita[1]))." del $fechaCita[0] </a>";
                   }else {
                       if ($paciente['estatusPaciente']=="activo")
-                          $opcionEliminar="<a onClick='editarPaciente(".$paciente['idPaciente'].")'><img src='images/editPaciente.png' title='editar' style='width: 30px' /></a>
-                          <a onClick='eliminarPaciente(".$paciente['idPaciente'].")'> <img src='images/eliminaPaciente.png' style='width: 30px' /></a>";
+                          $opcionEliminar="<a onClick='editarPaciente(".$paciente['idPaciente'].")'><img src='images/editPaciente.png' title='editar' style='width: 30px' /></a>";
+                          
+                      if ($objSession->getidRol()==1)
+                          $opcionEliminar.="<a onClick='eliminarPaciente(".$paciente['idPaciente'].")'> <img src='images/eliminaPaciente.png' style='width: 30px' /></a>";
                           
                   }
                     $fecha=explode("-", $paciente['fecha']);
