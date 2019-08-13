@@ -216,7 +216,8 @@ function altaPaciente(){
 	
 	paciente['fechaNac']= $("#txtFecha").val().trim();
 	if (paciente['fechaNac'] == "") {
-		existeError = true;
+//		existeError = true;
+		paciente['fechaNac']="1900-01-01"
 		console.log("Error: fechaNac");
 	}
 	
