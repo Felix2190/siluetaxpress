@@ -23,7 +23,7 @@ define("FOLDER_LIB", FOLDER_INCLUDE . "lib/");
     $mailWeb->SMTPAuth = true;
     $mailWeb->Port = 587;
     $mailWeb->Username = "agenda@pruebassointec.com.mx";
-    $mailWeb->Password = "_f3L!X_OR7!2_90";
+    $mailWeb->Password = "_z!Lu3t4XpReZ_13";
     $mailWeb->SetFrom("agenda@siluetaexpress.com.mx", "SiluetaExpress @NoReply");
 //    $mailWeb->AddReplyTo("siluetaexpress@pruebassointec.com.mx", "SiluetaExpress @NoReply");
     $mailWeb->Subject ="Respaldo ".date("d/m/Y");
