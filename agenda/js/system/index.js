@@ -2,7 +2,7 @@ $(document).ready(function(){
 	
 	iniciar();
 });
-	 
+	 var resumen=true;
 function iniciar(){
 	$('.datepicker').datepicker({
 		dateFormat : 'yy-mm-dd',
@@ -94,7 +94,8 @@ function iniciar(){
 	setTimeout(function() { 
 		setInterval(function() 
 				{ 
-			actualizaResumen();
+			if(resumen)
+				actualizaResumen();
 			},120000)
 		},2000);
 	
@@ -102,15 +103,19 @@ var tiempo=300000,sesiont=0,min=60000;
 		setInterval(function() 
 				{ 
 			sesiont+=min;
-			$( "#ptiempo" ).html('Tiempo restante: '+(parseInt(tiempo-sesiont)/min)+' min.');
-			},60000);
+			//		$( "#ptiempo" ).html('Tiempo restante: '+(parseInt(tiempo-sesiont)/min)+' min.');
+			
+				},60000);
 
 	//cerrar sesi�n
 	setTimeout(function() { 
-		window.location="logout.php";
+		//		window.location="logout.php";
+		$( "#ptiempo" ).html('Pulse F5 para actualizar el resumen');
+		resumen=false;
+		
 	},300000);
 	setTimeout(function() {
-		mostrarMsjEspera("En breve se cerrar&aacute; la sesi&oacute;n actual, realice una acci&oacute;n para cancelar el cierre",20);	
+//		mostrarMsjEspera("En breve se cerrar&aacute; la sesi&oacute;n actual, realice una acci&oacute;n para cancelar el cierre",20);	
 	},280000);
 	
 	actualizaResumen();
