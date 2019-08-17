@@ -256,6 +256,12 @@ function altaPaciente(){
 		console.log("Error: txtPesoIdeal");
 	}
 	
+	hoja['Estatura']= $("#txtEstatura").val().trim();
+	if (hoja['Estatura'] == "") {
+		hoja['Estatura']=0;
+		console.log("Error: txtEstatura");
+	}
+	
     hoja['cirugias'] = '';
     $("input[name=cirugias]").each(function (index) { 
        if($(this).is(':checked')){
@@ -704,7 +710,7 @@ function altaPaciente(){
 	}
 	
 	
-	var completitud=100-((100/43)*faltan);
+	var completitud=100-((100/45)*faltan);
 	hoja['completitud']=Number(completitud.toFixed(2));
 	datos['hojaclinica']=hoja;
 	datos['paciente']=paciente;

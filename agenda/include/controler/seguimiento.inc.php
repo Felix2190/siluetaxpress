@@ -4,6 +4,7 @@
 // ---------------------------------------Archivos necesarios Require Include---------------------------------------#
 // -----------------------------------------------------------------------------------------------------------------#
 require_once FOLDER_MODEL_EXTEND. "model.hojaseguimiento.inc.php";
+require_once FOLDER_MODEL_EXTEND. "model.hojaclinica.inc.php";
 require_once FOLDER_MODEL_EXTEND. "model.paciente.inc.php";
 require FOLDER_INCLUDE . 'lib/graficas/GraficasChart.php';
 
@@ -151,5 +152,6 @@ $idPaciente =$_SESSION['verSeg'];
 
 $paciente = new ModeloPaciente();
 $paciente->setIdPaciente($idPaciente);
-
+$hojaClinica = new ModeloHojaclinica();
+$hojaClinica->setIdHojaClinica($paciente->getIdHojaClinica());
 ?>

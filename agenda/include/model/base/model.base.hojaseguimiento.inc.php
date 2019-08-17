@@ -13,19 +13,22 @@
 		var $idUsuario=0;
 		var $idSucursal=0;
 		var $pesoKg='';
-		var $estatura='';
 		var $IMC='';
 		var $pecho='';
 		var $talla='';
 		var $cintura='';
 		var $abdomen='';
 		var $cadera='';
-		var $sintomas='';
+		var $pierna='';
+		var $musculo='';
+		var $grasa='';
+		var $idSintomas=0;
+		var $otrosSintomas='';
 		var $dieta='';
 		var $tratamiento='';
 		var $fechaRegistro='';
 
-		var $__s=array("idHojaSeguimiento","idPaciente","idUsuario","idSucursal","pesoKg","estatura","IMC","pecho","talla","cintura","abdomen","cadera","sintomas","dieta","tratamiento","fechaRegistro");
+		var $__s=array("idHojaSeguimiento","idPaciente","idUsuario","idSucursal","pesoKg","IMC","pecho","talla","cintura","abdomen","cadera","pierna","musculo","grasa","idSintomas","otrosSintomas","dieta","tratamiento","fechaRegistro");
 		var $__ss=array();
 
 		#------------------------------------------------------------------------------------------------------#
@@ -72,10 +75,6 @@
 		{
 			$this->pesoKg=$pesoKg;
 		}
-		public function setEstatura($estatura)
-		{
-			$this->estatura=$estatura;
-		}
 		public function setIMC($IMC)
 		{
 			$this->IMC=$IMC;
@@ -100,9 +99,26 @@
 		{
 			$this->cadera=$cadera;
 		}
-		public function setSintomas($sintomas)
+		public function setPierna($pierna)
 		{
-			$this->sintomas=$sintomas;
+			$this->pierna=$pierna;
+		}
+		public function setMusculo($musculo)
+		{
+			$this->musculo=$musculo;
+		}
+		public function setGrasa($grasa)
+		{
+			$this->grasa=$grasa;
+		}
+		public function setIdSintomas($idSintomas)
+		{
+			
+			$this->idSintomas=$idSintomas;
+		}
+		public function setOtrosSintomas($otrosSintomas)
+		{
+			$this->otrosSintomas=$otrosSintomas;
 		}
 		public function setDieta($dieta)
 		{
@@ -148,10 +164,6 @@
 		{
 			return $this->pesoKg;
 		}
-		public function getEstatura()
-		{
-			return $this->estatura;
-		}
 		public function getIMC()
 		{
 			return $this->IMC;
@@ -176,9 +188,25 @@
 		{
 			return $this->cadera;
 		}
-		public function getSintomas()
+		public function getPierna()
 		{
-			return $this->sintomas;
+			return $this->pierna;
+		}
+		public function getMusculo()
+		{
+			return $this->musculo;
+		}
+		public function getGrasa()
+		{
+			return $this->grasa;
+		}
+		public function getIdSintomas()
+		{
+			return $this->idSintomas;
+		}
+		public function getOtrosSintomas()
+		{
+			return $this->otrosSintomas;
 		}
 		public function getDieta()
 		{
@@ -211,14 +239,17 @@
 			$this->idUsuario=0;
 			$this->idSucursal=0;
 			$this->pesoKg='';
-			$this->estatura='';
 			$this->IMC='';
 			$this->pecho='';
 			$this->talla='';
 			$this->cintura='';
 			$this->abdomen='';
 			$this->cadera='';
-			$this->sintomas='';
+			$this->pierna='';
+			$this->musculo='';
+			$this->grasa='';
+			$this->idSintomas=0;
+			$this->otrosSintomas='';
 			$this->dieta='';
 			$this->tratamiento='';
 			$this->fechaRegistro='';
@@ -231,8 +262,8 @@
 		{
 			try
 			{
-				$SQL="INSERT INTO hojaseguimiento(idPaciente,idUsuario,idSucursal,pesoKg,estatura,IMC,pecho,talla,cintura,abdomen,cadera,sintomas,dieta,tratamiento,fechaRegistro)
-						VALUES('" . mysqli_real_escape_string($this->dbLink,$this->idPaciente) . "','" . mysqli_real_escape_string($this->dbLink,$this->idUsuario) . "','" . mysqli_real_escape_string($this->dbLink,$this->idSucursal) . "','" . mysqli_real_escape_string($this->dbLink,$this->pesoKg) . "','" . mysqli_real_escape_string($this->dbLink,$this->estatura) . "','" . mysqli_real_escape_string($this->dbLink,$this->IMC) . "','" . mysqli_real_escape_string($this->dbLink,$this->pecho) . "','" . mysqli_real_escape_string($this->dbLink,$this->talla) . "','" . mysqli_real_escape_string($this->dbLink,$this->cintura) . "','" . mysqli_real_escape_string($this->dbLink,$this->abdomen) . "','" . mysqli_real_escape_string($this->dbLink,$this->cadera) . "','" . mysqli_real_escape_string($this->dbLink,$this->sintomas) . "','" . mysqli_real_escape_string($this->dbLink,$this->dieta) . "','" . mysqli_real_escape_string($this->dbLink,$this->tratamiento) . "','" . mysqli_real_escape_string($this->dbLink,$this->fechaRegistro) . "')";
+				$SQL="INSERT INTO hojaseguimiento(idPaciente,idUsuario,idSucursal,pesoKg,IMC,pecho,talla,cintura,abdomen,cadera,pierna,musculo,grasa,idSintomas,otrosSintomas,dieta,tratamiento,fechaRegistro)
+						VALUES('" . mysqli_real_escape_string($this->dbLink,$this->idPaciente) . "','" . mysqli_real_escape_string($this->dbLink,$this->idUsuario) . "','" . mysqli_real_escape_string($this->dbLink,$this->idSucursal) . "','" . mysqli_real_escape_string($this->dbLink,$this->pesoKg) . "','" . mysqli_real_escape_string($this->dbLink,$this->IMC) . "','" . mysqli_real_escape_string($this->dbLink,$this->pecho) . "','" . mysqli_real_escape_string($this->dbLink,$this->talla) . "','" . mysqli_real_escape_string($this->dbLink,$this->cintura) . "','" . mysqli_real_escape_string($this->dbLink,$this->abdomen) . "','" . mysqli_real_escape_string($this->dbLink,$this->cadera) . "','" . mysqli_real_escape_string($this->dbLink,$this->pierna) . "','" . mysqli_real_escape_string($this->dbLink,$this->musculo) . "','" . mysqli_real_escape_string($this->dbLink,$this->grasa) . "','" . mysqli_real_escape_string($this->dbLink,$this->idSintomas) . "','" . mysqli_real_escape_string($this->dbLink,$this->otrosSintomas) . "','" . mysqli_real_escape_string($this->dbLink,$this->dieta) . "','" . mysqli_real_escape_string($this->dbLink,$this->tratamiento) . "','" . mysqli_real_escape_string($this->dbLink,$this->fechaRegistro) . "')";
 				$result=mysqli_query($this->dbLink,$SQL);
 				if(!$result)
 					return $this->setSystemError("Error en la insercion de registro.","[" . $SQL . "][" . mysqli_error($this->dbLink) . "][ModeloBaseHojaseguimiento::Insertar]");
@@ -252,7 +283,7 @@
 		{
 			try
 			{
-				$SQL="UPDATE hojaseguimiento SET idPaciente='" . mysqli_real_escape_string($this->dbLink,$this->idPaciente) . "',idUsuario='" . mysqli_real_escape_string($this->dbLink,$this->idUsuario) . "',idSucursal='" . mysqli_real_escape_string($this->dbLink,$this->idSucursal) . "',pesoKg='" . mysqli_real_escape_string($this->dbLink,$this->pesoKg) . "',estatura='" . mysqli_real_escape_string($this->dbLink,$this->estatura) . "',IMC='" . mysqli_real_escape_string($this->dbLink,$this->IMC) . "',pecho='" . mysqli_real_escape_string($this->dbLink,$this->pecho) . "',talla='" . mysqli_real_escape_string($this->dbLink,$this->talla) . "',cintura='" . mysqli_real_escape_string($this->dbLink,$this->cintura) . "',abdomen='" . mysqli_real_escape_string($this->dbLink,$this->abdomen) . "',cadera='" . mysqli_real_escape_string($this->dbLink,$this->cadera) . "',sintomas='" . mysqli_real_escape_string($this->dbLink,$this->sintomas) . "',dieta='" . mysqli_real_escape_string($this->dbLink,$this->dieta) . "',tratamiento='" . mysqli_real_escape_string($this->dbLink,$this->tratamiento) . "',fechaRegistro='" . mysqli_real_escape_string($this->dbLink,$this->fechaRegistro) . "'
+				$SQL="UPDATE hojaseguimiento SET idPaciente='" . mysqli_real_escape_string($this->dbLink,$this->idPaciente) . "',idUsuario='" . mysqli_real_escape_string($this->dbLink,$this->idUsuario) . "',idSucursal='" . mysqli_real_escape_string($this->dbLink,$this->idSucursal) . "',pesoKg='" . mysqli_real_escape_string($this->dbLink,$this->pesoKg) . "',IMC='" . mysqli_real_escape_string($this->dbLink,$this->IMC) . "',pecho='" . mysqli_real_escape_string($this->dbLink,$this->pecho) . "',talla='" . mysqli_real_escape_string($this->dbLink,$this->talla) . "',cintura='" . mysqli_real_escape_string($this->dbLink,$this->cintura) . "',abdomen='" . mysqli_real_escape_string($this->dbLink,$this->abdomen) . "',cadera='" . mysqli_real_escape_string($this->dbLink,$this->cadera) . "',pierna='" . mysqli_real_escape_string($this->dbLink,$this->pierna) . "',musculo='" . mysqli_real_escape_string($this->dbLink,$this->musculo) . "',grasa='" . mysqli_real_escape_string($this->dbLink,$this->grasa) . "',idSintomas='" . mysqli_real_escape_string($this->dbLink,$this->idSintomas) . "',otrosSintomas='" . mysqli_real_escape_string($this->dbLink,$this->otrosSintomas) . "',dieta='" . mysqli_real_escape_string($this->dbLink,$this->dieta) . "',tratamiento='" . mysqli_real_escape_string($this->dbLink,$this->tratamiento) . "',fechaRegistro='" . mysqli_real_escape_string($this->dbLink,$this->fechaRegistro) . "'
 					WHERE idHojaSeguimiento=" . $this->idHojaSeguimiento;
 				
 				$result=mysqli_query($this->dbLink,$SQL);
@@ -294,7 +325,7 @@
 			try
 			{
 				$SQL="SELECT
-						idHojaSeguimiento,idPaciente,idUsuario,idSucursal,pesoKg,estatura,IMC,pecho,talla,cintura,abdomen,cadera,sintomas,dieta,tratamiento,fechaRegistro
+						idHojaSeguimiento,idPaciente,idUsuario,idSucursal,pesoKg,IMC,pecho,talla,cintura,abdomen,cadera,pierna,musculo,grasa,idSintomas,otrosSintomas,dieta,tratamiento,fechaRegistro
 					FROM hojaseguimiento
 					WHERE idHojaSeguimiento=" . mysqli_real_escape_string($this->dbLink,$this->idHojaSeguimiento);
 					

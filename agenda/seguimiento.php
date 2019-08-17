@@ -46,14 +46,25 @@ require_once 'masterInclude.inc.php';
 				
 				<div class="row">
 					<input type="hidden" id="idPaciente" value="<?php echo $idPaciente;?>"/>
+					<input type="hidden" id="dtEstatura" value="<?php echo $hojaClinica->getEstatura();?>">
 				
 					<div class="12u 12u$(xsmall)">
 						<h4> <a onclick="visualizacion();"> Registrar avance </a></h4>
 					</div>
-					<div class="12u 12u$(small)" style="display: none;" id="divReg">
+					<div class="12u 12u$(small)" style="display: ;" id="divReg">
     					<div class="box">
     						<div class="row">
-    							<div class="8u 12u$(xsmall)" style="text-align: right;">
+								<div class="2u 12u$(xsmall)">
+									<label>Estatura:</label>
+								</div>
+								<div class="2u 12u$(xsmall)">
+								<?php if ($hojaClinica->getEstatura()==0){?>
+									<input type="text" id="txtEstatura" class="numeric imc" maxlength="5" />
+								<?php }else {?>
+									<span><?php echo $hojaClinica->getEstatura();?></span>
+								<?php }?>
+								</div>
+    							<div class="4u 12u$(xsmall)" style="text-align: right;">
     							 <strong> Fecha: </strong>
     							</div>
     							<div class="3u 12u$(small)" style="text-align: right;">
@@ -72,12 +83,6 @@ require_once 'masterInclude.inc.php';
 								</div>
 								<div class="2u 12u$(xsmall)">
 									<input type="text" id="txtPeso" class="numeric imc" maxlength="5" />
-								</div>
-								<div class="2u 12u$(xsmall)">
-									<label>Estatura:</label>
-								</div>
-								<div class="2u 12u$(xsmall)">
-									<input type="text" id="txtEstatura" class="numeric imc" maxlength="5" />
 								</div>
 								<div class="2u 12u$(xsmall)">
 									<label>IMC:</label>
@@ -124,25 +129,50 @@ require_once 'masterInclude.inc.php';
 								<div class="2u 12u$(xsmall)">
 									<input type="text" id="txtCadera" class="numeric" maxlength="5" />
 								</div>
-								
+								<div class="2u 12u$(xsmall)">
+									<label>Pierna:</label>
+								</div>
+								<div class="2u 12u$(xsmall)">
+									<input type="text" id="txtPierna" class="numeric" maxlength="5" />
+								</div>
+							</div>
+							
+							<br />
+							<div class="row">
+								<div class="2u 12u$(xsmall)">
+									<label>% M&uacute;sculo:</label>
+								</div>
+								<div class="2u 12u$(xsmall)">
+									<input type="text" id="txtMusculo" class="numeric" maxlength="5" />
+								</div>
+								<div class="2u 12u$(xsmall)">
+									<label>% Grasa:</label>
+								</div>
+								<div class="2u 12u$(xsmall)">
+									<input type="text" id="txtGrasa" class="numeric" maxlength="5" />
+								</div>
 							</div>
 						
 							<br />
 						
 						<div class="12u 12u$(xsmall)">
-							 <strong> Notas </strong>
+							 <strong> S&iacute;ntomas </strong>
 							</div>
-							
-							<div class="row">
+						<div class="row">
 								<div class="2u 12u$(xsmall)">
-									<label>S&iacute;ntomas</label>
+									<label>Otros</label>
 								</div>
 								<div class="8u 12u$(xsmall)">
 								<textarea rows="1" cols="" id="txtSintomas"></textarea>
 								</div>
 							</div>
 							
-							
+							<br />
+						
+						<div class="12u 12u$(xsmall)">
+							 <strong> Notas </strong>
+							</div>
+													
 								<br />
 							<div class="row">
 								<div class="2u 12u$(xsmall)">
@@ -210,10 +240,12 @@ require_once 'masterInclude.inc.php';
             							<div class="12u$(small)">
         									Peso:&ensp;<strong style="border-bottom: 2px solid;"  id="dtPeso"></strong>
         								</div>
+        							<!-- 
         								<br />
         								<div class="12u$(small)">
         									Estatura:&ensp;<strong style="border-bottom: 2px solid;"  id="dtEstatura"></strong>
         								</div>
+        							-->
         								<br />
         								<div class="12u$(small)">
         									IMC:&ensp;<strong style="border-bottom: 2px solid;"  id="dtIMC"></strong>

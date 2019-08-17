@@ -39,6 +39,7 @@ function guardar($datos,$idPaciente,$idHoja){
     
     $hojaClinica->setPeso_habitual($infoHoja['pesoHabitual']);
     $hojaClinica->setPeso_ideal($infoHoja['pesoIdeal']);
+    $hojaClinica->setEstatura($infoHoja['Estatura']);
     
     if ($infoHoja['cirugias'] != "")
         $hojaClinica->setCirugia($infoHoja['cirugias']);

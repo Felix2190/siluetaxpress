@@ -232,39 +232,35 @@ require_once 'masterInclude.inc.php';
 								<div class="2u 12u$(xsmall)">
 									<input type="text" id="txtPesoHabitual" class="numeric" maxlength="5" />
 								</div>
-								
+								<!-- 
 								<div class="2u 12u$(xsmall)">
 									<label>Peso inicial:</label>
 								</div>
 								<div class="2u 12u$(xsmall)">
 									<input type="text" id="txtPesoInicial" class="numeric imc" maxlength="5" />
 								</div>
-								
+							-->	
 								<div class="2u 12u$(xsmall)">
 									<label>Peso ideal:</label>
 								</div>
 								<div class="2u 12u$(xsmall)">
 									<input type="text" id="txtPesoIdeal" class="numeric" maxlength="5" />
 								</div>
-							</div>
-							
-							<br />
-							
-							<div class="row">
+						
 								<div class="2u 12u$(xsmall)">
 									<label>Estatura:</label>
 								</div>
 								<div class="2u 12u$(xsmall)">
 									<input type="text" id="txtEstatura" class="numeric imc" maxlength="5" />
 								</div>
-								
+							<!-- 	
 								<div class="2u 12u$(xsmall)">
 									<label>IMC:</label>
 								</div>
 								<div class="2u 12u$(xsmall)">
 									<input type="text" id="txtIMC" class="numeric"  maxlength="5" />
 								</div>
-								
+							-->	
 							</div>
 							
 							<br />

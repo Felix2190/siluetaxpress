@@ -7,7 +7,7 @@ function iniciar(){
 		 this.value = (this.value + '').replace(/[^0-9]/g, '');
 		});*/
 	$('.numeric').numeric({negative : false});
-	$(".imc").keyup(function(){
+/*	$(".imc").keyup(function(){
 		peso = $("#txtPesoInicial").val();
 		estatura = $("#txtEstatura").val();
 		if(peso!=""&&estatura!=""){
@@ -16,7 +16,7 @@ function iniciar(){
 		}else
 			$("#txtIMC").val('');
 	});
-	
+	*/
 /*
 	$.datepicker.setDefaults($.datepicker.regional['es-MX']);;
 	$('#txtFecha').datepicker({
@@ -239,34 +239,32 @@ function altaPaciente(){
 		console.log("Error: sucursal");
 	}
 	
-    
     hoja['pesoHabitual']= $("#txtPesoHabitual").val().trim();
 	if (hoja['pesoHabitual'] == "") {
 		hoja['pesoHabitual']=0;
 		faltan++;
 		console.log("Error: txtPesoHabitual");
 	}
-	
 	hoja['pesoIdeal']= $("#txtPesoIdeal").val().trim();
 	if (hoja['pesoIdeal'] == "") {
 		faltan++;
 		hoja['pesoIdeal']=0;
 		console.log("Error: txtPesoIdeal");
 	}
-	
+	/*
 	hoja['pesoInicial']= $("#txtPesoInicial").val().trim();
 	if (hoja['pesoInicial'] == "") {
 		hoja['pesoInicial']=0;
 		console.log("Error: txtpesoInicial");
 	}
-
+*/
 		
 	hoja['Estatura']= $("#txtEstatura").val().trim();
 	if (hoja['Estatura'] == "") {
 		hoja['Estatura']=0;
 		console.log("Error: txtEstatura");
 	}
-	
+	/*
 	var errorIMC=false;
 	if ((hoja['Estatura'] != 0&&hoja['pesoInicial'] == 0)||(hoja['Estatura'] == 0&&hoja['pesoInicial'] != 0))
 		errorIMC=true;
@@ -275,7 +273,7 @@ function altaPaciente(){
 	if (hoja['IMC'] == "")
 		hoja['IMC']=0;
 	
-	
+	*/
     hoja['cirugias'] = '';
     $("input[name=cirugias]").each(function (index) { 
        if($(this).is(':checked')){
@@ -739,10 +737,11 @@ function altaPaciente(){
 	datos['paciente']=paciente;
 	
 //	alert(JSON.stringify(datos));
-	if(errorIMC){
+/*	if(errorIMC){
 		mostrarMsjError("Datos incompletos para el registro de seguimiento.");
 		return false;;
 	}
+	*/
 	if(existeError){
 		mostrarMsjError('Datos incompletos!! <br />Por favor, llene la informaci&oacute;n que se solicita',5);
 		return false;
@@ -812,7 +811,9 @@ function altaPaciente2(){
 	}else{
 		paciente['TelMovil'] == "NINGUNO";
 	}
-	
+
+	paciente['fechaNac']="1900-01-01"
+		
 	hoja['completitud']=0;
 	datos['paciente']=paciente;
 	datos['hojaclinica']=hoja;

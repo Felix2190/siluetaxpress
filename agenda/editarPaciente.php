@@ -226,6 +226,13 @@ $hojaClinica->setIdHojaClinica($paciente->getIdHojaClinica());
 								<div class="2u 12u$(xsmall)">
 									<input type="text" id="txtPesoIdeal" class="numeric" maxlength="5" value="<?php echo $hojaClinica->getPeso_ideal();?>"/>
 								</div>
+							
+								<div class="2u 12u$(xsmall)">
+									<label>Estatura:</label>
+								</div>
+								<div class="2u 12u$(xsmall)">
+									<input type="text" id="txtEstatura" class="numeric" maxlength="5" value="<?php echo $hojaClinica->getEstatura();?>"/>
+								</div>
 							</div>
 							
 							<br />
@@ -723,7 +730,7 @@ $hojaClinica->setIdHojaClinica($paciente->getIdHojaClinica());
 							
 							<div class="row">
 								<div class="3u 12u$(xsmall)">&emsp;</div>
-								<div class=2u 12u$(xsmall)">
+								<div class="2u 12u$(xsmall)">
 									<h4 style="float: left;">Cena</h4>
 								</div>
 								<div class="3u 12u$(xsmall)"> <form >

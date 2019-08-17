@@ -4,7 +4,7 @@
 // -----------------------------------------------------------------------------------------------------------------#
 require_once FOLDER_MODEL_EXTEND. "model.hojaclinica.inc.php";
 require_once FOLDER_MODEL_EXTEND. "model.paciente.inc.php";
-require_once FOLDER_MODEL_EXTEND. "model.hojaseguimiento.inc.php";
+//require_once FOLDER_MODEL_EXTEND. "model.hojaseguimiento.inc.php";
 // -----------------------------------------------------------------------------------------------------------------#
 // --------------------------------------------Inicializacion de control--------------------------------------------#
 // -----------------------------------------------------------------------------------------------------------------#
@@ -37,6 +37,8 @@ function guardar($datos){
     $hojaClinica = new ModeloHojaClinica();
     $hojaClinica->setPeso_habitual($infoHoja['pesoHabitual']);
     $hojaClinica->setPeso_ideal($infoHoja['pesoIdeal']);
+    $hojaClinica->setEstatura($infoHoja['Estatura']);
+    
     $hojaClinica->setFechaRegistro(date('Y-m-d H:i:s'));
     if ($infoHoja['cirugias'] != "")
         $hojaClinica->setCirugia($infoHoja['cirugias']);
@@ -154,7 +156,7 @@ function guardar($datos){
         return $r;
     }
     
-    
+    /*
     if (intval($infoHoja['IMC'])>0){
         $seguim = new ModeloHojaseguimiento();
         $seguim->setPesoKg($infoHoja['pesoInicial']);
@@ -174,6 +176,7 @@ function guardar($datos){
             $r->call('mostrarMsjError',"No se pudo registrar el seguimiento. ".$seguim->getStrSystemError(),50);
         }
     }
+    */
     $r->call('mostrarMsjExito','Se agreg&oacute; correctamente al paciente!',4);
     
     if (isset($_SESSION['paciente'])){
@@ -203,6 +206,9 @@ function guardar2($datos){
     $hojaClinica = new ModeloHojaClinica();
     $hojaClinica->setFechaRegistro(date('Y-m-d H:i:s'));
                                                         $hojaClinica->setCompletitud($infoHoja['completitud']);
+                                                        $hojaClinica->setPeso_habitual(0);
+                                                        $hojaClinica->setPeso_ideal(0);
+                                                        $hojaClinica->setEstatura(0);
                                                         $hojaClinica->Guardar();
                                                         if ($hojaClinica->getError()){
                                                             $r->call('mostrarMsjError',$hojaClinica->getStrError(),5);
@@ -216,6 +222,7 @@ function guardar2($datos){
                                                         $paciente->setTelefonoCel($infoPaciente['TelMovil']);
                                                         $paciente->setCorreo($infoPaciente['Email']);
                                                         $paciente->setSexo($infoPaciente['sexo']);
+                                                        $paciente->setFechaNacimiento($infoPaciente['fechaNac']);
                                                         
                                                         $paciente->setIdHojaClinica($hojaClinica->getIdHojaClinica());
                                                         $paciente->setIdUsuarioRegistro($objSession->getidUsuario());
