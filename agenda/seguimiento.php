@@ -159,6 +159,19 @@ require_once 'masterInclude.inc.php';
 							 <strong> S&iacute;ntomas </strong>
 							</div>
 						<div class="row">
+								<div class="3u 12u$(xsmall)">
+									<input class="checkS" value="1" id="check1" name="check1"  type="checkbox"> <label for="chk">'.$valor.'</label>
+								</div>
+								<div class="3u 12u$(xsmall)">
+									<input class="checkS" value="2" id="check2" name="check2"  type="checkbox"> <label for="chk">'.$valor.'</label>
+								</div>
+								<div class="3u 12u$(xsmall)">
+									<input class="checkS" value="3" id="check3" name="check3"  type="checkbox"> <label for="chk">'.$valor.'</label>
+								</div>
+						</div>
+						<br />
+						
+						<div class="row">
 								<div class="2u 12u$(xsmall)">
 									<label>Otros</label>
 								</div>
