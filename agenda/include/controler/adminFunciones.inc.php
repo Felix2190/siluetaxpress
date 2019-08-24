@@ -1171,8 +1171,8 @@ function enviar_mail($para,$asunto,$mensaje){
     $mailWeb->SMTPDebug = 0;
     $mailWeb->SMTPAuth = true;
     $mailWeb->Port = 587;
-    $mailWeb->Username = "agenda@pruebassointec.com.mx";
-    $mailWeb->Password = "_z!Lu3t4XpReZ_13";
+    $mailWeb->Username = "agendasilueta@pruebassointec.com.mx";
+    $mailWeb->Password = "5!lu37A_xpR3Z_";
     $mailWeb->SetFrom("agenda@siluetaexpress.com.mx", "SiluetaExpress @NoReply");
     //    $mailWeb->AddReplyTo("siluetaexpress@pruebassointec.com.mx", "SiluetaExpress @NoReply");
     $mailWeb->Subject = $asunto;

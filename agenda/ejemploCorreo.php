@@ -22,14 +22,13 @@ define("FOLDER_LIB", FOLDER_INCLUDE . "lib/");
     $mailWeb->SMTPDebug = 0;
     $mailWeb->SMTPAuth = true;
     $mailWeb->Port = 587;
-    $mailWeb->Username = "agenda@pruebassointec.com.mx";
-    $mailWeb->Password = "_z!Lu3t4XpReZ_13";
+    $mailWeb->Username = "agendasilueta@pruebassointec.com.mx";
+    $mailWeb->Password = "5!lu37A_xpR3Z_";
     $mailWeb->SetFrom("agenda@siluetaexpress.com.mx", "SiluetaExpress @NoReply");
-//    $mailWeb->AddReplyTo("siluetaexpress@pruebassointec.com.mx", "SiluetaExpress @NoReply");
+    //    $mailWeb->AddReplyTo("siluetaexpress@pruebassointec.com.mx", "SiluetaExpress @NoReply");
     $mailWeb->Subject ="Respaldo ".date("d/m/Y");
     $mailWeb->AltBody = "Respaldo de @siluetaexpress.com.mx";
     $mailWeb->MsgHTML("Respaldo de @siluetaexpress.com.mx");
-    $mailWeb->AddAddress("lic.lezliedelariva@gmail.com");
     $mailWeb->AddAddress("ortizfelix9021@gmail.com");
     try
     {
@@ -38,6 +37,25 @@ define("FOLDER_LIB", FOLDER_INCLUDE . "lib/");
     }catch(Exception $e){
         echo $e;
     }
+/*
+
+    $mailWeb = new PHPMailer();
+    $mailWeb->IsSMTP();
+    $mailWeb->SMTPSecure = 'tls';
+    $mailWeb->Host = "smtp.ionos.mx";
+    $mailWeb->SMTPDebug = 0;
+    $mailWeb->SMTPAuth = true;
+    $mailWeb->Port = 587;
+    $mailWeb->Username = "agenda@pruebassointec.com.mx";
+    $mailWeb->Password = "5!lu37A_xpR3Z_";
+    $mailWeb->SetFrom("agenda@siluetaexpress.com.mx", "SiluetaExpress @NoReply");
+//    $mailWeb->AddReplyTo("siluetaexpress@pruebassointec.com.mx", "SiluetaExpress @NoReply");
+    $mailWeb->Subject ="Respaldo ".date("d/m/Y");
+    $mailWeb->AltBody = "Respaldo de @siluetaexpress.com.mx";
+    $mailWeb->MsgHTML("Respaldo de @siluetaexpress.com.mx");
+    $mailWeb->AddAddress("lic.lezliedelariva@gmail.com");
+    $mailWeb->AddAddress("ortizfelix9021@gmail.com");
 
 
+**/
 ?>
