@@ -6,6 +6,8 @@
 require_once FOLDER_MODEL_EXTEND. "model.hojaseguimiento.inc.php";
 require_once FOLDER_MODEL_EXTEND. "model.hojaclinica.inc.php";
 require_once FOLDER_MODEL_EXTEND. "model.paciente.inc.php";
+require_once FOLDER_MODEL_EXTEND. "model.productos.inc.php";
+require_once FOLDER_MODEL_EXTEND. "model.seguimiento_producto.inc.php";
 require FOLDER_INCLUDE . 'lib/graficas/GraficasChart.php';
 
 // -----------------------------------------------------------------------------------------------------------------#
@@ -38,14 +40,18 @@ function guardar($datos){
     if (intval($info['idSeg'])>0)
         $seg->setIdHojaSeguimiento($info['idSeg']);
     $seg->setPesoKg($info['Peso']);
-    $seg->setEstatura($info['Estatura']);
     $seg->setIMC($info['IMC']);
     $seg->setCintura($info['Cintura']);
     $seg->setPecho($info['Pecho']);
     $seg->setAbdomen($info['Abdomen']);
     $seg->setTalla($info['Talle']);
     $seg->setCadera($info['Cadera']);
-    $seg->setSintomas($info['Sintomas']);
+    $seg->setPierna($info['Pierna']);
+    $seg->setMusculo($info['Musculo']);
+    $seg->setGrasa($info['Grasa']);
+    $seg->setFc($info['FC']);
+    $seg->setPa($info['PA']);
+    $seg->setOtrosSintomas($info['Sintomas']);
     $seg->setDieta($info['Dieta']);
     $seg->setTratamiento($info['Tratamiento']);
     $seg->setIdUsuario($objSession->getidUsuario());
@@ -53,11 +59,61 @@ function guardar($datos){
     $seg->setFechaRegistro($info['Fecha'].' '.date("H:i:s"));
     $seg->setIdPaciente($info['idPaciente']);
     
+    $paciente = new ModeloPaciente();
+    $paciente->setIdPaciente($info['idPaciente']);
+    $hojaClinica = new ModeloHojaclinica();
+    $hojaClinica->setIdHojaClinica($paciente->getIdHojaClinica());
+    $hojaClinica->ActualizarEstatura($info['Estatura']);
+    
+    
+    $arrSintomas = $info['SintomasArr'];
+    
+    foreach ($arrSintomas as $sintoma){
+      switch ($sintoma){
+          case "Estrenimiento":
+            $seg->setEstrenimiento();
+            break;
+        case "Cansancio":
+            $seg->setCansancio();
+            break;
+        case "Sueno":
+            $seg->setSueno();
+            break;
+        case "Mareo":
+            $seg->setMareo();
+            break;
+        case "Nausea":
+            $seg->setNausea();
+            break;
+        case "Boca":
+            $seg->setBocaSeca();
+            break;
+      }
+    }
+    
+    
     $seg->Guardar();
     if ($seg->getError()){
         $r->call('mostrarMsjError',$seg->getStrSystemError(),5);
         return $r;
     }
+    
+    $arrProducto = $info['Productos'];
+    
+    foreach ($arrProducto as $idsp){
+        $seg_producto= new ModeloSeguimiento_producto();
+        $seg_producto->setIdProducto($idsp);
+        $seg_producto->setIdSeguimiento($seg->getIdHojaSeguimiento());
+        $seg_producto->setIdUsuario($objSession->getidUsuario());
+        $seg_producto->setFechaRegistro(date("Y-m-d H:i:s"));
+        
+        $seg_producto->Guardar();
+        if ($seg_producto->getError()){
+            $r->call('mostrarMsjError',$seg_producto->getStrSystemError(),5);
+            return $r;
+        }
+    }
+    
     $r->call('limpiarTxt');
     
     $r->call('mostrarMsjExito','Se guard&oacute; correctamente la informaci&oacute;n!',3);
@@ -81,7 +137,7 @@ function mostrarTabla($informacion)
             $tabla.="</tr></thead><tbody>";
             
             foreach ($informacion as $id => $arr)
-                $tabla .= "<tr><td>".$arr['fecha']."</td><td>".$arr['pesoKg']."</td><td>".$arr['estatura']."</td><td>".$arr['IMC']."</td>
+                $tabla .= "<tr><td>".$arr['fecha']."</td><td>".$arr['pesoKg']."</td><td></td><td>".$arr['IMC']."</td>
                         <td>".$arr['pecho']."</td><td>".$arr['talla']."</td><td>".$arr['cintura']."</td><td>".$arr['abdomen']."</td><td>".$arr['cadera']."</td>
                 <td><a onclick='verDetalle(\"".$arr['idHojaSeguimiento']."\")'><img src='images/ver.png' title='Ver' style='width: 15px' /></a>
 <a onclick='editar(\"".$arr['idHojaSeguimiento']."\")'><img src='images/editar.png' title='editar' style='width: 15px' /></a></td></tr>";

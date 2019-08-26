@@ -11,10 +11,11 @@
 		var $idProducto=0;
 		var $producto='';
 		var $descripcion='';
+		var $estatus='activo';
 		var $idUsuario=0;
 		var $fechaRegistro='';
 
-		var $__s=array("idProducto","producto","descripcion","idUsuario","fechaRegistro");
+		var $__s=array("idProducto","producto","descripcion","estatus","idUsuario","fechaRegistro");
 		var $__ss=array();
 
 		#------------------------------------------------------------------------------------------------------#
@@ -51,6 +52,19 @@
 		{
 			$this->descripcion=$descripcion;
 		}
+		public function setEstatus($estatus)
+		{
+			
+			$this->estatus=$estatus;
+		}
+		public function setEstatusActivo()
+		{
+			$this->estatus='activo';
+		}
+		public function setEstatusSuspendido()
+		{
+			$this->estatus='suspendido';
+		}
 		public function setIdUsuario($idUsuario)
 		{
 			
@@ -84,6 +98,10 @@
 		{
 			return $this->descripcion;
 		}
+		public function getEstatus()
+		{
+			return $this->estatus;
+		}
 		public function getIdUsuario()
 		{
 			return $this->idUsuario;
@@ -109,6 +127,7 @@
 			$this->idProducto=0;
 			$this->producto='';
 			$this->descripcion='';
+			$this->estatus='activo';
 			$this->idUsuario=0;
 			$this->fechaRegistro='';
 		}
@@ -120,8 +139,8 @@
 		{
 			try
 			{
-				$SQL="INSERT INTO productos(producto,descripcion,idUsuario,fechaRegistro)
-						VALUES('" . mysqli_real_escape_string($this->dbLink,$this->producto) . "','" . mysqli_real_escape_string($this->dbLink,$this->descripcion) . "','" . mysqli_real_escape_string($this->dbLink,$this->idUsuario) . "','" . mysqli_real_escape_string($this->dbLink,$this->fechaRegistro) . "')";
+				$SQL="INSERT INTO productos(producto,descripcion,estatus,idUsuario,fechaRegistro)
+						VALUES('" . mysqli_real_escape_string($this->dbLink,$this->producto) . "','" . mysqli_real_escape_string($this->dbLink,$this->descripcion) . "','" . mysqli_real_escape_string($this->dbLink,$this->estatus) . "','" . mysqli_real_escape_string($this->dbLink,$this->idUsuario) . "','" . mysqli_real_escape_string($this->dbLink,$this->fechaRegistro) . "')";
 				$result=mysqli_query($this->dbLink,$SQL);
 				if(!$result)
 					return $this->setSystemError("Error en la insercion de registro.","[" . $SQL . "][" . mysqli_error($this->dbLink) . "][ModeloBaseProductos::Insertar]");
@@ -141,7 +160,7 @@
 		{
 			try
 			{
-				$SQL="UPDATE productos SET producto='" . mysqli_real_escape_string($this->dbLink,$this->producto) . "',descripcion='" . mysqli_real_escape_string($this->dbLink,$this->descripcion) . "',idUsuario='" . mysqli_real_escape_string($this->dbLink,$this->idUsuario) . "',fechaRegistro='" . mysqli_real_escape_string($this->dbLink,$this->fechaRegistro) . "'
+				$SQL="UPDATE productos SET producto='" . mysqli_real_escape_string($this->dbLink,$this->producto) . "',descripcion='" . mysqli_real_escape_string($this->dbLink,$this->descripcion) . "',estatus='" . mysqli_real_escape_string($this->dbLink,$this->estatus) . "',idUsuario='" . mysqli_real_escape_string($this->dbLink,$this->idUsuario) . "',fechaRegistro='" . mysqli_real_escape_string($this->dbLink,$this->fechaRegistro) . "'
 					WHERE idProducto=" . $this->idProducto;
 				
 				$result=mysqli_query($this->dbLink,$SQL);
@@ -183,7 +202,7 @@
 			try
 			{
 				$SQL="SELECT
-						idProducto,producto,descripcion,idUsuario,fechaRegistro
+						idProducto,producto,descripcion,estatus,idUsuario,fechaRegistro
 					FROM productos
 					WHERE idProducto=" . mysqli_real_escape_string($this->dbLink,$this->idProducto);
 					

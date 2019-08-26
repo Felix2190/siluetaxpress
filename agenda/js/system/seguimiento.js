@@ -1,7 +1,8 @@
 $(document).ready(function(){
 	iniciar();
 });
-var idSeg=0;	 
+var idSeg=0, arrProductos=[];	 
+
 function iniciar(){
 	$('.datepicker').datepicker({
 		dateFormat : 'yy-mm-dd',
@@ -15,15 +16,19 @@ function iniciar(){
 	});
 	$('.numeric').numeric({negative : false});
 	$("#btnGuardar").click(guardar);
+	$("#btnAgregar").click(agregarProducto);
 	$(".imc").keyup(function(){
 		peso = $("#txtPeso").val();
-		estatura = $("#txtEstatura").val();
+		estatura=parseInt($("#dtEstatura").val());
+		if(estatura==0)
+			estatura = $("#txtEstatura").val();
 		if(peso!=""&&estatura!=""){
 			imc=peso/(estatura*estatura);
 			$("#txtIMC").val(imc.toFixed(3));
 		}else
 			$("#txtIMC").val('');
 	});
+	cargarProductos();
 	verListado();
 }
 
@@ -65,11 +70,16 @@ function guardar(){
 		existeError = true;
 		console.log("Error: txtPeso");
 	}
-	datos['Estatura']= $("#txtEstatura").val();
-	if (datos['Estatura'] == "") {
-		existeError = true;
-		console.log("Error: txtEstatura");
+	
+	datos['Estatura']= parseInt($("#dtEstatura").val());
+	if(datos['Estatura']==0){
+		datos['Estatura']= $("#txtEstatura").val();
+		if (datos['Estatura'] == "" || datos['Estatura'] == 0) {
+			existeError = true;
+			console.log("Error: txtEstatura");
+		}
 	}
+
 	datos['IMC']= $("#txtIMC").val();
 	if (datos['IMC'] == "") {
 		existeError = true;
@@ -100,10 +110,44 @@ function guardar(){
 		existeError = true;
 		console.log("Error: txtCadera");
 	}
+	datos['Pierna']= $("#txtPierna").val();
+	if (datos['Pierna'] == "") {
+		existeError = true;
+		console.log("Error: txtPierna");
+	}
+	datos['Musculo']= $("#txtMusculo").val();
+	if (datos['Musculo'] == "") {
+		existeError = true;
+		console.log("Error: txtMusculo");
+	}
+	datos['Grasa']= $("#txtGrasa").val();
+	if (datos['Grasa'] == "") {
+		existeError = true;
+		console.log("Error: txtGrasa");
+	}
+	datos['FC']= $("#txtFC").val();
+	if (datos['FC'] == "") {
+		existeError = true;
+		console.log("Error: txtFC");
+	}
+	datos['PA']= $("#txtPA").val();
+	if (datos['PA'] == "") {
+		existeError = true;
+		console.log("Error: txtPA");
+	}
 	datos['Sintomas']= $("#txtSintomas").val();
 	datos['Dieta']= $("#txtDieta").val();
 	datos['Tratamiento']= $("#txtTratamiento").val();
+	
+	var arrSeg = [];
+	var i = 0;
+	$('.checkSeg:checked').each(function() {
+		arrSeg[i] = $(this).val();
+		i++;
+	});
 
+	datos['SintomasArr']=arrSeg
+	datos['Productos'] = arrProductos;
 	if(existeError){
 		$("#btnGuardar").show();
 		mostrarMsjError('Datos incompletos!! <br />Por favor, llene la informaci&oacute;n que se solicita',5);
@@ -189,6 +233,69 @@ var iniciarGraf =function (grafica,t1,grafica2,t2) {
 	}
 }
 
+
+function cargarProductos(){
+	 $.ajax({
+			method : "post",
+			url : "adminFunciones.php",
+			data : {
+				txtProductos:''
+			},
+			success : function(data) {
+				respuesta=JSON.parse(data);
+				 $( "#txtProductos" ).autocomplete({
+				        source: respuesta
+				      });
+				      
+			}
+		});
+}
+
+function agregarProducto(){
+	  var tamano = $('.row_tabla').length, txtProducto=$( "#txtProductos" ).val();
+	  if(txtProducto!='')
+	 $.ajax({
+			method : "post",
+			url : "adminFunciones.php",
+			data : {
+				agregaProducto:txtProducto
+			},
+			success : function(idProducto) {
+		       if(arrProductos.indexOf(idProducto) == -1){
+		   	  	$('#divTablaP').show();
+
+		         var fila='<tr class="row_tabla" id="fila'+tamano+'">'+
+					'<td colspan="4">'+
+					'<input type="hidden" id="idP'+tamano+'" value="'+idProducto+'" />'+txtProducto+'</td>'+
+					'<td><a onClick="quitar_producto('+tamano+','+idProducto+');"> <img src="images/eliminaProducto.png" style="width: 15px" /></a></td>'+
+				'</tr>';
+				 $('#tbodyProducto').append(fila);
+				 $('#txtProductos').val('');
+				 arrProductos.push(idProducto);
+				 cargarProductos();
+			   }
+			}
+		});
+}
+
+function eliminaProductoArray ( item ) {
+    var i = arrProductos.indexOf( item );
+
+    if ( i !== -1 ) {
+    	arrProductos.splice( i, 1 );
+    }
+    console.log(arrProductos);
+}
+
+function quitar_producto(pos,id){
+	  $('#fila'+pos).remove();
+	  if($('.row_tabla').length==0){
+	  	$('#divTablaP').hide();
+	  	
+	  }
+	  eliminaProductoArray ( id)
+}        
+
 function editar(idS){
 	idSeg=idS;
 	 $.ajax({
@@ -222,21 +329,3 @@ function editar(idS){
 			}
 		});
 }
-	//$("#").(); 
-/*
-     $.ajax(
-      {
-      	method:"post",
-					url: "adminFunciones.php",  					
-					data: 
-					{  						
-					},
-					
-					success: function(data) 
-					{
-  					respuesta=JSON.parse(data);
-					}
-	    });
-
- 
- */

@@ -12,6 +12,25 @@ require_once 'masterInclude.inc.php';
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
 		
+				<style type="text/css">
+		  .custom-combobox {
+    position: relative;
+    display: inline-block;
+  }
+  .custom-combobox-toggle {
+    position: absolute;
+    top: 0;
+    bottom: 0;
+    margin-left: -1px;
+    padding: 0;
+  }
+  .custom-combobox-input {
+    margin: 0;
+    padding: 5px 10px;
+  }
+ 
+		</style>
+		
 		<?php require_once 'importar_scripts.php'; ?>
 		  <script src="js/lib/Chart.js"></script>
 	</head>
@@ -152,21 +171,49 @@ require_once 'masterInclude.inc.php';
 									<input type="text" id="txtGrasa" class="numeric" maxlength="5" />
 								</div>
 							</div>
-						
+							
 							<br />
-						
+							<div class="row">
+								<div class="3u 12u$(xsmall)">
+									<label>Frecuencia cardiaca</label>
+								</div>
+								<div class="2u 12u$(xsmall)">
+									<input type="text" id="txtFC" class="numeric" maxlength="5" />
+								</div>
+								<div class="3u 12u$(xsmall)">
+									<label>Presi&oacute;n arterial:</label>
+								</div>
+								<div class="2u 12u$(xsmall)">
+									<input type="text" id="txtPA" class="numeric" maxlength="5" />
+								</div>
+							</div>
+							
+							<br />
+							
 						<div class="12u 12u$(xsmall)">
 							 <strong> S&iacute;ntomas </strong>
 							</div>
 						<div class="row">
-								<div class="3u 12u$(xsmall)">
-									<input class="checkS" value="1" id="check1" name="check1"  type="checkbox"> <label for="chk">'.$valor.'</label>
+								<div class="3u 12u$(xsmall)" >
+									<input class="checkSeg" value="Estrenimiento" id="checkEstrenimiento" name="checkEstrenimiento"  type="checkbox"> <label for="checkEstrenimiento">Estre&ntilde;imiento</label>
+								</div>
+								<div class="3u 12u$(xsmall)" >
+									<input class="checkSeg" value="Cansancio" id="checkCansancio" name="checkCansancio"  type="checkbox"> <label for="checkCansancio">Cansancio</label>
 								</div>
 								<div class="3u 12u$(xsmall)">
-									<input class="checkS" value="2" id="check2" name="check2"  type="checkbox"> <label for="chk">'.$valor.'</label>
+									<input class="checkSeg" value="Sueno" id="checkSueno" name="checkSueno"  type="checkbox"> <label for="checkSueno">Sue&ntilde;o</label>
+								</div>
+						</div>
+						<br />
+						<div class="row">
+								<div class="3u 12u$(xsmall)">
+									<input class="checkSeg" value="Mareo" id="checkMareo" name="checkMareo"  type="checkbox"> <label for="checkMareo">Mareo</label>
 								</div>
 								<div class="3u 12u$(xsmall)">
-									<input class="checkS" value="3" id="check3" name="check3"  type="checkbox"> <label for="chk">'.$valor.'</label>
+									<input class="checkSeg" value="Nausea" id="checkNausea" name="checkNausea"  type="checkbox"> <label for="checkNausea">Nausea</label>
+								</div>
+								<div class="3u 12u$(xsmall)">
+									<input class="checkSeg" value="Boca" id="checkBoca" name="checkBoca"  type="checkbox"> <label for="checkBoca">Boca seca</label>
 								</div>
 						</div>
 						<br />
@@ -180,6 +227,37 @@ require_once 'masterInclude.inc.php';
 								</div>
 							</div>
 							
+							<br />
+						
+						<div class="12u 12u$(xsmall)">
+							 <strong> Productos </strong>
+							</div>				
+								<br />
+							<div class="row">
+								<div class="7u 12u$(xsmall)">
+        							<div class="row">
+        								<div class="2u 12u$(xsmall)">
+        									<label>Nombre:</label>
+        								</div>
+        								<div class="6u 12u$(xsmall)">
+											<input id="txtProductos" style="width: 100%;"/>
+										</div>
+        								<div class="4u 12u$(xsmall)">
+        									<a style="float: right;" id="btnAgregar" class="button" >A&ntilde;adir</a>&ensp;
+										</div>
+        							</div>
+								</div>
+        						<div class="5u 12u$(xsmall)" id="divTablaP" style="display: none;">
+        								<table id="tblProducto">
+        									<thead>
+        										<tr><th colspan="4">Producto</th><th></th></tr>
+        									</thead>
+        									<tbody id="tbodyProducto">
+        									</tbody>
+        								 </table>
+        						</div>
+							</div>
+						
 							<br />
 						
 						<div class="12u 12u$(xsmall)">

@@ -56,6 +56,11 @@
 			return true;
 		}
 
-
+		public function ActualizarEstatura($estatura)
+		{
+		    $query = "update hojaclinica set estatura=$estatura where idHojaClinca=".$this->idHojaClinica;
+		    mysqli_query($this->dbLink, $query);
+		}
+		
 	}
 

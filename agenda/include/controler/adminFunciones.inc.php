@@ -545,6 +545,17 @@ if (isset($_POST['idSeguimiento'])){
     echo json_encode($seg->getDetalleSeguimiento($_POST['idSeguimiento']));
 }
 
+if (isset($_POST['txtProductos'])){
+    require_once FOLDER_MODEL_EXTEND. "model.productos.inc.php";
+    $producto = new ModeloProductos();
+    echo json_encode($producto->obtenerProductos());
+}
+
+if (isset($_POST['agregaProducto'])){
+    require_once FOLDER_MODEL_EXTEND. "model.productos.inc.php";
+    $producto = new ModeloProductos();
+    echo $producto->buscarProductoByNombre($_POST['agregaProducto']);
+}
 
 function obtenCombo($array,$default){
     $combo='<option value="">'.$default.'</option>';
