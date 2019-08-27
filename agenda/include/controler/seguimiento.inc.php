@@ -39,6 +39,9 @@ function guardar($datos){
     $seg = new ModeloHojaseguimiento();
     if (intval($info['idSeg'])>0)
         $seg->setIdHojaSeguimiento($info['idSeg']);
+    else 
+        $seg->setFechaRegistro($info['Fecha'].' '.date("H:i:s"));
+        
     $seg->setPesoKg($info['Peso']);
     $seg->setIMC($info['IMC']);
     $seg->setCintura($info['Cintura']);
@@ -56,15 +59,16 @@ function guardar($datos){
     $seg->setTratamiento($info['Tratamiento']);
     $seg->setIdUsuario($objSession->getidUsuario());
     $seg->setIdSucursal($objSession->getIdSucursal());
-    $seg->setFechaRegistro($info['Fecha'].' '.date("H:i:s"));
     $seg->setIdPaciente($info['idPaciente']);
     
     $paciente = new ModeloPaciente();
     $paciente->setIdPaciente($info['idPaciente']);
     $hojaClinica = new ModeloHojaclinica();
     $hojaClinica->setIdHojaClinica($paciente->getIdHojaClinica());
+    $recargar=false;
+    if ($hojaClinica->getEstatura()==0)
+        $recargar=true;
     $hojaClinica->ActualizarEstatura($info['Estatura']);
-    
     
     $arrSintomas = $info['SintomasArr'];
     
@@ -100,17 +104,28 @@ function guardar($datos){
     
     $arrProducto = $info['Productos'];
     
-    foreach ($arrProducto as $idsp){
+    if (intval($info['idSeg'])>0){
         $seg_producto= new ModeloSeguimiento_producto();
-        $seg_producto->setIdProducto($idsp);
-        $seg_producto->setIdSeguimiento($seg->getIdHojaSeguimiento());
-        $seg_producto->setIdUsuario($objSession->getidUsuario());
-        $seg_producto->setFechaRegistro(date("Y-m-d H:i:s"));
-        
-        $seg_producto->Guardar();
-        if ($seg_producto->getError()){
-            $r->call('mostrarMsjError',$seg_producto->getStrSystemError(),5);
-            return $r;
+        $seg_producto->bajaSegProductos($info['idSeg']);
+        foreach ($arrProducto as $idsp){
+            $seg_producto= new ModeloSeguimiento_producto();
+            $seg_producto->setIdProducto($idsp);
+            $seg_producto->setIdSeguimiento($seg->getIdHojaSeguimiento());
+            $seg_producto->guardarSegProducto();
+        }
+    }else{
+        foreach ($arrProducto as $idsp){
+            $seg_producto= new ModeloSeguimiento_producto();
+            $seg_producto->setIdProducto($idsp);
+            $seg_producto->setIdSeguimiento($seg->getIdHojaSeguimiento());
+            $seg_producto->setIdUsuario($objSession->getidUsuario());
+            $seg_producto->setFechaRegistro(date("Y-m-d H:i:s"));
+            
+            $seg_producto->Guardar();
+            if ($seg_producto->getError()){
+                $r->call('mostrarMsjError',$seg_producto->getStrSystemError(),5);
+                return $r;
+            }
         }
     }
     
@@ -118,7 +133,8 @@ function guardar($datos){
     
     $r->call('mostrarMsjExito','Se guard&oacute; correctamente la informaci&oacute;n!',3);
     $r->call('verListado');
-    
+    if ($recargar)
+        $r->redirect("seguimiento.php",2);
     return $r;
     
 }
@@ -128,17 +144,30 @@ $xajax->registerFunction("guardar");
 function mostrarTabla($informacion)
 {
     $r = new xajaxResponse();
-    $arrTitulos=array("Fecha","Peso (kg)","Estatura (mts)","IMC","Pecho","Talle","Cintura","Abdomen","Cadera","");
-    $tabla = "<table><thead><tr>";
+    $paciente = new ModeloPaciente();
+    $paciente->setIdPaciente($_SESSION['verSeg']);
+    $hojaClinica = new ModeloHojaclinica();
+    $hojaClinica->setIdHojaClinica($paciente->getIdHojaClinica());
+    
+    $arrTitulos=array("Fecha","Peso (kg)","IMC","Pecho","Talle","Cintura","Abdomen","Cadera","Dieta","Tratamiento","");
+    $tabla = "<div class='12u 12u$(xsmall)'>
+							 <strong> Estatura: </strong> ".$hojaClinica->getEstatura()."
+							</div>
+						<br />
+                <table><thead><tr>";
         
-        foreach ($arrTitulos as $titulo)
-            $tabla .= "<th>$titulo</th>";
-            
+        foreach ($arrTitulos as $titulo){
+            if ($titulo=="Dieta"||$titulo=="Tratamiento")
+                $tabla .= "<th colspan='3'>$titulo</th>";
+            else 
+                $tabla .= "<th>$titulo</th>";
+           }
             $tabla.="</tr></thead><tbody>";
             
             foreach ($informacion as $id => $arr)
-                $tabla .= "<tr><td>".$arr['fecha']."</td><td>".$arr['pesoKg']."</td><td></td><td>".$arr['IMC']."</td>
-                        <td>".$arr['pecho']."</td><td>".$arr['talla']."</td><td>".$arr['cintura']."</td><td>".$arr['abdomen']."</td><td>".$arr['cadera']."</td>
+                $tabla .= "<tr><td>".$arr['fecha']."</td><td>".$arr['pesoKg']."</td><td>".$arr['IMC']."</td>
+                        <td>".$arr['pecho']."</td><td>".$arr['talla']."</td><td>".$arr['cintura']."</td><td>".$arr['abdomen']."</td>
+                    <td>".$arr['cadera']."</td><td colspan='3'>".$arr['dieta']."</td><td colspan='3'>".$arr['tratamiento']."</td>
                 <td><a onclick='verDetalle(\"".$arr['idHojaSeguimiento']."\")'><img src='images/ver.png' title='Ver' style='width: 15px' /></a>
 <a onclick='editar(\"".$arr['idHojaSeguimiento']."\")'><img src='images/editar.png' title='editar' style='width: 15px' /></a></td></tr>";
                 

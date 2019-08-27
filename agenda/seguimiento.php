@@ -70,7 +70,7 @@ require_once 'masterInclude.inc.php';
 					<div class="12u 12u$(xsmall)">
 						<h4> <a onclick="visualizacion();"> Registrar avance </a></h4>
 					</div>
-					<div class="12u 12u$(small)" style="display: ;" id="divReg">
+					<div class="12u 12u$(small)" style="display: none;" id="divReg">
     					<div class="box">
     						<div class="row">
 								<div class="2u 12u$(xsmall)">
@@ -331,12 +331,10 @@ require_once 'masterInclude.inc.php';
             							<div class="12u$(small)">
         									Peso:&ensp;<strong style="border-bottom: 2px solid;"  id="dtPeso"></strong>
         								</div>
-        							<!-- 
         								<br />
         								<div class="12u$(small)">
-        									Estatura:&ensp;<strong style="border-bottom: 2px solid;"  id="dtEstatura"></strong>
+        									Estatura:&ensp;<strong style="border-bottom: 2px solid;"  id="dt_Estatura"></strong>
         								</div>
-        							-->
         								<br />
         								<div class="12u$(small)">
         									IMC:&ensp;<strong style="border-bottom: 2px solid;"  id="dtIMC"></strong>
@@ -366,11 +364,32 @@ require_once 'masterInclude.inc.php';
         									Cadera:&ensp;<strong style="border-bottom: 2px solid;" id="dtCadera"></strong>
         								</div>
         								<br />
-        								
+        								<div class="12u$(small)">
+        									Pierna:&ensp;<strong style="border-bottom: 2px solid;" id="dtPierna"></strong>
+        								</div>
+        								<br />
+        								<div class="12u$(small)">
+        									% M&uacute;sculo:&ensp;<strong style="border-bottom: 2px solid;" id="dtMusculo"></strong>
+        								</div>
+        								<br />
+        								<div class="12u$(small)">
+        									% Grasa:&ensp;<strong style="border-bottom: 2px solid;" id="dtGrasa"></strong>
+        								</div>
+        								<br />
+        								<div class="12u$(small)">
+        									Presi&oacute;n arterial:&ensp;<strong style="border-bottom: 2px solid;" id="dtPA	"></strong>
+        								</div>
+        								<br />
+        								<div class="12u$(small)">
+        									Frecuencia cardiaca:&ensp;<strong style="border-bottom: 2px solid;" id="dtFC"></strong>
+        								</div>
         							</div>
         							<div class="7u 12u$(small)">
         								<div class="12u$(small)">S&iacute;ntomas
         									<p id="dtSintomas"> </p>
+        								</div>
+        								<div class="12u$(small)">Productos
+        									<p id="dtProductos"> </p>
         								</div>
         								<br />
         								<div class="12u$(small)">Dieta
@@ -380,7 +399,6 @@ require_once 'masterInclude.inc.php';
         								<div class="12u$(small)">Tratamiento
         									<p id="dtTratamiento"> </p>
         								</div>
-        								<br />
         								
         							</div>
         							</div>

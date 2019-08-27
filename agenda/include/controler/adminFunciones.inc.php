@@ -541,8 +541,10 @@ if (isset($_POST['idPacienteSeguimiento'])){
 
 if (isset($_POST['idSeguimiento'])){
     require_once FOLDER_MODEL_EXTEND. "model.hojaseguimiento.inc.php";
+    require_once FOLDER_MODEL_EXTEND. "model.seguimiento_producto.inc.php";
     $seg = new ModeloHojaseguimiento();
-    echo json_encode($seg->getDetalleSeguimiento($_POST['idSeguimiento']));
+    $seg_producto = new ModeloSeguimiento_producto();
+    echo json_encode(array('nota'=>$seg->getDetalleSeguimiento($_POST['idSeguimiento']),'productos'=>$seg_producto->obtenerProductosByIdSeg($_POST['idSeguimiento'])));
 }
 
 if (isset($_POST['txtProductos'])){

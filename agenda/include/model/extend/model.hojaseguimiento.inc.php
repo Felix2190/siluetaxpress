@@ -59,7 +59,7 @@
 		public function getSeguimientos($idPaciente)
 		{
 		    $query = "Select idHojaSeguimiento,DATE_FORMAT(fechaRegistro,'%d/%m/%Y') as fecha, 
-                        pesoKg,IMC,pecho,talla,cintura,abdomen,cadera from hojaseguimiento 
+                        pesoKg,IMC,pecho,talla,cintura,abdomen,cadera,dieta,tratamiento from hojaseguimiento 
                         where idPaciente=".$idPaciente." order by fechaRegistro desc";
 		    $arreglo = array();
 		    $resultado = mysqli_query($this->dbLink, $query);
@@ -74,8 +74,8 @@
 		
 		public function getDetalleSeguimiento($idSeg)
 		{
-		    $query = "Select idHojaSeguimiento,DATE_FORMAT(fechaRegistro,'%d/%m/%Y') as fecha, dieta, tratamiento, sintomas,
-                        pesoKg,IMC,pecho,talla,cintura,abdomen,cadera, sucursal, concat_ws(' ', nombre,apellidos) as nombreCom from hojaseguimiento as hs
+		    $query = "Select idHojaSeguimiento,DATE_FORMAT(fechaRegistro,'%d/%m/%Y') as fecha, hs.* ,
+                    concat_ws(' ', nombre,apellidos) as nombreCom,sucursal from hojaseguimiento as hs
                         inner join sucursal as s on hs.idSucursal=s.idSucursal
                         inner join usuario as u on hs.idUsuario=u.idUsuario
                          where idHojaSeguimiento=".$idSeg;

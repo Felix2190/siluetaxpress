@@ -381,7 +381,7 @@
 				
 				$result=mysqli_query($this->dbLink,$SQL);
 				if(!$result)
-					return $this->setSystemError("Error en la actualizacion de registro.","[" . $SQL . "][" . mysqli_error() . "][ModeloBaseHojaseguimiento::Update]");
+				    return $this->setSystemError("Error en la actualizacion de registro.","[" . $SQL . "][" . mysqli_error($this->dbLink) . "][ModeloBaseHojaseguimiento::Update]");
 				
 				return true;
 			}
