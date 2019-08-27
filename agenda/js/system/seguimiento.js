@@ -71,7 +71,7 @@ function guardar(){
 		console.log("Error: txtPeso");
 	}
 	
-	datos['Estatura']= parseInt($("#dtEstatura").val());
+	datos['Estatura']= parseFloat($("#dtEstatura").val());
 	if(datos['Estatura']==0){
 		datos['Estatura']= $("#txtEstatura").val();
 		if (datos['Estatura'] == "" || datos['Estatura'] == 0) {
@@ -314,7 +314,7 @@ function agregarProducto(){
 				 $('#tbodyProducto').append(fila);
 				 $('#txtProductos').val('');
 				 arrProductos.push(idProducto);
-			//	 cargarProductos();
+				 cargarProductos();
 			   }
 			}
 		});
@@ -363,7 +363,7 @@ function editar(idS){
 				$("#txtTratamiento").val(info['tratamiento']);
 				$("#txtNombre").val(info['nombreCom']);
 				$("#txtSucursal").val(info['sucursal']);
-				$("#txtFecha").val(info['fecha']);
+				$("#txtFecha").val(info['fecha2']);
 				$("#txtPierna").val(info['pierna']);
 				$("#txtMusculo").val(info['musculo']);
 				$("#txtGrasa").val(info['grasa']);

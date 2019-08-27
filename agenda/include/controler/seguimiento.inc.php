@@ -39,8 +39,9 @@ function guardar($datos){
     $seg = new ModeloHojaseguimiento();
     if (intval($info['idSeg'])>0)
         $seg->setIdHojaSeguimiento($info['idSeg']);
-    else 
-        $seg->setFechaRegistro($info['Fecha'].' '.date("H:i:s"));
+
+    
+    $seg->setFechaRegistro($info['Fecha'].' '.date("H:i:s"));
         
     $seg->setPesoKg($info['Peso']);
     $seg->setIMC($info['IMC']);

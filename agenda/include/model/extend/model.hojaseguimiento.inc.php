@@ -75,7 +75,7 @@
 		public function getDetalleSeguimiento($idSeg)
 		{
 		    $query = "Select idHojaSeguimiento,DATE_FORMAT(fechaRegistro,'%d/%m/%Y') as fecha, hs.* ,
-                    concat_ws(' ', nombre,apellidos) as nombreCom,sucursal from hojaseguimiento as hs
+                   DATE_FORMAT(fechaRegistro,'%Y-%m-%d') as fecha2, concat_ws(' ', nombre,apellidos) as nombreCom,sucursal from hojaseguimiento as hs
                         inner join sucursal as s on hs.idSucursal=s.idSucursal
                         inner join usuario as u on hs.idUsuario=u.idUsuario
                          where idHojaSeguimiento=".$idSeg;
