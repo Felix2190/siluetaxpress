@@ -58,7 +58,7 @@
 
 		public function getSeguimientos($idPaciente)
 		{
-		    $query = "Select idHojaSeguimiento,DATE_FORMAT(fechaRegistro,'%d/%m/%Y') as fecha, 
+		    $query = "Select idHojaSeguimiento,DATE_FORMAT(fechaSeguimiento,'%d/%m/%Y') as fecha, 
                         pesoKg,IMC,pecho,talla,cintura,abdomen,cadera,dieta,tratamiento from hojaseguimiento 
                         where idPaciente=".$idPaciente." order by fechaRegistro desc";
 		    $arreglo = array();
@@ -74,8 +74,8 @@
 		
 		public function getDetalleSeguimiento($idSeg)
 		{
-		    $query = "Select idHojaSeguimiento,DATE_FORMAT(fechaRegistro,'%d/%m/%Y') as fecha, hs.* ,
-                   DATE_FORMAT(fechaRegistro,'%Y-%m-%d') as fecha2, concat_ws(' ', nombre,apellidos) as nombreCom,sucursal from hojaseguimiento as hs
+		    $query = "Select idHojaSeguimiento,DATE_FORMAT(fechaSeguimiento,'%d/%m/%Y') as fecha, hs.* ,
+                   DATE_FORMAT(fechaSeguimiento,'%Y-%m-%d') as fecha2, concat_ws(' ', nombre,apellidos) as nombreCom,sucursal from hojaseguimiento as hs
                         inner join sucursal as s on hs.idSucursal=s.idSucursal
                         inner join usuario as u on hs.idUsuario=u.idUsuario
                          where idHojaSeguimiento=".$idSeg;
@@ -92,8 +92,8 @@
 		
 		public function getValoresByCampo($idPaciente,$campo)
 		{
-		    $query = "Select distinct DATE_FORMAT(fechaRegistro,'%d/%m/%Y') as fecha, $campo  from hojaseguimiento
-                        where idPaciente=".$idPaciente." order by fechaRegistro desc limit 15";
+		    $query = "Select distinct DATE_FORMAT(fechaSeguimiento,'%d/%m/%Y') as fecha, $campo  from hojaseguimiento
+                        where idPaciente=".$idPaciente." order by fechaSeguimiento desc limit 15";
 		    $arreglo = array();
 		    $resultado = mysqli_query($this->dbLink, $query);
 		    $total=mysqli_num_rows($resultado);
@@ -108,7 +108,7 @@
 		public function getPrimerRegistro($idPaciente)
 		{
 		    $query = "Select pesoKg,IMC from hojaseguimiento
-                     where idPaciente=".$idPaciente." order by fechaRegistro asc limit 1";
+                     where idPaciente=".$idPaciente." order by fechaSeguimiento asc limit 1";
 		    $arreglo = array();
 		    $resultado = mysqli_query($this->dbLink, $query);
 		    $total=mysqli_num_rows($resultado);
@@ -117,6 +117,17 @@
 		            $arreglo = $row_inf;
 		    }
 		    return $arreglo;
+		}
+		
+		public function verificaFecha($idSeg, $fecha)
+		{
+		    $query = "Select * from hojaseguimiento where DATE_FORMAT(fechaSeguimiento,'%Y-%m-%d')='$fecha' and idHojaSeguimiento<>".$idSeg;
+		    $resultado = mysqli_query($this->dbLink, $query);
+		    $total=mysqli_num_rows($resultado);
+		    if ($resultado && $total > 0) {
+		        return true;
+		    }
+		    return false;
 		}
 		
 	}

@@ -173,6 +173,10 @@ function visualizacion(){
 	}else{
 		$("#divReg").show();
 		regAvance=true;
+		$("#btnGuardar").show();
+		if(idSeg>0)
+			$("#txtFecha").val('');
+		idSeg=0;
 	}
 }
 
@@ -406,6 +410,7 @@ function editar(idS){
 					 arrProductos.push(idProducto);
 				});
 				
+				$("#btnGuardar").show();
 				$('html,body').animate({
 				    scrollTop: $("#divReg").offset().top
 				}, 2000);

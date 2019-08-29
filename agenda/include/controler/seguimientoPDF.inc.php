@@ -110,13 +110,35 @@ if (isset($_SESSION['idPacientePDF'])&&isset($_SESSION['IMC'])&&isset($_SESSION[
     $pdf->Cell(185,5,'Historial',0,0,'C');
     $pdf->Ln(5);
     
-    $pdf->SetFillColor(194,246,199);///verde
+    $pdf->SetFillColor(242,250,198);///verde
     
     $pdf->SetFont('Arial','',11);
-    $pdf->Cell(30,5,' ',1,0,'C',1);
-    $pdf->Cell(25,5,'Horario',1,0,'C',1);
-    $pdf->Cell(130,5,'Alimentos',1,0,'C',1);
+    $pdf->Cell(25,5,'Fecha',1,0,'C',1);
+    $pdf->Cell(23,5,'Peso',1,0,'C',1);
+    $pdf->Cell(23,5,'IMC',1,0,'C',1);
+    $pdf->Cell(23,5,'Pecho',1,0,'C',1);
+    $pdf->Cell(23,5,'Cadera',1,0,'C',1);
+    $pdf->Cell(23,5,'Talle',1,0,'C',1);
+    $pdf->Cell(23,5,'Abdomen',1,0,'C',1);
+    $pdf->Cell(23,5,'Cintura',1,0,'C',1);
     
+    $seg = new ModeloHojaseguimiento();
+    $informacion=$seg->getSeguimientos($idPaciente);
+    
+    $pdf->Ln();
+    $pdf->SetFillColor(255,255,255);/// color blanco celda
+    $pdf->SetFont('Arial','',10);
+    foreach ($informacion['info'] as $id => $info){
+        $pdf->Cell(25,5,$info['fecha'],1,0,'C',1);
+        $pdf->Cell(23,5,$info['pesoKg'],1,0,'C',1);
+        $pdf->Cell(23,5,$info['IMC'],1,0,'C',1);
+        $pdf->Cell(23,5,$info['pecho'],1,0,'C',1);
+        $pdf->Cell(23,5,$info['cadera'],1,0,'C',1);
+        $pdf->Cell(23,5,$info['talla'],1,0,'C',1);
+        $pdf->Cell(23,5,$info['abdomen'],1,0,'C',1);
+        $pdf->Cell(23,5,$info['cintura'],1,0,'C',1);
+        $pdf->Ln();
+    }
     $pdf->Output();
     
     

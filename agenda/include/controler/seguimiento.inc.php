@@ -45,11 +45,18 @@ function guardar($datos){
     $info=json_decode($datos,true);
     
     $seg = new ModeloHojaseguimiento();
-    if (intval($info['idSeg'])>0)
-        $seg->setIdHojaSeguimiento($info['idSeg']);
-
+   //fecha duplicada 
+    if ($seg->verificaFecha($info['idSeg'], $info['Fecha'])){
+        $r->call("mostrarMsjError","La fecha seleccionada ya se ha registrado!",5);
+        return $r;
+    }
     
-    $seg->setFechaRegistro($info['Fecha'].' '.date("H:i:s"));
+    if (intval($info['idSeg'])>0){
+        $seg->setIdHojaSeguimiento($info['idSeg']);
+    }else {
+        $seg->setFechaRegistro($info['Fecha'].' '.date("H:i:s"));
+    }
+    $seg->setFechaSeguimiento($info['Fecha'].' '.date("H:i:s"));
         
     $seg->setPesoKg($info['Peso']);
     $seg->setIMC($info['IMC']);
@@ -254,6 +261,8 @@ function verPDF($graficaPeso,$graficaIMC){
     crearImagen($dirGraficas, $graficaIMC, "IMC");
 //    $r->call("mostrarMsjError",$img  ,50);
 //    return $r;
+    $r->call('mostrarMsjEspera','Creando reporte de seguimiento...',4);
+    
     $r->redirect( "seguimientoPDF",3);
     return $r;
 }
