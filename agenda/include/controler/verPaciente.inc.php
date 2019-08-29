@@ -56,6 +56,17 @@ function verPDF($b){
 }
 $xajax->registerFunction("verPDF");
 
+function seguimiento($idPaciente){
+    $r=new xajaxResponse();
+    
+    $_SESSION['verSeg']=$idPaciente;
+    $r->call('mostrarMsjEspera','Consultando informaci&oacute;n ...',2);
+    $r->redirect("seguimiento.php",3);
+    return $r;
+}
+$xajax->registerFunction("seguimiento");
+
+
 $xajax->processRequest();
 
 

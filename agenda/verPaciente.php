@@ -403,8 +403,11 @@ require_once 'masterInclude.inc.php';
 				<br />
 				
 				<div class="row">
-				
-					<div class="12u 12u$(small)">
+					<div class="7u 12u$(xsmall)" >
+							<a style="float: right;" id="btnHoja" onclick="verSeguimiento('<?php echo $idPaciente;?>');" class="button">Agregar seguimiento</a>&ensp;
+						</div>	
+						
+					<div class="3u 12u$(small)">
 						<a id="aPDF" onclick="verOpciones();" class="button special">Descargar PDF</a>
 					</div>
 				</div>

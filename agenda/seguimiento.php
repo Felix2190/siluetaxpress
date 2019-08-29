@@ -114,16 +114,16 @@ require_once 'masterInclude.inc.php';
 							<br />
 							<div class="row">
 								<div class="2u 12u$(xsmall)">
-									<label>Talle:</label>
-								</div>
-								<div class="2u 12u$(xsmall)">
-									<input type="text" id="txtTalle" class="numeric" maxlength="5" />
-								</div>
-								<div class="2u 12u$(xsmall)">
 									<label>Pecho:</label>
 								</div>
 								<div class="2u 12u$(xsmall)">
 									<input type="text" id="txtPecho" class="numeric" maxlength="5" />
+								</div>
+								<div class="2u 12u$(xsmall)">
+									<label>Talle:</label>
+								</div>
+								<div class="2u 12u$(xsmall)">
+									<input type="text" id="txtTalle" class="numeric" maxlength="5" />
 								</div>
 								<div class="2u 12u$(xsmall)">
 									<label>Cintura:</label>
@@ -407,6 +407,18 @@ require_once 'masterInclude.inc.php';
     				
 				</div>
 				
+				<hr />					
+				<div class="row">
+					
+						<div class="7u 12u$(xsmall)"  >
+							<a style="float: right;"  onclick="editarPaciente('<?php echo $idPaciente;?>');" class="button">Editar paciente</a>&ensp;
+						</div>	
+						<div class="4u" id="divBtnHoja" style="display: none;">
+							<a id="btnImprimir" class="button special">Imprimir seguimiento</a>
+						</div>
+				</div>
+				<br />
+				<br />
 						</div>
 					</div>
 

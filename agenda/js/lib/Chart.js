@@ -7,6 +7,7 @@
  * Released under the MIT license
  * https://github.com/nnnick/Chart.js/blob/master/LICENSE.md
  */
+var myLine=[];
 function GraficarChart(contenedor, canvas, legenda, tamX, tamY, datos) {
 	$('#' + contenedor).remove(); // ELIMINA el componente donde se encuenta la GRAFICA
 	if (datos == null) {
@@ -60,12 +61,12 @@ function GraficarChart(contenedor, canvas, legenda, tamX, tamY, datos) {
 					labels : datos[2],
 					datasets :  JSON.parse(datos[0])
 				};
-				window.myLine = new Chart(ctx)
+				myLine[contenedor] = new Chart(ctx)
 						.Line(
 								linea,
 {
 								options: {
-								    animation: true,
+								    animation: false,
 								    animationSteps: 900,
 								    animationEasing: "easeOutQuart",
 								    scaleFontSize: 16,

@@ -17,6 +17,14 @@ function iniciar(){
 	$('.numeric').numeric({negative : false});
 	$("#btnGuardar").click(guardar);
 	$("#btnAgregar").click(agregarProducto);
+	 $( "#btnImprimir" ).click(function(){
+//			grafLinea=myLine.toBase64Image();
+		grafLinea['imc']=myLine['chart-area2'].toBase64Image();
+		grafLinea['peso']=myLine['chart-area'].toBase64Image();
+			xajax_verPDF(grafLinea['peso'],grafLinea['imc']);
+
+		 });
+		 
 	$(".imc").keyup(function(){
 		peso = $("#txtPeso").val();
 		estatura=parseFloat($("#dtEstatura").val());
@@ -32,7 +40,7 @@ function iniciar(){
 	verListado();
 }
 
-var peso,estatura,imc;
+var peso,estatura,imc,grafLinea=[];
 
 function verListado(){
 	 $.ajax({
@@ -266,9 +274,12 @@ var iniciarGraf =function (grafica,t1,grafica2,t2) {
 	if (grafica[1] > 0) {
 		var graficar = new GraficarChart('chart-area', 'grafPay', 'legend',
 				x+((t1-1)*40), 250, grafica);
+
 		var graficar = new GraficarChart('chart-area2', 'grafPay2', 'legend2',
 				x+((t2-1)*40), 250, grafica2);
+
 		$("#misgraficas").show();
+		$("#divBtnHoja").show();
 	}else{
 		
 	}
@@ -403,3 +414,8 @@ function editar(idS){
 			}
 		});
 }
+
+function editarPaciente(id){
+	xajax_editarPaciente(id);
+}
+

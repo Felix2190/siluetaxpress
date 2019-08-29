@@ -11,9 +11,12 @@ if ($__FILE_NAME__ != "adminFunciones") {
             unset($_SESSION['verPaciente']);
         }
     }
-    if ($__FILE_NAME__ != "editaPaciente") {
-        if (isset($_SESSION['editaPaciente'])) {
-            unset($_SESSION['editaPaciente']);
+    if ($__FILE_NAME__ != "editarPaciente"&&$__FILE_NAME__ != "seguimiento") {
+        if (isset($_SESSION['editarPaciente'])) {
+            unset($_SESSION['editarPaciente']);
+        }
+        if (isset($_SESSION['verSeg'])) {
+            unset($_SESSION['verSeg']);
         }
     }
     if ($__FILE_NAME__ != "altaPaciente") {
@@ -49,11 +52,5 @@ if ($__FILE_NAME__ != "adminFunciones") {
             unset($_SESSION['verTipoUsuario']);
         }
     }
-    if ($__FILE_NAME__ != "seguimiento") {
-        if (isset($_SESSION['verSeg'])) {
-            unset($_SESSION['verSeg']);
-        }
-    }
-    
 }
 ?>

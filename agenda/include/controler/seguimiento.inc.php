@@ -223,6 +223,39 @@ function mostrarTabla($informacion)
 }
 $xajax->registerFunction("mostrarTabla");
 
+function editarPaciente($idPaciente){
+    $r=new xajaxResponse();
+    
+    $_SESSION['editarPaciente']=array('titulo'=>'','idPaciente'=>$idPaciente);
+    $r->call('mostrarMsjEspera','Consultando detalles del paciente...',2);
+    $r->redirect("editarPaciente.php",3);
+    return $r;
+}
+$xajax->registerFunction("editarPaciente");
+
+function verPDF($graficaPeso,$graficaIMC){
+    $r=new xajaxResponse();
+    $_SESSION['idPacientePDF']=$_SESSION['verSeg'];
+    
+    // crear directorio
+    if(!is_dir(FOLDER_HTDOCS . "DATA/"))
+    {
+        mkdir(FOLDER_HTDOCS . "DATA/",0762);
+    }
+    
+    $img = str_replace('data:image/png;base64,', '', $graficaIMC);
+    $img = str_replace('=', '', $img);
+    $fileData = base64_decode($img);   
+    $fileName = uniqid().'.png';
+    file_put_contents($fileName, $fileData);
+    $_SESSION['IMC']=$fileName;
+    $r->call("mostrarMsjError",$img  ,50);
+//    return $r;
+    $r->redirect( "seguimientoPDF",3);
+    return $r;
+}
+$xajax->registerFunction("verPDF");
+
 $xajax->processRequest();
 
 

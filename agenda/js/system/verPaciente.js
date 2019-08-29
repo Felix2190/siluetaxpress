@@ -17,6 +17,10 @@ function iniciar(){
 
 }
 
+function verSeguimiento(id){
+	xajax_seguimiento(id);
+}
+
 
 function verOpciones(){
 	 $( "#msjConfirm" ).show();
