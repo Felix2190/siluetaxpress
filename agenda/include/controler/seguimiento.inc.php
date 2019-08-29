@@ -20,7 +20,15 @@ require FOLDER_INCLUDE . 'lib/graficas/GraficasChart.php';
 // -----------------------------------------------------------------------------------------------------------------#
 // ----------------------------------------------------Funciones----------------------------------------------------#
 // -----------------------------------------------------------------------------------------------------------------#
-
+function crearImagen($dirGraficas, $grafica, $nombre){
+    $img = str_replace('data:image/png;base64,', '', $grafica);
+    $img = str_replace('=', '', $img);
+    $fileData = base64_decode($img);
+    $fileName = $dirGraficas.$nombre.'.png';
+    file_put_contents($fileName, $fileData);
+    $_SESSION[$nombre]=$fileName;
+    
+}
 // -----------------------------------------------------------------------------------------------------------------#
 // -----------------------------------------------------------------------------------------------------------------#
 
@@ -236,20 +244,15 @@ $xajax->registerFunction("editarPaciente");
 function verPDF($graficaPeso,$graficaIMC){
     $r=new xajaxResponse();
     $_SESSION['idPacientePDF']=$_SESSION['verSeg'];
-    
+    $dirGraficas="tmp/graficas/".$_SESSION['verSeg']."/";
     // crear directorio
-    if(!is_dir(FOLDER_HTDOCS . "DATA/"))
+    if(!is_dir($dirGraficas))
     {
-        mkdir(FOLDER_HTDOCS . "DATA/",0762);
+        mkdir($dirGraficas,0762);
     }
-    
-    $img = str_replace('data:image/png;base64,', '', $graficaIMC);
-    $img = str_replace('=', '', $img);
-    $fileData = base64_decode($img);   
-    $fileName = uniqid().'.png';
-    file_put_contents($fileName, $fileData);
-    $_SESSION['IMC']=$fileName;
-    $r->call("mostrarMsjError",$img  ,50);
+    crearImagen($dirGraficas, $graficaPeso, "PESO");
+    crearImagen($dirGraficas, $graficaIMC, "IMC");
+//    $r->call("mostrarMsjError",$img  ,50);
 //    return $r;
     $r->redirect( "seguimientoPDF",3);
     return $r;
@@ -268,6 +271,12 @@ if (!isset($_SESSION['verSeg'])){
 }
 
 $idPaciente =$_SESSION['verSeg'];
+$dirGraficas="tmp/graficas/";
+// crear directorio
+if(!is_dir($dirGraficas))
+{
+    mkdir($dirGraficas,0762);
+}
 
 $paciente = new ModeloPaciente();
 $paciente->setIdPaciente($idPaciente);

@@ -20,11 +20,11 @@ Function pdfErrorMensaje($texto){
     $pdf->Output();
 }
 
-$img = $_SESSION['IMC'];
-
-if (isset($_SESSION['idPacientePDF'])) {
+if (isset($_SESSION['idPacientePDF'])&&isset($_SESSION['IMC'])&&isset($_SESSION['PESO'])) {
     $idPaciente=$_SESSION['idPacientePDF'];
-
+    $imgIMC = $_SESSION['IMC'];
+    $imgPESO = $_SESSION['PESO'];
+    
     $paciente = new ModeloPaciente();
     $paciente->setIdPaciente($idPaciente);
     $hojaClinica = new ModeloHojaclinica();
@@ -36,10 +36,10 @@ if (isset($_SESSION['idPacientePDF'])) {
   
     class PDF extends FPDF{
         var $direccion;
-        function PaginaUno($responsable,$sucursal,$dir,$cargo,$fecha,$img){
+        function PaginaUno($responsable,$sucursal,$dir,$cargo,$fecha){
             $this->SetFont('Arial','B',20);
             $this->Cell(190,27,'',1,0,'C',0);
-            $this->Image(($img),15,13,25,null);//
+            $this->Image('images/logo_siluetaExpress.png',15,13,45,null);//
             $this->SetFont('Arial','',16);
             $this->Ln(1);
             $this->direccion=$dir;
@@ -79,7 +79,7 @@ if (isset($_SESSION['idPacientePDF'])) {
     //$pdf->AddPage();
     $pdf->AddPage();
     $pdf->SetTitle("Seguimiento_".utf8_decode($paciente->getNombre(). ' '.$paciente->getApellidos()).".pdf");
-    $pdf->PaginaUno($responsable,$sucursal->getSucursal(),utf8_decode($sucursal->getDireccion()),$objSession->getAbrev(),$fecha,$img);
+    $pdf->PaginaUno($responsable,$sucursal->getSucursal(),utf8_decode($sucursal->getDireccion()),$objSession->getAbrev(),$fecha);
     
     $pdf->SetFillColor(255,255,255);/// color blanco celda
     $pdf->Cell(160,8,' ','B',0,'L',0);
@@ -93,6 +93,29 @@ if (isset($_SESSION['idPacientePDF'])) {
     $pdf->Cell(10,8,$hojaClinica->getEstatura(),0,0,'C',0);
     
     $pdf->Ln(12);
+    
+    $pdf->SetFont('Arial','B',13);
+    $pdf->Cell(185,5,' Gráfica de control de peso ',0,0,'C');
+    $pdf->Ln(4);
+    $pdf->Image($imgPESO,10,60,35,null);//
+    
+    $pdf->Ln(47);
+    
+    $pdf->Cell(185,5,' Gráfica de IMC',0,0,'C');
+    $pdf->Ln(4);
+    $pdf->Image($imgIMC,10,110,35,null);//
+    
+    $pdf->Ln(47);
+    
+    $pdf->Cell(185,5,'Historial',0,0,'C');
+    $pdf->Ln(5);
+    
+    $pdf->SetFillColor(194,246,199);///verde
+    
+    $pdf->SetFont('Arial','',11);
+    $pdf->Cell(30,5,' ',1,0,'C',1);
+    $pdf->Cell(25,5,'Horario',1,0,'C',1);
+    $pdf->Cell(130,5,'Alimentos',1,0,'C',1);
     
     $pdf->Output();
     
