@@ -46,8 +46,8 @@ function guardar($datos){
     
     $seg = new ModeloHojaseguimiento();
    //fecha duplicada 
-    if ($seg->verificaFecha($info['idSeg'], $info['Fecha'])){
-        $r->call("mostrarMsjError","La fecha seleccionada ya se ha registrado!",5);
+    if ($seg->verificaFecha($_SESSION['verSeg'], $info['idSeg'], $info['Fecha'])){
+        $r->call("mostrarMsjError","La fecha seleccionada ya se ha registrado! ",5);
         return $r;
     }
     
@@ -263,7 +263,7 @@ function verPDF($graficaPeso,$graficaIMC){
 //    return $r;
     $r->call('mostrarMsjEspera','Creando reporte de seguimiento...',4);
     
-    $r->redirect( "seguimientoPDF",3);
+    $r->redirect( "seguimientoPDF.php",3);
     return $r;
 }
 $xajax->registerFunction("verPDF");

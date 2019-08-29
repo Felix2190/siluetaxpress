@@ -97,13 +97,13 @@ if (isset($_SESSION['idPacientePDF'])&&isset($_SESSION['IMC'])&&isset($_SESSION[
     $pdf->SetFont('Arial','B',13);
     $pdf->Cell(185,5,' Gráfica de control de peso ',0,0,'C');
     $pdf->Ln(4);
-    $pdf->Image($imgPESO,10,60,35,null);//
+    $pdf->Image($imgPESO,10,60,50,null);//
     
     $pdf->Ln(47);
     
     $pdf->Cell(185,5,' Gráfica de IMC',0,0,'C');
     $pdf->Ln(4);
-    $pdf->Image($imgIMC,10,110,35,null);//
+    $pdf->Image($imgIMC,10,110,50,null);//
     
     $pdf->Ln(47);
     

@@ -119,9 +119,9 @@
 		    return $arreglo;
 		}
 		
-		public function verificaFecha($idSeg, $fecha)
+		public function verificaFecha($idPaciente, $idSeg, $fecha)
 		{
-		    $query = "Select * from hojaseguimiento where DATE_FORMAT(fechaSeguimiento,'%Y-%m-%d')='$fecha' and idHojaSeguimiento<>".$idSeg;
+		    $query = "Select * from hojaseguimiento where idPaciente=$idPaciente and DATE_FORMAT(fechaSeguimiento,'%Y-%m-%d')='$fecha' and idHojaSeguimiento<>".$idSeg;
 		    $resultado = mysqli_query($this->dbLink, $query);
 		    $total=mysqli_num_rows($resultado);
 		    if ($resultado && $total > 0) {
