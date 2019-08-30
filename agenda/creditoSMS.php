@@ -37,15 +37,23 @@ require_once 'masterInclude.inc.php';
    				
    				<br /> 
    				<div class="row">
-								<div class="6u 12u$(xsmall)">
-									<h4>SMS enviados</h4>
-								</div>
 							</div>
 				
    				<div class="row" >
-   				<div class="5u 12u$(xsmall)" id="divTabla"></div>
+								<div class="6u 12u$(xsmall)">
+									<h4>SMS enviados por sucursal</h4>
+								</div>
+ 				  				<div class="10u 12u$(xsmall)" id="divTablaSucursal"></div>
    				</div>
-						</div>
+   				<br />
+   				<div class="row" >
+   					<div class="8u 12u$(xsmall)">
+									<h4>SMS enviados por franquicia</h4>
+								</div>
+ 				  				
+   				<div class="5u 12u$(xsmall)" id="divTablaFranquicia"></div>
+   				</div>
+   				</div>
 					</div>
 
 				<!-- Sidebar -->

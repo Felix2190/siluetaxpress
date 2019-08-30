@@ -299,18 +299,30 @@
         return array($respuesta,$citasCurso,$citasProximas);
     }
     
-    public function SMSEnviados($fecha)
+    public function SMSEnviadosBySucursal($fecha)
     {
-          $query = "Select count(*) as total from cita where recordatorio1=1 and fechaInicio>='$fecha'
+        global $objSession;
+          $query = "Select '0' as opccion, s.idSucursal, count(*) as total from cita as c
+                    inner join sucursal as s on c.idSucursal=s.idSucursal
+                     where s.idFranquicia=".$objSession->getIdFranquicia()." and recordatorio1=1 and fechaInicio>='$fecha' group by s.idSucursal
                     union
-                    Select count(*) as total from cita where recordatorio2=1 and fechaInicio>='$fecha'
+                    Select '1' as opccion,s.idSucursal,count(*) as total from cita as c
+                    inner join sucursal as s on c.idSucursal=s.idSucursal
+                     where s.idFranquicia=".$objSession->getIdFranquicia()." and recordatorio2=1 and fechaInicio>='$fecha'  group by s.idSucursal
                     union
-                    Select count(*) as total from cita where idUsuarioCancela=0 and estatus='cancelada_paciente' and fechaInicio>='$fecha'
+                    Select '2' as opccion,s.idSucursal, count(*) as total from cita as c
+                    inner join sucursal as s on c.idSucursal=s.idSucursal
+                     where s.idFranquicia=".$objSession->getIdFranquicia()." and idUsuarioCancela=0 and c.estatus='cancelada_paciente' and fechaInicio>='$fecha' group by s.idSucursal
                     union
-                    Select count(*) as total from cita where idUsuarioCancela>0 and estatus='cancelada_encargado' and fechaInicio>='$fecha'
+                    Select '3' as opccion,s.idSucursal, count(*) as total from cita as c
+                    inner join sucursal as s on c.idSucursal=s.idSucursal
+                     where s.idFranquicia=".$objSession->getIdFranquicia()." and idUsuarioCancela>0 and c.estatus='cancelada_encargado' and fechaInicio>='$fecha'  group by s.idSucursal
                     union
-                   Select count(*) as total from citaactualizacion where sms=1 and tipo='Actualizacion' and fechaCita>='$fecha'";
-          
+                   Select '4' as opccion,s.idSucursal, count(*) as total from citaactualizacion as c
+                    inner join cita as ct on c.idCita=ct.idCita
+                    inner join sucursal as s on ct.idSucursal=s.idSucursal
+                     where s.idFranquicia=".$objSession->getIdFranquicia()." and sms=1 and tipo='Actualizacion' and fechaCita>='$fecha'  group by s.idSucursal";
+//           return json_encode($query);
           $titulos = array("Confirmaci&oacute;n de cita","Recordatorio","Respuesta de cancelaci&oacute;n (paciente)","Respuesta de cancelaci&oacute;n (encargado)","Actualizaci&oacute;n de cita");
                 $total=0;
                 $respuesta = array();
@@ -318,14 +330,14 @@
                 if ($resultado && mysqli_num_rows($resultado) > 0) {
                     $i=0;
                     while ($row_inf = mysqli_fetch_assoc($resultado)) {
-                        $respuesta[$titulos[$i]]= $row_inf['total'];
-                        $total+=$row_inf['total'];
-                        $i++;
+                        $respuesta[$row_inf['idSucursal']][$titulos[intval($row_inf['opccion'])]]= $row_inf['total'];
+//                        $total+=$row_inf['total'];
+//                        $i++;
                     }
-                    $respuesta['Total']=$total;
+//                    $respuesta[$row_inf['idSucursal']]['Total']=$total[];
                 }
                 
-                        return json_encode($respuesta);
+                        return $respuesta;
     }
     
     public function obtenerCitasAnteriores()
@@ -369,5 +381,50 @@
                         }
                         return $respuesta;
     }
+    
+    public function SMSEnviadosByFranquicia($fecha)
+    {
+        global $objSession;
+        $query = "Select '0' as opccion, s.idFranquicia, count(*) as total from cita as c
+                    inner join sucursal as s on c.idSucursal=s.idSucursal
+                     where recordatorio1=1 and fechaInicio>='$fecha' group by s.idFranquicia
+                    union
+                    Select '1' as opccion,s.idFranquicia,count(*) as total from cita as c
+                    inner join sucursal as s on c.idSucursal=s.idSucursal
+                     where  recordatorio2=1 and fechaInicio>='$fecha'  group by s.idFranquicia
+                    union
+                    Select '2' as opccion,s.idFranquicia, count(*) as total from cita as c
+                    inner join sucursal as s on c.idSucursal=s.idSucursal
+                     where  idUsuarioCancela=0 and c.estatus='cancelada_paciente' and fechaInicio>='$fecha' group by s.idFranquicia
+                    union
+                    Select '3' as opccion,s.idFranquicia, count(*) as total from cita as c
+                    inner join sucursal as s on c.idSucursal=s.idSucursal
+                     where  idUsuarioCancela>0 and c.estatus='cancelada_encargado' and fechaInicio>='$fecha'  group by s.idFranquicia
+                    union
+                   Select '4' as opccion,s.idFranquicia, count(*) as total from citaactualizacion as c
+                    inner join cita as ct on c.idCita=ct.idCita
+                    inner join sucursal as s on ct.idSucursal=s.idSucursal
+                     where  sms=1 and tipo='Actualizacion' and fechaCita>='$fecha'  group by s.idFranquicia";
+//                 return json_encode($query);
+        $total1=$total2=0;
+        $respuesta = array(1=>0,2=>0);
+        $resultado = mysqli_query($this->dbLink, $query);
+        if ($resultado && mysqli_num_rows($resultado) > 0) {
+            while ($row_inf = mysqli_fetch_assoc($resultado)) {
+                $valor=intval($row_inf['total']);
+                switch (intval($row_inf['idFranquicia'])){
+                    case 1:
+                        $respuesta[1]+=$valor;
+                        break;
+                    case 2:
+                        $respuesta[2]+=$valor;
+                        break;
+                }
+            }
+            //                    $respuesta[$row_inf['idSucursal']]['Total']=$total[];
+        }
+        
+        return $respuesta;
+    }
+    
 }
-
