@@ -9,6 +9,7 @@ if (! DEVELOPER) {
      * /var/www/vhosts/siluetaexpress.com.mx/httpdocs 
      */
     define("FOLDER_INCLUDE", $_SERVER['DOCUMENT_ROOT'] . "/include/");
+    define("FOLDER_INCLUDE_AGENDA", $_SERVER['DOCUMENT_ROOT'] . "/include/");
     
     define("FOLDER_HTDOCS", $_SERVER['DOCUMENT_ROOT'] . "/");
 
