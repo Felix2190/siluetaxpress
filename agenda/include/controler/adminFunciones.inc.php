@@ -1045,13 +1045,16 @@ function enviaSMS2($numPaciente, $sMessage)
 function enviaSMS($numPaciente, $sMessage)
 {
     date_default_timezone_set('America/Mexico_City');
+    require_once FOLDER_MODEL_EXTEND. "model.claves.inc.php";
+    $claves = new ModeloClaves();
+    $claves->setIdClave(1);
     
     $concat="";
     //$concat="concat=true&";
     $sData = 'cmd=sendsms&';
     $sData .= 'domainId=siluetaexpress&';
     $sData .= 'login=lic.lezliedelariva@gmail.com&';
-    $sData .= 'passwd=l3z.$ilu374_9021&';
+    $sData .= 'passwd='.$claves->getClave().'&';
     
     $sData .= 'dest=' . str_replace(',', '&dest=', $numPaciente) . '&';
     $sData .= 'msg=' . urlencode(utf8_encode($sMessage));
