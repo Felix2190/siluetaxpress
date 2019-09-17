@@ -11,7 +11,13 @@ if (! DEVELOPER) {
 }
 
 define("CLASS_CONEXION", FOLDER_INCLUDE . 'Conexion/Conexion.php');
+define("FOLDER_MODEL", FOLDER_INCLUDE . "model/");
+define("FOLDER_MODEL_BASE", FOLDER_MODEL . "base/");
+define("FOLDER_MODEL_EXTEND", FOLDER_MODEL . "extend/");
+define("FOLDER_MODEL_DATA", FOLDER_MODEL . "data/");
 
+define("CLASS_COMUN", FOLDER_MODEL_DATA . "clsBasicCommon.inc.php");
+require_once CLASS_COMUN;
 require_once CLASS_CONEXION;
 require_once FOLDER_INCLUDE_AGENDA.'controler/adminFunciones.inc.php';
 
