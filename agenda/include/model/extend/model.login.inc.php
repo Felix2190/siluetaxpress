@@ -193,7 +193,6 @@ class ModeloLogin extends ModeloBaseLogin
     }
     
     
-    
     public function validarDatos(){
         return true;
     }

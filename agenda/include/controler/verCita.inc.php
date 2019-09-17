@@ -11,6 +11,7 @@ require_once FOLDER_MODEL_EXTEND. "model.sucursal.inc.php";
 require_once FOLDER_MODEL_EXTEND. "model.consulta.inc.php";
 require_once FOLDER_MODEL_EXTEND. "model.citaactualizacion.inc.php";
 require_once FOLDER_INCLUDE_AGENDA.'controler/adminFunciones.inc.php';
+require_once FOLDER_MODEL_EXTEND. "model.citasparalelas.inc.php";
 // -----------------------------------------------------------------------------------------------------------------#
 // --------------------------------------------Inicializacion de control--------------------------------------------#
 // -----------------------------------------------------------------------------------------------------------------#
@@ -285,7 +286,11 @@ function guardarCambios($idCita,$duracion,$hora,$minuto,$consultorio,$chkbox,$fe
            return $r;
        }
        
-               
+      if (isset($_SESSION['notifCita'])){
+          $probCita= new ModeloCitasparalelas();
+          $probCita->resolverProblemaCitasByCita($_SESSION['notifCita']);
+      }
+          
        $r->call('mostrarMsjExito','Se han guardado correctamente los cambios!' , 3);
        
        $r->redirect('verCita.php',4);

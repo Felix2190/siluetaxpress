@@ -1,13 +1,13 @@
 <?php
 
-	require FOLDER_MODEL_BASE . "model.base.usuario.inc.php";
+	require FOLDER_MODEL_BASE . "model.base.citasparalelas.inc.php";
 
-	class ModeloUsuario extends ModeloBaseUsuario
+	class ModeloCitasparalelas extends ModeloBaseCitasparalelas
 	{
 		#------------------------------------------------------------------------------------------------------#
 		#----------------------------------------------Propiedades---------------------------------------------#
 		#------------------------------------------------------------------------------------------------------#
-		var $_nombreClase="ModeloBaseUsuario";
+		var $_nombreClase="ModeloBaseCitasparalelas";
 
 		var $__ss=array();
 
@@ -55,49 +55,64 @@
 		{
 			return true;
 		}
-		
-		public function obtenerUsuarios()
+
+		// buscar cita1 y cita2
+		public function exiteProblemaCitas()
 		{
-		    global $objSession;
-		    $query = "Select u.idUsuario, concat_ws(' ', u.nombre, u.apellidos) as nombreCompleto, correo, telefonoCel,
-                    tu.nombre, s.sucursal from usuario as u 
-                    inner join tipousuario as tu on u.idTipoUsuario=tu.idTipoUsuario
-                    inner join sucursal as s on u.idSucursal=s.idSucursal where u.idTipoUsuario<>1 and s.idFranquicia=".$objSession->getIdFranquicia();
-		    $arreglo = array();
+		    $query = "Select * from citasparalelas where estatus='pendiente' and 
+                ((idCita1=$this->idCita1  and idCita2=$this->idCita2) or (idCita1=$this->idCita2  and idCita2=$this->idCita1))
+                limit 1";
+		    $respuesta = false;
 		    $resultado = mysqli_query($this->dbLink, $query);
 		    if ($resultado && mysqli_num_rows($resultado) > 0) {
-		        while ($row_inf = mysqli_fetch_assoc($resultado)){
-		            $arreglo[] = $row_inf;
+		        return true;
+		    }
+		    return $respuesta ;
+		}
+		//totAl problematicas
+		public function obtenerTotalProblemaCitasByUsuario($idUsuario)
+		{
+		    $query = "Select * from citasparalelas where estatus='pendiente' and idUsuario=$idUsuario";
+		    $resultado = mysqli_query($this->dbLink, $query);
+		    $arr=array();
+		    if ($resultado && mysqli_num_rows($resultado)){
+		        while ($row=mysqli_fetch_assoc($resultado)){
+		            array_push($arr, $row['idCita1']);
 		        }
 		    }
-		    return $arreglo;
+		    return $arr;
 		}
 		
-		//obtener el admin por franquicia
-		public function obtenerAdminByFranquicia($idFranquicia)
+		//array problematicas
+		public function obtenerCitasProblematicas($array)
 		{
-		    $query = "Select u.idUsuario from usuario as u
-                    inner join login as l on u.idUsuario=l.idUsuario
-                    where idRol=1 and idFranquicia=".$idFranquicia;
-		    $arreglo = array();
+		    $query = "Select  c.idCita, cp.actualizable,c.idUsuario,c.idPaciente as pa, idCita1,idCita2,
+                    DATE_FORMAT(fechaInicio,'%Y-%m-%d') as fecha, DATE_FORMAT(fechaInicio,'%H:%i') as hora, 
+                    (select concat_ws(' ', p.nombre, p.apellidos) from paciente as p where p.idPaciente=pa) as nombre_paciente, DATE_FORMAT(fechaFin,'%H:%i') as horaFin,
+                    ca.nombre as cabina, sucursal, concat_ws(' ', u.nombre, u.apellidos) as nombre_usuario from citasparalelas as cp
+                    inner join cita as c on (cp.idCita1=c.idCita or cp.idCita2=c.idCita)
+                    inner join usuario as u on c.idUsuario=u.idUsuario
+                    inner join sucursal as s on c.idSucursal=s.idSucursal
+                    inner join cabina as ca on c.idCabina=ca.idCabina
+                    where cp.estatus='pendiente' and (cp.idCita1 in ($array) or cp.idCita2 in ($array)) order by c.fechaInicio asc";
 		    $resultado = mysqli_query($this->dbLink, $query);
-		    if ($resultado && mysqli_num_rows($resultado) > 0) {
-		        $row_inf = mysqli_fetch_assoc($resultado);
-		        return $row_inf['idUsuario'];
+		    $arr=array();
+		    if ($resultado && mysqli_num_rows($resultado)){
+		        while ($row=mysqli_fetch_assoc($resultado)){
+		            array_push($arr, $row);
+		        }
 		    }
-		    return 0;
+		    return $arr;
 		}
-		
-		public function obtenerIdsAdmin()
+		  
+		public function resolverProblemaCitasByCita($idCita)
 		{
-		    $query = "Select idUsuario from login where idRol=1 and idUsuario<>14";
-		    $arreglo = array();
+		    $query = "update citasparalelas set estatus='resuelto' where idCita1=$idCita or idCita2=$idCita";
 		    $resultado = mysqli_query($this->dbLink, $query);
-		    if ($resultado && mysqli_num_rows($resultado) > 0) {
-		        while ($row_inf = mysqli_fetch_assoc($resultado))
-		        array_push($arreglo, $row_inf['idUsuario']);
+		    if ($resultado){
+		        return true;
 		    }
-		    return $arreglo;
+		    return false;
 		}
 		
 	}

@@ -560,6 +560,13 @@ if (isset($_POST['agregaProducto'])){
     echo $producto->buscarProductoByNombre($_POST['agregaProducto']);
 }
 
+if (isset($_POST['notificacionCita'])){
+    require_once FOLDER_MODEL_EXTEND. "model.citasparalelas.inc.php";
+    $citas = new ModeloCitasparalelas();
+    $arrIds=$citas->obtenerTotalProblemaCitasByUsuario($objSession->getIdUsuario());
+    echo json_encode($citas->obtenerCitasProblematicas(implode(",", $arrIds)));
+}
+
 function obtenCombo($array,$default){
     $combo='<option value="">'.$default.'</option>';
     foreach ($array as $key => $opcion)

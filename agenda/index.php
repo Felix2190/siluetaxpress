@@ -28,7 +28,15 @@ require_once 'masterInclude.inc.php';
 
 				<!-- Header -->
 								<?php include_once 'header.php';?>
-<p class="simple" id="ptiempo"></p>
+				<div class="row">
+				<?php 
+				if ($total>0){?>
+				<p class="simple" ><a href="notificaciones.php">Existen <?php echo $total;?> casos de citas empalmadas, haga clic en este enlace para m&aacute;s informaci&oacute;n</a></p>
+				
+				<?php }?>
+				</div>
+				
+				<p class="simple" id="ptiempo"></p>
 
 				<br />
  

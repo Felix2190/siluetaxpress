@@ -36,6 +36,9 @@ if ($__FILE_NAME__ != "adminFunciones") {
         if (isset($_SESSION['verCita'])) {
             unset($_SESSION['verCita']);
         }
+        if (isset($_SESSION['notifCita'])) {
+            unset($_SESSION['notifCita']);
+        }
     }
     if ($__FILE_NAME__ != "verSucursal") {
         if (isset($_SESSION['verSucursal'])) {

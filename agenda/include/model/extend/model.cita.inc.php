@@ -59,8 +59,10 @@
 		    if ($this->idPaciente>0)
 		        $condicion.=" and c.idPaciente=$this->idPaciente";
 		        else{
-		            $fechaFin = date ("Y-m-d",strtotime ( '+7 day' , strtotime ( $this->fechaInicio) ) );
-		            $condicion.="and fechaInicio<='$fechaFin' ";
+		            if (!isset($_SESSION['sinfechafin'])){ // variable para no limitar a una fecha
+    		            $fechaFin = date ("Y-m-d",strtotime ( '+7 day' , strtotime ( $this->fechaInicio) ) );
+    		            $condicion.="and fechaInicio<='$fechaFin' ";
+		            }
 		        }
 		    if ($this->idSucursal>0)
 		        $condicion.=" and c.idSucursal=".$this->idSucursal;
@@ -425,6 +427,22 @@
         }
         
         return $respuesta;
+    }
+    
+    // buscar cita empalmada
+    public function verificaCitaHora()
+    {
+        $query = "Select idCita,idUsuario from cita
+                    where (estatus='nueva' or estatus='curso') and idSucursal=$this->idSucursal  and idCabina=$this->idCabina
+            and (('$this->fechaInicio'>=fechaInicio and '$this->fechaInicio'<fechaFin) or ('$this->fechaFin'>fechaInicio and '$this->fechaFin'<=fechaFin)
+            or ('$this->fechaInicio'<=fechaInicio and '$this->fechaFin'>=fechaFin)) and idCita<>".$this->idCita." limit 1";
+        $respuesta = array();
+        $resultado = mysqli_query($this->dbLink, $query);
+        if ($resultado && mysqli_num_rows($resultado) > 0) {
+            $row=mysqli_fetch_assoc($resultado);
+            return $row;
+        }
+        return $respuesta ;
     }
     
 }
