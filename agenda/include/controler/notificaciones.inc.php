@@ -29,7 +29,7 @@ function mostrarInformacion($informacion)
 {
     $r = new xajaxResponse();
     $arrTitulos=array("Fecha","Horario","Lugar","Paciente","Usuario","Modificar");
-    $tabla = "";$c1=$c2=$user=$odcita=0;
+    $tabla = "";$c1=$c2=$user=0;$arrIdcita=array();
     global $objSession;
     if (count($informacion) > 0) {
         $t=0; 
@@ -44,23 +44,23 @@ function mostrarInformacion($informacion)
                  $tabla.="</tr></thead><tbody>";
              }            
             
-             if ($user!=intval($arr['idUsuario'])||$odcita!=intval($arr['idCita'])){
+             if (!in_array(intval($arr['idCita']),$arrIdcita)){
+                 array_push($arrIdcita,intval($arr['idCita']));
                  $tabla .= "<tr><td>" . $arr['fecha'] . "</td><td>".$arr['hora']." a " . $arr['horaFin'] . "</td>
                      <td>".$arr['sucursal']."<br />".$arr['cabina']."</td><td>" . $arr['nombre_paciente'] . "</td><td>" . $arr['nombre_usuario'] . "</td>";
-            if (intval($arr['actualizable'])==1&&$objSession->getidUsuario()==$arr['idUsuario'])
+            if (intval($arr['actualizable'])==1&&$objSession->getidUsuario()==$arr['idUsuario']){
                 $tabla .= "<td><a onclick='verCita(\"".$arr['idCita']."\")'><img src='images/editaCita.png' title='Ver/editar' style='width: 34px' /></a></td></tr>";
              }else {
-                 $tabla .= "<td></td></tr>";
+                 $tabla .= "<td> </td></tr>";
+             }
              }
                 $c1=intval($arr['idCita1']);
-                $odcita=intval($arr['idCita']);
                 $c2=intval($arr['idCita2']);
                 $user=intval($arr['idUsuario']);
         }
         $tabla .= "</tbody></table><br />";
         
     }
-    
     $r->assign('divCitas', 'innerHTML', $tabla);
     return $r;
 }

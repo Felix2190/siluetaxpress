@@ -32,7 +32,6 @@ require_once 'masterInclude.inc.php';
 									
 								
 								</section>
-								<br />
 									<div class="row">
 									
 									<div class="12u 12u$(xsmall)" id="divCitas"></div>
