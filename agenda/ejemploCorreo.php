@@ -12,6 +12,18 @@ if (! DEVELOPER) {
 
 define("FOLDER_LIB", FOLDER_INCLUDE . "lib/");
 
+define("CLASS_CONEXION", FOLDER_INCLUDE . 'Conexion/Conexion.php');
+define("FOLDER_MODEL", FOLDER_INCLUDE . "model/");
+define("FOLDER_MODEL_BASE", FOLDER_MODEL . "base/");
+define("FOLDER_MODEL_EXTEND", FOLDER_MODEL . "extend/");
+define("FOLDER_MODEL_DATA", FOLDER_MODEL . "data/");
+
+define("CLASS_COMUN", FOLDER_MODEL_DATA . "clsBasicCommon.inc.php");
+
+require_once(CLASS_COMUN);
+require_once FOLDER_MODEL_EXTEND. "model.claves.inc.php";
+$clave = new ModeloClaves();
+$claveCorreo = $clave->obtenerClaveByReferencia("correo_agenda");
 
     require_once(FOLDER_LIB.'PHPMailer/class.phpmailer.php');
     require_once(FOLDER_LIB."PHPMailer/class.smtp.php");
@@ -23,7 +35,7 @@ define("FOLDER_LIB", FOLDER_INCLUDE . "lib/");
     $mailWeb->SMTPAuth = true;
     $mailWeb->Port = 587;
     $mailWeb->Username = "agendasilueta@pruebassointec.com.mx";
-    $mailWeb->Password = "1234";
+    $mailWeb->Password = $claveCorreo;
     $mailWeb->SetFrom("agenda@siluetaexpress.com.mx", "SiluetaExpress @NoReply");
     //    $mailWeb->AddReplyTo("siluetaexpress@pruebassointec.com.mx", "SiluetaExpress @NoReply");
     $mailWeb->Subject ="Respaldo ".date("d/m/Y");

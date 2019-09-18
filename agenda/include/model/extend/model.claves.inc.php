@@ -56,6 +56,18 @@
 			return true;
 		}
 
-
+		public function obtenerClaveByReferencia($referencia)
+		{
+		    global $objSession;
+		    
+		    $query = "Select clave from claves where referencia='".$referencia."'";
+		    $resultado = mysqli_query($this->dbLink, $query);
+		    if ($resultado && mysqli_num_rows($resultado) > 0) {
+		        $row_inf = mysqli_fetch_assoc($resultado);
+		        return $row_inf['clave'];
+		    }
+		    return "";
+		}
+		
 	}
 

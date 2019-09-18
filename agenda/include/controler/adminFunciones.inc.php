@@ -1186,6 +1186,9 @@ function obtenerHorarioByDia($idSucursal,$fecha){
 
 
 function enviar_mail($para,$asunto,$mensaje){
+    require_once FOLDER_MODEL_EXTEND. "model.claves.inc.php";
+    $clave = new ModeloClaves();
+    $claveCorreo = $clave->obtenerClaveByReferencia("correo_agenda");
     require_once(FOLDER_LIB.'PHPMailer/class.phpmailer.php');
     require_once(FOLDER_LIB."PHPMailer/class.smtp.php");
     $mailWeb = new PHPMailer();
@@ -1196,7 +1199,7 @@ function enviar_mail($para,$asunto,$mensaje){
     $mailWeb->SMTPAuth = true;
     $mailWeb->Port = 587;
     $mailWeb->Username = "agendasilueta@pruebassointec.com.mx";
-    $mailWeb->Password = "5!lu37A_xpR3Z_";
+    $mailWeb->Password = $claveCorreo;
     $mailWeb->SetFrom("agenda@siluetaexpress.com.mx", "SiluetaExpress @NoReply");
     //    $mailWeb->AddReplyTo("siluetaexpress@pruebassointec.com.mx", "SiluetaExpress @NoReply");
     $mailWeb->Subject = $asunto;
