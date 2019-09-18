@@ -86,7 +86,7 @@
 		//array problematicas
 		public function obtenerCitasProblematicas($array)
 		{
-		    $query = "Select  c.idCita, cp.actualizable,c.idUsuario,c.idPaciente as pa, idCita1,idCita2,
+		    $query = "Select  c.idCita, cp.actualizable,cp.idUsuario,c.idPaciente as pa, idCita1,idCita2,
                     DATE_FORMAT(fechaInicio,'%Y-%m-%d') as fecha, DATE_FORMAT(fechaInicio,'%H:%i') as hora, 
                     (select concat_ws(' ', p.nombre, p.apellidos) from paciente as p where p.idPaciente=pa) as nombre_paciente, DATE_FORMAT(fechaFin,'%H:%i') as horaFin,
                     ca.nombre as cabina, sucursal, concat_ws(' ', u.nombre, u.apellidos) as nombre_usuario from citasparalelas as cp
@@ -94,7 +94,7 @@
                     inner join usuario as u on c.idUsuario=u.idUsuario
                     inner join sucursal as s on c.idSucursal=s.idSucursal
                     inner join cabina as ca on c.idCabina=ca.idCabina
-                    where cp.estatus='pendiente' and (cp.idCita1 in ($array) or cp.idCita2 in ($array)) order by c.fechaInicio asc";
+                    where cp.estatus='pendiente' and (cp.idCita1 in ($array) or cp.idCita2 in ($array)) order by c.fechaInicio asc, actualizable desc";
 		    $resultado = mysqli_query($this->dbLink, $query);
 		    $arr=array();
 		    if ($resultado && mysqli_num_rows($resultado)){
