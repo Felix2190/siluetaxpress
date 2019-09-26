@@ -72,7 +72,10 @@
 		//totAl problematicas
 		public function obtenerTotalProblemaCitasByUsuario($idUsuario)
 		{
-		    $query = "Select * from citasparalelas where estatus='pendiente' and idUsuario=$idUsuario";
+		    $fecha = date("Y-m-d");
+		    $query = "Select cp.* from citasparalelas as cp 
+                       inner join cita as c on (cp.idCita1=c.idCita or cp.idCita2=c.idCita)
+                      where cp.estatus='pendiente' and DATE_FORMAT(fechaInicio,'%Y-%m-%d')>='$fecha' and cp.idUsuario=$idUsuario";
 		    $resultado = mysqli_query($this->dbLink, $query);
 		    $arr=array();
 		    if ($resultado && mysqli_num_rows($resultado)){

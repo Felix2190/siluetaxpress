@@ -125,7 +125,7 @@ require_once 'masterInclude.inc.php';
 							</div>
 							<br />
 							<div class="row">
-								<div class="3u 12u$(xsmall)">
+								<div class="6u 12u$(xsmall)">
 									<h3>Fecha, hora y duraci&oacute;n</h3>
 								</div>
 							</div>
@@ -286,7 +286,7 @@ require_once 'masterInclude.inc.php';
 								<div class="3u 12u$(small)">&emsp;</div>
 								<div class="6u 12u$(small)">
 									<div id="divFechasNoDisponibles2"></div>
-								<ul class="actions" style="float: right;"><li><a id="btnAceptar" class="button special">Aceptar</a></li><li><a id="btnCancelar" class="button">Cancelar</a></li></ul>
+								<ul class="actions" style="float: right;"><li><a id="_btnAceptar" class="button special">Aceptar</a></li><li><a id="btnCancelar" class="button">Cancelar</a></li></ul>
 								
 								</div>
 								</div>

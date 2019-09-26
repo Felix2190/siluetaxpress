@@ -55,9 +55,13 @@ function guardarCita($paciente,$sucursal,$idCabina,$consulta,$duracion,$fecha,$h
     
     $r=new xajaxResponse();
     $arrFechas=$arrFechasNO=array();
-    if ($repetir){
-        $dias = array('','lunes','martes','miercoles','jueves','viernes','sabado','domingo');
-        $cita = new ModeloCita();
+    $dias = array('','lunes','martes','miercoles','jueves','viernes','sabado','domingo');
+    
+    if ($periodo==0){
+        $periodo=1;
+        $arrDias[]=$dias[date('N',strtotime ($fecha))];
+    }
+    $cita = new ModeloCita();
         $cita->setIdConsulta($consulta);
         $cita->setIdSucursal($sucursal);
         $cita->setFechaInicio($fecha.' '.$hora.':'.$minutos.':00');
@@ -84,10 +88,8 @@ function guardarCita($paciente,$sucursal,$idCabina,$consulta,$duracion,$fecha,$h
             $fecha = date ( 'Y-m-d',strtotime ( '+'.$periodo.' day' , strtotime ( $fecha) ) );
         }
         
-    }else {
-        $arrFechas[]=$fecha;
-    }
-    if (count($arrFechasNO)>0&&$bandera){
+        
+     if (count($arrFechasNO)>0&&$bandera){
         $plural='';
         if (count($arrFechasNO)>1)
             $plural='s';
@@ -181,6 +183,7 @@ function guardarCita($paciente,$sucursal,$idCabina,$consulta,$duracion,$fecha,$h
     }
         
     }
+    
     
     $nSucursal= new ModeloSucursal();
     $nSucursal->setIdSucursal($sucursal);
