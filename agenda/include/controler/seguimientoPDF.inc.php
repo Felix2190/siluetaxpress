@@ -117,10 +117,10 @@ if (isset($_SESSION['idPacientePDF'])&&isset($_SESSION['IMC'])&&isset($_SESSION[
     $pdf->Cell(23,5,'Peso',1,0,'C',1);
     $pdf->Cell(23,5,'IMC',1,0,'C',1);
     $pdf->Cell(23,5,'Pecho',1,0,'C',1);
-    $pdf->Cell(23,5,'Cadera',1,0,'C',1);
     $pdf->Cell(23,5,'Talle',1,0,'C',1);
-    $pdf->Cell(23,5,'Abdomen',1,0,'C',1);
     $pdf->Cell(23,5,'Cintura',1,0,'C',1);
+    $pdf->Cell(23,5,'Abdomen',1,0,'C',1);
+    $pdf->Cell(23,5,'Cadera',1,0,'C',1);
     
     $seg = new ModeloHojaseguimiento();
     $informacion=$seg->getSeguimientos($idPaciente);
@@ -133,10 +133,10 @@ if (isset($_SESSION['idPacientePDF'])&&isset($_SESSION['IMC'])&&isset($_SESSION[
         $pdf->Cell(23,5,$info['pesoKg'],1,0,'C',1);
         $pdf->Cell(23,5,$info['IMC'],1,0,'C',1);
         $pdf->Cell(23,5,$info['pecho'],1,0,'C',1);
-        $pdf->Cell(23,5,$info['cadera'],1,0,'C',1);
         $pdf->Cell(23,5,$info['talla'],1,0,'C',1);
-        $pdf->Cell(23,5,$info['abdomen'],1,0,'C',1);
         $pdf->Cell(23,5,$info['cintura'],1,0,'C',1);
+        $pdf->Cell(23,5,$info['abdomen'],1,0,'C',1);
+        $pdf->Cell(23,5,$info['cadera'],1,0,'C',1);
         $pdf->Ln();
     }
     $pdf->Output();
