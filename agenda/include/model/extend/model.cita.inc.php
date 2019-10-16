@@ -445,4 +445,22 @@
         return $respuesta ;
     }
     
+    
+    public function checarCitaByFecha()
+    {
+        $query = "Select idCita,concat_ws(' ', p.nombre, p.apellidos) as nombre_paciente,ser.nombre as servicio from cita as c
+                inner join paciente as p on c.idPaciente=p.idPaciente
+                    inner join consulta as co on c.idConsulta=co.idConsulta
+                    inner join servicio as ser on c.idServicio=ser.idServicio
+                    
+                    where (c.estatus='nueva' or c..estatus='curso') and c.idSucursal=$this->idSucursal  and c.idCabina=$this->idCabina
+            and (('$this->fechaInicio'>=fechaInicio and '$this->fechaInicio'<fechaFin) or ('$this->fechaFin'>fechaInicio and '$this->fechaFin'<=fechaFin)
+            or ('$this->fechaInicio'<=fechaInicio and '$this->fechaFin'>=fechaFin))";
+        $respuesta = true;
+        $resultado = mysqli_query($this->dbLink, $query);
+        if ($resultado && mysqli_num_rows($resultado) > 0) {
+            return false;
+        }
+        return $respuesta;
+    }
 }

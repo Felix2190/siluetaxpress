@@ -567,11 +567,190 @@ if (isset($_POST['notificacionCita'])){
     echo json_encode($citas->obtenerCitasProblematicas(implode(",", $arrIds)));
 }
 
+if (isset($_POST['SucursalServ'])&&isset($_POST['ConsultorioServ'])&&isset($_POST['fechaInicioServ'])){
+    echo obtenerHorariosServicios($_POST['Sucursal'], $_POST['Consultorio'], $_POST['fechaInicio']);
+}
+
 function obtenCombo($array,$default){
     $combo='<option value="">'.$default.'</option>';
     foreach ($array as $key => $opcion)
         $combo.='<option value="'.$key.'">'.$opcion.'</option>';
     return $combo;
+}
+
+function obtenerHorariosServicios($idSucursal,$idCabina){
+    require_once FOLDER_MODEL_EXTEND. "model.cita.inc.php";
+    require_once FOLDER_MODEL_EXTEND. "model.sucursal.inc.php";
+    require_once FOLDER_MODEL_EXTEND. "model.cabina.inc.php";
+    require_once FOLDER_MODEL_EXTEND. "model.servicio.inc.php";
+    
+    $cita = new ModeloCita();
+    $sucursal=new ModeloSucursal();
+    $arrSucursales=array();
+    $arrFechas = array();
+    
+    if ($idSucursal==''){
+        $arr=$sucursal->obtenerSucurales();
+        foreach ($arr as $idS=>$nombre)
+            array_push($arrSucursales, $idS);
+    }else {
+        array_push($arrSucursales, $idSucursal);
+    }
+    
+    $horarioDisponible = array();
+    $fechaInicio=date("Y-m-d");
+    foreach ($arrSucursales as $idSucursal) {
+        $segundo=false;
+        $fechaInicial=$fechaInicio;
+        $dia=date('N',strtotime ($fechaInicial));
+        
+        $hrInicio = date("H");
+        if ($dia==7){ //es domingo
+            $segundo=true;
+            $auxFecha = strtotime ( '+1 day' , strtotime ( $fechaInicial ) ) ;
+            $fechaInicial = date ( 'Y-m-d' , $auxFecha);
+            $dia=date('N',strtotime ($fechaInicial));
+        }
+        
+        $sucursal->setIdSucursal($idSucursal);
+        
+        // sacar hr
+        if ($dia==6){
+            $hrInicio = $sucursal->getSabadoEntrada();
+            $hrFin=$sucursal->getSabadoSalida();
+        }else {
+            $hrInicio = $sucursal->getEntreSemanaEntrada();
+            $hrFin = $sucursal->getEntreSemanaSalida();
+        }
+        
+        $auxFechaEntrada=strtotime(date(date("Y-m-d", strtotime($fechaInicio)). " $hrInicio:00:00"));
+        $auxFechaFin=strtotime(date(date("Y-m-d", strtotime($fechaInicio)). " $hrFin:00:00"));
+        $auxFechaActual=strtotime(date("Y-m-d H:i:s"));
+        
+        if ($auxFechaActual<$auxFechaEntrada)
+            $segundo=true;
+            
+            $fechaFin = date(date("Y-m-d", strtotime($fechaInicial)). " $hrFin:00:00");
+            if ($segundo) {
+                //  si el dia es domingo 
+                $fechaInicial = date($fechaInicial . " $hrInicio:00:00");
+            }
+            
+            
+            $cita->setFechaInicio($fechaInicial);
+            $cita->setFechaFin($fechaFin);
+            $cita->setIdSucursal($idSucursal);
+            
+            $cabina = new ModeloCabina();
+            $cabina->setIdSucursal($idSucursal);
+            $cabina->setTipo('');
+            if ($idCabina=='')
+                $arrCabinas = $cabina->obtenerConsultorios();
+                /**/       else {
+                $cabina->setIdCabina($idCabina);
+                $arrCabinas=array($idCabina=>$cabina->getNombre());
+                }
+                $minInicio=0;
+                /**/    //return json_encode($arrCabinas);
+                foreach ($arrCabinas as $idConsultorio=>$nomConsultorio) {
+                    ///$auxFechaActual=strtotime(date("Y-m-d H:i:s"));
+                    $fecha=$fechaInicial;
+                    $auxFechaEntrada=strtotime(date(date("Y-m-d", strtotime($fecha)). " $hrInicio:00:00"));
+                    $auxFechaFin=strtotime(date(date("Y-m-d", strtotime($fecha)). " $hrFin:00:00"));
+                    $cita->setIdCabina($idConsultorio);
+                    
+                    for ($hr=$hrInicio;$hr<$hrFin;$hr++){
+                        $minInicio=0;
+                        for ($min=$minInicio;$min<=50;$min+=30){
+                            $fecha = date(date("Y-m-d", strtotime($fecha)). " $auxHrInicio:$minInicio:00");
+                            $cita->setFechaInicio($fecha);
+                            if($cita->disponibliadDia()){
+                                
+                            }else {
+                                
+                            }
+                        }
+                    }
+                    
+                    if ($auxFechaActual>$auxFechaEntrada&&$auxFechaActual<$auxFechaFin){  // hora entre horario de citas
+                        $fecha=date("Y-m-d H:i:s");
+                        $hrInicio = intval(date("H"));
+                        $auxHrInicio=($hrInicio<10?'0':'').$hrInicio;
+                        $auxMin=intval(date("i"));
+                        if ($auxMin<10)
+                            $minInicio=0;
+                            else if ($auxMin<20)
+                                $minInicio=10;
+                                else if ($auxMin<30)
+                                    $minInicio=20;
+                                    else if ($auxMin<40)
+                                        $minInicio=30;
+                                        else if ($auxMin<50)
+                                            $minInicio=40;
+                                            else if ($auxMin<59)
+                                                $minInicio=50;
+                                                $fecha = date(date("Y-m-d", strtotime($fecha)). " $auxHrInicio:$minInicio:00");
+                    }
+                    $cita->setIdCabina($idConsultorio);
+                    ///            if ($idConsultorio>1)
+                    //             return $fecha;
+                    do{
+                        $auxFechaEntrada=strtotime(date(date("Y-m-d", strtotime($fecha)). " $hrInicio:00:00"));
+                        $auxFechaFin=strtotime(date(date("Y-m-d", strtotime($fecha)). " $hrFin:00:00"));
+                        //$auxFechaActual=strtotime($fecha.date(" H:i:s"));
+                        if ($auxFechaActual<$auxFechaEntrada)
+                            $segundo=true;
+                            $fechaFin = date(date("Y-m-d", strtotime($fecha)). " $hrFin:00:00");
+                            $cita->setFechaInicio($fecha);
+                            $cita->setFechaFin($fechaFin);
+                            $arrCitas = $cita->obtenerCitasSucursalConsultorioFechaDuracion();
+                            $horasDisponibles=array();
+                            $horarioAgendado=array();
+                            // obtener hora inicio y duracion
+                            foreach ($arrCitas as $info) {
+                                $horarioAgendado[$info['fechaInicio']] = $info['fechaFin'];
+                            }
+                            //          return json_encode($fecha);
+                            if ($auxFechaActual>$auxFechaFin){
+                                array_push($horasDisponibles, "Horario fuera de servcio");
+                            }else{
+                                $horaInicio=($hrInicio<10?'0':'').$hrInicio.":".($minInicio<10?'0':'').$minInicio;
+                                for ($hr=$hrInicio;$hr<$hrFin;$hr++){
+                                    for ($min=$minInicio;$min<=50;$min+=10){
+                                        
+                                    }
+                                }
+                            }
+                            $auxFecha=date("Y-m-d", strtotime($fecha));
+                            $horarioDisponible[$idSucursal][$idConsultorio][$auxFecha]=$horasDisponibles;
+                            if (!in_array($auxFecha, $arrFechas)) /// fechas de los días a mostrar
+                                array_push($arrFechas, $auxFecha);
+                                
+                                $hrInicio = $sucursal->getEntreSemanaEntrada();
+                                $fecha = date ("Y-m-d $hrInicio:00:00",strtotime ( '+1 day' , strtotime ( $fecha) ) );
+                                $segundo=true;
+                                $auxDia=date('N',strtotime ($fecha));
+                                if (intval($auxDia)==7){
+                                    $fecha = date ("Y-m-d $hrInicio:00:00",strtotime ( '+1 day' , strtotime ( $fecha) ) );
+                                    $auxDia=date('N',strtotime ($fecha));
+                                }else {
+                                }
+                                //            $hrInicio = $sucursal->getEntreSemanaEntrada();
+                                //$fecha = date($fecha . " $hrInicio:00:00");
+                                
+                                // sacar hr
+                                if ($auxDia==6){
+                                    $hrInicio = $sucursal->getSabadoEntrada();
+                                    $hrFin=$sucursal->getSabadoSalida();
+                                }else {
+                                    $hrInicio = $sucursal->getEntreSemanaEntrada();
+                                    $hrFin = $sucursal->getEntreSemanaSalida();
+                                }
+                    }while ($dia!=$auxDia);
+                $segundo=false;
+                }
+    }
+    
 }
 
 function obtenerIntervalosDisponibles($idSucursal,$idCabina,$fechaInicio){
