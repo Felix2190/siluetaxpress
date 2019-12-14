@@ -143,6 +143,8 @@ function guardar($datos,$idPaciente,$idHoja){
     $paciente->setTelefonoCel($infoPaciente['TelMovil']);
     $paciente->setCorreo($infoPaciente['Email']);
     $paciente->setOcupacion($infoPaciente['ocupacion']);
+    $paciente->setSexo($infoPaciente['sexo']);
+    $paciente->setFechaNacimiento($infoPaciente['fechaNac']);
     $paciente->setIdHojaClinica($idHoja);
     $paciente->setLlenadoCompleto();
     $paciente->Guardar();
@@ -179,6 +181,8 @@ function guardar2($datos,$idPaciente){
                                                         $paciente->setTelefonoCel($infoPaciente['TelMovil']);
                                                         $paciente->setCorreo($infoPaciente['Email']);
                                     
+                                                        $paciente->setSexo($infoPaciente['sexo']);
+                                                        
                                                         $paciente->Guardar();
                                                         
                                                         if ($paciente->getError()){
@@ -235,7 +239,23 @@ if ($paciente->getIdPaciente()>0){
     $hojaClinica=new ModeloHojaclinica();
     
     $hojaClinica->setIdHojaClinica($paciente->getIdHojaClinica());
-    
+    if ($hojaClinica->getHorarioAcostarse() == "")
+        $hojaClinica->setHorarioAcostarse("00:00 AM");
+    if (strlen($hojaClinica->getHorarioActividad()) == 0)
+        $hojaClinica->setHorarioActividad("00:00 AM");
+    if ($hojaClinica->getHorarioCena() == "")
+        $hojaClinica->setHorarioCena("00:00 AM");
+    if ($hojaClinica->getHorarioColacion() == "")
+        $hojaClinica->setHorarioColacion("00:00 AM");
+    if ($hojaClinica->getHorarioColacion2() == "")
+        $hojaClinica->setHorarioColacion2("00:00 AM");
+    if ($hojaClinica->getHorarioComida() == "")
+        $hojaClinica->setHorarioComida("00:00 AM");
+    if ($hojaClinica->getHorarioDesayuno() == "")
+        $hojaClinica->setHorarioDesayuno("00:00 AM");
+    if ($hojaClinica->getHorarioLevantarse() == "")
+        $hojaClinica->setHorarioLevantarse("00:00 AM");
+    $hojaClinica->Guardar();
 }else {
     header("Location: listadoPacientes.php");
 }

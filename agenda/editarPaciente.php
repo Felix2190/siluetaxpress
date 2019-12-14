@@ -96,9 +96,9 @@ $hojaClinica->setIdHojaClinica($paciente->getIdHojaClinica());
 									<label>Sexo:</label>
 								</div>
 								<div class="2u 12u$(xsmall)"> <form>
-																<input id="demo-priority-Masculino2" name="sexo2" value="Masculino" type="radio" <?php if ($paciente->getSexo()=="Masculino") echo "checked";?> disabled="disabled">
+																<input id="demo-priority-Masculino2" name="sexo2" value="Masculino" type="radio" <?php if ($paciente->getSexo()=="Masculino") echo "checked";?>>
 																<label for="demo-priority-Masculino2">Masculino</label>
-																<input id="demo-priority-Femenino2" name="sexo2" value="Femenino" type="radio" <?php if ($paciente->getSexo()=="Femenino") echo "checked";?> disabled="disabled">
+																<input id="demo-priority-Femenino2" name="sexo2" value="Femenino" type="radio" <?php if ($paciente->getSexo()=="Femenino") echo "checked";?>>
 																<label for="demo-priority-Femenino2">Femenino</label> </form>
 								</div>
 							</div>
@@ -173,16 +173,16 @@ $hojaClinica->setIdHojaClinica($paciente->getIdHojaClinica());
 									<label>Sexo:</label>
 								</div>
 								<div class="2u 12u$(xsmall)"> <form>
-																<input id="demo-priority-Masculino" name="sexo" value="Masculino" type="radio" <?php if ($paciente->getSexo()=="Masculino") echo "checked";?> disabled="disabled">
+																<input id="demo-priority-Masculino" name="sexo" value="Masculino" type="radio" <?php if ($paciente->getSexo()=="Masculino") echo "checked";?>>
 																<label for="demo-priority-Masculino">Masculino</label>
-																<input id="demo-priority-Femenino" name="sexo" value="Femenino" type="radio" <?php if ($paciente->getSexo()=="Femenino") echo "checked";?> disabled="disabled">
+																<input id="demo-priority-Femenino" name="sexo" value="Femenino" type="radio" <?php if ($paciente->getSexo()=="Femenino") echo "checked";?> >
 																<label for="demo-priority-Femenino">Femenino</label> </form>
 								</div>
 								<div class="3u 12u$(xsmall)">
 									<label>Edad:</label>
 								</div>
 								<div class="2u 12u$(xsmall)">
-									<input type="text" id="txtEdad" class="numeric" maxlength="2" value="<?php echo $paciente->getEdad();?>" <?php echo intval($paciente->getEdad())==0?'':'readonly';?> />
+									<input type="text" id="txtEdad" class="numeric" maxlength="2" value="<?php echo $paciente->getEdad();?>" />
 								</div>
 							</div>
 							<br />
