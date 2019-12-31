@@ -33,6 +33,7 @@ $arrSeccionesPagina=array(
     "listadoSucursal"=>"administrar",
     "altaSucursal"=>"administrar",
     "verSucursal"=>"administrar",
+    "notificacionPaciente"=>"administrar",
     
     ""=>""
 );

@@ -130,6 +130,33 @@
 		   return $arreglo;
 		}
 		
+		public function obtenerPacientesSeccion($seccion)
+		{
+		    global $objSession;
+		    if ($seccion=="SMS"){
+		        $where = " p.telefonoCel<>'' ";
+		        $select = " distinct p.telefonoCel as id, ";
+		        $concat=", '(', p.telefonoCel, ')'";
+		        
+		    }else{
+		        $where = " p.correo<>'' ";
+		        $concat=", '(', p.correo, ')'";
+		        $select = " p.idPaciente as id, ";
+		        
+		    }
+		    $inner=" inner join sucursal as s on p.idSucursal=s.idSucursal ";
+		    
+		    //}
+		    $query = "Select $select concat_ws(' ', p.nombre, p.apellidos$concat) as nombreP from paciente as p $inner where $where and p.estatus='activo' and s.idFranquicia=".$objSession->getIdFranquicia();
+		    $arreglo = array();
+		    $resultado = mysqli_query($this->dbLink, $query);
+		    if ($resultado && mysqli_num_rows($resultado) > 0) {
+		        while ($row_inf = mysqli_fetch_assoc($resultado)){
+		            $arreglo[$row_inf['id']] = $row_inf['nombreP'];
+		        }
+		    }
+		    return $arreglo;
+		}
 		
 		public function validarDatos(){
 		    return true;
