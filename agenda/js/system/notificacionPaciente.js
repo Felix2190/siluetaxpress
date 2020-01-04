@@ -20,15 +20,21 @@ function iniciar(){
 			combo=respuesta;
 			llenarCombo();
 			$( "#txtPaciente"+seccion ).html(txtCombo);
+
+			console.log(combo);
 		},700);
 	});
-	
+	var arreglo=[];
 	$(".checkSucursal").change(function(){
 		aux=$(this).val();
+		arreglo=[];
 		arrayListado(seccion,aux);
 		setTimeout(function() { 
 //			console.log(respuesta);
-			agregar_quitar_sucursal(aux, $(this).is(':checked') );
+			$.each(respuesta, function( index, nombre ) {
+			    arreglo.push(index);
+			})
+			agregar_quitar_sucursal(arreglo, $(this).is(':checked') );
 			
 		},700);
 		});
@@ -36,22 +42,18 @@ function iniciar(){
 }
 
 
-function agregar_quitar_sucursal(idSucursal,select){
+function agregar_quitar_sucursal(arreglo,select){
 	arrNombre=[];
-	var pos,aux=[];
+	var pos;
 //	var arr = jQuery.makeArray( respuesta );
-	//console.log(arr);
-	console.log(combo);
+	console.log(arreglo);
 	$.each(respuesta, function( index, nombre ) {
-		if(select==true){
-			pos=combo.indexOf(index);
+			if(!select){
+			pos=combo.indexOf(nombre);
 			if(pos!==-1){
-		        combo.splice( pos, 1 );
-			}else{
-				if(arrNombre.indexOf(index)==-1){
-					arrNombre.push(nombre);
-				}
-			}
+				combo.splice(pos,1);
+		    }else{
+ 			}
 		}else{
 			pos=combo.indexOf(index);
 			if(pos==-1){
@@ -65,7 +67,7 @@ function agregar_quitar_sucursal(idSucursal,select){
 		}
 	});
 //	combo=aux;
-//	$( "#txtPaciente"+seccion ).html(combo);
+	$( "#txtPaciente"+seccion ).html(combo);
 console.log(combo);
 }
 function llenarCombo(){
@@ -73,7 +75,7 @@ function llenarCombo(){
 	 aux= new Array();
 	$.each(respuesta, function( index, nombre ) {
 	    txtCombo+='<option value="'+index+'">'+nombre+'</option>';
-	    aux[index]=nombre;
+	    aux.push(index);
 	})
 	combo={};
 	combo=aux;
