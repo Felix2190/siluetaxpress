@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	iniciar();
 });
-	 var seccion;
+	 var seccion,respuesta,combo,arrNombre,aux,txtCombo;
 function iniciar(){
 	iniciarAutoacomplete();
 	$("input[name=datos]").click(function(){
@@ -15,23 +15,84 @@ function iniciar(){
 			$('#divSMS').hide();
 		}
 		$( "#txtPaciente"+seccion ).combobox();
-
-			$.ajax({
-					method : "post",
-					url : "adminFunciones.php",
-					data : {
-						nPaciente: ''+seccion
-					},
-					success : function(data) {
-						respuesta=JSON.parse(data);
-							$( "#txtPaciente"+seccion ).html(respuesta);
-					}
-				});
-		
+		arrayListado(seccion,'');
+		setTimeout(function() { 
+			combo=respuesta;
+			llenarCombo();
+			$( "#txtPaciente"+seccion ).html(txtCombo);
+		},700);
 	});
 	
+	$(".checkSucursal").change(function(){
+		aux=$(this).val();
+		arrayListado(seccion,aux);
+		setTimeout(function() { 
+//			console.log(respuesta);
+			agregar_quitar_sucursal(aux, $(this).is(':checked') );
+			
+		},700);
+		});
+		
 }
 
+
+function agregar_quitar_sucursal(idSucursal,select){
+	arrNombre=[];
+	var pos,aux=[];
+//	var arr = jQuery.makeArray( respuesta );
+	//console.log(arr);
+	console.log(combo);
+	$.each(respuesta, function( index, nombre ) {
+		if(select==true){
+			pos=combo.indexOf(index);
+			if(pos!==-1){
+		        combo.splice( pos, 1 );
+			}else{
+				if(arrNombre.indexOf(index)==-1){
+					arrNombre.push(nombre);
+				}
+			}
+		}else{
+			pos=combo.indexOf(index);
+			if(pos==-1){
+		        combo[index]=nombre;
+			}else{
+				if(arrNombre.indexOf(index)==-1){
+					arrNombre.push(nombre);
+				}
+			}
+			
+		}
+	});
+//	combo=aux;
+//	$( "#txtPaciente"+seccion ).html(combo);
+console.log(combo);
+}
+function llenarCombo(){
+	 txtCombo="";
+	 aux= new Array();
+	$.each(respuesta, function( index, nombre ) {
+	    txtCombo+='<option value="'+index+'">'+nombre+'</option>';
+	    aux[index]=nombre;
+	})
+	combo={};
+	combo=aux;
+}
+function arrayListado(seccion,idSucursal){
+	$.ajax({
+		method : "post",
+		url : "adminFunciones.php",
+		data : {
+			nPaciente: ''+seccion,
+			idSucursal:idSucursal
+		},
+		success : function(data) {
+			respuesta= JSON.parse(data);
+		}
+	});
+
+	
+}
 function iniciarAutoacomplete(){
 	$.widget( "custom.combobox", {
 	      _create: function() {

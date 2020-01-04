@@ -130,7 +130,7 @@
 		   return $arreglo;
 		}
 		
-		public function obtenerPacientesSeccion($seccion)
+		public function obtenerPacientesSeccion($seccion,$idSucursal)
 		{
 		    global $objSession;
 		    if ($seccion=="SMS"){
@@ -144,6 +144,9 @@
 		        $select = " p.idPaciente as id, ";
 		        
 		    }
+		    if ($idSucursal!=""){
+		        $where.=" and p.idSucursal=".$idSucursal;
+		    }
 		    $inner=" inner join sucursal as s on p.idSucursal=s.idSucursal ";
 		    
 		    //}
@@ -152,7 +155,7 @@
 		    $resultado = mysqli_query($this->dbLink, $query);
 		    if ($resultado && mysqli_num_rows($resultado) > 0) {
 		        while ($row_inf = mysqli_fetch_assoc($resultado)){
-		            $arreglo[$row_inf['id']] = $row_inf['nombreP'];
+		              $arreglo[$row_inf['id']] = $row_inf['nombreP'];
 		        }
 		    }
 		    return $arreglo;

@@ -571,10 +571,10 @@ if (isset($_POST['SucursalServ'])&&isset($_POST['ConsultorioServ'])&&isset($_POS
     echo obtenerHorariosServicios($_POST['Sucursal'], $_POST['Consultorio'], $_POST['fechaInicio']);
 }
 
-if (isset($_POST['nPaciente'])){
+if (isset($_POST['nPaciente'])&&isset($_POST['idSucursal'])){
     require_once FOLDER_MODEL_EXTEND. "model.paciente.inc.php";
     $pacientes = new ModeloPaciente();
-    echo json_encode(obtenCombo($pacientes->obtenerPacientesSeccion($_POST['nPaciente']),'Seleccione una opci&oacute;n'));
+    echo json_encode($pacientes->obtenerPacientesSeccion($_POST['nPaciente'],$_POST['idSucursal']));
 }
 
 
