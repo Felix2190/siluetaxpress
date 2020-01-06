@@ -1243,11 +1243,11 @@ function enviaSMS($numPaciente, $sMessage)
     $claves->setIdClave(1);
     
     $concat="";
-    //$concat="concat=true&";
     $sData = 'cmd=sendsms&';
     $sData .= 'domainId=siluetaexpress&';
     $sData .= 'login=lic.lezliedelariva@gmail.com&';
     $sData .= 'passwd='.$claves->getClave().'&';
+    $sData.="concat=true&";
     
     $sData .= 'dest=' . str_replace(',', '&dest=', $numPaciente) . '&';
     $sData .= 'msg=' . urlencode(utf8_encode($sMessage));
@@ -1392,6 +1392,39 @@ function enviar_mail($para,$asunto,$mensaje){
     $mailWeb->AltBody = $mensaje;
     $mailWeb->MsgHTML($mensaje);
     $mailWeb->AddAddress($para);
+    try{
+        return $mailWeb->Send();
+        return true;
+    }catch(Exception $e){
+        return false;
+        echo $e;
+    }
+}
+
+function enviar_mail_archivos($para,$asunto,$mensaje,$imagenes){
+    require_once FOLDER_MODEL_EXTEND. "model.claves.inc.php";
+    $clave = new ModeloClaves();
+    $claveCorreo = $clave->obtenerClaveByReferencia("correo_agenda");
+    require_once(FOLDER_LIB.'PHPMailer/class.phpmailer.php');
+    require_once(FOLDER_LIB."PHPMailer/class.smtp.php");
+    $mailWeb = new PHPMailer();
+    $mailWeb->IsSMTP();
+    $mailWeb->SMTPSecure = 'tls';
+    $mailWeb->Host = "smtp.ionos.mx";
+    $mailWeb->SMTPDebug = 0;
+    $mailWeb->SMTPAuth = true;
+    $mailWeb->Port = 587;
+    $mailWeb->Username = "agendasilueta@pruebassointec.com.mx";
+    $mailWeb->Password = $claveCorreo;
+    $mailWeb->SetFrom("agenda@siluetaexpress.com.mx", "SiluetaExpress @NoReply");
+    //    $mailWeb->AddReplyTo("siluetaexpress@pruebassointec.com.mx", "SiluetaExpress @NoReply");
+    $mailWeb->Subject = $asunto;
+    $mailWeb->AltBody = $mensaje;
+    $mailWeb->MsgHTML($mensaje);
+    $mailWeb->AddAddress($para);
+  foreach ($imagenes as $im)
+      $mailWeb->addAttachment(FOLDER_TMP."$im");
+   
     try{
         return $mailWeb->Send();
         return true;

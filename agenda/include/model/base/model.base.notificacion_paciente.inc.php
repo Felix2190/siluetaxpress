@@ -13,8 +13,9 @@
 		var $idPaciente=0;
 		var $estatus='';
 		var $fechaEnvio='';
+		var $msjError='';
 
-		var $__s=array("idNotificacionPaciente","idNotificacion","idPaciente","estatus","fechaEnvio");
+		var $__s=array("idNotificacionPaciente","idNotificacion","idPaciente","estatus","fechaEnvio","msjError");
 		var $__ss=array();
 
 		#------------------------------------------------------------------------------------------------------#
@@ -77,6 +78,10 @@
 		{
 			$this->fechaEnvio=$fechaEnvio;
 		}
+		public function setMsjError($msjError)
+		{
+			$this->msjError=$msjError;
+		}
 
 		#------------------------------------------------------------------------------------------------------#
 		#-----------------------------------------------Unsetter-----------------------------------------------#
@@ -109,6 +114,10 @@
 		{
 			return $this->fechaEnvio;
 		}
+		public function getMsjError()
+		{
+			return $this->msjError;
+		}
 
 		#------------------------------------------------------------------------------------------------------#
 		#------------------------------------------------Querys------------------------------------------------#
@@ -128,6 +137,7 @@
 			$this->idPaciente=0;
 			$this->estatus='';
 			$this->fechaEnvio='';
+			$this->msjError='';
 		}
 
 		
@@ -137,8 +147,8 @@
 		{
 			try
 			{
-				$SQL="INSERT INTO notificacion_paciente(idNotificacion,idPaciente,estatus,fechaEnvio)
-						VALUES('" . mysqli_real_escape_string($this->dbLink,$this->idNotificacion) . "','" . mysqli_real_escape_string($this->dbLink,$this->idPaciente) . "','" . mysqli_real_escape_string($this->dbLink,$this->estatus) . "','" . mysqli_real_escape_string($this->dbLink,$this->fechaEnvio) . "')";
+				$SQL="INSERT INTO notificacion_paciente(idNotificacion,idPaciente,estatus,fechaEnvio,msjError)
+						VALUES('" . mysqli_real_escape_string($this->dbLink,$this->idNotificacion) . "','" . mysqli_real_escape_string($this->dbLink,$this->idPaciente) . "','" . mysqli_real_escape_string($this->dbLink,$this->estatus) . "','" . mysqli_real_escape_string($this->dbLink,$this->fechaEnvio) . "','" . mysqli_real_escape_string($this->dbLink,$this->msjError) . "')";
 				$result=mysqli_query($this->dbLink,$SQL);
 				if(!$result)
 					return $this->setSystemError("Error en la insercion de registro.","[" . $SQL . "][" . mysqli_error($this->dbLink) . "][ModeloBaseNotificacion_paciente::Insertar]");
@@ -158,7 +168,7 @@
 		{
 			try
 			{
-				$SQL="UPDATE notificacion_paciente SET idNotificacion='" . mysqli_real_escape_string($this->dbLink,$this->idNotificacion) . "',idPaciente='" . mysqli_real_escape_string($this->dbLink,$this->idPaciente) . "',estatus='" . mysqli_real_escape_string($this->dbLink,$this->estatus) . "',fechaEnvio='" . mysqli_real_escape_string($this->dbLink,$this->fechaEnvio) . "'
+				$SQL="UPDATE notificacion_paciente SET idNotificacion='" . mysqli_real_escape_string($this->dbLink,$this->idNotificacion) . "',idPaciente='" . mysqli_real_escape_string($this->dbLink,$this->idPaciente) . "',estatus='" . mysqli_real_escape_string($this->dbLink,$this->estatus) . "',fechaEnvio='" . mysqli_real_escape_string($this->dbLink,$this->fechaEnvio) . "',msjError='" . mysqli_real_escape_string($this->dbLink,$this->msjError) . "'
 					WHERE idNotificacionPaciente=" . $this->idNotificacionPaciente;
 				
 				$result=mysqli_query($this->dbLink,$SQL);
@@ -200,7 +210,7 @@
 			try
 			{
 				$SQL="SELECT
-						idNotificacionPaciente,idNotificacion,idPaciente,estatus,fechaEnvio
+						idNotificacionPaciente,idNotificacion,idPaciente,estatus,fechaEnvio,msjError
 					FROM notificacion_paciente
 					WHERE idNotificacionPaciente=" . mysqli_real_escape_string($this->dbLink,$this->idNotificacionPaciente);
 					

@@ -56,6 +56,24 @@
 			return true;
 		}
 
-
+		public function obtenerNotificacionesPendientes($Tipo)
+		{
+		    if ($Tipo=="SMS"){
+		        $limit=30;
+		    }else {
+		        $limit=3;
+		    }
+		    $query = "Select idNotificacionPaciente from notificacion_paciente as np
+                     inner join notificacion as n on np.idNotificacion=n.idNotificacion where tipo='$Tipo' and estatus='espera' limit $limit";
+		    $arreglo = array();
+		    $resultado = mysqli_query($this->dbLink, $query);
+		    if ($resultado && mysqli_num_rows($resultado) > 0) {
+		        while ($row_inf = mysqli_fetch_assoc($resultado)){
+		            $arreglo[] = $row_inf['idNotificacionPaciente'];
+		        }
+		    }
+		    return $arreglo;
+		}
+		
 	}
 

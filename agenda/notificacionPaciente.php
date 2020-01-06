@@ -110,7 +110,7 @@ require_once 'masterInclude.inc.php';
 										<br />
 										<br />
 										<div class="row">
-										<textarea rows="5" cols="" id="txtCel"></textarea>
+										<textarea rows="5" cols="" id="txtSMS"></textarea>
 										</div>
 									</div>
 									<div class="4u 12u$(xsmall)">

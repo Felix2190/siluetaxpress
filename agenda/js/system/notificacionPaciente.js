@@ -49,7 +49,8 @@ function agregar_quitar_sucursal(arreglo,select){
 	 aux= new Array();
 //	var arr = jQuery.makeArray( respuesta );
 	 aux=combo;
-	$.each(arrPacientes, function(index,n ) {
+	 console.log(arreglo.length);
+		$.each(arrPacientes, function(index,n ) {
 //		console.log('--------'+index);
 			if(!select){ //quitar del combo
 			pos=arreglo.indexOf(index);
