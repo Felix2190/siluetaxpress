@@ -135,8 +135,8 @@
 		    global $objSession;
 		    if ($seccion=="SMS"){
 		        $where = " p.telefonoCel<>'' ";
-		        $select = " distinct p.telefonoCel as id, ";
-		        $concat=", '(', p.telefonoCel, ')'";
+		        $select = " distinct p.telefonoCel, p.idPaciente as id, ";
+		        $concat=", '(',p.telefonoCel,')'";
 		        
 		    }else{
 		        $where = " p.correo<>'' ";

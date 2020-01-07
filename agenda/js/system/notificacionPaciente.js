@@ -1,7 +1,8 @@
 $(document).ready(function(){
 	iniciar();
 });
-	 var seccion,respuesta,combo,arrNombre=[],aux,txtCombo,arrPacientes,idINDEX;
+	 var seccion,respuesta,combo,arrNombre=[],aux,txtCombo,arrPacientes,idINDEXlong,valor,obj;
+
 function iniciar(){
 	iniciarAutoacomplete();
 	$("input[name=datos]").change(function(){
@@ -14,6 +15,12 @@ function iniciar(){
 			$('#divCorreo').show();
 			$('#divSMS').hide();
 		}
+		//deseleccionar checks
+		$("input[type=checkbox]:checked").each(function(){
+			$("#"+$(this).attr("id")). prop("checked", false);
+	     });
+		$( "#txt"+seccion ).html('');
+	    //llenar combo
 		$( "#txtPaciente"+seccion ).combobox();
 		arrayListado(seccion,'');
 		setTimeout(function() { 
@@ -28,7 +35,7 @@ function iniciar(){
 	$(".checkSucursal").click(function(){
 		arreglo=[];
 		arrayListado(seccion,$(this).val());
-	 var select=$("#"+$(this).attr("id")).prop('checked') ;
+	 var select=$("#"+$(this).attr("id")).prop('checked') ;//obtener status del check seleccionado 
 		setTimeout(function() { 
 //			console.log(index);
 			$.each(respuesta, function( index) {
@@ -39,9 +46,50 @@ function iniciar(){
 			
 		},700);
 		});
-		
+	$("#btnAgregarSMS").click(function(){
+		agregarElemento();
+	});	
+	$("#btnEliminarSMSCorreo").click(function(){
+		quitarElemento();
+	});	
 }
 
+function agregarElemento(){
+	txtCombo="";
+	 aux= {};
+	 aux=combo;
+	pos=$.inArray($( "#txtPaciente"+seccion ).val(), combo);
+	if(pos>=0){  //existe
+		aux.splice(pos,1);
+		arrNombre.push($( "#txtPaciente"+seccion ).val());
+	}	
+	actualizarComboTextarea();
+}
+
+function quitarElemento(){
+	long=arrNombre.length;
+	if(long>0){
+		long--;
+		$.ajax({
+			method : "post",
+			url : "adminFunciones.php",
+			data : {
+				idPacienteSucursal:arrNombre[long]
+			},
+			success : function(idP) {
+				console.log(arrNombre[long])
+				txtCombo="";
+				 aux= {};
+				 aux=combo;
+				 aux.push(arrNombre[long]);
+				arrNombre.splice(long,1);
+				actualizarComboTextarea();				
+				$("#"+seccion+"chk"+idP). prop("checked", false);
+			  	}
+		});
+
+	}
+}
 
 function agregar_quitar_sucursal(arreglo,select){
 	var pos,total=0;
@@ -59,7 +107,7 @@ function agregar_quitar_sucursal(arreglo,select){
 				aux.splice(pos,1);
 				total++;
 	///			 console.log(index+' >>>>>>> aux : '+aux.length);
-				arrNombre.push(arrPacientes[n]);
+				arrNombre.push(n);
 			 }else{//
 //				 aux.push(n);
 //				 aux[index]=arrPacientes[index];
@@ -67,27 +115,32 @@ function agregar_quitar_sucursal(arreglo,select){
 		    }
 		}else{
 			 aux.push(n);
-				pos=$.inArray(arrPacientes[n], arrNombre);
+				pos=$.inArray(n, arrNombre);
 				if(pos>=0){  //existe
 					arrNombre.splice(pos,1);
 				}			
 		}
 	});
 		console.log('encontrados: '+total);
-
-		$.each(arrNombre, function(i,elem) {
-		    txtCombo+=elem+' ';
-		})
-		$( "#txt"+seccion ).html(txtCombo);
-
-		combo= {};
-	 combo=aux;
-	 console.log('aux final: '+aux.length);
-	 idINDEX="elemento";
-		llenarCombo();
-	$( "#txtPaciente"+seccion ).html(txtCombo);
+		actualizarComboTextarea();
 console.log(arrNombre);
 }
+
+function actualizarComboTextarea(){
+	$.each(arrNombre, function(i,elem) {
+	    txtCombo+=arrPacientes[elem]+' ';
+	})
+	$( "#txt"+seccion ).html(txtCombo);
+
+	combo= {};
+ combo=aux;
+ console.log('aux final: '+aux.length);
+ idINDEX="elemento";
+	llenarCombo();
+$( "#txtPaciente"+seccion ).html(txtCombo);
+//ponerElCursorAlFinal("txt"+seccion )
+}
+
 function llenarCombo(){
 	 txtCombo="";
 	 aux= new Array();
@@ -106,6 +159,7 @@ function llenarCombo(){
 	combo=aux;
 	console.log('combo: '+combo.length)
 }
+
 function arrayListado(seccion,idSucursal){
 	$.ajax({
 		method : "post",
@@ -120,6 +174,14 @@ function arrayListado(seccion,idSucursal){
 	});
 
 	
+}
+
+function ponerElCursorAlFinal(id){
+	obj = $("#"+id),
+    valor = obj.val();
+    obj.focus().val("").val(valor);
+   obj.scrollTop(obj[0].scrollHeight);
+
 }
 function iniciarAutoacomplete(){
 	$.widget( "custom.combobox", {
@@ -217,7 +279,7 @@ function iniciarAutoacomplete(){
 	 
 	        // Selected an item, nothing to do
 	        if ( ui.item ) {
-	        	consultarBloqueo();
+	//        	consultarBloqueo();
 	          return;
 	        }
 	 

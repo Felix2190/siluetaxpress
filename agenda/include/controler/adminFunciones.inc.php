@@ -577,6 +577,12 @@ if (isset($_POST['nPaciente'])&&isset($_POST['idSucursal'])){
     echo json_encode($pacientes->obtenerPacientesSeccion($_POST['nPaciente'],$_POST['idSucursal']));
 }
 
+if (isset($_POST['idPacienteSucursal'])){
+    require_once FOLDER_MODEL_EXTEND. "model.paciente.inc.php";
+    $pacientes = new ModeloPaciente();
+    $pacientes->setIdPaciente($_POST['idPacienteSucursal']);
+    echo $pacientes->getIdSucursal();
+}
 
 function obtenCombo($array,$default){
     $combo='<option value="">'.$default.'</option>';

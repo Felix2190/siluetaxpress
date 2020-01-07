@@ -112,6 +112,11 @@ require_once 'masterInclude.inc.php';
 										<div class="row">
 										<textarea rows="5" cols="" id="txtSMS"></textarea>
 										</div>
+										<div class="row">
+											<div class="12u 12u$(xsmall)">
+            									<a style="float: right;" id="btnEliminarSMSCorreo" class="button" >Quitar &uacute;ltimo	</a>&ensp;
+    										</div>
+										</div>
 									</div>
 									<div class="4u 12u$(xsmall)">
 										<div class="2u 12u$(xsmall)">
@@ -121,7 +126,7 @@ require_once 'masterInclude.inc.php';
                 								<?php 
                 								$text='';
                 								foreach ($arrSucursal as $id=>$valor)
-                								$text.='<div class="12u 12u$(xsmall)"><input class="checkSucursal" value="'.$id.'" id="chk'.$id.'" name="chk'.$id.'"  type="checkbox"> <label for="chk'.$id.'">'.$valor.'</label></div>';
+                								$text.='<div class="12u 12u$(xsmall)"><input class="checkSucursal" value="'.$id.'" id="SMSchk'.$id.'" name="SMSchk'.$id.'"  type="checkbox"> <label for="SMSchk'.$id.'">'.$valor.'</label></div>';
                 								echo $text;
                 								?>
 											</div>
@@ -218,7 +223,7 @@ require_once 'masterInclude.inc.php';
                 								<?php 
                 								$text='';
                 								foreach ($arrSucursal as $id=>$valor)
-                								$text.='<div class="12u 12u$(xsmall)"><input class="checkSucursal" value="'.$id.'" id="chk'.$id.'" name="chk'.$id.'"  type="checkbox"> <label for="chk'.$id.'">'.$valor.'</label></div>';
+                								$text.='<div class="12u 12u$(xsmall)"><input class="checkSucursal" value="'.$id.'" id="Correochk'.$id.'" name="Correochk'.$id.'"  type="checkbox"> <label for="Correochk'.$id.'">'.$valor.'</label></div>';
                 								echo $text;
                 								?>
 											</div>
