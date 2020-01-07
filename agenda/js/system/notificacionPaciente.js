@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	iniciar();
 });
-	 var seccion,respuesta,combo,arrNombre,aux,txtCombo,arrPacientes;
+	 var seccion,respuesta,combo,arrNombre=[],aux,txtCombo,arrPacientes,idINDEX;
 function iniciar(){
 	iniciarAutoacomplete();
 	$("input[name=datos]").change(function(){
@@ -18,23 +18,24 @@ function iniciar(){
 		arrayListado(seccion,'');
 		setTimeout(function() { 
 			arrPacientes=combo=respuesta;
+			idINDEX="index";
 			llenarCombo();
 			$( "#txtPaciente"+seccion ).html(txtCombo);
 
-			console.log(combo);
 		},700);
 	});
-	var arreglo=[];
-	$(".checkSucursal").change(function(){
-		aux=$(this).val();
+	var arreglo=[],x=1;
+	$(".checkSucursal").click(function(){
 		arreglo=[];
-		arrayListado(seccion,aux);
+		arrayListado(seccion,$(this).val());
+	 var select=$("#"+$(this).attr("id")).prop('checked') ;
 		setTimeout(function() { 
-//			console.log(respuesta);
+//			console.log(index);
 			$.each(respuesta, function( index) {
-			    arreglo.push(''+index);
-			})
-			agregar_quitar_sucursal(arreglo, $(this).is(':checked') );
+			    arreglo.push(index);
+				x++;
+				})
+			agregar_quitar_sucursal(arreglo, select);
 			
 		},700);
 		});
@@ -43,55 +44,67 @@ function iniciar(){
 
 
 function agregar_quitar_sucursal(arreglo,select){
-	arrNombre=[],ay={};
-	var pos;
+	var pos,total=0;
 	txtCombo="";
-	 aux= new Array();
+	 aux= {};
 //	var arr = jQuery.makeArray( respuesta );
+//	$( "#txt"+seccion ).append('');
 	 aux=combo;
-	 console.log(arreglo.length);
-		$.each(arrPacientes, function(index,n ) {
-//		console.log('--------'+index);
-			if(!select){ //quitar del combo
-			pos=arreglo.indexOf(index);
-			if(pos!==-1){  //existe
+	 console.log('consulta: '+arreglo.length);
+	 console.log('aux: '+aux.length);
+		$.each(arreglo, function(index,n ) {
+			if(select){ //quitar del combo
+			pos=$.inArray(n, combo);
+			if(pos>=0){  //existe
 				aux.splice(pos,1);
-				$( "#txt"+seccion ).append(arrPacientes[index]+' ');
-				arrNombre.push(index);
+				total++;
+	///			 console.log(index+' >>>>>>> aux : '+aux.length);
+				arrNombre.push(arrPacientes[n]);
 			 }else{//
-		//		 aux[index]=arrPacientes[index];
-			    txtCombo+='<option value="'+index+'">'+arrPacientes[index]+'</option>';
+//				 aux.push(n);
+//				 aux[index]=arrPacientes[index];
+//			    txtCombo+='<option value="'+index+'">'+arrPacientes[index]+'</option>';
 		    }
 		}else{
-			pos=combo.indexOf(index);
-			if(pos==-1){
-		        aux.push(index);
-			}else{
-				if(arrNombre.indexOf(index)!==-1){
-					arrNombre.push(nombre);
-				}
-			}
-			
+			 aux.push(n);
+				pos=$.inArray(arrPacientes[n], arrNombre);
+				if(pos>=0){  //existe
+					arrNombre.splice(pos,1);
+				}			
 		}
 	});
+		console.log('encontrados: '+total);
 
-	 combo= {};
+		$.each(arrNombre, function(i,elem) {
+		    txtCombo+=elem+' ';
+		})
+		$( "#txt"+seccion ).html(txtCombo);
+
+		combo= {};
 	 combo=aux;
-	//}llenarCombo();
+	 console.log('aux final: '+aux.length);
+	 idINDEX="elemento";
+		llenarCombo();
 	$( "#txtPaciente"+seccion ).html(txtCombo);
-console.log(combo);
+console.log(arrNombre);
 }
 function llenarCombo(){
 	 txtCombo="";
 	 aux= new Array();
-	$.each(combo, function( index ) {
-		console.log(index);
-	    txtCombo+='<option value="'+index+'">'+arrPacientes[index]+'</option>';
-	    aux.push(index);
+	 var value;
+	$.each(combo, function( index,elem) {
+		//elemento a seleccionar
+		if(idINDEX=="index")
+			value=index;
+		else
+			value=elem;
+		//		console.log(value);
+	    txtCombo+='<option value="'+value+'">'+arrPacientes[value]+'</option>';
+	    aux.push(value);
 	})
 	combo={};
 	combo=aux;
-	console.log(combo.length)
+	console.log('combo: '+combo.length)
 }
 function arrayListado(seccion,idSucursal){
 	$.ajax({
