@@ -27,7 +27,7 @@ require_once FOLDER_MODEL_EXTEND. "model.notificacion_paciente.inc.php";
 $xajax = new xajax();
 
 
-function guardar($nombre,$texto,$arrNombre,$seccion){
+function guardar($nombre,$texto,$arrNombre,$seccion,$rutas){
     $r=new xajaxResponse();
     global $objSession;
     $notif= new ModeloNotificacion();
@@ -37,6 +37,28 @@ function guardar($nombre,$texto,$arrNombre,$seccion){
     $notif->setNombre($nombre);
     $notif->setTexto($texto);
     $notif->setTipo($seccion);
+    if ($seccion=="Correo"){
+        foreach ($rutas as $id=>$ruta){
+            switch ($id){
+                case 0:
+                    $notif->setImagen1($ruta);
+                    break;
+                case 1:
+                    $notif->setImagen2($ruta);
+                    break;
+                case 2:
+                    $notif->setImagen3($ruta);
+                    break;
+                case 3:
+                    $notif->setImagen4($ruta);
+                    break;
+                case 4:
+                    $notif->setImagen5($ruta);
+                    break;
+                    
+            }
+        }
+    }
     $notif->Guardar();
     if ($notif->getError()){
         $r->call("mostrarMsjError",$notif->getStrError());

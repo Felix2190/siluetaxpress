@@ -1,11 +1,14 @@
 $(document).ready(function(){
 	iniciar();
 });
-	 var seccion,respuesta,combo={},arrNombre=[],aux,txtCombo,arrPacientes,idINDEXlong,valor,obj;
+	 var seccion,respuesta,combo={},arrNombre=[],aux,txtCombo,arrPacientes,idINDEXlong,valor,obj,editor;
 
 function iniciar(){
-	iniciarAutoacomplete();
+	    editor = CKEDITOR.replace('txtTextoCorreo');
+	
 	$("input[name=datos]").change(function(){
+	
+	iniciarAutoacomplete();
 		$( "#btnGuardar").show();
 	arrNombre=[];
 		if($(this).val()=="SMS"){
@@ -72,15 +75,38 @@ function iniciar(){
 	$("#btnGuardar").click(function(){
 		guardar();
 	});	
+	
+	$("#btnAgregarIma").click(function(){
+		if($('.row_tabla').length<=4){
+			agregar_archivo();
+		}else{
+			mostrarMsjError('Solo se pueden adjuntar 5 im&aacute;genes');
+		}
+	});	
 }
 
 function guardar(){
-	var nombre= $("#txtNombre"+seccion).val();
-	var texto= $("#txtTexto"+seccion).val(),error,existeError=false;
+	var nombre= $("#txtNombre"+seccion).val(),error,existeError=false;
+	var ruta =[];
+	 var num=0;
+	                    
 	if (nombre == "") {
 		existeError = true;
 		console.log("Error: txtnombre");
 		error="Debe ingresar el nombre";
+	}
+	if(seccion=="Correo"){
+		var editorData = editor.getData();
+    	texto= editorData.replace(/&nbsp;/gi, ' ');
+
+		var trs = $("#tb1 tr").length;
+	                    for (num = 0; num <= trs; num++) {
+	                		if ($("#tb1 tr[id^=fila" + num + "]").attr('id')) {
+	                			ruta.push('/tmp/notificaciones/'+$("#ruta_archivo" + num).val().trim());
+	                		}
+	                    }    
+	}else{
+	 texto= $("#txtTexto"+seccion).val();
 	}
 	
 	if (texto == "") {
@@ -89,18 +115,19 @@ function guardar(){
 		error="Debe ingresar el texto";
 	}
 	
+	
 	if (arrNombre.length == 0) {
 		existeError = true;
 		console.log("Error: txt");
 		error="Debe seleccionar por lo menos un paciente";
 	}
 	
+	console.log(ruta);
 	if(existeError){
 	mostrarMsjError(error,5);
 	}else{
-	
 	mostrarMsjEspera('Espere un momento... ',50);
-	xajax_guardar(nombre,texto,arrNombre,seccion);
+	xajax_guardar(nombre,texto,arrNombre,seccion,ruta);
 	}
 }
 
@@ -252,6 +279,66 @@ var out = '';
     $("#txtTextoSMS").val(out);
         return true;
 }
+
+function agregar_archivo(){
+  
+  var tamano = $('.row_tabla').length;
+
+  var rand = Math.floor((Math.random()*10000)+999);
+  var formData = new FormData();
+  var inputFileImage = document.getElementById('archivoImagen');
+  var file = inputFileImage.files[0];
+  console.log( file );
+if(file!=undefined){
+	$('#tablaArchivos').show();
+  formData.append('imagenCorreo',file);
+  formData.append('id',rand);
+$.ajax({
+      url: 'adminFunciones.php',  
+      type: 'POST',
+      // Form data
+      //datos del formulario
+      data: formData,
+      //necesario para subir archivos via ajax
+      cache: false,
+      contentType: false,	
+      processData: false,
+      //
+      //una vez finalizado correctamente
+      success: function(data){
+    	  if(data){
+          var fila='<tr class="row_tabla" id="fila'+tamano+'">'+
+			'<td colspan="4" >'+
+			'<input type="hidden" id="ruta_archivo'+tamano+'" value="'+rand+'_'+file.name+'" />'+file.name+'</td>'+
+			'<td >'+
+			'<a href="javascript:quitar_archivo('+tamano+');" ><img src="images/cancelarCita2.png" style="width: 30px" /> </a></td>'+
+		'</tr>';
+ $('#contenedor_tabla').append(fila);
+    	  }else{
+    		  mostrarMsjError('Ocurri&oacute; un problema al subir la imagen');
+    	  }
+ $('#archivoImagen').val('');
+    	  
+      }
+  });
+}else{
+	  if(file==undefined){
+        var msjError=' Debe seleccionar un archivo';
+    }
+	  mostrarMsjError(msjError);
+	  }
+                        
+};
+
+function quitar_archivo(id){
+	  
+  $('#fila'+id).remove();
+  if($('.row_tabla').length==0){
+  	$('#tablaArchivos').hide();
+  	
+  }
+}
+
 
 function iniciarAutoacomplete(){
 	$.widget( "custom.combobox", {

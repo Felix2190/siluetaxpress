@@ -31,6 +31,8 @@ require_once 'masterInclude.inc.php';
 		</style>
 		
 		<?php require_once 'importar_scripts.php'; ?>
+	<script src="ckeditor/ckeditor.js"></script>
+	
 	</head>
 	<body>
 
@@ -152,40 +154,48 @@ require_once 'masterInclude.inc.php';
 					<div class="12u 12u$(small)" >
     					<div class="box">
     						<div class="row">
-								<div class="5u 12u$(xsmall)">
+    							<div class="5u 12u$(xsmall)">
 									<div class="3u 12u$(xsmall)">
 										<label>Asunto:</label>
 									</div>
 									<div class="12u 12u$(xsmall)">
 										<input type="text" id="txtNombreCorreo"  maxlength="50" />
 									</div>
-									<br />
-									<div class="2u 12u$(xsmall)">
+								</div>
+								
+								<div class="1u 12u$(xsmall)">
 										<label>Texto:</label>
-									</div>
-									<div class="12u 12u$(xsmall)">
-										<textarea rows="1" cols="" id="txtTextoCorreo"></textarea>
-									</div>
-									<br />
+								</div>
+								
+								<div class="row 6u 12u$(xsmall)">
+										<textarea id="txtTextoCorreo" type="text" class="form-control rounded-0" required  pattern="([A-ZÃ�Ã‰Ã�Ã“ÃšÃ±Ã¡Ã©Ã­Ã³ÃºÃ‘])*"></textarea>
+                      			
+								</div>
+    						</div>
+    						
+    						<br />
+									
+    						<div class="row">
+								<div class="5u 12u$(xsmall)">
 									<div class="6u 12u$(xsmall)">
 										<label>Adjuntar imagenes</label>
 									</div>
     								<div class="row">
 										<div class="12u 12u$(xsmall)">
 												<div class="11u 12u$(xsmall)" style="justify-content: center;">
-            									    <input type="file" name="fileToUpload" id="fileToUpload" />              
+            									    <input type="file" name="archivoImagen" id="archivoImagen" />              
             									</div>
 										</div>
 									<br />
 										<div class="8u 12u$(xsmall)">
 											<a style="float: right;" id="btnAgregarIma" class="button" >A&ntilde;adir</a>&ensp;
 										</div>
-        						<div class="12u 12u$(xsmall)" id="divTablaI" style="display: ;">
-        								<table id="tblImagen">
+        						<div class="12u 12u$(xsmall)" id="tablaArchivos" style="display: ;">
+        								<table id="tb1">
         									<thead>
         										<tr><th colspan="4">Imagen</th><th></th></tr>
         									</thead>
-        									<tbody id="tbodyProducto">
+        									<tbody id="contenedor_tabla">
         									</tbody>
         								 </table>
         						</div>
@@ -216,7 +226,7 @@ require_once 'masterInclude.inc.php';
 										<br />
 										<br />
 										<div class="row">
-										<textarea rows="5" cols="" id="	txtCorreo"></textarea>
+										<textarea rows="5" cols="" id="txtCorreo"></textarea>
 										</div>
 										<div class="row">
 											<div class="6u 12u$(xsmall)">

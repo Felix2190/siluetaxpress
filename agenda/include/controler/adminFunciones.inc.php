@@ -23,6 +23,29 @@ if(!empty($_FILES['imagen']))
     
 }
 
+if(!empty($_FILES['imagenCorreo']))
+{
+    
+    $carpeta=$_SERVER['DOCUMENT_ROOT']."/tmp/notificaciones/";
+//    echo $carpeta;
+    $archivo=$_FILES['imagenCorreo'];
+    if($archivo['name']!=''){
+        $tempFile = $archivo['tmp_name'];
+        if (!file_exists($carpeta))
+            mkdir($carpeta,0777);
+            $targetFile =  ($_POST['id'].'_'.$archivo['name']);
+            $targetFileFinal = $carpeta.$targetFile;
+            try{
+              move_uploaded_file($tempFile,$targetFileFinal);
+              if (is_uploaded_file($_FILES['imagen']['tmp_name']))
+                  echo "../tmp/fotosperfil/".$targetFile;
+                  else echo '';
+                }catch(Exception $e){
+                    echo false;
+                }
+    }
+    
+}
 if (isset($_POST['pacientes'])){
     require_once FOLDER_MODEL_EXTEND. "model.paciente.inc.php";
     $pacientes = new ModeloPaciente();
