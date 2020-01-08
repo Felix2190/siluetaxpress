@@ -5,10 +5,11 @@ $(document).ready(function(){
 
 function iniciar(){
 	    editor = CKEDITOR.replace('txtTextoCorreo');
-	
+	    iniciarAutoacomplete();
+	    $( "#txtPacienteSMS" ).combobox();
+		
 	$("input[name=datos]").change(function(){
 	
-	iniciarAutoacomplete();
 		$( "#btnGuardar").show();
 	arrNombre=[];
 		if($(this).val()=="SMS"){
@@ -26,7 +27,6 @@ function iniciar(){
 	     });
 		$( "#txt"+seccion ).html('');
 	    //llenar combo
-		$( "#txtPaciente"+seccion ).combobox();
 		arrayListado(seccion,'');
 		setTimeout(function() { 
 			arrPacientes=combo=respuesta;

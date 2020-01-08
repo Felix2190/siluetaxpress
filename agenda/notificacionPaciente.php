@@ -216,7 +216,8 @@ require_once 'masterInclude.inc.php';
 										<div class="row">
 										
             								<div class="8u 12u$(xsmall)">
-    											<input id="txtPacienteCorreo" style="width: 100%;"/>
+    											<select id="txtPacienteCorreo">
+    											</select>
     										</div>
             								<div class="4u 12u$(xsmall)">
             									<a style="float: right;" id="btnAgregarCorreo" class="button" >A&ntilde;adir</a>&ensp;
