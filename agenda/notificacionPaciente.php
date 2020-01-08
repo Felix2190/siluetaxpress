@@ -76,7 +76,7 @@ require_once 'masterInclude.inc.php';
 										<label>Nombre:</label>
 									</div>
 									<div class="12u 12u$(xsmall)">
-										<input type="text" id="txtNombre"  maxlength="50" />
+										<input type="text" id="txtNombreSMS"  maxlength="50" />
 									</div>
 									<div class="2u 12u$(xsmall)">
 										<label>Texto:</label>
@@ -157,14 +157,14 @@ require_once 'masterInclude.inc.php';
 										<label>Asunto:</label>
 									</div>
 									<div class="12u 12u$(xsmall)">
-										<input type="text" id="txtNombre"  maxlength="50" />
+										<input type="text" id="txtNombreCorreo"  maxlength="50" />
 									</div>
 									<br />
 									<div class="2u 12u$(xsmall)">
 										<label>Texto:</label>
 									</div>
 									<div class="12u 12u$(xsmall)">
-										<textarea rows="1" cols="" id="txtTexto"></textarea>
+										<textarea rows="1" cols="" id="txtTextoCorreo"></textarea>
 									</div>
 									<br />
 									<div class="6u 12u$(xsmall)">

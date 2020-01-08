@@ -75,6 +75,33 @@ function iniciar(){
 }
 
 function guardar(){
+	var nombre= $("#txtNombre"+seccion).val();
+	var texto= $("#txtTexto"+seccion).val(),error,existeError=false;
+	if (nombre == "") {
+		existeError = true;
+		console.log("Error: txtnombre");
+		error="Debe ingresar el nombre";
+	}
+	
+	if (texto == "") {
+		existeError = true;
+		console.log("Error: txttexto");
+		error="Debe ingresar el texto";
+	}
+	
+	if (arrNombre.length == 0) {
+		existeError = true;
+		console.log("Error: txt");
+		error="Debe seleccionar por lo menos un paciente";
+	}
+	
+	if(existeError){
+	mostrarMsjError(error,5);
+	}else{
+	
+	mostrarMsjEspera('Espere un momento... ',50);
+	xajax_guardar(nombre,texto,arrNombre,seccion);
+	}
 }
 
 function agregarElemento(){
@@ -217,7 +244,7 @@ function ponerElCursorAlFinal(id){
             return false;
 var out = '';
     //Se añaden las letras validas
-    var filtro = 'abcdefghijklmn!?opqrstuvwxyzABCDEFGHIJKLMN.,;OPQRSTUVWXYZ1234567890';//Caracteres validos
+    var filtro = ' abcdefghijklmn!?opqrstuvwxyzABCDEFGHIJKLMN.,;OPQRSTUVWXYZ1234567890';//Caracteres validos
 	
     for (var i=0; i<contenido.length; i++)
        if (filtro.indexOf(contenido.charAt(i)) != -1) 
