@@ -37,9 +37,7 @@ if(!empty($_FILES['imagenCorreo']))
             $targetFileFinal = $carpeta.$targetFile;
             try{
               move_uploaded_file($tempFile,$targetFileFinal);
-              if (is_uploaded_file($_FILES['imagen']['tmp_name']))
-                  echo "../tmp/fotosperfil/".$targetFile;
-                  else echo '';
+                  echo "../tmp/notificaciones/".$targetFile;
                 }catch(Exception $e){
                     echo false;
                 }

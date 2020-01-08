@@ -126,6 +126,7 @@ function guardar(){
 	if(existeError){
 	mostrarMsjError(error,5);
 	}else{
+	$("#btnGuardar").hide();
 	mostrarMsjEspera('Espere un momento... ',50);
 	xajax_guardar(nombre,texto,arrNombre,seccion,ruta);
 	}
@@ -135,6 +136,7 @@ function agregarElemento(){
 	txtCombo="";
 	 aux= {};
 	 aux=combo;
+		console.log('pac '+$( "#txtPaciente"+seccion ).val());
 	pos=$.inArray($( "#txtPaciente"+seccion ).val(), combo);
 	if(pos>=0){  //existe
 		aux.splice(pos,1);
@@ -296,15 +298,10 @@ if(file!=undefined){
 $.ajax({
       url: 'adminFunciones.php',  
       type: 'POST',
-      // Form data
-      //datos del formulario
       data: formData,
-      //necesario para subir archivos via ajax
       cache: false,
       contentType: false,	
       processData: false,
-      //
-      //una vez finalizado correctamente
       success: function(data){
     	  if(data){
           var fila='<tr class="row_tabla" id="fila'+tamano+'">'+
