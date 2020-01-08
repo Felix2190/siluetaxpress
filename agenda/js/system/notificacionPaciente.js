@@ -1,11 +1,13 @@
 $(document).ready(function(){
 	iniciar();
 });
-	 var seccion,respuesta,combo,arrNombre=[],aux,txtCombo,arrPacientes,idINDEXlong,valor,obj;
+	 var seccion,respuesta,combo={},arrNombre=[],aux,txtCombo,arrPacientes,idINDEXlong,valor,obj;
 
 function iniciar(){
 	iniciarAutoacomplete();
 	$("input[name=datos]").change(function(){
+		$( "#btnGuardar").show();
+	arrNombre=[];
 		if($(this).val()=="SMS"){
 			seccion="SMS";
 			 $('#divSMS').show();
@@ -30,6 +32,7 @@ function iniciar(){
 			$( "#txtPaciente"+seccion ).html(txtCombo);
 
 		},700);
+			$( "#spnTotal"+seccion ).html(' '+arrNombre.length);
 	});
 	var arreglo=[],x=1;
 	$(".checkSucursal").click(function(){
@@ -46,12 +49,32 @@ function iniciar(){
 			
 		},700);
 		});
+		
+	$("#txtTextoSMS").on('paste', function(e){
+    	e.preventDefault();
+    });
+  
 	$("#btnAgregarSMS").click(function(){
 		agregarElemento();
 	});	
-	$("#btnEliminarSMSCorreo").click(function(){
+	$("#btnEliminarSMS").click(function(){
 		quitarElemento();
 	});	
+	
+	
+	$("#btnAgregarCorreo").click(function(){
+		agregarElemento();
+	});	
+	$("#btnEliminarCorreo").click(function(){
+		quitarElemento();
+	});	
+	
+	$("#btnGuardar").click(function(){
+		guardar();
+	});	
+}
+
+function guardar(){
 }
 
 function agregarElemento(){
@@ -138,6 +161,7 @@ function actualizarComboTextarea(){
  idINDEX="elemento";
 	llenarCombo();
 $( "#txtPaciente"+seccion ).html(txtCombo);
+$( "#spnTotal"+seccion ).html(' '+arrNombre.length);
 //ponerElCursorAlFinal("txt"+seccion )
 }
 
@@ -181,8 +205,27 @@ function ponerElCursorAlFinal(id){
     valor = obj.val();
     obj.focus().val("").val(valor);
    obj.scrollTop(obj[0].scrollHeight);
-
 }
+
+ function limitar(e, contenido, caracteres){
+                // obtenemos la tecla pulsada
+        var unicode=e.keyCode? e.keyCode : e.charCode;
+        if(unicode==8 || unicode==46 || unicode==13 || unicode==37 || unicode==39 || unicode==38 || unicode==40)
+            return true;
+
+        if(contenido.length>=caracteres)
+            return false;
+var out = '';
+    //Se añaden las letras validas
+    var filtro = 'abcdefghijklmn!?opqrstuvwxyzABCDEFGHIJKLMN.,;OPQRSTUVWXYZ1234567890';//Caracteres validos
+	
+    for (var i=0; i<contenido.length; i++)
+       if (filtro.indexOf(contenido.charAt(i)) != -1) 
+	     out += contenido.charAt(i);
+    $("#txtTextoSMS").val(out);
+        return true;
+}
+
 function iniciarAutoacomplete(){
 	$.widget( "custom.combobox", {
 	      _create: function() {

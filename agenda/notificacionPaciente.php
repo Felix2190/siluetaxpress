@@ -82,7 +82,7 @@ require_once 'masterInclude.inc.php';
 										<label>Texto:</label>
 									</div>
 									<div class="12u 12u$(xsmall)">
-										<textarea rows="1" cols="" id="txtTexto"></textarea>
+										<textarea rows="1" cols="" id="txtTextoSMS" onkeydown="return limitar(event,this.value,155)" onkeyup="return limitar(event,this.value,155)"></textarea>
 									</div>
 								</div>
 								
@@ -110,11 +110,15 @@ require_once 'masterInclude.inc.php';
 										<br />
 										<br />
 										<div class="row">
-										<textarea rows="5" cols="" id="txtSMS"></textarea>
+										<textarea rows="5" cols="" id="txtSMS" ></textarea>
 										</div>
 										<div class="row">
+										<div class="6u 12u$(xsmall)">
+											Total: <span id="spnTotalSMS"></span>
+											</div>
+											
 											<div class="12u 12u$(xsmall)">
-            									<a style="float: right;" id="btnEliminarSMSCorreo" class="button" >Quitar &uacute;ltimo	</a>&ensp;
+            									<a style="float: right;" id="btnEliminarSMS" class="button" >Quitar &uacute;ltimo	</a>&ensp;
     										</div>
 										</div>
 									</div>
@@ -214,6 +218,14 @@ require_once 'masterInclude.inc.php';
 										<div class="row">
 										<textarea rows="5" cols="" id="	txtCorreo"></textarea>
 										</div>
+										<div class="row">
+											<div class="6u 12u$(xsmall)">
+											Total: <span id="spnTotalCorreo"></span>
+											</div>
+											<div class="6u 12u$(xsmall)">
+            									<a style="float: right;" id="btnEliminarCorreo" class="button" >Quitar &uacute;ltimo	</a>&ensp;
+    										</div>
+										</div>
 									</div>
 									<div class="4u 12u$(xsmall)">
 										<div class="2u 12u$(xsmall)">
@@ -237,6 +249,11 @@ require_once 'masterInclude.inc.php';
 				</div>
 				
 				
+										<div class="row">
+											<div class="12u 12u$(xsmall)">
+            									<a style="float: right; display: none" id="btnGuardar" class="button" >Enviar</a>&ensp;
+    										</div>
+										</div>
 
 					</div>
 				</div>
