@@ -34,7 +34,7 @@ function iniciar(){
 			llenarCombo();
 			$( "#txtPaciente"+seccion ).html(txtCombo);
 
-		},700);
+		},1200);
 			$( "#spnTotal"+seccion ).html(' '+arrNombre.length);
 	});
 	var arreglo=[],x=1;
@@ -50,7 +50,7 @@ function iniciar(){
 				})
 			agregar_quitar_sucursal(arreglo, select);
 			
-		},700);
+		},1200);
 		});
 		
 	$("#txtTextoSMS").on('paste', function(e){

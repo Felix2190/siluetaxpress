@@ -256,9 +256,84 @@ if ($paciente->getIdPaciente()>0){
     if ($hojaClinica->getHorarioLevantarse() == "")
         $hojaClinica->setHorarioLevantarse("00:00 AM");
     $hojaClinica->Guardar();
+
+    $horario=$hojaClinica->getHorarioLevantarse();
+    $horario=explode(":", $horario);
+    $comboHoraLev=comboHr(intval($horario[0]));
+    $horario=explode(" ", $horario[1]);
+    $comboMinLev=comboMin(intval($horario[0]));
+    $Lev=$horario[1];
+    
+    $horario=$hojaClinica->getHorarioAcostarse();
+    $horario=explode(":", $horario);
+    $comboHoraAco=comboHr(intval($horario[0]));
+    $horario=explode(" ", $horario[1]);
+    $comboMinAco=comboMin(intval($horario[0]));
+    $Aco=$horario[1];
+    
+    $horario=$hojaClinica->getHorarioActividad();
+    $horario=explode(":", $horario);
+    $comboHoraAct=comboHr(intval($horario[0]));
+    $horario=explode(" ", $horario[1]);
+    $comboMinAct=comboMin(intval($horario[0]));
+    $Act=$horario[1];
+    
+    $horario=$hojaClinica->getHorarioDesayuno();
+    $horario=explode(":", $horario);
+    $comboHoraDes=comboHr(intval($horario[0]));
+    $horario=explode(" ", $horario[1]);
+    $comboMinDes=comboMin(intval($horario[0]));
+    $Des=$horario[1];
+    
+    $horario=$hojaClinica->getHorarioColacion();
+    $horario=explode(":", $horario);
+    $comboHoraCol=comboHr(intval($horario[0]));
+    $horario=explode(" ", $horario[1]);
+    $comboMinCol=comboMin(intval($horario[0]));
+    $Col=$horario[1];
+    
+    $horario=$hojaClinica->getHorarioComida();
+    $horario=explode(":", $horario);
+    $comboHoraCom=comboHr(intval($horario[0]));
+    $horario=explode(" ", $horario[1]);
+    $comboMinCom=comboMin(intval($horario[0]));
+    $Com=$horario[1];
+    
+    $horario=$hojaClinica->getHorarioColacion2();
+    $horario=explode(":", $horario);
+    $comboHoraCol2=comboHr(intval($horario[0]));
+    $horario=explode(" ", $horario[1]);
+    $comboMinCol2=comboMin(intval($horario[0]));
+    $Col2=$horario[1];
+    
+    $horario=$hojaClinica->getHorarioCena();
+    $horario=explode(":", $horario);
+    $comboHoraCen=comboHr(intval($horario[0]));
+    $horario=explode(" ", $horario[1]);
+    $comboMinCen=comboMin(intval($horario[0]));
+    $Cen=$horario[1];
+    
 }else {
     header("Location: listadoPacientes.php");
 }
 
+function comboHr($select){
+    $comboHora="";
+    for ($hr=0;$hr<=12;$hr++){
+        $auxHr=$hr==0?"0".$hr:$hr;
+        $comboHora.="<option value='$auxHr' ".(intval($auxHr)==$select?"selected ":" ").">$auxHr</option>";
+    }
+    return $comboHora;
+}
+
+function comboMin($select){
+    $comboMin="";
+    for ($min=0;$min<=45;$min+=15){
+        $auxMin=$min==0?"0".$min:$min;
+        $comboMin.="<option value='$auxMin' ".(intval($auxMin)==$select?"selected ":" ").">$auxMin</option>";
+    }
+    return $comboMin;
+    
+}
 
 ?>

@@ -503,21 +503,21 @@ function altaPaciente(){
 		console.log("Error: motivacion");
 	}
 	
-	hoja['hrLevantar']= $("#slcHrLevantar").val().trim();
+	hoja['hrLevantar']= $("#slcHrLevantarH").val()+":"+$("#slcHrLevantarM").val()+$("#slcHrLevantar_").val();
 	if (hoja['hrLevantar'] == "") {
 		existeError2 = true;
 		faltan++;
 		console.log("Error: hrLevantar");
 	}
 	
-	hoja['hrAcostar']= $("#slcHrAcostar").val().trim();
+	hoja['hrAcostar']= $("#slcHrAcostarH").val()+":"+$("#slcHrAcostarM").val()+$("#slcHrAcostar_").val();
 	if (hoja['hrAcostar'] == "") {
 		existeError2 = true;
 		faltan++;
 		console.log("Error: hrAcostar");
 	}
 	
-	hoja['hrEjercicio']= $("#slcHrEjercicio").val().trim();
+	hoja['hrEjercicio']= $("#slcHrEjercicioH").val()+":"+$("#slcHrEjercicioM").val()+$("#slcHrEjercicio_").val();
 	if (hoja['hrEjercicio'] == "") {
 		existeError2 = true;
 		faltan++;
@@ -537,7 +537,7 @@ function altaPaciente(){
 	}
     
     if (hoja['desayunoF'] == "Si") {
-	    hoja['hrDesayuno']= $("#slcHrDesayuno").val().trim();
+    	hoja['hrDesayuno']= $("#slcHrDesayunoH").val()+":"+$("#slcHrDesayunoM").val()+$("#slcHrDesayuno_").val();
 		if (hoja['hrDesayuno'] == "") {
 			existeError = true;
 			faltan++;
@@ -565,7 +565,7 @@ function altaPaciente(){
 	}
     
     if (hoja['colacionF'] == "Si") {
-	    hoja['hrColacion1']= $("#slcHrColacion1").val().trim();
+    	hoja['hrColacion1']= $("#slcHrColacion1H").val()+":"+$("#slcHrColacion1M").val()+$("#slcHrColacion1_").val();
 		if (hoja['hrColacion1'] == "") {
 			existeError = true;
 			faltan++;
@@ -593,13 +593,13 @@ function altaPaciente(){
 	}
     
     if (hoja['comidaF'] == "Si") {
-	  hoja['hrComida']= $("#slcHrComida").val().trim();
-		if (hoja['hrComida'] == "") {
-			existeError = true;
-			faltan++;
-			console.log("Error: hrComida");
-		}
-		
+      hoja['hrComida']= $("#slcHrComidaH").val()+":"+$("#slcHrComidaM").val()+$("#slcHrComida_").val();
+  		if (hoja['hrComida'] == "") {
+  			existeError = true;
+  			faltan++;
+  			console.log("Error: hrComida");
+  		}
+  		
 		hoja['comida']= $("#txtComidaPM").val().trim();
 		if (hoja['comida'] == "") {
 			existeError2 = true;
@@ -621,13 +621,13 @@ function altaPaciente(){
 	}
     
     if (hoja['colacion2F'] == "Si") {
-	  hoja['hrColacion2']= $("#slcHrColacion2").val().trim();
-		if (hoja['hrColacion2'] == "") {
-			existeError = true;
-			faltan++;
-			console.log("Error: hrColacion2");
-		}
-		
+      hoja['hrColacion2']= $("#slcHrColacion2H").val()+":"+$("#slcHrColacion2M").val()+$("#slcHrColacion2_").val();
+  		if (hoja['hrColacion2'] == "") {
+  			existeError = true;
+  			faltan++;
+  			console.log("Error: hrColacion2");
+  		}
+  	
 		hoja['colacion2']= $("#txtColacion2").val().trim();
 		if (hoja['colacion2'] == "") {
 			existeError2 = true;
@@ -648,13 +648,13 @@ function altaPaciente(){
 	}
     
     if (hoja['cenaF'] == "Si") {
-	     hoja['hrCena']= $("#slcHrCena").val().trim();
-		if (hoja['hrCena'] == "") {
-			existeError = true;
-			faltan++;
-			console.log("Error: hrCena");
-		}
-		
+    	 hoja['hrCena']= $("#slcHrCenaH").val()+":"+$("#slcHrCenaM").val()+$("#slcHrCena_").val();
+ 		if (hoja['hrCena'] == "") {
+ 			existeError = true;
+ 			faltan++;
+ 			console.log("Error: hrCena");
+ 		}
+ 		
 		hoja['cena']= $("#txtCena").val().trim();
 		if (hoja['cena'] == "") {
 			existeError2 = true;

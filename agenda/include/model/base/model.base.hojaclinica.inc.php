@@ -34,23 +34,23 @@
 		var $tiempoSimbolo='hrs';
 		var $actividadFisicaFrecuencia='0';
 		var $motivacion=0;
-		var $horarioLevantarse='';
-		var $horarioAcostarse='';
-		var $horarioActividad='';
+		var $horarioLevantarse='00:00 AM';
+		var $horarioAcostarse='00:00 AM';
+		var $horarioActividad='00:00 AM';
 		var $desayuno='No';
-		var $horarioDesayuno='';
+		var $horarioDesayuno='00:00 AM';
 		var $actividadDesayuno='';
 		var $colacion='No';
-		var $horarioColacion='';
+		var $horarioColacion='00:00 AM';
 		var $actividadColacion='';
 		var $comida='No';
-		var $horarioComida='';
+		var $horarioComida='00:00 AM';
 		var $actividadComida='';
 		var $colacion2='No';
-		var $horarioColacion2='';
+		var $horarioColacion2='00:00 AM';
 		var $actividadColacion2='';
 		var $cena='No';
-		var $horarioCena='';
+		var $horarioCena='00:00 AM';
 		var $actividadCena='';
 		var $peso_habitual='';
 		var $peso_ideal='';
@@ -822,23 +822,23 @@
 			$this->tiempoSimbolo='hrs';
 			$this->actividadFisicaFrecuencia='0';
 			$this->motivacion=0;
-			$this->horarioLevantarse='';
-			$this->horarioAcostarse='';
-			$this->horarioActividad='';
+			$this->horarioLevantarse='00:00 AM';
+			$this->horarioAcostarse='00:00 AM';
+			$this->horarioActividad='00:00 AM';
 			$this->desayuno='No';
-			$this->horarioDesayuno='';
+			$this->horarioDesayuno='00:00 AM';
 			$this->actividadDesayuno='';
 			$this->colacion='No';
-			$this->horarioColacion='';
+			$this->horarioColacion='00:00 AM';
 			$this->actividadColacion='';
 			$this->comida='No';
-			$this->horarioComida='';
+			$this->horarioComida='00:00 AM';
 			$this->actividadComida='';
 			$this->colacion2='No';
-			$this->horarioColacion2='';
+			$this->horarioColacion2='00:00 AM';
 			$this->actividadColacion2='';
 			$this->cena='No';
-			$this->horarioCena='';
+			$this->horarioCena='00:00 AM';
 			$this->actividadCena='';
 			$this->peso_habitual='';
 			$this->peso_ideal='';
@@ -882,7 +882,7 @@
 				
 				$result=mysqli_query($this->dbLink,$SQL);
 				if(!$result)
-					return $this->setSystemError("Error en la actualizacion de registro.","[" . $SQL . "][" . mysqli_error($this->dbLink) . "][ModeloBaseHojaclinica::Update]");
+					return $this->setSystemError("Error en la actualizacion de registro.","[" . $SQL . "][" . mysqli_error() . "][ModeloBaseHojaclinica::Update]");
 				
 				return true;
 			}

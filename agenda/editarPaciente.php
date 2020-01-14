@@ -522,17 +522,36 @@ $hojaClinica->setIdHojaClinica($paciente->getIdHojaClinica());
 							
 							<br />
 							
+							
 							<div class="row">
 								<div class="3u 12u$(xsmall)">
 									<label>Horario de levantarse: </label>
 								</div>
-								<div class="2u 12u$(xsmall)">
-									<div class="select-wrapper">
-										<select name="demo-category" id="slcHrLevantar">
-										<?php echo $comboHr;?>
-									</select>
-									</div>
+								<div class="row 4u 12u$(xsmall)">
+    								<div class="4u 12u$(xsmall)">
+    									<div class="select-wrapper">
+    										<select name="demo-category" id="slcHrLevantarH">
+    										<?php echo $comboHoraLev;?>
+    									</select>
+    									</div>
+    								</div>
+								<div class="4u 12u$(xsmall)">
+    									<div class="select-wrapper">
+    										<select name="demo-category" id="slcHrLevantarM">
+    										<?php echo $comboMinLev;?>
+    									</select>
+    									</div>
+    								</div>
+								<div class="4u 12u$(xsmall)">
+    									<div class="select-wrapper">
+    										<select name="demo-category" id="slcHrLevantar_">
+    										<option value=" AM" <?php echo ($Lev=="AM"?" selected ":" ");?>>AM</option>
+    										<option value=" PM" <?php echo ($Lev=="PM"?" selected ":" ");?>>PM</option>
+    									</select>
+    									</div>
+    								</div>
 								</div>
+								
 							</div>
 								
 							<br />
@@ -541,14 +560,30 @@ $hojaClinica->setIdHojaClinica($paciente->getIdHojaClinica());
 								<div class="3u 12u$(xsmall)">
 									<label>Horario de acostarse: </label>
 								</div>
-								<div class="2u 12u$(xsmall)">
-									<div class="select-wrapper">
-										<select name="demo-category" id="slcHrAcostar">
-										<?php echo $comboHr;?>
-									</select>
-									</div>
+								<div class="row 4u 12u$(xsmall)">
+    								<div class="4u 12u$(xsmall)">
+    									<div class="select-wrapper">
+    										<select name="demo-category" id="slcHrAcostarH">
+    										<?php echo $comboHoraAco;?>
+    									</select>
+    									</div>
+    								</div>
+    								<div class="4u 12u$(xsmall)">
+    									<div class="select-wrapper">
+    										<select name="demo-category" id="slcHrAcostarM">
+    										<?php echo $comboMinAco;?>
+    									</select>
+    									</div>
+    								</div>
+    								<div class="4u 12u$(xsmall)">
+    									<div class="select-wrapper">
+    										<select name="demo-category" id="slcHrAcostar_">
+    										<option value=" AM" <?php echo ($Aco=="AM"?" selected ":" ");?>>AM</option>
+    										<option value=" PM" <?php echo ($Aco=="PM"?" selected ":" ");?>>PM</option>
+    									</select>
+    									</div>
+    								</div>
 								</div>
-							
 							</div>
 							
 							<br />
@@ -557,14 +592,32 @@ $hojaClinica->setIdHojaClinica($paciente->getIdHojaClinica());
 								<div class="3u 12u$(xsmall)">
 									<label>Horario de actividad f&iacute;sica: </label>
 								</div>
-								<div class="2u 12u$(xsmall)">
-									<div class="select-wrapper">
-										<select name="demo-category" id="slcHrEjercicio">
-										<?php echo $comboHr;?>
-									</select>
-									</div>
-								</div>
+								<div class="row 4u 12u$(xsmall)">
+    								<div class="4u 12u$(xsmall)">
+    									<div class="select-wrapper">
+    										<select name="demo-category" id="slcHrEjercicioH">
+    										<?php echo $comboHoraAct;?>
+    									</select>
+    									</div>
+    								</div>
+    								<div class="4u 12u$(xsmall)">
+    									<div class="select-wrapper">
+    										<select name="demo-category" id="slcHrEjercicioM">
+    										<?php echo $comboMinAct;?>
+    									</select>
+    									</div>
+    								</div>
+    								<div class="4u 12u$(xsmall)">
+    									<div class="select-wrapper">
+    										<select name="demo-category" id="slcHrEjercicio_">
+    										<option value=" AM" <?php echo ($Act=="AM"?" selected ":" ");?>>AM</option>
+    										<option value=" PM" <?php echo ($Act=="PM"?" selected ":" ");?>>PM</option>
+    									</select>
+    									</div>
+    								</div>
+    							</div>
 							</div>
+							
 							
 							<br />
 							<div class="row">
@@ -589,20 +642,37 @@ $hojaClinica->setIdHojaClinica($paciente->getIdHojaClinica());
 							<br />
 							
 							<div class="row divDesayuno" style="display: <?php if ($hojaClinica->getDesayuno()=="No") echo "none";?>;">
-								<div class="2u 12u$(xsmall)">
+								<div class="1u 12u$(xsmall)">
 									<label>Horario: </label>
 								</div>
+
 								<div class="2u 12u$(xsmall)">
 									<div class="select-wrapper">
-										<select name="demo-category" id="slcHrDesayuno">
-										<?php echo $comboHr;?>
+										<select name="demo-category" id="slcHrDesayunoH">
+										<?php echo $comboHoraDes;?>
 									</select>
 									</div>
 								</div>
 								<div class="2u 12u$(xsmall)">
+									<div class="select-wrapper">
+										<select name="demo-category" id="slcHrDesayunoM">
+										<?php echo $comboMinDes;?>
+									</select>
+									</div>
+								</div>
+								<div class="2u 12u$(xsmall)">
+									<div class="select-wrapper">
+										<select name="demo-category" id="slcHrDesayuno_">
+											<option value=" AM" <?php echo ($Des=="AM"?" selected ":" ");?>>AM</option>
+    										<option value=" PM" <?php echo ($Des=="PM"?" selected ":" ");?>>PM</option>
+    									</select>
+									</div>
+								</div>
+							
+								<div class="2u 12u$(xsmall)">
 									<label>Alimentos: </label>
 								</div>
-								<div class="6u 12u$(xsmall)">
+								<div class="4u 12u$(xsmall)">
 								<textarea rows="2" cols="" id="txtDesayuno"><?php echo $hojaClinica->getActividadDesayuno();?></textarea>
 								</div>
 								
@@ -627,20 +697,35 @@ $hojaClinica->setIdHojaClinica($paciente->getIdHojaClinica());
 							<br />
 							
 							<div class="row  divColacion1" style="display: <?php if ($hojaClinica->getColacion()=="No") echo "none";?>;">
-								<div class="2u 12u$(xsmall)">
+								<div class="1u 12u$(xsmall)">
 									<label>Horario: </label>
 								</div>
 								<div class="2u 12u$(xsmall)">
 									<div class="select-wrapper">
-										<select name="demo-category" id="slcHrColacion1">
-										<?php echo $comboHr;?>
+										<select name="demo-category" id="slcHrColacion1H">
+										<?php echo $comboHoraCol;?>
 									</select>
 									</div>
 								</div>
 								<div class="2u 12u$(xsmall)">
+									<div class="select-wrapper">
+										<select name="demo-category" id="slcHrColacion1M">
+										<?php echo $comboMinCol;?>
+									</select>
+									</div>
+								</div>
+								<div class="2u 12u$(xsmall)">
+									<div class="select-wrapper">
+										<select name="demo-category" id="slcHrColacion1_">
+											<option value=" AM" <?php echo ($Col=="AM"?" selected ":" ");?>>AM</option>
+    										<option value=" PM" <?php echo ($Col=="PM"?" selected ":" ");?>>PM</option>
+    									</select>
+									</div>
+								</div>
+							<div class="2u 12u$(xsmall)">
 									<label>Alimentos: </label>
 								</div>
-								<div class="6u 12u$(xsmall)">
+								<div class="4u 12u$(xsmall)">
 								<textarea rows="2" cols="" id="txtColacion1"><?php echo $hojaClinica->getActividadColacion();?></textarea>
 								</div>
 								
@@ -666,20 +751,36 @@ $hojaClinica->setIdHojaClinica($paciente->getIdHojaClinica());
 							<br />
 							
 							<div class="row divComida" style="display: <?php if ($hojaClinica->getComida()=="No") echo "none";?>;">
-								<div class="2u 12u$(xsmall)">
+								<div class="1u 12u$(xsmall)">
 									<label>Horario: </label>
 								</div>
 								<div class="2u 12u$(xsmall)">
 									<div class="select-wrapper">
-										<select name="demo-category" id="slcHrComida">
-										<?php echo $comboHr;?>
+										<select name="demo-category" id="slcHrComidaH">
+										<?php echo $comboHoraCom;?>
 									</select>
 									</div>
 								</div>
 								<div class="2u 12u$(xsmall)">
+									<div class="select-wrapper">
+										<select name="demo-category" id="slcHrComidaM">
+										<?php echo $comboMinCom;?>
+									</select>
+									</div>
+								</div>
+								<div class="2u 12u$(xsmall)">
+									<div class="select-wrapper">
+										<select name="demo-category" id="slcHrComida_">
+											<option value=" AM" <?php echo ($Com=="AM"?" selected ":" ");?>>AM</option>
+    										<option value=" PM" <?php echo ($Com=="PM"?" selected ":" ");?>>PM</option>
+    									</select>
+									</div>
+								</div>
+							
+								<div class="2u 12u$(xsmall)">
 									<label>Alimentos: </label>
 								</div>
-								<div class="6u 12u$(xsmall)">
+								<div class="4u 12u$(xsmall)">
 								<textarea rows="2" cols="" id="txtComidaPM"><?php echo $hojaClinica->getActividadComida();?></textarea>
 								</div>
 								
@@ -705,20 +806,36 @@ $hojaClinica->setIdHojaClinica($paciente->getIdHojaClinica());
 							<br />
 							
 							<div class="row divColacion2" style="display: <?php if ($hojaClinica->getColacion2()=="No") echo "none";?>;">
-								<div class="2u 12u$(xsmall)">
+								<div class="1u 12u$(xsmall)">
 									<label>Horario: </label>
 								</div>
 								<div class="2u 12u$(xsmall)">
 									<div class="select-wrapper">
-										<select name="demo-category" id="slcHrColacion2">
-										<?php echo $comboHr;?>
+										<select name="demo-category" id="slcHrColacion2H">
+										<?php echo $comboHoraCol2;?>
 									</select>
 									</div>
 								</div>
 								<div class="2u 12u$(xsmall)">
+									<div class="select-wrapper">
+										<select name="demo-category" id="slcHrColacion2M">
+										<?php echo $comboMinCol2;?>
+									</select>
+									</div>
+								</div>
+								<div class="2u 12u$(xsmall)">
+									<div class="select-wrapper">
+										<select name="demo-category" id="slcHrColacion2_">
+											<option value=" AM" <?php echo ($Col2=="AM"?" selected ":" ");?>>AM</option>
+    										<option value=" PM" <?php echo ($Col2=="PM"?" selected ":" ");?>>PM</option>
+    									</select>
+									</div>
+								</div>
+							
+							<div class="2u 12u$(xsmall)">
 									<label>Alimentos: </label>
 								</div>
-								<div class="6u 12u$(xsmall)">
+								<div class="4u 12u$(xsmall)">
 								<textarea rows="2" cols="" id="txtColacion2"><?php echo $hojaClinica->getActividadColacion2();?></textarea>
 								</div>
 								
@@ -745,20 +862,35 @@ $hojaClinica->setIdHojaClinica($paciente->getIdHojaClinica());
 							<br />
 							
 							<div class="row divCena" style="display: <?php if ($hojaClinica->getCena()=="No") echo "none";?>;">
-								<div class="2u 12u$(xsmall)">
+								<div class="1u 12u$(xsmall)">
 									<label>Horario: </label>
 								</div>
 								<div class="2u 12u$(xsmall)">
 									<div class="select-wrapper">
-										<select name="demo-category" id="slcHrCena">
-										<?php echo $comboHr;?>
+										<select name="demo-category" id="slcHrCenaH">
+										<?php echo $comboHoraCen;?>
 									</select>
+									</div>
+								</div>
+								<div class="2u 12u$(xsmall)">
+									<div class="select-wrapper">
+										<select name="demo-category" id="slcHrCenaM">
+										<?php echo $comboMinCen;?>
+									</select>
+									</div>
+								</div>
+								<div class="2u 12u$(xsmall)">
+									<div class="select-wrapper">
+										<select name="demo-category" id="slcHrCena_">
+											<option value=" AM" <?php echo ($Cen=="AM"?" selected ":" ");?>>AM</option>
+    										<option value=" PM" <?php echo ($Cen=="PM"?" selected ":" ");?>>PM</option>
+    									</select>
 									</div>
 								</div>
 								<div class="2u 12u$(xsmall)">
 									<label>Alimentos: </label>
 								</div>
-								<div class="6u 12u$(xsmall)">
+								<div class="4u 12u$(xsmall)">
 								<textarea rows="2" cols="" id="txtCena"><?php echo $hojaClinica->getActividadCena();?></textarea>
 								</div>
 								
