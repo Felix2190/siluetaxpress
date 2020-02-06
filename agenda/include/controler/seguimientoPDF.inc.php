@@ -84,7 +84,7 @@ if (isset($_SESSION['idPacientePDF'])&&isset($_SESSION['IMC'])&&isset($_SESSION[
     $pdf->SetFillColor(255,255,255);/// color blanco celda
     $pdf->Cell(160,8,' ','B',0,'L',0);
     $pdf->Ln(2);
-    $pdf->SetFont('Arial','',12);
+    $pdf->SetFont('Arial','',10);
     $pdf->Cell(20,8,' Nombre: ',0,0,'L',1);
     $pdf->Cell(85,8,utf8_decode($paciente->getNombre(). ' '.$paciente->getApellidos()),0,0,'L');
     $pdf->Cell(13,8,' Edad: ',0,0,'L',1);
@@ -94,16 +94,25 @@ if (isset($_SESSION['idPacientePDF'])&&isset($_SESSION['IMC'])&&isset($_SESSION[
     
     $pdf->Ln(12);
     
-    $pdf->SetFont('Arial','B',13);
+    $seg = new ModeloHojaseguimiento();
+    $informacion=$seg->getSeguimientos($idPaciente);
+    $largo=0;
+    $tam=23;
+    if (count($informacion['info'])>2)
+        $largo=(count($informacion['info'])-2)*5;
+    if (isset($_SESSION['segDetalles'])&&$_SESSION['segDetalles']=='si')
+        $tam=14;
+    
+    $pdf->SetFont('Arial','B',11);
     $pdf->Cell(185,5,' Gráfica de control de peso ',0,0,'C');
     $pdf->Ln(4);
-    $pdf->Image($imgPESO,10,60,50,null);//
+    $pdf->Image($imgPESO,10,60,30+$largo,null);//
     
     $pdf->Ln(47);
     
-    $pdf->Cell(185,5,' Gráfica de IMC',0,0,'C');
+    $pdf->Cell(185,5,' Gráfica de IMC ',0,0,'C');
     $pdf->Ln(4);
-    $pdf->Image($imgIMC,10,110,50,null);//
+    $pdf->Image($imgIMC,10,110,30+$largo,null);//
     
     $pdf->Ln(47);
     
@@ -112,32 +121,60 @@ if (isset($_SESSION['idPacientePDF'])&&isset($_SESSION['IMC'])&&isset($_SESSION[
     
     $pdf->SetFillColor(242,250,198);///verde
     
-    $pdf->SetFont('Arial','',11);
-    $pdf->Cell(25,5,'Fecha',1,0,'C',1);
-    $pdf->Cell(23,5,'Peso',1,0,'C',1);
-    $pdf->Cell(23,5,'IMC',1,0,'C',1);
-    $pdf->Cell(23,5,'Pecho',1,0,'C',1);
-    $pdf->Cell(23,5,'Talle',1,0,'C',1);
-    $pdf->Cell(23,5,'Cintura',1,0,'C',1);
-    $pdf->Cell(23,5,'Abdomen',1,0,'C',1);
-    $pdf->Cell(23,5,'Cadera',1,0,'C',1);
-    
-    $seg = new ModeloHojaseguimiento();
-    $informacion=$seg->getSeguimientos($idPaciente);
-    
+    $pdf->SetFont('Arial','',9);
+    $pdf->Cell($tam,5,'Fecha',1,0,'C',1);
+    $pdf->Cell($tam,5,'Peso',1,0,'C',1);
+    $pdf->Cell($tam,5,'IMC',1,0,'C',1);
+    $pdf->Cell($tam,5,'Pecho',1,0,'C',1);
+    $pdf->Cell($tam,5,'Talle',1,0,'C',1);
+    $pdf->Cell($tam,5,'Cintura',1,0,'C',1);
+    $pdf->Cell($tam,5,'Abdomen',1,0,'C',1);
+    $pdf->Cell($tam,5,'Cadera',1,0,'C',1);
+    if (isset($_SESSION['segDetalles'])&&$_SESSION['segDetalles']=='si'){
+        $pdf->Cell(40,5,'Dieta',1,0,'C',1);
+        $pdf->Cell(40,5,'Tratamiento',1,0,'C',1);
+    }
     $pdf->Ln();
     $pdf->SetFillColor(255,255,255);/// color blanco celda
-    $pdf->SetFont('Arial','',10);
     foreach ($informacion['info'] as $id => $info){
-        $pdf->Cell(25,5,$info['fecha'],1,0,'C',1);
-        $pdf->Cell(23,5,$info['pesoKg'],1,0,'C',1);
-        $pdf->Cell(23,5,$info['IMC'],1,0,'C',1);
-        $pdf->Cell(23,5,$info['pecho'],1,0,'C',1);
-        $pdf->Cell(23,5,$info['talla'],1,0,'C',1);
-        $pdf->Cell(23,5,$info['cintura'],1,0,'C',1);
-        $pdf->Cell(23,5,$info['abdomen'],1,0,'C',1);
-        $pdf->Cell(23,5,$info['cadera'],1,0,'C',1);
+        $pdf->SetFont('Arial','',7);
+        $pdf->Cell($tam,5,$info['fecha'],1,0,'C',1);
+        $pdf->SetFont('Arial','',9);
+        $pdf->Cell($tam,5,$info['pesoKg'],1,0,'C',1);
+        $pdf->Cell($tam,5,$info['IMC'],1,0,'C',1);
+        $pdf->Cell($tam,5,$info['pecho'],1,0,'C',1);
+        $pdf->Cell($tam,5,$info['talla'],1,0,'C',1);
+        $pdf->Cell($tam,5,$info['cintura'],1,0,'C',1);
+        $pdf->Cell($tam,5,$info['abdomen'],1,0,'C',1);
+        $pdf->Cell($tam,5,$info['cadera'],1,0,'C',1);
+        if (isset($_SESSION['segDetalles'])&&$_SESSION['segDetalles']=='si'){
+            $pdf->SetFont('Arial','',6);
+            $pdf->Cell(40,5,utf8_decode($info['dieta']),1,0,'C',1);
+            $pdf->Cell(40,5,utf8_decode($info['tratamiento']),1,0,'C',1);
+        }
         $pdf->Ln();
+    }
+    
+    if (isset($_SESSION['segDetalles'])&&$_SESSION['segDetalles']=='si'){
+/*        $pdf->Ln(2);
+        
+        
+        $pdf->SetFillColor(242,250,198);///verde
+        
+        $pdf->SetFont('Arial','',11);
+        $pdf->Cell(25,5,'Fecha',1,0,'C',1);
+        $pdf->Cell(80,5,'Dieta',1,0,'C',1);
+        $pdf->Cell(80,5,'Tratamiento',1,0,'C',1);
+        $pdf->Ln();
+        $pdf->SetFillColor(255,255,255);/// color blanco celda
+        $pdf->SetFont('Arial','',10);
+        foreach ($informacion['info'] as $id => $info){
+            $pdf->Cell(25,5,$info['fecha'],1,0,'C',1);
+            $pdf->Cell(80,5,utf8_decode($info['dieta']),1,0,'C',1);
+            $pdf->Cell(80,5,utf8_decode($info['tratamiento']),1,0,'C',1);
+            $pdf->Ln();
+        }
+  */      
     }
     $pdf->Output();
     

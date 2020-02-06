@@ -248,9 +248,10 @@ function editarPaciente($idPaciente){
 }
 $xajax->registerFunction("editarPaciente");
 
-function verPDF($graficaPeso,$graficaIMC){
+function verPDF($graficaPeso,$graficaIMC,$detalles){
     $r=new xajaxResponse();
     $_SESSION['idPacientePDF']=$_SESSION['verSeg'];
+    $_SESSION['segDetalles']=$detalles;
     $dirGraficas="tmp/graficas/".$_SESSION['verSeg']."/";
     // crear directorio
     if(!is_dir($dirGraficas))

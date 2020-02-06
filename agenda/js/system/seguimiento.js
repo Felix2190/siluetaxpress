@@ -21,10 +21,21 @@ function iniciar(){
 //			grafLinea=myLine.toBase64Image();
 		grafLinea['imc']=myLine['chart-area2'].toBase64Image();
 		grafLinea['peso']=myLine['chart-area'].toBase64Image();
-			xajax_verPDF(grafLinea['peso'],grafLinea['imc']);
-
+			verOpciones();
 		 });
 		 
+	 $( "#btnNo" ).click(function(){
+		xajax_verPDF(grafLinea['peso'],grafLinea['imc'],'no');
+	 });
+		 
+	 $( "#btnSi" ).click(function(){
+		xajax_verPDF(grafLinea['peso'],grafLinea['imc'],'si');
+	});
+		 
+		 $( "#btnCerrar" ).click(function(){
+			 $( "#msjConfirm" ).hide();
+			 });
+
 	$(".imc").keyup(function(){
 		peso = $("#txtPeso").val();
 		estatura=parseFloat($("#dtEstatura").val());
@@ -424,3 +435,6 @@ function editarPaciente(id){
 	xajax_editarPaciente(id);
 }
 
+function verOpciones(){
+	 $( "#msjConfirm" ).show();
+}
