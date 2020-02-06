@@ -19,7 +19,7 @@ $dbLink->set_charset(BD_CHARSET);
       {
         if($clave==0)
         {
-           $filtros .= " AND nombreP LIKE '".$valor."%' ";
+           $filtros .= " AND nombreP LIKE '%".$valor."%' ";
           
         }
         else if($clave==1)

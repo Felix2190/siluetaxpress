@@ -37,7 +37,7 @@ if(!empty($_FILES['imagenCorreo']))
             $targetFileFinal = $carpeta.$targetFile;
             try{
               move_uploaded_file($tempFile,$targetFileFinal);
-                  echo "../tmp/notificaciones/".$targetFile;
+                  echo "../tmp/fotosperfil/".$targetFile;
                 }catch(Exception $e){
                     echo false;
                 }
@@ -1265,15 +1265,17 @@ function enviaSMS2($numPaciente, $sMessage)
 function enviaSMS($numPaciente, $sMessage)
 {
     date_default_timezone_set('America/Mexico_City');
+    global $objSession;
     require_once FOLDER_MODEL_EXTEND. "model.claves.inc.php";
     $claves = new ModeloClaves();
-    $claves->setIdClave(1);
-    
+    $clave= $claves->obtenerClaveByReferencia("sms".$objSession->getIdSucursal());
+    if ($clave=="")
+        return false;
     $concat="";
     $sData = 'cmd=sendsms&';
     $sData .= 'domainId=siluetaexpress&';
     $sData .= 'login=lic.lezliedelariva@gmail.com&';
-    $sData .= 'passwd='.$claves->getClave().'&';
+    $sData .= 'passwd='.$clave.'&';
     $sData.="concat=true&";
     
     $sData .= 'dest=' . str_replace(',', '&dest=', $numPaciente) . '&';
