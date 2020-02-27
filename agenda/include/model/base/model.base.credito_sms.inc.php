@@ -9,9 +9,10 @@
 
 		
 		var $fecha='';
+		var $idFranquicia=0;
 		var $saldo='';
 
-		var $__s=array("fecha","saldo");
+		var $__s=array("fecha","idFranquicia","saldo");
 		var $__ss=array();
 
 		#------------------------------------------------------------------------------------------------------#
@@ -37,6 +38,11 @@
 		{
 			$this->fecha=$fecha;
 		}
+		public function setIdFranquicia($idFranquicia)
+		{
+			
+			$this->idFranquicia=$idFranquicia;
+		}
 		public function setSaldo($saldo)
 		{
 			$this->saldo=$saldo;
@@ -57,6 +63,10 @@
 		{
 			return $this->fecha;
 		}
+		public function getIdFranquicia()
+		{
+			return $this->idFranquicia;
+		}
 		public function getSaldo()
 		{
 			return $this->saldo;
@@ -76,6 +86,7 @@
 		{
 			
 			$this->fecha='';
+			$this->idFranquicia=0;
 			$this->saldo='';
 		}
 
@@ -86,8 +97,8 @@
 		{
 			try
 			{
-				$SQL="INSERT INTO credito_sms(fecha,saldo)
-						VALUES('" . mysqli_real_escape_string($this->dbLink,$this->fecha) . "','" . mysqli_real_escape_string($this->dbLink,$this->saldo) . "')";
+				$SQL="INSERT INTO credito_sms(fecha,idFranquicia,saldo)
+						VALUES('" . mysqli_real_escape_string($this->dbLink,$this->fecha) . "','" . mysqli_real_escape_string($this->dbLink,$this->idFranquicia) . "','" . mysqli_real_escape_string($this->dbLink,$this->saldo) . "')";
 				$result=mysqli_query($this->dbLink,$SQL);
 				if(!$result)
 					return $this->setSystemError("Error en la insercion de registro.","[" . $SQL . "][" . mysqli_error($this->dbLink) . "][ModeloBaseCredito_sms::Insertar]");
@@ -107,7 +118,7 @@
 		{
 			try
 			{
-				$SQL="UPDATE credito_sms SET fecha='" . mysqli_real_escape_string($this->dbLink,$this->fecha) . "',saldo='" . mysqli_real_escape_string($this->dbLink,$this->saldo) . "'
+				$SQL="UPDATE credito_sms SET fecha='" . mysqli_real_escape_string($this->dbLink,$this->fecha) . "',idFranquicia='" . mysqli_real_escape_string($this->dbLink,$this->idFranquicia) . "',saldo='" . mysqli_real_escape_string($this->dbLink,$this->saldo) . "'
 					WHERE =" . $this->;
 				
 				$result=mysqli_query($this->dbLink,$SQL);
@@ -149,7 +160,7 @@
 			try
 			{
 				$SQL="SELECT
-						fecha,saldo
+						fecha,idFranquicia,saldo
 					FROM credito_sms
 					WHERE =" . mysqli_real_escape_string($this->dbLink,$this->);
 					

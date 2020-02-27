@@ -81,7 +81,7 @@ if ($horaActual>=8&&$horaActual<=20){
         $notificacion->setIdNotificacion($envioNotif->getIdNotificacion());
         if ($paciente->getIdPaciente()>0&&$notificacion->getIdNotificacion()>0){
            if (strlen($paciente->getTelefonoCel())==10){
-               $sms = enviaSMS("52".$paciente->getTelefonoCel(), $notificacion->getTexto());
+               $sms = enviaSMS("52".$paciente->getTelefonoCel(), $notificacion->getTexto(),$notificacion->getIdSucursal());
                 sleep(3);
                 if ($sms){
                     $envioNotif->setEstatusEnviado();

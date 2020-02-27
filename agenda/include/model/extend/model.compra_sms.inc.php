@@ -56,10 +56,10 @@
 			return true;
 		}
 
-		public function obtenerFechaUltimaCompra()
+		public function obtenerFechaUltimaCompra($idFranquicia)
 		{
 		    
-		    $query = "Select fecha_compra from compra_sms order by idCompra desc limit 1";
+		    $query = "Select fecha_compra from compra_sms where idFranquicia=$idFranquicia order by idCompra desc limit 1";
 		    $resultado = mysqli_query($this->dbLink, $query);
 		    if ($resultado && mysqli_num_rows($resultado) > 0) {
 		        $row_inf = mysqli_fetch_assoc($resultado);

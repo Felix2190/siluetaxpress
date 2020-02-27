@@ -11,9 +11,12 @@
 		var $idFranquicia=0;
 		var $franquicia='';
 		var $idUsuario=0;
+		var $envio_sms='0';
+		var $cuenta='';
+		var $clave='';
 		var $fechaRegistro='';
 
-		var $__s=array("idFranquicia","franquicia","idUsuario","fechaRegistro");
+		var $__s=array("idFranquicia","franquicia","idUsuario","envio_sms","cuenta","clave","fechaRegistro");
 		var $__ss=array();
 
 		#------------------------------------------------------------------------------------------------------#
@@ -51,6 +54,20 @@
 			
 			$this->idUsuario=$idUsuario;
 		}
+		public function setEnvio_sms()
+		{
+			$this->envio_sms=1;
+		}
+		public function setCuenta($cuenta)
+		{
+			
+			$this->cuenta=$cuenta;
+		}
+		public function setClave($clave)
+		{
+			
+			$this->clave=$clave;
+		}
 		public function setFechaRegistro($fechaRegistro)
 		{
 			$this->fechaRegistro=$fechaRegistro;
@@ -61,6 +78,10 @@
 		#------------------------------------------------------------------------------------------------------#
 
 		
+		public function unsetEnvio_sms()
+		{
+			$this->envio_sms=0;
+		}
 
 		#------------------------------------------------------------------------------------------------------#
 		#------------------------------------------------Getter------------------------------------------------#
@@ -78,6 +99,18 @@
 		public function getIdUsuario()
 		{
 			return $this->idUsuario;
+		}
+		public function getEnvio_sms()
+		{
+			return $this->envio_sms;
+		}
+		public function getCuenta()
+		{
+			return $this->cuenta;
+		}
+		public function getClave()
+		{
+			return $this->clave;
 		}
 		public function getFechaRegistro()
 		{
@@ -100,6 +133,9 @@
 			$this->idFranquicia=0;
 			$this->franquicia='';
 			$this->idUsuario=0;
+			$this->envio_sms='0';
+			$this->cuenta='';
+			$this->clave='';
 			$this->fechaRegistro='';
 		}
 
@@ -110,8 +146,8 @@
 		{
 			try
 			{
-				$SQL="INSERT INTO franquicia(franquicia,idUsuario,fechaRegistro)
-						VALUES('" . mysqli_real_escape_string($this->dbLink,$this->franquicia) . "','" . mysqli_real_escape_string($this->dbLink,$this->idUsuario) . "','" . mysqli_real_escape_string($this->dbLink,$this->fechaRegistro) . "')";
+				$SQL="INSERT INTO franquicia(franquicia,idUsuario,envio_sms,cuenta,clave,fechaRegistro)
+						VALUES('" . mysqli_real_escape_string($this->dbLink,$this->franquicia) . "','" . mysqli_real_escape_string($this->dbLink,$this->idUsuario) . "','" . mysqli_real_escape_string($this->dbLink,$this->envio_sms) . "','" . mysqli_real_escape_string($this->dbLink,$this->cuenta) . "','" . mysqli_real_escape_string($this->dbLink,$this->clave) . "','" . mysqli_real_escape_string($this->dbLink,$this->fechaRegistro) . "')";
 				$result=mysqli_query($this->dbLink,$SQL);
 				if(!$result)
 					return $this->setSystemError("Error en la insercion de registro.","[" . $SQL . "][" . mysqli_error($this->dbLink) . "][ModeloBaseFranquicia::Insertar]");
@@ -131,7 +167,7 @@
 		{
 			try
 			{
-				$SQL="UPDATE franquicia SET franquicia='" . mysqli_real_escape_string($this->dbLink,$this->franquicia) . "',idUsuario='" . mysqli_real_escape_string($this->dbLink,$this->idUsuario) . "',fechaRegistro='" . mysqli_real_escape_string($this->dbLink,$this->fechaRegistro) . "'
+				$SQL="UPDATE franquicia SET franquicia='" . mysqli_real_escape_string($this->dbLink,$this->franquicia) . "',idUsuario='" . mysqli_real_escape_string($this->dbLink,$this->idUsuario) . "',envio_sms='" . mysqli_real_escape_string($this->dbLink,$this->envio_sms) . "',cuenta='" . mysqli_real_escape_string($this->dbLink,$this->cuenta) . "',clave='" . mysqli_real_escape_string($this->dbLink,$this->clave) . "',fechaRegistro='" . mysqli_real_escape_string($this->dbLink,$this->fechaRegistro) . "'
 					WHERE idFranquicia=" . $this->idFranquicia;
 				
 				$result=mysqli_query($this->dbLink,$SQL);
@@ -173,7 +209,7 @@
 			try
 			{
 				$SQL="SELECT
-						idFranquicia,franquicia,idUsuario,fechaRegistro
+						idFranquicia,franquicia,idUsuario,envio_sms,cuenta,clave,fechaRegistro
 					FROM franquicia
 					WHERE idFranquicia=" . mysqli_real_escape_string($this->dbLink,$this->idFranquicia);
 					

@@ -9,12 +9,13 @@
 
 		
 		var $idCompra=0;
+		var $idFranquicia=0;
 		var $saldo_anterior='';
 		var $compra='';
 		var $total='';
 		var $fecha_compra='';
 
-		var $__s=array("idCompra","saldo_anterior","compra","total","fecha_compra");
+		var $__s=array("idCompra","idFranquicia","saldo_anterior","compra","total","fecha_compra");
 		var $__ss=array();
 
 		#------------------------------------------------------------------------------------------------------#
@@ -41,6 +42,11 @@
 			if($idCompra==0||$idCompra==""||!is_numeric($idCompra)|| (is_string($idCompra)&&!ctype_digit($idCompra)))return $this->setError("Tipo de dato incorrecto para idCompra.");
 			$this->idCompra=$idCompra;
 			$this->getDatos();
+		}
+		public function setIdFranquicia($idFranquicia)
+		{
+			
+			$this->idFranquicia=$idFranquicia;
 		}
 		public function setSaldo_anterior($saldo_anterior)
 		{
@@ -74,6 +80,10 @@
 		{
 			return $this->idCompra;
 		}
+		public function getIdFranquicia()
+		{
+			return $this->idFranquicia;
+		}
 		public function getSaldo_anterior()
 		{
 			return $this->saldo_anterior;
@@ -105,6 +115,7 @@
 		{
 			
 			$this->idCompra=0;
+			$this->idFranquicia=0;
 			$this->saldo_anterior='';
 			$this->compra='';
 			$this->total='';
@@ -118,8 +129,8 @@
 		{
 			try
 			{
-				$SQL="INSERT INTO compra_sms(saldo_anterior,compra,total,fecha_compra)
-						VALUES('" . mysqli_real_escape_string($this->dbLink,$this->saldo_anterior) . "','" . mysqli_real_escape_string($this->dbLink,$this->compra) . "','" . mysqli_real_escape_string($this->dbLink,$this->total) . "','" . mysqli_real_escape_string($this->dbLink,$this->fecha_compra) . "')";
+				$SQL="INSERT INTO compra_sms(idFranquicia,saldo_anterior,compra,total,fecha_compra)
+						VALUES('" . mysqli_real_escape_string($this->dbLink,$this->idFranquicia) . "','" . mysqli_real_escape_string($this->dbLink,$this->saldo_anterior) . "','" . mysqli_real_escape_string($this->dbLink,$this->compra) . "','" . mysqli_real_escape_string($this->dbLink,$this->total) . "','" . mysqli_real_escape_string($this->dbLink,$this->fecha_compra) . "')";
 				$result=mysqli_query($this->dbLink,$SQL);
 				if(!$result)
 					return $this->setSystemError("Error en la insercion de registro.","[" . $SQL . "][" . mysqli_error($this->dbLink) . "][ModeloBaseCompra_sms::Insertar]");
@@ -139,7 +150,7 @@
 		{
 			try
 			{
-				$SQL="UPDATE compra_sms SET saldo_anterior='" . mysqli_real_escape_string($this->dbLink,$this->saldo_anterior) . "',compra='" . mysqli_real_escape_string($this->dbLink,$this->compra) . "',total='" . mysqli_real_escape_string($this->dbLink,$this->total) . "',fecha_compra='" . mysqli_real_escape_string($this->dbLink,$this->fecha_compra) . "'
+				$SQL="UPDATE compra_sms SET idFranquicia='" . mysqli_real_escape_string($this->dbLink,$this->idFranquicia) . "',saldo_anterior='" . mysqli_real_escape_string($this->dbLink,$this->saldo_anterior) . "',compra='" . mysqli_real_escape_string($this->dbLink,$this->compra) . "',total='" . mysqli_real_escape_string($this->dbLink,$this->total) . "',fecha_compra='" . mysqli_real_escape_string($this->dbLink,$this->fecha_compra) . "'
 					WHERE idCompra=" . $this->idCompra;
 				
 				$result=mysqli_query($this->dbLink,$SQL);
@@ -181,7 +192,7 @@
 			try
 			{
 				$SQL="SELECT
-						idCompra,saldo_anterior,compra,total,fecha_compra
+						idCompra,idFranquicia,saldo_anterior,compra,total,fecha_compra
 					FROM compra_sms
 					WHERE idCompra=" . mysqli_real_escape_string($this->dbLink,$this->idCompra);
 					

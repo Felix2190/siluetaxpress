@@ -340,8 +340,17 @@ if (isset($_POST['sucursalP'])&&isset($_POST['cabinaP'])&&isset($_POST['fechaReg
 }
 
 if (isset($_POST['consultaCredito'])){
-    require_once 'funcionesSMS.php';
-    echo json_encode(consultaCredito());
+    $idSucursal=($sucursal!=""?$sucursal:$objSession->getIdSucursal());
+    require_once FOLDER_MODEL_EXTEND. "model.claves.inc.php";
+    $claves = new ModeloClaves();
+    $clave= $claves->obtenerUsuarioClaveByReferencia("sms".$idSucursal);
+    if (count($clave)==0)
+        echo false;
+        else {
+            require_once 'funcionesSMS.php';
+            
+            echo json_encode(consultaCredito($clave));
+        }
 }
 
 if (isset($_POST['consultaSMS'])){
@@ -349,7 +358,7 @@ if (isset($_POST['consultaSMS'])){
     require_once FOLDER_MODEL_EXTEND. "model.compra_sms.inc.php";
     $sms = new ModeloCompra_sms();
     $cita = new ModeloCita();
-    echo json_encode(array($cita->SMSEnviadosBySucursal($sms->obtenerFechaUltimaCompra()),
+    echo json_encode(array($cita->SMSEnviadosBySucursal($sms->obtenerFechaUltimaCompra($objSession->getIdFranquicia())),
                 $cita->SMSEnviadosByFranquicia($sms->obtenerFechaUltimaCompra())));
 }
 
@@ -1262,20 +1271,21 @@ function enviaSMS2($numPaciente, $sMessage)
     return false;
 }
 
-function enviaSMS($numPaciente, $sMessage)
+function enviaSMS($numPaciente, $sMessage, $sucursal="")
 {
     date_default_timezone_set('America/Mexico_City');
     global $objSession;
+    $idSucursal=($sucursal!=""?$sucursal:$objSession->getIdSucursal());
     require_once FOLDER_MODEL_EXTEND. "model.claves.inc.php";
     $claves = new ModeloClaves();
-    $clave= $claves->obtenerClaveByReferencia("sms".$objSession->getIdSucursal());
-    if ($clave=="")
+    $clave= $claves->obtenerUsuarioClaveByReferencia("sms".$idSucursal);
+    if (count($clave)==0)
         return false;
     $concat="";
     $sData = 'cmd=sendsms&';
-    $sData .= 'domainId=siluetaexpress&';
-    $sData .= 'login=lic.lezliedelariva@gmail.com&';
-    $sData .= 'passwd='.$clave.'&';
+//    $sData .= 'domainId=siluetaexpress&';
+    $sData .= 'login='.$clave[1].'&';
+    $sData .= 'passwd='.$clave[0].'&';
     $sData.="concat=true&";
     
     $sData .= 'dest=' . str_replace(',', '&dest=', $numPaciente) . '&';

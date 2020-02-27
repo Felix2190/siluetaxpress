@@ -271,13 +271,15 @@ function guardarCambios($idCita,$duracion,$hora,$minuto,$consultorio,$chkbox,$fe
        $nSucursal->setIdSucursal($cita->getIdSucursal());
        $nConsulta= new ModeloConsulta();
        $nConsulta->setIdConsulta($cita->getIdConsulta());
-       
-       if (strlen($cita->getTelefonoPaciente())==12){
-           $Res=enviaSMS_CitaModificada($cita->getTelefonoPaciente(), date("d/m/Y",strtotime($fecha)), "$hora:$minuto", $nSucursal->getSucursal(), $nSucursal->getNumTelefono());
-           $citaactualizacion->setSms();
-       } else{
-          $r->call('mostrarMsjError',"No se puede enviar el SMS, el n&uacute;mero es incorrecto ",3);
-       }
+    if (strlen($cita->getTelefonoPaciente()) == 12) {
+        $Res = enviaSMS_CitaModificada($cita->getTelefonoPaciente(), date("d/m/Y", strtotime($fecha)), "$hora:$minuto", $nSucursal->getSucursal(), $nSucursal->getNumTelefono());
+        if ($Res)
+            $citaactualizacion->setSms();
+        else
+            $r->call('mostrarMsjError', "No se envi&oacute; el SMS", 3);
+    } else {
+        $r->call('mostrarMsjError', "No se puede enviar el SMS, el n&uacute;mero es incorrecto ", 3);
+    }
        
        
        $citaactualizacion->Guardar();

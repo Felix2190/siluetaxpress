@@ -1,10 +1,11 @@
 <?php
-function consultaCredito()
+function consultaCredito($clave)
 {
+        
     $sData = 'cmd=getcredit&';
-    $sData .= 'domainId=siluetaexpress&';
-    $sData .= 'login=lic.lezliedelariva@gmail.com&';
-    $sData .= 'passwd=l3z.$ilu374_9021&';
+ // $sData .= 'domainId=siluetaexpress&';
+    $sData .= 'login='.$clave[1].'&';
+    $sData .= 'passwd='.$clave[0].'&';
     
     $timeOut = 5;
     

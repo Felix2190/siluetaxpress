@@ -10,9 +10,10 @@
 		
 		var $idClave=0;
 		var $referencia='';
+		var $usuario='';
 		var $clave='';
 
-		var $__s=array("idClave","referencia","clave");
+		var $__s=array("idClave","referencia","usuario","clave");
 		var $__ss=array();
 
 		#------------------------------------------------------------------------------------------------------#
@@ -45,6 +46,11 @@
 			
 			$this->referencia=$referencia;
 		}
+		public function setUsuario($usuario)
+		{
+			
+			$this->usuario=$usuario;
+		}
 		public function setClave($clave)
 		{
 			
@@ -70,6 +76,10 @@
 		{
 			return $this->referencia;
 		}
+		public function getUsuario()
+		{
+			return $this->usuario;
+		}
 		public function getClave()
 		{
 			return $this->clave;
@@ -90,6 +100,7 @@
 			
 			$this->idClave=0;
 			$this->referencia='';
+			$this->usuario='';
 			$this->clave='';
 		}
 
@@ -100,8 +111,8 @@
 		{
 			try
 			{
-				$SQL="INSERT INTO claves(referencia,clave)
-						VALUES('" . mysqli_real_escape_string($this->dbLink,$this->referencia) . "','" . mysqli_real_escape_string($this->dbLink,$this->clave) . "')";
+				$SQL="INSERT INTO claves(referencia,usuario,clave)
+						VALUES('" . mysqli_real_escape_string($this->dbLink,$this->referencia) . "','" . mysqli_real_escape_string($this->dbLink,$this->usuario) . "','" . mysqli_real_escape_string($this->dbLink,$this->clave) . "')";
 				$result=mysqli_query($this->dbLink,$SQL);
 				if(!$result)
 					return $this->setSystemError("Error en la insercion de registro.","[" . $SQL . "][" . mysqli_error($this->dbLink) . "][ModeloBaseClaves::Insertar]");
@@ -121,7 +132,7 @@
 		{
 			try
 			{
-				$SQL="UPDATE claves SET referencia='" . mysqli_real_escape_string($this->dbLink,$this->referencia) . "',clave='" . mysqli_real_escape_string($this->dbLink,$this->clave) . "'
+				$SQL="UPDATE claves SET referencia='" . mysqli_real_escape_string($this->dbLink,$this->referencia) . "',usuario='" . mysqli_real_escape_string($this->dbLink,$this->usuario) . "',clave='" . mysqli_real_escape_string($this->dbLink,$this->clave) . "'
 					WHERE idClave=" . $this->idClave;
 				
 				$result=mysqli_query($this->dbLink,$SQL);
@@ -163,7 +174,7 @@
 			try
 			{
 				$SQL="SELECT
-						idClave,referencia,clave
+						idClave,referencia,usuario,clave
 					FROM claves
 					WHERE idClave=" . mysqli_real_escape_string($this->dbLink,$this->idClave);
 					

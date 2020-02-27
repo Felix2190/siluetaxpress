@@ -306,24 +306,24 @@
         global $objSession;
           $query = "Select '0' as opccion, s.idSucursal, count(*) as total from cita as c
                     inner join sucursal as s on c.idSucursal=s.idSucursal
-                     where s.idFranquicia=".$objSession->getIdFranquicia()." and recordatorio1=1 and fechaInicio>='$fecha' group by s.idSucursal
+                     where s.idFranquicia=".$objSession->getIdFranquicia()." and recordatorio1=1 and fechaRegistroCita>='$fecha' group by s.idSucursal
                     union
                     Select '1' as opccion,s.idSucursal,count(*) as total from cita as c
                     inner join sucursal as s on c.idSucursal=s.idSucursal
-                     where s.idFranquicia=".$objSession->getIdFranquicia()." and recordatorio2=1 and fechaInicio>='$fecha'  group by s.idSucursal
+                     where s.idFranquicia=".$objSession->getIdFranquicia()." and recordatorio2=1 and fechaRegistroCita>='$fecha'  group by s.idSucursal
                     union
                     Select '2' as opccion,s.idSucursal, count(*) as total from cita as c
                     inner join sucursal as s on c.idSucursal=s.idSucursal
-                     where s.idFranquicia=".$objSession->getIdFranquicia()." and idUsuarioCancela=0 and c.estatus='cancelada_paciente' and fechaInicio>='$fecha' group by s.idSucursal
+                     where s.idFranquicia=".$objSession->getIdFranquicia()." and idUsuarioCancela=0 and c.estatus='cancelada_paciente' and fechaRegistroCita>='$fecha' group by s.idSucursal
                     union
                     Select '3' as opccion,s.idSucursal, count(*) as total from cita as c
                     inner join sucursal as s on c.idSucursal=s.idSucursal
-                     where s.idFranquicia=".$objSession->getIdFranquicia()." and idUsuarioCancela>0 and c.estatus='cancelada_encargado' and fechaInicio>='$fecha'  group by s.idSucursal
+                     where s.idFranquicia=".$objSession->getIdFranquicia()." and idUsuarioCancela>0 and c.estatus='cancelada_encargado' and fechaRegistroCita>='$fecha'  group by s.idSucursal
                     union
                    Select '4' as opccion,s.idSucursal, count(*) as total from citaactualizacion as c
                     inner join cita as ct on c.idCita=ct.idCita
                     inner join sucursal as s on ct.idSucursal=s.idSucursal
-                     where s.idFranquicia=".$objSession->getIdFranquicia()." and sms=1 and tipo='Actualizacion' and fechaCita>='$fecha'  group by s.idSucursal";
+                     where s.idFranquicia=".$objSession->getIdFranquicia()." and sms=1 and tipo='Actualizacion' and date_format(fecha,'%Y-%m-%d')>='$fecha'  group by s.idSucursal";
 //           return json_encode($query);
           $titulos = array("Confirmaci&oacute;n de cita","Recordatorio","Respuesta de cancelaci&oacute;n (paciente)","Respuesta de cancelaci&oacute;n (encargado)","Actualizaci&oacute;n de cita");
                 $total=0;
