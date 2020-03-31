@@ -614,6 +614,46 @@ if (isset($_POST['idPacienteSucursal'])){
     echo $pacientes->getIdSucursal();
 }
 
+if (isset($_POST['nombreN'])&&isset($_POST['textoN'])&&isset($_POST['seccionN'])){
+    require_once FOLDER_MODEL_EXTEND. "model.notificacion.inc.php";
+    $notif= new ModeloNotificacion();
+    $notif->setFechaRegistro(date("Y-m-d H:i:s"));
+    $notif->setIdSucursal($objSession->getIdSucursal());
+    $notif->setIdUsuario($objSession->getidUsuario());
+    $notif->setNombre($_POST['nombreN']);
+    $notif->setTexto($_POST['textoN']);
+    $notif->setTipo($_POST['seccionN']);
+    if ($_POST['seccionN']=="Correo"){
+        if (isset($_POST['rutaN']))
+        foreach ($_POST['rutaN'] as $id=>$ruta){
+            switch ($id){
+                case 0:
+                    $notif->setImagen1($ruta);
+                    break;
+                case 1:
+                    $notif->setImagen2($ruta);
+                    break;
+                case 2:
+                    $notif->setImagen3($ruta);
+                    break;
+                case 3:
+                    $notif->setImagen4($ruta);
+                    break;
+                case 4:
+                    $notif->setImagen5($ruta);
+                    break;
+                    
+            }
+        }
+    }
+    $notif->Guardar();
+    if ($notif->getError()){
+        echo json_encode(array(0,$notif->getStrError()));
+    } else {
+        echo json_encode(array($notif->getIdNotificacion()));
+    }
+}
+
 function obtenCombo($array,$default){
     $combo='<option value="">'.$default.'</option>';
     foreach ($array as $key => $opcion)

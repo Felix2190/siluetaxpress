@@ -122,13 +122,51 @@ function guardar(){
 		error="Debe seleccionar por lo menos un paciente";
 	}
 	
-	console.log(ruta);
+	var numArray=parseInt(arrNombre.length/1000), sobrante=(arrNombre.length%1000),inicio=1;
+	
+	
+	
 	if(existeError){
 	mostrarMsjError(error,5);
 	}else{
 	$("#btnGuardar").hide();
 	mostrarMsjEspera('Espere un momento... ',50);
-	xajax_guardar(nombre,texto,arrNombre,seccion,ruta);
+	
+	$.ajax({
+		method : "post",
+		url : "adminFunciones.php",
+		data : {
+			nombreN: nombre,
+			textoN: texto,
+			seccionN:seccion,
+			rutaN:ruta
+		},
+		success : function(data) {
+			res= JSON.parse(data);
+			console.log(res[0]);
+			if(res[0]==0){
+				console.log(res[1])
+			}else{
+				var ini=0,fin=1000,empezar=0, finb=false;
+				for(inicio=1;inicio<=numArray;inicio++){
+//					console.log(arrNombre.slice(empezar,fin)+' ini'+ini+ ' empezar'+empezar+' fin'+fin);
+					if(inicio==numArray&&sobrante==0)
+						finb=true;
+					xajax_guardarNotificacion(res[0],arrNombre.slice(empezar,fin),seccion,finb);
+					ini++;
+					fin+=1000;
+					empezar=(ini*1000)+1;
+				}
+					if(sobrante>0){
+//						console.log(arrNombre.slice(empezar,fin)+' ini'+ini+ ' empezar'+empezar+' fin'+fin);
+						xajax_guardarNotificacion(res[0],arrNombre.slice(empezar,fin),seccion,true);
+					}
+				
+			}
+		}
+	});
+	
+///	xajax_guardarNotificacion(nombre,texto,ruta,seccion,ruta);
 	}
 }
 
@@ -273,7 +311,7 @@ function ponerElCursorAlFinal(id){
             return false;
 var out = '';
     //Se añaden las letras validas
-    var filtro = ' abcdefghijklmn!?opqrstuvwxyzABCDEFGHIJKLMN.,;OPQRSTUVWXYZ1234567890';//Caracteres validos
+    var filtro = ' abcdefghijklmn!?opqrstuvwxyzABCDEFGHIJKLMN.,;%OPQRSTUVWXYZ1234567890';//Caracteres validos
 	
     for (var i=0; i<contenido.length; i++)
        if (filtro.indexOf(contenido.charAt(i)) != -1) 
