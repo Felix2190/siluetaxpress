@@ -323,9 +323,14 @@
                    Select '4' as opccion,s.idSucursal, count(*) as total from citaactualizacion as c
                     inner join cita as ct on c.idCita=ct.idCita
                     inner join sucursal as s on ct.idSucursal=s.idSucursal
-                     where s.idFranquicia=".$objSession->getIdFranquicia()." and sms=1 and tipo='Actualizacion' and date_format(fecha,'%Y-%m-%d')>='$fecha'  group by s.idSucursal";
+                     where s.idFranquicia=".$objSession->getIdFranquicia()." and sms=1 and tipo='Actualizacion' and date_format(fecha,'%Y-%m-%d')>='$fecha'  group by s.idSucursal
+                    union
+                   Select '5' as opccion,s.idSucursal, count(*) as total from notificacion_paciente as np
+                    inner join notificacion as n on np.idNotificacion=n.idNotificacion
+                    inner join sucursal as s on n.idSucursal=s.idSucursal
+                     where s.idFranquicia=".$objSession->getIdFranquicia()." and tipo='SMS' and np.estatus='enviado' and date_format(fechaEnvio,'%Y-%m-%d')>='$fecha'  group by s.idSucursal";
 //           return json_encode($query);
-          $titulos = array("Confirmaci&oacute;n de cita","Recordatorio","Respuesta de cancelaci&oacute;n (paciente)","Respuesta de cancelaci&oacute;n (encargado)","Actualizaci&oacute;n de cita");
+          $titulos = array("Confirmaci&oacute;n de cita","Recordatorio","Respuesta de cancelaci&oacute;n (paciente)","Respuesta de cancelaci&oacute;n (encargado)","Actualizaci&oacute;n de cita","Notificaciones masivas");
                 $total=0;
                 $respuesta = array();
                 $resultado = mysqli_query($this->dbLink, $query);

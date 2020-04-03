@@ -12,7 +12,7 @@ function iniciar(){
 		success : function(data) {
 			respuesta=JSON.parse(data);
 			if(respuesta[0]==true)
-				$( "#divCredito" ).html('<div class="4u 12u$(small)"><div class="box"><ul><li><strong>Cr&eacute;dito disponible:&emsp;'+respuesta[1]+'</strong></li></ul></div></div>');
+				$( "#divCredito" ).html('<div class="box"><ul><li><strong>Cr&eacute;dito disponible:&emsp;'+respuesta[1]+'</strong></li></ul></div>');
 			else{
 				mostrarMsjError('El servicio no est&aacute; disponible',3);
 				$( "#divCredito" ).html('');
@@ -28,6 +28,7 @@ function iniciar(){
 		},
 		success : function(data) {
 			respuesta=JSON.parse(data);
+			$( "#divFecha" ).html('<div class="box"><ul><li><strong>Fecha &uacute;ltima compra:&emsp;'+respuesta[1]+'</strong></li></ul></div>');
 			xajax_mostrarTabla(respuesta);
 		}
 	});

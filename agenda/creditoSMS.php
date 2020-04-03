@@ -31,9 +31,13 @@ require_once 'masterInclude.inc.php';
 									<h2 id="content">Mi saldo </h2>
 								</div>
 						<br />		
-								<div class="row" id="divCredito">
-				
-				</div>
+								<div class="row" >
+									<div class="4u 12u$(small)" id="divCredito">
+									</div>
+									<div class="5u 12u$(small)" id="divFecha">
+									</div>
+								</div>
+								
    				
    				<br /> 
    				<div class="row">
@@ -46,6 +50,7 @@ require_once 'masterInclude.inc.php';
  				  				<div class="10u 12u$(xsmall)" id="divTablaSucursal"></div>
    				</div>
    				<br />
+   				<!-- 
    				<div class="row" >
    					<div class="8u 12u$(xsmall)">
 									<h4>SMS enviados por franquicia</h4>
@@ -53,6 +58,8 @@ require_once 'masterInclude.inc.php';
  				  				
    				<div class="5u 12u$(xsmall)" id="divTablaFranquicia"></div>
    				</div>
+   				
+   				-->
    				</div>
 					</div>
 

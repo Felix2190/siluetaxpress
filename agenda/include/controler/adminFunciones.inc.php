@@ -358,8 +358,9 @@ if (isset($_POST['consultaSMS'])){
     require_once FOLDER_MODEL_EXTEND. "model.compra_sms.inc.php";
     $sms = new ModeloCompra_sms();
     $cita = new ModeloCita();
-    echo json_encode(array($cita->SMSEnviadosBySucursal($sms->obtenerFechaUltimaCompra($objSession->getIdFranquicia())),
-                $cita->SMSEnviadosByFranquicia($sms->obtenerFechaUltimaCompra())));
+    $fechaUltimaCompra=$sms->obtenerFechaUltimaCompra($objSession->getIdFranquicia());
+    echo json_encode(array($cita->SMSEnviadosBySucursal($fechaUltimaCompra),date("d/m/Y",strtotime($fechaUltimaCompra))));//,
+  //              $cita->SMSEnviadosByFranquicia($sms->obtenerFechaUltimaCompra())));
 }
 
 if (isset($_POST['listadoSucursal'])){

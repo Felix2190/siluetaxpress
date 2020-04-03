@@ -27,12 +27,12 @@ $xajax = new xajax();
 function mostrarTabla($informacion)
 {
     $SMSSucursales=$informacion[0];
-    $SMSFranquicias=$informacion[1];
+//    $SMSFranquicias=$informacion[1];
     $r = new xajaxResponse();
     
     // POR SUCURSAL
     
-    $titulos = array("Confirmaci&oacute;n de cita","Recordatorio","Respuesta de cancelaci&oacute;n (paciente)","Respuesta de cancelaci&oacute;n (encargado)","Actualizaci&oacute;n de cita");
+    $titulos = array("Confirmaci&oacute;n de cita","Recordatorio","Respuesta de cancelaci&oacute;n (paciente)","Respuesta de cancelaci&oacute;n (encargado)","Actualizaci&oacute;n de cita","Notificaciones masivas");
     $sucursal= new ModeloSucursal();
     $arrSucursal=$sucursal->obtenerSucuralesFranquiciaSesion();
     $tabla = "";
@@ -58,13 +58,13 @@ function mostrarTabla($informacion)
             
             $tabla.="<td>" . $total . "</td></tr>";
         }
-        $tabla .= "<tr><td colspan='6'><strong>TOTAL</strong></td><td><h3>" . $t. "</h3></td></tr></tbody></table>";
+        $tabla .= "<tr><td colspan='".(count($titulos)+1)."'><strong>TOTAL</strong></td><td><h3>" . $t. "</h3></td></tr></tbody></table>";
     }
     
     $r->assign('divTablaSucursal', 'innerHTML', $tabla);
     
     //POR FRANQUICIA
-    $franquicia = new ModeloFranquicia();
+/*    $franquicia = new ModeloFranquicia();
     $arrFranquicia = $franquicia->obtenerFranquicias();
     $tabla = "";
     if (count($SMSFranquicias) > 0) {
@@ -76,7 +76,7 @@ function mostrarTabla($informacion)
     }
     
     $r->assign('divTablaFranquicia', 'innerHTML', $tabla);
-    return $r;
+  */  return $r;
 }
 $xajax->registerFunction("mostrarTabla");
 
