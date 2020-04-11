@@ -1464,9 +1464,9 @@ function enviar_mail($para,$asunto,$mensaje){
     $mailWeb->SMTPDebug = 0;
     $mailWeb->SMTPAuth = true;
     $mailWeb->Port = 587;
-    $mailWeb->Username = "agendasilueta@pruebassointec.com.mx";
+    $mailWeb->Username = "soporte@siluetaexpress.com.mx";
     $mailWeb->Password = $claveCorreo;
-    $mailWeb->SetFrom("agenda@siluetaexpress.com.mx", "SiluetaExpress @NoReply");
+    $mailWeb->SetFrom("soporte@siluetaexpress.com.mx", "Soprte SiluetaExpress");
     //    $mailWeb->AddReplyTo("siluetaexpress@pruebassointec.com.mx", "SiluetaExpress @NoReply");
     $mailWeb->Subject = $asunto;
     $mailWeb->AltBody = $mensaje;
@@ -1494,9 +1494,9 @@ function enviar_mail_archivos($para,$asunto,$mensaje,$imagenes){
     $mailWeb->SMTPDebug = 0;
     $mailWeb->SMTPAuth = true;
     $mailWeb->Port = 587;
-    $mailWeb->Username = "agendasilueta@pruebassointec.com.mx";
+    $mailWeb->Username = "soporte@siluetaexpress.com.mx";
     $mailWeb->Password = $claveCorreo;
-    $mailWeb->SetFrom("agenda@siluetaexpress.com.mx", "SiluetaExpress @NoReply");
+    $mailWeb->SetFrom("soporte@siluetaexpress.com.mx", "Soporte SiluetaExpress");
     //    $mailWeb->AddReplyTo("siluetaexpress@pruebassointec.com.mx", "SiluetaExpress @NoReply");
     $mailWeb->Subject = $asunto;
     $mailWeb->AltBody = $mensaje;

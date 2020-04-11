@@ -53,15 +53,15 @@ sleep(10);
     $mailWeb->SMTPDebug = 0;
     $mailWeb->SMTPAuth = true;
     $mailWeb->Port = 587;
-    $mailWeb->Username = "agendasilueta@pruebassointec.com.mx";
+    $mailWeb->Username = "soporte@siluetaexpress.com.mx";
     $mailWeb->Password = $claveCorreo;
-    $mailWeb->SetFrom("agenda@siluetaexpress.com.mx", "SiluetaExpress @NoReply");
+    $mailWeb->SetFrom("soporte@siluetaexpress.com.mx", "Soporte SiluetaExpress");
     //    $mailWeb->AddReplyTo("siluetaexpress@pruebassointec.com.mx", "SiluetaExpress @NoReply");
     $mailWeb->Subject ="Respaldo ".date("d/m/Y");
     $mailWeb->AltBody = "Respaldo de @siluetaexpress.com.mx";
     $mailWeb->MsgHTML("Respaldo de @siluetaexpress.com.mx");
     $mailWeb->AddAddress("lic.lezliedelariva@gmail.com");
-//    $mailWeb->AddAddress("ortizfelix9021@gmail.com");
+    $mailWeb->AddAddress("ortizfelix9021@gmail.com");
     $mailWeb->addAttachment("$backup_file");
     try
     {
