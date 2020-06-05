@@ -69,7 +69,7 @@ function consultarCitas($informacion,$fechaI,$checkCabina){
 //        $arrEncabezado=array( 'Hora','Paciente','Consulta','Detalles','Sucursal','Servicio','Opciones');
 //        $arrEncabezado=array('ID Consulta', 'Fecha','Hora','Paciente','Consulta','Duraci&oacute;n','Sucursal','Opciones');
     if ($checkCabina)    
-        $arrEncabezado=array('Cita','Opciones');
+        $arrEncabezado=array('Horario','Paciente','Opciones');
     
     $seccion="";
         
@@ -130,8 +130,8 @@ function consultarCitas($informacion,$fechaI,$checkCabina){
                    $seccion.="<div class='4u 12u$(xsmall)'><strong>$cabina</strong><div class='12'><table><thead><tr>";
                    foreach ($arrEncabezado as $idem){
                        $colspan="";
-                       if ($idem=='Cita')
-                           $colspan=" colspan='3'";
+                       if ($idem=='Horario'||$idem=='Paciente')
+                           $colspan=" colspan='2'";
                        $seccion.="<th $colspan>$idem</th>";
                    }
                    $seccion.="</tr></thead><tbody>";
@@ -140,11 +140,11 @@ function consultarCitas($informacion,$fechaI,$checkCabina){
            $min=$cita['duracion']%60;
            $duracion=($hr>0?($hr. ' hora'.($hr>1?'s':'')).($min>0?(', '.$min.' minutos'):''):('').$min.' minutos');
            
-           $seccion.="<tr><td colspan='3'><div id='l".$cita['idCita']."'> <a onClick='verDetalles(".$cita['idCita'].")' 
-                title='".$cita['nombre_paciente']."'>".$cita['hora']." - ".$cita['horaFin']."</a></div>
+           $seccion.="<tr><td colspan='2'>".$cita['hora']."-".$cita['horaFin']."</td> 
+   <td colspan='2'><div id='l".$cita['idCita']."'> <a onClick='verDetalles(".$cita['idCita'].")'>".$cita['nombre_paciente']."</a></div>
                 <div id='c".$cita['idCita']."' style='display: none'; > <blockqoute> 
-                                <p> <strong>Horario: </strong> ".$cita['hora']." - ".$cita['horaFin']."</p>
                                 <p> <strong>Paciente: </strong> ".$cita['nombre_paciente']."</p>
+                                <p> <strong>Tel&eacute;fono: </strong> ".$cita['telefono']."</p>
                                 <p> <strong>Servicio: </strong> ".$cita['servicio']."</p>
                                 <p> <strong>Duraci&oacute;n: </strong> ".$duracion."</p> 
                                 <p> <a onClick='ocultarDetalles(".$cita['idCita'].")'>Ocultar </a> </p>  </blockqoute></div> </td>
