@@ -60,6 +60,10 @@ function iniciar(){
 			 $( "#msjConfirm" ).hide();
 			 });
 			 
+		 $( "#checkCabinas" ).change(function(){
+			 listarCitas($( "#hdnFechaActual" ).val());
+		 });
+		 
 		 /*
 		 alertify.confirm('Confirm Title', 'Confirm Message', function(){ alertify.success('Ok') }
          , function(){ alertify.error('Cancel')}).set('labels',{ok:'Encargado',cancel:'Paciente'}).set('modal', true).set('closable',false); 
@@ -91,6 +95,8 @@ function listarCitas(fechaI){
 	if(alta==""){
 	idCabina=$( "#slcConsultorio" ).val();
 	}
+	var check=$('#checkCabinas').is(':checked');
+	console.log(check);
 	 $.ajax({
 			method : "post",
 			url : "adminFunciones.php",
@@ -103,7 +109,7 @@ function listarCitas(fechaI){
 			},
 			success : function(data) {
 				respuesta=JSON.parse(data);
-				xajax_consultarCitas(respuesta,fechaI);
+				xajax_consultarCitas(respuesta,fechaI,check);
 			}
 		});
 	 
@@ -158,7 +164,7 @@ function actualizaHorarios(){
 			}else{
 				presionado=false;
 			}
-			},5600)
+			},7600)
 		},700);
 }
 

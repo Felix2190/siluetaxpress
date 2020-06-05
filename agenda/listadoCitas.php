@@ -78,10 +78,14 @@ require_once 'masterInclude.inc.php';
 									</select>
 								</div>
 								</div>
+								
+								
+							<div class='2u 12u$(xsmall)'>
+        						<input id='checkCabinas' checked name='checkCabinas' type='checkbox' > <label for='checkCabinas'>Por cabinas</label>
+        						</div>
 									</div>
 									<?php }?>
 									
-								
 								</section>
 									<div class="row uniform">
 								<div class="2u 12u$(xsmall)" style="float: right;" >

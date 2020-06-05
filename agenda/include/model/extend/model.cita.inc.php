@@ -51,11 +51,11 @@
 		#------------------------------------------------Otras-------------------------------------------------#
 		#------------------------------------------------------------------------------------------------------#
 		
-		public function obtenerCitas()
+		public function obtenerCitas($checkCabinas=false)
 		{
 		    $fecha=date("Y-m-d H:i:s");
 		    $condicion=" ";
-		    
+		    $order="fechaInicio,c.idCabina";
 		    if ($this->idPaciente>0)
 		        $condicion.=" and c.idPaciente=$this->idPaciente";
 		        else{
@@ -70,7 +70,8 @@
 		        $condicion.=" and c.idUsuario=".$this->idUsuario;
 		    if ($this->idCabina>0)
 		        $condicion.=" and c.idCabina=$this->idCabina";
-		    
+	//	    if ($checkCabinas==true)
+		        $order="fecha,ca.nombre,fechaInicio";
 		    $query = "Select idCita, DATE_FORMAT(fechaInicio,'%Y-%m-%d') as fecha, DATE_FORMAT(fechaInicio,'%H:%i') as hora, duracion, 
                     concat_ws(' ', p.nombre, p.apellidos) as nombre_paciente, DATE_FORMAT(fechaFin,'%H:%i') as horaFin,
                     tipoConsulta, sucursal, ser.nombre as servicio, ca.nombre as cabina, c.idUsuario from cita as c
@@ -80,7 +81,7 @@
                     inner join consulta as co on c.idConsulta=co.idConsulta
                     inner join servicio as ser on c.idServicio=ser.idServicio
                     inner join cabina as ca on c.idCabina=ca.idCabina
-                    where (c.estatus='nueva' or c.estatus='curso') and fechaInicio>='$this->fechaInicio'  $condicion order by fechaInicio,c.idCabina";
+                    where (c.estatus='nueva' or c.estatus='curso') and fechaInicio>='$this->fechaInicio'  $condicion order by $order";
 
 		    $respuesta = array();
 		    $count=1;
@@ -201,7 +202,7 @@
                     concat_ws(' ', p.nombre, p.apellidos) as nombre_paciente, DATE_FORMAT(fechaFin,'%H:%i') as horaFin,
                     tipoConsulta, sucursal, ser.nombre as servicio, ca.nombre as cabina,enviarRecordatorio2,recordatorio2,
                     idUsuarioCancela, concat_ws(' ', u.nombre, u.apellidos) as nombre_usuario, e.descripcion,
-                    s.idSucursal,ca.idCabina,co.idConsulta,c.idUsuario,
+                    s.idSucursal,ca.idCabina,co.idConsulta,c.idUsuario, if(p.telefonoCel is null, p.telefonoCasa,p.telefonoCel) as telefono,
                     if(idUsuarioCancela=0,'', (select concat_ws(' ', nombre, apellidos) from usuario where idUsuario=idUsuarioCancela)) as personaCancela from cita as c
                     inner join usuario as u on c.idUsuario=u.idUsuario
                     inner join paciente as p on c.idPaciente=p.idPaciente

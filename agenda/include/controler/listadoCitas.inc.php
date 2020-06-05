@@ -43,7 +43,7 @@ function obtenMes($numMes){
 
 $xajax = new xajax();
 
-function consultarCitas($informacion,$fechaI){
+function consultarCitas($informacion,$fechaI,$checkCabina){
     $r=new xajaxResponse();
     global $objSession;
     $dias = array(
@@ -65,55 +65,96 @@ function consultarCitas($informacion,$fechaI){
     $rango="$fecha1[2]/".obtenMes(''.intval($fecha1[1]))."/$fecha1[0] al $fecha2[2]/".obtenMes(''.intval($fecha2[1]))."/$fecha2[0]";
     
     $arrEncabezado=array('Hora','Paciente','Consulta','Detalles','Servicio','Opciones');
-    if ($objSession->getidRol()==1)
-        $arrEncabezado=array( 'Hora','Paciente','Consulta','Detalles','Sucursal','Servicio','Opciones');
+ //   if ($objSession->getidRol()==1)
+//        $arrEncabezado=array( 'Hora','Paciente','Consulta','Detalles','Sucursal','Servicio','Opciones');
 //        $arrEncabezado=array('ID Consulta', 'Fecha','Hora','Paciente','Consulta','Duraci&oacute;n','Sucursal','Opciones');
-        $tabla="";
+    if ($checkCabina)    
+        $arrEncabezado=array('Cita','Opciones');
+    
+    $seccion="";
         
    foreach ($informacion as $fecha_=>$Citas){
        $fecha=explode("-", $fecha_);
        $_dia = date('N', strtotime($fecha_));
+       $cabina="";
+        $seccion.="<div class='row'><div class='4u 12u$(xsmall)'><h4>$dias[$_dia] $fecha[2] de ".obtenMes(''.intval($fecha[1]))." del $fecha[0]</h4>
+    								</div></div><div class='row'><div class='12u'>";
         
-        $tabla.="<div class='row'><div class='3u 12u$(xsmall)'><h4>$dias[$_dia] $fecha[2] de ".obtenMes(''.intval($fecha[1]))." del $fecha[0]</h4>
-    								</div></div><div class='row'><div class='12u'><table><thead><tr>";
-        foreach ($arrEncabezado as $idem){
-            $colspan="";
-            if ($idem=='Servicio')
-               $colspan=" colspan='2'";
-            if ($idem=='Detalles')
-                $colspan=" colspan='2'";
-            $tabla.="<th $colspan>$idem</th>";
-        }
-        
-        $tabla.="</tr></thead><tbody>";
-        foreach ($Citas as $id=>$cita){
-            $sucursal="";
-            if ($objSession->getidRol()==1)
-                $sucursal="<td>".$cita['sucursal']."</td>";
+        if (!$checkCabina){
+            $seccion.="<table><thead><tr>";
+            foreach ($arrEncabezado as $idem){
+                $colspan="";
+                if ($idem=='Servicio')
+                   $colspan=" colspan='2'";
+                if ($idem=='Detalles')
+                    $colspan=" colspan='2'";
+                $seccion.="<th $colspan>$idem</th>";
+            }
             
-            $hr=intval($cita['duracion']/60);
-            $min=$cita['duracion']%60;
-            $duracion=($hr>0?($hr. ' hora'.($hr>1?'s':'')).($min>0?(', '.$min.' minutos'):''):('').$min.' minutos');
-            
-            $detalles="<div id='l".$cita['idCita']."'> <p> <strong>Consultorio: </strong> ".$cita['cabina']."</p>
-                        <a onClick='verDetalles(".$cita['idCita'].")'>Ver detalles </a> </div>
-                       <div id='c".$cita['idCita']."' style='display: none'; > <blockqoute> 
-                            <!-- <p> <strong>Servicio: </strong> ".$cita['servicio']."</p> -->
-                            <p> <strong>Consultorio: </strong> ".$cita['cabina']."</p>
-                            <p> <strong>Duraci&oacute;n: </strong> ".$duracion."</p> 
-                            <p> <a onClick='ocultarDetalles(".$cita['idCita'].")'>Ocultar </a> </p>  </blockqoute></div>";
-            
-            
-            $tabla.="<tr><td>".$cita['hora']." - ".$cita['horaFin']."</td><td >".$cita['nombre_paciente']."</td><td>".$cita['tipoConsulta']."</td>
-                    <td colspan='2'>".$detalles."</td>$sucursal <td colspan='2'>".$cita['servicio']."</td>";
-//        if ($objSession->getidRol()==1||$objSession->getidUsuario()==$cita['idUsuario'])
-            $tabla.="<td><a onclick='verCita(\"".$cita['idCita']."\")'><img src='images/editaCita.png' title='Ver/editar' style='width: 34px' /></a> 
-                     <a onclick='verOpciones(\"".$cita['idCita']."\")'><img src='images/cancelarCita2.png' title='Cancelar cita' style='width: 34px' /></a></td>";
- /*           else 
-                $tabla.="<td><a onclick='verOpciones(\"".$cita['idCita']."\")'><img src='images/cancelarCita2.png' title='Cancelar cita' style='width: 34px' /></a></td>";
-   */         $tabla.="</tr>";
-        }
-        $tabla.="</tbody></table></div></div><br />";
+            $seccion.="</tr></thead><tbody>";
+            foreach ($Citas as $id=>$cita){
+                $sucursal="";
+    //            if ($objSession->getidRol()==1)
+    //                $sucursal="<td>".$cita['sucursal']."</td>";
+                
+                $hr=intval($cita['duracion']/60);
+                $min=$cita['duracion']%60;
+                $duracion=($hr>0?($hr. ' hora'.($hr>1?'s':'')).($min>0?(', '.$min.' minutos'):''):('').$min.' minutos');
+                
+                $detalles="<div id='l".$cita['idCita']."'> <p> <strong>Consultorio: </strong> ".$cita['cabina']."</p>
+                            <a onClick='verDetalles(".$cita['idCita'].")'>Ver detalles </a> </div>
+                           <div id='c".$cita['idCita']."' style='display: none'; > <blockqoute> 
+                                <!-- <p> <strong>Servicio: </strong> ".$cita['servicio']."</p> -->
+                                <p> <strong>Consultorio: </strong> ".$cita['cabina']."</p>
+                                <p> <strong>Duraci&oacute;n: </strong> ".$duracion."</p> 
+                                <p> <a onClick='ocultarDetalles(".$cita['idCita'].")'>Ocultar </a> </p>  </blockqoute></div>";
+                
+                
+                $seccion.="<tr><td>".$cita['hora']." - ".$cita['horaFin']."</td><td >".$cita['nombre_paciente']."</td><td>".$cita['tipoConsulta']."</td>
+                        <td colspan='2'>".$detalles."</td>$sucursal <td colspan='2'>".$cita['servicio']."</td>";
+    //        if ($objSession->getidRol()==1||$objSession->getidUsuario()==$cita['idUsuario'])
+                $seccion.="<td><a onclick='verCita(\"".$cita['idCita']."\")'><img src='images/editaCita.png' title='Ver/editar' style='width: 34px' /></a> 
+                         <a onclick='verOpciones(\"".$cita['idCita']."\")'><img src='images/cancelarCita2.png' title='Cancelar cita' style='width: 34px' /></a></td>";
+     /*           else 
+                    $tabla.="<td><a onclick='verOpciones(\"".$cita['idCita']."\")'><img src='images/cancelarCita2.png' title='Cancelar cita' style='width: 34px' /></a></td>";
+       */         $seccion.="</tr>";
+            }
+            $seccion.="</tbody></table>";
+        }else {
+            $seccion.="<div class='row'>";
+       foreach ($Citas as $id=>$cita){
+           if ($cabina==""||$cita['cabina']!=$cabina){
+               $cabina=$cita['cabina'];
+               if ($cabina!="")
+                   $seccion.="</tbody></table></div></div>";
+                   $seccion.="<div class='4u 12u$(xsmall)'><strong>$cabina</strong><div class='12'><table><thead><tr>";
+                   foreach ($arrEncabezado as $idem){
+                       $colspan="";
+                       if ($idem=='Cita')
+                           $colspan=" colspan='3'";
+                       $seccion.="<th $colspan>$idem</th>";
+                   }
+                   $seccion.="</tr></thead><tbody>";
+           }
+           $hr=intval($cita['duracion']/60);
+           $min=$cita['duracion']%60;
+           $duracion=($hr>0?($hr. ' hora'.($hr>1?'s':'')).($min>0?(', '.$min.' minutos'):''):('').$min.' minutos');
+           
+           $seccion.="<tr><td colspan='3'><div id='l".$cita['idCita']."'> <a onClick='verDetalles(".$cita['idCita'].")' 
+                title='".$cita['nombre_paciente']."'>".$cita['hora']." - ".$cita['horaFin']."</a></div>
+                <div id='c".$cita['idCita']."' style='display: none'; > <blockqoute> 
+                                <p> <strong>Horario: </strong> ".$cita['hora']." - ".$cita['horaFin']."</p>
+                                <p> <strong>Paciente: </strong> ".$cita['nombre_paciente']."</p>
+                                <p> <strong>Servicio: </strong> ".$cita['servicio']."</p>
+                                <p> <strong>Duraci&oacute;n: </strong> ".$duracion."</p> 
+                                <p> <a onClick='ocultarDetalles(".$cita['idCita'].")'>Ocultar </a> </p>  </blockqoute></div> </td>
+                <td><a onclick='verCita(\"".$cita['idCita']."\")'><img src='images/editaCita.png' title='Ver/editar' style='width: 20px' /></a> 
+                   <a onclick='verOpciones(\"".$cita['idCita']."\")'><img src='images/cancelarCita2.png' title='Cancelar cita' style='width: 20px' /></a>
+                </td></tr>";
+       }
+       $seccion.="</tbody></table></div></div></div>";
+   }
+        $seccion.="</div></div><br />";
     }
     $fecha1=explode(" ", $fechaI);
     $fI=strtotime($fecha1[0]);
@@ -129,7 +170,7 @@ function consultarCitas($informacion,$fechaI){
     }
     
     $btn='<a id="btnAnt" class="button small '.$disable.'">Anterior semana</a>';
-    $r->assign('divTabla', 'innerHTML', $tabla);
+    $r->assign('divTabla', 'innerHTML', $seccion);
     $r->assign('fechasEntre', 'innerHTML', $rango);
     $r->assign('divBtnAnt', 'innerHTML', $btn);
     $r->call('colocaFechas', $fechaFin,$fechaI,$fechaInicio);

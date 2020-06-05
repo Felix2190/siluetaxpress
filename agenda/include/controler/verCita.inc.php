@@ -97,7 +97,7 @@ function cargarInformacion($informacion,$txtDuracion,$hora,$minuto,$cabina,$chkb
                     <input type='hidden' id='hdnCheck' value='".$informacion['enviarRecordatorio2']."'/>
 						<input type='hidden' id='hdnFecha' value='".$informacion['fecha']."'/>
 						
-					<ul><li><strong>Fecha: </strong>".$auxFecha."</li><li><strong>Paciente: </strong>".$informacion['nombre_paciente']."</li>
+					<ul><li><strong>Fecha: </strong>".$auxFecha."</li><li><strong>Paciente: </strong>".$informacion['nombre_paciente']." (".$informacion['telefono'].")</li>
                         <li><strong>Sucursal: </strong>".$informacion['sucursal']."</li>
 						<li><strong>Horario: </strong>".$informacion['hora']." - ".$informacion['horaFin']."</li><li><strong>Consulta: </strong>".$informacion['tipoConsulta']."</li>
                         <li><strong>Duracion: </strong>".$duracion_."</li>
