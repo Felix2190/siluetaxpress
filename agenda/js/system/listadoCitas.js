@@ -233,12 +233,14 @@ function cancelarCita(password,canceladaPor){
 function cancelar(canceladaPor){
 	//alert(idCita);
 	mensajeConfirmacion("Cancelar cita", "Escribe su contrase&ntilde;a para continuar", canceladaPor, "msjConfirm");
+
 }
 
-function verOpciones(idCita){
+function verOpciones(idCita,url){
 	 $( "#msjConfirm" ).show();
 		cita=idCita;
-}
+		window.open(url);
+		}
 
 function verCita(idCita){
 	presionado=true;

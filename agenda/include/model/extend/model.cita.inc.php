@@ -74,7 +74,7 @@
 		        $order="fecha,ca.nombre,fechaInicio";
 		    $query = "Select idCita, DATE_FORMAT(fechaInicio,'%Y-%m-%d') as fecha, DATE_FORMAT(fechaInicio,'%H:%i') as hora, 
                     if(p.telefonoCel is null, p.telefonoCasa,p.telefonoCel) as telefono, duracion, 
-                    concat_ws(' ', p.nombre, p.apellidos) as nombre_paciente, DATE_FORMAT(fechaFin,'%H:%i') as horaFin,
+                    concat_ws(' ', p.nombre, p.apellidos) as nombre_paciente, p.nombre, DATE_FORMAT(fechaFin,'%H:%i') as horaFin,
                     tipoConsulta, sucursal, ser.nombre as servicio, ca.nombre as cabina, c.idUsuario from cita as c
                     inner join usuario as u on c.idUsuario=u.idUsuario
                     inner join paciente as p on c.idPaciente=p.idPaciente
