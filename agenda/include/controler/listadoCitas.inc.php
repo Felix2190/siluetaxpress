@@ -141,7 +141,7 @@ function consultarCitas($informacion,$fechaI,$checkCabina){
            $duracion=($hr>0?($hr. ' hora'.($hr>1?'s':'')).($min>0?(', '.$min.' minutos'):''):('').$min.' minutos');
            
            $texto=utf8_encode("Recordatorio de cita silueta express: ".$cita['nombre']."! te recordamos que tienes una cita con 
-nosotros el día $dias[$_dia] $fecha[2] de ".obtenMes(''.intval($fecha[1])).". Te agradeceríamos llegar 
+nosotros el día $dias[$_dia] $fecha[2] de ".obtenMes(''.intval($fecha[1]))." a las ".$cita['hora']."hrs. Te agradeceríamos llegar 
 10 minutos antes, y en caso de cancelar hacerlo un día de anterioridad. Gracias");
            $texto2="https://web.whatsapp.com/send?phone=52".$cita['telefono']."&text=".utf8_encode("Silueta Express te informa: la cita del día $dias[$_dia] $fecha[2] de ".obtenMes(''.intval($fecha[1]))." se ha cancelado.  Esperamos verte de nuevo pronto. Servirte es nuestra vocación .");
            $seccion.="<tr><td colspan='2'>".$cita['hora']."-".$cita['horaFin']."</td> 
