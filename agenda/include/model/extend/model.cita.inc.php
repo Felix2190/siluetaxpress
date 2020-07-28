@@ -226,7 +226,8 @@
 		
     public function resumenCitas($fecha)
     {
-        $condicion = " ";
+        global $objSession;
+        $condicion = " and idFranquicia=".$objSession->getIdFranquicia();
         if ($this->idSucursal > 0)
             $condicion .= " and c.idSucursal=" . $this->idSucursal;
         if ($this->idUsuario)
