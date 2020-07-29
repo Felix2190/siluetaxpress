@@ -95,9 +95,10 @@ if (isset($_POST['sucursalCitaNueva'])){
 
 if (isset($_POST['sucursales'])){
     require_once FOLDER_MODEL_EXTEND. "model.sucursal.inc.php";
-    $estatus = new ModeloSucursal();
+    $sucursal = new ModeloSucursal();
+    $sucursal->setIdFranquicia( $objSession->getIdFranquicia());
     $combo='';
-    foreach ($estatus->obtenerSucurales() as $key => $opcion)
+    foreach ($sucursal->obtenerSucuralesFranquicia() as $key => $opcion)
         $combo.='<option value="'.$key.'" '.($key==$objSession->getIdSucursal()?'selected':'').'>'.$opcion.'</option>';
         
     echo json_encode($combo);

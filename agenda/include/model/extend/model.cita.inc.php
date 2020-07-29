@@ -233,19 +233,19 @@
         if ($this->idUsuario)
             $condicion .= " and c.idUsuario=" . $this->idUsuario;
         
-        $query = "Select count(*) as resultado, '0' from cita as c
+        $query = "Select count(*) as resultado, '0' from cita as c inner join sucursal as s on c.idSucursal=s.idSucursal
                     where c.estatus='curso' and DATE_FORMAT(c.fechaInicio,'%Y-%m-%d')>='$fecha' and DATE_FORMAT(c.fechaFin,'%Y-%m-%d')<='$fecha'  $condicion
                union 
-                Select count(*) as resultado, '1' from cita as c
-                    where estatus='realizada' and DATE_FORMAT(c.fechaInicio,'%Y-%m-%d')>='$fecha' and DATE_FORMAT(c.fechaFin,'%Y-%m-%d')<='$fecha'  $condicion
+                Select count(*) as resultado, '1' from cita as c inner join sucursal as s on c.idSucursal=s.idSucursal
+                    where c.estatus='realizada' and DATE_FORMAT(c.fechaInicio,'%Y-%m-%d')>='$fecha' and DATE_FORMAT(c.fechaFin,'%Y-%m-%d')<='$fecha'  $condicion
                union 
-                Select count(*) as resultado, '2' from cita as c
+                Select count(*) as resultado, '2' from cita as c inner join sucursal as s on c.idSucursal=s.idSucursal
                     where c.estatus='nueva' and DATE_FORMAT(c.fechaInicio,'%Y-%m-%d')>='$fecha' and DATE_FORMAT(c.fechaFin,'%Y-%m-%d')<='$fecha'  $condicion
                union 
-                Select count(*) as resultado, '3' from cita as c
-                    where estatus='cancelada_encargado' and  DATE_FORMAT(c.fechaInicio,'%Y-%m-%d')>='$fecha' and DATE_FORMAT(c.fechaFin,'%Y-%m-%d')<='$fecha'  $condicion
+                Select count(*) as resultado, '3' from cita as c inner join sucursal as s on c.idSucursal=s.idSucursal
+                    where c.estatus='cancelada_encargado' and  DATE_FORMAT(c.fechaInicio,'%Y-%m-%d')>='$fecha' and DATE_FORMAT(c.fechaFin,'%Y-%m-%d')<='$fecha'  $condicion
                union 
-                Select count(*) as resultado, '4' from cita as c
+                Select count(*) as resultado, '4' from cita as c inner join sucursal as s on c.idSucursal=s.idSucursal
                     where c.estatus='cancelada_paciente' and  DATE_FORMAT(c.fechaInicio,'%Y-%m-%d')>='$fecha' and DATE_FORMAT(c.fechaFin,'%Y-%m-%d')<='$fecha'  $condicion";
                
                $items = array("divCitaCurso","divCitaRea","divCitaProxs","divCitaCP","divCitaCE");
@@ -275,8 +275,9 @@
         
         if ($this->idSucursal>0)
         {
-        $query="select distinct c.idCabina, idCita, ca.nombre as cabina from cita as c inner join cabina as ca on c.idCabina=ca.idCabina
-                    where estatus='curso' and  DATE_FORMAT(fechaInicio,'%Y-%m-%d')>='$fecha'  and DATE_FORMAT(fechaFin,'%Y-%m-%d')<='$fecha'
+        $query="select distinct c.idCabina, idCita, ca.nombre as cabina from cita as c 
+            inner join cabina as ca on c.idCabina=ca.idCabina inner join sucursal as s on c.idSucursal=s.idSucursal 
+                    where c.estatus='curso' and  DATE_FORMAT(fechaInicio,'%Y-%m-%d')>='$fecha'  and DATE_FORMAT(fechaFin,'%Y-%m-%d')<='$fecha'
                  $condicion  order by fechaInicio asc ";
             
              $resultado = mysqli_query($this->dbLink, $query);
@@ -288,8 +289,9 @@
                 }
             }
         
-        $query="select distinct c.idCabina, idCita, ca.nombre as cabina from cita as c inner join cabina as ca on c.idCabina=ca.idCabina
-                    where estatus='nueva' and  DATE_FORMAT(fechaInicio,'%Y-%m-%d')>='$fecha'  and DATE_FORMAT(fechaFin,'%Y-%m-%d')<='$fecha'
+        $query="select distinct c.idCabina, idCita, ca.nombre as cabina from cita as c 
+                inner join cabina as ca on c.idCabina=ca.idCabina inner join sucursal as s on c.idSucursal=s.idSucursal 
+                    where c.estatus='nueva' and  DATE_FORMAT(fechaInicio,'%Y-%m-%d')>='$fecha'  and DATE_FORMAT(fechaFin,'%Y-%m-%d')<='$fecha'
                  $condicion  order by fechaInicio asc ";
         
                  $resultado = mysqli_query($this->dbLink, $query);
