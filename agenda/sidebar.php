@@ -76,3 +76,24 @@
 		<?php include_once 'footer.php';?>
 	</div>
 </div>
+	<div class="alertify  ajs-movable ajs-closable ajs-pinnable ajs-slide" id="msjVerifica" style="display: none;">
+		<div class="ajs-dimmer"></div>
+		<div class="ajs-modal" tabindex="0">
+			<div class="ajs-dialog" tabindex="0" style="">
+				<div class="ajs-commands">
+					<button class="ajs-close"  id="btnCerrarVerifica"></button>
+				</div>
+				<div class="ajs-header">Verifica asistencia</div>
+				<div class="ajs-body">
+					<div class="ajs-content" id="divVerifica"></div>
+				</div>
+				<div class="ajs-footer">
+					<div class="ajs-auxiliary ajs-buttons"></div>
+					<div class="ajs-primary ajs-buttons">
+						<button class="ajs-button " id="btnSiVerifica">Si</button>
+						<button class="ajs-button " id="btnNoVerifica">No</button>
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>

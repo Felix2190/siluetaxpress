@@ -44,6 +44,27 @@ if(!empty($_FILES['imagenCorreo']))
     }
     
 }
+
+if (isset($_POST['sucursalVerificaAsistencia'])){
+require_once FOLDER_MODEL_EXTEND. "model.cita.inc.php";
+    $cita = new ModeloCita();
+        $cita->setIdSucursal($_POST['sucursalVerificaAsistencia']);
+                echo json_encode($cita->verificaAsistenciaPaciente(date("Y-m-d H:i:s")));
+}
+
+if (isset($_POST['idCitaVerifica'])&&isset($_POST['estatus'])){
+    $estatus="no_realizada";
+    if ($_POST['estatus']=='true') {
+        $estatus="realizada";
+    }
+    require_once FOLDER_MODEL_EXTEND. "model.cita.inc.php";
+    $cita = new ModeloCita();
+    $cita->setIdCita($_POST['idCitaVerifica']);
+    $cita->setEstatus($estatus);
+    $cita->unsetVerificaAsistencia();
+    $cita->Guardar();
+}
+
 if (isset($_POST['pacientes'])){
     require_once FOLDER_MODEL_EXTEND. "model.paciente.inc.php";
     $pacientes = new ModeloPaciente();

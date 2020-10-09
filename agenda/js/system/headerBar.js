@@ -1,3 +1,4 @@
+var idCitaV;
 $(document).ready(function(){
 	var url=window.location.href;
 
@@ -12,6 +13,40 @@ $(document).ready(function(){
 		}
 	});
 	
+
+	setTimeout(function() {
+		setInterval(function(){
+	$.ajax({
+		method : "post",
+		url : "adminFunciones.php",
+		data : {
+			sucursalVerificaAsistencia:$( "#slcSucursalBar" ).val()
+			
+		},
+		success : function(data) {
+			respuesta=JSON.parse(data);
+			if(!$.isEmptyObject(respuesta)){
+				idCitaV=respuesta['idCita'];
+					$( "#msjVerifica" ).show();
+					$( "#divVerifica" ).html("&iquest;"+respuesta['nombre_paciente']+" asisti&oacute; a su cita en cabina "+respuesta['cabina']+"?");
+			}
+		}	
+	});
+		},7500);
+	},2906);
+
+		 $( "#btnSiVerifica" ).click(function(){
+			asistencia(true);
+		 });
+		 
+		 $( "#btnNoVerifica" ).click(function(){
+			asistencia(false);			 
+		 });
+		 
+		 $( "#btnCerrarVerifica" ).click(function(){
+			 $( "#msjVerifica" ).hide();
+			 });
+ 
 	$( "#slcSucursalBar" ).change(function(){
 		mostrarMsjEspera('Espere un momento...', 2);
 		$.ajax({
@@ -101,4 +136,18 @@ $(document).ready(function(){
 	},290600);
 	*/
 });
+
+function asistencia(e){
+		$.ajax({
+		method : "post",
+		url : "adminFunciones.php",
+		data : {
+			idCitaVerifica:idCitaV,estatus:e
+		},
+		success : function(data) {
+			$( "#msjVerifica" ).hide();
+		}
+	});
+
+}
 	
