@@ -71,8 +71,10 @@ function iniciar(){
 	
 	$( "#slcPaciente" ).combobox();
 	consultaDatos();
-		 
-	$('.datepicker').datepicker({
+var slcchange = document.getElementById("slcPaciente");
+slcchange.addEventListener("blur", function() {
+    console.log(slcchange.value)
+});	$('.datepicker').datepicker({
 		dateFormat : 'yy-mm-dd',
 		changeMonth : true,
 		changeYear : true,
@@ -488,7 +490,11 @@ function iniciarAutoacomplete(){
 	            classes: {
 	              "ui-tooltip": "ui-state-highlight"
 	            }
+	          })
+	          .on( "change", function() {
+		console.log('gj');	 
 	          });
+;
 	 
 	        this._on( this.input, {
 	          autocompleteselect: function( event, ui ) {
@@ -525,7 +531,7 @@ function iniciarAutoacomplete(){
 	          })
 	          .on( "click", function() {
 	            input.trigger( "focus" );
-	 
+		console.log('gj');	 
 	            // Close if already visible
 	            if ( wasOpen ) {
 	              return;

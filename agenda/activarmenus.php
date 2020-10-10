@@ -9,6 +9,7 @@ $arrSeccionesPagina=array(
     "buscarCita"=>"citas",
     "registroApartado"=>"citas",
     "citasAnteriores"=>"citas",
+    "verificaAsistencia"=>"citas",
     
     "listadoPacientes"=>"pacientes",
     "altaPaciente"=>"pacientes",

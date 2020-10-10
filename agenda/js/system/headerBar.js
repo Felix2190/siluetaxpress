@@ -1,4 +1,4 @@
-var idCitaV;
+var idCitaV,numV;
 $(document).ready(function(){
 	var url=window.location.href;
 
@@ -27,6 +27,7 @@ $(document).ready(function(){
 			respuesta=JSON.parse(data);
 			if(!$.isEmptyObject(respuesta)){
 				idCitaV=respuesta['idCita'];
+				numV=respuesta['telefono'];
 					$( "#msjVerifica" ).show();
 					$( "#divVerifica" ).html("&iquest;"+respuesta['nombre_paciente']+" asisti&oacute; a su cita en cabina "+respuesta['cabina']+"?");
 			}
@@ -146,7 +147,10 @@ function asistencia(e){
 		},
 		success : function(data) {
 			$( "#msjVerifica" ).hide();
-		}
+			if(e==false){
+				window.location.href="https://web.whatsapp.com/send?phone=52"+numV+"&text="+JSON.parse(data);
+			}
+}
 	});
 
 }

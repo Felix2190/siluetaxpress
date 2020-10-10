@@ -52,6 +52,13 @@ require_once FOLDER_MODEL_EXTEND. "model.cita.inc.php";
                 echo json_encode($cita->verificaAsistenciaPaciente(date("Y-m-d H:i:s")));
 }
 
+if (isset($_POST['listadoVerifica'])){
+    require_once FOLDER_MODEL_EXTEND. "model.cita.inc.php";
+    $cita = new ModeloCita();
+    $cita->setIdSucursal($objSession->getIdSucursal());
+    echo json_encode($cita->listadoverificaAsistenciaPaciente());
+}
+
 if (isset($_POST['idCitaVerifica'])&&isset($_POST['estatus'])){
     $estatus="no_realizada";
     if ($_POST['estatus']=='true') {
@@ -63,6 +70,7 @@ if (isset($_POST['idCitaVerifica'])&&isset($_POST['estatus'])){
     $cita->setEstatus($estatus);
     $cita->unsetVerificaAsistencia();
     $cita->Guardar();
+    echo json_encode(utf8_encode("Lamentamos mucho que no hayas podido asistir a tu cita el día de hoy, te pedimos para la siguiente cancelar por lo menos con 24 hrs de antelación, recuerda que después de 3 citas con falta sin cancelar se te tomará como realizada. Todo esto con finalidad de mejorar el servicio y tener disponibilidad para otros pacientes. Estamos a tus órdenes Atte. Silueta Express"));
 }
 
 if (isset($_POST['pacientes'])){

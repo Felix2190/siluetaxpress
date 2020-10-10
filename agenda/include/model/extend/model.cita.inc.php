@@ -476,17 +476,40 @@
 
     public function verificaAsistenciaPaciente($fecha)
     {
-                   $query = "Select idCita, concat_ws(' ', p.nombre, p.apellidos) as nombre_paciente,ca.nombre as cabina from cita as c
+        $query = "Select idCita, concat_ws(' ', p.nombre, p.apellidos) as nombre_paciente,ca.nombre as cabina, 
+                    DATE_FORMAT(fechaInicio,'%d/%m') as fecha, 
+                    if(p.telefonoCel is null, p.telefonoCasa,p.telefonoCel) as telefono from cita as c
                     inner join paciente as p on c.idPaciente=p.idPaciente
                     inner join cabina as ca on c.idCabina=ca.idCabina
-                    where c.idSucursal=".$this->idSucursal." and 
+                    where c.idSucursal=" . $this->idSucursal . " and 
         ('$fecha' >= c.fechaVerificaAsistencia and '$fecha'<=fechaFin) and c.estatus='curso' and verificaAsistencia=1 limit 1";
-                                    // return $query;
-                                    $respuesta = array();
-                                    $resultado = mysqli_query($this->dbLink, $query);
-                                    if ($resultado && mysqli_num_rows($resultado) > 0) {
-                                        return mysqli_fetch_assoc($resultado);
-                                    }
-                                    return $respuesta;
+        //return $query;
+        $respuesta = array();
+        $resultado = mysqli_query($this->dbLink, $query);
+        if ($resultado && mysqli_num_rows($resultado) > 0) {
+            return mysqli_fetch_assoc($resultado);
+        }
+        return $respuesta;
     }
+    
+    public function listadoverificaAsistenciaPaciente()
+    {
+        
+        $query = "Select idCita, concat_ws(' ', p.nombre, p.apellidos) as nombre_paciente,ca.nombre as cabina,
+                    DATE_FORMAT(fechaInicio,'%d/%m') as fecha, 
+                    if(p.telefonoCel is null, p.telefonoCasa,p.telefonoCel) as telefono from cita as c
+                    inner join paciente as p on c.idPaciente=p.idPaciente
+                    inner join cabina as ca on c.idCabina=ca.idCabina
+                    where c.idSucursal=" . $this->idSucursal . " and verificaAsistencia=1 ";
+        // return $query;
+        $respuesta = array();
+        $resultado = mysqli_query($this->dbLink, $query);
+        if ($resultado && mysqli_num_rows($resultado) > 0) {
+            while ($row_inf = mysqli_fetch_assoc($resultado)){
+                $respuesta[] = $row_inf;
+            }
+        }
+        return $respuesta;
+    }
+    
 	}
