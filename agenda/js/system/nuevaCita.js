@@ -71,10 +71,7 @@ function iniciar(){
 	
 	$( "#slcPaciente" ).combobox();
 	consultaDatos();
-var slcchange = document.getElementById("slcPaciente");
-slcchange.addEventListener("blur", function() {
-    console.log(slcchange.value)
-});	$('.datepicker').datepicker({
+	$('.datepicker').datepicker({
 		dateFormat : 'yy-mm-dd',
 		changeMonth : true,
 		changeYear : true,
@@ -492,7 +489,7 @@ function iniciarAutoacomplete(){
 	            }
 	          })
 	          .on( "change", function() {
-		console.log('gj');	 
+				verificaInasistencias();	 
 	          });
 ;
 	 
@@ -531,8 +528,7 @@ function iniciarAutoacomplete(){
 	          })
 	          .on( "click", function() {
 	            input.trigger( "focus" );
-		console.log('gj');	 
-	            // Close if already visible
+		         // Close if already visible
 	            if ( wasOpen ) {
 	              return;
 	            }
@@ -598,7 +594,22 @@ function iniciarAutoacomplete(){
 	    });
 	 
 }
-	 
+
+function verificaInasistencias(){
+$.ajax({
+		method : "post",
+		url : "adminFunciones.php",
+		data : {
+			idPacienteInasistencias:$("#slcPaciente").val()
+		},
+		success : function(data) {
+			if(data>2){
+				 mostrarMsjError('Este paciente no ha asistido a sus consultas en '+data+' ocasiones');
+				 $("#btnGuardar").hide();
+			}	
+	}
+  });
+} 
 
 //var alert = alertify.alert('Titulo','TextoAlerta').set('label', 'Aceptar');     	 
 //alert.set({transition:'zoom'}); //slide, zoom, flipx, flipy, fade, pulse (default)

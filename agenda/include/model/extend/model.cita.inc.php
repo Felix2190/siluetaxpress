@@ -512,4 +512,17 @@
         return $respuesta;
     }
     
+    public function totalInasistencias()
+    {
+        $query = "Select count(*) as total from cita
+                    where estatus='no_realizada' and idPaciente=$this->idPaciente";
+        $respuesta = 0;
+        $resultado = mysqli_query($this->dbLink, $query);
+        if ($resultado && mysqli_num_rows($resultado) > 0) {
+            $row_inf = mysqli_fetch_assoc($resultado);
+                $respuesta = $row_inf['total'];
+        }
+        return $respuesta;
+    }
+    
 	}

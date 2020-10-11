@@ -4,11 +4,10 @@ UPDATE cita set fechaVerificaAsistencia=DATE_SUB(fechaFin,INTERVAL 10 MINUTE);
 
 DELIMITER $$
 
-CREATE TRIGGER actualizaFechaVerificar AFTER UPDATE ON cita
+CREATE TRIGGER actualizaFechaVerificar before UPDATE ON cita
 FOR EACH ROW
 BEGIN
-	SET @fechaVerificaAsistencia=DATE_SUB(NEW.fechaFin, INTERVAL 10 MINUTE);
-	UPDATE cita set fechaVerificaAsistencia=@fechaVerificaAsistencia where idCita=NEW.idCita;
+	SET NEW.fechaVerificaAsistencia=DATE_SUB(NEW.fechaFin, INTERVAL 10 MINUTE);
 	
 	
 END $$

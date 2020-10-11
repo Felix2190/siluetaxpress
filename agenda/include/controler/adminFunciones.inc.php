@@ -44,6 +44,12 @@ if(!empty($_FILES['imagenCorreo']))
     }
     
 }
+if (isset($_POST['idPacienteInasistencias'])){
+    require_once FOLDER_MODEL_EXTEND. "model.cita.inc.php";
+    $cita = new ModeloCita();
+    $cita->setIdPaciente($_POST['idPacienteInasistencias']);
+    echo $cita->totalInasistencias();
+}
 
 if (isset($_POST['sucursalVerificaAsistencia'])){
 require_once FOLDER_MODEL_EXTEND. "model.cita.inc.php";

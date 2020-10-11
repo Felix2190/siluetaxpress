@@ -1,0 +1,264 @@
+From admin_5ilu3t4@pruebasointec.com.mx  Sun Oct 11 07:57:01 2020
+Return-Path: <admin_5ilu3t4@pruebasointec.com.mx>
+X-Original-To: admin_5ilu3t4
+Delivered-To: admin_5ilu3t4@pruebasointec.com.mx
+Received: by pruebasointec.com.mx (Postfix, from userid 10002)
+	id 8F98D1534A9; Sun, 11 Oct 2020 07:57:01 +0000 (UTC)
+From: "(Cron Daemon)" <admin_5ilu3t4@pruebasointec.com.mx>
+To: admin_5ilu3t4@pruebasointec.com.mx
+Subject: Cron <admin_5ilu3t4@localhost> /var/www/vhosts/siluetaexpress.com.mx/cron/verificaAsistencia.sh; touch /tmp/fek
+Content-Type: text/plain; charset=UTF-8
+Auto-Submitted: auto-generated
+Precedence: bulk
+X-Cron-Env: <XDG_SESSION_ID=1508505>
+X-Cron-Env: <XDG_RUNTIME_DIR=/run/user/10002>
+X-Cron-Env: <LANG=en_US.UTF-8>
+X-Cron-Env: <SHELL=/bin/bash>
+X-Cron-Env: <HOME=/var/www/vhosts/siluetaexpress.com.mx/httpdocs>
+X-Cron-Env: <PATH=/usr/bin:/bin>
+X-Cron-Env: <LOGNAME=admin_5ilu3t4>
+X-Cron-Env: <USER=admin_5ilu3t4>
+Message-Id: <20201011075701.8F98D1534A9@pruebasointec.com.mx>
+Date: Sun, 11 Oct 2020 07:57:01 +0000 (UTC)
+
+/bin/bash: /var/www/vhosts/siluetaexpress.com.mx/cron/verificaAsistencia.sh: /bin/sh^M: bad interpreter: No such file or directory
+
+From admin_5ilu3t4@pruebasointec.com.mx  Sun Oct 11 07:57:01 2020
+Return-Path: <admin_5ilu3t4@pruebasointec.com.mx>
+X-Original-To: admin_5ilu3t4
+Delivered-To: admin_5ilu3t4@pruebasointec.com.mx
+Received: by pruebasointec.com.mx (Postfix, from userid 10002)
+	id 911561534A9; Sun, 11 Oct 2020 07:57:01 +0000 (UTC)
+From: "(Cron Daemon)" <admin_5ilu3t4@pruebasointec.com.mx>
+To: admin_5ilu3t4@pruebasointec.com.mx
+Subject: Cron <admin_5ilu3t4@localhost> /var/www/vhosts/siluetaexpress.com.mx/cron/verificaAsistencia.sh
+Content-Type: text/plain; charset=UTF-8
+Auto-Submitted: auto-generated
+Precedence: bulk
+X-Cron-Env: <XDG_SESSION_ID=1508504>
+X-Cron-Env: <XDG_RUNTIME_DIR=/run/user/10002>
+X-Cron-Env: <LANG=en_US.UTF-8>
+X-Cron-Env: <SHELL=/bin/bash>
+X-Cron-Env: <HOME=/var/www/vhosts/siluetaexpress.com.mx/httpdocs>
+X-Cron-Env: <PATH=/usr/bin:/bin>
+X-Cron-Env: <LOGNAME=admin_5ilu3t4>
+X-Cron-Env: <USER=admin_5ilu3t4>
+Message-Id: <20201011075701.911561534A9@pruebasointec.com.mx>
+Date: Sun, 11 Oct 2020 07:57:01 +0000 (UTC)
+
+/bin/bash: /var/www/vhosts/siluetaexpress.com.mx/cron/verificaAsistencia.sh: /bin/sh^M: bad interpreter: No such file or directory
+
+From admin_5ilu3t4@pruebasointec.com.mx  Sun Oct 11 07:58:01 2020
+Return-Path: <admin_5ilu3t4@pruebasointec.com.mx>
+X-Original-To: admin_5ilu3t4
+Delivered-To: admin_5ilu3t4@pruebasointec.com.mx
+Received: by pruebasointec.com.mx (Postfix, from userid 10002)
+	id A68251534A9; Sun, 11 Oct 2020 07:58:01 +0000 (UTC)
+From: "(Cron Daemon)" <admin_5ilu3t4@pruebasointec.com.mx>
+To: admin_5ilu3t4@pruebasointec.com.mx
+Subject: Cron <admin_5ilu3t4@localhost> /var/www/vhosts/siluetaexpress.com.mx/cron/verificaAsistencia.sh; touch /tmp/fek
+Content-Type: text/plain; charset=UTF-8
+Auto-Submitted: auto-generated
+Precedence: bulk
+X-Cron-Env: <XDG_SESSION_ID=1508508>
+X-Cron-Env: <XDG_RUNTIME_DIR=/run/user/10002>
+X-Cron-Env: <LANG=en_US.UTF-8>
+X-Cron-Env: <SHELL=/bin/bash>
+X-Cron-Env: <HOME=/var/www/vhosts/siluetaexpress.com.mx/httpdocs>
+X-Cron-Env: <PATH=/usr/bin:/bin>
+X-Cron-Env: <LOGNAME=admin_5ilu3t4>
+X-Cron-Env: <USER=admin_5ilu3t4>
+Message-Id: <20201011075801.A68251534A9@pruebasointec.com.mx>
+Date: Sun, 11 Oct 2020 07:58:01 +0000 (UTC)
+
+/bin/bash: /var/www/vhosts/siluetaexpress.com.mx/cron/verificaAsistencia.sh: No such file or directory
+
+From admin_5ilu3t4@pruebasointec.com.mx  Sun Oct 11 07:58:01 2020
+Return-Path: <admin_5ilu3t4@pruebasointec.com.mx>
+X-Original-To: admin_5ilu3t4
+Delivered-To: admin_5ilu3t4@pruebasointec.com.mx
+Received: by pruebasointec.com.mx (Postfix, from userid 10002)
+	id A7F1A1534AC; Sun, 11 Oct 2020 07:58:01 +0000 (UTC)
+From: "(Cron Daemon)" <admin_5ilu3t4@pruebasointec.com.mx>
+To: admin_5ilu3t4@pruebasointec.com.mx
+Subject: Cron <admin_5ilu3t4@localhost> /var/www/vhosts/siluetaexpress.com.mx/cron/verificaAsistencia.sh
+Content-Type: text/plain; charset=UTF-8
+Auto-Submitted: auto-generated
+Precedence: bulk
+X-Cron-Env: <XDG_SESSION_ID=1508510>
+X-Cron-Env: <XDG_RUNTIME_DIR=/run/user/10002>
+X-Cron-Env: <LANG=en_US.UTF-8>
+X-Cron-Env: <SHELL=/bin/bash>
+X-Cron-Env: <HOME=/var/www/vhosts/siluetaexpress.com.mx/httpdocs>
+X-Cron-Env: <PATH=/usr/bin:/bin>
+X-Cron-Env: <LOGNAME=admin_5ilu3t4>
+X-Cron-Env: <USER=admin_5ilu3t4>
+Message-Id: <20201011075801.A7F1A1534AC@pruebasointec.com.mx>
+Date: Sun, 11 Oct 2020 07:58:01 +0000 (UTC)
+
+/bin/bash: /var/www/vhosts/siluetaexpress.com.mx/cron/verificaAsistencia.sh: No such file or directory
+
+From admin_5ilu3t4@pruebasointec.com.mx  Sun Oct 11 07:58:02 2020
+Return-Path: <admin_5ilu3t4@pruebasointec.com.mx>
+X-Original-To: admin_5ilu3t4
+Delivered-To: admin_5ilu3t4@pruebasointec.com.mx
+Received: by pruebasointec.com.mx (Postfix, from userid 10002)
+	id 305821534A9; Sun, 11 Oct 2020 07:58:02 +0000 (UTC)
+From: "(Cron Daemon)" <admin_5ilu3t4@pruebasointec.com.mx>
+To: admin_5ilu3t4@pruebasointec.com.mx
+Subject: Cron <admin_5ilu3t4@localhost> /var/www/vhosts/siluetaexpress.com.mx/cron/citas_horarios.sh
+Content-Type: text/plain; charset=UTF-8
+Auto-Submitted: auto-generated
+Precedence: bulk
+X-Cron-Env: <XDG_SESSION_ID=1508509>
+X-Cron-Env: <XDG_RUNTIME_DIR=/run/user/10002>
+X-Cron-Env: <LANG=en_US.UTF-8>
+X-Cron-Env: <SHELL=/bin/bash>
+X-Cron-Env: <HOME=/var/www/vhosts/siluetaexpress.com.mx/httpdocs>
+X-Cron-Env: <PATH=/usr/bin:/bin>
+X-Cron-Env: <LOGNAME=admin_5ilu3t4>
+X-Cron-Env: <USER=admin_5ilu3t4>
+Message-Id: <20201011075802.305821534A9@pruebasointec.com.mx>
+Date: Sun, 11 Oct 2020 07:58:02 +0000 (UTC)
+
+array(3) {
+  [0]=>
+  string(1) "1"
+  [1]=>
+  string(1) "6"
+  [2]=>
+  string(1) "8"
+}
+
+From admin_5ilu3t4@pruebasointec.com.mx  Sun Oct 11 07:59:01 2020
+Return-Path: <admin_5ilu3t4@pruebasointec.com.mx>
+X-Original-To: admin_5ilu3t4
+Delivered-To: admin_5ilu3t4@pruebasointec.com.mx
+Received: by pruebasointec.com.mx (Postfix, from userid 10002)
+	id 445171534A9; Sun, 11 Oct 2020 07:59:01 +0000 (UTC)
+From: "(Cron Daemon)" <admin_5ilu3t4@pruebasointec.com.mx>
+To: admin_5ilu3t4@pruebasointec.com.mx
+Subject: Cron <admin_5ilu3t4@localhost> /var/www/vhosts/siluetaexpress.com.mx/cron/verificaAsistencia.sh; touch /tmp/fek
+Content-Type: text/plain; charset=UTF-8
+Auto-Submitted: auto-generated
+Precedence: bulk
+X-Cron-Env: <XDG_SESSION_ID=1508511>
+X-Cron-Env: <XDG_RUNTIME_DIR=/run/user/10002>
+X-Cron-Env: <LANG=en_US.UTF-8>
+X-Cron-Env: <SHELL=/bin/bash>
+X-Cron-Env: <HOME=/var/www/vhosts/siluetaexpress.com.mx/httpdocs>
+X-Cron-Env: <PATH=/usr/bin:/bin>
+X-Cron-Env: <LOGNAME=admin_5ilu3t4>
+X-Cron-Env: <USER=admin_5ilu3t4>
+Message-Id: <20201011075901.445171534A9@pruebasointec.com.mx>
+Date: Sun, 11 Oct 2020 07:59:01 +0000 (UTC)
+
+/bin/bash: /var/www/vhosts/siluetaexpress.com.mx/cron/verificaAsistencia.sh: No such file or directory
+
+From admin_5ilu3t4@pruebasointec.com.mx  Sun Oct 11 07:59:01 2020
+Return-Path: <admin_5ilu3t4@pruebasointec.com.mx>
+X-Original-To: admin_5ilu3t4
+Delivered-To: admin_5ilu3t4@pruebasointec.com.mx
+Received: by pruebasointec.com.mx (Postfix, from userid 10002)
+	id 44EEF1534AC; Sun, 11 Oct 2020 07:59:01 +0000 (UTC)
+From: "(Cron Daemon)" <admin_5ilu3t4@pruebasointec.com.mx>
+To: admin_5ilu3t4@pruebasointec.com.mx
+Subject: Cron <admin_5ilu3t4@localhost> /var/www/vhosts/siluetaexpress.com.mx/cron/verificaAsistencia.sh
+Content-Type: text/plain; charset=UTF-8
+Auto-Submitted: auto-generated
+Precedence: bulk
+X-Cron-Env: <XDG_SESSION_ID=1508512>
+X-Cron-Env: <XDG_RUNTIME_DIR=/run/user/10002>
+X-Cron-Env: <LANG=en_US.UTF-8>
+X-Cron-Env: <SHELL=/bin/bash>
+X-Cron-Env: <HOME=/var/www/vhosts/siluetaexpress.com.mx/httpdocs>
+X-Cron-Env: <PATH=/usr/bin:/bin>
+X-Cron-Env: <LOGNAME=admin_5ilu3t4>
+X-Cron-Env: <USER=admin_5ilu3t4>
+Message-Id: <20201011075901.44EEF1534AC@pruebasointec.com.mx>
+Date: Sun, 11 Oct 2020 07:59:01 +0000 (UTC)
+
+/bin/bash: /var/www/vhosts/siluetaexpress.com.mx/cron/verificaAsistencia.sh: No such file or directory
+
+From admin_5ilu3t4@pruebasointec.com.mx  Sun Oct 11 08:00:01 2020
+Return-Path: <admin_5ilu3t4@pruebasointec.com.mx>
+X-Original-To: admin_5ilu3t4
+Delivered-To: admin_5ilu3t4@pruebasointec.com.mx
+Received: by pruebasointec.com.mx (Postfix, from userid 10002)
+	id 5B72D1534A9; Sun, 11 Oct 2020 08:00:01 +0000 (UTC)
+From: "(Cron Daemon)" <admin_5ilu3t4@pruebasointec.com.mx>
+To: admin_5ilu3t4@pruebasointec.com.mx
+Subject: Cron <admin_5ilu3t4@localhost> /var/www/vhosts/siluetaexpress.com.mx/cron/verificaAsistencia.sh
+Content-Type: text/plain; charset=UTF-8
+Auto-Submitted: auto-generated
+Precedence: bulk
+X-Cron-Env: <XDG_SESSION_ID=1508519>
+X-Cron-Env: <XDG_RUNTIME_DIR=/run/user/10002>
+X-Cron-Env: <LANG=en_US.UTF-8>
+X-Cron-Env: <SHELL=/bin/bash>
+X-Cron-Env: <HOME=/var/www/vhosts/siluetaexpress.com.mx/httpdocs>
+X-Cron-Env: <PATH=/usr/bin:/bin>
+X-Cron-Env: <LOGNAME=admin_5ilu3t4>
+X-Cron-Env: <USER=admin_5ilu3t4>
+Message-Id: <20201011080001.5B72D1534A9@pruebasointec.com.mx>
+Date: Sun, 11 Oct 2020 08:00:01 +0000 (UTC)
+
+/bin/bash: /var/www/vhosts/siluetaexpress.com.mx/cron/verificaAsistencia.sh: Permission denied
+
+From admin_5ilu3t4@pruebasointec.com.mx  Sun Oct 11 08:00:01 2020
+Return-Path: <admin_5ilu3t4@pruebasointec.com.mx>
+X-Original-To: admin_5ilu3t4
+Delivered-To: admin_5ilu3t4@pruebasointec.com.mx
+Received: by pruebasointec.com.mx (Postfix, from userid 10002)
+	id 5D78A1534AC; Sun, 11 Oct 2020 08:00:01 +0000 (UTC)
+From: "(Cron Daemon)" <admin_5ilu3t4@pruebasointec.com.mx>
+To: admin_5ilu3t4@pruebasointec.com.mx
+Subject: Cron <admin_5ilu3t4@localhost> /var/www/vhosts/siluetaexpress.com.mx/cron/verificaAsistencia.sh; touch /tmp/fek
+Content-Type: text/plain; charset=UTF-8
+Auto-Submitted: auto-generated
+Precedence: bulk
+X-Cron-Env: <XDG_SESSION_ID=1508516>
+X-Cron-Env: <XDG_RUNTIME_DIR=/run/user/10002>
+X-Cron-Env: <LANG=en_US.UTF-8>
+X-Cron-Env: <SHELL=/bin/bash>
+X-Cron-Env: <HOME=/var/www/vhosts/siluetaexpress.com.mx/httpdocs>
+X-Cron-Env: <PATH=/usr/bin:/bin>
+X-Cron-Env: <LOGNAME=admin_5ilu3t4>
+X-Cron-Env: <USER=admin_5ilu3t4>
+Message-Id: <20201011080001.5D78A1534AC@pruebasointec.com.mx>
+Date: Sun, 11 Oct 2020 08:00:01 +0000 (UTC)
+
+/bin/bash: /var/www/vhosts/siluetaexpress.com.mx/cron/verificaAsistencia.sh: Permission denied
+
+From admin_5ilu3t4@pruebasointec.com.mx  Sun Oct 11 08:00:01 2020
+Return-Path: <admin_5ilu3t4@pruebasointec.com.mx>
+X-Original-To: admin_5ilu3t4
+Delivered-To: admin_5ilu3t4@pruebasointec.com.mx
+Received: by pruebasointec.com.mx (Postfix, from userid 10002)
+	id E0F481534A9; Sun, 11 Oct 2020 08:00:01 +0000 (UTC)
+From: "(Cron Daemon)" <admin_5ilu3t4@pruebasointec.com.mx>
+To: admin_5ilu3t4@pruebasointec.com.mx
+Subject: Cron <admin_5ilu3t4@localhost> /var/www/vhosts/siluetaexpress.com.mx/cron/citas_horarios.sh
+Content-Type: text/plain; charset=UTF-8
+Auto-Submitted: auto-generated
+Precedence: bulk
+X-Cron-Env: <XDG_SESSION_ID=1508520>
+X-Cron-Env: <XDG_RUNTIME_DIR=/run/user/10002>
+X-Cron-Env: <LANG=en_US.UTF-8>
+X-Cron-Env: <SHELL=/bin/bash>
+X-Cron-Env: <HOME=/var/www/vhosts/siluetaexpress.com.mx/httpdocs>
+X-Cron-Env: <PATH=/usr/bin:/bin>
+X-Cron-Env: <LOGNAME=admin_5ilu3t4>
+X-Cron-Env: <USER=admin_5ilu3t4>
+Message-Id: <20201011080001.E0F481534A9@pruebasointec.com.mx>
+Date: Sun, 11 Oct 2020 08:00:01 +0000 (UTC)
+
+array(3) {
+  [0]=>
+  string(1) "1"
+  [1]=>
+  string(1) "6"
+  [2]=>
+  string(1) "8"
+}
+
