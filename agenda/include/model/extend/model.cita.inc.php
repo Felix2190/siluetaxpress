@@ -173,7 +173,7 @@
 		                if ($this->idCabina!="")
 		                    $condicion.=" and c.idCabina=$this->idCabina";
 		                    if ($this->estatus!="")
-		                        $condicion.=" and c.estatus=$this->estatus";
+		                        $condicion.=" and c.estatus='$this->estatus' ";
 		                        
 		                    $query = "Select idCita, DATE_FORMAT(fechaInicio,'%Y-%m-%d') as fecha, DATE_FORMAT(fechaInicio,'%H:%i') as hora, duracion,
                     concat_ws(' ', p.nombre, p.apellidos) as nombre_paciente,ec.descripcion,u.idUsuario,ec.descripcion,

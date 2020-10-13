@@ -604,7 +604,7 @@ $.ajax({
 		},
 		success : function(data) {
 			if(data>2){
-				 mostrarMsjError('Este paciente no ha asistido a sus consultas en '+data+' ocasiones');
+				 mostrarMsjError('Este paciente no ha asistido a sus consultas en '+data+' ocasiones',120);
 				 $("#btnGuardar").hide();
 			}	
 	}
