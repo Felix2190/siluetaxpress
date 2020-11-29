@@ -148,7 +148,8 @@ function asistencia(e){
 		success : function(data) {
 			$( "#msjVerifica" ).hide();
 			if(e==false){
-				window.location.href="https://web.whatsapp.com/send?phone=52"+numV+"&text="+JSON.parse(data);
+				window.open("https://web.whatsapp.com/send?phone=52"+numV+"&text="+JSON.parse(data), "_blank");
+//				window.location.href="https://web.whatsapp.com/send?phone=52"+numV+"&text="+JSON.parse(data);
 			}
 }
 	});

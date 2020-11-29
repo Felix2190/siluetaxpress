@@ -27,8 +27,9 @@ function asistencia(idCita,e,num){
 		success : function(data) {
 			iniciar();
 			if(e=="false"){
+				window.open("https://web.whatsapp.com/send?phone=52"+numV+"&text="+JSON.parse(data), "_blank");
 //				console.log(JSON.parse(data));
-				window.location.href="https://web.whatsapp.com/send?phone=52"+num+"&text="+JSON.parse(data);
+//				window.location.href="https://web.whatsapp.com/send?phone=52"+num+"&text="+JSON.parse(data);
 			}
 		}
 	});
