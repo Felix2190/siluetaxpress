@@ -71,12 +71,12 @@
 		
 		public function obtenerFranquiciasConSMS()
 		{
-		    $query = "Select idFranquicia, cuenta,clave from franquicia where envio_sms=1";
+		    $query = "SELECT s.idSucursal, c.usuario as cuenta, clave, s.idFranquicia FROM claves as c INNER join sucursal as s on c.idSucursal=s.idSucursal";
 		    $arreglo = array();
 		    $resultado = mysqli_query($this->dbLink, $query);
 		    if ($resultado && mysqli_num_rows($resultado) > 0) {
 		        while ($row_inf = mysqli_fetch_assoc($resultado)){
-		            $arreglo[$row_inf['idFranquicia']] = array($row_inf['clave'],$row_inf['cuenta']);
+		            $arreglo[$row_inf['idSucursal']] = array($row_inf['clave'],$row_inf['cuenta'],$row_inf['idFranquicia']);
 		        }
 		    }
 		    return $arreglo;

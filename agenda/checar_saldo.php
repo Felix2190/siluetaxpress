@@ -30,11 +30,11 @@ $arrClave= $franquicia->obtenerFranquiciasConSMS();
 foreach ($arrClave as $id=>$clave){
     
 $arrSaldo=consultaCredito($clave);
-
+$idFranquicia=$clave[2];
 if($arrSaldo[0]){ // si hay una respuesta positiva
     $saldo_actual= doubleval($arrSaldo[1]);
 
-    $query = "Select saldo from credito_sms where idFranquicia=$id order by fecha desc limit 1 ";
+    $query = "Select saldo from credito_sms where idSucursal=$id order by fecha desc limit 1 ";
     $Conexion =  new mysqli(BD_HOST,BD_USER,BD_PASS,BD_DB);
     $resultado = mysqli_query($Conexion, $query);
     $saldo_anterior=0;
@@ -45,12 +45,12 @@ if($arrSaldo[0]){ // si hay una respuesta positiva
     echo "SA $saldo_actual   SANT $saldo_anterior <br />";
     if ($saldo_actual>$saldo_anterior){ // si se ha comprado crédito
         $diferencia=$saldo_actual-$saldo_anterior;
-        $query = "INSERT INTO compra_sms VALUES (null,$id,'$saldo_anterior', '$diferencia', '$saldo_actual','$fecha')";
+        $query = "INSERT INTO compra_sms VALUES (null,$idFranquicia,$id,'$saldo_anterior', '$diferencia', '$saldo_actual','$fecha')";
         mysqli_query($Conexion, $query);
         
     }//else{
         // si no,  solo guarda el saldo actual
-        $query = "INSERT INTO credito_sms VALUES ('$fecha',$id,'$saldo_actual')";
+        $query = "INSERT INTO credito_sms VALUES ('$fecha',$idFranquicia,$id,'$saldo_actual')";
         mysqli_query($Conexion, $query);
         
     //}
