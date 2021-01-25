@@ -14,9 +14,10 @@
 		var $password='';
 		var $salt='';
 		var $idRol=0;
+		var $envioNotificaciones='0';
 		var $estatus='activo';
 
-		var $__s=array("idLogin","idUsuario","userName","password","salt","idRol","estatus");
+		var $__s=array("idLogin","idUsuario","userName","password","salt","idRol","envioNotificaciones","estatus");
 		var $__ss=array();
 
 		#------------------------------------------------------------------------------------------------------#
@@ -67,6 +68,10 @@
 			
 			$this->idRol=$idRol;
 		}
+		public function setEnvioNotificaciones()
+		{
+			$this->envioNotificaciones=1;
+		}
 		public function setEstatus($estatus)
 		{
 			
@@ -86,6 +91,10 @@
 		#------------------------------------------------------------------------------------------------------#
 
 		
+		public function unsetEnvioNotificaciones()
+		{
+			$this->envioNotificaciones=0;
+		}
 
 		#------------------------------------------------------------------------------------------------------#
 		#------------------------------------------------Getter------------------------------------------------#
@@ -116,6 +125,10 @@
 		{
 			return $this->idRol;
 		}
+		public function getEnvioNotificaciones()
+		{
+			return $this->envioNotificaciones;
+		}
 		public function getEstatus()
 		{
 			return $this->estatus;
@@ -140,6 +153,7 @@
 			$this->password='';
 			$this->salt='';
 			$this->idRol=0;
+			$this->envioNotificaciones='0';
 			$this->estatus='activo';
 		}
 
@@ -150,8 +164,8 @@
 		{
 			try
 			{
-				$SQL="INSERT INTO login(idUsuario,userName,password,salt,idRol,estatus)
-						VALUES('" . mysqli_real_escape_string($this->dbLink,$this->idUsuario) . "','" . mysqli_real_escape_string($this->dbLink,$this->userName) . "','" . mysqli_real_escape_string($this->dbLink,$this->password) . "','" . mysqli_real_escape_string($this->dbLink,$this->salt) . "','" . mysqli_real_escape_string($this->dbLink,$this->idRol) . "','" . mysqli_real_escape_string($this->dbLink,$this->estatus) . "')";
+				$SQL="INSERT INTO login(idUsuario,userName,password,salt,idRol,envioNotificaciones,estatus)
+						VALUES('" . mysqli_real_escape_string($this->dbLink,$this->idUsuario) . "','" . mysqli_real_escape_string($this->dbLink,$this->userName) . "','" . mysqli_real_escape_string($this->dbLink,$this->password) . "','" . mysqli_real_escape_string($this->dbLink,$this->salt) . "','" . mysqli_real_escape_string($this->dbLink,$this->idRol) . "','" . mysqli_real_escape_string($this->dbLink,$this->envioNotificaciones) . "','" . mysqli_real_escape_string($this->dbLink,$this->estatus) . "')";
 				$result=mysqli_query($this->dbLink,$SQL);
 				if(!$result)
 					return $this->setSystemError("Error en la insercion de registro.","[" . $SQL . "][" . mysqli_error($this->dbLink) . "][ModeloBaseLogin::Insertar]");
@@ -171,7 +185,7 @@
 		{
 			try
 			{
-				$SQL="UPDATE login SET idUsuario='" . mysqli_real_escape_string($this->dbLink,$this->idUsuario) . "',userName='" . mysqli_real_escape_string($this->dbLink,$this->userName) . "',password='" . mysqli_real_escape_string($this->dbLink,$this->password) . "',salt='" . mysqli_real_escape_string($this->dbLink,$this->salt) . "',idRol='" . mysqli_real_escape_string($this->dbLink,$this->idRol) . "',estatus='" . mysqli_real_escape_string($this->dbLink,$this->estatus) . "'
+				$SQL="UPDATE login SET idUsuario='" . mysqli_real_escape_string($this->dbLink,$this->idUsuario) . "',userName='" . mysqli_real_escape_string($this->dbLink,$this->userName) . "',password='" . mysqli_real_escape_string($this->dbLink,$this->password) . "',salt='" . mysqli_real_escape_string($this->dbLink,$this->salt) . "',idRol='" . mysqli_real_escape_string($this->dbLink,$this->idRol) . "',envioNotificaciones='" . mysqli_real_escape_string($this->dbLink,$this->envioNotificaciones) . "',estatus='" . mysqli_real_escape_string($this->dbLink,$this->estatus) . "'
 					WHERE idLogin=" . $this->idLogin;
 				
 				$result=mysqli_query($this->dbLink,$SQL);
@@ -213,7 +227,7 @@
 			try
 			{
 				$SQL="SELECT
-						idLogin,idUsuario,userName,password,salt,idRol,estatus
+						idLogin,idUsuario,userName,password,salt,idRol,envioNotificaciones,estatus
 					FROM login
 					WHERE idLogin=" . mysqli_real_escape_string($this->dbLink,$this->idLogin);
 					

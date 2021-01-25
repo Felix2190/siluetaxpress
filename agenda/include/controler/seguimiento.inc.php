@@ -70,6 +70,8 @@ function guardar($datos){
     $seg->setGrasa($info['Grasa']);
     $seg->setFc($info['FC']);
     $seg->setPa($info['PA']);
+    $seg->setBrazoDer($info['BrazoDer']);
+    $seg->setBrazoIzq($info['BrazoIzq']);
     $seg->setOtrosSintomas($info['Sintomas']);
     $seg->setDieta($info['Dieta']);
     $seg->setTratamiento($info['Tratamiento']);
@@ -165,7 +167,7 @@ function mostrarTabla($informacion)
     $hojaClinica = new ModeloHojaclinica();
     $hojaClinica->setIdHojaClinica($paciente->getIdHojaClinica());
     
-    $arrTitulos=array("Fecha","Peso (kg)","IMC","Pecho","Talle","Cintura","Abdomen","Cadera","Dieta","Tratamiento","");
+    $arrTitulos=array("Fecha","Peso (kg)","IMC","Pecho","Talle","Cintura","Abdomen","Cadera","Brazo Der","Brazo Izq","Dieta","Tratamiento","");
     $tabla = "<div class='12u 12u$(xsmall)'>
 							 <strong> Estatura: </strong> ".$hojaClinica->getEstatura()."
 							</div>
@@ -183,7 +185,8 @@ function mostrarTabla($informacion)
             foreach ($informacion as $id => $arr)
                 $tabla .= "<tr><td>".$arr['fecha']."</td><td>".$arr['pesoKg']."</td><td>".$arr['IMC']."</td>
                         <td>".$arr['pecho']."</td><td>".$arr['talla']."</td><td>".$arr['cintura']."</td><td>".$arr['abdomen']."</td>
-                    <td>".$arr['cadera']."</td><td colspan='3'>".$arr['dieta']."</td><td colspan='3'>".$arr['tratamiento']."</td>
+                    <td>".$arr['cadera']."<td>".$arr['brazoDer']."</td><td>".$arr['brazoIzq']."</td>
+                    </td><td colspan='3'>".$arr['dieta']."</td><td colspan='3'>".$arr['tratamiento']."</td>
                 <td><a onclick='verDetalle(\"".$arr['idHojaSeguimiento']."\")'><img src='images/ver.png' title='Ver' style='width: 15px' /></a>
 <a onclick='editar(\"".$arr['idHojaSeguimiento']."\")'><img src='images/editar.png' title='editar' style='width: 15px' /></a></td></tr>";
                 

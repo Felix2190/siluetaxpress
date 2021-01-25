@@ -59,7 +59,7 @@
 		public function getSeguimientos($idPaciente)
 		{
 		    $query = "Select idHojaSeguimiento,DATE_FORMAT(fechaSeguimiento,'%d/%m/%Y') as fecha, 
-                        pesoKg,IMC,pecho,talla,cintura,abdomen,cadera,dieta,tratamiento from hojaseguimiento 
+                        pesoKg,IMC,pecho,talla,cintura,abdomen,cadera,brazoDer,brazoIzq,dieta,tratamiento from hojaseguimiento 
                         where idPaciente=".$idPaciente." order by fechaRegistro asc";
 		    $arreglo = array();
 		    $resultado = mysqli_query($this->dbLink, $query);

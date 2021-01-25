@@ -154,6 +154,17 @@ function guardar(){
 		datos['PA']=0;
 		console.log("Error: txtPA");
 	}
+	datos['BrazoDer']= $("#txtBrazoDer").val();
+	if (datos['BrazoDer'] == "") {
+		datos['BrazoDer']=0;
+		console.log("Error: txtBrazoDer");
+	}
+	datos['BrazoIzq']= $("#txtBrazoIzq").val();
+	if (datos['BrazoIzq'] == "") {
+		datos['BrazoIzq']=0;
+		console.log("Error: txtBrazoIzq");
+	}
+
 	datos['Sintomas']= $("#txtSintomas").val();
 	datos['Dieta']= $("#txtDieta").val();
 	datos['Tratamiento']= $("#txtTratamiento").val();
@@ -249,6 +260,8 @@ function verDetalle(idSeg){
 				$("#dtGrasa").html(info['grasa']);
 				$("#dtFC").html(info['fc']);
 				$("#dtPA").html(info['pa']);
+				$("#dtBrazoDer").html(info['brazoDer']);
+				$("#dtBrazoIzq").html(info['brazoIzq']);
 				
 				auxArrProductos=[],arrAuxSintomas=[];
 				
@@ -395,6 +408,8 @@ function editar(idS){
 				$("#txtGrasa").val(info['grasa']);
 				$("#txtPA").val(info['pa']);
 				$("#txtFC").val(info['fc']);
+				$("#txtBrazoDer").val(info['brazoDer']);
+				$("#txtBrazoIzq").val(info['brazoIzq']);
 				if(info['estrenimiento']==1)
 					$("#checkEstrenimiento").prop("checked",true);
 				if(info['cansancio']==1)

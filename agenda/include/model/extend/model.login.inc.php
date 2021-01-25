@@ -68,6 +68,7 @@ class ModeloLogin extends ModeloBaseLogin
                                 $row2= mysqli_fetch_assoc($result2);
                                 $arrInfoUsuario['userName'] = $infoUsuario['username'];
                                 $arrInfoUsuario['idRol'] = $row['idRol'];
+                                $arrInfoUsuario['envioNotificaciones'] = $row['envioNotificaciones'];
                                 $arrInfoUsuario['idSucursal'] = $row2['idSucursal'];
                                 $arrInfoUsuario['sucursal'] = $row2['sucursal'];
                                 $arrInfoUsuario['idFranquicia'] = $infoUsuario['franquicia'];

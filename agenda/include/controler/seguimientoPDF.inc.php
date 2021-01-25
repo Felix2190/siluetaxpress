@@ -97,7 +97,7 @@ if (isset($_SESSION['idPacientePDF'])&&isset($_SESSION['IMC'])&&isset($_SESSION[
     $seg = new ModeloHojaseguimiento();
     $informacion=$seg->getSeguimientos($idPaciente);
     $largo=0;
-    $tam=23;
+    $tam=18;
     if (count($informacion['info'])>2)
         $largo=(count($informacion['info'])-2)*5;
     if (isset($_SESSION['segDetalles'])&&$_SESSION['segDetalles']=='si')
@@ -133,6 +133,9 @@ if (isset($_SESSION['idPacientePDF'])&&isset($_SESSION['IMC'])&&isset($_SESSION[
     if (isset($_SESSION['segDetalles'])&&$_SESSION['segDetalles']=='si'){
         $pdf->Cell(40,5,'Dieta',1,0,'C',1);
         $pdf->Cell(40,5,'Tratamiento',1,0,'C',1);
+    }else {
+        $pdf->Cell($tam,5,'Brazo Der',1,0,'C',1);
+        $pdf->Cell($tam,5,'Brazo Izq',1,0,'C',1);
     }
     $pdf->Ln();
     $pdf->SetFillColor(255,255,255);/// color blanco celda
@@ -151,6 +154,10 @@ if (isset($_SESSION['idPacientePDF'])&&isset($_SESSION['IMC'])&&isset($_SESSION[
             $pdf->SetFont('Arial','',6);
             $pdf->Cell(40,5,utf8_decode($info['dieta']),1,0,'C',1);
             $pdf->Cell(40,5,utf8_decode($info['tratamiento']),1,0,'C',1);
+        }else {
+            $pdf->Cell($tam,5,$info['brazoDer'],1,0,'C',1);
+            $pdf->Cell($tam,5,$info['brazoIzq'],1,0,'C',1);
+            
         }
         $pdf->Ln();
     }

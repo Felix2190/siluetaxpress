@@ -19,7 +19,7 @@ class clsSession
 	private $lugar;
 	private $abrev;
 	private $idFranquicia;
-	
+	private $envioNotificaciones;
 	
 	
 	public $_lastTime;
@@ -37,7 +37,7 @@ class clsSession
 	#--------------------------------------------Control--------------------------------------------#
 	#-----------------------------------------------------------------------------------------------#
 
-	var $__s=array(	"userName",	"idUsuario","nombre","apellidos","tipoUsuario","sucursal","lugar","correo","idRol", "idSucursal","abrev","idFranquicia");
+	var $__s=array(	"userName",	"idUsuario","nombre","apellidos","tipoUsuario","sucursal","lugar","correo","idRol", "idSucursal","abrev","idFranquicia","envioNotificaciones");
 
 	public function __construct()
 	{
@@ -120,6 +120,11 @@ class clsSession
 	public function getIdFranquicia()
 	{
 	    return $this->idFranquicia;
+	}
+	
+	public function getEnvioNotificaciones()
+	{
+	    return $this->envioNotificaciones;
 	}
 	
 	public function isSessionActive()

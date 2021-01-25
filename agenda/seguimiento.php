@@ -190,6 +190,27 @@ require_once 'masterInclude.inc.php';
 							
 							<br />
 							
+							<div class="row">
+								<div class="3u 12u$(xsmall)">
+									<label>Circunferencia de brazo</label>
+								</div>
+							
+								<div class="2u 12u$(xsmall)">
+									<label>Derecho:</label>
+								</div>
+								<div class="2u 12u$(xsmall)">
+									<input type="text" id="txtBrazoDer" class="numeric" maxlength="5" />
+								</div>
+								<div class="2u 12u$(xsmall)">
+									<label>Izquierdo:</label>
+								</div> 
+								<div class="2u 12u$(xsmall)">
+									<input type="text" id="txtBrazoIzq" class="numeric" maxlength="5" />
+								</div>
+							</div>
+							
+							<br />
+							
 						<div class="12u 12u$(xsmall)">
 							 <strong> S&iacute;ntomas </strong>
 							</div>
