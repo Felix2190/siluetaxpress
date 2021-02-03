@@ -121,6 +121,22 @@
 		    }
 		    return $arreglo;
 		}
+		
+		public function obtenerSucuralesSMS()
+		{
+		    global $objSession;
+		    $query = "Select idSucursal, sucursal from sucursal where idSucursal<>1 and idFranquicia=".$objSession->getIdFranquicia().
+		     ($objSession->getidRol()!=1?(" and idSucursal=".$objSession->getIdSucursal()):"");
+		    $arreglo = array();
+		    $resultado = mysqli_query($this->dbLink, $query);
+		    if ($resultado && mysqli_num_rows($resultado) > 0) {
+		        while ($row_inf = mysqli_fetch_assoc($resultado)){
+		            $arreglo[$row_inf['idSucursal']] = $row_inf['sucursal'];
+		        }
+		    }
+		    return $arreglo;
+		}
+		
 		public function validarDatos(){
 		    return true;
 		}
