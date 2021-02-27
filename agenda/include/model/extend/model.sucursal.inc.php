@@ -53,7 +53,7 @@
 		
 		public function obtenerSucurales()
 		{
-		    $query = "Select idSucursal, sucursal from sucursal where idSucursal<>1";
+		    $query = "Select idSucursal, sucursal from sucursal where idSucursal<>1 and estatus='activa' ";
 		    $arreglo = array();
 		    $resultado = mysqli_query($this->dbLink, $query);
 		    if ($resultado && mysqli_num_rows($resultado) > 0) {
@@ -96,7 +96,7 @@
 		
 		public function obtenerSucuralesFranquicia()
 		{
-		    $query = "Select idSucursal, sucursal from sucursal where idSucursal<>1 and idFranquicia=".$this->getIdFranquicia();
+		    $query = "Select idSucursal, sucursal from sucursal where idSucursal<>1 and estatus='activa' and idFranquicia=".$this->getIdFranquicia();
 		    $arreglo = array();
 		    $resultado = mysqli_query($this->dbLink, $query);
 		    if ($resultado && mysqli_num_rows($resultado) > 0) {
@@ -111,7 +111,7 @@
 		public function obtenerSucuralesFranquiciaSesion()
 		{
 		    global $objSession;
-		    $query = "Select idSucursal, sucursal from sucursal where idSucursal<>1 and idFranquicia=".$objSession->getIdFranquicia();
+		    $query = "Select idSucursal, sucursal from sucursal where idSucursal<>1 and estatus='activa' and idFranquicia=".$objSession->getIdFranquicia();
 		    $arreglo = array();
 		    $resultado = mysqli_query($this->dbLink, $query);
 		    if ($resultado && mysqli_num_rows($resultado) > 0) {
@@ -125,7 +125,7 @@
 		public function obtenerSucuralesSMS()
 		{
 		    global $objSession;
-		    $query = "Select idSucursal, sucursal from sucursal where idSucursal<>1 and idFranquicia=".$objSession->getIdFranquicia().
+		    $query = "Select idSucursal, sucursal from sucursal where idSucursal<>1 and estatus='activa' and idFranquicia=".$objSession->getIdFranquicia().
 		     ($objSession->getidRol()!=1?(" and idSucursal=".$objSession->getIdSucursal()):"");
 		    $arreglo = array();
 		    $resultado = mysqli_query($this->dbLink, $query);
