@@ -1444,6 +1444,15 @@ function enviaSMS($numPaciente, $sMessage, $sucursal="")
     return false;
 }
 
+class errorSMS {
+    protected $error;
+    public function __construct($error){
+        $this->error=$error;
+    }
+    function getError(){
+        return $this->error;
+    }
+}
 
 function obtenerListadoPacientes($idSucursal){
     require_once FOLDER_MODEL_EXTEND. "model.paciente.inc.php";

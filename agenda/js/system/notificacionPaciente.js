@@ -10,6 +10,7 @@ function iniciar(){
 		
 	$("input[name=datos]").change(function(){
 	
+	mostrarMsjEspera('Espere un momento, cargando informaci&oacute;n');
 		$( "#btnGuardar").show();
 	arrNombre=[];
 		if($(this).val()=="SMS"){
@@ -34,7 +35,7 @@ function iniciar(){
 			llenarCombo();
 			$( "#txtPaciente"+seccion ).html(txtCombo);
 
-		},1200);
+		},1700);
 			$( "#spnTotal"+seccion ).html(' '+arrNombre.length);
 	});
 	var arreglo=[],x=1;
