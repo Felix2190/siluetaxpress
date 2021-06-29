@@ -199,8 +199,8 @@ function guardarCita($paciente,$sucursal,$idCabina,$consulta,$duracion,$fecha,$h
          $resSMS = enviaSMS_CitaNueva("52".$paciente_->getTelefonoCel(), $nConsulta->getTipoConsulta(), date("d/m/Y",strtotime($fechaCita)), "$hora:$minutos", $nSucursal->getSucursal(), $nSucursal->getNumTelefono());
         else 
             $r->call('mostrarMsjError',"No se puede enviar el SMS, el n&uacute;mero es incorrecto ",3);
-    sleep(3);
-    if ($resSMS){
+    sleep(4);
+    if ($resSMS==true){
         $r->call('mostrarMsjExito',"Se envi&oacute; el SMS al ".$paciente_->getTelefonoCel(),3);
         $cita = new ModeloCita();
         $cita->setIdCita($idCita);
@@ -219,7 +219,7 @@ function guardarCita($paciente,$sucursal,$idCabina,$consulta,$duracion,$fecha,$h
     
     $_SESSION['altaCita']=$paciente;
     
-    $r->redirect("listadoCitas.php",4);
+    $r->redirect("listadoCitas.php",6);
     return $r;
     
 }

@@ -72,7 +72,7 @@ foreach ($arrNotif as $idN){
 }
 
 if ($horaActual>=8&&$horaActual<=20){
-    
+//    $MsgE = new errorSMS();
     $arrNotif = $envioNotif->obtenerNotificacionesPendientes("SMS");
     
     foreach ($arrNotif as $idN){
@@ -81,14 +81,15 @@ if ($horaActual>=8&&$horaActual<=20){
         $notificacion->setIdNotificacion($envioNotif->getIdNotificacion());
         if ($paciente->getIdPaciente()>0&&$notificacion->getIdNotificacion()>0){
            if (strlen($paciente->getTelefonoCel())==10){
-               $sms = enviaSMS("52".$paciente->getTelefonoCel(), $notificacion->getTexto(),$notificacion->getIdSucursal());
+               $sms = enviaSMS("52".$paciente->getTelefonoCel(), $notificacion->getTexto(),$paciente->getIdSucursal());
                 sleep(3);
-                if ($sms){
+                if ($sms==true){
                     $envioNotif->setEstatusEnviado();
                     $envioNotif->setFechaEnvio(date("Y-m-d H:i:s"));
+                    $envioNotif->setMsjError("");
                 }else{
                     $envioNotif->setEstatusError();
-                    $envioNotif->setMsjError("Error al enviar el SMS");
+                    $envioNotif->setMsjError($sms);
                 }
            }else {
                $envioNotif->setEstatusError();

@@ -173,7 +173,7 @@ function guardarCita($paciente,$sucursal,$idCabina,$consulta,$duracion,$fecha,$h
     if ($Recordatorio=='1')
         $resSMS = enviaSMS_CitaNueva("52".$paciente_->getTelefonoCel(), $nConsulta->getTipoConsulta(), date("d/m/Y",strtotime($fechaCita)), "$hora:$minutos", $nSucursal->getSucursal(), $idCita);
     
-    if ($resSMS){
+    if ($resSMS==true){
         $r->call('mostrarMsjExito',"Se envi&oacute; el SMS al ".$paciente_->getTelefonoCel(),3);
         $cita = new ModeloCita();
         $cita->setIdCita($idCita);

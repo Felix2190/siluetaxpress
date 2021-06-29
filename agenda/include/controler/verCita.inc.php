@@ -273,7 +273,7 @@ function guardarCambios($idCita,$duracion,$hora,$minuto,$consultorio,$chkbox,$fe
        $nConsulta->setIdConsulta($cita->getIdConsulta());
     if (strlen($cita->getTelefonoPaciente()) == 12) {
         $Res = enviaSMS_CitaModificada($cita->getTelefonoPaciente(), date("d/m/Y", strtotime($fecha)), "$hora:$minuto", $nSucursal->getSucursal(), $nSucursal->getNumTelefono());
-        if ($Res)
+        if ($Res==true)
             $citaactualizacion->setSms();
         else
             $r->call('mostrarMsjError', "No se envi&oacute; el SMS", 3);

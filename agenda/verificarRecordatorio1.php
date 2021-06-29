@@ -40,7 +40,7 @@ if ($dia != 1) { // no es lunes
         while ($row_inf = mysqli_fetch_assoc($resultado)){
              $sms= enviaSMS_CitaNueva("52".$row_inf['telefonoCel'], $row_inf['tipoConsulta'], $row_inf['fecha'],$row_inf['hora'], $row_inf['sucursal'], $row_inf['numTelefono']);
             sleep(2);
-             if ($sms==1)
+             if ($sms==true)
                  $respuesta[]=$row_inf['idCita'];
              }
            }

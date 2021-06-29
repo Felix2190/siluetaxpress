@@ -34,6 +34,7 @@ require_once 'masterInclude.inc.php';
 								<p id="fechasEntre"></p>
 									</div>
 									<input type="hidden" id="hdnRol" value="<?php echo $objSession->getidRol();?>"/>
+									<input type="hidden" id="hdnIdUsuario" value="<?php echo $objSession->getIdUsuario();?>"/>
 									<input type="hidden" id="hdnSucursal" value="<?php echo $sucursal;?>"/>
 			<!--						<?php 
 									if ($objSession->getidRol()!=1):
