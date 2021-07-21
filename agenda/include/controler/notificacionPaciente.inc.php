@@ -45,7 +45,7 @@ function guardarNotificacion($idNoti,$arrNombre,$seccion,$fin){
     }
     $r->call("mostrarMsjExito","Se ha regristrado la notificaci&oacute;n. ".($errores>0?("$errores  no se enviaron"):(count($arrNombre)-$errores ." $seccion enviados")),5);
     if ($fin)
-        $r->redirect("notificacionPaciente.php",30);
+        $r->redirect("notificacionPaciente.php",40);
     return $r;
     
 }

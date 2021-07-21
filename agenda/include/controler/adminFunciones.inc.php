@@ -3,8 +3,6 @@
 ini_set('max_execution_time', 300);
 ini_set('max_input_time', 300);
 
-//$MsgE = new errorSMS();
-
 if(!empty($_FILES['imagen']))
 {
     $carpeta=FOLDER_FOTOS;
@@ -1369,10 +1367,9 @@ function enviaSMS($numPaciente, $sMessage, $sucursal="")
     
     $sData .= 'dest=' . str_replace(',', '&dest=', $numPaciente) . '&';
     $sData .= 'msg=' . urlencode(utf8_encode($sMessage));
-//    global $MsgE;
-//    $MsgE = new errorSMS();
+    
     $timeOut = 5;
-    $output = "";
+    
     $fp = fsockopen('www.altiria.net', 80, $errno, $errstr, $timeOut);
     if (! $fp) {
         // Error de conexion o tiempo maximo de conexion rebasado
@@ -1400,9 +1397,11 @@ function enviaSMS($numPaciente, $sMessage, $sucursal="")
                 $info = stream_get_meta_data($fp);
                 if ($info['timed_out']){
                     $output = 'ERROR Tiempo de respuesta agotado';
+                    return false;
                     return $output;
                 } else {
                     $output = 'ERROR de respuesta';
+                    return false;
                     return $output;
                 }
             } else{
@@ -1412,6 +1411,7 @@ function enviaSMS($numPaciente, $sMessage, $sucursal="")
             }
         } else {
             $output = 'ERROR de respuesta';
+            return false;
             return $output;
         }
         
@@ -1424,12 +1424,14 @@ function enviaSMS($numPaciente, $sMessage, $sucursal="")
             $output = "ERROR. Codigo error HTTP: ".substr($buf,9,3)."\n";
             $output .= "Compruebe que ha configurado correctamente la direccion/url ";
             $output .= "suministrada por Altiria";
+            return false;
             return $output;
         }
         //Se comprueba la respuesta de Altiria
         if (strstr($buf,"ERROR")){
             $output = $buf."<br />\n";
             $output .= " Ha ocurrido algun error. Compruebe la especificacion";
+            return false;
             return $output;
         } else {
             $output = $buf."\n";
@@ -1439,18 +1441,9 @@ function enviaSMS($numPaciente, $sMessage, $sucursal="")
         }
     }
     
-    return $output; return false;
+    return false;
 }
 
-class errorSMS {
-    protected $error;
-    public function __construct($error){
-        $this->error=$error;
-    }
-    function getError(){
-        return $this->error;
-    }
-}
 
 function obtenerListadoPacientes($idSucursal){
     require_once FOLDER_MODEL_EXTEND. "model.paciente.inc.php";

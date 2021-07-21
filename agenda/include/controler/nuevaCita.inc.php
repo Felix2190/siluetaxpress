@@ -185,6 +185,12 @@ function guardarCita($paciente,$sucursal,$idCabina,$consulta,$duracion,$fecha,$h
         
     }
     
+    /**/
+    
+    //*/
+    
+    
+    $_SESSION['altaCita']=$paciente;
     
     $nSucursal= new ModeloSucursal();
     $nSucursal->setIdSucursal($sucursal);
@@ -192,14 +198,22 @@ function guardarCita($paciente,$sucursal,$idCabina,$consulta,$duracion,$fecha,$h
     $nConsulta->setIdConsulta($consulta);
     $paciente_ = new ModeloPaciente();
     $paciente_->setIdPaciente($paciente);
-    /**/
+    
+    
     $resSMS=false; 
 //    if ($Recordatorio=='1')
-        if (strlen($paciente_->getTelefonoCel())==10)
-         $resSMS = enviaSMS_CitaNueva("52".$paciente_->getTelefonoCel(), $nConsulta->getTipoConsulta(), date("d/m/Y",strtotime($fechaCita)), "$hora:$minutos", $nSucursal->getSucursal(), $nSucursal->getNumTelefono());
-        else 
+if (strlen($paciente_->getTelefonoCel())==10){
+    $resSMS = enviaSMS_CitaNueva("52".$paciente_->getTelefonoCel(), $nConsulta->getTipoConsulta(), date("d/m/Y",strtotime($fechaCita)), "$hora:$minutos", $nSucursal->getSucursal(), $nSucursal->getNumTelefono());
+    sleep(3);
+    $r->call('mostrarMsjError',$resSMS,30);
+    $r->call('mostrarMsjExito','Se agreg&oacute; correctamente las citas! ',3);
+    $r->call('limpiarDatos');
+    
+    $r->redirect("listadoCitas.php",60);
+    return $r;
+}        else 
             $r->call('mostrarMsjError',"No se puede enviar el SMS, el n&uacute;mero es incorrecto ",3);
-    sleep(4);
+    sleep(3);
     if ($resSMS==true){
         $r->call('mostrarMsjExito',"Se envi&oacute; el SMS al ".$paciente_->getTelefonoCel(),3);
         $cita = new ModeloCita();
@@ -212,16 +226,7 @@ function guardarCita($paciente,$sucursal,$idCabina,$consulta,$duracion,$fecha,$h
         $r->call('mostrarMsjError',"No se envi&oacute; el SMS",3);
     
     //*/
-    
-    $r->call('mostrarMsjExito','Se agreg&oacute; correctamente las citas!',3);
-    $r->call('limpiarDatos');
-    
-    
-    $_SESSION['altaCita']=$paciente;
-    
-    $r->redirect("listadoCitas.php",6);
-    return $r;
-    
+       
 }
 
 $xajax->registerFunction("guardarCita");
