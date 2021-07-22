@@ -44,6 +44,33 @@ if(!empty($_FILES['imagenCorreo']))
     }
     
 }
+
+if (isset($_POST['idEncuesta'])){
+    require_once FOLDER_MODEL_EXTEND. "model.encuesta.inc.php";
+    $encuesta = new ModeloEncuesta();
+    $encuesta->setIdEncuesta($_POST['idEncuesta']);
+    if ($encuesta->getIdEncuesta()>0){
+        if ($encuesta->getEstatus()==1){
+            echo json_encode(array(false,"Esta encuesta ya fue evaluada!"));
+        }else{
+            require_once FOLDER_MODEL_EXTEND. "model.personal.inc.php";
+            $personal = new ModeloPersonal();
+            $arrPersonal=$personal->obtenerPersonal($encuesta->getIdTipoConsulta(), $encuesta->getIdSucursal());
+            if (count($arrPersonal)>0){
+                $txtRadio="";
+                foreach ($arrPersonal as $id=> $nombre){
+                    $txtRadio.="<input id='demo-priority-$id' name='personal' value='$id' type='radio' >
+											<label for='demo-priority-$id' style='float: left; padding-right: 40px;'>$nombre</label>";
+                }
+                echo json_encode(array(true,$txtRadio));
+            }else {
+                echo json_encode(array(false,"No hay personal de atenci&oacute;n para el ID encuesta!"));
+            }
+        }
+    }else 
+    echo json_encode(array(false,"No existe el ID ingresado!"));
+}
+
 if (isset($_POST['idPacienteInasistencias'])){
     require_once FOLDER_MODEL_EXTEND. "model.cita.inc.php";
     $cita = new ModeloCita();
@@ -76,7 +103,25 @@ if (isset($_POST['idCitaVerifica'])&&isset($_POST['estatus'])){
     $cita->setEstatus($estatus);
     $cita->unsetVerificaAsistencia();
     $cita->Guardar();
-    echo json_encode(utf8_encode("Lamentamos mucho que no hayas podido asistir a tu cita el día de hoy, te pedimos para la siguiente cancelar por lo menos con 24 hrs de antelación, recuerda que después de 3 citas con falta sin cancelar se te tomará como realizada. Todo esto con finalidad de mejorar el servicio y tener disponibilidad para otros pacientes. Estamos a tus órdenes Atte. Silueta Express"));
+    
+    if ($_POST['estatus']=='true') {
+        require_once FOLDER_MODEL_EXTEND. "model.encuesta.inc.php";
+        $encuesta = new ModeloEncuesta();
+        $encuesta->setIdSucursal($cita->getIdSucursal());
+        $encuesta->setIdTipoConsulta($cita->getIdConsulta());
+        $encuesta->setIdPaciente($cita->getIdPaciente());
+        $encuesta->setEvaluacion(0);
+        $encuesta->unsetEstatus();
+        $encuesta->setFechaRegistro(date("Y-m-d H:i:s"));
+        $encuesta->Guardar();
+        if (!$encuesta->getError())
+            echo json_encode();
+        else 
+            echo "";
+    }
+    else{
+        echo json_encode(utf8_encode("Lamentamos mucho que no hayas podido asistir a tu cita el día de hoy, te pedimos para la siguiente cancelar por lo menos con 24 hrs de antelación, recuerda que después de 3 citas con falta sin cancelar se te tomará como realizada. Todo esto con finalidad de mejorar el servicio y tener disponibilidad para otros pacientes. Estamos a tus órdenes Atte. Silueta Express"));
+    }
 }
 
 if (isset($_POST['pacientes'])){
