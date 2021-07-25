@@ -4,7 +4,7 @@ require_once 'masterInclude.inc.php';
 <!DOCTYPE HTML>
 <html>
 	<head>
-		<title> </title>
+		<title> Encuesta</title>
 		<meta charset="utf-8" />
 		<meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
 		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
@@ -33,7 +33,7 @@ require_once 'masterInclude.inc.php';
 								
 								<div class="12u 12u$(xsmall)" >
             						<div class="row">
-            							<h3>Ay&uacute;danos a mejorar contestando esta peque&ntilde;a encuesta AN&Oacute;NIMA acercca tu experiencia de hoy en SILUETA EXPRESS . </h3>
+            							<h3>Ay&uacute;danos a mejorar contestando esta peque&ntilde;a encuesta AN&Oacute;NIMA acerca tu experiencia de hoy en SILUETA EXPRESS . </h3>
             						</div>
             					</div>
 								<div class="12u 12u$(xsmall)" >
@@ -54,7 +54,7 @@ require_once 'masterInclude.inc.php';
             		<div id="divEncuesta" style="display: none;">
             					<div class="12u 12u$(xsmall)" >
             						<div class="row">
-            							<label>&iquest;Qui&eacute;n te atendi&oacute; en Silueta Express ?  </label>
+            							<label>&iquest;Qui&eacute;n te atendi&oacute; en Silueta Express <strong id="siluetaExpress"></strong> ?  </label>
             						</div>
             						
             						<div class="row">
@@ -72,14 +72,14 @@ require_once 'masterInclude.inc.php';
             						
             						<div class="row">
             							<div class="1u 12u$(xsmall)" >&emsp;</div>
-            							<div class="10u 12u$(xsmall)" >
-											<input id="demo-priority-Excelente" name="evalua" value="Excelente" type="radio" >
+            							<div class="10u 12u$(xsmall)" id="div">
+											<input id="demo-priority-Excelente" name="evalua" value="4" type="radio" >
 											<label for="demo-priority-Excelente" style="float: left; padding-right: 40px;">Excelente</label>
-											<input id="demo-priority-Bueno" name="evalua" value="Bueno" type="radio">
+											<input id="demo-priority-Bueno" name="evalua" value="3" type="radio">
 											<label for="demo-priority-Bueno" style="float: left; padding-right: 40px;">Bueno</label>
-											<input id="demo-priority-Regular" name="evalua" value="Regular" type="radio" >
+											<input id="demo-priority-Regular" name="evalua" value="3" type="radio" >
 											<label for="demo-priority-Regular" style="float: left; padding-right: 40px;">Regular</label>
-											<input id="demo-priority-Malo" name="evalua" value="Malo" type="radio">
+											<input id="demo-priority-Malo" name="evalua" value="1" type="radio">
 											<label for="demo-priority-Malo" style="float: left; padding-right: 40px;">Malo</label>
             							</div>
             						</div>

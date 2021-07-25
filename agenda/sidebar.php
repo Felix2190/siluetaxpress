@@ -43,10 +43,14 @@
 					if ($objSession->getEnvioNotificaciones()==1):?>
 						<li><a class="<?php if($subseccion=="notificacionPaciente") echo "active";?>" href="notificacionPaciente.php">Notificaciones</a></li>
 					<?php endif; ?>						
+					
+					<?php if ($objSession->getidRol()==1||$objSession->getEnvioLink()==1){?>
+						<li><a class="<?php if($subseccion=="enviaLink") echo "active";?>" href="enviaLink.php">Enviar encuesta</a></li>
 					</ul></li>
 					
 					<?php }?>
 
+					<?php }?>
 				<li><span class="opener <?php if($seccion=="pacientes") echo "active";?>" class="opener">Pacientes</span>
 					<ul>
 						<li><a class="<?php if($subseccion=="listadoPacientes") echo "active";?>" href="listadoPacientes.php">Listado</a></li>

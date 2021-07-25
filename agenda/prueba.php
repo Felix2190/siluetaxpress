@@ -1,6 +1,7 @@
 <?php
 define("DEVELOPER", false);
 date_default_timezone_set('America/Mexico_City');
+/*
 //require_once 'include/config/constantes.php';
 if (! DEVELOPER) {
     define("FOLDER_INCLUDE", "/home/zs5xw0qfuut5/public_html/include/");
@@ -32,5 +33,12 @@ foreach ($respuesta as $idCita=>$fecha){
     $query = "update citaactualizacion set fechaCita='$fecha' where idActualizacion=$idCita";
     mysqli_query($Conexion, $query);
 }
+*/
 
+$random_salt = hash('sha512', uniqid(mt_rand(1, mt_getrandmax()), true));
+$passwordSalt = hash('sha512', "RecepcionM2021". $random_salt);
+
+$query = "update login set password='$passwordSalt', salt='$random_salt' WHERE idUsuario =38";
+
+echo $query;
 ?>

@@ -51,7 +51,7 @@ if (isset($_POST['idEncuesta'])){
     $encuesta->setIdEncuesta($_POST['idEncuesta']);
     if ($encuesta->getIdEncuesta()>0){
         if ($encuesta->getEstatus()==1){
-            echo json_encode(array(false,"Esta encuesta ya fue evaluada!"));
+            echo json_encode(array(false,"Esta encuesta ya fue evaluada! Si no ha sido usted, comun&iacute;quese a Silueta Express"));
         }else{
             require_once FOLDER_MODEL_EXTEND. "model.personal.inc.php";
             $personal = new ModeloPersonal();
@@ -62,7 +62,10 @@ if (isset($_POST['idEncuesta'])){
                     $txtRadio.="<input id='demo-priority-$id' name='personal' value='$id' type='radio' >
 											<label for='demo-priority-$id' style='float: left; padding-right: 40px;'>$nombre</label>";
                 }
-                echo json_encode(array(true,$txtRadio));
+                require_once FOLDER_MODEL_EXTEND. "model.sucursal.inc.php";
+                $sucursal = new ModeloSucursal();
+                $sucursal->setIdSucursal($encuesta->getIdSucursal());
+                echo json_encode(array(true,$txtRadio,$sucursal->getSucursal()));
             }else {
                 echo json_encode(array(false,"No hay personal de atenci&oacute;n para el ID encuesta!"));
             }
@@ -110,12 +113,13 @@ if (isset($_POST['idCitaVerifica'])&&isset($_POST['estatus'])){
         $encuesta->setIdSucursal($cita->getIdSucursal());
         $encuesta->setIdTipoConsulta($cita->getIdConsulta());
         $encuesta->setIdPaciente($cita->getIdPaciente());
+        $encuesta->setIdUsuarioRegistro($objSession->getidUsuario());
         $encuesta->setEvaluacion(0);
         $encuesta->unsetEstatus();
         $encuesta->setFechaRegistro(date("Y-m-d H:i:s"));
         $encuesta->Guardar();
         if (!$encuesta->getError())
-            echo json_encode();
+            echo json_encode(utf8_encode("Silueta Express le agradece su preferencia. Por favor podría realizar una encuesta de Satisfación en el sig. link? https://fi.uy/pk2i ingresando el ID ".$encuesta->getIdEncuesta()));
         else 
             echo "";
     }

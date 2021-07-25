@@ -20,6 +20,7 @@ class clsSession
 	private $abrev;
 	private $idFranquicia;
 	private $envioNotificaciones;
+	private $envioLink;
 	
 	
 	public $_lastTime;
@@ -37,7 +38,7 @@ class clsSession
 	#--------------------------------------------Control--------------------------------------------#
 	#-----------------------------------------------------------------------------------------------#
 
-	var $__s=array(	"userName",	"idUsuario","nombre","apellidos","tipoUsuario","sucursal","lugar","correo","idRol", "idSucursal","abrev","idFranquicia","envioNotificaciones");
+	var $__s=array(	"userName",	"idUsuario","nombre","apellidos","tipoUsuario","sucursal","lugar","correo","idRol", "idSucursal","abrev","idFranquicia","envioNotificaciones","envioLink");
 
 	public function __construct()
 	{
@@ -125,6 +126,11 @@ class clsSession
 	public function getEnvioNotificaciones()
 	{
 	    return $this->envioNotificaciones;
+	}
+	
+	public function getEnvioLink()
+	{
+	    return $this->envioLink;
 	}
 	
 	public function isSessionActive()

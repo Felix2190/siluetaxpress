@@ -69,6 +69,7 @@ class ModeloLogin extends ModeloBaseLogin
                                 $arrInfoUsuario['userName'] = $infoUsuario['username'];
                                 $arrInfoUsuario['idRol'] = $row['idRol'];
                                 $arrInfoUsuario['envioNotificaciones'] = $row['envioNotificaciones'];
+                                $arrInfoUsuario['envioLink'] = $row['envioLink'];
                                 $arrInfoUsuario['idSucursal'] = $row2['idSucursal'];
                                 $arrInfoUsuario['sucursal'] = $row2['sucursal'];
                                 $arrInfoUsuario['idFranquicia'] = $infoUsuario['franquicia'];

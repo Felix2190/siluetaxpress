@@ -16,9 +16,10 @@
 		var $evaluacion='';
 		var $opinion='';
 		var $estatus='';
+		var $idUsuarioRegistro=0;
 		var $fechaRegistro='';
 
-		var $__s=array("idEncuesta","idSucursal","idTipoConsulta","idPaciente","idPersonal","evaluacion","opinion","estatus","fechaRegistro");
+		var $__s=array("idEncuesta","idSucursal","idTipoConsulta","idPaciente","idPersonal","evaluacion","opinion","estatus","idUsuarioRegistro","fechaRegistro");
 		var $__ss=array();
 
 		#------------------------------------------------------------------------------------------------------#
@@ -78,6 +79,11 @@
 		{
 			$this->estatus=1;
 		}
+		public function setIdUsuarioRegistro($idUsuarioRegistro)
+		{
+			
+			$this->idUsuarioRegistro=$idUsuarioRegistro;
+		}
 		public function setFechaRegistro($fechaRegistro)
 		{
 			$this->fechaRegistro=$fechaRegistro;
@@ -130,6 +136,10 @@
 		{
 			return $this->estatus;
 		}
+		public function getIdUsuarioRegistro()
+		{
+			return $this->idUsuarioRegistro;
+		}
 		public function getFechaRegistro()
 		{
 			return $this->fechaRegistro;
@@ -156,6 +166,7 @@
 			$this->evaluacion='';
 			$this->opinion='';
 			$this->estatus='';
+			$this->idUsuarioRegistro=0;
 			$this->fechaRegistro='';
 		}
 
@@ -166,8 +177,8 @@
 		{
 			try
 			{
-				$SQL="INSERT INTO encuesta(idSucursal,idTipoConsulta,idPaciente,idPersonal,evaluacion,opinion,estatus,fechaRegistro)
-						VALUES('" . mysqli_real_escape_string($this->dbLink,$this->idSucursal) . "','" . mysqli_real_escape_string($this->dbLink,$this->idTipoConsulta) . "','" . mysqli_real_escape_string($this->dbLink,$this->idPaciente) . "','" . mysqli_real_escape_string($this->dbLink,$this->idPersonal) . "','" . mysqli_real_escape_string($this->dbLink,$this->evaluacion) . "','" . mysqli_real_escape_string($this->dbLink,$this->opinion) . "','" . mysqli_real_escape_string($this->dbLink,$this->estatus) . "','" . mysqli_real_escape_string($this->dbLink,$this->fechaRegistro) . "')";
+				$SQL="INSERT INTO encuesta(idSucursal,idTipoConsulta,idPaciente,idPersonal,evaluacion,opinion,estatus,idUsuarioRegistro,fechaRegistro)
+						VALUES('" . mysqli_real_escape_string($this->dbLink,$this->idSucursal) . "','" . mysqli_real_escape_string($this->dbLink,$this->idTipoConsulta) . "','" . mysqli_real_escape_string($this->dbLink,$this->idPaciente) . "','" . mysqli_real_escape_string($this->dbLink,$this->idPersonal) . "','" . mysqli_real_escape_string($this->dbLink,$this->evaluacion) . "','" . mysqli_real_escape_string($this->dbLink,$this->opinion) . "','" . mysqli_real_escape_string($this->dbLink,$this->estatus) . "','" . mysqli_real_escape_string($this->dbLink,$this->idUsuarioRegistro) . "','" . mysqli_real_escape_string($this->dbLink,$this->fechaRegistro) . "')";
 				$result=mysqli_query($this->dbLink,$SQL);
 				if(!$result)
 					return $this->setSystemError("Error en la insercion de registro.","[" . $SQL . "][" . mysqli_error($this->dbLink) . "][ModeloBaseEncuesta::Insertar]");
@@ -187,7 +198,7 @@
 		{
 			try
 			{
-				$SQL="UPDATE encuesta SET idSucursal='" . mysqli_real_escape_string($this->dbLink,$this->idSucursal) . "',idTipoConsulta='" . mysqli_real_escape_string($this->dbLink,$this->idTipoConsulta) . "',idPaciente='" . mysqli_real_escape_string($this->dbLink,$this->idPaciente) . "',idPersonal='" . mysqli_real_escape_string($this->dbLink,$this->idPersonal) . "',evaluacion='" . mysqli_real_escape_string($this->dbLink,$this->evaluacion) . "',opinion='" . mysqli_real_escape_string($this->dbLink,$this->opinion) . "',estatus='" . mysqli_real_escape_string($this->dbLink,$this->estatus) . "',fechaRegistro='" . mysqli_real_escape_string($this->dbLink,$this->fechaRegistro) . "'
+				$SQL="UPDATE encuesta SET idSucursal='" . mysqli_real_escape_string($this->dbLink,$this->idSucursal) . "',idTipoConsulta='" . mysqli_real_escape_string($this->dbLink,$this->idTipoConsulta) . "',idPaciente='" . mysqli_real_escape_string($this->dbLink,$this->idPaciente) . "',idPersonal='" . mysqli_real_escape_string($this->dbLink,$this->idPersonal) . "',evaluacion='" . mysqli_real_escape_string($this->dbLink,$this->evaluacion) . "',opinion='" . mysqli_real_escape_string($this->dbLink,$this->opinion) . "',estatus='" . mysqli_real_escape_string($this->dbLink,$this->estatus) . "',idUsuarioRegistro='" . mysqli_real_escape_string($this->dbLink,$this->idUsuarioRegistro) . "',fechaRegistro='" . mysqli_real_escape_string($this->dbLink,$this->fechaRegistro) . "'
 					WHERE idEncuesta=" . $this->idEncuesta;
 				
 				$result=mysqli_query($this->dbLink,$SQL);
@@ -229,7 +240,7 @@
 			try
 			{
 				$SQL="SELECT
-						idEncuesta,idSucursal,idTipoConsulta,idPaciente,idPersonal,evaluacion,opinion,estatus,fechaRegistro
+						idEncuesta,idSucursal,idTipoConsulta,idPaciente,idPersonal,evaluacion,opinion,estatus,idUsuarioRegistro,fechaRegistro
 					FROM encuesta
 					WHERE idEncuesta=" . mysqli_real_escape_string($this->dbLink,$this->idEncuesta);
 					

@@ -4,6 +4,7 @@
 // ---------------------------------------Archivos necesarios Require Include---------------------------------------#
 // -----------------------------------------------------------------------------------------------------------------#
 require_once FOLDER_MODEL_EXTEND. "model.encuesta.inc.php";
+require_once FOLDER_MODEL_EXTEND. "model.paciente.inc.php";
 // -----------------------------------------------------------------------------------------------------------------#
 // --------------------------------------------Inicializacion de control--------------------------------------------#
 // -----------------------------------------------------------------------------------------------------------------#
@@ -25,30 +26,36 @@ require_once FOLDER_MODEL_EXTEND. "model.encuesta.inc.php";
 $xajax = new xajax();
 
 
-function guardar($idEncuesta, $personal, $evalua, $opinion){
+function guardarEncuesta($idPaciente){
     $r=new xajaxResponse();
-    $fecha = date("Y-m-d H:i:s");
+    global $objSession;
+    
+    $paciente = new ModeloPaciente();
+    $paciente->setIdPaciente($idPaciente);
     
     $encuesta = new ModeloEncuesta();
-    $encuesta->setIdEncuesta($idEncuesta);
-    
-    $encuesta->setIdPersonal($personal);
-    $encuesta->setEvaluacion($evalua);
-    $encuesta->setOpinion($opinion);
-    $encuesta->setEstatus();
-    $encuesta->setFechaRegistro($fecha);
+    $encuesta->setIdSucursal($objSession->getIdSucursal());
+    $encuesta->setIdTipoConsulta(1);
+    $encuesta->setIdPaciente($idPaciente);
+    $encuesta->setIdUsuarioRegistro($objSession->getidUsuario());
+    $encuesta->setEvaluacion(0);
+    $encuesta->unsetEstatus();
+    $encuesta->setFechaRegistro(date("Y-m-d H:i:s"));
     $encuesta->Guardar();
     if ($encuesta->getError()){
         $r->call("mostrarMsjError","Ocurri&oacute; un error, int&eacute;ntelo m&aacute;s tarde! ",5);
         return $r;
     }
-    $r->call("mostrarMsjExito","Hemos registrado correctamente tus respuestas, muchas gracias por dejarnos su opini&oacute;n");
-    $r->redirect("encuesta",3);
-    return $r;
+    
+    $r->call('mostrarMsjExito','Se agreg&oacute; correctamente la encuesta!',4);
+    $r->call('enviaLink',$paciente->getTelefonoCel(),utf8_encode('Silueta Express le agradece su preferencia. Por favor podría realizar una encuesta de Satisfación en el sig. link? https://fi.uy/pk2i ingresando el ID ').$encuesta->getIdEncuesta(),4);
+    $r->redirect("enviaLink.php",3);
+        
+        return $r;
     
 }
 
-$xajax->registerFunction("guardar");
+$xajax->registerFunction("guardarEncuesta");
 
 $xajax->processRequest();
 
