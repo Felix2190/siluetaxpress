@@ -119,8 +119,9 @@ if (isset($_POST['idCitaVerifica'])&&isset($_POST['estatus'])){
         $encuesta->setFechaRegistro(date("Y-m-d H:i:s"));
         $encuesta->Guardar();
         if (!$encuesta->getError())
-            echo json_encode(utf8_encode("Silueta Express le agradece su preferencia. Por favor podría realizar una encuesta de Satisfación en el sig. link? https://fi.uy/pk2i ingresando el ID ".$encuesta->getIdEncuesta()));
-        else 
+            //echo json_encode(utf8_encode("Silueta Express le agradece su preferencia. Por favor podría realizar una encuesta de Satisfación en el sig. link? https://fi.uy/pk2i ingresando el ID ".$encuesta->getIdEncuesta()));
+            echo json_encode(utf8_encode("Silueta Express agradece tu visita. Ayúdanos a mejorar el servicio contestando esta pequeña encuesta ANÓNIMA de 3 preguntas rápidas link https://fi.uy/pk2i ingresando el ID ".$encuesta->getIdEncuesta()));
+            else 
             echo "";
     }
     else{
