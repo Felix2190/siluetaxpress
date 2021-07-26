@@ -56,5 +56,22 @@
 			return true;
 		}
 
+		public function obtenerEvaluacion($mes, $anio)
+		{
+		    global $objSession;
+		    $query = "SELECT idTipoConsulta,e.idPersonal, p.nombreCompleto, COUNT(*) total, 
+            SUM(evaluacion)/count(*)*(10/4) promedio FROM encuesta e 
+                INNER JOIN personal p on e.idPersonal=p.idPersonal
+                where e.idSucursal=".$objSession->getIdSucursal()." and date_format(e.fechaRegistro,'%m-%Y')='$mes-$anio'
+                GROUP by e.idTipoConsulta,idPersonal";
+		    $arreglo = array();
+		    $resultado = mysqli_query($this->dbLink, $query);
+		    if ($resultado && mysqli_num_rows($resultado) > 0) {
+		        while ($row_inf = mysqli_fetch_assoc($resultado)) {
+		            $arreglo[$row_inf['idTipoConsulta']][$row_inf['nombreCompleto']] = array($row_inf['total'],$row_inf['promedio']);
+		        }
+		    }
+		    return $arreglo;
+		}
 	}
 

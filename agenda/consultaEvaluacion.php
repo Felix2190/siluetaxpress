@@ -32,15 +32,39 @@ require_once 'masterInclude.inc.php';
 								<section>
 									<h2 id="content"></h2>
 								</section>
-								
+								<input type="hidden" id="hdnRol" value="<?php echo $objSession->getidRol();?>">
+				<?php if ($objSession->getidRol()==1) { ?>
+			<div class="12u 12u$(small)">
 				<div class="row">
-					<div class="12u 12u$(small)">
-                        <div class="barra">
-                          <span style="width: 25%"></span>
-                        </div>
+					<div class="2u 12u$(small)">
+						<label>Mes</label>
+					</div>
+					<div class="3u 12u$(small)">
+    					<div class="select-wrapper">
+    						<select name="demo-category" id="slcMes">
+    							<?php echo $comboMeses;?>
+	    					</select>
+    					</div>
+					</div>
+					<div class="2u 12u$(small)">
+						<label>A&ntilde;o</label>
+					</div>
+					<div class="2u 12u$(small)">
+    					<div class="select-wrapper">
+    						<select name="demo-category" id="slcAnio">
+    							<?php echo $comboAnio;?>
+	    					</select>
+    					</div>
 					</div>
 				</div>
+			</div>
+			<?php  } ?>
+			<br>
+			
+			<div id="divEvalua">
 
+			</div>
+						
 						</div>
 					</div>
 
