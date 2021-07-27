@@ -12,8 +12,9 @@
 		var $tipoConsulta='';
 		var $consultorio='cabina';
 		var $descripcion='';
+		var $visible='1';
 
-		var $__s=array("idConsulta","tipoConsulta","consultorio","descripcion");
+		var $__s=array("idConsulta","tipoConsulta","consultorio","descripcion","visible");
 		var $__ss=array();
 
 		#------------------------------------------------------------------------------------------------------#
@@ -63,12 +64,20 @@
 		{
 			$this->descripcion=$descripcion;
 		}
+		public function setVisible()
+		{
+			$this->visible=1;
+		}
 
 		#------------------------------------------------------------------------------------------------------#
 		#-----------------------------------------------Unsetter-----------------------------------------------#
 		#------------------------------------------------------------------------------------------------------#
 
 		
+		public function unsetVisible()
+		{
+			$this->visible=0;
+		}
 
 		#------------------------------------------------------------------------------------------------------#
 		#------------------------------------------------Getter------------------------------------------------#
@@ -91,6 +100,10 @@
 		{
 			return $this->descripcion;
 		}
+		public function getVisible()
+		{
+			return $this->visible;
+		}
 
 		#------------------------------------------------------------------------------------------------------#
 		#------------------------------------------------Querys------------------------------------------------#
@@ -109,6 +122,7 @@
 			$this->tipoConsulta='';
 			$this->consultorio='cabina';
 			$this->descripcion='';
+			$this->visible='1';
 		}
 
 		
@@ -118,8 +132,8 @@
 		{
 			try
 			{
-				$SQL="INSERT INTO consulta(tipoConsulta,consultorio,descripcion)
-						VALUES('" . mysqli_real_escape_string($this->dbLink,$this->tipoConsulta) . "','" . mysqli_real_escape_string($this->dbLink,$this->consultorio) . "','" . mysqli_real_escape_string($this->dbLink,$this->descripcion) . "')";
+				$SQL="INSERT INTO consulta(tipoConsulta,consultorio,descripcion,visible)
+						VALUES('" . mysqli_real_escape_string($this->dbLink,$this->tipoConsulta) . "','" . mysqli_real_escape_string($this->dbLink,$this->consultorio) . "','" . mysqli_real_escape_string($this->dbLink,$this->descripcion) . "','" . mysqli_real_escape_string($this->dbLink,$this->visible) . "')";
 				$result=mysqli_query($this->dbLink,$SQL);
 				if(!$result)
 					return $this->setSystemError("Error en la insercion de registro.","[" . $SQL . "][" . mysqli_error($this->dbLink) . "][ModeloBaseConsulta::Insertar]");
@@ -139,7 +153,7 @@
 		{
 			try
 			{
-				$SQL="UPDATE consulta SET tipoConsulta='" . mysqli_real_escape_string($this->dbLink,$this->tipoConsulta) . "',consultorio='" . mysqli_real_escape_string($this->dbLink,$this->consultorio) . "',descripcion='" . mysqli_real_escape_string($this->dbLink,$this->descripcion) . "'
+				$SQL="UPDATE consulta SET tipoConsulta='" . mysqli_real_escape_string($this->dbLink,$this->tipoConsulta) . "',consultorio='" . mysqli_real_escape_string($this->dbLink,$this->consultorio) . "',descripcion='" . mysqli_real_escape_string($this->dbLink,$this->descripcion) . "',visible='" . mysqli_real_escape_string($this->dbLink,$this->visible) . "'
 					WHERE idConsulta=" . $this->idConsulta;
 				
 				$result=mysqli_query($this->dbLink,$SQL);
@@ -181,7 +195,7 @@
 			try
 			{
 				$SQL="SELECT
-						idConsulta,tipoConsulta,consultorio,descripcion
+						idConsulta,tipoConsulta,consultorio,descripcion,visible
 					FROM consulta
 					WHERE idConsulta=" . mysqli_real_escape_string($this->dbLink,$this->idConsulta);
 					

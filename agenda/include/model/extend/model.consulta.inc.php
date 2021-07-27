@@ -53,7 +53,7 @@
 		
 		public function obtenerConsulta()
 		{
-		    $query = "Select idConsulta, tipoConsulta from consulta";
+		    $query = "Select idConsulta, tipoConsulta from consulta where visible=1";
 		    $arreglo = array();
 		    $resultado = mysqli_query($this->dbLink, $query);
 		    if ($resultado && mysqli_num_rows($resultado) > 0) {

@@ -1,7 +1,7 @@
 $(document).ready(function(){
 	iniciar2();
 });
-var txtEncuesta;
+var txtEncuesta,recepcion;
 function iniciar2(){
 		$('.numeric').numeric({negative : false});
 	
@@ -24,6 +24,12 @@ function iniciar2(){
 			if(respuesta[0]==1){
 				$( "#divPersonal" ).html(respuesta[1]);
 				$( "#siluetaExpress" ).html(respuesta[2]);
+				recepcion=respuesta[3];
+				if(recepcion==1){
+					$( "#divRecepcion" ).show();
+					$( "#divPersonalRecepcion" ).html(respuesta[4]);
+				}
+				
 				$( "#divEncuesta" ).show();
 				$( "#txtEncuesta" ).attr("readonly",true);
 				$( "#btnBuscar" ).hide();
@@ -48,7 +54,7 @@ function iniciar2(){
 
 function enviarEncuesta(){
 	$("#btnEnviar").hide();
-	var personal,evalua;
+	var personal,evalua,personalR=0,evaluaR=0;
 	$("input[name=personal]").each(function (index) { 
 	       if($(this).is(':checked')){
 	    	   personal = $(this).val();
@@ -69,11 +75,35 @@ function enviarEncuesta(){
 			$("#btnEnviar").show();
 			return false;
 		}
+		
+	if(recepcion==1){
+		$("input[name=recepcion]").each(function (index) { 
+	       if($(this).is(':checked')){
+	    	   personalR = $(this).val();
+	       }
+	    });
+	    if (personalR == "") {
+			mostrarMsjError("Debe seleccionar una persona");
+			$("#btnEnviar").show();
+			return false;
+		}
+	$("input[name=evaluaR]").each(function (index) { 
+	       if($(this).is(':checked')){
+	    	   evaluaR = $(this).val();
+	       }
+	    });
+	    if (evaluaR == "") {
+			mostrarMsjError("Debe seleccionar una evaluaci&oacute;n");
+			$("#btnEnviar").show();
+			return false;
+		}
+	
+	}
 	
 	mostrarMsjEspera("Espere un momento...")
 	let opinion = $("#txtOpinion").val().trim();
 	
-	xajax_guardar(txtEncuesta,personal,evalua,opinion);
+	xajax_guardar(txtEncuesta,personal,evalua,opinion,personalR,evaluaR);
 	$("#btnEnviar").show();
 	
 }

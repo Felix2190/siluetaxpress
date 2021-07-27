@@ -25,7 +25,7 @@ require_once FOLDER_MODEL_EXTEND. "model.encuesta.inc.php";
 $xajax = new xajax();
 
 
-function guardar($idEncuesta, $personal, $evalua, $opinion){
+function guardar($idEncuesta, $personal, $evalua, $opinion, $personalR, $evaluaR){
     $r=new xajaxResponse();
     $fecha = date("Y-m-d H:i:s");
     
@@ -35,6 +35,8 @@ function guardar($idEncuesta, $personal, $evalua, $opinion){
     $encuesta->setIdPersonal($personal);
     $encuesta->setEvaluacion($evalua);
     $encuesta->setOpinion($opinion);
+    $encuesta->setIdPersonalRecepcion($personalR);
+    $encuesta->setEvaluacionRecepcion($evaluaR);
     $encuesta->setEstatus();
     $encuesta->setFechaRegistro($fecha);
     $encuesta->Guardar();

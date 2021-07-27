@@ -62,10 +62,19 @@ if (isset($_POST['idEncuesta'])){
                     $txtRadio.="<input id='demo-priority-$id' name='personal' value='$id' type='radio' >
 											<label for='demo-priority-$id' style='float: left; padding-right: 40px;'>$nombre</label>";
                 }
+                
+                $arrPersonal=$personal->obtenerPersonal(4, $encuesta->getIdSucursal());
+                $txtRadioR="";
+                if (count($arrPersonal)>0)
+                    foreach ($arrPersonal as $id=> $nombre){
+                        $txtRadioR.="<input id='demo-priority-$id' name='recepcion' value='$id' type='radio' checked>
+											<label for='demo-priority-$id' style='float: left; padding-right: 40px;'>$nombre</label>";
+                    }
+                    
                 require_once FOLDER_MODEL_EXTEND. "model.sucursal.inc.php";
                 $sucursal = new ModeloSucursal();
                 $sucursal->setIdSucursal($encuesta->getIdSucursal());
-                echo json_encode(array(true,$txtRadio,$sucursal->getSucursal()));
+                echo json_encode(array(true,$txtRadio,$sucursal->getSucursal(),$txtRadioR!=""?true:false,$txtRadioR));
             }else {
                 echo json_encode(array(false,"No hay personal de atenci&oacute;n para el ID encuesta!"));
             }

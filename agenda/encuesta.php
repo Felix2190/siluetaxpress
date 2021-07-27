@@ -85,6 +85,43 @@ require_once 'masterInclude.inc.php';
             						</div>
             					</div>
             					
+            					<div id="divRecepcion" style="display: none;">
+                					<div class="12u 12u$(xsmall)" >
+                						<div class="row">
+                							<label>Recepcionista</label>
+                						</div>
+                						
+                						<div class="row">
+                							<div class="1u 12u$(xsmall)" >&emsp;</div>
+                							<div class="10u 12u$(xsmall)" id="divPersonalRecepcion">
+    											
+                							</div>
+                						</div>
+                					</div>
+                					
+                					<div class="12u 12u$(xsmall)" >
+                						<div class="row">
+                							<label>&iquest;C&oacute;mo calificar&iacute;as la atenci&oacute;n y servicio de nuestra recepcionista?</label>
+                						</div>
+                						
+            						<div class="row">
+            							<div class="1u 12u$(xsmall)" >&emsp;</div>
+            							<div class="10u 12u$(xsmall)" id="div">
+											<input id="demo-priority-ExcelenteR" name="evaluaR" value="4" type="radio" >
+											<label for="demo-priority-ExcelenteR" style="float: left; padding-right: 40px;">Excelente</label>
+											<input id="demo-priority-BuenoR" name="evaluaR" value="3" type="radio">
+											<label for="demo-priority-BuenoR" style="float: left; padding-right: 40px;">Bueno</label>
+											<input id="demo-priority-RegularR" name="evaluaR" value="3" type="radio" >
+											<label for="demo-priority-RegularR" style="float: left; padding-right: 40px;">Regular</label>
+											<input id="demo-priority-MaloR" name="evaluaR" value="1" type="radio">
+											<label for="demo-priority-MaloR" style="float: left; padding-right: 40px;">Malo</label>
+            							</div>
+            						</div>
+            						
+                					</div>
+                					
+            					</div>
+            					
             					<div class="12u 12u$(xsmall)" >
             						<div class="row">
             							<label>&iquest;En qu&eacute; consideras que podr&iacute;amos mejorar ? </label>
