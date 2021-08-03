@@ -54,7 +54,7 @@ require_once 'masterInclude.inc.php';
             		<div id="divEncuesta" style="display: none;">
             					<div class="12u 12u$(xsmall)" >
             						<div class="row">
-            							<label>&iquest;Qui&eacute;n te atendi&oacute; en Silueta Express <strong id="siluetaExpress"></strong> ?  </label>
+            							<label>&iquest;Qu&eacute; <strong id="stAtender"> </strong> te atendi&oacute; en Silueta Express <strong id="siluetaExpress"></strong> ?  </label>
             						</div>
             						
             						<div class="row">
@@ -67,7 +67,7 @@ require_once 'masterInclude.inc.php';
             					
             					<div class="12u 12u$(xsmall)" >
             						<div class="row">
-            							<label>&iquest;C&oacute;mo calificar&iacute;as la atenci&oacute;n y servicio ?</label>
+            							<label>&iquest;C&oacute;mo calificar&iacute;as esta atenci&oacute;n y servicio ?</label>
             						</div>
             						
             						<div class="row">

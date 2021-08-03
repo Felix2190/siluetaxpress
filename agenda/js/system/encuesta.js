@@ -29,6 +29,7 @@ function iniciar2(){
 					$( "#divRecepcion" ).show();
 					$( "#divPersonalRecepcion" ).html(respuesta[4]);
 				}
+				$( "#stAtender" ).html(respuesta[5]);
 				
 				$( "#divEncuesta" ).show();
 				$( "#txtEncuesta" ).attr("readonly",true);

@@ -64,6 +64,21 @@ require_once 'masterInclude.inc.php';
 			<div id="divEvalua">
 
 			</div>
+			<br>
+			<div class="12u 12u$(small)" id="divComentarios">
+				<div class="row">
+					<div class="12u 12u$(small)">
+						<h5>Comentarios</h5>
+					</div>
+				</div>
+				<div class="row">
+					<div class="8u 12u$(small)" id="comen">
+						<ul>
+							<li>uj</li>
+						</ul>
+					</div>
+				</div>
+			</div>
 						
 						</div>
 					</div>

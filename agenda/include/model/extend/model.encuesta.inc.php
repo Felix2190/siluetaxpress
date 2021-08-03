@@ -84,5 +84,20 @@
 		    }
 		    return $arreglo;
 		}
+		
+		public function obtenerComentarios($mes, $anio)
+		{
+		    global $objSession;
+		    $query = "SELECT opinion FROM encuesta e
+                where e.idSucursal=".$objSession->getIdSucursal()." and opinion<>'' and date_format(e.fechaRegistro,'%m-%Y')='$mes-$anio'";
+		    $arreglo = array();
+		    $resultado = mysqli_query($this->dbLink, $query);
+		    if ($resultado && mysqli_num_rows($resultado) > 0) {
+		        while ($row_inf = mysqli_fetch_assoc($resultado)) {
+		            $arreglo[] = $row_inf['opinion'];
+		        }
+		    }
+		    return $arreglo;
+		}
+		
 	}
-

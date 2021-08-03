@@ -70,11 +70,15 @@ if (isset($_POST['idEncuesta'])){
                         $txtRadioR.="<input id='demo-priority-$id' name='recepcion' value='$id' type='radio' checked>
 											<label for='demo-priority-$id' style='float: left; padding-right: 40px;'>$nombre</label>";
                     }
+                $atender="terapista";
+                if(intval($encuesta->getIdTipoConsulta())==1){
+                    $atender="nutri&oacute;loga";
+                }
                     
                 require_once FOLDER_MODEL_EXTEND. "model.sucursal.inc.php";
                 $sucursal = new ModeloSucursal();
                 $sucursal->setIdSucursal($encuesta->getIdSucursal());
-                echo json_encode(array(true,$txtRadio,$sucursal->getSucursal(),$txtRadioR!=""?true:false,$txtRadioR));
+                echo json_encode(array(true,$txtRadio,$sucursal->getSucursal(),$txtRadioR!=""?true:false,$txtRadioR,$atender));
             }else {
                 echo json_encode(array(false,"No hay personal de atenci&oacute;n para el ID encuesta!"));
             }

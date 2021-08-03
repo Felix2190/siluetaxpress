@@ -58,6 +58,8 @@
 
 		public function obtenerPersonal($tipoConsulta,$idSucursal)
 		{
+		    if ($tipoConsulta==3) $tipoConsulta=2;
+		    
 		    $query = "Select idPersonal, nombreCompleto from personal where tipoConsulta=$tipoConsulta and idSucursal=$idSucursal ";
 		    $arreglo = array();
 		    $resultado = mysqli_query($this->dbLink, $query);

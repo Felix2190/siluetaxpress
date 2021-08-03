@@ -39,6 +39,7 @@
 						<li><a class="<?php if($subseccion=="listadoSucursal"||$subseccion=="verSucursal"||$subseccion=="altaSucursal") echo "active";?>" href="listadoSucursal.php">Consultorios</a></li>
 						<li><a class="<?php if($subseccion=="listadoUsuarios"||$subseccion=="verUsuario"||$subseccion=="nuevoUsuario") echo "active";?>" href="listadoUsuarios.php">Usuarios</a></li>
 						<li><a class="<?php if($subseccion=="listadoTipoUsuarios"||$subseccion=="verTipoUsuario"||$subseccion=="nuevoTipo") echo "active";?>" href="listadoTipoUsuarios.php">Roles</a></li>
+						<li><a class="<?php if($subseccion=="consultaEvaluacion") echo "active";?>" href="consultaEvaluacion.php">Calificaci&oacute;n encuesta</a></li>
 					<?php endif;
 					if ($objSession->getEnvioNotificaciones()==1):?>
 						<li><a class="<?php if($subseccion=="notificacionPaciente") echo "active";?>" href="notificacionPaciente.php">Notificaciones</a></li>

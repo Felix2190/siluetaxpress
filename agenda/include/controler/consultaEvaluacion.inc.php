@@ -61,6 +61,16 @@ function verEvaluacion($mes, $anio){
         $txt.="</div>";
     }
     
+    if (count($arrInfo)>0){
+        $txtComen="<ul>";
+        $arrComentarios = $encuesta->obtenerComentarios($mes, $anio);
+        foreach ($arrComentarios as $comentario){
+            $txtComen.="<li>$comentario</li>";
+        }
+        $txtComen.="</ul>";
+        $r->assign("comen", "innerHTML", $txtComen);
+    }
+    
     $r->assign("divEvalua", "innerHTML", $txt);
     
     return $r;
