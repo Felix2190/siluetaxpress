@@ -144,19 +144,13 @@ function detenerRotacionRuleta() {
   optRuleta.font = 'bold 30px Verdana, Arial';
   var text = options[index]
   optRuleta.fillText(text, 250 - optRuleta.measureText(text).width / 2, 250 + 10);
-//	caeConfeti();
+	caeConfeti();
 var confettiElement = document.getElementById('confeti');
-      var canvas2Settings = {
-        "target":confettiElement,
-        "max":"180",
-        "animate":true,
-        "props":["circle","square","triangle","line"],
-        "colors":[[165,104,246],[230,61,135],[0,199,228],[253,214,126]],
-        "clock":"25"
-      };
-      var canvas2 = new ConfettiGenerator(canvas2Settings);
-      canvas2.render();
- setTimeout(function(){ canvas2.clear(); }, 3000);
+
+ setTimeout(function(){ 
+particles.destroy();
+
+	}, 3000);
 }
 
 function mathOperations(GirarTime, b, GirarAngleStart, GirarTimeTotal) {
@@ -278,5 +272,5 @@ function caeConfeti(){
     }
   }
 });
-
+particles = tsParticles.domItem(0);
 }

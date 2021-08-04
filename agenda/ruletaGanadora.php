@@ -110,8 +110,7 @@ require_once 'masterInclude.inc.php';
 			<script src="assets/js/util.js"></script>
 			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
 			<script src="assets/js/main.js"></script>
-<script type="text/javascript" src="confetti2.js"></script>
- <script type="text/javascript" src="index.min.js"></script>
+<script type="text/javascript" src="tsparticles.min.js"></script>
    
 	</body>
 </html>
