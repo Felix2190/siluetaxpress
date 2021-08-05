@@ -45,6 +45,29 @@ if(!empty($_FILES['imagenCorreo']))
     
 }
 
+if (isset($_POST['numTel'])){
+    require_once FOLDER_MODEL_EXTEND. "model.paciente.inc.php";
+    $paciente = new ModeloPaciente();
+    $arrPaciente=$paciente->obtenerInfoPacienteByCelular($_POST['numTel']);
+    if (count($arrPaciente)>0){
+        require_once FOLDER_MODEL_EXTEND. "model.promociones_ruleta.inc.php";
+        $promocion = new ModeloPromociones_ruleta();
+        echo json_encode(array(true,$arrPaciente['idPaciente'],$arrPaciente['nombrePaciente'],$promocion->obtenerPromociones($arrPaciente['idFranquicia'])));
+    }else 
+        echo json_encode(array(false));
+}
+
+if (isset($_POST['idPacienteRuleta'])){
+    $arrCodigos = obtenerPromocionesMesActual($_POST['idPacienteRuleta']);
+    echo json_encode(array(count($arrCodigos),$arrCodigos));
+}
+
+function obtenerPromocionesMesActual($idPaciente){
+    require_once FOLDER_MODEL_EXTEND. "model.ganadores_promocion.inc.php";
+    $codigos = new ModeloGanadores_promocion();
+    return $codigos->obtenerCodigosByPersonal($idPaciente);
+}
+
 if (isset($_POST['idEncuesta'])){
     require_once FOLDER_MODEL_EXTEND. "model.encuesta.inc.php";
     $encuesta = new ModeloEncuesta();

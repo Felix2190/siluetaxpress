@@ -4,26 +4,56 @@ $(document).ready(function(){
 });
 	 
 function iniciar(){
-	dibujarRuleta();
+		$('.numeric').numeric({negative : false});
+//	dibujarRuleta();
+	$("#btnBuscar").click(buscarNum);
 	$("#btnGirar").click(Girar);
 }
-/*
+
+var idPaciente, promociones=[];
+
+function buscarNum(){
+	$("#btnBuscar").hide();
+	var tel = $("#txtNumero").val();
+	if(tel == ""){
+		mostrarMsjError("Debe ingresar su n&uacute;mero!");
+		$("#btnBuscar").show();
+		return ;
+	}
      $.ajax(
       {
       	method:"post",
-					url: "adminFunciones.php",  					
-					data: 
-					{  						
-					},
-					
-					success: function(data) 
-					{
-  					respuesta=JSON.parse(data);
-					}
+		url: "adminFunciones.php",  					
+		data: 
+		{  numTel: tel						
+		},
+		success: function(data) {
+  			respuesta=JSON.parse(data);
+			if(respuesta[0]==true){
+		     idPaciente=respuesta[1];
+				consultaCodigos();
+				$("#spNombre").html(respuesta[2]);
+				var x=1,texto="";
+				$.each(respuesta[3], function (id,nombre) {
+            		texto+="<tr><td>"+x+"</td><td>"+nombre+"</td></tr>";
+					promociones[x-1]=nombre;
+					x++;
+				});
+				$("#tbRuleta").html(texto);
+				$(".divRuleta").show();
+				$("#divInicial").hide();
+				dibujarRuleta();
+				$('html,body').animate({
+				    scrollTop: $("#tbRuleta").offset().top
+				}, 2000);
+				
+			}else{
+		mostrarMsjError("El n&uacute;mero ingresado no ha sido registrado!");
+		$("#btnBuscar").show();
+			}
+		}
 	    });
-
- 
- */
+}
 
 var options = ["Opción 1", "Opción 2", "Opción 3", "Opción 4", "Opción 5",
 				"Opción 1", "Opción 2", "Opción 3", "Opción 4", "Opción 5"];
@@ -37,6 +67,28 @@ var GirarTime = 0;
 var GirarTimeTotal = 0;
 var arc = Math.PI / (options.length / 2);
 
+function consultaCodigos(){
+	 $.ajax(
+		      {
+      			method:"post",
+				url: "adminFunciones.php",  					
+				data: 
+				{ idPacienteRuleta:idPaciente
+				},
+				success: function(data) {
+  					respuesta2=JSON.parse(data);
+					$("#divCodigos").html('');
+					$.each(respuesta2[1], function (codigo,nombre) {
+            			$("#divCodigos").append('<div class="4u 12u$(xsmall)"><label style="float: left">'+codigo+'&emsp;</label> ('+nombre+')</div>');
+					});
+				$("#spCodigo").html(respuesta2[0]);
+				$("#spOportunidades").html(3-(parseInt(respuesta2[0])));
+				if(parseInt(respuesta2[0])>=3)
+					$("#btnGirar").hide();
+				}
+		    });
+			
+}
 
 function byte2Hex(n) {
   var nybHexString = "0123456789ABCDEF";
@@ -115,6 +167,8 @@ function dibujarRuleta() {
 }
 
 function Girar() {
+	$("#btnGirar").hide();
+	
   GirarAngleStart = Math.random() * 10 + 10;
   GirarTime = 0;
   GirarTimeTotal = Math.random() * 3 + 4 * 1500;
@@ -141,16 +195,26 @@ function detenerRotacionRuleta() {
   var arcd = arc * 180 / Math.PI;
   var index = Math.floor((360 - degrees % 360) / arcd);
   optRuleta.save();
-  optRuleta.font = 'bold 30px Verdana, Arial';
-  var text = options[index]
-  optRuleta.fillText(text, 250 - optRuleta.measureText(text).width / 2, 250 + 10);
+  optRuleta.font = 'bold 20px Verdana, Arial';
+  var text = promociones[index];
+//  optRuleta.fillText(text, 250 - optRuleta.measureText(text).width / 2, 250 + 10);
+	$("#canvas").hide();
+	$("#hPremio").html(text);
+	$(".premio").show();
 	caeConfeti();
-var confettiElement = document.getElementById('confeti');
-
+	
+	
  setTimeout(function(){ 
-particles.destroy();
-
-	}, 3000);
+	particles.destroy();
+	$("#canvas").show();
+	$("#btnGirar").show();
+	$(".premio").hide();
+	$('html,body').animate({
+		 scrollTop: $("#divInfo").offset().top
+	}, 1000);
+	
+	xajax_agregaCodigo(idPaciente,text);			
+	}, 8000);
 }
 
 function mathOperations(GirarTime, b, GirarAngleStart, GirarTimeTotal) {

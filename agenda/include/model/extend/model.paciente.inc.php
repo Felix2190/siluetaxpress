@@ -161,6 +161,18 @@
 		    return $arreglo;
 		}
 		
+		public function obtenerInfoPacienteByCelular($celular)
+		{
+		    $query = "Select p.idPaciente, concat_ws(' ', p.nombre, p.apellidos) as nombrePaciente, s.idFranquicia from paciente as p 
+                     inner join sucursal as s on p.idSucursal=s.idSucursal where p.estatus='activo' and telefonoCel='$celular' limit 1";
+		    $arreglo = array();
+		    $resultado = mysqli_query($this->dbLink, $query);
+		    if ($resultado && mysqli_num_rows($resultado) > 0) {
+		        return  mysqli_fetch_assoc($resultado);
+		    }
+		    return $arreglo;
+		}
+		
 		public function validarDatos(){
 		    return true;
 		}

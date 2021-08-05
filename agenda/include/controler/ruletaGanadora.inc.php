@@ -3,7 +3,7 @@
 // -----------------------------------------------------------------------------------------------------------------#
 // ---------------------------------------Archivos necesarios Require Include---------------------------------------#
 // -----------------------------------------------------------------------------------------------------------------#
-//require_once FOLDER_MODEL_EXTEND. "model..inc.php";
+require_once FOLDER_MODEL_EXTEND. "model.ganadores_promocion.inc.php";
 // -----------------------------------------------------------------------------------------------------------------#
 // --------------------------------------------Inicializacion de control--------------------------------------------#
 // -----------------------------------------------------------------------------------------------------------------#
@@ -25,14 +25,22 @@
 $xajax = new xajax();
 
 
-function x(){
+function agregaCodigo($idPaciente, $promocion){
     $r=new xajaxResponse();
+    $codigo=substr( md5(microtime()), 1, 6);
     
+    $ganador = new ModeloGanadores_promocion();
+    $ganador->setCodigo($codigo);
+    $ganador->setIdPaciente($idPaciente);
+    $ganador->setPromocion($promocion);
+    $ganador->setFecha(date("Y-m-d"));
+    $ganador->Guardar();
+    $r->call("consultaCodigos");
     return $r;
     
 }
 
-$xajax->registerFunction("");
+$xajax->registerFunction("agregaCodigo");
 
 $xajax->processRequest();
 
