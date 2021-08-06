@@ -5,9 +5,10 @@ $(document).ready(function(){
 	 
 function iniciar(){
 		$('.numeric').numeric({negative : false});
-//	dibujarRuleta();
+//	dibujarRuleta();		
 	$("#btnBuscar").click(buscarNum);
 	$("#btnGirar").click(Girar);
+	$("#btnRegistrar").click(altaPaciente)
 }
 
 var idPaciente, promociones=[];
@@ -30,7 +31,8 @@ function buscarNum(){
 		success: function(data) {
   			respuesta=JSON.parse(data);
 			if(respuesta[0]==true){
-		     idPaciente=respuesta[1];
+				$("#divNuevo").hide();
+		  		idPaciente=respuesta[1];
 				consultaCodigos();
 				$("#spNombre").html(respuesta[2]);
 				var x=1,texto="";
@@ -48,15 +50,114 @@ function buscarNum(){
 				}, 2000);
 				
 			}else{
-		mostrarMsjError("El n&uacute;mero ingresado no ha sido registrado!");
+		$("#divNuevo").show();
 		$("#btnBuscar").show();
 			}
 		}
 	    });
 }
 
+function obtenerSucursales(){
+	 $.ajax({
+				method : "post",
+				url : "adminFunciones.php",
+				data : {
+					sucursalesRuleta:$( "#slcFranquicia" ).val()
+				},
+				success : function(data) {
+					respuesta=JSON.parse(data);
+					$( "#slcSucursal" ).html(respuesta);
+				}
+			});
+		
+}
+
+function altaPaciente(){
+	var existeError = false;
+	var datos={},paciente={},hoja={};
+	
+	 paciente['Nombre']= $("#txtNombre").val().trim();
+	if (paciente['Nombre'] == "") {
+		existeError = true;
+		console.log("Error: txtNombre");
+	}
+
+	paciente['Apellidos']= $("#txtApellidos").val().trim();
+	if (paciente['Apellidos'] == "") {
+		console.log("Error: txtApellido");
+	}
+	
+	
+	paciente['sexo'] = '';
+    $("input[name=sexo]").each(function (index) { 
+       if($(this).is(':checked')){
+    	   paciente['sexo'] = $(this).val();
+       }
+    });
+    
+    if (paciente['sexo'] == "") {
+		existeError = true;
+		console.log("Error: txt");
+	}
+    
+    paciente['franquicia']= $("#slcFranquicia").val().trim();
+    if ( paciente['franquicia'] == "") {
+		existeError = true;
+		console.log("Error: franquicia");
+	}
+	paciente['sucursal']= $("#slcSucursal").val().trim();
+    if ( paciente['sucursal'] == "") {
+		existeError = true;
+		console.log("Error: sucursal");
+	}
+
+    paciente['Email']= $("#txtCorreo").val().trim();
+	if (paciente['Email'] == "") {
+		//existeError2 = true;
+		console.log("Error: txtEmail");
+	}else{
+		if(!validarEmail(paciente['Email'])){
+			mostrarMsjError('El formato del correo electr&oacute;nico es incorrecto ',3);
+			return false;
+		}
+	}
+
+	paciente['txtNumero']= $("#txtNumero").val().trim();
+	if (paciente['txtNumero'] != "") {
+		if (paciente['txtNumero'].length<10) {
+			mostrarMsjError('El n&uacute;mero telef&oacute;nico es incorrecto ',3);
+			return false;
+		}
+	}else{
+		existeError = true;
+		
+	}
+
+	paciente['fechaNac']="1900-01-01"
+		
+	hoja['completitud']=0;
+	datos['paciente']=paciente;
+	datos['hojaclinica']=hoja;
+		
+	if(existeError){
+		mostrarMsjError('Datos incompletos!! <br />Por favor, llene la informaci&oacute;n que se solicita',5);
+		return false;
+	}
+
+	mostrarMsjEspera('Espere un momento... guardando informaci&oacute;n.', 3);
+	
+	$("#divRegistrar").hide();
+	xajax_guardar(JSON.stringify(datos));
+}
+
+function validarEmail(email) {
+	  var re = /^(([^<>()[\]\\.,;:\s@\"]+(\.[^<>()[\]\\.,;:\s@\"]+)*)|(\".+\"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+	  return re.test(email);
+	}
+
+
 var options = ["Opción 1", "Opción 2", "Opción 3", "Opción 4", "Opción 5",
-				"Opción 1", "Opción 2", "Opción 3", "Opción 4", "Opción 5"];
+				"Opción 6", "Opción 7", "Opción 8", "Opción 9", "Opción 10"];
 
 // Initialize Variables
 var inicioAngulo = 0;
@@ -88,6 +189,10 @@ function consultaCodigos(){
 				}
 		    });
 			
+}
+
+function asignaCodigoNuevo(codigo){
+	$("#hdCodigo").val(codigo);
 }
 
 function byte2Hex(n) {
@@ -200,6 +305,7 @@ function detenerRotacionRuleta() {
 //  optRuleta.fillText(text, 250 - optRuleta.measureText(text).width / 2, 250 + 10);
 	$("#canvas").hide();
 	$("#hPremio").html(text);
+	$("#spCod").html($("#hdCodigo").val());
 	$(".premio").show();
 	caeConfeti();
 	
@@ -213,7 +319,7 @@ function detenerRotacionRuleta() {
 		 scrollTop: $("#divInfo").offset().top
 	}, 1000);
 	
-	xajax_agregaCodigo(idPaciente,text);			
+	xajax_agregaCodigo(idPaciente,text,$("#hdCodigo").val()	);		
 	}, 8000);
 }
 

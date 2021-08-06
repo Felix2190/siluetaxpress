@@ -81,6 +81,7 @@ require_once 'masterInclude.inc.php';
                   												<tr>
                   													<th>C&oacute;digo</th>
                   													<th>Promoci&oacute;n</th>
+                  													<th>N&uacute;mero celular</th>
                   													<th>Estatus</th>
                   												</tr>
                   											</thead>
@@ -89,7 +90,7 @@ require_once 'masterInclude.inc.php';
                   											</tbody>
                   											<tfoot>
                   												<tr>
-                  													<td colspan="3" class="pager form-horizontal">
+                  													<td colspan="4" class="pager form-horizontal">
                   														<button class="btn first"><i class="fa fa-step-backward"></i></button>
                   														<button class="btn prev"><i class="fa fa-arrow-left"></i></button>
                   														<span class="pagedisplay"></span> <!-- this can be any element, including an input -->

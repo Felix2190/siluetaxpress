@@ -42,11 +42,76 @@ require_once 'masterInclude.inc.php';
 							<label>Ingresa tu n&uacute;mero celular:</label>
 						</div>
 						<div class="2u 12u$(xsmall)">
-							<input type="text" id="txtNumero" class="numeric" maxlength="10"/>
+							<input type="text" id="txtNumero" onkeypress="return soloNumeros(event);" maxlength="10"/>
 						</div>
 						<div class="2u 12u$(xsmall)">
 							<a id="btnBuscar" class="button">Empezar a jugar</a>
 						</div>
+					</div>
+				</div>
+				
+				<div class="12u 12u$(small)" id="divNuevo" style="display: none">
+				<br>
+					<div class="box">
+						<div class="row">
+								<div class="1u 12u$(xsmall)">
+									<label>Nombre:</label>
+								</div>
+								<div class="2u 12u$(xsmall)">
+									<input type="text" id="txtNombre" />
+								</div>
+								<div class="1u 12u$(xsmall)">
+									<label>Apellidos:</label>
+								</div>
+								<div class="3u 12u$(xsmall)">
+									<input type="text" id="txtApellidos" />
+								</div>
+					
+								<div class="1u 12u$(xsmall)">
+									<label>Sexo:</label>
+								</div>
+								<div class="2u 12u$(xsmall)"> 
+									<input id="demo-priority-Masculino" name="sexo" value="Masculino" type="radio">
+									<label for="demo-priority-Masculino">Masculino</label>
+								</div>
+								<div class="2u 12u$(xsmall)"> 
+									<input id="demo-priority-Femenino" name="sexo" value="Femenino" type="radio">
+									<label for="demo-priority-Femenino">Femenino</label> 
+								</div>
+						</div>
+							<br>
+						<div class="row">
+						
+								<div class="2u 12u$(xsmall)">
+									<label>Correo electr&oacute;nico:</label>
+								</div>
+								<div class="3u 12u$(xsmall)">
+									<input type="text" id="txtCorreo" />
+								</div>
+								<div class="1u 12u$(xsmall)">
+									<label>Lugar: </label>
+								</div>
+								<div class="2u 12u$(xsmall)">
+									<div class="select-wrapper">
+										<select name="demo-category" id="slcFranquicia" onchange="obtenerSucursales();">
+											<?php echo $txtFranquicia;?>
+									</select>
+									</div>
+								</div>
+								<div class="2u 12u$(xsmall)">
+									<div class="select-wrapper">
+										<select name="demo-category" id="slcSucursal">
+											<option value="">Selecciona una opci&oacute;n</option>
+									</select>
+									</div>
+								</div>
+								
+        						<div class="2u 12u$(xsmall)">
+        							<a id="btnRegistrar" class="button special">Registrarme</a>
+        						</div>
+						</div>		
+								
+							
 					</div>
 				</div>
 				
@@ -65,7 +130,7 @@ require_once 'masterInclude.inc.php';
 							<div class="3u 12u$(xsmall)"> 
 								<label style="float: left">Mis c&oacute;digos: </label>
 							</div>
-							
+							<input type="hidden" id="hdCodigo" value="<?php echo $codigo;?>">
 						</div>
 						
 						<div class="row uniform" id="divCodigos">
@@ -105,7 +170,17 @@ require_once 'masterInclude.inc.php';
 										<center> <h1 id="hPremio" style="color: #e37d24;">promoción</h1></center>
 									</div>
 								</div>
+								<div class="row premio" style="display: none">
+									<div class="12u 12u$(xsmall)">
+										<center> <h1>Código:&emsp;<span id="spCod" style="color: #25a81a;"></span></h1></center>
+									</div>
+								</div>
 								
+								<div class="row premio" style="display: none">
+									<div class="12u 12u$(xsmall)">
+										<center> <h2>(Válido en <?php echo $fechaV; ?>)</h2></center>
+									</div>
+								</div>
 								<a id="btnGirar" class="button special">Girar</a>
 								<canvas id="canvas" width="500" height="500"></canvas>
 							</div>

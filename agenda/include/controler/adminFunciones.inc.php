@@ -45,6 +45,17 @@ if(!empty($_FILES['imagenCorreo']))
     
 }
 
+if (isset($_POST['sucursalesRuleta'])){
+    require_once FOLDER_MODEL_EXTEND. "model.sucursal.inc.php";
+    $sucursal = new ModeloSucursal();
+    $sucursal->setIdFranquicia( $_POST['sucursalesRuleta']);
+    $combo='<option value="">Selecciona una opci&oacute;n</option>';
+    foreach ($sucursal->obtenerSucuralesFranquicia() as $key => $opcion)
+        $combo.='<option value="'.$key.'" >'.$opcion.'</option>';
+        
+        echo json_encode($combo);
+}
+
 if (isset($_POST['idPacienteGanador'])&&isset($_POST['codigoPromo'])){
     require_once FOLDER_MODEL_EXTEND. "model.ganadores_promocion.inc.php";
     $codigoPromo = new ModeloGanadores_promocion();

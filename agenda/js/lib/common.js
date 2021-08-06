@@ -1105,3 +1105,10 @@
 		dst.h = (w2 & 0xffff) | (w3 << 16);
 	}
 	
+
+function soloNumeros(e){ //metodo que impide usar letras para usar solo digitos
+ var key = window.event ? e.which : e.keyCode;
+ if (key < 48 || key > 57) {
+   e.preventDefault();
+ }
+}

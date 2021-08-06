@@ -92,6 +92,7 @@ function estiloTabla(){
                     $.each(ajax[1], function (i, item) {
                           var html = "<td>" + item.codigo + "</td>" +
                             "<td>" + item.promocion + "</td>" +
+                            "<td>" + item.telefonoCel + "</td>" +
                             "<td>" + item.estatus + "</td>";
                         $("<tr/>").html(html).appendTo(table);
                     });

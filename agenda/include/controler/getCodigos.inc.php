@@ -26,10 +26,14 @@ $dbLink->set_charset(BD_CHARSET);
         {
            $filtros .= " AND promocion LIKE '".$valor."%' ";
         }
-
+        
         else if($clave==2)
         {
-            $filtros .= " AND estatus LIKE '".$valor."%' ";
+            $filtros .= " AND telefonoCel LIKE '".$valor."%' ";
+        }
+        else if($clave==3)
+        {
+            $filtros .= " AND gp.estatus LIKE '".$valor."%' ";
         }
         
       }
@@ -68,13 +72,24 @@ $dbLink->set_charset(BD_CHARSET);
         }
         else if($clave==2)
         {
+            if($valor==0)
+            {
+                $ordenar = 'ORDER BY telefonoCel ASC';
+            }
+            else
+            {
+                $ordenar = 'ORDER BY telefonoCel DESC';
+            }
+        }
+        else if($clave==3)
+        {
           if($valor==0)
           {
-            $ordenar = 'ORDER BY estatus ASC';
+            $ordenar = 'ORDER BY gp.estatus ASC';
           }
           else
           {
-            $ordenar = 'ORDER BY estatus DESC';
+            $ordenar = 'ORDER BY gp.estatus DESC';
           }
         }
         
@@ -108,13 +123,15 @@ $dbLink->set_charset(BD_CHARSET);
   $inicial = (($pagina) * $tamano);
   if($filtros!='')
   {
-    $query="select codigo, promocion, estatus from ganadores_promocion 
-       where date_format(fecha,'%Y-%m')='".date("Y-m")."' $filtros $ordenar LIMIT $inicial, $tamano";
+    $query="select codigo, promocion, telefonoCel, gp.estatus from ganadores_promocion as gp 
+        inner join paciente p on gp.idPaciente=p.idPaciente
+       where date_format(fecha,'%Y-%m')='".date("Y-m")."' and idFranquicia=".$objSession->getIdFranquicia()." $filtros $ordenar LIMIT $inicial, $tamano";
   }
   else
   {
-      $query="select codigo, promocion, estatus from ganadores_promocion
-       where date_format(fecha,'%Y-%m')='".date("Y-m")."' $ordenar LIMIT $inicial, $tamano";
+      $query="select codigo, promocion, telefonoCel, gp.estatus from ganadores_promocion as gp 
+        inner join paciente p on gp.idPaciente=p.idPaciente
+       where date_format(fecha,'%Y-%m')='".date("Y-m")."' and idFranquicia=".$objSession->getIdFranquicia()." $ordenar LIMIT $inicial, $tamano";
   }
 //  echo $query;
   $result=mysqli_query($dbLink,$query);
@@ -129,13 +146,15 @@ $dbLink->set_charset(BD_CHARSET);
   {
     if($filtros!='')
     {
-      $query="SELECT COUNT(*) AS total from ganadores_promocion
-       where date_format(fecha,'%Y-%m')='".date("Y-m")."' ".$filtros."";
+      $query="SELECT COUNT(*) AS total from ganadores_promocion as gp 
+        inner join paciente p on gp.idPaciente=p.idPaciente
+       where date_format(fecha,'%Y-%m')='".date("Y-m")."' and idFranquicia=".$objSession->getIdFranquicia()." ".$filtros."";
     }
     else
     {
-      $query="SELECT COUNT(*) AS total from ganadores_promocion
-       where date_format(fecha,'%Y-%m')='".date("Y-m")."' ";
+      $query="SELECT COUNT(*) AS total from ganadores_promocion as gp 
+        inner join paciente p on gp.idPaciente=p.idPaciente
+       where date_format(fecha,'%Y-%m')='".date("Y-m")."' and idFranquicia=".$objSession->getIdFranquicia()." ";
     }//echo $query;
     $result=mysqli_query($dbLink,$query);
     if(!$result)
