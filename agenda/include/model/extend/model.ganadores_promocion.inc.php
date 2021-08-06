@@ -68,6 +68,19 @@
 		    }
 		    return $arreglo;
 		}
+		
+		public function consultaCodigo($idPaciente, $codigo)
+		{
+		    global $objSession;
+		    $query = "SELECT idGanador, promocion, estatus from ganadores_promocion 
+                where idPaciente=".$idPaciente." and date_format(fecha,'%Y-%m')='".date("Y-m")."' and codigo='$codigo'";
+		    $arreglo = array();
+		    $resultado = mysqli_query($this->dbLink, $query);
+		    if ($resultado && mysqli_num_rows($resultado) > 0) {
+		        return  mysqli_fetch_assoc($resultado);
+		    }
+		    return $arreglo;
+		}
 
 	}
 

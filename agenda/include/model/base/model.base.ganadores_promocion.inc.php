@@ -13,8 +13,10 @@
 		var $promocion='';
 		var $fecha='';
 		var $codigo='';
+		var $estatus='Nuevo';
+		var $idUsuarioActivo=0;
 
-		var $__s=array("idGanador","idPaciente","promocion","fecha","codigo");
+		var $__s=array("idGanador","idPaciente","promocion","fecha","codigo","estatus","idUsuarioActivo");
 		var $__ss=array();
 
 		#------------------------------------------------------------------------------------------------------#
@@ -60,6 +62,24 @@
 		{
 			$this->codigo=$codigo;
 		}
+		public function setEstatus($estatus)
+		{
+			
+			$this->estatus=$estatus;
+		}
+		public function setEstatusNuevo()
+		{
+			$this->estatus='Nuevo';
+		}
+		public function setEstatusUtilizado()
+		{
+			$this->estatus='Utilizado';
+		}
+		public function setIdUsuarioActivo($idUsuarioActivo)
+		{
+			
+			$this->idUsuarioActivo=$idUsuarioActivo;
+		}
 
 		#------------------------------------------------------------------------------------------------------#
 		#-----------------------------------------------Unsetter-----------------------------------------------#
@@ -92,6 +112,14 @@
 		{
 			return $this->codigo;
 		}
+		public function getEstatus()
+		{
+			return $this->estatus;
+		}
+		public function getIdUsuarioActivo()
+		{
+			return $this->idUsuarioActivo;
+		}
 
 		#------------------------------------------------------------------------------------------------------#
 		#------------------------------------------------Querys------------------------------------------------#
@@ -111,6 +139,8 @@
 			$this->promocion='';
 			$this->fecha='';
 			$this->codigo='';
+			$this->estatus='Nuevo';
+			$this->idUsuarioActivo=0;
 		}
 
 		
@@ -120,8 +150,8 @@
 		{
 			try
 			{
-				$SQL="INSERT INTO ganadores_promocion(idPaciente,promocion,fecha,codigo)
-						VALUES('" . mysqli_real_escape_string($this->dbLink,$this->idPaciente) . "','" . mysqli_real_escape_string($this->dbLink,$this->promocion) . "','" . mysqli_real_escape_string($this->dbLink,$this->fecha) . "','" . mysqli_real_escape_string($this->dbLink,$this->codigo) . "')";
+				$SQL="INSERT INTO ganadores_promocion(idPaciente,promocion,fecha,codigo,estatus,idUsuarioActivo)
+						VALUES('" . mysqli_real_escape_string($this->dbLink,$this->idPaciente) . "','" . mysqli_real_escape_string($this->dbLink,$this->promocion) . "','" . mysqli_real_escape_string($this->dbLink,$this->fecha) . "','" . mysqli_real_escape_string($this->dbLink,$this->codigo) . "','" . mysqli_real_escape_string($this->dbLink,$this->estatus) . "','" . mysqli_real_escape_string($this->dbLink,$this->idUsuarioActivo) . "')";
 				$result=mysqli_query($this->dbLink,$SQL);
 				if(!$result)
 					return $this->setSystemError("Error en la insercion de registro.","[" . $SQL . "][" . mysqli_error($this->dbLink) . "][ModeloBaseGanadores_promocion::Insertar]");
@@ -141,7 +171,7 @@
 		{
 			try
 			{
-				$SQL="UPDATE ganadores_promocion SET idPaciente='" . mysqli_real_escape_string($this->dbLink,$this->idPaciente) . "',promocion='" . mysqli_real_escape_string($this->dbLink,$this->promocion) . "',fecha='" . mysqli_real_escape_string($this->dbLink,$this->fecha) . "',codigo='" . mysqli_real_escape_string($this->dbLink,$this->codigo) . "'
+				$SQL="UPDATE ganadores_promocion SET idPaciente='" . mysqli_real_escape_string($this->dbLink,$this->idPaciente) . "',promocion='" . mysqli_real_escape_string($this->dbLink,$this->promocion) . "',fecha='" . mysqli_real_escape_string($this->dbLink,$this->fecha) . "',codigo='" . mysqli_real_escape_string($this->dbLink,$this->codigo) . "',estatus='" . mysqli_real_escape_string($this->dbLink,$this->estatus) . "',idUsuarioActivo='" . mysqli_real_escape_string($this->dbLink,$this->idUsuarioActivo) . "'
 					WHERE idGanador=" . $this->idGanador;
 				
 				$result=mysqli_query($this->dbLink,$SQL);
@@ -183,7 +213,7 @@
 			try
 			{
 				$SQL="SELECT
-						idGanador,idPaciente,promocion,fecha,codigo
+						idGanador,idPaciente,promocion,fecha,codigo,estatus,idUsuarioActivo
 					FROM ganadores_promocion
 					WHERE idGanador=" . mysqli_real_escape_string($this->dbLink,$this->idGanador);
 					

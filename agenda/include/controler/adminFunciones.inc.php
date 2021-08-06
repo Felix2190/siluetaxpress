@@ -45,6 +45,22 @@ if(!empty($_FILES['imagenCorreo']))
     
 }
 
+if (isset($_POST['idPacienteGanador'])&&isset($_POST['codigoPromo'])){
+    require_once FOLDER_MODEL_EXTEND. "model.ganadores_promocion.inc.php";
+    $codigoPromo = new ModeloGanadores_promocion();
+    $info = $codigoPromo->consultaCodigo($_POST['idPacienteGanador'], $_POST['codigoPromo']);
+    if (count($info)>0){
+        if ($info['estatus']=="Utilizado"){
+            echo json_encode(array(false,"El c&oacute;digo ya fue canjeado!"));
+        }else {
+            echo json_encode(array(true,$info['idGanador'],$info['promocion']));
+            
+        }
+    }else{
+        echo json_encode(array(false,"El c&oacute;digo es inv&aacute;lido!"));
+    }
+}
+
 if (isset($_POST['numTel'])){
     require_once FOLDER_MODEL_EXTEND. "model.paciente.inc.php";
     $paciente = new ModeloPaciente();

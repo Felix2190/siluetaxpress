@@ -4,7 +4,7 @@ require_once 'masterInclude.inc.php';
 <!DOCTYPE HTML>
 <html>
 <head>
-<title></title>
+<title>Ruleta | Silueta Express</title>
 <meta charset="utf-8" />
 <meta name="viewport"
 	content="width=device-width, initial-scale=1, user-scalable=no" />
@@ -42,7 +42,7 @@ require_once 'masterInclude.inc.php';
 							<label>Ingresa tu n&uacute;mero celular:</label>
 						</div>
 						<div class="2u 12u$(xsmall)">
-							<input type="text" id="txtNumero" class="numeric" />
+							<input type="text" id="txtNumero" class="numeric" maxlength="10"/>
 						</div>
 						<div class="2u 12u$(xsmall)">
 							<a id="btnBuscar" class="button">Empezar a jugar</a>
@@ -61,6 +61,9 @@ require_once 'masterInclude.inc.php';
 							</div>
 							<div class="3u 12u$(xsmall)"> 
 								<label style="float: left">C&oacute;digos obtenidos &emsp;</label> <span id="spCodigo"></span>
+							</div>
+							<div class="3u 12u$(xsmall)"> 
+								<label style="float: left">Mis c&oacute;digos: </label>
 							</div>
 							
 						</div>

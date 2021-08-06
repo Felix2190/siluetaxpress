@@ -7,8 +7,10 @@ function iniciar(){
 	
 	$( "#slcPaciente" ).combobox();
 	
-			$( "#btnEnvia" ).click(altaEcuesta);
-			
+	$( "#btnConsulta" ).click(buscar);
+	$( "#btnActivar" ).click(activar);
+	estiloTabla();
+	
 	$.ajax({
 		method : "post",
 		url : "adminFunciones.php",
@@ -23,19 +25,92 @@ function iniciar(){
 	
 }
 
-function enviaLink(num,texto){
-	window.open("https://web.whatsapp.com/send?phone=52"+num+"&text="+texto, "_blank");
-
+function activar(){
+	xajax_activarCodigo(idGanador);
+	$("#divCodigo").hide();
+	$("#txtCodigo").val('');
+	estiloTabla();
 }
-function altaEcuesta(){
+var codigo,idGanador;
+
+function buscar(){
 	var paciente = $("#slcPaciente").val().trim();
 	if (paciente == "") {
-		mostrarMsjError('Datos incompletos!! <br />Por favor, llene la informaci&oacute;n que se solicita',5);
-	}else{
-		mostrarMsjEspera('Espere un momento... guardando informaci&oacute;n.', 8);
-		xajax_guardarEncuesta(paciente);
+		mostrarMsjError('Datos incompletos!!',5);
+		return ;
 	}
+	codigo = $("#txtCodigo").val().trim();
+	if (codigo == "") {
+		mostrarMsjError('Datos incompletos!! ',5);
+		return ;
+	}
+		
+	$.ajax({
+		method : "post",
+		url : "adminFunciones.php",
+		data : {
+			idPacienteGanador:paciente,
+			codigoPromo:codigo
+		},
+		success : function(data) {
+			respuesta=JSON.parse(data);
+			if(respuesta[0]!=true){
+				mostrarMsjError(respuesta[1],5);
+				$("#divCodigo").hide();
+			}else{
+				idGanador=respuesta[1];
+				$( "#hdIdGanador" ).html(respuesta[1]);
+				$( "#spPromocion" ).html(respuesta[2]);
+				$("#divCodigo").show();
+			}
+		}
+	});
 }
+
+function estiloTabla(){
+	$('#tablesorting-1').tablesorter({
+  		theme          : "bootstrap", // this will 
+  		widthFixed     : true,
+  		headerTemplate : '{content} {icon}', // new in v2.7. Needed to add the bootstrap icon!
+  		widgets        : [ "uitheme", "filter", "zebra" ],
+      serverSideSorting : true,
+  		widgetOptions  : {
+  			zebra : ["even", "odd"],
+  			filter_reset : ".reset",
+  		}
+  	}).tablesorterPager({
+            serverSideSorting : true,
+            ajaxUrl:   'getCodigos.php?page={page}&size={size}&{sortList:col}&{filterList:filter}',
+            customAjaxUrl: function (table, url) {
+                return url;
+            },
+            ajaxProcessing: function (ajax, table) {
+           //   $("#tablesorting-1").trigger("update");
+              $(table).find('tbody').empty();
+
+                if (ajax) {
+                    $.each(ajax[1], function (i, item) {
+                          var html = "<td>" + item.codigo + "</td>" +
+                            "<td>" + item.promocion + "</td>" +
+                            "<td>" + item.estatus + "</td>";
+                        $("<tr/>").html(html).appendTo(table);
+                    });
+                    return [ajax[0]];                        
+        			
+                }                
+            },
+            container: $(".pager"),
+            cssGoto: $(".pagenum"),
+            cssPageSize: $(".pagesize"),
+            cssPageDisplay: $(".pagedisplay"),
+            removeRows: false,
+            output: '{startRow} - {endRow} | {totalRows}',
+            savePages: false,
+            fixedHeight: true
+        });
+ 
+}
+
 
 function iniciarAutoacomplete(){
 	$.widget( "custom.combobox", {
@@ -57,7 +132,7 @@ function iniciarAutoacomplete(){
 	        this.input = $( "<input>" )
 	          .appendTo( this.wrapper )
 	          .val( value )
-	          .attr( "style", "width: 400px; display: "+$("#visible").val()+";" )
+	          .attr( "style", "width: 300px; display: "+$("#visible").val()+";" )
 	          .addClass( "custom-combobox-input ui-widget ui-widget-content ui-state-default ui-corner-left" )
 	          .autocomplete({
 	            delay: 0,
@@ -174,34 +249,3 @@ function iniciarAutoacomplete(){
 	    });
 	 
 }
-
-	//$("#").();
-//var alert = alertify.alert('Titulo','TextoAlerta').set('label', 'Aceptar');     	 
-//alert.set({transition:'zoom'}); //slide, zoom, flipx, flipy, fade, pulse (default)
-//alert.set('modal', false);  //al pulsar fuera del dialog se cierra o no	
-//alertify.set('notifier','position', 'top-right'); //top-left, top-right, bootom-left, bottom-right
-
-//alertify.message('Mensaje Normal',10, null);
-
-//alertify.notify('texto','success',100, null); //mensaje, tipo, tiempo en segundo (0 siempre visible, quitar al hacer click 		  	
-
-//alertify.notify('error','error',100, null); 
-
-//alertify.notify('warning','warning',100, null);
-/*
-     $.ajax(
-      {
-      	method:"post",
-					url: "adminFunciones.php",  					
-					data: 
-					{  						
-					},
-					
-					success: function(data) 
-					{
-  					respuesta=JSON.parse(data);
-					}
-	    });
-
- 
- */

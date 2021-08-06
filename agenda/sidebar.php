@@ -47,10 +47,10 @@
 					
 					<?php if ($objSession->getidRol()==1||$objSession->getEnvioLink()==1){?>
 						<li><a class="<?php if($subseccion=="enviaLink") echo "active";?>" href="enviaLink.php">Enviar encuesta</a></li>
-					</ul></li>
-					
 					<?php }?>
-
+					</ul>
+				</li>
+				
 					<?php }?>
 				<li><span class="opener <?php if($seccion=="pacientes") echo "active";?>" class="opener">Pacientes</span>
 					<ul>
@@ -76,6 +76,20 @@
 				<?php if ($objSession->getidRol()==1){?>
 				<li><a class="<?php if($subseccion=="creditoSMS") echo "active";?>" href="creditoSMS.php">Cr&eacute;ditos SMS</a></li>
 				<?php }?>
+				
+				<li><span class="opener <?php if($seccion=="herramientas") echo "active";?>" class="opener">Herramientas</span>
+					<ul>
+						<li><a class="<?php if($subseccion=="buscarCodigo") echo "active";?>" href="buscarCodigo.php">C&oacute;digos</a></li>
+					<?php if ($objSession->getidRol()==1){?>
+						<li><a class="<?php if($subseccion=="editarPromociones") echo "active";?>" href="editarPromociones.php">Promociones</a></li>
+					<?php }?>
+					
+					<?php if ($objSession->getidRol()==1||$objSession->getEnvioLink()==1){?>
+						<li><a class="<?php if($subseccion=="enviaLink") echo "active";?>" href="enviaLink.php">Enviar encuesta</a></li>
+					<?php }?>
+					</ul>
+				</li>
+				
 
 			</ul>
 		</nav>
