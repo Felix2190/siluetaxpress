@@ -38,7 +38,9 @@ $arrSeccionesPagina=array(
 
     "enviaLink"=>"herramientas",
     "editarPromociones"=>"herramientas",
-    "buscaCodigo"=>"herramientas",
+    "buscarCodigo"=>"herramientas",
+    "editarPersonal"=>"herramientas",
+    "listadoEncuestas"=>"herramientas",
     
     ""=>""
 );

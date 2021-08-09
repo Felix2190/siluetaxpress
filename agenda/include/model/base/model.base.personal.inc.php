@@ -12,8 +12,9 @@
 		var $nombreCompleto='';
 		var $idSucursal=0;
 		var $tipoConsulta=0;
+		var $activo='1';
 
-		var $__s=array("idPersonal","nombreCompleto","idSucursal","tipoConsulta");
+		var $__s=array("idPersonal","nombreCompleto","idSucursal","tipoConsulta","activo");
 		var $__ss=array();
 
 		#------------------------------------------------------------------------------------------------------#
@@ -56,12 +57,20 @@
 			
 			$this->tipoConsulta=$tipoConsulta;
 		}
+		public function setActivo()
+		{
+			$this->activo=1;
+		}
 
 		#------------------------------------------------------------------------------------------------------#
 		#-----------------------------------------------Unsetter-----------------------------------------------#
 		#------------------------------------------------------------------------------------------------------#
 
 		
+		public function unsetActivo()
+		{
+			$this->activo=0;
+		}
 
 		#------------------------------------------------------------------------------------------------------#
 		#------------------------------------------------Getter------------------------------------------------#
@@ -84,6 +93,10 @@
 		{
 			return $this->tipoConsulta;
 		}
+		public function getActivo()
+		{
+			return $this->activo;
+		}
 
 		#------------------------------------------------------------------------------------------------------#
 		#------------------------------------------------Querys------------------------------------------------#
@@ -102,6 +115,7 @@
 			$this->nombreCompleto='';
 			$this->idSucursal=0;
 			$this->tipoConsulta=0;
+			$this->activo='1';
 		}
 
 		
@@ -111,8 +125,8 @@
 		{
 			try
 			{
-				$SQL="INSERT INTO personal(nombreCompleto,idSucursal,tipoConsulta)
-						VALUES('" . mysqli_real_escape_string($this->dbLink,$this->nombreCompleto) . "','" . mysqli_real_escape_string($this->dbLink,$this->idSucursal) . "','" . mysqli_real_escape_string($this->dbLink,$this->tipoConsulta) . "')";
+				$SQL="INSERT INTO personal(nombreCompleto,idSucursal,tipoConsulta,activo)
+						VALUES('" . mysqli_real_escape_string($this->dbLink,$this->nombreCompleto) . "','" . mysqli_real_escape_string($this->dbLink,$this->idSucursal) . "','" . mysqli_real_escape_string($this->dbLink,$this->tipoConsulta) . "','" . mysqli_real_escape_string($this->dbLink,$this->activo) . "')";
 				$result=mysqli_query($this->dbLink,$SQL);
 				if(!$result)
 					return $this->setSystemError("Error en la insercion de registro.","[" . $SQL . "][" . mysqli_error($this->dbLink) . "][ModeloBasePersonal::Insertar]");
@@ -132,7 +146,7 @@
 		{
 			try
 			{
-				$SQL="UPDATE personal SET nombreCompleto='" . mysqli_real_escape_string($this->dbLink,$this->nombreCompleto) . "',idSucursal='" . mysqli_real_escape_string($this->dbLink,$this->idSucursal) . "',tipoConsulta='" . mysqli_real_escape_string($this->dbLink,$this->tipoConsulta) . "'
+				$SQL="UPDATE personal SET nombreCompleto='" . mysqli_real_escape_string($this->dbLink,$this->nombreCompleto) . "',idSucursal='" . mysqli_real_escape_string($this->dbLink,$this->idSucursal) . "',tipoConsulta='" . mysqli_real_escape_string($this->dbLink,$this->tipoConsulta) . "',activo='" . mysqli_real_escape_string($this->dbLink,$this->activo) . "'
 					WHERE idPersonal=" . $this->idPersonal;
 				
 				$result=mysqli_query($this->dbLink,$SQL);
@@ -174,7 +188,7 @@
 			try
 			{
 				$SQL="SELECT
-						idPersonal,nombreCompleto,idSucursal,tipoConsulta
+						idPersonal,nombreCompleto,idSucursal,tipoConsulta,activo
 					FROM personal
 					WHERE idPersonal=" . mysqli_real_escape_string($this->dbLink,$this->idPersonal);
 					

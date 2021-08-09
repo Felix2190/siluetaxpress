@@ -60,7 +60,7 @@
 		{
 		    if ($tipoConsulta==3) $tipoConsulta=2;
 		    
-		    $query = "Select idPersonal, nombreCompleto from personal where tipoConsulta=$tipoConsulta and idSucursal=$idSucursal ";
+		    $query = "Select idPersonal, nombreCompleto from personal where tipoConsulta=$tipoConsulta and idSucursal=$idSucursal and activo=1";
 		    $arreglo = array();
 		    $resultado = mysqli_query($this->dbLink, $query);
 		    if ($resultado && mysqli_num_rows($resultado) > 0) {

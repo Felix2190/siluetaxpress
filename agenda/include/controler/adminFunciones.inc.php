@@ -258,6 +258,12 @@ if (isset($_POST['tiposConsulta'])){
     echo json_encode(obtenCombo($consultas->obtenerConsulta(),'Seleccione una opci&oacute;n'));
 }
 
+if (isset($_POST['consultaArea'])){
+    require_once FOLDER_MODEL_EXTEND. "model.consulta.inc.php";
+    $consultas = new ModeloConsulta();
+    echo json_encode(obtenCombo($consultas->obtenerArea(),'Seleccione una opci&oacute;n'));
+}
+
 if (isset($_POST['idConsulta'])&&isset($_POST['idSucursal'])&&isset($_POST['fecha'])&&isset($_POST['duracion'])&&isset($_POST['idConsultorio'])){
     echo obtenerHorarioDisponibles($_POST['idConsulta'],$_POST['idSucursal'],$_POST['fecha'],$_POST['duracion'],$_POST['idConsultorio']);
 }
