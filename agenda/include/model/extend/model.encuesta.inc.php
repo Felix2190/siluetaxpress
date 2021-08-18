@@ -62,7 +62,7 @@
 		    $query = "SELECT idTipoConsulta,e.idPersonal, p.nombreCompleto, COUNT(*) total, 
             SUM(evaluacion)/count(*)*(10/4) promedio FROM encuesta e 
                 INNER JOIN personal p on e.idPersonal=p.idPersonal
-                where e.idSucursal=".$objSession->getIdSucursal()." and evaluacion>0 and date_format(e.fechaRegistro,'%m-%Y')='$mes-$anio'
+                where p.activo=1 and e.idSucursal=".$objSession->getIdSucursal()." and evaluacion>0 and date_format(e.fechaRegistro,'%m-%Y')='$mes-$anio'
                 GROUP by e.idTipoConsulta,idPersonal";
 		    $arreglo = array();
 		    $resultado = mysqli_query($this->dbLink, $query);
@@ -74,8 +74,8 @@
 		    $query = "SELECT idTipoConsulta,e.idPersonalRecepcion, p.nombreCompleto, COUNT(*) total,
             SUM(evaluacionRecepcion)/count(*)*(10/4) promedioRecepcion FROM encuesta e
                 INNER JOIN personal p on e.idPersonalRecepcion=p.idPersonal
-                where e.idSucursal=".$objSession->getIdSucursal()." and evaluacionRecepcion>0 and date_format(e.fechaRegistro,'%m-%Y')='$mes-$anio'
-                GROUP by e.idTipoConsulta,idPersonalRecepcion";
+                where p.activo=1 and e.idSucursal=".$objSession->getIdSucursal()." and evaluacionRecepcion>0 and date_format(e.fechaRegistro,'%m-%Y')='$mes-$anio'
+                GROUP by idPersonalRecepcion";
 		    $resultado = mysqli_query($this->dbLink, $query);
 		    if ($resultado && mysqli_num_rows($resultado) > 0) {
 		        while ($row_inf = mysqli_fetch_assoc($resultado)) {

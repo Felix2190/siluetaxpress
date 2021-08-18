@@ -147,7 +147,7 @@ function asistencia(e){
 		},
 		success : function(data) {
 			$( "#msjVerifica" ).hide();
-				window.open("https://web.whatsapp.com/send?phone=52"+numV+"&text="+JSON.parse(data), "_blank");
+				window.open("https://web.whatsapp.com/send?phone=521"+numV+"&text="+JSON.parse(data), "_blank");
 }
 	});
 

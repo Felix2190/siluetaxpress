@@ -143,7 +143,7 @@ function consultarCitas($informacion,$fechaI,$checkCabina){
            $texto=utf8_encode("Recordatorio de cita silueta express: ".$cita['nombre']."! te recordamos que tienes una cita con 
 nosotros el día $dias[$_dia] $fecha[2] de ".obtenMes(''.intval($fecha[1]))." a las ".$cita['hora']."hrs. Te agradeceríamos llegar 
 10 minutos antes, y en caso de cancelar hacerlo un día de anterioridad. Gracias");
-           $texto2="https://web.whatsapp.com/send?phone=52".$cita['telefono']."&text=".utf8_encode("Silueta Express te informa: la cita del día $dias[$_dia] $fecha[2] de ".obtenMes(''.intval($fecha[1]))." se ha cancelado.  Esperamos verte de nuevo pronto. Servirte es nuestra vocación .");
+           $texto2="https://web.whatsapp.com/send?phone=521".$cita['telefono']."&text=".utf8_encode("Silueta Express te informa: la cita del día $dias[$_dia] $fecha[2] de ".obtenMes(''.intval($fecha[1]))." se ha cancelado.  Esperamos verte de nuevo pronto. Servirte es nuestra vocación .");
            $seccion.="<tr><td colspan='2'>".$cita['hora']."-".$cita['horaFin']."</td> 
    <td colspan='2'><div id='l".$cita['idCita']."'> <a onClick='verDetalles(".$cita['idCita'].")'>".$cita['nombre_paciente']."</a></div>
                 <div id='c".$cita['idCita']."' style='display: none'; > <blockqoute> 
@@ -152,7 +152,7 @@ nosotros el día $dias[$_dia] $fecha[2] de ".obtenMes(''.intval($fecha[1]))." a l
                                 <p> <strong>Servicio: </strong> ".$cita['servicio']."</p>
                                 <p> <strong>Duraci&oacute;n: </strong> ".$duracion."</p> 
                                 <p> <a onClick='ocultarDetalles(".$cita['idCita'].")'>Ocultar </a> </p>  </blockqoute></div> </td>
-                <td><a target='_blank' href='https://web.whatsapp.com/send?phone=52".$cita['telefono']."&text=$texto'><img src='images/whats.webp' title='Enviar recordatorio' style='width: 20px' /></a> 
+                <td><a target='_blank' href='https://web.whatsapp.com/send?phone=521".$cita['telefono']."&text=$texto'><img src='images/whats.webp' title='Enviar recordatorio' style='width: 20px' /></a> 
                    <a onclick='verCita(\"".$cita['idCita']."\")'><img src='images/editaCita.png' title='Ver/editar' style='width: 20px' /></a> 
                    <a onclick='verOpciones(\"".$cita['idCita']."\",\"$texto2\")'><img src='images/cancelarCita2.png' title='Cancelar cita' style='width: 20px' /></a>
                <input type='hidden' id='msjCancela".$cita['idCita']."' value='$texto2'> </td></tr>";

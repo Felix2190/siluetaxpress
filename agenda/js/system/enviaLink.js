@@ -24,7 +24,7 @@ function iniciar(){
 }
 
 function enviaLink(num,texto){
-	window.open("https://web.whatsapp.com/send?phone=52"+num+"&text="+texto, "_blank");
+	window.open("https://web.whatsapp.com/send?phone=521"+num+"&text="+texto, "_blank");
 
 }
 function altaEcuesta(){
