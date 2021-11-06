@@ -1,0 +1,123 @@
+<?php 
+?>
+<!DOCTYPE HTML>
+<!--
+	Minimaxing by HTML5 UP
+	html5up.net | @ajlkn
+	Free for personal and commercial use under the CCA 3.0 license (html5up.net/license)
+-->
+<html>
+	<head>
+		<title></title>
+		<meta charset="utf-8" />
+		<meta name="viewport" content="width=device-width, initial-scale=1" />
+		<!--[if lte IE 8]><script src="assets/js/ie/html5shiv.js"></script><![endif]-->
+		<link rel="stylesheet" href="assets/css/main.css" />
+		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
+	<!-- End WOWSlider.com HEAD section -->
+
+		
+	</head>
+	<body>
+		<div id="page-wrapper">
+<div id="header-wrapper">
+	
+	<div class="container">
+	
+		<div class="row">
+			<div class="12u">
+			
+				<header id="header">
+					<div id="headerLogo"><img src="images/logo_siluetaExpress.png" alt=""  style="width: 16%; margin-top: -10px"/></div>
+					<nav id="nav">
+						<a href="index.php">Inicio</a> <a href="nosotros.php">Con&oacute;cenos</a> 
+						<a href="tratamientos.php">Tratamientos</a>
+						<a href="sucursales.php">Sucursales</a><a href="visitaVirtual.php">Tour virtual</a>
+						<a href="franquicias.php">Franquicias</a><a href="contacto.php">Contacto</a>
+						 <a href="aviso.php">Aviso de privacidad</a>
+					</nav>
+				</header>
+
+			</div>
+		</div>
+	</div>
+</div>
+		<div id="main">
+			<div class="container">
+				<div class="row main-row">
+					<div class="12u">
+
+						<section>
+							<h2></h2>
+							<p></p>
+							 							
+						</section>
+
+					</div>
+					
+					<div class="12u">
+					<ul id="lista">
+					
+					</ul>
+					</div>
+
+				</div>
+
+			</div>
+
+		</div>
+
+		</div>
+<div id="footer-wrapper">
+	<div class="container">
+		<div class="row">
+			<div class="12u">
+				<a href="loginMovil.php" style="float: right; color: purple;">Iniciar sesi&oacute;n</a> <br />
+				<div id="copyright">&copy; siluetaexpress. All rights reserved.
+				</div>
+
+			</div>
+		</div>
+	</div>
+</div>
+
+		<!-- Scripts -->
+			<script src="assets/js/jquery.min.js"></script>
+			<script type="text/javascript" src="js/system/headerLogo.js"></script>
+			<script src="assets/js/skel.min.js"></script>
+			<script src="assets/js/skel-viewport.min.js"></script>
+			<script src="assets/js/util.js"></script>
+			<!--[if lte IE 8]><script src="assets/js/ie/respond.min.js"></script><![endif]-->
+			<script src="assets/js/main.js"></script>
+<script type="text/javascript">
+var ban=false;
+$(document).ready(function(){
+	setInterval(function(){
+		$.ajax({
+			method : "post",
+			url : "pruebaConexion.php",
+			data : {
+				conectar:''
+			},
+			success : function(data) {
+				ban = true;
+				console.log(data);
+				$("#lista").prepend(data);
+//				window.location="redireccionar.php";
+			}
+		});
+		setTimeout(function() { 
+			if(!ban)
+				$("#lista").prepend("Error de conexi&oacute;n");
+			},300);
+
+	},4000);
+	
+	setInterval(function(){
+		ban=false;
+	}, 3700);
+});
+</script>
+
+	</body>
+</html>

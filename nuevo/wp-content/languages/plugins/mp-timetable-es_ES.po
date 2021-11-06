@@ -1,0 +1,959 @@
+# Translation of Plugins - Timetable and Event Schedule by MotoPress - Development (trunk) in Spanish (Spain)
+# This file is distributed under the same license as the Plugins - Timetable and Event Schedule by MotoPress - Development (trunk) package.
+msgid ""
+msgstr ""
+"PO-Revision-Date: 2020-02-18 19:23:48+0000\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=n != 1;\n"
+"X-Generator: GlotPress/2.4.0-alpha\n"
+"Language: es\n"
+"Project-Id-Version: Plugins - Timetable and Event Schedule by MotoPress - Development (trunk)\n"
+
+#: media/js/blocks/src/timetable/inspector.js:236
+msgid "Default"
+msgstr "Por defecto"
+
+#: media/js/blocks/src/timetable/inspector.js:96
+msgid "Specific events"
+msgstr "Eventos específicos"
+
+#. Plugin URI of the plugin
+msgid "https://motopress.com/products/timetable-event-schedule/"
+msgstr "https://motopress.com/products/timetable-event-schedule/"
+
+#: templates/settings/general.php:24
+msgid "Configure permalink settings in <a href=\"%s\">Settings > Permalinks</a>"
+msgstr "Configura los ajustes de enlaces permanentes en <a href=\"%s\">Ajustes > Enlaces permanentes</a>"
+
+#: templates/settings/general.php:23
+msgid "Permalink Settings"
+msgstr "Ajustes de los enlaces permanentes"
+
+#: templates/column/metabox-column-options.php:20
+msgid "Day of the week"
+msgstr "Día de la semana"
+
+#: classes/class-permalinks.php:51
+msgid "Event Tag base"
+msgstr "Base de etiqueta de evento"
+
+#: classes/class-permalinks.php:44
+msgid "Event Category base"
+msgstr "Base de categoría de evento"
+
+#: classes/class-permalinks.php:37
+msgid "Event base"
+msgstr "Base de evento"
+
+#: classes/class-permalinks.php:30
+msgid "Column base"
+msgstr "Base de columna"
+
+#: classes/class-hooks.php:214 classes/class-hooks.php:279
+msgid "Help"
+msgstr "Ayuda"
+
+#. translators: 1: Timetable and Event Schedule 2:: five stars rating
+#: templates/settings/general.php:41 admin/help/index.php:10
+msgid "If you like %1$s please leave us a %2$s rating."
+msgstr "Si te gusta %1$s, por favor déjanos una votación de %2$s."
+
+#. Author URI of the plugin
+msgid "https://motopress.com"
+msgstr "https://motopress.com"
+
+#: templates/events/metabox-event-data.php:75
+msgid "Add New"
+msgstr "Añadir nuevo"
+
+#: templates/events/metabox-event-data.php:18
+msgid "Select column or <a target=\"_blank\" href=\"%s\">Add New</a>."
+msgstr "Seleccionar columna o  <a target=\"_blank\" href=\"%s\">Añadir nuevo</a>."
+
+#: templates/events/event-data.php:32
+msgid "Edit event in the form below"
+msgstr "Editar evento en el siguiente formulario "
+
+#: templates/events/event-data.php:8
+msgid "Head"
+msgstr "Cabecera"
+
+#: templates/popup/index.php:161 media/js/blocks/src/timetable/inspector.js:249
+msgid "CSS class"
+msgstr "Clase CSS"
+
+#: templates/popup/index.php:149 media/js/blocks/src/timetable/inspector.js:239
+msgid "bottom"
+msgstr "abajo"
+
+#: templates/popup/index.php:148 media/js/blocks/src/timetable/inspector.js:238
+msgid "middle"
+msgstr "medio"
+
+#: templates/popup/index.php:147 media/js/blocks/src/timetable/inspector.js:237
+msgid "top"
+msgstr "arriba"
+
+#: templates/popup/index.php:144 media/js/blocks/src/timetable/inspector.js:232
+msgid "Vertical align"
+msgstr "Alineación vertical"
+
+#: templates/popup/index.php:135 media/js/blocks/src/timetable/inspector.js:222
+msgid "Horizontal align"
+msgstr "Alineación horizontal"
+
+#: templates/popup/index.php:117 media/js/blocks/src/timetable/inspector.js:204
+msgid "Merge cells with common events"
+msgstr "Unir celdas con eventos comunes"
+
+#: templates/popup/index.php:78
+msgid "None"
+msgstr "Ninguno"
+
+#: templates/popup/index.php:73 media/js/blocks/src/timetable/inspector.js:163
+msgid "Filter events style"
+msgstr "Estilo de eventos del filtro"
+
+#: templates/popup/index.php:27
+msgid "Event <b>categories</b>"
+msgstr "<b>Categorías</b> de evento"
+
+#: templates/popup/index.php:16
+msgid "Specific <b>events</b>"
+msgstr "<b>Eventos</b> específicos"
+
+#: templates/popup/index.php:5
+msgid "<b>Columns</b> (required)"
+msgstr "<b>Columnas</b> (requerido)"
+
+#: templates/events/metabox-event-options.php:42
+msgid "Disable link to this event:"
+msgstr "Desactivar el enlace a este evento:"
+
+#: templates/widgets/gallery-list.php:125
+msgid "Event border color on hover"
+msgstr "Color del borde del evento al pasar el cursor"
+
+#: templates/widgets/gallery-list.php:115
+msgid "Event border color"
+msgstr "Color del borde de evento"
+
+#: templates/widgets/gallery-list.php:95
+msgid "Event text color"
+msgstr "Color del texto del evento"
+
+#: templates/widgets/gallery-list.php:85
+msgid "Event background color on hover"
+msgstr "Color de fondo del evento al pasar el cursor por encima"
+
+#: templates/widgets/gallery-list.php:67
+msgid "Custom link for events"
+msgstr "Enlace personalizado para eventos"
+
+#: templates/widgets/gallery-list.php:56 templates/popup/index.php:126
+#: media/js/blocks/src/timetable/inspector.js:213
+msgid "Disable event link"
+msgstr "Desactivar el enlace del evento"
+
+#: templates/widgets/gallery-list.php:32
+msgid "Event categories. Leave blank to display all."
+msgstr "Categoría de eventos.  Dejar en blanco para mostrar todos."
+
+#: templates/widgets/gallery-list.php:18
+msgid "Ongoing events"
+msgstr "Eventos en curso"
+
+#: templates/widgets/gallery-list.php:10
+msgid "Events to display"
+msgstr "Eventos para mostrar"
+
+#: templates/popup/index.php:173
+msgid "Tick \"List\" to display events in a list view on mobile devices. Tick \"Table\" to display events in a table."
+msgstr "Marca \"Lista\" para mostrar eventos en una vista de lista en dispositivos móviles, marca \"tabla\" para mostrar los eventos en una tabla."
+
+#: templates/popup/index.php:171 media/js/blocks/src/timetable/inspector.js:258
+msgid "Table"
+msgstr "Tabla"
+
+#: templates/popup/index.php:170 media/js/blocks/src/timetable/inspector.js:259
+msgid "List"
+msgstr "Lista"
+
+#: templates/popup/index.php:167 media/js/blocks/src/timetable/inspector.js:254
+msgid "Mobile behavior"
+msgstr "Comportamiento móvil"
+
+#: templates/popup/index.php:157 media/js/blocks/src/timetable/inspector.js:244
+msgid "If you use more than one table on a page specify the unique ID for a timetable. It is usually all lowercase and contains only letters, numbers, and hyphens."
+msgstr "Si utilizas más de una tabla en una página, especifica el identificador único para un horario. Por lo general, todo en minúsculas y contiene sólo letras, números y guiones. "
+
+#: templates/popup/index.php:154 media/js/blocks/src/timetable/inspector.js:243
+msgid "Unique ID"
+msgstr "Identificador único"
+
+#: templates/popup/index.php:108 media/js/blocks/src/timetable/inspector.js:195
+msgid "Do not display empty rows"
+msgstr "No mostrar filas vacias"
+
+#: templates/popup/index.php:99 media/js/blocks/src/timetable/inspector.js:186
+msgid "Hide column with hours"
+msgstr "Ocultar columnas con horas"
+
+#: templates/popup/index.php:89 media/js/blocks/src/timetable/inspector.js:177
+msgid "Hide 'All Events' option"
+msgstr "Ocultar la opción \"Todos los eventos\""
+
+#: templates/popup/index.php:76
+msgid "Dropdown"
+msgstr "Desplegable"
+
+#: templates/popup/index.php:56 media/js/blocks/src/timetable/inspector.js:147
+msgid "Base font size"
+msgstr "Tamaño de fuente base"
+
+#: templates/popup/index.php:52
+msgid "Set height of the block"
+msgstr "Establece la altura del bloque"
+
+#: templates/popup/index.php:49 media/js/blocks/src/timetable/inspector.js:137
+msgid "Block height in pixels"
+msgstr "Altura del bloque en píxeles"
+
+#: templates/popup/index.php:38
+msgid "Fields to display:"
+msgstr "Mostrar campos:"
+
+#: templates/popup/index.php:12 templates/popup/index.php:23
+#: templates/popup/index.php:34 media/js/blocks/src/timetable/inspector.js:88
+msgid "In order to display multiple points hold ctrl/cmd button."
+msgstr "Para mostrar puntos múltiples mantén pulsado el botón ctrl/cmd."
+
+#: templates/settings/general.php:29
+msgid "Save"
+msgstr "Guardar"
+
+#: templates/settings/general.php:16
+msgid "This option can't be changed if your theme is initially integrated with the plugin."
+msgstr "Esta opción no puede cambiarse si tu  tema está inicialmente integrado con el plugin."
+
+#: templates/settings/general.php:16
+msgid "Choose Theme Mode to display the content with the styles of your theme. Choose Developer Mode to control appearance of the content with custom page templates, actions and filters."
+msgstr "Elige el modo del tema para mostrar el contenido con sus estilos. Elige el modo de desarrollador para controlar la apariencia del contenido con plantillas de página, acciones y filtros personalizados."
+
+#: templates/settings/general.php:14
+msgid "Developer Mode"
+msgstr "Modo desarrollador"
+
+#: templates/settings/general.php:13
+msgid "Theme Mode"
+msgstr "Modo del tema"
+
+#: templates/settings/general.php:9
+msgid "Template Mode"
+msgstr "Modo de la plantilla"
+
+#: templates/settings/general.php:2
+msgid "General Settings"
+msgstr "Ajustes generales"
+
+#: templates/popup/index.php:59 media/js/blocks/src/timetable/inspector.js:148
+msgid "Base font size for the table. Example 12px, 2em, 80%."
+msgstr "Tamaño fuente base para la tabla. Por ejemplo 12px, 2em, 80%."
+
+#: classes/models/class-import.php:558
+msgid "Failed to create new user for %s. Their posts will be attributed to the current user."
+msgstr "Error al crear un usuario nuevo para %s. Sus entradas se atribuirán al usuario actual."
+
+#: classes/controllers/class-controller-settings.php:53
+msgid "Settings saved."
+msgstr "Ajustes guardados."
+
+#: classes/class-shortcode.php:348
+msgid "Base Font Size"
+msgstr "Tamaño de fuente base"
+
+#: admin/import/header.php:2
+msgid "Import / Export Timetable Plugin Data"
+msgstr "Importar / Exportar datos del plugin"
+
+#: templates/events/metabox-event-data.php:52
+msgid "none"
+msgstr "ninguno"
+
+#: templates/popup/index.php:44 media/js/blocks/src/timetable/inspector.js:132
+msgid "Event Head"
+msgstr "Cabecera del evento"
+
+#: classes/modules/class-post.php:40 classes/models/class-column.php:42
+msgid "Timeslots"
+msgstr "Intervalos de tiempo"
+
+#. Plugin Name of the plugin
+msgid "Timetable and Event Schedule"
+msgstr "Timetable and Event Schedule"
+
+#: templates/widgets/gallery-list.php:23
+msgid "Input number of days"
+msgstr "Campo número de días"
+
+#: templates/widgets/gallery-list.php:49
+msgid "Number of events to display"
+msgstr "Número de eventos a mostrar"
+
+#. Author of the plugin
+msgid "MotoPress"
+msgstr "MotoPress"
+
+#: templates/theme/event-timeslots.php:7
+#: templates-functions/actions-mp-event-functions.php:27
+msgid "Event Timeslots (%s)"
+msgstr "Cronograma del evento (%s)"
+
+#: templates/shortcodes/empty-search-events.php:1
+#: templates/widgets/widget-view.php:91
+#: templates/theme/widget-upcoming-view.php:54
+msgid "no events found"
+msgstr "no se encontraron eventos"
+
+#: templates/widgets/gallery-list.php:75
+msgid "Event background color"
+msgstr "Color de fondo del evento"
+
+#: templates/widgets/gallery-list.php:28
+msgid "day"
+msgid_plural "days"
+msgstr[0] "día"
+msgstr[1] "días"
+
+#: templates/templates-actions/action-sidebar.php:13
+#: templates/widgets/gallery-list.php:16
+msgid "All upcoming events"
+msgstr "Todos los eventos próximos"
+
+#: templates/templates-actions/action-sidebar.php:8
+#: templates/widgets/gallery-list.php:14
+msgid "Today upcoming events"
+msgstr "Eventos próximos de hoy"
+
+#: templates/popup/index.php:146
+msgid "default"
+msgstr "por defecto"
+
+#: templates/popup/index.php:179
+msgid "Add Timetable"
+msgstr "Añadir horario"
+
+#: templates/events/metabox-event-options.php:36
+msgid "Custom Event URL:"
+msgstr "URL del evento personalizado:"
+
+#: templates/events/metabox-event-options.php:29
+msgid "Text Hover Color:"
+msgstr "Color del texto al pasar el cursor:"
+
+#: templates/events/metabox-event-options.php:22
+msgid "Text Color:"
+msgstr "Color de texto:"
+
+#: templates/events/metabox-event-options.php:15
+msgid "Background Hover Color:"
+msgstr "Color de fondo al pasar el cursor:"
+
+#: templates/events/metabox-event-options.php:8
+msgid "Background Color:"
+msgstr "Color de fondo:"
+
+#: templates/events/metabox-event-options.php:4
+msgid "Event Subtitle:"
+msgstr "Subtítulo del evento:"
+
+#: templates/events/metabox-event-data.php:44
+msgid "Event Head:"
+msgstr "Cabecera del evento:"
+
+#: templates/events/metabox-event-data.php:40
+msgid "Description:"
+msgstr "Descripción:"
+
+#: templates/events/metabox-event-data.php:33
+msgid "End Time:"
+msgstr "Hora de finalización:"
+
+#: templates/events/metabox-event-data.php:29
+#: templates/events/metabox-event-data.php:36
+msgid "hh:mm"
+msgstr "hh:mm"
+
+#: templates/events/metabox-event-data.php:26
+msgid "Start Time:"
+msgstr "Hora de comienzo:"
+
+#: templates/events/metabox-event-data.php:20
+msgid "No columns found. <a href=\"%s\">Create at least one column first.</a>"
+msgstr "No se han encontrado columnas. <a href=\"%s\">Crea al menos una columna primero.</a>"
+
+#: templates/events/metabox-event-data.php:10
+msgid "Column:"
+msgstr "Columna:"
+
+#: templates/events/event-data.php:33
+msgid "Delete"
+msgstr "Editar"
+
+#: templates/events/event-data.php:9
+msgid "Actions"
+msgstr "Acciones"
+
+#: templates/events/event-data.php:6
+msgid "End"
+msgstr "Fin"
+
+#: templates/events/event-data.php:5
+msgid "Start"
+msgstr "Empezar"
+
+#: templates/column/metabox-column-options.php:39
+msgid "Date"
+msgstr "Fecha"
+
+#: templates/column/metabox-column-options.php:30
+msgid "Saturday"
+msgstr "Sabado"
+
+#: templates/column/metabox-column-options.php:29
+msgid "Friday"
+msgstr "Viernes"
+
+#: templates/column/metabox-column-options.php:28
+msgid "Thursday"
+msgstr "Jueves"
+
+#: templates/column/metabox-column-options.php:27
+msgid "Wednesday"
+msgstr "Miercoles"
+
+#: templates/column/metabox-column-options.php:26
+msgid "Tuesday"
+msgstr "Martes"
+
+#: templates/column/metabox-column-options.php:25
+msgid "Monday"
+msgstr "Lunes"
+
+#: templates/column/metabox-column-options.php:24
+msgid "Sunday"
+msgstr "Domingo"
+
+#: templates/column/metabox-column-options.php:11
+msgid "Simple Column"
+msgstr "Columna sencilla"
+
+#: classes/widgets/class-mp-timetable-widget.php:22
+msgid "Display upcoming events."
+msgstr "Muestra los próximos eventos."
+
+#: classes/modules/class-post.php:42
+msgid "Column Type"
+msgstr "Tipo de columna"
+
+#: classes/modules/class-post.php:41 classes/class-hooks.php:206
+#: media/js/blocks/src/timetable/inspector.js:82
+msgid "Settings"
+msgstr "Configurar"
+
+#: classes/models/class-import.php:732
+msgid "Failed to import %s &#8220;%s&#8221;"
+msgstr "Error al importar %s &#8220;%s&#8221;"
+
+#: classes/models/class-import.php:673
+msgid "%s &#8220;%s&#8221; already exists."
+msgstr "%s &#8220;%s&#8221; ya existe."
+
+#: classes/models/class-import.php:656
+msgid "Failed to import &#8220;%s&#8221;: Invalid post type %s"
+msgstr "Error al importar &#8220;%s&#8221;: Tipo de entrada no válido %s"
+
+#: classes/models/class-import.php:609 classes/models/class-import.php:766
+msgid "Failed to import %s %s"
+msgstr "Error al importar %s %s"
+
+#: classes/models/class-import.php:501
+msgid "Failed to import author %s. Their posts will be attributed to the current user."
+msgstr "Error al importar el autor %s. Sus entradas serán atribuidas al usuario actual."
+
+#: classes/models/class-import.php:444
+msgid "This WXR file (version %s) may not be supported by this version of the importer. Please consider updating."
+msgstr "Puede que el archivo WXR (versión %s) no esté soportado por esta versión del importador. Por favor, toma en consideración la posibilidad de actualizarlo."
+
+#: classes/models/class-import.php:427
+msgid "The export file could not be found at <code>%s</code>. It is likely that this was caused by a permissions problem."
+msgstr "El archivo no se ha encontrado en  <code>%s</code>. Es probable que se deba a un problema de permisos."
+
+#: classes/models/class-import.php:422 classes/models/class-import.php:426
+#: classes/models/class-import.php:436
+msgid "Sorry, there has been an error."
+msgstr "Lo sentimos, ha ocurrido un error."
+
+#: classes/models/class-import.php:405
+msgid "Remote file is too large, limit is %s"
+msgstr "El archivo remoto es demasiado garante, el límite es de %s"
+
+#: classes/models/class-import.php:399
+msgid "Zero size file downloaded"
+msgstr "Tamaño cero en el archivo descargado"
+
+#: classes/models/class-import.php:394
+msgid "Remote file is incorrect size"
+msgstr "El archivo remoto tiene un tamaño incorrecto"
+
+#: classes/models/class-import.php:385
+msgid "Remote server returned error response %1$d %2$s"
+msgstr "El servidor remoto devuelve el mensaje de error %1$d %2$s"
+
+#: classes/models/class-import.php:379
+msgid "Remote server did not respond"
+msgstr "El servidor remoto no ha respondido"
+
+#: classes/models/class-import.php:299
+msgid "Invalid file type"
+msgstr "Tipo de archivo inválido"
+
+#: classes/models/class-import.php:286
+msgid "Fetching attachments is not enabled"
+msgstr "La obtención de los archivos adjuntos no está habilitada"
+
+#: classes/models/class-import.php:270
+msgid "Remember to update the passwords and roles of imported users."
+msgstr "Recuerde actualizar las contraseñas y roles de los usuarios importados."
+
+#: classes/models/class-import.php:269
+msgid "Have fun!"
+msgstr "¡Diviértete!"
+
+#: classes/models/class-import.php:269
+msgid "All done."
+msgstr "Terminado."
+
+#: templates/column/metabox-column-options.php:23
+#: classes/models/class-import.php:183
+msgid "- Select -"
+msgstr "- Seleccionar -"
+
+#: classes/models/class-import.php:182
+msgid "or assign posts to an existing user:"
+msgstr "o asignar entradas a un usuario existente:"
+
+#: classes/models/class-import.php:180
+msgid "assign posts to an existing user:"
+msgstr "asignar entradas al usuario existente:"
+
+#: classes/models/class-import.php:172
+msgid "as a new user:"
+msgstr "como usuario nuevo:"
+
+#: classes/models/class-import.php:169
+msgid "or create new user with login name:"
+msgstr "o crear un nuevo usuario con el nombre de inicio de sesión:"
+
+#: classes/models/class-import.php:158
+msgid "Import author:"
+msgstr "Importar autor:"
+
+#: classes/models/class-import.php:145
+msgid "Submit"
+msgstr "entregar"
+
+#: classes/models/class-import.php:141
+msgid "Download and import file attachments"
+msgstr "Descarga e importa archivos adjuntos"
+
+#: classes/models/class-import.php:138
+msgid "Import Attachments"
+msgstr "Importar adjuntos"
+
+#: classes/models/class-import.php:128
+msgid "If a new user is created by WordPress, a new password will be randomly generated and the new user&#8217;s role will be set as %s. Manually changing the new user&#8217;s details will be necessary."
+msgstr "Si un nuevo usuario es creado por WordPress, se generará automáticamente una nueva contraseña y el rol del usuario se establecerá a %s. Será necesario un cambio manual de los detalles del nuevo usuario."
+
+#: classes/models/class-import.php:126
+msgid "To make it easier for you to edit and save the imported content, you may want to reassign the author of the imported item to an existing user of this site. For example, you may want to import all the entries as <code>admin</code>s entries."
+msgstr "Para que te sea más sencillo editar y guardar el contenido importado, puedes reasignar el elemento importado a un usuario ya existente en esta red. Por ejemplo, puedes importar toas las entradas como entradas de <code>admin</code>."
+
+#: classes/models/class-import.php:125
+msgid "Assign Authors"
+msgstr "Asignar autores"
+
+#: classes/models/class-events.php:169
+msgid "Categories"
+msgstr "Categorías"
+
+#: classes/models/class-events.php:168
+msgid "Tags"
+msgstr "Etiquetas"
+
+#: classes/libs/parsers.php:86 classes/libs/parsers.php:91
+#: classes/libs/parsers.php:304 classes/libs/parsers.php:565
+msgid "This does not appear to be a WXR file, missing/invalid WXR version number"
+msgstr "Este archivo no tiene el formato WXR. La versión es incorrecta o no válida."
+
+#: classes/libs/parsers.php:45
+msgid "Details are shown above. The importer will now try again with a different parser..."
+msgstr "Los detalles se muestran arriba. El importador lo intentará de nuevo con un analizador diferente..."
+
+#: classes/libs/parsers.php:44 classes/libs/parsers.php:74
+#: classes/libs/parsers.php:82
+msgid "There was an error when reading this WXR file"
+msgstr "Hubo un error al leer archivo WXR"
+
+#: classes/class-shortcode.php:353
+msgid "Responsive"
+msgstr "Adaptable"
+
+#: classes/class-shortcode.php:343
+msgid "Row height (in px)"
+msgstr "Altura de la fila (en px)"
+
+#: classes/class-shortcode.php:339
+msgid "Id"
+msgstr "Id"
+
+#: templates/popup/index.php:139 classes/class-shortcode.php:335
+#: media/js/blocks/src/timetable/inspector.js:228
+msgid "right"
+msgstr "derecho"
+
+#: templates/popup/index.php:138 classes/class-shortcode.php:335
+#: media/js/blocks/src/timetable/inspector.js:227
+msgid "left"
+msgstr "Izquierda"
+
+#: templates/popup/index.php:137 classes/class-shortcode.php:335
+#: media/js/blocks/src/timetable/inspector.js:226
+msgid "center"
+msgstr "centro"
+
+#: classes/class-shortcode.php:334
+msgid "Text align"
+msgstr "Alineación de texto"
+
+#: classes/class-shortcode.php:329
+msgid "Disable event URL"
+msgstr "Desactivar URL del evento"
+
+#: classes/class-shortcode.php:323
+msgid "User"
+msgstr "usuario:"
+
+#: templates/events/event-data.php:7 templates/popup/index.php:43
+#: classes/class-shortcode.php:317
+#: media/js/blocks/src/timetable/inspector.js:127
+msgid "Description"
+msgstr "Decripción"
+
+#: templates/popup/index.php:42 classes/class-shortcode.php:311
+#: media/js/blocks/src/timetable/inspector.js:122
+msgid "Subtitle"
+msgstr "Subtítulo"
+
+#: templates/popup/index.php:41 classes/class-shortcode.php:305
+#: media/js/blocks/src/timetable/inspector.js:117
+msgid "Time"
+msgstr "Tiempo"
+
+#: templates/widgets/gallery-list.php:3 templates/popup/index.php:40
+#: classes/class-shortcode.php:299
+#: media/js/blocks/src/timetable/inspector.js:110
+msgid "Title"
+msgstr "Títol"
+
+#: classes/class-shortcode.php:293
+msgid "Hide empty rows"
+msgstr "Ocultar filas vacias"
+
+#: classes/class-shortcode.php:288
+msgid "Hide first (hours) column"
+msgstr "Ocultar la columna de hora"
+
+#: templates/widgets/gallery-list.php:62
+#: templates/events/metabox-event-options.php:46 templates/popup/index.php:94
+#: templates/popup/index.php:103 templates/popup/index.php:111
+#: templates/popup/index.php:121 templates/popup/index.php:130
+#: classes/class-shortcode.php:284 classes/class-shortcode.php:289
+#: classes/class-shortcode.php:294 classes/class-shortcode.php:301
+#: classes/class-shortcode.php:307 classes/class-shortcode.php:313
+#: classes/class-shortcode.php:319 classes/class-shortcode.php:325
+#: classes/class-shortcode.php:330 classes/class-shortcode.php:354
+#: media/js/blocks/src/timetable/inspector.js:182
+#: media/js/blocks/src/timetable/inspector.js:191
+#: media/js/blocks/src/timetable/inspector.js:200
+#: media/js/blocks/src/timetable/inspector.js:209
+#: media/js/blocks/src/timetable/inspector.js:218
+msgid "Yes"
+msgstr "Si"
+
+#: templates/widgets/gallery-list.php:60
+#: templates/events/metabox-event-options.php:45 templates/popup/index.php:93
+#: templates/popup/index.php:102 templates/popup/index.php:112
+#: templates/popup/index.php:120 templates/popup/index.php:129
+#: classes/class-shortcode.php:284 classes/class-shortcode.php:289
+#: classes/class-shortcode.php:294 classes/class-shortcode.php:301
+#: classes/class-shortcode.php:307 classes/class-shortcode.php:313
+#: classes/class-shortcode.php:319 classes/class-shortcode.php:325
+#: classes/class-shortcode.php:330 classes/class-shortcode.php:354
+#: media/js/blocks/src/timetable/inspector.js:181
+#: media/js/blocks/src/timetable/inspector.js:190
+#: media/js/blocks/src/timetable/inspector.js:199
+#: media/js/blocks/src/timetable/inspector.js:208
+#: media/js/blocks/src/timetable/inspector.js:217
+msgid "No"
+msgstr "No"
+
+#: classes/class-shortcode.php:283
+msgid "Hide 'All Events' view"
+msgstr "Ocultar de la vista ‘Todos los Eventos’"
+
+#: classes/class-shortcode.php:278
+msgid "Filter label"
+msgstr "Etiqueta del filtro"
+
+#: templates/popup/index.php:77 classes/class-shortcode.php:274
+#: media/js/blocks/src/timetable/inspector.js:168
+msgid "Tabs"
+msgstr "Pestañas"
+
+#: classes/class-shortcode.php:274
+#: media/js/blocks/src/timetable/inspector.js:167
+msgid "Dropdown list"
+msgstr "Lista desplegable"
+
+#: classes/class-shortcode.php:273
+msgid "Filter style"
+msgstr "Estilo de filtro"
+
+#: templates/popup/index.php:68 classes/class-shortcode.php:269
+#: media/js/blocks/src/timetable/inspector.js:159
+msgid "Quarter hour (15min)"
+msgstr "Cuarto de hora (15min)"
+
+#: templates/popup/index.php:67 classes/class-shortcode.php:269
+#: media/js/blocks/src/timetable/inspector.js:158
+msgid "Half hour (30min)"
+msgstr "Media hora (30min)"
+
+#: templates/popup/index.php:66 classes/class-shortcode.php:269
+#: media/js/blocks/src/timetable/inspector.js:157
+msgid "Hour (1h)"
+msgstr "Hora (1h)"
+
+#: classes/class-shortcode.php:268
+msgid "Hour measure"
+msgstr "Medida de tiempo"
+
+#: classes/class-hooks.php:210
+msgid "Export / Import"
+msgstr "Exportar / Importar"
+
+#: classes/class-hooks.php:202
+msgid "Event Tags"
+msgstr "Etiquetas de Evento"
+
+#: classes/class-hooks.php:198
+msgid "Event Categories"
+msgstr "Categorías de eventos"
+
+#: classes/class-hooks.php:194
+msgid "Add Column"
+msgstr "Adicionar Columna"
+
+#: classes/class-hooks.php:186
+msgid "Add Event"
+msgstr "Agregar Evento"
+
+#: classes/class-hooks.php:70 classes/class-hooks.php:178
+#: classes/class-shortcode.php:358 media/js/blocks/src/timetable/index.js:12
+msgid "Timetable"
+msgstr "Horario"
+
+#: classes/class-core.php:483
+msgid "No Columns found in Trash"
+msgstr "No se encontró ninguna columna en la papelera"
+
+#: classes/class-core.php:482
+msgid "No Columns found"
+msgstr "No se encontró ninguna columna"
+
+#: classes/class-core.php:481
+msgid "Search Column"
+msgstr "Buscar columna"
+
+#: classes/class-core.php:480
+msgid "View Column"
+msgstr "Ver columna"
+
+#: classes/class-core.php:479
+msgid "All Columns"
+msgstr "Todas las columnas"
+
+#: classes/class-core.php:478
+msgid "New Column"
+msgstr "Nueva Columna"
+
+#: classes/class-core.php:477
+msgid "Edit Column"
+msgstr "Editar columna"
+
+#: classes/class-core.php:475 classes/class-core.php:476
+msgid "Add New Column"
+msgstr "Añadir nueva columna"
+
+#: templates/events/event-data.php:4 classes/class-core.php:474
+#: classes/class-shortcode.php:253
+msgid "Column"
+msgstr "Columna"
+
+#: classes/class-hooks.php:190 classes/class-core.php:473
+#: classes/class-core.php:484 media/js/blocks/src/timetable/inspector.js:87
+msgid "Columns"
+msgstr "Columnas"
+
+#: classes/class-core.php:444
+msgid "No Events found in Trash"
+msgstr "No se encontraron eventos en la papelera"
+
+#: classes/class-core.php:443
+msgid "No Events found"
+msgstr "No se encontraron eventos"
+
+#: classes/class-core.php:442
+msgid "Search Event"
+msgstr "Buscar evento"
+
+#: classes/class-core.php:441
+msgid "View Event"
+msgstr "Ver evento"
+
+#: classes/class-core.php:440 classes/blocks/class-timetable-block.php:75
+#: classes/class-shortcode.php:69 classes/class-shortcode.php:279
+#: templates-functions/action-shortcode-functions.php:39
+#: templates-functions/action-shortcode-functions.php:52
+#: templates-functions/action-shortcode-functions.php:53
+msgid "All Events"
+msgstr "Todos los eventos"
+
+#: classes/class-core.php:439
+msgid "New Event"
+msgstr "Nuevo evento"
+
+#: classes/class-core.php:438
+msgid "Edit Event"
+msgstr "Editar Evento"
+
+#: classes/class-core.php:436 classes/class-core.php:437
+msgid "Add New Event"
+msgstr "Agregar Nuevo Evento"
+
+#: classes/class-core.php:435
+msgid "Event"
+msgstr "Evento"
+
+#: classes/class-hooks.php:182 classes/class-core.php:434
+#: classes/class-core.php:445 classes/class-shortcode.php:258
+msgid "Events"
+msgstr "Eventos"
+
+#: classes/class-core.php:384
+msgid "No Event tags found in Trash"
+msgstr "No se han encontrado etiquetas de eventos en la papelera"
+
+#: classes/class-core.php:383
+msgid "No Event tags found"
+msgstr "No se han encontrado etiquetas de eventos"
+
+#: classes/class-core.php:382
+msgid "Search Event tag"
+msgstr "Buscar etiqueta del evento"
+
+#: classes/class-core.php:381
+msgid "View Event tag"
+msgstr "Ver etiqueta de evento"
+
+#: classes/class-core.php:380
+msgid "All Event tags"
+msgstr "Todas las etiquetas de eventos"
+
+#: classes/class-core.php:379
+msgid "New Event tag"
+msgstr "Nueva etiqueta de evento"
+
+#: classes/class-core.php:378
+msgid "Edit Event tag"
+msgstr "Editar etiqueta del evento"
+
+#: classes/class-core.php:376 classes/class-core.php:377
+msgid "Add New Event tag"
+msgstr "Agregar nueva etiqueta de evento"
+
+#: classes/class-core.php:375
+msgid "Event tag"
+msgstr "Etiqueta del evento"
+
+#: classes/class-core.php:374 classes/class-core.php:385
+#: classes/class-core.php:389
+msgid "Event tags"
+msgstr "Etiquetas del evento"
+
+#: classes/class-core.php:340
+msgid "No Event categories found in Trash"
+msgstr "No se encontró ninguna categoría de evento en la papelera"
+
+#: classes/class-core.php:339
+msgid "No Event categories found"
+msgstr "No se encontraron categorías de eventos"
+
+#: classes/class-core.php:338
+msgid "Search Event category"
+msgstr "Buscar categoría de eventos"
+
+#: classes/class-core.php:337
+msgid "View Event category"
+msgstr "Ver categoría de eventos"
+
+#: classes/class-core.php:336
+msgid "All Event categories"
+msgstr "Todas las categorías de eventos"
+
+#: classes/class-core.php:335
+msgid "New Event category"
+msgstr "Nueva categoría del evento"
+
+#: classes/class-core.php:334
+msgid "Edit Event category"
+msgstr "Editar categoría del evento"
+
+#: classes/class-core.php:332 classes/class-core.php:333
+msgid "Add New Event category"
+msgstr "Añadir una nueva categoría de evento"
+
+#: classes/class-core.php:331
+msgid "Event category"
+msgstr "Categoría del evento"
+
+#: classes/class-core.php:330 classes/class-core.php:341
+#: classes/class-core.php:345 classes/class-shortcode.php:263
+#: media/js/blocks/src/timetable/inspector.js:104
+msgid "Event categories"
+msgstr "Categorías de evento"
+
+#: admin/import/import.php:1
+msgid "Import"
+msgstr "Importar"
+
+#: admin/import/greet.php:2
+msgid "Choose a WXR (.xml) file to upload, then click Upload file and import."
+msgstr "Escoge un archivo WXR (.xml) a subir y luego clic en \"Subir archivo e importar\"."
+
+#: admin/import/export.php:1 admin/import/export.php:5
+msgid "Export"
+msgstr "Exportar"
