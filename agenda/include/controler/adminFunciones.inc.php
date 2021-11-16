@@ -770,6 +770,12 @@ if (isset($_POST['idPacienteSucursal'])){
     echo $pacientes->getIdSucursal();
 }
 
+if (isset($_POST['medios'])){
+    require_once FOLDER_MODEL_EXTEND. "model.medio_enterar.inc.php";
+    $medios = new ModeloMedio_enterar();
+    echo json_encode(obtenCombo($medios->obtenerMedios(),'Seleccione una opci&oacute;n'));
+}
+
 if (isset($_POST['nombreN'])&&isset($_POST['textoN'])&&isset($_POST['seccionN'])){
     require_once FOLDER_MODEL_EXTEND. "model.notificacion.inc.php";
     $notif= new ModeloNotificacion();

@@ -31,7 +31,7 @@ $xajax = new xajax();
 
 function agregaCodigo($idPaciente, $promocion, $codigo){
     $r=new xajaxResponse();
-    $codigo2=substr( md5(microtime()), 1, 6);
+    $codigo2=substr( md5(microtime()), 1, 7);
     $persona = new ModeloPaciente();
     $persona->setIdPaciente($idPaciente);
     $sucursal= new ModeloSucursal();
@@ -90,6 +90,7 @@ function guardar($datos){
     $paciente->setFechaRegistro(date('Y-m-d H:i:s'));
     $paciente->setIdSucursal($infoPaciente['sucursal']);
     $paciente->setLlenadoMinimo();
+    $paciente->setIdMedio($infoPaciente['medio']);
     
     $paciente->Guardar();
     if ($paciente->getError()){
@@ -142,5 +143,5 @@ foreach ($arrFranquicia as $key => $opcion)
     $txtFranquicia.='<option value="'.$key.'">'.$opcion.'</option>';
 
     
-    $codigo=substr( md5(microtime()), 1, 6);
+    $codigo=substr( md5(microtime()), 1, 7);
 ?>

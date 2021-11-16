@@ -4,6 +4,7 @@
 // -----------------------------------------------------------------------------------------------------------------#
 require_once FOLDER_MODEL_EXTEND. "model.hojaclinica.inc.php";
 require_once FOLDER_MODEL_EXTEND. "model.paciente.inc.php";
+require_once FOLDER_MODEL_EXTEND. "model.medio_enterar.inc.php";
 //require_once FOLDER_MODEL_EXTEND. "model.hojaseguimiento.inc.php";
 // -----------------------------------------------------------------------------------------------------------------#
 // --------------------------------------------Inicializacion de control--------------------------------------------#
@@ -150,6 +151,18 @@ function guardar($datos){
     $paciente->setIdSucursal($infoPaciente['sucursal']);
     $paciente->setLlenadoCompleto();
     
+    //medio de enterarse
+    if (intval($infoPaciente['idMedio'])==6){ //otro
+        $medio = new ModeloMedio_enterar();
+        $medio->setMedio($infoPaciente['otroMedio']);
+        $medio->unsetPrincipal();
+        $medio->Guardar();
+        if (!$medio->getError())
+            $infoPaciente['idMedio']=$medio->getIdMedio();
+    }
+    
+    $paciente->setIdMedio($infoPaciente['idMedio']);
+    
     $paciente->Guardar();
     if ($paciente->getError()){
         $r->call('mostrarMsjError',$paciente->getStrSystemError(),5);
@@ -229,6 +242,19 @@ function guardar2($datos){
                                                         $paciente->setFechaRegistro(date('Y-m-d H:i:s'));
                                                         $paciente->setIdSucursal($infoPaciente['sucursal']);
                                                         $paciente->setLlenadoMinimo();
+                                                        
+                                                        //medio de enterarse
+                                                        if (intval($infoPaciente['idMedio'])==6){ //otro
+                                                            $medio = new ModeloMedio_enterar();
+                                                            $medio->setMedio($infoPaciente['otroMedio']);
+                                                            $medio->unsetPrincipal();
+                                                            $medio->Guardar();
+                                                            if (!$medio->getError())
+                                                                $infoPaciente['idMedio']=$medio->getIdMedio();
+                                                        }
+                                                        
+                                                        $paciente->setIdMedio($infoPaciente['idMedio']);
+                                                        
                                                         
                                                         $paciente->Guardar();
                                                         if ($paciente->getError()){

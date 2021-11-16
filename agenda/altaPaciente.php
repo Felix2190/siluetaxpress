@@ -99,6 +99,7 @@ require_once 'masterInclude.inc.php';
 							
 							<input type="hidden" id="hdnRol2" value="<?php echo $objSession->getidRol();?>"/>
 							<?php if ($objSession->getidRol()==1){?>
+							<br />
 							<div class="row">
 								<div class="5u 12u$(xsmall)">
 									<h3>Lugar</h3>
@@ -120,6 +121,31 @@ require_once 'masterInclude.inc.php';
 							<?php } else {?>
 									<input type="hidden" id="slcSucursal2" value="<?php echo $objSession->getIdSucursal();?>"/>
 									<?php } ?>
+							<br />
+							<br />
+							<div class="row">
+								<div class="5u 12u$(xsmall)">
+									<h3>Medio de difusi&oacute;n</h3>
+								</div>
+							</div>
+							<div class="row">
+								<div class="3u 12u$(xsmall)">
+									<label>&iquest;C&oacute;mo se enter&oacute; de nosotros? </label>
+								</div>
+								<div class="4u 12u$(xsmall)">
+									<div class="select-wrapper">
+										<select name="demo-category" id="slcMedio2">
+									</select>
+									</div>
+								</div>
+								<div class="1u 12u$(xsmall) otromedio" style="display: none;">
+									<label>&iquest;Cu&aacute;l?:</label>
+								</div>
+								<div class="3u 12u$(xsmall) otromedio" style="display: none;">
+									<input type="text" id="txtOtroMedio" />
+								</div>
+								
+							</div>
 							
 							<br />
 							
@@ -1015,6 +1041,32 @@ require_once 'masterInclude.inc.php';
 							<?php } else {?>
 									<input type="hidden" id="slcSucursal" value="<?php echo $objSession->getIdSucursal();?>"/>
 									<?php } ?>
+							
+							<br />
+							<br />
+							<div class="row">
+								<div class="5u 12u$(xsmall)">
+									<h3>Medio de difusi&oacute;n</h3>
+								</div>
+							</div>
+							<div class="row">
+								<div class="3u 12u$(xsmall)">
+									<label>&iquest;C&oacute;mo se enter&oacute; de nosotros? </label>
+								</div>
+								<div class="4u 12u$(xsmall)">
+									<div class="select-wrapper">
+										<select name="demo-category" id="slcMedio">
+									</select>
+									</div>
+								</div>
+								<div class="1u 12u$(xsmall) otromedio" style="display: none;">
+									<label>&iquest;Cu&aacute;l?:</label>
+								</div>
+								<div class="3u 12u$(xsmall) otromedio" style="display: none;">
+									<input type="text" id="txtOtroMedio" />
+								</div>
+								
+							</div>
 							
 							<br />
 							

@@ -91,19 +91,39 @@ require_once 'masterInclude.inc.php';
 								<div class="1u 12u$(xsmall)">
 									<label>Lugar: </label>
 								</div>
-								<div class="2u 12u$(xsmall)">
+								<div class="3u 12u$(xsmall)">
 									<div class="select-wrapper">
 										<select name="demo-category" id="slcFranquicia" onchange="obtenerSucursales();">
 											<?php echo $txtFranquicia;?>
 									</select>
 									</div>
 								</div>
-								<div class="2u 12u$(xsmall)">
+								<div class="3u 12u$(xsmall)">
 									<div class="select-wrapper">
 										<select name="demo-category" id="slcSucursal">
 											<option value="">Selecciona una opci&oacute;n</option>
 									</select>
 									</div>
+								</div>
+						</div>
+							<br>
+						
+						<div class="row">
+								
+								<div class="3u 12u$(xsmall)">
+									<label>&iquest;C&oacute;mo se enter&oacute; de nosotros?</label>
+								</div>
+								<div class="2u 12u$(xsmall)"> 
+									<input id="demo-priority-3" name="medio" value="3" type="radio">
+									<label for="demo-priority-3">Facebook</label>
+								</div>
+								<div class="2u 12u$(xsmall)"> 
+									<input id="demo-priority-4" name="medio" value="4" type="radio">
+									<label for="demo-priority-4">Instagram</label>
+								</div>
+								<div class="2u 12u$(xsmall)"> 
+									<input id="demo-priority-6" name="medio" value="6" type="radio">
+									<label for="demo-priority-6">Otro</label>
 								</div>
 								
         						<div class="2u 12u$(xsmall)">

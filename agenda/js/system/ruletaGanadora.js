@@ -111,7 +111,20 @@ function altaPaciente(){
 		console.log("Error: sucursal");
 	}
 
-    paciente['Email']= $("#txtCorreo").val().trim();
+    
+	paciente['medio'] = '';
+    $("input[name=medio]").each(function (index) { 
+       if($(this).is(':checked')){
+    	   paciente['medio'] = $(this).val();
+       }
+    });
+    
+    if (paciente['medio'] == "") {
+		existeError = true;
+		console.log("Error: txt");
+	}
+    
+paciente['Email']= $("#txtCorreo").val().trim();
 	if (paciente['Email'] == "") {
 		//existeError2 = true;
 		console.log("Error: txtEmail");

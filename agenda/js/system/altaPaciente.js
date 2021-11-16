@@ -46,6 +46,34 @@ function iniciar(){
 						$( "#slcSucursal2" ).html(respuesta);
 					}
 				});
+		 $.ajax({
+				method : "post",
+				url : "adminFunciones.php",
+				data : {
+					medios:''
+				},
+				success : function(data) {
+					respuesta=JSON.parse(data);
+					$( "#slcMedio2" ).html(respuesta);
+				}
+			});
+			
+			$("#slcMedio2").change(function(){
+				if($( "#slcMedio2" ).val()=="6"){
+					 $('.otromedio').show();
+				}else{
+					$('.otromedio').hide();
+				}
+			});
+		}
+	});
+	
+	
+	$("#slcMedio").change(function(){
+		if($( "#slcMedio" ).val()=="6"){
+			 $('.otromedio').show();
+		}else{
+			$('.otromedio').hide();
 		}
 	});
 	
@@ -159,6 +187,18 @@ function iniciar(){
 				}
 			});
 		
+		 $.ajax({
+				method : "post",
+				url : "adminFunciones.php",
+				data : {
+					medios:''
+				},
+				success : function(data) {
+					respuesta=JSON.parse(data);
+					$( "#slcMedio" ).html(respuesta);
+					$( "#slcMedio2" ).html(respuesta);
+				}
+			});
 
 	/*
 	$("input[name=]").click(function(){
@@ -691,7 +731,19 @@ function altaPaciente(){
 		console.log("Error: txtAntecedentes");
 	}
 	
-	
+	 paciente['idMedio']= $("#slcMedio").val().trim();
+	if (paciente['idMedio'] == "") {
+		existeError = true;
+		console.log("Error: idMedio");
+	}else {
+		if(parseInt(paciente['idMedio'])==6){
+			 paciente['otroMedio']= $("#txtOtroMedio").val().trim();
+			if (paciente['otroMedio'] == "") {
+				existeError = true;
+				console.log("Error: otroMedio");
+			}
+		}
+	}
 	/*
 	hoja['']= $("#txt").val().trim();
 	if (hoja[''] == "") {
@@ -813,6 +865,21 @@ function altaPaciente2(){
 	}
 
 	paciente['fechaNac']="1900-01-01"
+	
+	
+	 paciente['idMedio']= $("#slcMedio2").val().trim();
+	if (paciente['idMedio'] == "") {
+		existeError = true;
+		console.log("Error: idMedio");
+	}else {
+		if(parseInt(paciente['idMedio'])==6){
+			 paciente['otroMedio']= $("#txtOtroMedio").val().trim();
+			if (paciente['otroMedio'] == "") {
+				existeError = true;
+				console.log("Error: otroMedio");
+			}
+		}
+	}
 		
 	hoja['completitud']=0;
 	datos['paciente']=paciente;
