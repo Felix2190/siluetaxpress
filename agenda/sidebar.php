@@ -89,6 +89,7 @@
 					<?php if ($objSession->getidRol()==1||$objSession->getEnvioLink()==1){?>
 						<li><a class="<?php if($subseccion=="enviaLink") echo "active";?>" href="enviaLink.php">Enviar encuesta</a></li>
 					<?php }?>
+						<li><a class="<?php if($subseccion=="consultaMedios") echo "active";?>" href="consultaMedios.php">Medios de difusi&oacute;n </a></li>
 					</ul>
 				</li>
 				

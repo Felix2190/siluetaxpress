@@ -41,6 +41,7 @@ $arrSeccionesPagina=array(
     "buscarCodigo"=>"herramientas",
     "editarPersonal"=>"herramientas",
     "listadoEncuestas"=>"herramientas",
+    "consultaMedios"=>"herramientas",
     
     ""=>""
 );
