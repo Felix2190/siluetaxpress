@@ -23,6 +23,7 @@ function verSeguimiento(id){
 
 
 function verOpciones(){
+				window.open("https://agenda.siluetaexpress.com.mx/tmp/doc_consentimiento.pdf", "_blank");
 	 $( "#msjConfirm" ).show();
 }
 	//$("#").();

@@ -454,7 +454,7 @@ if (isset($_GET['idPaciente']) && isset($_GET['firma'])) {
     $pdf->SetFont('Arial','',8);
     $pdf->Ln(4);
     $pdf->SetX(90);
-    $pdf->Cell(130,4,'Acepto que la información en este expediente es VERÁS y PRESENTE',0,0,'L');
+    $pdf->Cell(130,4,'Acepto que la información en este expediente es VERAZ y PRESENTE',0,0,'L');
     $pdf->Ln();
     $pdf->SetX(90);
     $pdf->Cell(130,4,'Acepto que Silueta Express comparta mis logros en redes sociales',0,0,'L');

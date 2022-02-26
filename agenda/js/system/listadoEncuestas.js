@@ -13,7 +13,7 @@ function iniciar(){
 	estiloTabla($("#txtFecha").val());
 	
 }
-var texto=encode_utf8('Silueta Express agradece tu visita. Ayúdanos a mejorar el servicio contestando esta pequeña encuesta ANÓNIMA de 3 preguntas rápidas link https://fi.uy/pk2i ingresando el ID ');
+var texto=encode_utf8('Silueta Express agradece tu visita. Ayúdanos a mejorar el servicio contestando esta pequeña encuesta ANÓNIMA de 3 preguntas rápidas link https://bit.ly/3GVXqnM ingresando el ID ');
 function enviaLink(id,num){
 	window.open("https://web..com/send?phone=521"+num+"&text="+texto+id, "_blank");
 

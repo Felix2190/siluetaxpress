@@ -50,10 +50,10 @@ function verPDF($b){
     $r=new xajaxResponse();
     $aux =$_SESSION['verPaciente'];
     $idPaciente=$aux['idPaciente'];
-    
-    $r->redirect("getHojaClinicaPDF.php?idPaciente=$idPaciente&firma=$b");
+   $r->redirect("getHojaClinicaPDF.php?idPaciente=$idPaciente&firma=$b",3);
     return $r;
 }
+
 $xajax->registerFunction("verPDF");
 
 function seguimiento($idPaciente){

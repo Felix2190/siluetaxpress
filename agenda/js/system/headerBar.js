@@ -88,14 +88,14 @@ $(document).ready(function(){
 			
 		}
 			//window.location=window.location;
-		},320000);
+		},700000);
 	setTimeout(function() {
 		url=url.split("/");
 		url=url[url.length-1];
 		
 		if(url!="nuevaCita.php"&&url!="altaPaciente.php"&&url!="editarPaciente.php"&&url!="index.php"&&url!="seguimiento.php")
 				mostrarMsjEspera("En 15 segundos se direccionar&aacute; a la p&aacute;gina principal.",14);	
-	},305000);
+	},695000);
 	
 	setTimeout(function() {
 		url=url.split("/");
