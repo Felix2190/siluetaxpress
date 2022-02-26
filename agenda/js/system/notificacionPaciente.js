@@ -10,7 +10,6 @@ function iniciar(){
 		
 	$("input[name=datos]").change(function(){
 	
-	mostrarMsjEspera('Espere un momento, cargando informaci&oacute;n');
 		$( "#btnGuardar").show();
 	arrNombre=[];
 		if($(this).val()=="SMS"){
@@ -29,13 +28,14 @@ function iniciar(){
 		$( "#txt"+seccion ).html('');
 	    //llenar combo
 		arrayListado(seccion,'');
+		mostrarMsjEspera('Espere un momento, cargando informaci&oacute;n');
 		setTimeout(function() { 
 			arrPacientes=combo=respuesta;
 			idINDEX="index";
 			llenarCombo();
 			$( "#txtPaciente"+seccion ).html(txtCombo);
 
-		},1700);
+		},2500);
 			$( "#spnTotal"+seccion ).html(' '+arrNombre.length);
 	});
 	var arreglo=[],x=1;
@@ -43,6 +43,7 @@ function iniciar(){
 		arreglo=[];
 		arrayListado(seccion,$(this).val());
 	 var select=$("#"+$(this).attr("id")).prop('checked') ;//obtener status del check seleccionado 
+		mostrarMsjEspera('Espere un momento, cargando informaci&oacute;n');
 		setTimeout(function() { 
 //			console.log(index);
 			$.each(respuesta, function( index) {
@@ -51,7 +52,7 @@ function iniciar(){
 				})
 			agregar_quitar_sucursal(arreglo, select);
 			
-		},1200);
+		},2500);
 		});
 		
 	$("#txtTextoSMS").on('paste', function(e){

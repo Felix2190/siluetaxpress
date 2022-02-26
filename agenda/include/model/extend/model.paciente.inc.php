@@ -150,7 +150,7 @@
 		    $inner=" inner join sucursal as s on p.idSucursal=s.idSucursal ";
 		    
 		    //}
-		    $query = "Select $select concat_ws(' ', p.nombre, p.apellidos$concat) as nombreP from paciente as p $inner where $where and p.estatus='activo' and s.idFranquicia=".$objSession->getIdFranquicia()+" group by telefonoCel";
+		    $query = "Select $select concat_ws(' ', p.nombre, p.apellidos$concat) as nombreP from paciente as p $inner where $where and p.estatus='activo' and s.idFranquicia=".$objSession->getIdFranquicia()." group by telefonoCel";
 		    $arreglo = array();
 		    $resultado = mysqli_query($this->dbLink, $query);
 		    if ($resultado && mysqli_num_rows($resultado) > 0) {
