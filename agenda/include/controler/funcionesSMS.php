@@ -78,7 +78,7 @@ function consultaCredito($clave)
             $respuesta=explode(':', $respuesta[12]);
             $output = $buf."\n";
             $output .= " Exito";
-            return array(true,$respuesta[1]);
+            return array(true,intval($respuesta[1]));
         }
     }
 }
