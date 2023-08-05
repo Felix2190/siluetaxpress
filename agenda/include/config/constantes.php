@@ -3,10 +3,13 @@ session_start();
 
 date_default_timezone_set('America/Mexico_City');
 
+if (!function_exists("get_magic_quotes_gpc")){
+    function get_magic_quotes_gpc(){ return 0;}
+}
 
 if (! DEVELOPER) {
     /**
-     * constantes de producción
+     * constantes de producciï¿½n
      * 
      * string(66) "/var/www/vhosts/siluetaexpress.com.mx/agenda.siluetaexpress.com.mx" 
      */

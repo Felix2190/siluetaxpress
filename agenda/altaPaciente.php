@@ -1063,7 +1063,7 @@ require_once 'masterInclude.inc.php';
 									<label>&iquest;Cu&aacute;l?:</label>
 								</div>
 								<div class="3u 12u$(xsmall) otromedio" style="display: none;">
-									<input type="text" id="txtOtroMedio" />
+									<input type="text" id="MedioEnterar" />
 								</div>
 								
 							</div>

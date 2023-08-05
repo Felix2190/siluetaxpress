@@ -61,7 +61,7 @@ sleep(10);
     $mailWeb->AltBody = "Respaldo de @siluetaexpress.com.mx";
     $mailWeb->MsgHTML("Respaldo de @siluetaexpress.com.mx");
     $mailWeb->AddAddress("lic.lezliedelariva@gmail.com");
-    $mailWeb->AddAddress("ortizfelix9021@gmail.com");
+//    $mailWeb->AddAddress("ortizfelix9021@gmail.com");
     $mailWeb->addAttachment("$backup_file");
     try
     {

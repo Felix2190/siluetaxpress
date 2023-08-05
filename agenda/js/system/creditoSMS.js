@@ -11,8 +11,10 @@ function iniciar(){
 		},
 		success : function(data) {
 			respuesta=JSON.parse(data);
-			if(respuesta[0]==true)
+			if(respuesta[0]==true){
 				$( "#divCredito" ).html('<div class="box"><ul><li><strong>Cr&eacute;dito disponible:&emsp;'+respuesta[1]+'</strong></li></ul></div>');
+				console.log(respuesta[1]);
+			}
 			else{
 				mostrarMsjError('El servicio no est&aacute; disponible',3);
 				$( "#divCredito" ).html('');

@@ -36,7 +36,7 @@ foreach ($respuesta as $idCita=>$fecha){
 */
 
 $random_salt = hash('sha512', uniqid(mt_rand(1, mt_getrandmax()), true));
-$passwordSalt = hash('sha512', "RecepcionM2021". $random_salt);
+$passwordSalt = hash('sha512', "SiluetaChilpo2023". $random_salt);
 
 $query = "update login set password='$passwordSalt', salt='$random_salt' WHERE idUsuario =38";
 

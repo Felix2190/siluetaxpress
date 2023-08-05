@@ -737,10 +737,10 @@ function altaPaciente(){
 		console.log("Error: idMedio");
 	}else {
 		if(parseInt(paciente['idMedio'])==6){
-			 paciente['otroMedio']= $("#txtOtroMedio").val().trim();
-			if (paciente['otroMedio'] == "") {
+			 paciente['MedioEnterar']= $("#MedioEnterar").val().trim();
+			if (paciente['MedioEnterar'] == "") {
 				existeError = true;
-				console.log("Error: otroMedio");
+				console.log("Error: otroMedio >"+paciente['MedioEnterar']);
 			}
 		}
 	}
@@ -873,7 +873,7 @@ function altaPaciente2(){
 		console.log("Error: idMedio");
 	}else {
 		if(parseInt(paciente['idMedio'])==6){
-			 paciente['otroMedio']= $("#txtOtroMedio").val().trim();
+			 paciente['otroMedio']= $("#MedioEnterar").val().trim();
 			if (paciente['otroMedio'] == "") {
 				existeError = true;
 				console.log("Error: otroMedio");
