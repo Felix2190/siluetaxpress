@@ -5,6 +5,7 @@
 // -----------------------------------------------------------------------------------------------------------------#
 require_once FOLDER_MODEL_EXTEND. "model.ganadores_promocion.inc.php";
 require_once FOLDER_MODEL_EXTEND. "model.paciente.inc.php";
+require_once FOLDER_MODEL_EXTEND. "model.claves.inc.php";
 require_once FOLDER_MODEL_EXTEND. "model.sucursal.inc.php";
 require_once FOLDER_MODEL_EXTEND. "model.franquicia.inc.php";
 require_once FOLDER_MODEL_EXTEND. "model.hojaclinica.inc.php";
@@ -144,4 +145,8 @@ foreach ($arrFranquicia as $key => $opcion)
 
     
     $codigo=substr( md5(microtime()), 1, 7);
+
+    $oportunidades=new ModeloClaves();
+    $top=$oportunidades->obtenerClaveByReferencia("oportunidades");
+    
 ?>

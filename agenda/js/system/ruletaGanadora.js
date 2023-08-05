@@ -56,7 +56,7 @@ function buscarNum(){
 		}
 	    });
 }
-
+var top;
 function obtenerSucursales(){
 	 $.ajax({
 				method : "post",
@@ -182,6 +182,8 @@ var GirarTimeTotal = 0;
 var arc = Math.PI / (options.length / 2);
 
 function consultaCodigos(){
+	let top = $("#hdTop").val();
+	console.log("---"+$("#hdTop").val());
 	 $.ajax(
 		      {
       			method:"post",
@@ -196,8 +198,8 @@ function consultaCodigos(){
             			$("#divCodigos").append('<div class="4u 12u$(xsmall)"><label style="float: left">'+codigo+'&emsp;</label> ('+nombre+')</div>');
 					});
 				$("#spCodigo").html(respuesta2[0]);
-				$("#spOportunidades").html(3-(parseInt(respuesta2[0])));
-				if(parseInt(respuesta2[0])>=3)
+				$("#spOportunidades").html(Number(top)-(parseInt(respuesta2[0])));
+				if(parseInt(respuesta2[0])>=Number(top))
 					$("#btnGirar").hide();
 				}
 		    });
@@ -213,7 +215,7 @@ function byte2Hex(n) {
   return String(nybHexString.substr((n >> 4) & 0x0F,1)) + nybHexString.substr(n & 0x0F,1);
 }
 
-// Función para RGB.
+// Funciï¿½n para RGB.
 function RGB2Color(r,g,b) {
 	return '#' + byte2Hex(r) + byte2Hex(g) + byte2Hex(b);
 }
@@ -293,7 +295,7 @@ function Girar() {
   rotarRuleta();
 }
 
-// Función que realiza el giro de la ruleta.
+// Funciï¿½n que realiza el giro de la ruleta.
 function rotarRuleta() {
   GirarTime =  GirarTime + 30;
   if(GirarTime >= GirarTimeTotal) {

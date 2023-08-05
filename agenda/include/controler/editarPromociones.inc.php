@@ -56,6 +56,19 @@ $xajax->processRequest();
 
 $promociones = new ModeloPromociones_ruleta();
 
-$arrPromociones = $promociones->obtenerPromociones($objSession->getIdFranquicia());
+$arrPromociones = $promociones->obtenerPromociones($objSession->getIdFranquicia(),$objSession->getIdSucursal());
+$totalPromo = count($arrPromociones);
 
+$fecha = date("Y-m-d");
+while ($totalPromo<10){
+    $promocion = new ModeloPromociones_ruleta();
+    $promocion->setIdSucursal($objSession->getIdSucursal());
+    $promocion->setIdFranquicia($objSession->getIdFranquicia());
+    $promocion->setNombrePromocion("Promo ".($totalPromo+1));
+    $promocion->setIdUsuarioModifico($objSession->getidUsuario());
+    $promocion->setFechaModificacion($fecha);
+    if($promocion->Guardar())
+        $arrPromociones[$promocion->getIdPromocionRuleta()]=$promocion->getNombrePromocion();
+    $totalPromo++;
+}
 ?>

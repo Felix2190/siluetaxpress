@@ -163,7 +163,7 @@
 		
 		public function obtenerInfoPacienteByCelular($celular)
 		{
-		    $query = "Select p.idPaciente, concat_ws(' ', p.nombre, p.apellidos) as nombrePaciente, s.idFranquicia from paciente as p 
+		    $query = "Select p.idPaciente, concat_ws(' ', p.nombre, p.apellidos) as nombrePaciente, s.idFranquicia, s.idSucursal from paciente as p 
                      inner join sucursal as s on p.idSucursal=s.idSucursal where p.estatus='activo' and telefonoCel='$celular' limit 1";
 		    $arreglo = array();
 		    $resultado = mysqli_query($this->dbLink, $query);

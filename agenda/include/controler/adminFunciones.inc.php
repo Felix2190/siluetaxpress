@@ -79,7 +79,7 @@ if (isset($_POST['numTel'])){
     if (count($arrPaciente)>0){
         require_once FOLDER_MODEL_EXTEND. "model.promociones_ruleta.inc.php";
         $promocion = new ModeloPromociones_ruleta();
-        echo json_encode(array(true,$arrPaciente['idPaciente'],$arrPaciente['nombrePaciente'],$promocion->obtenerPromociones($arrPaciente['idFranquicia'])));
+        echo json_encode(array(true,$arrPaciente['idPaciente'],$arrPaciente['nombrePaciente'],$promocion->obtenerPromociones($arrPaciente['idFranquicia'],$arrPaciente['idSucursal'])));
     }else 
         echo json_encode(array(false));
 }
@@ -182,13 +182,13 @@ if (isset($_POST['idCitaVerifica'])&&isset($_POST['estatus'])){
         $encuesta->setFechaRegistro(date("Y-m-d H:i:s"));
         $encuesta->Guardar();
         if (!$encuesta->getError())
-            //echo json_encode(utf8_encode("Silueta Express le agradece su preferencia. Por favor podría realizar una encuesta de Satisfación en el sig. link? https://bit.ly/3GVXqnM ingresando el ID ".$encuesta->getIdEncuesta()));
-            echo json_encode(utf8_encode("Silueta Express agradece tu visita. Ayúdanos a mejorar el servicio contestando esta pequeña encuesta ANÓNIMA de 3 preguntas rápidas link https://bit.ly/3GVXqnM ingresando el ID ".$encuesta->getIdEncuesta()));
+            //echo json_encode(utf8_encode("Silueta Express le agradece su preferencia. Por favor podrï¿½a realizar una encuesta de Satisfaciï¿½n en el sig. link? https://bit.ly/3GVXqnM ingresando el ID ".$encuesta->getIdEncuesta()));
+            echo json_encode(utf8_encode("Silueta Express agradece tu visita. Ayï¿½danos a mejorar el servicio contestando esta pequeï¿½a encuesta ANï¿½NIMA de 3 preguntas rï¿½pidas link https://bit.ly/3GVXqnM ingresando el ID ".$encuesta->getIdEncuesta()));
             else 
             echo "";
     }
     else{
-        echo json_encode(utf8_encode("Lamentamos mucho que no hayas podido asistir a tu cita el día de hoy, te pedimos para la siguiente cancelar por lo menos con 24 hrs de antelación, recuerda que después de 3 citas con falta sin cancelar se te tomará como realizada. Todo esto con finalidad de mejorar el servicio y tener disponibilidad para otros pacientes. Estamos a tus órdenes Atte. Silueta Express"));
+        echo json_encode(utf8_encode("Lamentamos mucho que no hayas podido asistir a tu cita el dï¿½a de hoy, te pedimos para la siguiente cancelar por lo menos con 24 hrs de antelaciï¿½n, recuerda que despuï¿½s de 3 citas con falta sin cancelar se te tomarï¿½ como realizada. Todo esto con finalidad de mejorar el servicio y tener disponibilidad para otros pacientes. Estamos a tus ï¿½rdenes Atte. Silueta Express"));
     }
 }
 
@@ -699,7 +699,7 @@ if (isset($_POST['notificacion'])){
     }
     define("FOLDER_LIB", FOLDER_INCLUDE . "lib/");
     $mensaje="Se han enviado correctamente tus datos. <br />En breve nos pondremos en contacto contigo.<br /> <br />Gracias por su comentario.";
-//    echo enviar_mail($_POST['notificacion'], "Notificación @siluetaexpress", $mensaje);
+//    echo enviar_mail($_POST['notificacion'], "Notificaciï¿½n @siluetaexpress", $mensaje);
 }
 
 if (isset($_POST['listadoSucursales'])){
@@ -968,7 +968,7 @@ function obtenerHorariosServicios($idSucursal,$idCabina){
                             }
                             $auxFecha=date("Y-m-d", strtotime($fecha));
                             $horarioDisponible[$idSucursal][$idConsultorio][$auxFecha]=$horasDisponibles;
-                            if (!in_array($auxFecha, $arrFechas)) /// fechas de los días a mostrar
+                            if (!in_array($auxFecha, $arrFechas)) /// fechas de los dï¿½as a mostrar
                                 array_push($arrFechas, $auxFecha);
                                 
                                 $hrInicio = $sucursal->getEntreSemanaEntrada();
@@ -1196,7 +1196,7 @@ function obtenerIntervalosDisponibles($idSucursal,$idCabina,$fechaInicio){
             //array_push($horasDisponibles, "<<<".date ( 'Y-m-d',strtotime ( '+1 day' , strtotime ( $fecha) ) ).">>> ");
             $auxFecha=date("Y-m-d", strtotime($fecha));
             $horarioDisponible[$idSucursal][$idConsultorio][$auxFecha]=$horasDisponibles;
-            if (!in_array($auxFecha, $arrFechas)) /// fechas de los días a mostrar
+            if (!in_array($auxFecha, $arrFechas)) /// fechas de los dï¿½as a mostrar
                 array_push($arrFechas, $auxFecha);
             
             $hrInicio = $sucursal->getEntreSemanaEntrada();
@@ -1361,25 +1361,25 @@ function obtenerConsultorios($idConsulta,$idSucursal){
 
 function enviaSMS_CitaNueva($numPaciente, $consulta, $dia, $hora, $sucursal, $numSucursal)
 {
-    $sMessage = "Ha agendado una cita en SiluetaExpress el dia $dia a las $hora hrs en $sucursal.\nSi desea cancelar su cita, comunícate al $numSucursal";
+    $sMessage = "Ha agendado una cita en SiluetaExpress el dia $dia a las $hora hrs en $sucursal.\nSi desea cancelar su cita, comunï¿½cate al $numSucursal";
     return enviaSMS($numPaciente, $sMessage);
 }
 
 function enviaSMS_CitaNueva2($numPaciente, $consulta, $dia, $hora, $sucursal, $numSucursal)
 {
-    $sMessage = "Ha agendado una cita en SiluetaExpress el dia $dia a las $hora hrs en $sucursal.\nSi desea cancelar su cita, comunícate al $numSucursal";
+    $sMessage = "Ha agendado una cita en SiluetaExpress el dia $dia a las $hora hrs en $sucursal.\nSi desea cancelar su cita, comunï¿½cate al $numSucursal";
     return enviaSMS2($numPaciente, $sMessage);
 }
 
 function enviaSMS_CitaModificada($numPaciente, $dia, $hora, $sucursal, $numSucursal)
 {
-    $sMessage = "Se ha modificado tu cita en SiluetaExpress para el dia $dia a las $hora hrs en $sucursal.\nSi desea cancelar su cita, comunícate al $numSucursal";
+    $sMessage = "Se ha modificado tu cita en SiluetaExpress para el dia $dia a las $hora hrs en $sucursal.\nSi desea cancelar su cita, comunï¿½cate al $numSucursal";
     return enviaSMS($numPaciente, $sMessage);
 }
 
 function enviaSMS_recordatorio($numPaciente, $nombre, $servicio, $dia, $hora, $sucursal, $numSucursal)
 {
-    $sMessage = "SiluetaExpress le recuerda su cita para el dia $dia a las $hora hrs en $sucursal.\nSi desea cancelar su cita, comunícate al $numSucursal";
+    $sMessage = "SiluetaExpress le recuerda su cita para el dia $dia a las $hora hrs en $sucursal.\nSi desea cancelar su cita, comunï¿½cate al $numSucursal";
     return enviaSMS($numPaciente, $sMessage);
 }
 
@@ -1416,7 +1416,7 @@ function enviaSMS2($numPaciente, $sMessage)
         fputs($fp, $buf);
         $buf = "";
         
-        //Tiempo máximo de espera de respuesta del servidor = 60 seg
+        //Tiempo mï¿½ximo de espera de respuesta del servidor = 60 seg
         $responseTimeOut = 60;
         stream_set_timeout($fp,$responseTimeOut);
         stream_set_blocking ($fp, true);
@@ -1512,7 +1512,7 @@ function enviaSMS($numPaciente, $sMessage, $sucursal="")
         fputs($fp, $buf);
         $buf = "";
         
-        //Tiempo máximo de espera de respuesta del servidor = 60 seg
+        //Tiempo mï¿½ximo de espera de respuesta del servidor = 60 seg
         $responseTimeOut = 60;
         stream_set_timeout($fp,$responseTimeOut);
         stream_set_blocking ($fp, true);

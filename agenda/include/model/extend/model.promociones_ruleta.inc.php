@@ -56,9 +56,9 @@
 			return true;
 		}
 		
-		public function obtenerPromociones($idFranquicia)
+		public function obtenerPromociones($idFranquicia,$idSucursal)
 		{
-		    $query = "Select idPromocionRuleta, nombrePromocion from promociones_ruleta where idFranquicia=$idFranquicia";
+		    $query = "Select idPromocionRuleta, nombrePromocion from promociones_ruleta where idFranquicia=$idFranquicia and idSucursal=$idSucursal";
 		    $arreglo = array();
 		    $resultado = mysqli_query($this->dbLink, $query);
 		    if ($resultado && mysqli_num_rows($resultado) > 0) {

@@ -1,13 +1,13 @@
 <?php
 
-	require FOLDER_MODEL_BASE . "model.base.ganadores_promocion.inc.php";
+	require FOLDER_MODEL_BASE . "model.base.promociones_ruleta.inc.php";
 
-	class ModeloGanadores_promocion extends ModeloBaseGanadores_promocion
+	class ModeloPromociones_ruleta extends ModeloBasePromociones_ruleta
 	{
 		#------------------------------------------------------------------------------------------------------#
 		#----------------------------------------------Propiedades---------------------------------------------#
 		#------------------------------------------------------------------------------------------------------#
-		var $_nombreClase="ModeloBaseGanadores_promocion";
+		var $_nombreClase="ModeloBasePromociones_ruleta";
 
 		var $__ss=array();
 
@@ -55,33 +55,7 @@
 		{
 			return true;
 		}
-		
-		public function obtenerCodigosByPersonal($idPaciente)
-		{
-//		    $query = "Select codigo,promocion from ganadores_promocion where idPaciente=$idPaciente and date_format(fecha,'%Y-%m')='".date("Y-m")."'";
-		    $query = "Select codigo,promocion from ganadores_promocion where idPaciente=$idPaciente and date_format(fecha,'%Y-%m-%d')='".date("Y-m-d")."'";
-		    $arreglo = array();
-		    $resultado = mysqli_query($this->dbLink, $query);
-		    if ($resultado && mysqli_num_rows($resultado) > 0) {
-		        while ($row = mysqli_fetch_assoc($resultado)){
-		            $arreglo[$row['codigo']] = $row['promocion'];
-		        }
-		    }
-		    return $arreglo;
-		}
-		
-		public function consultaCodigo($idPaciente, $codigo)
-		{
-		    global $objSession;
-		    $query = "SELECT idGanador, promocion, estatus from ganadores_promocion 
-                where idPaciente=".$idPaciente." and date_format(fecha,'%Y-%m')='".date("Y-m")."' and codigo='$codigo'";
-		    $arreglo = array();
-		    $resultado = mysqli_query($this->dbLink, $query);
-		    if ($resultado && mysqli_num_rows($resultado) > 0) {
-		        return  mysqli_fetch_assoc($resultado);
-		    }
-		    return $arreglo;
-		}
+
 
 	}
 

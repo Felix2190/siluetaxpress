@@ -34,7 +34,7 @@ require_once 'masterInclude.inc.php';
 				<section>
 					<h2 id="content">Ruleta ganadora</h2>
 				</section>
-
+							<input type="hidden" id="hdTop" value="<?php echo $top;?>">
 
 				<div class="12u 12u$(xsmall)" id="divInicial">
 					<div class="row">
