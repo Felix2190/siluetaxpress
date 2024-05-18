@@ -45,6 +45,10 @@ if(!empty($_FILES['imagenCorreo']))
     
 }
 
+if (isset($_POST['encuestaLink'])){
+    echo json_encode("Silueta Express agradece tu visita. Ayúdanos a mejorar el servicio contestando esta pequeña encuesta ANÓNIMA de 3 preguntas rápidas link https://bit.ly/3GVXqnM ingresando el ID ");
+}
+
 if (isset($_POST['sucursalesRuleta'])){
     require_once FOLDER_MODEL_EXTEND. "model.sucursal.inc.php";
     $sucursal = new ModeloSucursal();

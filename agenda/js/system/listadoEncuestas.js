@@ -9,13 +9,24 @@ function iniciar(){
 		changeYear : true,
 		maxDate : '0D'
 	});
-		
+	
+	$.ajax({
+		method : "post",
+		url : "adminFunciones.php",
+		data : {
+			encuestaLink:''
+		},
+		success : function(data) {
+			texto=JSON.parse(data);
+		}
+	});
+	
 	estiloTabla($("#txtFecha").val());
 	
 }
-var texto=encode_utf8('Silueta Express agradece tu visita. Ayúdanos a mejorar el servicio contestando esta pequeña encuesta ANÓNIMA de 3 preguntas rápidas link https://bit.ly/3GVXqnM ingresando el ID ');
+var texto;//=encode_utf8('Silueta Express agradece tu visita. AyÃºdanos a mejorar el servicio contestando esta pequea encuesta ANï¿½NIMA de 3 preguntas rï¿½pidas link https://bit.ly/3GVXqnM ingresando el ID ');
 function enviaLink(id,num){
-	window.open("https://web..com/send?phone=521"+num+"&text="+texto+id, "_blank");
+	window.open("https://web.whatsapp.com/send?phone=521"+num+"&text="+texto+id, "_blank");
 
 }
 

@@ -272,7 +272,7 @@ function verCita(idCita){
 					{
   					respuesta=JSON.parse(data);
 					}
-	    });
+	    });	
 
  
  */
