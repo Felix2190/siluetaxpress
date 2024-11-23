@@ -5,7 +5,7 @@ date_default_timezone_set('America/Mexico_City');
 if (! DEVELOPER) {
     define("FOLDER_INCLUDE", "/var/www/vhosts/siluetaexpress.com.mx/agenda.siluetaexpress.com.mx/include/");
     define("FOLDER_INCLUDE_AGENDA", "/var/www/vhosts/siluetaexpress.com.mx/agenda.siluetaexpress.com.mx/include/"); //agenda
-    define("FOLDER_TMP", "/var/www/vhosts/siluetaexpress.com.mx/agenda.siluetaexpress.com.mx/tmp/");
+    define("FOLDER_TMP", "/var/www/vhosts/siluetaexpress.com.mx/agenda.siluetaexpress.com.mx/");
 } else {
     define("FOLDER_INCLUDE", $_SERVER['DOCUMENT_ROOT'] . "siluetaxpress/html/include/");
     define("FOLDER_INCLUDE_AGENDA", $_SERVER['DOCUMENT_ROOT'] . "siluetaxpress/html/agenda/include/");
@@ -33,6 +33,12 @@ $envioNotif= new ModeloNotificacion_paciente();
 $paciente= new ModeloPaciente();
 $notificacion = new ModeloNotificacion();
 
+if (!function_exists("get_magic_quotes_runtime")){
+    function get_magic_quotes_runtime(){
+        return false;
+    }
+}
+
 $arrNotif = $envioNotif->obtenerNotificacionesPendientes("Correo");
 foreach ($arrNotif as $idN){
     $envioNotif->setIdNotificacionPaciente($idN);
@@ -51,7 +57,7 @@ foreach ($arrNotif as $idN){
                 array_push($arrImg, $notificacion->getImagen4());
             if ($notificacion->getImagen5() != "")
                 array_push($arrImg, $notificacion->getImagen5());
-            array_push($arrImg, "notificaciones/SiluetaExpress(6).jpeg");
+//            array_push($arrImg, "notificaciones/SiluetaExpress(6).jpeg");
             if (enviar_mail_archivos($paciente->getCorreo(), $notificacion->getNombre(), $notificacion->getTexto(),$arrImg)){
                 $envioNotif->setEstatusEnviado();
                 $envioNotif->setFechaEnvio(date("Y-m-d H:i:s"));
@@ -61,7 +67,7 @@ foreach ($arrNotif as $idN){
             }
         }else {
             $envioNotif->setEstatusError();
-            $envioNotif->setMsjError("Error al enviar el correo, no válido");
+            $envioNotif->setMsjError("Error al enviar el correo, no vï¿½lido");
         }
         
     }else {
@@ -93,7 +99,7 @@ if ($horaActual>=8&&$horaActual<=20){
                 }
            }else {
                $envioNotif->setEstatusError();
-               $envioNotif->setMsjError("La longitud del teléfono es incorrecta [".strlen($paciente->getTelefonoCel())."]");
+               $envioNotif->setMsjError("La longitud del telï¿½fono es incorrecta [".strlen($paciente->getTelefonoCel())."]");
            }
         }
         $envioNotif->Guardar();
