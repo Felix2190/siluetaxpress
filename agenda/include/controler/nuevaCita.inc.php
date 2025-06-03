@@ -137,7 +137,7 @@ function guardarCita($paciente,$sucursal,$idCabina,$consulta,$duracion,$fecha,$h
     $cita->setFechaRegistroCita(date( 'Y-m-d'));
     $cita->setFechaEnvioSMS(date( 'Y-m-d'));
     $cita->setFechaVerificaAsistencia(date( 'Y-m-d H:i:s' , strtotime("-10 minute", strtotime($cita->getFechaFin()))));
-    //decidir si se envía el segundo recordatorio
+    //decidir si se envï¿½a el segundo recordatorio
     $datetime2 = new DateTime($cita->getFechaInicio());
     $datetime1 = new DateTime(date( 'Y-m-d H:i:s'));
     $interval = $datetime1->diff($datetime2);
@@ -202,6 +202,7 @@ function guardarCita($paciente,$sucursal,$idCabina,$consulta,$duracion,$fecha,$h
     
     $resSMS=false; 
 //    if ($Recordatorio=='1')
+if ($nSucursal->getEnviarSMS()==true){
 if (strlen($paciente_->getTelefonoCel())==10){
     $resSMS = enviaSMS_CitaNueva("52".$paciente_->getTelefonoCel(), $nConsulta->getTipoConsulta(), date("d/m/Y",strtotime($fechaCita)), "$hora:$minutos", $nSucursal->getSucursal(), $nSucursal->getNumTelefono());
     sleep(3);
@@ -224,7 +225,10 @@ if (strlen($paciente_->getTelefonoCel())==10){
     }
     else 
         $r->call('mostrarMsjError',"No se envi&oacute; el SMS",3);
-    
+   
+} else
+    $r->call('mostrarMsjError',"&Eacute;sta sucursal tiene desactivado el env&iacute;o de SMS",3);
+
     //*/
        
 }

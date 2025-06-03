@@ -98,11 +98,11 @@ function cargarInformacion($informacion,$txtDuracion,$hora,$minuto,$cabina,$chkb
 						<input type='hidden' id='hdnFecha' value='".$informacion['fecha']."'/>
 						
 					<ul><li><strong>Fecha: </strong>".$auxFecha."</li><li><strong>Paciente: </strong>".$informacion['nombre_paciente']." (".$informacion['telefono'].")</li>
-                        <li><strong>Sucursal: </strong>".$informacion['sucursal']."</li>
-						<li><strong>Horario: </strong>".$informacion['hora']." - ".$informacion['horaFin']."</li><li><strong>Consulta: </strong>".$informacion['tipoConsulta']."</li>
-                        <li><strong>Duracion: </strong>".$duracion_."</li>
-                        <li><strong>Servicio: </strong>".$informacion['servicio']."</li>
-						<li><strong>Cabina: </strong>".$informacion['cabina']."</li> <li><strong>Responsable: </strong>".$informacion['nombre_usuario']."</li>
+                        <li><strong>Sucursal: </strong>" . $informacion['sucursal'] . "</li>
+						<li><strong>Horario: </strong>" . $informacion['hora'] . " - " . $informacion['horaFin'] . "</li><li><strong>Consulta: </strong>" . $informacion['tipoConsulta'] . "</li>
+                        <li><strong>Duracion: </strong>" . $duracion_ . "</li>
+                        <li><strong>Servicio: </strong>" . $informacion['servicio'] . "</li>
+						<li><strong>Cabina: </strong>" . $informacion['cabina'] . "</li> <li><strong>Responsable: </strong>" . $informacion['nombre_usuario'] . "</li>
                     <li><strong>Estatus: </strong>".$informacion['descripcion']."</li>";
     if (intval($informacion['idUsuarioCancela'])>0&&($informacion['descripcion']=="Cancelada por el paciente"||$informacion['descripcion']=="Cancelada por el encargado"))
         $textCita.= "<li><strong>Cancelada por: </strong>".$informacion['personaCancela']."</li>";
@@ -271,15 +271,20 @@ function guardarCambios($idCita,$duracion,$hora,$minuto,$consultorio,$chkbox,$fe
        $nSucursal->setIdSucursal($cita->getIdSucursal());
        $nConsulta= new ModeloConsulta();
        $nConsulta->setIdConsulta($cita->getIdConsulta());
-    if (strlen($cita->getTelefonoPaciente()) == 12) {
-        $Res = enviaSMS_CitaModificada($cita->getTelefonoPaciente(), date("d/m/Y", strtotime($fecha)), "$hora:$minuto", $nSucursal->getSucursal(), $nSucursal->getNumTelefono());
-        if ($Res==true)
-            $citaactualizacion->setSms();
-        else
-            $r->call('mostrarMsjError', "No se envi&oacute; el SMS", 3);
-    } else {
-        $r->call('mostrarMsjError', "No se puede enviar el SMS, el n&uacute;mero es incorrecto ", 3);
-    }
+      
+       if ($nSucursal->getEnviarSMS()==true){
+          if (strlen($cita->getTelefonoPaciente()) == 12) {
+            $Res = enviaSMS_CitaModificada($cita->getTelefonoPaciente(), date("d/m/Y", strtotime($fecha)), "$hora:$minuto", $nSucursal->getSucursal(), $nSucursal->getNumTelefono());
+            if ($Res==true)
+                $citaactualizacion->setSms();
+            else
+                $r->call('mostrarMsjError', "No se envi&oacute; el SMS", 3);
+        } else {
+            $r->call('mostrarMsjError', "No se puede enviar el SMS, el n&uacute;mero es incorrecto ", 3);
+        }
+       } else
+           $r->call('mostrarMsjError',"&Eacute;sta sucursal tiene desactivado el env&iacute;o de SMS",3);
+           
        
        
        $citaactualizacion->Guardar();

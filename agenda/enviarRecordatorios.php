@@ -71,7 +71,7 @@ if ($dia != 6) { // no es sabado
             inner join paciente as p on c.idPaciente=p.idPaciente
             inner join sucursal as s on c.idSucursal=s.idSucursal
             inner join consulta as co on c.idConsulta=co.idConsulta
-            where c.estatus='nueva' and recordatorio2=0 and enviarRecordatorio2=1 and fechaInicio>='$fechaInicial' and fechaInicio<='$fechaFinal'";
+            where s.enviarRecordatorio=1 and c.estatus='nueva' and recordatorio2=0 and enviarRecordatorio2=1 and fechaInicio>='$fechaInicial' and fechaInicio<='$fechaFinal'";
     $resultado = mysqli_query($Conexion, $query);
     $respuesta = array();
 //    var_dump(mysqli_fetch_assoc($resultado));
