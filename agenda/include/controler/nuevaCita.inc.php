@@ -199,36 +199,40 @@ function guardarCita($paciente,$sucursal,$idCabina,$consulta,$duracion,$fecha,$h
     $paciente_ = new ModeloPaciente();
     $paciente_->setIdPaciente($paciente);
     
+    $r->call('mostrarMsjExito','Se agreg&oacute; correctamente la cita! ',3);
     
     $resSMS=false; 
 //    if ($Recordatorio=='1')
-if ($nSucursal->getEnviarSMS()==true){
-if (strlen($paciente_->getTelefonoCel())==10){
-    $resSMS = enviaSMS_CitaNueva("52".$paciente_->getTelefonoCel(), $nConsulta->getTipoConsulta(), date("d/m/Y",strtotime($fechaCita)), "$hora:$minutos", $nSucursal->getSucursal(), $nSucursal->getNumTelefono());
-    sleep(3);
-    $r->call('mostrarMsjError',$resSMS,30);
-    $r->call('mostrarMsjExito','Se agreg&oacute; correctamente las citas! ',3);
-    $r->call('limpiarDatos');
-    
-    $r->redirect("listadoCitas.php",60);
-    return $r;
-}        else 
-            $r->call('mostrarMsjError',"No se puede enviar el SMS, el n&uacute;mero es incorrecto ",3);
-    sleep(3);
-    if ($resSMS==true){
-        $r->call('mostrarMsjExito',"Se envi&oacute; el SMS al ".$paciente_->getTelefonoCel(),3);
-        $cita = new ModeloCita();
-        $cita->setIdCita($idCita);
-        $cita->setRecordatorio1();
-        $cita->setFechaEnvioSMS(date( 'Y-m-d H:i:s'));
-        $cita->Guardar();
-    }
-    else 
-        $r->call('mostrarMsjError',"No se envi&oacute; el SMS",3);
-   
-} else
-    $r->call('mostrarMsjError',"&Eacute;sta sucursal tiene desactivado el env&iacute;o de SMS",3);
+if ($nSucursal->getEnviarSMS() == 'Si') {
+        if (strlen($paciente_->getTelefonoCel()) == 10) {
+            $resSMS = enviaSMS_CitaNueva("52" . $paciente_->getTelefonoCel(), $nConsulta->getTipoConsulta(), date("d/m/Y", strtotime($fechaCita)), "$hora:$minutos", $nSucursal->getSucursal(), $nSucursal->getNumTelefono());
+            sleep(3);
+            // $r->call('mostrarMsjError',$resSMS,30);
+            $r->call('limpiarDatos');
 
+            sleep(3);
+            if ($resSMS == true) {
+                $r->call('mostrarMsjExito', "Se envi&oacute; el SMS al " . $paciente_->getTelefonoCel(), 3);
+                $cita = new ModeloCita();
+                $cita->setIdCita($idCita);
+                $cita->setRecordatorio1();
+                $cita->setFechaEnvioSMS(date('Y-m-d H:i:s'));
+                $cita->Guardar();
+            } else {
+                $r->call('mostrarMsjError', "No se envi&oacute; el SMS", 3);
+            }
+
+        } else
+            $r->call('mostrarMsjError', "No se puede enviar el SMS, el n&uacute;mero es incorrecto ", 3);
+} else{
+        $r->call('mostrarMsjError', "&Eacute;sta sucursal tiene desactivado el env&iacute;o de SMS", 3);
+}
+
+    $r->call('limpiarDatos');
+
+    $r->redirect("listadoCitas.php", 15);
+
+    return $r;
     //*/
        
 }

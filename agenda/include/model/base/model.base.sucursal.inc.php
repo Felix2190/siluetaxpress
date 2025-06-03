@@ -20,8 +20,8 @@
 		var $sabadoSalida=0;
 		var $numTelefono='';
 		var $idFranquicia=0;
-		var $enviarSMS='0';
-		var $enviarRecordatorio='0';
+		var $enviarSMS='No';
+		var $enviarRecordatorio='No';
 
 		var $__s=array("idSucursal","sucursal","cveEstado","cveMunicipio","direccion","estatus","entreSemanaEntrada","entreSemanaSalida","sabadoEntrada","sabadoSalida","numTelefono","idFranquicia","enviarSMS","enviarRecordatorio");
 		var $__ss=array();
@@ -113,13 +113,31 @@
 			
 			$this->idFranquicia=$idFranquicia;
 		}
-		public function setEnviarSMS()
+		public function setEnviarSMS($enviarSMS)
 		{
-			$this->enviarSMS=1;
+			
+			$this->enviarSMS=$enviarSMS;
 		}
-		public function setEnviarRecordatorio()
+		public function setEnviarSMSSi()
 		{
-			$this->enviarRecordatorio=1;
+			$this->enviarSMS='Si';
+		}
+		public function setEnviarSMSNo()
+		{
+			$this->enviarSMS='No';
+		}
+		public function setEnviarRecordatorio($enviarRecordatorio)
+		{
+			
+			$this->enviarRecordatorio=$enviarRecordatorio;
+		}
+		public function setEnviarRecordatorioSi()
+		{
+			$this->enviarRecordatorio='Si';
+		}
+		public function setEnviarRecordatorioNo()
+		{
+			$this->enviarRecordatorio='No';
 		}
 
 		#------------------------------------------------------------------------------------------------------#
@@ -127,14 +145,6 @@
 		#------------------------------------------------------------------------------------------------------#
 
 		
-		public function unsetEnviarSMS()
-		{
-			$this->enviarSMS=0;
-		}
-		public function unsetEnviarRecordatorio()
-		{
-			$this->enviarRecordatorio=0;
-		}
 
 		#------------------------------------------------------------------------------------------------------#
 		#------------------------------------------------Getter------------------------------------------------#
@@ -223,8 +233,8 @@
 			$this->sabadoSalida=0;
 			$this->numTelefono='';
 			$this->idFranquicia=0;
-			$this->enviarSMS='0';
-			$this->enviarRecordatorio='0';
+			$this->enviarSMS='No';
+			$this->enviarRecordatorio='No';
 		}
 
 		

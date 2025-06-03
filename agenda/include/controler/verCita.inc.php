@@ -272,8 +272,8 @@ function guardarCambios($idCita,$duracion,$hora,$minuto,$consultorio,$chkbox,$fe
        $nConsulta= new ModeloConsulta();
        $nConsulta->setIdConsulta($cita->getIdConsulta());
       
-       if ($nSucursal->getEnviarSMS()==true){
-          if (strlen($cita->getTelefonoPaciente()) == 12) {
+       if ($nSucursal->getEnviarSMS() == 'Si') {
+           if (strlen($cita->getTelefonoPaciente()) == 12) {
             $Res = enviaSMS_CitaModificada($cita->getTelefonoPaciente(), date("d/m/Y", strtotime($fecha)), "$hora:$minuto", $nSucursal->getSucursal(), $nSucursal->getNumTelefono());
             if ($Res==true)
                 $citaactualizacion->setSms();
