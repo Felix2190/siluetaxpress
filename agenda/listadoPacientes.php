@@ -11,8 +11,12 @@ require_once 'masterInclude.inc.php';
 		<link rel="stylesheet" href="assets/css/main.css" />
 		<!--[if lte IE 9]><link rel="stylesheet" href="assets/css/ie9.css" /><![endif]-->
 		<!--[if lte IE 8]><link rel="stylesheet" href="assets/css/ie8.css" /><![endif]-->
+		<link href="http://maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css" rel="stylesheet">   
 		
 		<?php require_once 'importar_scripts.php'; ?>
+<script src="https://code.jquery.com/jquery-3.7.1.js"></script>
+<link rel="stylesheet" href="https://cdn.datatables.net/2.3.3/css/dataTables.dataTables.css"/>
+<script type="text/javascript" src="https://cdn.datatables.net/2.3.3/js/dataTables.js"></script>
 	</head>
 	<body>
 
@@ -49,7 +53,7 @@ require_once 'masterInclude.inc.php';
 								</div>
 								<div class="4u 12u$(xsmall)">
 									<div class="select-wrapper">
-									<select name="demo-category" id="slcSucursalFranquicia">
+									<select name="demo-category" id="slcSucursalFranquicia" disabled >
 									</select>
 									</div>
 									</div>
@@ -58,7 +62,7 @@ require_once 'masterInclude.inc.php';
 									
 								
 								</section>
-								
+<!-- 								
 							<table class="table" id="tablesorting-1">
                   											<thead>
                   											<tr >
@@ -66,8 +70,10 @@ require_once 'masterInclude.inc.php';
                   											</td>
                   											
                   											</tr>
+     -->             								<table id="myTable" class="display" >  
+                  											<thead>
                   												<tr>
-                  													<th>Nombre</th>
+                  													<th >Nombre</th>
                   													<th>Tel&eacute;fono</th>
                   													<th>Completitud (Hoja cl&iacute;nica)</th>
                   													<th>Fecha de registro</th>
@@ -77,15 +83,15 @@ require_once 'masterInclude.inc.php';
                   													<th>Opciones</th>
                   												</tr>
                   											</thead>
-                  											<tbody>
-                  									
+                  											<tbody id="pacientesTBody">
                   											</tbody>
+                  								<!-- 		
                   											<tfoot>
                   												<tr>
                   													<td colspan="8" class="pager form-horizontal">
                   														<button class="btn first"><i class="fa fa-step-backward"></i></button>
                   														<button class="btn prev"><i class="fa fa-arrow-left"></i></button>
-                  														<span class="pagedisplay"></span> <!-- this can be any element, including an input -->
+                  														<span class="pagedisplay"></span> <!-- this can be any element, including an input ->
                   														<button class="btn next"><i class="fa fa-arrow-right"></i></button>
                   														<button class="btn last"><i class="fa fa-step-forward"></i></button>
                   														<div class="select-wrapper 1u 12u$(xsmall)" style="float: right;">
@@ -100,6 +106,8 @@ require_once 'masterInclude.inc.php';
                   													</td>
                   												</tr>
                   											</tfoot>
+                  									-->
+
                   										</table>
 
 								

@@ -21,6 +21,7 @@ class clsSession
 	private $idFranquicia;
 	private $envioNotificaciones;
 	private $envioLink;
+	private $idTipoUsuario;
 	
 	
 	public $_lastTime;
@@ -38,7 +39,7 @@ class clsSession
 	#--------------------------------------------Control--------------------------------------------#
 	#-----------------------------------------------------------------------------------------------#
 
-	var $__s=array(	"userName",	"idUsuario","nombre","apellidos","tipoUsuario","sucursal","lugar","correo","idRol", "idSucursal","abrev","idFranquicia","envioNotificaciones","envioLink");
+	var $__s=array(	"userName",	"idUsuario","nombre","apellidos","tipoUsuario","sucursal","lugar","correo","idRol", "idSucursal","abrev","idFranquicia","envioNotificaciones","envioLink","idTipoUsuario");
 
 	public function __construct()
 	{
@@ -132,6 +133,12 @@ class clsSession
 	{
 	    return $this->envioLink;
 	}
+
+	public function getIdTipoUsuario()
+	{
+	    return $this->idTipoUsuario;
+	}
+	
 	
 	public function isSessionActive()
 	{

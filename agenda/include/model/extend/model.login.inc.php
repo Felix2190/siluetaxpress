@@ -75,7 +75,7 @@ class ModeloLogin extends ModeloBaseLogin
                                 $arrInfoUsuario['idFranquicia'] = $infoUsuario['franquicia'];
                                 return array(true,$arrInfoUsuario);
                             }else {
-                                // sucursal inválida
+                                // sucursal invï¿½lida
                                 return array(false,'No tiene acceso a esta sucursal');
                             }
                         }else{
@@ -87,7 +87,7 @@ class ModeloLogin extends ModeloBaseLogin
                         return array(false,'Error al cargar los datos del usuario');
                     }
                 } else {
-                    // contraseña incorrecta
+                    // contraseï¿½a incorrecta
                     return array(false,'La contrase&ntilde;a ingresada es incorrecta');
                 }
             } else {
@@ -102,7 +102,8 @@ class ModeloLogin extends ModeloBaseLogin
 
     public function obtenerDatosUsuario($idUsuario)
     {
-        $query = "Select idUsuario, u.nombre, apellidos, t.nombre as tipoUsuario, sucursal, m.NOM_MUN as lugar, correo, u.idSucursal,abrev, s.idFranquicia from usuario as u
+        $query = "Select idUsuario, u.nombre, apellidos, t.nombre as tipoUsuario, sucursal, m.NOM_MUN as lugar, correo, 
+            u.idSucursal,abrev, s.idFranquicia, t.idTipoUsuario as idTipoUsuario from usuario as u
     		inner join tipousuario as t on u.idTipoUsuario=t.idTipoUsuario inner join sucursal as s on u.idSucursal=s.idSucursal
 	       	inner join inegidomgeo_cat_municipio as m on CVE_ENT=cveEstado and CVE_MUN=cveMunicipio
             where idUsuario=" . $idUsuario;

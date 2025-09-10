@@ -1,6 +1,6 @@
 $(document).ready(function(){
 	iniciar();
-});
+	});
 	 
 var arrSucursal=[]; 
 
@@ -36,6 +36,8 @@ function iniciar(){
 				}
 			});
 	$( "#slcSucursalFranquicia" ).change(listarPacientes);
+
+
 }
 
 function listarPacientes(){
@@ -44,25 +46,47 @@ function listarPacientes(){
 	*/	nsucursal=$( "#slcSucursalFranquicia" ).val();
 
 	setTimeout(function() {
-		estiloTabla(nsucursal);
+			    $.ajax({
+			        url: 'getListadoPacientes.php?sucursal='+nsucursal+' ',
+					type: 'GET',
+			        dataType: 'json',
+					success: function(data) {
+			            var tabla = $('#pacientesTBody'); 
+						tabla.empty(); 
+
+			            $.each(data, function(index, item) {
+						if(item.fechaProxima!=null)
+							arrFechaProxima= item.fechaProxima.split("-");
+						arrFecha= item.fecha.split("-");
+			                var fila = $('<tr>');
+			                fila.append($('<td >').html(item.nombreP + ($( "#slcSucursalFranquicia" ).val()==''?('<br /> ['+item.sucursal+']'):'')));
+			                fila.append($('<td>').text(item.telefonoCel));
+			                fila.append($('<td>').text(item.completitud));
+							fila.append($('<td>').text(arrFecha[2]+"/"+arrFecha[1]+"/"+arrFecha[0]));
+							fila.append($('<td>').text(item.consultasHechas));
+							fila.append($('<td>').text(item.consultasProximas));
+//							fila.append($('<td>').text(item.consultasProximas));
+							fila.append($('<td>').html(item.fechaProxima!=null?("<a onClick='verCita("+item.cita+")'> <img src='images/editaCita.png' title='"+arrFechaProxima[2]+" de "+obtenMes(parseInt(arrFechaProxima[1])-1)+" del "+arrFechaProxima[0]+"' style='width: 30px' /></a>"):'-'));
+							      html="<a onClick='verPaciente("+item.idPaciente+")'><img src='images/ver.png' title='Ver' style='width: 30px' /></a>"+
+							"<a onClick='editarPaciente("+item.idPaciente+")'><img src='images/editPaciente.png' title='editar' style='width: 30px' /></a>";
+							if(parseInt(item.consultasProximas )>0)
+							    html+="<a onClick='mostrarCitas("+item.idPaciente+")'> <img src='images/citas.png' style='width: 30px' /></a>";
+							else if($.inArray(item.sucursal,arrSucursal)>0||$("#hdnRol").val()==1||$("#hdnIdUsuario").val()==43||$("#hdnIdUsuario").val()==52)
+								html+="<a onClick='eliminarPaciente("+item.idPaciente+")'> <img src='images/eliminaPaciente.png' style='width: 30px' /></a>";
+							html+="<a onClick='verSeg("+item.idPaciente+")'> <img src='images/folder.png' style='width: 30px' /></a>";
+							fila.append($('<td>').html(html));
+		//					fila.append($('<td>').text());
+			                tabla.append(fila);
+						                    
+			            });
+						new DataTable('#myTable');
+
+			        },
+			        error: function(error) {
+			            console.error("Error al cargar los datos:", error);
+			        }
+			    });
 	},200);
-/*/
-	$.ajax({
-		method : "post",
-		url : "adminFunciones.php",
-		data : {
-			listadoPacientes:nsucursal
-		},
-		success : function(data) {
-			respuesta=JSON.parse(data);
-			xajax_verTabla(respuesta,nsucursal);
-			
-			setTimeout(function() {
-				estiloTabla();
-			},2000);
-		}
-	});
-/*/
 }
 
 function verPaciente(id){

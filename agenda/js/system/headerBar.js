@@ -13,28 +13,39 @@ $(document).ready(function(){
 		}
 	});
 	
-
-	setTimeout(function() {
-		setInterval(function(){
 	$.ajax({
-		method : "post",
-		url : "adminFunciones.php",
-		data : {
-			sucursalVerificaAsistencia:$( "#slcSucursalBar" ).val()
+	method : "post",
+	url : "adminFunciones.php",
+	data : {
+		esRecepcion:0
+	},
+	success : function(data) {
+		if(data==1){
+			setTimeout(function() {
+				setInterval(function(){
+					$.ajax({
+						method : "post",
+						url : "adminFunciones.php",
+						data : {
+							sucursalVerificaAsistencia:$( "#slcSucursalBar" ).val()
+							
+						},
+						success : function(data) {
+							respuesta=JSON.parse(data);
+							if(!$.isEmptyObject(respuesta)){
+								idCitaV=respuesta['idCita'];
+								numV=respuesta['telefono'];
+									$( "#msjVerifica" ).show();
+									$( "#divVerifica" ).html("&iquest;"+respuesta['nombre_paciente']+" asisti&oacute; a su cita en cabina "+respuesta['cabina']+"?");
+							}
+						}	
+					});
+				},7500);
+			},2906);
 			
-		},
-		success : function(data) {
-			respuesta=JSON.parse(data);
-			if(!$.isEmptyObject(respuesta)){
-				idCitaV=respuesta['idCita'];
-				numV=respuesta['telefono'];
-					$( "#msjVerifica" ).show();
-					$( "#divVerifica" ).html("&iquest;"+respuesta['nombre_paciente']+" asisti&oacute; a su cita en cabina "+respuesta['cabina']+"?");
-			}
-		}	
+		}
+		}
 	});
-		},7500);
-	},2906);
 
 		 $( "#btnSiVerifica" ).click(function(){
 			asistencia(true);
@@ -62,12 +73,16 @@ $(document).ready(function(){
 			}
 		});
 	});
-	
 
+	url=url.split("/");
+	url=url[url.length-1];
+	
+	if(url!="listadoPacientes.php"){
 	$( "#calendarioVerde" ).datepickerVerde({
 		inline: true
 	});
-   
+	}
+	   
 	setTimeout(function() {
 	 url=url.split("/");
 		url=url[url.length-1];
@@ -148,8 +163,8 @@ function asistencia(e){
 		success : function(data) {
 			$( "#msjVerifica" ).hide();
 				window.open("https://web.whatsapp.com/send?phone=521"+numV+"&text="+JSON.parse(data), "_blank");
-}
-	});
+			}
+		});
 
 }
 	

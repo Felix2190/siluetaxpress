@@ -146,12 +146,12 @@ $dbLink->set_charset(BD_CHARSET);
 	#---------------------------------------------Inicializacion de variables----------------------------------------------#
 	#----------------------------------------------------------------------------------------------------------------------#
   $sucursal =  $_GET["sucursal"];
-  $pagina =  $_GET["page"];
-  $tamano =  $_GET["size"];
+//  $pagina =  $_GET["page"];
+ // $tamano =  $_GET["size"];
   $filtros="";
   $ordenar="";
-  $filtros = armar_filtros();
-  $ordenar = ordenar();
+  //$filtros = armar_filtros();
+  //$ordenar = ordenar();
   $inner="";
   $where=" true ";
   if ($sucursal==""){
@@ -159,18 +159,18 @@ $dbLink->set_charset(BD_CHARSET);
   }else {
       $where.=" and vw.idSucursal=".$sucursal;
   }
-  $inicial = (($pagina) * $tamano);
+  //$inicial = (($pagina) * $tamano);
   if($filtros!='')
   {
     $query="select idPaciente, nombreP, telefonoCel, vw.sucursal, completitud, fecha,  consultasHechas, consultasProximas, fechaProxima , cita 
-          from vw_listado_pacientes as vw $inner where $where and vw.estatus='activo'  ".$filtros.$ordenar." LIMIT $inicial, $tamano";
+          from vw_listado_pacientes as vw $inner where $where and vw.estatus='activo'  ".$filtros.$ordenar;
     
     
   }
   else
   {
       $query="select idPaciente, nombreP, telefonoCel, vw.sucursal, completitud, fecha,  consultasHechas, consultasProximas, fechaProxima , cita
-          from vw_listado_pacientes as vw $inner where $where and vw.estatus='activo' ".$ordenar." LIMIT $inicial, $tamano"; 	
+          from vw_listado_pacientes as vw $inner where $where and vw.estatus='activo' ".$ordenar; 	
   }
 //  echo $query;
   $result=mysqli_query($dbLink,$query);
@@ -201,7 +201,8 @@ $dbLink->set_charset(BD_CHARSET);
     	$total = $r['total'];
     }
     
-    echo json_encode(array($total, $arreglo_filas));
+    //echo json_encode(array($total, $arreglo_filas));
+    echo json_encode($arreglo_filas);
   }
   else
   {
