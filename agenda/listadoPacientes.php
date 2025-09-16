@@ -48,11 +48,11 @@ require_once 'masterInclude.inc.php';
 				-->					<div class="row uniform" id="divInicio">
 									
 		<!--						<?php //if ($objSession->getidRol()==1){?>
-			-->						<div class="1u 12u$(xsmall)">
+			-->						<div class="1u 12u$(xsmall)" style="display: none;">
 									<label>Sucursal:</label>
 								</div>
 								<div class="4u 12u$(xsmall)">
-									<div class="select-wrapper">
+									<div class="select-wrapper" style="display: none;">
 									<select name="demo-category" id="slcSucursalFranquicia" disabled >
 									</select>
 									</div>

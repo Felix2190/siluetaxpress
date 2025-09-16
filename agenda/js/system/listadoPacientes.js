@@ -11,7 +11,7 @@ function iniciar(){
 			 arrSucursal.push($(this).text());
 		 });
 		 console.log(arrSucursal);
-	},700);
+	},400);
 	
 		 $.ajax({
 				method : "post",
@@ -43,7 +43,11 @@ function iniciar(){
 function listarPacientes(){
 /*	nsucursal=$( "#hdnSucursal" ).val();
 	if (nsucursal=='')
-	*/	nsucursal=$( "#slcSucursalFranquicia" ).val();
+	*/	
+
+	mostrarMsjEspera("Espere un momento, se est&aacute; cargando la informaci&oacute;n...",5);
+	nsucursal=$( "#slcSucursalFranquicia" ).val();
+	nsucursal='';
 
 	setTimeout(function() {
 			    $.ajax({
@@ -59,7 +63,7 @@ function listarPacientes(){
 							arrFechaProxima= item.fechaProxima.split("-");
 						arrFecha= item.fecha.split("-");
 			                var fila = $('<tr>');
-			                fila.append($('<td >').html(item.nombreP + ($( "#slcSucursalFranquicia" ).val()==''?('<br /> ['+item.sucursal+']'):'')));
+			                fila.append($('<td >').html(item.nombreP + (nsucursal==''?('<br /> ['+item.sucursal+']'):'')));
 			                fila.append($('<td>').text(item.telefonoCel));
 			                fila.append($('<td>').text(item.completitud));
 							fila.append($('<td>').text(arrFecha[2]+"/"+arrFecha[1]+"/"+arrFecha[0]));
@@ -86,7 +90,7 @@ function listarPacientes(){
 			            console.error("Error al cargar los datos:", error);
 			        }
 			    });
-	},200);
+	},50);
 }
 
 function verPaciente(id){
