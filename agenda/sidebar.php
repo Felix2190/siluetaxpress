@@ -83,11 +83,11 @@
 					<?php if ($objSession->getidRol()==1){?>
 						<li><a class="<?php if($subseccion=="editarPromociones") echo "active";?>" href="editarPromociones.php">Promociones</a></li>
 						<li><a class="<?php if($subseccion=="editarPersonal") echo "active";?>" href="editarPersonal.php">Personal encuestas</a></li>
-						<li><a class="<?php if($subseccion=="listadoEncuestas") echo "active";?>" href="listadoEncuestas.php">Encuestas sin responder</a></li>
 					<?php }?>
 					
 					<?php if ($objSession->getidRol()==1||$objSession->getEnvioLink()==1){?>
 						<li><a class="<?php if($subseccion=="enviaLink") echo "active";?>" href="enviaLink.php">Enviar encuesta</a></li>
+						<li><a class="<?php if($subseccion=="listadoEncuestas") echo "active";?>" href="listadoEncuestas.php">Encuestas sin responder</a></li>
 					<?php }?>
 						<li><a class="<?php if($subseccion=="consultaMedios") echo "active";?>" href="consultaMedios.php">Medios de difusi&oacute;n </a></li>
 					</ul>
