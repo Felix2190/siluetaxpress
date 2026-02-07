@@ -104,7 +104,13 @@ function consultarCitas($informacion,$fechaI){
             $tabla.="<td><a onclick='verCita(\"".$cita['idCita']."\")'><img src='images/editaCita.png' title='Ver/editar' style='width: 34px' /></a></td>";
  /*           else 
                 $tabla.="<td><a onclick='verOpciones(\"".$cita['idCita']."\")'><img src='images/cancelarCita2.png' title='Cancelar cita' style='width: 34px' /></a></td>";
-   */         $tabla.="</tr>";
+   */
+  if ($objSession->getidRol()==1||$objSession->getEnvioLink()==1){
+      $tabla.="<td><a onclick='enviaEncuesta(\"".$cita['idCita']."\")'><img src='images/whats.webp' title='Enviar encuesta' style='width: 34px' /></a></td>";
+      
+  }
+ 
+ $tabla.="</tr>";
         }
         $tabla.="</tbody></table></div></div><br />";
     }

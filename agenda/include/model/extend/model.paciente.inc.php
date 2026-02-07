@@ -173,6 +173,20 @@
 		    return $arreglo;
 		}
 		
+		
+		public function obtenerUltimaCitaByPaciente($id)
+		{
+		    $query = "Select c.idConsulta from paciente as p
+                     inner join cita as c on c.idPaciente=p.idPaciente where c.estatus='realizada' and p.idPaciente='$id' order by c.idCita limit 1";
+		    $tipoCita =1;
+		    $resultado = mysqli_query($this->dbLink, $query);
+		    if ($resultado && mysqli_num_rows($resultado) > 0) {
+		        $row =  mysqli_fetch_assoc($resultado);
+		        $tipoCita=$row['idConsulta'];
+		    }
+		    return $tipoCita;
+		}
+		
 		public function validarDatos(){
 		    return true;
 		}
