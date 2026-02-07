@@ -240,6 +240,13 @@ function verCita(idCita){
 	presionado=true;
 	xajax_verCita(idCita);
 }
+
+function enviaEncuesta(idCita){
+	idCitaV = idCita;
+	asistencia(true);
+}
+
+
 	//$("#").();
 //var alert = alertify.alert('Titulo','TextoAlerta').set('label', 'Aceptar');     	 
 //alert.set({transition:'zoom'}); //slide, zoom, flipx, flipy, fade, pulse (default)
