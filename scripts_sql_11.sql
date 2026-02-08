@@ -1,0 +1,1 @@
+ALTER TABLE `encuesta` ADD `idCita` INT NULL AFTER `estatus`, ADD INDEX (`idCita`); 

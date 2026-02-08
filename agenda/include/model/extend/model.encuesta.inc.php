@@ -100,4 +100,15 @@
 		    return $arreglo;
 		}
 		
+		public function existeEncuestaByIdCita($idCita)
+		{
+		    $query = "SELECT idEncuesta FROM encuesta where idCita=$idCita";
+		    $resultado = mysqli_query($this->dbLink, $query);
+		    if ($resultado && mysqli_num_rows($resultado) > 0) {
+		        $row_inf = mysqli_fetch_assoc($resultado);
+		        return $row_inf['idEncuesta'];
+		    }
+		        return 0;
+		}
+		
 	}

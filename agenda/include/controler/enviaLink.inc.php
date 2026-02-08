@@ -35,7 +35,7 @@ function guardarEncuesta($idPaciente){
     
     $encuesta = new ModeloEncuesta();
     $encuesta->setIdSucursal($objSession->getIdSucursal());
-    $encuesta->setIdTipoConsulta(1);
+    $encuesta->setIdTipoConsulta($paciente->obtenerUltimaCitaByPaciente($idPaciente));
     $encuesta->setIdPaciente($idPaciente);
     $encuesta->setIdUsuarioRegistro($objSession->getidUsuario());
     $encuesta->setEvaluacion(0);
@@ -48,8 +48,8 @@ function guardarEncuesta($idPaciente){
     }
     
     $r->call('mostrarMsjExito','Se agreg&oacute; correctamente la encuesta!',4);
-    //$r->call('enviaLink',$paciente->getTelefonoCel(),utf8_encode('Silueta Express le agradece su preferencia. Por favor podría realizar una encuesta de Satisfación en el sig. link? https://bit.ly/3GVXqnM ingresando el ID ').$encuesta->getIdEncuesta(),4);
-    $r->call('enviaLink',$paciente->getTelefonoCel(),utf8_encode('Silueta Express agradece tu visita. Ayúdanos a mejorar el servicio contestando esta pequeña encuesta ANÓNIMA de 3 preguntas rápidas link https://bit.ly/3GVXqnM ingresando el ID ').$encuesta->getIdEncuesta(),4);
+    //$r->call('enviaLink',$paciente->getTelefonoCel(),utf8_encode('Silueta Express le agradece su preferencia. Por favor podrï¿½a realizar una encuesta de Satisfaciï¿½n en el sig. link? https://bit.ly/3GVXqnM ingresando el ID ').$encuesta->getIdEncuesta(),4);
+    $r->call('enviaLink',$paciente->getTelefonoCel(),utf8_encode('Silueta Express agradece tu visita. Ayï¿½danos a mejorar el servicio contestando esta pequeï¿½a encuesta ANï¿½NIMA de 3 preguntas rï¿½pidas link https://bit.ly/3GVXqnM ingresando el ID ').$encuesta->getIdEncuesta(),4);
     $r->redirect("enviaLink.php",3);
         
         return $r;

@@ -183,22 +183,28 @@ if (isset($_POST['idCitaVerifica'])&&isset($_POST['estatus'])){
     if ($_POST['estatus']=='true') {
         require_once FOLDER_MODEL_EXTEND. "model.encuesta.inc.php";
         $encuesta = new ModeloEncuesta();
-        $encuesta->setIdSucursal($cita->getIdSucursal());
-        $encuesta->setIdTipoConsulta($cita->getIdConsulta());
-        $encuesta->setIdPaciente($cita->getIdPaciente());
-        $encuesta->setIdUsuarioRegistro($objSession->getidUsuario());
-        $encuesta->setEvaluacion(0);
-        $encuesta->unsetEstatus();
-        $encuesta->setFechaRegistro(date("Y-m-d H:i:s"));
-        $encuesta->Guardar();
+        $idE = $encuesta->existeEncuestaByIdCita($_POST['idCitaVerifica']);
+        if ($idE == 0){
+            $encuesta->setIdSucursal($cita->getIdSucursal());
+            $encuesta->setIdTipoConsulta($cita->getIdConsulta());
+            $encuesta->setIdPaciente($cita->getIdPaciente());
+            $encuesta->setIdUsuarioRegistro($objSession->getidUsuario());
+            $encuesta->setEvaluacion(0);
+            $encuesta->unsetEstatus();
+            $encuesta->setIdCita($_POST['idCitaVerifica']);
+            $encuesta->setFechaRegistro(date("Y-m-d H:i:s"));
+            $encuesta->Guardar();
+            $idE = $encuesta->getIdEncuesta();
+        }
+            
         if (!$encuesta->getError())
             //echo json_encode(utf8_encode("Silueta Express le agradece su preferencia. Por favor podr�a realizar una encuesta de Satisfaci�n en el sig. link? https://bit.ly/3GVXqnM ingresando el ID ".$encuesta->getIdEncuesta()));
-            echo json_encode(utf8_encode("Silueta Express agradece tu visita. Ay�danos a mejorar el servicio contestando esta peque�a encuesta AN�NIMA de 3 preguntas r�pidas link https://bit.ly/3GVXqnM ingresando el ID ".$encuesta->getIdEncuesta()));
+            echo json_encode(utf8_encode("Silueta Express agradece tu visita. Ayúdanos a mejorar el servicio contestando esta pequeña encuesta ANÓNIMA de 3 preguntas rápidas link https://bit.ly/3GVXqnM ingresando el ID ".$idE));
             else 
             echo "";
     }
     else{
-        echo json_encode(utf8_encode("Lamentamos mucho que no hayas podido asistir a tu cita el d�a de hoy, te pedimos para la siguiente cancelar por lo menos con 24 hrs de antelaci�n, recuerda que despu�s de 3 citas con falta sin cancelar se te tomar� como realizada. Todo esto con finalidad de mejorar el servicio y tener disponibilidad para otros pacientes. Estamos a tus �rdenes Atte. Silueta Express"));
+        echo json_encode(utf8_encode("Lamentamos mucho que no hayas podido asistir a tu cita el día de hoy, te pedimos para la siguiente cancelar por lo menos con 24 hrs de antelación, recuerda que después de 3 citas con falta sin cancelar se te tomará como realizada. Todo esto con finalidad de mejorar el servicio y tener disponibilidad para otros pacientes. Estamos a tus órdenes Atte. Silueta Express"));
     }
 }
 

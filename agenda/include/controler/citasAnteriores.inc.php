@@ -101,16 +101,17 @@ function consultarCitas($informacion,$fechaI){
             $tabla.="<tr><td>".$cita['hora']." - ".$cita['horaFin']."</td><td >".$cita['nombre_paciente']."</td><td>".$cita['tipoConsulta']."</td>
                     <td colspan='2'>".$detalles."</td><td colspan='2'>".$cita['servicio']."</td><td>".$cita['descripcion']."</td>";
 //        if ($objSession->getidRol()==1||$objSession->getidUsuario()==$cita['idUsuario'])
-            $tabla.="<td><a onclick='verCita(\"".$cita['idCita']."\")'><img src='images/editaCita.png' title='Ver/editar' style='width: 34px' /></a></td>";
+            $tabla.="<td><a onclick='verCita(\"".$cita['idCita']."\")'><img src='images/editaCita.png' title='Ver/editar' style='width: 34px' /></a>";
  /*           else 
                 $tabla.="<td><a onclick='verOpciones(\"".$cita['idCita']."\")'><img src='images/cancelarCita2.png' title='Cancelar cita' style='width: 34px' /></a></td>";
    */
-  if ($objSession->getidRol()==1||$objSession->getEnvioLink()==1){
-      $tabla.="<td><a onclick='enviaEncuesta(\"".$cita['idCita']."\")'><img src='images/whats.webp' title='Enviar encuesta' style='width: 34px' /></a></td>";
+  if ($objSession->getidRol()==1||$objSession->getEnvioLink()==1)
+      $tabla.="<br /><a onclick='enviaEncuesta(\"".$cita['idCita']."\")'><img src='images/whats.webp' title='Enviar encuesta' style='width: 34px' /></a></td>";
       
-  }
- 
- $tabla.="</tr>";
+  else 
+      $tabla.="</td>";
+
+      $tabla.="</tr>";
         }
         $tabla.="</tbody></table></div></div><br />";
     }
