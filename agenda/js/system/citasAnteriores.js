@@ -241,7 +241,8 @@ function verCita(idCita){
 	xajax_verCita(idCita);
 }
 
-function enviaEncuesta(idCita){
+function enviaEncuesta(idCita,numCel){
+	numV = numCel;
 	idCitaV = idCita;
 	asistencia(true);
 }

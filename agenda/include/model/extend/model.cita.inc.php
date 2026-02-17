@@ -372,7 +372,7 @@
                         
                         $query = "Select idCita, DATE_FORMAT(fechaInicio,'%Y-%m-%d') as fecha, DATE_FORMAT(fechaInicio,'%H:%i') as hora, duracion,
                     concat_ws(' ', p.nombre, p.apellidos) as nombre_paciente, DATE_FORMAT(fechaFin,'%H:%i') as horaFin, e.descripcion,
-                    tipoConsulta, sucursal, ser.nombre as servicio, ca.nombre as cabina, c.idUsuario from cita as c
+                    tipoConsulta, sucursal, ser.nombre as servicio, ca.nombre as cabina, c.idUsuario, p.telefonoCel from cita as c
                     inner join usuario as u on c.idUsuario=u.idUsuario
                     inner join paciente as p on c.idPaciente=p.idPaciente
                     inner join sucursal as s on c.idSucursal=s.idSucursal

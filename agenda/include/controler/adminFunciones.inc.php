@@ -199,7 +199,7 @@ if (isset($_POST['idCitaVerifica'])&&isset($_POST['estatus'])){
             
         if (!$encuesta->getError())
             //echo json_encode(utf8_encode("Silueta Express le agradece su preferencia. Por favor podr�a realizar una encuesta de Satisfaci�n en el sig. link? https://bit.ly/3GVXqnM ingresando el ID ".$encuesta->getIdEncuesta()));
-            echo json_encode(utf8_encode("Silueta Express agradece tu visita. Ayúdanos a mejorar el servicio contestando esta pequeña encuesta ANÓNIMA de 3 preguntas rápidas link https://bit.ly/3GVXqnM ingresando el ID ".$idE));
+            echo json_encode(("Silueta Express agradece tu visita. Ayúdanos a mejorar el servicio contestando esta pequeña encuesta ANÓNIMA de 3 preguntas rápidas link https://bit.ly/3GVXqnM ingresando el ID ".$idE));
             else 
             echo "";
     }
