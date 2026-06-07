@@ -45,6 +45,10 @@ if(!empty($_FILES['imagenCorreo']))
     
 }
 
+if (isset($_POST['whatNumPaciente'])&&isset($_POST['whatMensaje'])){
+    echo enviarWhatsapp($_POST['whatNumPaciente'], $_POST['whatMensaje']);
+}
+
 if (isset($_POST['esRecepcion'])){
     $objSession=unserialize($_SESSION['objSession']);
     echo $objSession->getIdTipoUsuario()==9?1:0;
@@ -1378,7 +1382,7 @@ function obtenerConsultorios($idConsulta,$idSucursal){
 function enviaSMS_CitaNueva($numPaciente, $consulta, $dia, $hora, $sucursal, $numSucursal)
 {
     $sMessage = "Ha agendado una cita en SiluetaExpress el dia $dia a las $hora hrs en $sucursal.\nSi desea cancelar su cita, comun�cate al $numSucursal";
-    return enviaSMS($numPaciente, $sMessage);
+    return enviarWhatsapp($numPaciente, $sMessage);
 }
 
 function enviaSMS_CitaNueva2($numPaciente, $consulta, $dia, $hora, $sucursal, $numSucursal)
@@ -1390,13 +1394,13 @@ function enviaSMS_CitaNueva2($numPaciente, $consulta, $dia, $hora, $sucursal, $n
 function enviaSMS_CitaModificada($numPaciente, $dia, $hora, $sucursal, $numSucursal)
 {
     $sMessage = "Se ha modificado tu cita en SiluetaExpress para el dia $dia a las $hora hrs en $sucursal.\nSi desea cancelar su cita, comun�cate al $numSucursal";
-    return enviaSMS($numPaciente, $sMessage);
+    return enviarWhatsapp($numPaciente, $sMessage);
 }
 
 function enviaSMS_recordatorio($numPaciente, $nombre, $servicio, $dia, $hora, $sucursal, $numSucursal)
 {
     $sMessage = "SiluetaExpress le recuerda su cita para el dia $dia a las $hora hrs en $sucursal.\nSi desea cancelar su cita, comun�cate al $numSucursal";
-    return enviaSMS($numPaciente, $sMessage);
+    return enviarWhatsapp($numPaciente, $sMessage);
 }
 
 function enviaSMS2($numPaciente, $sMessage)
@@ -1407,8 +1411,10 @@ function enviaSMS2($numPaciente, $sMessage)
     //$concat="concat=true&";
     $sData = 'cmd=sendsms&';
     $sData .= 'domainId=siluetaexpress&';
-    $sData .= 'login=lic.lezliedelariva@gmail.com&';
-    $sData .= 'passwd= MwPeXyT9i5t3&';
+    $sData .= 'login=rosailian.loza@hotmail.com&';
+    $sData .= 'passwd=r0sy.$ilu374_&';
+    
+    $sData.="concat=true&";
     
     $sData .= 'dest=' . str_replace(',', '&dest=', $numPaciente) . '&';
     $sData .= 'msg=' . urlencode(utf8_encode($sMessage));
@@ -1423,7 +1429,7 @@ function enviaSMS2($numPaciente, $sMessage)
         $output .= "suministrada por altiria";
         return $output;
     } else {
-        $buf = "POST http://www.altiria.net/api/http HTTP/1.0\r\n";
+        $buf = "POST http://www.altiria.net:8443/api/http HTTP/1.0\r\n";
         $buf .= "Host: www.altiria.net\r\n";
         $buf .= "Content-type: application/x-www-form-urlencoded; charset=UTF-8\r\n";
         $buf .= "Content-length: ".strlen($sData)."\r\n";
@@ -1442,11 +1448,11 @@ function enviaSMS2($numPaciente, $sMessage)
                 $info = stream_get_meta_data($fp);
                 if ($info['timed_out']){
                     $output = 'ERROR Tiempo de respuesta agotado';
-                    //return false;
+                    return false;
                     return $output;
                 } else {
                     $output = 'ERROR de respuesta';
-                   // return false;
+                    return false;
                     return $output;
                 }
             } else{
@@ -1456,7 +1462,7 @@ function enviaSMS2($numPaciente, $sMessage)
             }
         } else {
             $output = 'ERROR de respuesta';
- //           return false;
+            return false;
             return $output;
         }
         
@@ -1469,19 +1475,19 @@ function enviaSMS2($numPaciente, $sMessage)
             $output = "ERROR. Codigo error HTTP: ".substr($buf,9,3)."\n";
             $output .= "Compruebe que ha configurado correctamente la direccion/url ";
             $output .= "suministrada por Altiria";
-   //         return false;
+            return false;
             return $output;
         }
         //Se comprueba la respuesta de Altiria
         if (strstr($buf,"ERROR")){
             $output = $buf."<br />\n";
             $output .= " Ha ocurrido algun error. Compruebe la especificacion";
-     //       return false;
+            return false;
             return $output;
         } else {
             $output = $buf."\n";
             $output .= " Exito";
-       //     return true;
+//            return true;
             return $output;
         }
     }
@@ -1586,12 +1592,48 @@ function enviaSMS($numPaciente, $sMessage, $sucursal="")
 }
 
 
+function enviarWhatsapp($numPaciente, $sMessage){
+    $url = 'https://graph.facebook.com/v25.0/1125017720700664/messages';
+    $texto = ['body'=>$sMessage];
+    $data = [
+        "messaging_product"=> "whatsapp",
+        "recipient_type"=> "individual",
+        "to"=> $numPaciente,
+        "type"=> "text",
+        "text"=>$texto
+    ];
+    
+    // Initialize cURL
+    $ch = curl_init($url);
+    
+    // Encode data to JSON string
+    $jsonData = json_encode($data);
+    
+    // Set options for JSON Request Body
+    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+    curl_setopt($ch, CURLOPT_POST, true);
+    curl_setopt($ch, CURLOPT_POSTFIELDS, ($jsonData)); // Encodes array to JSON string
+    
+    // Set necessary headers
+    curl_setopt($ch, CURLOPT_HTTPHEADER, [
+        'Content-Type: application/json',
+        'Authorization: Bearer EAAWYjawweXgBRm03ZA8t9yNHMTmhSnUjCffNNA4XjYfJZCNtQT4cdoim5qBRRuZAaJGwypeZC4TR77FfA4zCDZAyyKR5WLTWyIoZC4CiovCWPywA5qAnMqZAisfTKXQWIFTTcxcZBIBAzgOhb5NqHSvWvwuPPMrE3rlZBBpIyTtUNygsJToLcQL1kGk4IWbMJggZDZD'
+    ]);
+    
+    // Execute request and fetch response
+    $response = curl_exec($ch);
+    
+    // Check for errors
+    return !curl_errno($ch); 
+}
+
 function obtenerListadoPacientes($idSucursal){
     require_once FOLDER_MODEL_EXTEND. "model.paciente.inc.php";
     $paciente = new ModeloPaciente();
     return json_encode($paciente->listadoPacientes($idSucursal));
     
 }
+
 
 function obtenerHorarioByDia($idSucursal,$fecha){
     require_once FOLDER_MODEL_EXTEND. "model.sucursal.inc.php";

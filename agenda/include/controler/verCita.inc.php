@@ -272,7 +272,7 @@ function guardarCambios($idCita,$duracion,$hora,$minuto,$consultorio,$chkbox,$fe
        $nConsulta= new ModeloConsulta();
        $nConsulta->setIdConsulta($cita->getIdConsulta());
       
-       if ($nSucursal->getEnviarSMS() == 'Si') {
+//       if ($nSucursal->getEnviarSMS() == 'Si') {
            if (strlen($cita->getTelefonoPaciente()) == 12) {
             $Res = enviaSMS_CitaModificada($cita->getTelefonoPaciente(), date("d/m/Y", strtotime($fecha)), "$hora:$minuto", $nSucursal->getSucursal(), $nSucursal->getNumTelefono());
             if ($Res==true)
@@ -282,9 +282,9 @@ function guardarCambios($idCita,$duracion,$hora,$minuto,$consultorio,$chkbox,$fe
         } else {
             $r->call('mostrarMsjError', "No se puede enviar el SMS, el n&uacute;mero es incorrecto ", 3);
         }
-       } else
+/*       } else
            $r->call('mostrarMsjError',"&Eacute;sta sucursal tiene desactivado el env&iacute;o de SMS",3);
-           
+*/           
        
        
        $citaactualizacion->Guardar();

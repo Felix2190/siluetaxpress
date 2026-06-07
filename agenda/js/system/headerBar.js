@@ -167,4 +167,21 @@ function asistencia(e){
 		});
 
 }
-	
+
+function enviaWhatsapp(numPaciente, mensaje){
+	$.ajax({
+			method : "post",
+			url : "adminFunciones.php",
+			data : {
+				whatNumPaciente:numPaciente, whatMensaje:mensaje
+			},
+			success : function(data) {
+				if(data==true)
+					mostrarMsjExito('Whatsapp enviado!! ',5);
+				else
+					mostrarMsjError('Error al enviar el whatsapp!! ',5);
+
+			}
+		});
+		
+}

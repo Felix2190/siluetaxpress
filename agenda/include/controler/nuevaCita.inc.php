@@ -197,13 +197,14 @@ function guardarCita($paciente,$sucursal,$idCabina,$consulta,$duracion,$fecha,$h
     $nConsulta= new ModeloConsulta();
     $nConsulta->setIdConsulta($consulta);
     $paciente_ = new ModeloPaciente();
+  
     $paciente_->setIdPaciente($paciente);
     
     $r->call('mostrarMsjExito','Se agreg&oacute; correctamente la cita! ',3);
     
     $resSMS=false; 
 //    if ($Recordatorio=='1')
-if ($nSucursal->getEnviarSMS() == 'Si') {
+//if ($nSucursal->getEnviarSMS() == 'Si') {
         if (strlen($paciente_->getTelefonoCel()) == 10) {
             $resSMS = enviaSMS_CitaNueva("52" . $paciente_->getTelefonoCel(), $nConsulta->getTipoConsulta(), date("d/m/Y", strtotime($fechaCita)), "$hora:$minutos", $nSucursal->getSucursal(), $nSucursal->getNumTelefono());
             sleep(3);
@@ -224,9 +225,9 @@ if ($nSucursal->getEnviarSMS() == 'Si') {
 
         } else
             $r->call('mostrarMsjError', "No se puede enviar el SMS, el n&uacute;mero es incorrecto ", 3);
-} else{
+/*}else{
         $r->call('mostrarMsjError', "&Eacute;sta sucursal tiene desactivado el env&iacute;o de SMS", 3);
-}
+}*/
 
     $r->call('limpiarDatos');
 
