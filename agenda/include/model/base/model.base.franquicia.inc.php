@@ -11,12 +11,13 @@
 		var $idFranquicia=0;
 		var $franquicia='';
 		var $idUsuario=0;
+		var $identificadorMeta='';
 		var $envio_sms='0';
 		var $cuenta='';
 		var $clave='';
 		var $fechaRegistro='';
 
-		var $__s=array("idFranquicia","franquicia","idUsuario","envio_sms","cuenta","clave","fechaRegistro");
+		var $__s=array("idFranquicia","franquicia","idUsuario","identificadorMeta","envio_sms","cuenta","clave","fechaRegistro");
 		var $__ss=array();
 
 		#------------------------------------------------------------------------------------------------------#
@@ -53,6 +54,10 @@
 		{
 			
 			$this->idUsuario=$idUsuario;
+		}
+		public function setIdentificadorMeta($identificadorMeta)
+		{
+			$this->identificadorMeta=$identificadorMeta;
 		}
 		public function setEnvio_sms()
 		{
@@ -100,6 +105,10 @@
 		{
 			return $this->idUsuario;
 		}
+		public function getIdentificadorMeta()
+		{
+			return $this->identificadorMeta;
+		}
 		public function getEnvio_sms()
 		{
 			return $this->envio_sms;
@@ -133,6 +142,7 @@
 			$this->idFranquicia=0;
 			$this->franquicia='';
 			$this->idUsuario=0;
+			$this->identificadorMeta='';
 			$this->envio_sms='0';
 			$this->cuenta='';
 			$this->clave='';
@@ -146,8 +156,8 @@
 		{
 			try
 			{
-				$SQL="INSERT INTO franquicia(franquicia,idUsuario,envio_sms,cuenta,clave,fechaRegistro)
-						VALUES('" . mysqli_real_escape_string($this->dbLink,$this->franquicia) . "','" . mysqli_real_escape_string($this->dbLink,$this->idUsuario) . "','" . mysqli_real_escape_string($this->dbLink,$this->envio_sms) . "','" . mysqli_real_escape_string($this->dbLink,$this->cuenta) . "','" . mysqli_real_escape_string($this->dbLink,$this->clave) . "','" . mysqli_real_escape_string($this->dbLink,$this->fechaRegistro) . "')";
+				$SQL="INSERT INTO franquicia(franquicia,idUsuario,identificadorMeta,envio_sms,cuenta,clave,fechaRegistro)
+						VALUES('" . mysqli_real_escape_string($this->dbLink,$this->franquicia) . "','" . mysqli_real_escape_string($this->dbLink,$this->idUsuario) . "','" . mysqli_real_escape_string($this->dbLink,$this->identificadorMeta) . "','" . mysqli_real_escape_string($this->dbLink,$this->envio_sms) . "','" . mysqli_real_escape_string($this->dbLink,$this->cuenta) . "','" . mysqli_real_escape_string($this->dbLink,$this->clave) . "','" . mysqli_real_escape_string($this->dbLink,$this->fechaRegistro) . "')";
 				$result=mysqli_query($this->dbLink,$SQL);
 				if(!$result)
 					return $this->setSystemError("Error en la insercion de registro.","[" . $SQL . "][" . mysqli_error($this->dbLink) . "][ModeloBaseFranquicia::Insertar]");
@@ -167,7 +177,7 @@
 		{
 			try
 			{
-				$SQL="UPDATE franquicia SET franquicia='" . mysqli_real_escape_string($this->dbLink,$this->franquicia) . "',idUsuario='" . mysqli_real_escape_string($this->dbLink,$this->idUsuario) . "',envio_sms='" . mysqli_real_escape_string($this->dbLink,$this->envio_sms) . "',cuenta='" . mysqli_real_escape_string($this->dbLink,$this->cuenta) . "',clave='" . mysqli_real_escape_string($this->dbLink,$this->clave) . "',fechaRegistro='" . mysqli_real_escape_string($this->dbLink,$this->fechaRegistro) . "'
+				$SQL="UPDATE franquicia SET franquicia='" . mysqli_real_escape_string($this->dbLink,$this->franquicia) . "',idUsuario='" . mysqli_real_escape_string($this->dbLink,$this->idUsuario) . "',identificadorMeta='" . mysqli_real_escape_string($this->dbLink,$this->identificadorMeta) . "',envio_sms='" . mysqli_real_escape_string($this->dbLink,$this->envio_sms) . "',cuenta='" . mysqli_real_escape_string($this->dbLink,$this->cuenta) . "',clave='" . mysqli_real_escape_string($this->dbLink,$this->clave) . "',fechaRegistro='" . mysqli_real_escape_string($this->dbLink,$this->fechaRegistro) . "'
 					WHERE idFranquicia=" . $this->idFranquicia;
 				
 				$result=mysqli_query($this->dbLink,$SQL);
@@ -209,7 +219,7 @@
 			try
 			{
 				$SQL="SELECT
-						idFranquicia,franquicia,idUsuario,envio_sms,cuenta,clave,fechaRegistro
+						idFranquicia,franquicia,idUsuario,identificadorMeta,envio_sms,cuenta,clave,fechaRegistro
 					FROM franquicia
 					WHERE idFranquicia=" . mysqli_real_escape_string($this->dbLink,$this->idFranquicia);
 					

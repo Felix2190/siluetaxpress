@@ -275,7 +275,7 @@ require_once 'masterInclude.inc.php';
 							<br />
 							<div class="row">
 							<div class='12u'>
-        						<input id='checkRecordatorio' checked name='checkRecordatorio' type='checkbox' > <label for='checkRecordatorio'>Enviar recordatorio SMS</label>
+        						<input id='checkRecordatorio' checked name='checkRecordatorio' type='checkbox' > <label for='checkRecordatorio'>Enviar recordatorio</label>
         					</div>
         					</div>
 							<br />

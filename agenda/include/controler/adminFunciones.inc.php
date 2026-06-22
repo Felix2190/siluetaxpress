@@ -1405,6 +1405,7 @@ function enviaSMS_recordatorio($numPaciente, $nombre, $servicio, $dia, $hora, $s
 
 function enviaSMS2($numPaciente, $sMessage)
 {
+    return false;
     date_default_timezone_set('America/Mexico_City');
     
     $concat="";
@@ -1497,6 +1498,7 @@ function enviaSMS2($numPaciente, $sMessage)
 
 function enviaSMS($numPaciente, $sMessage, $sucursal="")
 {
+    return false;
     date_default_timezone_set('America/Mexico_City');
     global $objSession;
     $idSucursal=($sucursal!=""?$sucursal:$objSession->getIdSucursal());

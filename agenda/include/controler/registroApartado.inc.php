@@ -130,7 +130,7 @@ function guardarCita($paciente,$sucursal,$idCabina,$consulta,$duracion,$fecha,$h
     $cita->setEstatus("nueva");
     $cita->setTelefonoPaciente("52".$paciente_->getTelefonoCel());
     $cita->setFechaRegistroCita(date( 'Y-m-d'));
-    //decidir si se envía el segundo recordatorio
+    //decidir si se envï¿½a el segundo recordatorio
     $datetime2 = new DateTime($cita->getFechaInicio());
     $datetime1 = new DateTime(date( 'Y-m-d H:i:s'));
     $interval = $datetime1->diff($datetime2);
@@ -168,7 +168,8 @@ function guardarCita($paciente,$sucursal,$idCabina,$consulta,$duracion,$fecha,$h
     $nConsulta->setIdConsulta($consulta);
     $paciente_ = new ModeloPaciente();
     $paciente_->setIdPaciente($paciente);
-    /**/
+    /*
+     * 
     $resSMS=false; 
     if ($Recordatorio=='1')
         $resSMS = enviaSMS_CitaNueva("52".$paciente_->getTelefonoCel(), $nConsulta->getTipoConsulta(), date("d/m/Y",strtotime($fechaCita)), "$hora:$minutos", $nSucursal->getSucursal(), $idCita);
@@ -180,7 +181,7 @@ function guardarCita($paciente,$sucursal,$idCabina,$consulta,$duracion,$fecha,$h
         $cita->setRecordatorio1();
         $cita->Guardar();
     }
-    //*/
+    */
     
     $r->call('mostrarMsjExito','Se agreg&oacute; correctamente las citas!',3);
     $r->call('limpiarDatos');

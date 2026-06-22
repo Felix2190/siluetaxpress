@@ -9,8 +9,11 @@ require_once FOLDER_MODEL_EXTEND. "model.paciente.inc.php";
 require_once FOLDER_MODEL_EXTEND. "model.sucursal.inc.php";
 require_once FOLDER_MODEL_EXTEND. "model.consulta.inc.php";
 require_once FOLDER_MODEL_EXTEND. "model.cabina.inc.php";
+require_once FOLDER_MODEL_EXTEND. "model.franquicia.inc.php";
 require_once FOLDER_MODEL_EXTEND. "model.citaactualizacion.inc.php";
+require_once FOLDER_MODEL_EXTEND. "model.cita_control_whatsapp.inc.php";
 require_once FOLDER_INCLUDE_AGENDA.'controler/adminFunciones.inc.php';
+require_once FOLDER_INCLUDE_AGENDA.'controler/adminMeta.inc.php';
 
 // -----------------------------------------------------------------------------------------------------------------#
 // --------------------------------------------Inicializacion de control--------------------------------------------#
@@ -201,11 +204,37 @@ function guardarCita($paciente,$sucursal,$idCabina,$consulta,$duracion,$fecha,$h
     $paciente_->setIdPaciente($paciente);
     
     $r->call('mostrarMsjExito','Se agreg&oacute; correctamente la cita! ',3);
-    
-    $resSMS=false; 
+    $fechaEnvio=date( 'Y-m-d H:i:s');
+    $resWh=false; 
 //    if ($Recordatorio=='1')
-//if ($nSucursal->getEnviarSMS() == 'Si') {
+if ($nSucursal->getEnviarWhatsapp() == 1) {
         if (strlen($paciente_->getTelefonoCel()) == 10) {
+            $franquicia = new ModeloFranquicia();
+            $franquicia->setIdFranquicia($nSucursal->getIdFranquicia());
+            $parametros = array("nombre"=>$paciente_->getNombre(),"dia"=>date("d/m/Y", strtotime($fechaCita)),"hora"=>"$hora:$minutos","sucursal"=>$nSucursal->getSucursal());
+            $objeto=obtenerJSONMeta("52".$paciente_->getTelefonoCel(), $parametros, "cita_nueva");
+            $resWh = enviaWhatsapp($objeto, $franquicia->getIdentificadorMeta());
+            sleep(2);
+            $r->call('limpiarDatos');
+            
+            $controlMeta = new ModeloCita_control_whatsapp();
+            $controlMeta->setIdCita($idCita);
+            $controlMeta->setIdPlantilla(1);
+            $controlMeta->setIdUsuario($objSession->getidUsuario());
+            $controlMeta->setFechaEnvio($fechaEnvio);
+            $controlMeta->setFechaRespuesta("");
+            $controlMeta->setNumeroCelular("521".$paciente_->getTelefonoCel());
+            
+            if ($resWh[0]==true){
+                $controlMeta->setEstatusPendiente();
+                
+            }else{
+                $controlMeta->setEstatusError();
+                $controlMeta->setErrorMeta($resWh[1]);
+            }
+            
+            $controlMeta->Guardar();
+            /*
             $resSMS = enviaSMS_CitaNueva("52" . $paciente_->getTelefonoCel(), $nConsulta->getTipoConsulta(), date("d/m/Y", strtotime($fechaCita)), "$hora:$minutos", $nSucursal->getSucursal(), $nSucursal->getNumTelefono());
             sleep(3);
             // $r->call('mostrarMsjError',$resSMS,30);
@@ -222,12 +251,14 @@ function guardarCita($paciente,$sucursal,$idCabina,$consulta,$duracion,$fecha,$h
             } else {
                 $r->call('mostrarMsjError', "No se envi&oacute; el SMS", 3);
             }
+            */
 
-        } else
+        } else{
             $r->call('mostrarMsjError', "No se puede enviar el SMS, el n&uacute;mero es incorrecto ", 3);
-/*}else{
-        $r->call('mostrarMsjError', "&Eacute;sta sucursal tiene desactivado el env&iacute;o de SMS", 3);
-}*/
+        }
+}else{
+        $r->call('mostrarMsjError', "&Eacute;sta sucursal tiene desactivado el env&iacute;o de Whatsapp", 3);
+}
 
     $r->call('limpiarDatos');
 

@@ -20,6 +20,8 @@ define("CLASS_COMUN", FOLDER_MODEL_DATA . "clsBasicCommon.inc.php");
 require_once CLASS_COMUN;
 require_once CLASS_CONEXION;
 require_once FOLDER_INCLUDE_AGENDA.'controler/adminFunciones.inc.php';
+require_once FOLDER_INCLUDE_AGENDA.'controler/adminMeta.inc.php';
+require_once FOLDER_MODEL_EXTEND. "model.cita_control_whatsapp.inc.php";
 
 $fechaActual = date("Y-m-d H:i:s");
 $horaActual= intval(date("H"));
@@ -67,22 +69,68 @@ if ($dia != 6) { // no es sabado
     
     $fechaFinal = date("Y-m-d H:$minInicio:00",$auxFecha);
     //($numPaciente, $consulta, $dia, $hora, $sucursal, $idConsulta)
-    $query = "Select c.idCita, p.telefonoCel, p.nombre, co.tipoConsulta, s.numTelefono, s.sucursal, DATE_FORMAT(fechaInicio,'%Y-%m-%d') as fecha, DATE_FORMAT(fechaInicio,'%H:%i') as hora from cita as c 
+    $query = "Select c.idCita, p.telefonoCel, p.nombre, co.tipoConsulta, s.numTelefono, s.sucursal, DATE_FORMAT(fechaInicio,'%Y-%m-%d') as fecha, DATE_FORMAT(fechaInicio,'%H:%i') as hora, f.identificadorMeta from cita as c 
             inner join paciente as p on c.idPaciente=p.idPaciente
             inner join sucursal as s on c.idSucursal=s.idSucursal
             inner join consulta as co on c.idConsulta=co.idConsulta
-            where s.enviarRecordatorio='Si' and c.estatus='nueva' and recordatorio2=0 and enviarRecordatorio2=1 and fechaInicio>='$fechaInicial' and fechaInicio<='$fechaFinal'";
+            inner join franquicia as f on f.idFranquicia=s.idFranquicia
+            where s.enviarWhatsapp=1 and c.estatus='nueva' and recordatorio2=0 and enviarRecordatorio2=1 and fechaInicio>='$fechaInicial' and fechaInicio<='$fechaFinal'";
     $resultado = mysqli_query($Conexion, $query);
     $respuesta = array();
 //    var_dump(mysqli_fetch_assoc($resultado));
     //echo $query;
      if ($resultado && mysqli_num_rows($resultado) > 0) {
         while ($row_inf = mysqli_fetch_assoc($resultado)){
+            /*
              $sms=enviaSMS_recordatorio("52".$row_inf['telefonoCel'], $row_inf['nombre'], $row_inf['tipoConsulta'], date("d/m/Y",strtotime($row_inf['fecha'])), $row_inf['hora'], $row_inf['sucursal'], $row_inf['numTelefono']);
              sleep(2);
              if ($sms==true)
                  $respuesta[]=$row_inf['idCita'];
+             */
+                 
+                 $controlMeta = new ModeloCita_control_whatsapp();
+                 $pr= $controlMeta->validacion($row_inf['idCita']);
+                 $fechaEnvio=date( 'Y-m-d H:i:s');
+                 $resWh=false;
+                 
+                 if ($pr[0]==true){
+                     if ($pr[1]=="template"){
+                         $parametros = array("nombre"=>$row_inf['nombre'],"dia"=>date("d/m/Y", strtotime($row_inf['fecha'])),"hora"=>$row_inf['hora'],"sucursal"=>$row_inf['sucursal']);
+                         $objeto=obtenerJSONMeta("52".$row_inf['telefonoCel'], $parametros, "cita_recordatorio");
+                    }else {
+                         $parametros['texto']="SiluetaExpress le recuerda su cita para el día ".date("d/m/Y", strtotime($row_inf['fecha']))." a las ".$row_inf['hora']." hrs en ".$row_inf['sucursal'].". Responde Si, para confirmar su cita; No, si desea cancelarla.";
+                         $objeto=obtenerJSONMeta("52".$row_inf['telefonoCel'], $parametros);
+                     }
+                     
+                     $resWh = enviaWhatsapp($objeto, $row_inf['identificadorMeta']);
+                     sleep(2);
+                     
+                     if ($pr[1]=="template"){
+                         $controlMeta = new ModeloCita_control_whatsapp();
+                         $controlMeta->setIdCita($row_inf['idCita']);
+                         $controlMeta->setIdPlantilla(3);
+                         $controlMeta->setIdUsuario(1);
+                         $controlMeta->setFechaEnvio($fechaEnvio);
+                         $controlMeta->setFechaRespuesta("");
+                         $controlMeta->setNumeroCelular("521".$row_inf['telefonoCel']);
+                         
+                         if ($resWh[0]==true){
+                             $controlMeta->setEstatusPendiente();
+                             
+                         }else{
+                             $controlMeta->setEstatusError();
+                             $controlMeta->setErrorMeta($resWh[1]);
+                         }
+                         
+                         $controlMeta->Guardar();
+                         
+                     }
+                     if ($resWh[0]==true)
+                         $respuesta[]=$row_inf['idCita'];
+                         
+                 }
              }
+             
            }
            
            foreach ($respuesta as $idCita){

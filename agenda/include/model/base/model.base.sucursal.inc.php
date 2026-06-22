@@ -21,9 +21,10 @@
 		var $numTelefono='';
 		var $idFranquicia=0;
 		var $enviarSMS='No';
+		var $enviarWhatsapp='0';
 		var $enviarRecordatorio='No';
 
-		var $__s=array("idSucursal","sucursal","cveEstado","cveMunicipio","direccion","estatus","entreSemanaEntrada","entreSemanaSalida","sabadoEntrada","sabadoSalida","numTelefono","idFranquicia","enviarSMS","enviarRecordatorio");
+		var $__s=array("idSucursal","sucursal","cveEstado","cveMunicipio","direccion","estatus","entreSemanaEntrada","entreSemanaSalida","sabadoEntrada","sabadoSalida","numTelefono","idFranquicia","enviarSMS","enviarWhatsapp","enviarRecordatorio");
 		var $__ss=array();
 
 		#------------------------------------------------------------------------------------------------------#
@@ -126,6 +127,10 @@
 		{
 			$this->enviarSMS='No';
 		}
+		public function setEnviarWhatsapp()
+		{
+			$this->enviarWhatsapp=1;
+		}
 		public function setEnviarRecordatorio($enviarRecordatorio)
 		{
 			
@@ -145,6 +150,10 @@
 		#------------------------------------------------------------------------------------------------------#
 
 		
+		public function unsetEnviarWhatsapp()
+		{
+			$this->enviarWhatsapp=0;
+		}
 
 		#------------------------------------------------------------------------------------------------------#
 		#------------------------------------------------Getter------------------------------------------------#
@@ -203,6 +212,10 @@
 		{
 			return $this->enviarSMS;
 		}
+		public function getEnviarWhatsapp()
+		{
+			return $this->enviarWhatsapp;
+		}
 		public function getEnviarRecordatorio()
 		{
 			return $this->enviarRecordatorio;
@@ -234,6 +247,7 @@
 			$this->numTelefono='';
 			$this->idFranquicia=0;
 			$this->enviarSMS='No';
+			$this->enviarWhatsapp='0';
 			$this->enviarRecordatorio='No';
 		}
 
@@ -244,8 +258,8 @@
 		{
 			try
 			{
-				$SQL="INSERT INTO sucursal(sucursal,cveEstado,cveMunicipio,direccion,estatus,entreSemanaEntrada,entreSemanaSalida,sabadoEntrada,sabadoSalida,numTelefono,idFranquicia,enviarSMS,enviarRecordatorio)
-						VALUES('" . mysqli_real_escape_string($this->dbLink,$this->sucursal) . "','" . mysqli_real_escape_string($this->dbLink,$this->cveEstado) . "','" . mysqli_real_escape_string($this->dbLink,$this->cveMunicipio) . "','" . mysqli_real_escape_string($this->dbLink,$this->direccion) . "','" . mysqli_real_escape_string($this->dbLink,$this->estatus) . "','" . mysqli_real_escape_string($this->dbLink,$this->entreSemanaEntrada) . "','" . mysqli_real_escape_string($this->dbLink,$this->entreSemanaSalida) . "','" . mysqli_real_escape_string($this->dbLink,$this->sabadoEntrada) . "','" . mysqli_real_escape_string($this->dbLink,$this->sabadoSalida) . "','" . mysqli_real_escape_string($this->dbLink,$this->numTelefono) . "','" . mysqli_real_escape_string($this->dbLink,$this->idFranquicia) . "','" . mysqli_real_escape_string($this->dbLink,$this->enviarSMS) . "','" . mysqli_real_escape_string($this->dbLink,$this->enviarRecordatorio) . "')";
+				$SQL="INSERT INTO sucursal(sucursal,cveEstado,cveMunicipio,direccion,estatus,entreSemanaEntrada,entreSemanaSalida,sabadoEntrada,sabadoSalida,numTelefono,idFranquicia,enviarSMS,enviarWhatsapp,enviarRecordatorio)
+						VALUES('" . mysqli_real_escape_string($this->dbLink,$this->sucursal) . "','" . mysqli_real_escape_string($this->dbLink,$this->cveEstado) . "','" . mysqli_real_escape_string($this->dbLink,$this->cveMunicipio) . "','" . mysqli_real_escape_string($this->dbLink,$this->direccion) . "','" . mysqli_real_escape_string($this->dbLink,$this->estatus) . "','" . mysqli_real_escape_string($this->dbLink,$this->entreSemanaEntrada) . "','" . mysqli_real_escape_string($this->dbLink,$this->entreSemanaSalida) . "','" . mysqli_real_escape_string($this->dbLink,$this->sabadoEntrada) . "','" . mysqli_real_escape_string($this->dbLink,$this->sabadoSalida) . "','" . mysqli_real_escape_string($this->dbLink,$this->numTelefono) . "','" . mysqli_real_escape_string($this->dbLink,$this->idFranquicia) . "','" . mysqli_real_escape_string($this->dbLink,$this->enviarSMS) . "','" . mysqli_real_escape_string($this->dbLink,$this->enviarWhatsapp) . "','" . mysqli_real_escape_string($this->dbLink,$this->enviarRecordatorio) . "')";
 				$result=mysqli_query($this->dbLink,$SQL);
 				if(!$result)
 					return $this->setSystemError("Error en la insercion de registro.","[" . $SQL . "][" . mysqli_error($this->dbLink) . "][ModeloBaseSucursal::Insertar]");
@@ -265,7 +279,7 @@
 		{
 			try
 			{
-				$SQL="UPDATE sucursal SET sucursal='" . mysqli_real_escape_string($this->dbLink,$this->sucursal) . "',cveEstado='" . mysqli_real_escape_string($this->dbLink,$this->cveEstado) . "',cveMunicipio='" . mysqli_real_escape_string($this->dbLink,$this->cveMunicipio) . "',direccion='" . mysqli_real_escape_string($this->dbLink,$this->direccion) . "',estatus='" . mysqli_real_escape_string($this->dbLink,$this->estatus) . "',entreSemanaEntrada='" . mysqli_real_escape_string($this->dbLink,$this->entreSemanaEntrada) . "',entreSemanaSalida='" . mysqli_real_escape_string($this->dbLink,$this->entreSemanaSalida) . "',sabadoEntrada='" . mysqli_real_escape_string($this->dbLink,$this->sabadoEntrada) . "',sabadoSalida='" . mysqli_real_escape_string($this->dbLink,$this->sabadoSalida) . "',numTelefono='" . mysqli_real_escape_string($this->dbLink,$this->numTelefono) . "',idFranquicia='" . mysqli_real_escape_string($this->dbLink,$this->idFranquicia) . "',enviarSMS='" . mysqli_real_escape_string($this->dbLink,$this->enviarSMS) . "',enviarRecordatorio='" . mysqli_real_escape_string($this->dbLink,$this->enviarRecordatorio) . "'
+				$SQL="UPDATE sucursal SET sucursal='" . mysqli_real_escape_string($this->dbLink,$this->sucursal) . "',cveEstado='" . mysqli_real_escape_string($this->dbLink,$this->cveEstado) . "',cveMunicipio='" . mysqli_real_escape_string($this->dbLink,$this->cveMunicipio) . "',direccion='" . mysqli_real_escape_string($this->dbLink,$this->direccion) . "',estatus='" . mysqli_real_escape_string($this->dbLink,$this->estatus) . "',entreSemanaEntrada='" . mysqli_real_escape_string($this->dbLink,$this->entreSemanaEntrada) . "',entreSemanaSalida='" . mysqli_real_escape_string($this->dbLink,$this->entreSemanaSalida) . "',sabadoEntrada='" . mysqli_real_escape_string($this->dbLink,$this->sabadoEntrada) . "',sabadoSalida='" . mysqli_real_escape_string($this->dbLink,$this->sabadoSalida) . "',numTelefono='" . mysqli_real_escape_string($this->dbLink,$this->numTelefono) . "',idFranquicia='" . mysqli_real_escape_string($this->dbLink,$this->idFranquicia) . "',enviarSMS='" . mysqli_real_escape_string($this->dbLink,$this->enviarSMS) . "',enviarWhatsapp='" . mysqli_real_escape_string($this->dbLink,$this->enviarWhatsapp) . "',enviarRecordatorio='" . mysqli_real_escape_string($this->dbLink,$this->enviarRecordatorio) . "'
 					WHERE idSucursal=" . $this->idSucursal;
 				
 				$result=mysqli_query($this->dbLink,$SQL);
@@ -307,7 +321,7 @@
 			try
 			{
 				$SQL="SELECT
-						idSucursal,sucursal,cveEstado,cveMunicipio,direccion,estatus,entreSemanaEntrada,entreSemanaSalida,sabadoEntrada,sabadoSalida,numTelefono,idFranquicia,enviarSMS,enviarRecordatorio
+						idSucursal,sucursal,cveEstado,cveMunicipio,direccion,estatus,entreSemanaEntrada,entreSemanaSalida,sabadoEntrada,sabadoSalida,numTelefono,idFranquicia,enviarSMS,enviarWhatsapp,enviarRecordatorio
 					FROM sucursal
 					WHERE idSucursal=" . mysqli_real_escape_string($this->dbLink,$this->idSucursal);
 					
