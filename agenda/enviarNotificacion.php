@@ -24,6 +24,11 @@ require_once FOLDER_INCLUDE_AGENDA.'controler/adminFunciones.inc.php';
 require_once FOLDER_MODEL_EXTEND. "model.notificacion.inc.php";
 require_once FOLDER_MODEL_EXTEND. "model.paciente.inc.php";
 require_once FOLDER_MODEL_EXTEND. "model.notificacion_paciente.inc.php";
+require_once FOLDER_INCLUDE_AGENDA.'controler/adminMeta.inc.php';
+require_once FOLDER_MODEL_EXTEND. "model.cita_control_whatsapp.inc.php";
+require_once FOLDER_MODEL_EXTEND. "model.sucursal.inc.php";
+require_once FOLDER_MODEL_EXTEND. "model.franquicia.inc.php";
+
 define("FOLDER_LIB", FOLDER_INCLUDE . "lib/");
 
 $fechaActual = date("Y-m-d H:i:s");
@@ -77,7 +82,7 @@ foreach ($arrNotif as $idN){
     $envioNotif->Guardar();
 }
 
-if ($horaActual>=8&&$horaActual<=20){
+if ($horaActual>=8&&$horaActual<=20||1==1){
 //    $MsgE = new errorSMS();
     $arrNotif = $envioNotif->obtenerNotificacionesPendientes("SMS");
     
@@ -87,19 +92,65 @@ if ($horaActual>=8&&$horaActual<=20){
         $notificacion->setIdNotificacion($envioNotif->getIdNotificacion());
         if ($paciente->getIdPaciente()>0&&$notificacion->getIdNotificacion()>0){
            if (strlen($paciente->getTelefonoCel())==10){
-               $sms = enviaSMS("52".$paciente->getTelefonoCel(), $notificacion->getTexto(),$paciente->getIdSucursal());
+               /*
+                $sms = enviaSMS("52".$paciente->getTelefonoCel(), $notificacion->getTexto(),$paciente->getIdSucursal());
                 sleep(3);
-                if ($sms==true){
+                */
+                
+                $controlMeta = new ModeloCita_control_whatsapp();
+                $pr= $controlMeta->validacion("521".$paciente->getTelefonoCel(),"numeroCelular");
+                $fechaEnvio=date( 'Y-m-d H:i:s');
+                $resWh=false;
+                
+                if ($pr[0]==true){
+                    if ($pr[1]=="template"){
+                        $parametros = array("nombre"=>$paciente->getNombre(),"noti"=>$notificacion->getTexto());
+                        $objeto=obtenerJSONMeta("52".$paciente->getTelefonoCel(), $parametros, "promocion");
+                    }else {
+                        $parametros['texto']="Silueta Express te recomienda: ".$notificacion->getTexto();
+                        $objeto=obtenerJSONMeta("52".$paciente->getTelefonoCel(), $parametros);
+                    }
+                    $sucursal = new ModeloSucursal();
+                    $sucursal->setIdSucursal($paciente->getIdSucursal());
+                    $franquicia = new ModeloFranquicia();
+                    $franquicia->setIdFranquicia($sucursal->getIdFranquicia());
+                    
+                    $resWh = enviaWhatsapp($objeto, $franquicia->getIdentificadorMeta());
+                    sleep(2);
+                    
+                if ($resWh[0]==true){
                     $envioNotif->setEstatusEnviado();
                     $envioNotif->setFechaEnvio(date("Y-m-d H:i:s"));
                     $envioNotif->setMsjError("");
                 }else{
                     $envioNotif->setEstatusError();
-                    $envioNotif->setMsjError($sms);
+                    $envioNotif->setMsjError("No se pudo enviar el whatsapp ".$resWh[1]);
                 }
+                
+                if ($pr[1]=="template"){
+                    $controlMeta = new ModeloCita_control_whatsapp();
+                    $controlMeta->setIdCita(0);
+                    $controlMeta->setIdPlantilla(4);
+                    $controlMeta->setIdUsuario(1);
+                    $controlMeta->setFechaEnvio($fechaEnvio);
+                    $controlMeta->setFechaRespuesta("");
+                    $controlMeta->setNumeroCelular("521".$paciente->getTelefonoCel());
+                    
+                    if ($resWh[0]==true){
+                        $controlMeta->setEstatusNoAplica();
+                        
+                    }else{
+                        $controlMeta->setEstatusError();
+                        $controlMeta->setErrorMeta($resWh[1]);
+                    }
+                    
+                    $controlMeta->Guardar();
+                }
+                
+              }
            }else {
                $envioNotif->setEstatusError();
-               $envioNotif->setMsjError("La longitud del tel�fono es incorrecta [".strlen($paciente->getTelefonoCel())."]");
+               $envioNotif->setMsjError("La longitud del teléfono es incorrecta [".strlen($paciente->getTelefonoCel())."]");
            }
         }
         $envioNotif->Guardar();

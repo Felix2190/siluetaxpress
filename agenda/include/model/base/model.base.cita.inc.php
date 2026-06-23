@@ -30,8 +30,9 @@
 		var $fechaVerificaAsistencia='';
 		var $verificaAsistencia='0';
 		var $tipoRegistro='cita';
+		var $confirmada='0';
 
-		var $__s=array("idCita","idPaciente","telefonoPaciente","idUsuario","idSucursal","idCabina","fechaInicio","fechaFin","duracion","idConsulta","estatus","recordatorio1","recordatorio2","idServicio","fechaRegistroCita","fechaEnvioSMS","enviarRecordatorio1","enviarRecordatorio2","idUsuarioCancela","fechaVerificaAsistencia","verificaAsistencia","tipoRegistro");
+		var $__s=array("idCita","idPaciente","telefonoPaciente","idUsuario","idSucursal","idCabina","fechaInicio","fechaFin","duracion","idConsulta","estatus","recordatorio1","recordatorio2","idServicio","fechaRegistroCita","fechaEnvioSMS","enviarRecordatorio1","enviarRecordatorio2","idUsuarioCancela","fechaVerificaAsistencia","verificaAsistencia","tipoRegistro","confirmada");
 		var $__ss=array();
 
 		#------------------------------------------------------------------------------------------------------#
@@ -162,6 +163,10 @@
 		{
 			$this->tipoRegistro='apartado';
 		}
+		public function setConfirmada()
+		{
+			$this->confirmada=1;
+		}
 
 		#------------------------------------------------------------------------------------------------------#
 		#-----------------------------------------------Unsetter-----------------------------------------------#
@@ -187,6 +192,10 @@
 		public function unsetVerificaAsistencia()
 		{
 			$this->verificaAsistencia=0;
+		}
+		public function unsetConfirmada()
+		{
+			$this->confirmada=0;
 		}
 
 		#------------------------------------------------------------------------------------------------------#
@@ -282,6 +291,10 @@
 		{
 			return $this->tipoRegistro;
 		}
+		public function getConfirmada()
+		{
+			return $this->confirmada;
+		}
 
 		#------------------------------------------------------------------------------------------------------#
 		#------------------------------------------------Querys------------------------------------------------#
@@ -318,6 +331,7 @@
 			$this->fechaVerificaAsistencia='';
 			$this->verificaAsistencia='0';
 			$this->tipoRegistro='cita';
+			$this->confirmada='0';
 		}
 
 		
@@ -327,8 +341,8 @@
 		{
 			try
 			{
-				$SQL="INSERT INTO cita(idPaciente,telefonoPaciente,idUsuario,idSucursal,idCabina,fechaInicio,fechaFin,duracion,idConsulta,estatus,recordatorio1,recordatorio2,idServicio,fechaRegistroCita,fechaEnvioSMS,enviarRecordatorio1,enviarRecordatorio2,idUsuarioCancela,fechaVerificaAsistencia,verificaAsistencia,tipoRegistro)
-						VALUES('" . mysqli_real_escape_string($this->dbLink,$this->idPaciente) . "','" . mysqli_real_escape_string($this->dbLink,$this->telefonoPaciente) . "','" . mysqli_real_escape_string($this->dbLink,$this->idUsuario) . "','" . mysqli_real_escape_string($this->dbLink,$this->idSucursal) . "','" . mysqli_real_escape_string($this->dbLink,$this->idCabina) . "','" . mysqli_real_escape_string($this->dbLink,$this->fechaInicio) . "','" . mysqli_real_escape_string($this->dbLink,$this->fechaFin) . "','" . mysqli_real_escape_string($this->dbLink,$this->duracion) . "','" . mysqli_real_escape_string($this->dbLink,$this->idConsulta) . "','" . mysqli_real_escape_string($this->dbLink,$this->estatus) . "','" . mysqli_real_escape_string($this->dbLink,$this->recordatorio1) . "','" . mysqli_real_escape_string($this->dbLink,$this->recordatorio2) . "','" . mysqli_real_escape_string($this->dbLink,$this->idServicio) . "','" . mysqli_real_escape_string($this->dbLink,$this->fechaRegistroCita) . "','" . mysqli_real_escape_string($this->dbLink,$this->fechaEnvioSMS) . "','" . mysqli_real_escape_string($this->dbLink,$this->enviarRecordatorio1) . "','" . mysqli_real_escape_string($this->dbLink,$this->enviarRecordatorio2) . "','" . mysqli_real_escape_string($this->dbLink,$this->idUsuarioCancela) . "','" . mysqli_real_escape_string($this->dbLink,$this->fechaVerificaAsistencia) . "','" . mysqli_real_escape_string($this->dbLink,$this->verificaAsistencia) . "','" . mysqli_real_escape_string($this->dbLink,$this->tipoRegistro) . "')";
+				$SQL="INSERT INTO cita(idPaciente,telefonoPaciente,idUsuario,idSucursal,idCabina,fechaInicio,fechaFin,duracion,idConsulta,estatus,recordatorio1,recordatorio2,idServicio,fechaRegistroCita,fechaEnvioSMS,enviarRecordatorio1,enviarRecordatorio2,idUsuarioCancela,fechaVerificaAsistencia,verificaAsistencia,tipoRegistro,confirmada)
+						VALUES('" . mysqli_real_escape_string($this->dbLink,$this->idPaciente) . "','" . mysqli_real_escape_string($this->dbLink,$this->telefonoPaciente) . "','" . mysqli_real_escape_string($this->dbLink,$this->idUsuario) . "','" . mysqli_real_escape_string($this->dbLink,$this->idSucursal) . "','" . mysqli_real_escape_string($this->dbLink,$this->idCabina) . "','" . mysqli_real_escape_string($this->dbLink,$this->fechaInicio) . "','" . mysqli_real_escape_string($this->dbLink,$this->fechaFin) . "','" . mysqli_real_escape_string($this->dbLink,$this->duracion) . "','" . mysqli_real_escape_string($this->dbLink,$this->idConsulta) . "','" . mysqli_real_escape_string($this->dbLink,$this->estatus) . "','" . mysqli_real_escape_string($this->dbLink,$this->recordatorio1) . "','" . mysqli_real_escape_string($this->dbLink,$this->recordatorio2) . "','" . mysqli_real_escape_string($this->dbLink,$this->idServicio) . "','" . mysqli_real_escape_string($this->dbLink,$this->fechaRegistroCita) . "','" . mysqli_real_escape_string($this->dbLink,$this->fechaEnvioSMS) . "','" . mysqli_real_escape_string($this->dbLink,$this->enviarRecordatorio1) . "','" . mysqli_real_escape_string($this->dbLink,$this->enviarRecordatorio2) . "','" . mysqli_real_escape_string($this->dbLink,$this->idUsuarioCancela) . "','" . mysqli_real_escape_string($this->dbLink,$this->fechaVerificaAsistencia) . "','" . mysqli_real_escape_string($this->dbLink,$this->verificaAsistencia) . "','" . mysqli_real_escape_string($this->dbLink,$this->tipoRegistro) . "','" . mysqli_real_escape_string($this->dbLink,$this->confirmada) . "')";
 				$result=mysqli_query($this->dbLink,$SQL);
 				if(!$result)
 					return $this->setSystemError("Error en la insercion de registro.","[" . $SQL . "][" . mysqli_error($this->dbLink) . "][ModeloBaseCita::Insertar]");
@@ -348,7 +362,7 @@
 		{
 			try
 			{
-				$SQL="UPDATE cita SET idPaciente='" . mysqli_real_escape_string($this->dbLink,$this->idPaciente) . "',telefonoPaciente='" . mysqli_real_escape_string($this->dbLink,$this->telefonoPaciente) . "',idUsuario='" . mysqli_real_escape_string($this->dbLink,$this->idUsuario) . "',idSucursal='" . mysqli_real_escape_string($this->dbLink,$this->idSucursal) . "',idCabina='" . mysqli_real_escape_string($this->dbLink,$this->idCabina) . "',fechaInicio='" . mysqli_real_escape_string($this->dbLink,$this->fechaInicio) . "',fechaFin='" . mysqli_real_escape_string($this->dbLink,$this->fechaFin) . "',duracion='" . mysqli_real_escape_string($this->dbLink,$this->duracion) . "',idConsulta='" . mysqli_real_escape_string($this->dbLink,$this->idConsulta) . "',estatus='" . mysqli_real_escape_string($this->dbLink,$this->estatus) . "',recordatorio1='" . mysqli_real_escape_string($this->dbLink,$this->recordatorio1) . "',recordatorio2='" . mysqli_real_escape_string($this->dbLink,$this->recordatorio2) . "',idServicio='" . mysqli_real_escape_string($this->dbLink,$this->idServicio) . "',fechaRegistroCita='" . mysqli_real_escape_string($this->dbLink,$this->fechaRegistroCita) . "',fechaEnvioSMS='" . mysqli_real_escape_string($this->dbLink,$this->fechaEnvioSMS) . "',enviarRecordatorio1='" . mysqli_real_escape_string($this->dbLink,$this->enviarRecordatorio1) . "',enviarRecordatorio2='" . mysqli_real_escape_string($this->dbLink,$this->enviarRecordatorio2) . "',idUsuarioCancela='" . mysqli_real_escape_string($this->dbLink,$this->idUsuarioCancela) . "',fechaVerificaAsistencia='" . mysqli_real_escape_string($this->dbLink,$this->fechaVerificaAsistencia) . "',verificaAsistencia='" . mysqli_real_escape_string($this->dbLink,$this->verificaAsistencia) . "',tipoRegistro='" . mysqli_real_escape_string($this->dbLink,$this->tipoRegistro) . "'
+				$SQL="UPDATE cita SET idPaciente='" . mysqli_real_escape_string($this->dbLink,$this->idPaciente) . "',telefonoPaciente='" . mysqli_real_escape_string($this->dbLink,$this->telefonoPaciente) . "',idUsuario='" . mysqli_real_escape_string($this->dbLink,$this->idUsuario) . "',idSucursal='" . mysqli_real_escape_string($this->dbLink,$this->idSucursal) . "',idCabina='" . mysqli_real_escape_string($this->dbLink,$this->idCabina) . "',fechaInicio='" . mysqli_real_escape_string($this->dbLink,$this->fechaInicio) . "',fechaFin='" . mysqli_real_escape_string($this->dbLink,$this->fechaFin) . "',duracion='" . mysqli_real_escape_string($this->dbLink,$this->duracion) . "',idConsulta='" . mysqli_real_escape_string($this->dbLink,$this->idConsulta) . "',estatus='" . mysqli_real_escape_string($this->dbLink,$this->estatus) . "',recordatorio1='" . mysqli_real_escape_string($this->dbLink,$this->recordatorio1) . "',recordatorio2='" . mysqli_real_escape_string($this->dbLink,$this->recordatorio2) . "',idServicio='" . mysqli_real_escape_string($this->dbLink,$this->idServicio) . "',fechaRegistroCita='" . mysqli_real_escape_string($this->dbLink,$this->fechaRegistroCita) . "',fechaEnvioSMS='" . mysqli_real_escape_string($this->dbLink,$this->fechaEnvioSMS) . "',enviarRecordatorio1='" . mysqli_real_escape_string($this->dbLink,$this->enviarRecordatorio1) . "',enviarRecordatorio2='" . mysqli_real_escape_string($this->dbLink,$this->enviarRecordatorio2) . "',idUsuarioCancela='" . mysqli_real_escape_string($this->dbLink,$this->idUsuarioCancela) . "',fechaVerificaAsistencia='" . mysqli_real_escape_string($this->dbLink,$this->fechaVerificaAsistencia) . "',verificaAsistencia='" . mysqli_real_escape_string($this->dbLink,$this->verificaAsistencia) . "',tipoRegistro='" . mysqli_real_escape_string($this->dbLink,$this->tipoRegistro) . "',confirmada='" . mysqli_real_escape_string($this->dbLink,$this->confirmada) . "'
 					WHERE idCita=" . $this->idCita;
 				
 				$result=mysqli_query($this->dbLink,$SQL);
@@ -390,7 +404,7 @@
 			try
 			{
 				$SQL="SELECT
-						idCita,idPaciente,telefonoPaciente,idUsuario,idSucursal,idCabina,fechaInicio,fechaFin,duracion,idConsulta,estatus,recordatorio1,recordatorio2,idServicio,fechaRegistroCita,fechaEnvioSMS,enviarRecordatorio1,enviarRecordatorio2,idUsuarioCancela,fechaVerificaAsistencia,verificaAsistencia,tipoRegistro
+						idCita,idPaciente,telefonoPaciente,idUsuario,idSucursal,idCabina,fechaInicio,fechaFin,duracion,idConsulta,estatus,recordatorio1,recordatorio2,idServicio,fechaRegistroCita,fechaEnvioSMS,enviarRecordatorio1,enviarRecordatorio2,idUsuarioCancela,fechaVerificaAsistencia,verificaAsistencia,tipoRegistro,confirmada
 					FROM cita
 					WHERE idCita=" . mysqli_real_escape_string($this->dbLink,$this->idCita);
 					

@@ -110,7 +110,7 @@ function consultarCitas($informacion,$fechaI,$checkCabina){
                                 <p> <a onClick='ocultarDetalles(".$cita['idCita'].")'>Ocultar </a> </p>  </blockqoute></div>";
                 
                 
-                $seccion.="<tr><td>".$cita['hora']." - ".$cita['horaFin']."</td><td >".$cita['nombre_paciente']."</td><td>".$cita['tipoConsulta']."</td>
+                $seccion.="<tr><td>".$cita['hora']." - ".$cita['horaFin']." (".$cita['confir'].")</td><td >".$cita['nombre_paciente']."</td><td>".$cita['tipoConsulta']."</td>
                         <td colspan='2'>".$detalles."</td>$sucursal <td colspan='2'>".$cita['servicio']."</td>";
     //        if ($objSession->getidRol()==1||$objSession->getidUsuario()==$cita['idUsuario'])
                 $seccion.="<td><a onclick='verCita(\"".$cita['idCita']."\")'><img src='images/editaCita.png' title='Ver/editar' style='width: 34px' /></a> 
@@ -142,7 +142,7 @@ function consultarCitas($informacion,$fechaI,$checkCabina){
            
            $texto=utf8_encode("Recordatorio de cita silueta express: ".$cita['nombre']."! te recordamos que tienes una cita con nosotros el día $dias[$_dia] $fecha[2] de ".obtenMes(''.intval($fecha[1]))." a las ".$cita['hora']."hrs. Te agradeceríamos llegar 10 minutos antes, y en caso de cancelar hacerlo un día de anterioridad. Gracias");
            $texto2="https://web.whatsapp.com/send?phone=521".$cita['telefono']."&text=".utf8_encode("Silueta Express te informa: la cita del día $dias[$_dia] $fecha[2] de ".obtenMes(''.intval($fecha[1]))." se ha cancelado.  Esperamos verte de nuevo pronto. Servirte es nuestra vocación .");
-           $seccion.="<tr><td colspan='2'>".$cita['hora']."-".$cita['horaFin']."</td> 
+           $seccion.="<tr><td colspan='2'>".$cita['hora']."-".$cita['horaFin']." (".$cita['confir'].")</td> 
    <td colspan='2'><div id='l".$cita['idCita']."'> <a onClick='verDetalles(".$cita['idCita'].")'>".$cita['nombre_paciente']."</a></div>
                 <div id='c".$cita['idCita']."' style='display: none'; > <blockqoute> 
                                 <p> <strong>Paciente: </strong> ".$cita['nombre_paciente']."</p>

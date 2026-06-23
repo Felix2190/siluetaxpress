@@ -253,7 +253,9 @@ function guardarCambios($idCita,$duracion,$hora,$minuto,$consultorio,$chkbox,$fe
     $cita->unsetEnviarRecordatorio2();
     if ($chkbox=="true")
        $cita->setEnviarRecordatorio2();
-    
+       
+       $cita->unsetConfirmada();
+       
        $cita->Guardar();
        if ($cita->getError()){
            $r->call('mostrarMsjError',$cita->getStrError(),5);

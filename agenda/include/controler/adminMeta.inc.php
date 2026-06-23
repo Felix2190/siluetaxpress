@@ -43,7 +43,43 @@ function obtenerJSONMeta($numTel, $parametros, $codigoPlantilla="")
                 "body" => $parametros['texto']
             ]
         ];
-    } else {
+    } else  if ($codigoPlantilla == "promocion") {
+        $JSON = [
+            "messaging_product" => "whatsapp",
+            "recipient_type" => "individual",
+            "to" => $numTel,
+            "type" => "template",
+            "template" => [
+                "name" => $codigoPlantilla,
+                "language" => [
+                    "code" => "es_MX"
+                ],
+                "components" => array(
+                    [
+                        "type" => "header",
+                        "parameters" => array(
+                            [
+                                "type" => "text",
+                                "parameter_name" => "nombre",
+                                "text" => $parametros['nombre']
+                            ]
+                        )
+                    ],
+                    [
+                        "type" => "body",
+                        "parameters" => array(
+                            [
+                                "type" => "text",
+                                "parameter_name" => "noti",
+                                "text" => $parametros['noti']
+                            ]
+                        )
+                    ]
+                )
+            ]
+        ];
+        
+    }else{
         $JSON = [
             "messaging_product" => "whatsapp",
             "recipient_type" => "individual",

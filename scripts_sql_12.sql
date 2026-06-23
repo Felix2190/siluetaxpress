@@ -45,3 +45,9 @@ ALTER TABLE `sucursal` ADD `enviarWhatsapp` TINYINT NOT NULL DEFAULT '0' AFTER `
 ALTER TABLE `cita_control_whatsapp` CHANGE `estatus` `estatus` ENUM('Pendiente','Confirmada','Cancelada','Error') NOT NULL DEFAULT 'Pendiente'; 
 
 ALTER TABLE `plantilla_whatsapp` CHANGE `fecha_registro` `fecha_registro` DATE NOT NULL; 
+
+ALTER TABLE `cita_control_whatsapp` CHANGE `estatus` `estatus` ENUM('Pendiente','Confirmada','Cancelada','Error','NoAplica') NOT NULL DEFAULT 'Pendiente'; 
+
+ALTER TABLE cita_control_whatsapp DROP FOREIGN KEY cita_control_whatsapp_ibfk_1;
+
+ALTER TABLE `cita` ADD `confirmada` TINYINT NOT NULL DEFAULT '0' AFTER `tipoRegistro`; 

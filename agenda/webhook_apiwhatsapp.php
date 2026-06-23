@@ -96,19 +96,26 @@ if (isset($response['entry'][0]['changes'][0]['value']['messages'][0])) {
                     $franquicia= new ModeloFranquicia();
                     $franquicia->setIdFranquicia($sucursal->getIdFranquicia());
                     
-                    if (strtoupper($message_text)=='SI')
+                    if (strtoupper($message_text)=='SI'&&$arrInfo['estatus']=='Pendiente')
                         $mensaje='Gracias por confirmar tu cita!';
-                        if (strtoupper($message_text)=='NO')
-                            $mensaje='Has cancelado tu cita';                            
-                            $parametros['texto']= $mensaje;
-                            $objeto=obtenerJSONMeta($cita->getTelefonoPaciente(), $parametros);
+                       else if (strtoupper($message_text)=='NO')
+                            $mensaje='Has cancelado tu cita';
+                       else 
+                           $mensaje='Respuesta no reconocida, intente nuevamente';
+                           
+                           $parametros['texto']= $mensaje;
+                           $objeto=obtenerJSONMeta($cita->getTelefonoPaciente(), $parametros);
        
-        $resWh = enviaWhatsapp($objeto, $franquicia->getIdentificadorMeta());
+                    $resWh = enviaWhatsapp($objeto, $franquicia->getIdentificadorMeta());
                     if (strtoupper($message_text)=='NO')
                     {
                         $cita->setEstatus('cancelada_paciente');
                         $cita->Guardar();
-                        
+                    }
+                    if (strtoupper($message_text)=='SI')
+                    {
+                        $cita->setConfirmada();
+                        $cita->Guardar();
                     }
         }else {
         $prueba = new ModeloPrueba();

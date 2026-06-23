@@ -81,6 +81,10 @@
 		{
 			$this->estatus='Error';
 		}
+		public function setEstatusNoAplica()
+		{
+			$this->estatus='NoAplica';
+		}
 		public function setFechaEnvio($fechaEnvio)
 		{
 			$this->fechaEnvio=$fechaEnvio;
