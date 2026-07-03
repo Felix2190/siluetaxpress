@@ -346,7 +346,7 @@ function guardarCambios($idCita,$duracion,$hora,$minuto,$consultorio,$chkbox,$fe
         }
     
        } else
-           $r->call('mostrarMsjError',"&Eacute;sta sucursal tiene desactivado el env&iacute;o de ",3);
+           $r->call('mostrarMsjError',"&Eacute;sta sucursal tiene desactivado el env&iacute;o de Whatsapp",3);
            
        
        

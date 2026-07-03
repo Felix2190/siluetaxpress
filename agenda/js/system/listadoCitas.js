@@ -209,12 +209,12 @@ function cancelarCita(password,canceladaPor){
 					success : function(data) {
 						$( "#msjConfirm" ).hide();
 						
-						if(data=='true')
-							mostrarMsjExito('Se ha cancelado la cita correctamente por el '+canceladaPor+'.',5);
-						if(data=='false')
-							mostrarMsjError('Ha ocurrido un error, int&eacute;ntelo m&aacute;s tarde.',5);
-						if(data=='false2')
-						mostrarMsjError('No se puede enviar el SMS, el n&uacute;mero es incorrecto.',5);
+						if(data=='Se ha enviado la notificación de whatsapp'){
+							mostrarMsjExito('Se ha cancelado la cita correctamente por el '+canceladaPor+'.',10);
+							mostrarMsjExito(data,10);
+							}
+						else
+						mostrarMsjError(data,15);
 					}
 				});
 			}else{
@@ -239,7 +239,7 @@ function cancelar(canceladaPor){
 function verOpciones(idCita,url){
 	 $( "#msjConfirm" ).show();
 		cita=idCita;
-		window.open(url);
+	//	window.open(url);
 		}
 
 function verCita(idCita){

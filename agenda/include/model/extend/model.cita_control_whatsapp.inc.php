@@ -65,7 +65,7 @@
 		    if ($resultado && mysqli_num_rows($resultado) > 0) {
 		        $row_inf = mysqli_fetch_assoc($resultado);
 		        if ($row_inf['estatus']=='Pendiente'||$row_inf['estatus']=='Error'||$row_inf['estatus']=='NoAplica'){
-		            if ($row_inf['fechaRespuesta']=='0000-00-00 00:00:00')
+		            if ($row_inf['fechaRespuesta']=='0000-00-00 00:00:00') // falta buscar ultima cita si no es un mensaje tipo cita
 		                return array(true,"template");
 		            else
 		                $fecha = new DateTime($row_inf['fechaRespuesta']);

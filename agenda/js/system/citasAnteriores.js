@@ -184,57 +184,6 @@ function obtenHora(){
 	 return "<strong>&Uacute;ltima actualizaci&oacute;n... "+hours+":"+minutes+":"+seconds+" "+dn+"</strong>";
 }
 
-function cancelarCita(password,canceladaPor){
-
-	$.ajax({
-		method : "post",
-		url : "adminFunciones.php",
-		data : {
-			password:password
-		},
-		success : function(data) {
-			//if(data=='true'){
-			if(password=='789'){
-				$.ajax({
-					method : "post",
-					url : "adminFunciones.php",
-					data : {
-						idCitaCancelar:cita,
-						por:canceladaPor
-					},
-					success : function(data) {
-						$( "#msjConfirm" ).hide();
-						
-						if(data=='true')
-							mostrarMsjExito('Se ha cancelado la cita correctamente por el '+canceladaPor+'.',5);
-						if(data=='false')
-							mostrarMsjError('Ha ocurrido un error, int&eacute;ntelo m&aacute;s tarde.',5);
-						if(data=='false2')
-							mostrarMsjError('No se puede enviar el SMS, el n&uacute;mero es incorrecto.',5);
-					}
-				});
-			}else{
-				//el password es incorrecto
-				mostrarMsjError('La contrase&ntilde;a es incorrecta!. ',2);
-				setTimeout(function() { 
-					cancelar(canceladaPor);
-					},2400);
-
-			}
-
-		}
-	});
-}
-
-function cancelar(canceladaPor){
-	//alert(idCita);
-	mensajeConfirmacion("Cancelar cita", "Escribe su contrase&ntilde;a para continuar", canceladaPor, "msjConfirm");
-}
-
-function verOpciones(idCita){
-	 $( "#msjConfirm" ).show();
-		cita=idCita;
-}
 
 function verCita(idCita){
 	presionado=true;

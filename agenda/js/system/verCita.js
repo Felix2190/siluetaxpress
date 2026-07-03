@@ -277,12 +277,12 @@ function cancelarCita(password,canceladaPor){
 					success : function(data3) {
 						$( "#msjConfirm" ).hide();
 						
-						if(data3=='true')
-							mostrarMsjExito('Se ha cancelado la cita correctamente por el '+canceladaPor+'.',5);
-						if(data3=='false')
-							mostrarMsjError('Ha ocurrido un error, int&eacute;ntelo m&aacute;s tarde.',5);
-						if(data3=='false2')
-							mostrarMsjError('No se puede enviar el SMS, el n&uacute;mero es incorrecto.',5);
+						if(data=='Se ha enviado la notificación de whatsapp'){
+							mostrarMsjExito('Se ha cancelado la cita correctamente por el '+canceladaPor+'.',10);
+							mostrarMsjExito(data,10);
+							}
+						else
+						mostrarMsjError(data,15);
 					}
 				});
 			}else{

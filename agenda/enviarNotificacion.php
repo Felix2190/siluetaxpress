@@ -82,7 +82,7 @@ foreach ($arrNotif as $idN){
     $envioNotif->Guardar();
 }
 
-if ($horaActual>=8&&$horaActual<=20||1==1){
+if ($horaActual>=8&&$horaActual<=20){
 //    $MsgE = new errorSMS();
     $arrNotif = $envioNotif->obtenerNotificacionesPendientes("SMS");
     

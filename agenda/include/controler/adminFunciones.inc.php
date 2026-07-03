@@ -45,10 +45,6 @@ if(!empty($_FILES['imagenCorreo']))
     
 }
 
-if (isset($_POST['whatNumPaciente'])&&isset($_POST['whatMensaje'])){
-    echo enviarWhatsapp($_POST['whatNumPaciente'], $_POST['whatMensaje']);
-}
-
 if (isset($_POST['esRecepcion'])){
     $objSession=unserialize($_SESSION['objSession']);
     echo $objSession->getIdTipoUsuario()==9?1:0;
@@ -403,7 +399,10 @@ if (isset($_POST['idCita'])){
 if (isset($_POST['idCitaCancelar'])&&isset($_POST['por'])){
     require_once FOLDER_MODEL_EXTEND. "model.cita.inc.php";
     require_once FOLDER_MODEL_EXTEND. "model.sucursal.inc.php";
-    require_once FOLDER_MODEL_EXTEND. "model.consulta.inc.php";
+    require_once FOLDER_MODEL_EXTEND. "model.paciente.inc.php";
+    require_once FOLDER_MODEL_EXTEND. "model.franquicia.inc.php";
+    require_once FOLDER_MODEL_EXTEND. "model.cita_control_whatsapp.inc.php";
+    require_once FOLDER_INCLUDE_AGENDA.'controler/adminMeta.inc.php';
     
     global $objSession;
     $cita = new ModeloCita();
@@ -411,26 +410,76 @@ if (isset($_POST['idCitaCancelar'])&&isset($_POST['por'])){
     $cita->setEstatus("cancelada_".$_POST['por']);
     $cita->setIdUsuarioCancela($objSession->getidUsuario());
     
-    $sucursal = new ModeloSucursal();
-    $sucursal->setIdSucursal($cita->getIdSucursal());
-    $consulta = new ModeloConsulta();
-    $consulta->setIdConsulta($cita->getIdConsulta());
+    $nSucursal = new ModeloSucursal();
+    $nSucursal->setIdSucursal($cita->getIdSucursal());
     
     $cita->Guardar();
     if ($cita->getError())
-        echo 'false';
+        echo $cita->getStrError();
     else{
-        if ($_POST['por']=='paciente')
-            $aux="Ha";
-        else
-            $aux="Se ha";
-            if (strlen($cita->getTelefonoPaciente())==12){
-                enviaSMS($cita->getTelefonoPaciente(), "$aux cancelado su cita para ".$consulta->getTipoConsulta()." en ".$sucursal->getSucursal());
-                echo 'true';
-            }else {
-                echo 'false2'; 
+        
+        $paciente = new ModeloPaciente();
+        $paciente->setIdPaciente($cita->getIdPaciente());
+        
+        if ($nSucursal->getEnviarWhatsapp() == 1) {
+            if (strlen($cita->getTelefonoPaciente()) == 12) {
+                $controlMeta = new ModeloCita_control_whatsapp();
+                $pr= $controlMeta->validacion($_POST['idCitaCancelar']);
+                $fechaEnvio=date( 'Y-m-d H:i:s');
+                $resWh=false;
                 
+                if ($pr[0]==true){                    
+                    if ($pr[1]=="template"){
+                        $parametros = array("nombre"=>$paciente->getNombre(),"dia"=>date("d/m/Y", strtotime($cita->getFechaInicio())),"hora"=>substr($cita->getFechaInicio(), 0, 5),"sucursal"=>$nSucursal->getSucursal());
+                        $objeto=obtenerJSONMeta($cita->getTelefonoPaciente(), $parametros, "cita_cancela");
+                    }else {
+                        $parametros['texto']="Se ha cancelado tu cita en SiluetaExpress para el día ".date("d/m/Y", strtotime($cita->getFechaInicio()))." a las ".substr($cita->getFechaInicio(), 0, 5)." hrs en ".$nSucursal->getSucursal();
+                        $objeto=obtenerJSONMeta($cita->getTelefonoPaciente(), $parametros);
+                    }
+                    $franquicia = new ModeloFranquicia();
+                    $franquicia->setIdFranquicia($nSucursal->getIdFranquicia());
+                    
+                    $resWh = enviaWhatsapp($objeto, $franquicia->getIdentificadorMeta());
+                    sleep(2);
+                    
+                    if ($pr[1]=="template"){
+                        $controlMeta = new ModeloCita_control_whatsapp();
+                        $controlMeta->setIdCita($_POST['idCitaCancelar']);
+                        $controlMeta->setIdPlantilla(6);
+                        $controlMeta->setIdUsuario($objSession->getidUsuario());
+                        $controlMeta->setFechaEnvio($fechaEnvio);
+                        $controlMeta->setFechaRespuesta("");
+                        $controlMeta->setNumeroCelular("521".$paciente->getTelefonoCel());
+                        
+                        if ($resWh[0]==true){
+                            $controlMeta->setEstatusNoAplica();
+                            
+                        }else{
+                            $controlMeta->setEstatusError();
+                            $controlMeta->setErrorMeta($resWh[1]);
+                        }
+                        
+                        $controlMeta->Guardar();
+                        if ($controlMeta->getError()){
+                            echo $controlMeta->getStrError();
+                        }
+                        
+                    }
+                    if ($resWh[0]==true)
+                        echo "Se ha enviado la notificación de whatsapp";
+                     else
+                         echo $resWh[1];
+                }else
+                    echo "No se puede enviar la notificación de whatsapp";
+                    
+            } else {
+                echo "No se puede enviar el SMS, el n&uacute;mero es incorrecto ";
             }
+            
+        } else
+            echo "&Eacute;sta sucursal tiene desactivado el env&iacute;o de Whatsapp";
+            
+            
     }
 }
 
@@ -835,6 +884,83 @@ if (isset($_POST['nombreN'])&&isset($_POST['textoN'])&&isset($_POST['seccionN'])
         echo json_encode(array($notif->getIdNotificacion()));
     }
 }
+
+if (isset($_POST['wTelefono'])&&isset($_POST['wTexto'])&&isset($_POST['wIdCita'])&&isset($_POST['wPlantilla'])){
+    require_once FOLDER_MODEL_EXTEND. "model.paciente.inc.php";
+    require_once FOLDER_MODEL_EXTEND. "model.sucursal.inc.php";
+    require_once FOLDER_MODEL_EXTEND. "model.cita.inc.php";
+    require_once FOLDER_MODEL_EXTEND. "model.cita_control_whatsapp.inc.php";
+    
+    global $objSession;
+    $Sucursal= new ModeloSucursal();
+    $Sucursal->setIdSucursal($objSession->getIdSucursal());
+    
+    $citaW= new ModeloCita();
+    $citaW->setIdCita($_POST['wIdCita']);
+    
+    $paciente = new ModeloPaciente();
+    $paciente->setIdPaciente($citaW->getIdPaciente());
+/*    
+    if ($Sucursal->getEnviarWhatsapp() == 1) {
+        if (strlen($citaW->getTelefonoPaciente()) == 12) {
+            $controlMeta = new ModeloCita_control_whatsapp();
+            $pr= $controlMeta->validacion("521".$citaW->getTelefonoPaciente(),"numCelular");
+            $fechaEnvio=date( 'Y-m-d H:i:s');
+            $resWh=false;
+            
+            if ($pr[0]==true){
+                
+                if ($pr[1]=="template"){
+                    $parametros = array("nombre"=>$paciente->getNombre(),"dia"=>date("d/m/Y", strtotime($cita->getFechaInicio())),"hora"=>"$hora:$minuto","sucursal"=>$nSucursal->getSucursal());
+                    $objeto=obtenerJSONMeta($cita->getTelefonoPaciente(), $parametros, "cita_actualizacion");
+                }else {
+                    $parametros['texto']="Se ha modificado tu cita en SiluetaExpress para el día ".date("d/m/Y", strtotime($cita->getFechaInicio()))." a las $hora:$minuto hrs en ".$nSucursal->getSucursal().". Responde Si, para confirmar su cita; No, si desea cancelarla.";
+                    $objeto=obtenerJSONMeta($cita->getTelefonoPaciente(), $parametros);
+                }
+                
+                $resWh = enviaWhatsapp($objeto, $franquicia->getIdentificadorMeta());
+                sleep(2);
+                
+                if ($pr[1]=="template"){
+                    $controlMeta = new ModeloCita_control_whatsapp();
+                    $controlMeta->setIdCita($_POST['wIdCita']);
+                    $controlMeta->setIdPlantilla(2);
+                    $controlMeta->setIdUsuario($objSession->getidUsuario());
+                    $controlMeta->setFechaEnvio($fechaEnvio);
+                    $controlMeta->setFechaRespuesta("");
+                    $controlMeta->setNumeroCelular("521".$paciente->getTelefonoCel());
+                    
+                    if ($resWh[0]==true){
+                        $controlMeta->setEstatusPendiente();
+                        
+                    }else{
+                        $controlMeta->setEstatusError();
+                        $controlMeta->setErrorMeta($resWh[1]);
+                    }
+                    
+                    $controlMeta->Guardar();
+                    if ($controlMeta->getError()){
+                        return  array(false,$controlMeta->getStrError());
+                    }
+                    
+                }
+                if ($resWh[0]==true)
+                    return array(true, "Se ha enviado la notificación de whatsapp");
+                    else
+                        return array(false, $resWh[1]);
+            }else
+                return array(false, "No se puede enviar la notificación de whatsapp");
+                
+        } else {
+            return array(false, "No se puede enviar el SMS, el n&uacute;mero es incorrecto ");
+        }
+        
+    } else
+        return array(false,"Ésta sucursal tiene desactivado el envío de Whatsapp");
+*/
+
+}
+
 
 function obtenCombo($array,$default){
     $combo='<option value="">'.$default.'</option>';
@@ -1591,42 +1717,6 @@ function enviaSMS($numPaciente, $sMessage, $sucursal="")
     }
     
     return false;
-}
-
-
-function enviarWhatsapp($numPaciente, $sMessage){
-    $url = 'https://graph.facebook.com/v25.0/1125017720700664/messages';
-    $texto = ['body'=>$sMessage];
-    $data = [
-        "messaging_product"=> "whatsapp",
-        "recipient_type"=> "individual",
-        "to"=> $numPaciente,
-        "type"=> "text",
-        "text"=>$texto
-    ];
-    
-    // Initialize cURL
-    $ch = curl_init($url);
-    
-    // Encode data to JSON string
-    $jsonData = json_encode($data);
-    
-    // Set options for JSON Request Body
-    curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
-    curl_setopt($ch, CURLOPT_POST, true);
-    curl_setopt($ch, CURLOPT_POSTFIELDS, ($jsonData)); // Encodes array to JSON string
-    
-    // Set necessary headers
-    curl_setopt($ch, CURLOPT_HTTPHEADER, [
-        'Content-Type: application/json',
-        'Authorization: Bearer EAAWYjawweXgBRm03ZA8t9yNHMTmhSnUjCffNNA4XjYfJZCNtQT4cdoim5qBRRuZAaJGwypeZC4TR77FfA4zCDZAyyKR5WLTWyIoZC4CiovCWPywA5qAnMqZAisfTKXQWIFTTcxcZBIBAzgOhb5NqHSvWvwuPPMrE3rlZBBpIyTtUNygsJToLcQL1kGk4IWbMJggZDZD'
-    ]);
-    
-    // Execute request and fetch response
-    $response = curl_exec($ch);
-    
-    // Check for errors
-    return !curl_errno($ch); 
 }
 
 function obtenerListadoPacientes($idSucursal){
