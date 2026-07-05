@@ -40,7 +40,7 @@ $arrSeccionesPagina=array(
     "editarPromociones"=>"herramientas",
     "buscarCodigo"=>"herramientas",
     "editarPersonal"=>"herramientas",
-    "listadoEncuestas"=>"herramientas",
+    "adminCitas"=>"herramientas",
     "consultaMedios"=>"herramientas",
     
     ""=>""

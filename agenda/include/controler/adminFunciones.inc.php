@@ -885,6 +885,13 @@ if (isset($_POST['nombreN'])&&isset($_POST['textoN'])&&isset($_POST['seccionN'])
     }
 }
 
+if (isset($_POST['fechaCita'])){
+    require_once FOLDER_MODEL_EXTEND. "model.cita.inc.php";
+    $cita = new ModeloCita();
+    global $objSession;
+    echo json_encode($cita->obtenerCitasRealizadas($_POST['fechaCita'], $objSession->getIdSucursal()));
+}
+
 if (isset($_POST['wTelefono'])&&isset($_POST['wTexto'])&&isset($_POST['wIdCita'])&&isset($_POST['wPlantilla'])){
     require_once FOLDER_MODEL_EXTEND. "model.paciente.inc.php";
     require_once FOLDER_MODEL_EXTEND. "model.sucursal.inc.php";

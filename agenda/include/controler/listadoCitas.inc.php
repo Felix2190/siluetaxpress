@@ -140,7 +140,7 @@ function consultarCitas($informacion,$fechaI,$checkCabina){
            $min=$cita['duracion']%60;
            $duracion=($hr>0?($hr. ' hora'.($hr>1?'s':'')).($min>0?(', '.$min.' minutos'):''):('').$min.' minutos');
            
-           $texto2="https://web.whatsapp.com/send?phone=521".$cita['telefono']."&text=".utf8_encode("Silueta Express te informa: la cita del día $dias[$_dia] $fecha[2] de ".obtenMes(''.intval($fecha[1]))." se ha cancelado.  Esperamos verte de nuevo pronto. Servirte es nuestra vocación .");
+           $texto2="https://web.whatsapp.com/send?phone=521".$cita['telefono']."&text=".("Silueta Express te informa: la cita del día $dias[$_dia] $fecha[2] de ".obtenMes(''.intval($fecha[1]))." se ha cancelado.  Esperamos verte de nuevo pronto. Servirte es nuestra vocación .");
            $seccion.="<tr><td colspan='2'>".$cita['hora']."-".$cita['horaFin']." (".$cita['confir'].")</td> 
    <td colspan='2'><div id='l".$cita['idCita']."'> <a onClick='verDetalles(".$cita['idCita'].")'>".$cita['nombre_paciente']."</a></div>
                 <div id='c".$cita['idCita']."' style='display: none'; > <blockqoute> 

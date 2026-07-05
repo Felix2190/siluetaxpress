@@ -12,7 +12,7 @@ $(document).ready(function(){
 			$( "#slcSucursalBar" ).html(data);
 		}
 	});
-	
+/*	
 	$.ajax({
 	method : "post",
 	url : "adminFunciones.php",
@@ -46,7 +46,7 @@ $(document).ready(function(){
 		}
 		}
 	});
-
+*/
 		 $( "#btnSiVerifica" ).click(function(){
 			asistencia(true);
 		 });
@@ -162,7 +162,7 @@ function asistencia(e){
 		},
 		success : function(data) {
 			$( "#msjVerifica" ).hide();
-				window.open("https://web.whatsapp.com/send?phone=521"+numV+"&text="+JSON.parse(data), "_blank");
+			//	window.open("https://web.whatsapp.com/send?phone=521"+numV+"&text="+JSON.parse(data), "_blank");
 			}
 		});
 

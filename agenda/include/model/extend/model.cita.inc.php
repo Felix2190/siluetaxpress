@@ -524,5 +524,25 @@
         }
         return $respuesta;
     }
+ 
+    
+    public function obtenerCitasRealizadas($fechaBuscar, $sucursal)
+    {
+        $query = "Select c.idCita, concat_ws(' ', p.nombre, p.apellidos) as nombre_paciente, p.telefonoCel, tipoConsulta from cita as c
+        inner join paciente as p on c.idPaciente=p.idPaciente
+        inner join consulta as co on c.idConsulta=co.idConsulta
+        left join encuesta as e on c.idCita = e.idCita 
+        where e.idCita is null and c.estatus='realizada' and DATE_FORMAT(fechaInicio,'%Y-%m-%d')='$fechaBuscar' and c.idSucursal=$sucursal order by fechaInicio";
+                        
+                        $respuesta = array();
+                        $resultado = mysqli_query($this->dbLink, $query);
+                        if ($resultado && mysqli_num_rows($resultado) > 0) {
+                            while ($row_inf = mysqli_fetch_assoc($resultado)){
+                                $respuesta[$row_inf['idCita']] = $row_inf;
+                            }
+                        }
+                        return array(count($respuesta)>0, $respuesta);
+    }
+    
     
 	}

@@ -25,7 +25,7 @@ function iniciar(){
 					}
 				});
 		
-		
+	/*
 		$.ajax({
 			method : "post",
 			url : "adminFunciones.php",
@@ -48,8 +48,9 @@ function iniciar(){
 				}
 			}
 		});
-		
+	*/	
 	}else{
+		/*
 		$.ajax({
 			method : "post",
 			url : "adminFunciones.php",
@@ -72,7 +73,7 @@ function iniciar(){
 				}
 			}
 		});
-		
+		*/
 	}
 	
 	$( "#txtFecha" ).change(actualizaResumen);

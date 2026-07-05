@@ -81,42 +81,51 @@ if (isset($response['entry'][0]['changes'][0]['value']['messages'][0])) {
         $cm = new ModeloCita_control_whatsapp();
         $arrInfo = $cm->buscaCitaPorTel($phone_number);
         if ($arrInfo['idControl']!=0){
-            $cm->setIdControl($arrInfo['idControl']);
-            $cm->setFechaRespuesta($fechaActual);
-            if (strtoupper($message_text)=='SI')
-                $cm->setEstatusConfirmada();
-                if (strtoupper($message_text)=='NO')
-                    $cm->setEstatusCancelada();
-                    $cm->Guardar();         
-                    
-                    $cita = new ModeloCita();
-                    $cita->setIdCita($arrInfo['idCita']);
-                    $sucursal = new ModeloSucursal();
-                    $sucursal->setIdSucursal($cita->getIdSucursal());
-                    $franquicia= new ModeloFranquicia();
-                    $franquicia->setIdFranquicia($sucursal->getIdFranquicia());
-                    
-                    if (strtoupper($message_text)=='SI'&&$arrInfo['estatus']=='Pendiente')
-                        $mensaje='Gracias por confirmar tu cita!';
-                       else if (strtoupper($message_text)=='NO')
-                            $mensaje='Has cancelado tu cita';
-                       else 
-                           $mensaje='Respuesta no reconocida, intente nuevamente';
-                           
-                           $parametros['texto']= $mensaje;
-                           $objeto=obtenerJSONMeta($cita->getTelefonoPaciente(), $parametros);
-       
-                    $resWh = enviaWhatsapp($objeto, $franquicia->getIdentificadorMeta());
+            $cita = new ModeloCita();
+            $cita->setIdCita($arrInfo['idCita']);
+            $sucursal = new ModeloSucursal();
+            $sucursal->setIdSucursal($cita->getIdSucursal());
+            $franquicia= new ModeloFranquicia();
+            $franquicia->setIdFranquicia($sucursal->getIdFranquicia());
+            
+            if ($cita->getEstatus()=='nueva'&&$cita->getConfirmada()==0){
+                $cm->setIdControl($arrInfo['idControl']);
+                $cm->setFechaRespuesta($fechaActual);
+                if (strtoupper($message_text)=='SI')
+                    $cm->setEstatusConfirmada();
                     if (strtoupper($message_text)=='NO')
-                    {
-                        $cita->setEstatus('cancelada_paciente');
-                        $cita->Guardar();
-                    }
-                    if (strtoupper($message_text)=='SI')
-                    {
-                        $cita->setConfirmada();
-                        $cita->Guardar();
-                    }
+                        $cm->setEstatusCancelada();
+                        $cm->Guardar();         
+                        
+                        if (strtoupper($message_text)=='SI'&&$arrInfo['estatus']=='Pendiente')
+                            $mensaje='*Gracias por confirmar tu cita!* ';
+                           else if (strtoupper($message_text)=='NO')
+                                $mensaje='Has cancelado tu cita';
+                           else 
+                               $mensaje='Respuesta no reconocida, intente nuevamente';
+                               
+                               $parametros['texto']= $mensaje;
+                               $objeto=obtenerJSONMeta($cita->getTelefonoPaciente(), $parametros);
+           
+                        $resWh = enviaWhatsapp($objeto, $franquicia->getIdentificadorMeta());
+                        if (strtoupper($message_text)=='NO')
+                        {
+                            $cita->setEstatus('cancelada_paciente');
+                            $cita->Guardar();
+                        }
+                        if (strtoupper($message_text)=='SI')
+                        {
+                            $cita->setConfirmada();
+                            $cita->Guardar();
+                        }
+            }
+            else{
+                $mensaje='_Para preguntar un tema específico, comuníquese al: 2221354433 o al 7443000647_';
+                $parametros['texto']= $mensaje;
+                $objeto=obtenerJSONMeta($cita->getTelefonoPaciente(), $parametros);
+                
+                $resWh = enviaWhatsapp($objeto, $franquicia->getIdentificadorMeta());
+            }
         }else {
         $prueba = new ModeloPrueba();
         $prueba->setTel($phone_number);
