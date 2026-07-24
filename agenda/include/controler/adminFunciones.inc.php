@@ -396,7 +396,7 @@ if (isset($_POST['idCita'])){
     echo json_encode($cita->obtenerInformacionCita());
 }
 
-if (isset($_POST['idCitaCancelar'])&&isset($_POST['por'])){
+if (isset($_POST['idCitaCancelaRecordatorio'])&&isset($_POST['por'])){
     require_once FOLDER_MODEL_EXTEND. "model.cita.inc.php";
     require_once FOLDER_MODEL_EXTEND. "model.sucursal.inc.php";
     require_once FOLDER_MODEL_EXTEND. "model.paciente.inc.php";
@@ -406,10 +406,11 @@ if (isset($_POST['idCitaCancelar'])&&isset($_POST['por'])){
     
     global $objSession;
     $cita = new ModeloCita();
-    $cita->setIdCita($_POST['idCitaCancelar']);
-    $cita->setEstatus("cancelada_".$_POST['por']);
-    $cita->setIdUsuarioCancela($objSession->getidUsuario());
-    
+    $cita->setIdCita($_POST['idCitaCancelaRecordatorio']);
+    if ($_POST['idCitaCancelaRecordatorio']!="rec"){
+        $cita->setEstatus("cancelada_".$_POST['por']);
+        $cita->setIdUsuarioCancela($objSession->getidUsuario());
+    }
     $nSucursal = new ModeloSucursal();
     $nSucursal->setIdSucursal($cita->getIdSucursal());
     
@@ -424,16 +425,19 @@ if (isset($_POST['idCitaCancelar'])&&isset($_POST['por'])){
         if ($nSucursal->getEnviarWhatsapp() == 1) {
             if (strlen($cita->getTelefonoPaciente()) == 12) {
                 $controlMeta = new ModeloCita_control_whatsapp();
-                $pr= $controlMeta->validacion($_POST['idCitaCancelar']);
+                $pr= $controlMeta->validacion($_POST['idCitaCancelaRecordatorio']);
                 $fechaEnvio=date( 'Y-m-d H:i:s');
                 $resWh=false;
                 
                 if ($pr[0]==true){                    
                     if ($pr[1]=="template"){
                         $parametros = array("nombre"=>$paciente->getNombre(),"dia"=>date("d/m/Y", strtotime($cita->getFechaInicio())),"hora"=>substr($cita->getFechaInicio(), 0, 5),"sucursal"=>$nSucursal->getSucursal());
-                        $objeto=obtenerJSONMeta($cita->getTelefonoPaciente(), $parametros, "cita_cancela");
+                        $objeto=obtenerJSONMeta($cita->getTelefonoPaciente(), $parametros, $_POST['idCitaCancelaRecordatorio']=="rec"?"cita_recordatorio":"cita_cancela");
                     }else {
-                        $parametros['texto']="Se ha cancelado tu cita en SiluetaExpress para el día ".date("d/m/Y", strtotime($cita->getFechaInicio()))." a las ".substr($cita->getFechaInicio(), 0, 5)." hrs en ".$nSucursal->getSucursal();
+                        if ($_POST['idCitaCancelaRecordatorio']=="rec")
+                            $parametros['texto']="SiluetaExpress le recuerda su cita para el día ".date("d/m/Y", strtotime($cita->getFechaInicio()))." a las ".substr($cita->getFechaInicio(), 0, 5)." hrs en ".$nSucursal->getSucursal().". Responde Si, para confirmar su cita; No, si desea cancelarla.";
+                        else
+                            $parametros['texto']="Se ha cancelado tu cita en SiluetaExpress para el día ".date("d/m/Y", strtotime($cita->getFechaInicio()))." a las ".substr($cita->getFechaInicio(), 0, 5)." hrs en ".$nSucursal->getSucursal();
                         $objeto=obtenerJSONMeta($cita->getTelefonoPaciente(), $parametros);
                     }
                     $franquicia = new ModeloFranquicia();
@@ -444,15 +448,18 @@ if (isset($_POST['idCitaCancelar'])&&isset($_POST['por'])){
                     
                     if ($pr[1]=="template"){
                         $controlMeta = new ModeloCita_control_whatsapp();
-                        $controlMeta->setIdCita($_POST['idCitaCancelar']);
-                        $controlMeta->setIdPlantilla(6);
+                        $controlMeta->setIdCita($_POST['idCitaCancelaRecordatorio']);
+                        $controlMeta->setIdPlantilla( $_POST['idCitaCancelaRecordatorio']=="rec"?3:6);
                         $controlMeta->setIdUsuario($objSession->getidUsuario());
                         $controlMeta->setFechaEnvio($fechaEnvio);
                         $controlMeta->setFechaRespuesta("");
                         $controlMeta->setNumeroCelular("521".$paciente->getTelefonoCel());
                         
                         if ($resWh[0]==true){
-                            $controlMeta->setEstatusNoAplica();
+                            if ($_POST['idCitaCancelaRecordatorio']=="rec")
+                                $controlMeta->setEstatusPendiente();
+                            else
+                                $controlMeta->setEstatusNoAplica();
                             
                         }else{
                             $controlMeta->setEstatusError();
@@ -481,6 +488,90 @@ if (isset($_POST['idCitaCancelar'])&&isset($_POST['por'])){
             
             
     }
+}
+
+if (isset($_POST['idCitaRecordatorio'])&&isset($_POST['por'])){
+    require_once FOLDER_MODEL_EXTEND. "model.cita.inc.php";
+    require_once FOLDER_MODEL_EXTEND. "model.sucursal.inc.php";
+    require_once FOLDER_MODEL_EXTEND. "model.paciente.inc.php";
+    require_once FOLDER_MODEL_EXTEND. "model.franquicia.inc.php";
+    require_once FOLDER_MODEL_EXTEND. "model.cita_control_whatsapp.inc.php";
+    require_once FOLDER_INCLUDE_AGENDA.'controler/adminMeta.inc.php';
+    
+    global $objSession;
+    $cita = new ModeloCita();
+    $cita->setIdCita($_POST['idCitaRecordatorio']);
+    $nSucursal = new ModeloSucursal();
+    $nSucursal->setIdSucursal($cita->getIdSucursal());
+    
+    $cita->Guardar();
+    if ($cita->getError())
+        echo $cita->getStrError();
+        else{
+            
+            $paciente = new ModeloPaciente();
+            $paciente->setIdPaciente($cita->getIdPaciente());
+            
+            if ($nSucursal->getEnviarWhatsapp() == 1) {
+                if (strlen($cita->getTelefonoPaciente()) == 12) {
+                    $controlMeta = new ModeloCita_control_whatsapp();
+                    $pr= $controlMeta->validacion($_POST['idCitaCancelaRecordatorio']);
+                    $fechaEnvio=date( 'Y-m-d H:i:s');
+                    $resWh=false;
+                    
+                    if ($pr[0]==true){
+                        if ($pr[1]=="template"){
+                            $parametros = array("nombre"=>$paciente->getNombre(),"dia"=>date("d/m/Y", strtotime($cita->getFechaInicio())),"hora"=>substr($cita->getFechaInicio(), 0, 5),"sucursal"=>$nSucursal->getSucursal());
+                            $objeto=obtenerJSONMeta($cita->getTelefonoPaciente(), $parametros, "cita_recordatorio");
+                        }else {
+                                $parametros['texto']="SiluetaExpress le recuerda su cita para el día ".date("d/m/Y", strtotime($cita->getFechaInicio()))." a las ".substr($cita->getFechaInicio(), 0, 5)." hrs en ".$nSucursal->getSucursal().". Responde Si, para confirmar su cita; No, si desea cancelarla.";
+                                    $objeto=obtenerJSONMeta($cita->getTelefonoPaciente(), $parametros);
+                        }
+                        $franquicia = new ModeloFranquicia();
+                        $franquicia->setIdFranquicia($nSucursal->getIdFranquicia());
+                        
+                        $resWh = enviaWhatsapp($objeto, $franquicia->getIdentificadorMeta());
+                        sleep(2);
+                        
+                        if ($pr[1]=="template"){
+                            $controlMeta = new ModeloCita_control_whatsapp();
+                            $controlMeta->setIdCita($_POST['idCitaRecordatorio']);
+                            $controlMeta->setIdPlantilla(3);
+                            $controlMeta->setIdUsuario($objSession->getidUsuario());
+                            $controlMeta->setFechaEnvio($fechaEnvio);
+                            $controlMeta->setFechaRespuesta("");
+                            $controlMeta->setNumeroCelular("521".$paciente->getTelefonoCel());
+                            
+                            if ($resWh[0]==true){
+                                    $controlMeta->setEstatusPendiente();
+                                        
+                            }else{
+                                $controlMeta->setEstatusError();
+                                $controlMeta->setErrorMeta($resWh[1]);
+                            }
+                            
+                            $controlMeta->Guardar();
+                            if ($controlMeta->getError()){
+                                echo $controlMeta->getStrError();
+                            }
+                            
+                        }
+                        if ($resWh[0]==true)
+                            echo "Se ha enviado la notificación de whatsapp";
+                            else
+                                echo $resWh[1];
+                    }else
+                        echo "No se puede enviar la notificación de whatsapp";
+                        
+                } else {
+                    echo "No se puede enviar el SMS, el n&uacute;mero es incorrecto ";
+                }
+                
+            } else
+                echo "&Eacute;sta sucursal tiene desactivado el env&iacute;o de Whatsapp";
+                
+                
+        }
 }
 
 if (isset($_POST['SucursalIndex'])&&isset($_POST['usuarioIndex'])&&isset($_POST['fechaIndex'])){

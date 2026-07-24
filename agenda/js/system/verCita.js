@@ -271,7 +271,7 @@ function cancelarCita(password,canceladaPor){
 					method : "post",
 					url : "adminFunciones.php",
 					data : {
-						idCitaCancelar:idCita,
+						idCitaCancelaRecordatorio:idCita,
 						por:canceladaPor
 					},
 					success : function(data3) {

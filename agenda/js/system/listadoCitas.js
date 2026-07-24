@@ -203,7 +203,7 @@ function cancelarCita(password,canceladaPor){
 					method : "post",
 					url : "adminFunciones.php",
 					data : {
-						idCitaCancelar:cita,
+						idCitaCancelaRecordatorio:cita,
 						por:canceladaPor
 					},
 					success : function(data) {
@@ -245,6 +245,27 @@ function verOpciones(idCita,url){
 function verCita(idCita){
 	presionado=true;
 	xajax_verCita(idCita);
+}
+
+function enviaRecordatorio(idCita){
+	$.ajax({
+		method : "post",
+		url : "adminFunciones.php",
+		data : {
+			idCitaRecordatorio:idCita,
+			por:''
+		},
+		success : function(data) {
+			
+			if(data=='Se ha enviado la notificación de whatsapp'){
+				mostrarMsjExito('Se ha enviado el recordatorio de la cita correctamente.',10);
+				mostrarMsjExito(data,10);
+				}
+			else
+			mostrarMsjError(data,15);
+		}
+	});
+	
 }
 	//$("#").();
 //var alert = alertify.alert('Titulo','TextoAlerta').set('label', 'Aceptar');     	 

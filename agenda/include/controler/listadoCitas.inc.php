@@ -149,10 +149,9 @@ function consultarCitas($informacion,$fechaI,$checkCabina){
                                 <p> <strong>Servicio: </strong> ".$cita['servicio']."</p>
                                 <p> <strong>Duraci&oacute;n: </strong> ".$duracion."</p> 
                                 <p> <a onClick='ocultarDetalles(".$cita['idCita'].")'>Ocultar </a> </p>  </blockqoute></div> </td>
-                <td>
-                   <a onclick='verCita(\"".$cita['idCita']."\")'><img src='images/editaCita.png' title='Ver/editar' style='width: 20px' /></a> 
-                   <a onclick='verOpciones(\"".$cita['idCita']."\",\"$texto2\")'><img src='images/cancelarCita2.png' title='Cancelar cita' style='width: 20px' /></a>
-               <input type='hidden' id='msjCancela".$cita['idCita']."' value='$texto2'> </td></tr>";
+                <td> <a onclick='enviaRecordatorio(\"".$cita['idCita']."\")'> <img src='images/whats.webp' title='Enviar recordatorio' style='width: 30px' /></a> 
+                   <a onclick='verCita(\"".$cita['idCita']."\")'><img src='images/editaCita.png' title='Ver/editar' style='width: 30px' /></a> 
+                   <a onclick='verOpciones(\"".$cita['idCita']."\",\"$texto2\")'><img src='images/cancelarCita2.png' title='Cancelar cita' style='width: 30px' /></a>";
        }
        $seccion.="</tbody></table></div></div></div>";
    }
